@@ -1,0 +1,18 @@
+Package: shinyF7
+Type: Package
+Title: 'shiny' API for 'Framework7'
+Version: 0.1.0
+Authors@R: c(
+  person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
+  person(family = "Framework7", role = c("ctb, cph"), 
+  comment = "Full featured HTML framework for building iOS & Android apps"))
+Maintainer: David Granjon <dgranjon@ymail.com>
+Description: Make 'shiny' shining for mobiles.
+    IOS and android support.
+Imports: shiny
+License: GPL-2
+Encoding: UTF-8
+URL: https://github.com/RinteRface/shinyF7, https://rinterface.github.io/shinyF7/
+BugReports: https://github.com/RinteRface/shinyF7/issues
+LazyData: true
+RoxygenNote: 6.0.1
