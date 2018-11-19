@@ -41,20 +41,13 @@ f7Page <- function(..., title = NULL){
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
       shiny::tags$meta(name = "theme-color", content = "#2196f3"),
 
-      shiny::tags$title(title),
-
-      # CSS
-      shiny::includeCSS(system.file("css/framework7.min.css", package = "shinyF7")),
-      shiny::includeCSS(system.file("css/framework7-icons.css", package = "shinyF7")),
-      shiny::includeCSS(system.file("css/my-app.css", package = "shinyF7"))
-
+      shiny::tags$title(title)
     ),
     # Body
-    shiny::tags$body(
-      shiny::tags$div(id = "app", ...),
-      # JS
-      shiny::includeScript(system.file("js/framework7.min.js", package = "shinyF7")),
-      shiny::includeScript(system.file("js/my-app.js", package = "shinyF7"))
+    addDeps(
+      shiny::tags$body(
+        shiny::tags$div(id = "app", ...)
+      )
     )
   )
 }
