@@ -5,8 +5,8 @@
 \title{Create a Framework7 tab list}
 \usage{
 f7TabList(..., bottom = FALSE, hairline = TRUE, shadow = TRUE,
-  tabs = TRUE, labels = FALSE, scrollable = FALSE, mode = c("animated",
-  "swipeable"))
+  tabs = TRUE, labels = FALSE, scrollable = FALSE,
+  mode = c("animated", "swipeable"))
 }
 \arguments{
 \item{...}{Slot for f7ToolbarItem.}
