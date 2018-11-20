@@ -165,3 +165,171 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
    footerTag
  )
 }
+
+
+
+#' Create a Framework7 list card
+#'
+#' Build a Framework7 list card
+#'
+#' @param ... Slot for \link{f7ListCardItem}.
+#'
+#' @note The link does not work.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7ListCard(
+#'      f7ListCardItem(
+#'       url = "https://www.google.com",
+#'       title = "Item 1"
+#'      ),
+#'      f7ListCardItem(
+#'       url = "https://www.google.com",
+#'       title = "Item 2"
+#'      )
+#'     )
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7ListCard <- function(...) {
+  shiny::tags$div(
+    class = "card",
+    shiny::tags$div(
+      class = "card-content",
+      shiny::tags$div(
+        class = "list links-list",
+        shiny::tags$ul(...)
+      )
+    )
+  )
+}
+
+
+
+#' Create a Framework7 list card item
+#'
+#' Build a Framework7 list card item
+#'
+#' @param url Item url.
+#' @param title item title.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7ListCardItem <- function(url = NULL, title = NULL) {
+ shiny::tags$li(
+   shiny::tags$a(
+     href = url,
+     title
+   )
+ )
+}
+
+
+
+#' Create a Framework7 media card
+#'
+#' Build a Framework7 media card
+#'
+#' @param ... Slot for \link{f7MediaCardItem}.
+#' @param title Card title.
+#' @param footer Footer content, if any. Must be wrapped in a tagList.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7MediaCard(
+#'      title = "New Releases:",
+#'      f7MediaCardItem(
+#'       src = "http://lorempixel.com/88/88/fashion/4",
+#'       title = "Yellow Submarine",
+#'       subtitle = "Beatles"
+#'      ),
+#'      f7MediaCardItem(
+#'       src = "http://lorempixel.com/88/88/fashion/5",
+#'       title = "Don't Stop Me Now",
+#'       subtitle = "Queen"
+#'      ),
+#'      footer = tagList(
+#'       span("January 20", 2015),
+#'       span(5, "comments")
+#'      )
+#'     )
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7MediaCard <- function(..., title = NULL, footer = NULL) {
+
+  headerTag <- if (!is.null(title)) shiny::tags$div(class = "card-header", title)
+
+  contentTag <- shiny::tags$div(
+    class = "card-content",
+    shiny::tags$div(
+      class = "list media-list",
+      shiny::tags$ul(...)
+    )
+  )
+
+  footerTag <- if(!is.null(footer)) shiny::tags$div(class = "card-footer", footer)
+
+  mainTag <- shiny::tags$div(
+    class = "card",
+    headerTag,
+    contentTag,
+    footerTag
+  )
+
+}
+
+
+#' Create a Framework7 media card item
+#'
+#' Build a Framework7 media card item
+#'
+#' @param src Item image url or path.
+#' @param title Item title.
+#' @param subtitle Item subtitle.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
+  shiny::tags$li(
+    class = "item-content",
+    # side image
+    shiny::tags$div(
+      class = "item-media",
+      shiny::tags$img(src = src, width = "44")
+    ),
+    #inner
+    shiny::tags$div(
+      class = "item-inner",
+      shiny::tags$div(
+        class = "item-title-row",
+        shiny::tags$div(class = "item-title", title)
+      ),
+      shiny::tags$div(class = "item-subtitle", subtitle)
+    )
+  )
+}
