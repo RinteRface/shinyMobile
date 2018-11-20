@@ -27,9 +27,6 @@ f7Button(..., src, color = NULL, fill = FALSE, outline = FALSE,
 \description{
 Build a Framework7 button
 }
-\note{
-Not ready for production
-}
 \examples{
 if(interactive()){
  library(shiny)

@@ -11,8 +11,6 @@
 #' @param rounded Round style. FALSE by default.
 #' @param size Button size. NULL by default but also "big" or "small".
 #'
-#' @note Not ready for production
-#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -33,8 +31,8 @@
 #' @export
 f7Button <- function(..., src, color = NULL, fill = FALSE, outline = FALSE,
                      shadow = FALSE, rounded = FALSE, size = NULL) {
-
-  buttonCl <- "button"
+  # need to add external to handle external url
+  buttonCl <- "button external"
   if (!is.null(color)) buttonCl <- paste0(buttonCl, " color-", color)
   if (fill) buttonCl <- paste0(buttonCl, " button-fill")
   if (outline) buttonCl <- paste0(buttonCl, " button-outline")
