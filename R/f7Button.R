@@ -51,3 +51,12 @@ f7Button <- function(..., src, color = NULL, fill = FALSE, outline = FALSE,
   )
   return(buttonTag)
 }
+
+
+
+
+
+
+
+
+
