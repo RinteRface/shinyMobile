@@ -21,6 +21,9 @@ addDeps <- function(x) {
   social_cards_css <- "social-cards.css"
   card_img_css <- "card-img.css"
 
+  # swiper css
+  swiper_css <- "swiper.css"
+
   # grid extra css
   grid_css <- "grid-extra.css"
 
@@ -41,7 +44,8 @@ addDeps <- function(x) {
         framework7_icons_css,
         social_cards_css,
         card_img_css,
-        grid_css
+        grid_css,
+        swiper_css
       )
     )
   )
