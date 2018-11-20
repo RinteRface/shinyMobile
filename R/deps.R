@@ -17,6 +17,10 @@ addDeps <- function(x) {
   framework7_icons_css <- "framework7-icons.css"
   custom_css <- "my-app.css"
 
+  # card extra elements
+  social_cards_css <- "social-cards.css"
+  card_img_css <- "card-img.css"
+
   # JS
   framework7_js <- "framework7.min.js"
   custom_js <- "my-app.js"
@@ -28,7 +32,13 @@ addDeps <- function(x) {
       version = "3.5.2",
       src = c(file = system.file("framework7-3.5.2", package = "shinyF7")),
       script = c(framework7_js, custom_js),
-      stylesheet = c(framework7_css, custom_css, framework7_icons_css)
+      stylesheet = c(
+        framework7_css,
+        custom_css,
+        framework7_icons_css,
+        social_cards_css,
+        card_img_css
+      )
     )
   )
   appendDependencies(x, f7Deps)
