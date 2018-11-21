@@ -85,7 +85,7 @@ f7Page <- function(..., title = NULL, navbar = NULL, navbarHideScroll = FALSE, d
 #'
 #' Build a Framework7 page with tabbar layout
 #'
-#' @param ... Slot for \link{f7Tabs} and/or \link{f7Navbar}.
+#' @param ... Slot for \link{f7Tabs} and/or \link{f7Navbar} and/or \link{f7Panel}.
 #' @param title Page title.
 #' @param dark_mode Whether to enable the dark mode. FALSE by default.
 #'
@@ -155,6 +155,7 @@ f7TabLayout <- function(..., title = NULL, dark_mode = FALSE) {
           id = "app",
           shiny::tags$div(
             class = "page",
+            #shiny::tags$div(class = "panel-backdrop", style = NA),
             ...
           )
         )

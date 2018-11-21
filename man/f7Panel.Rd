@@ -4,17 +4,25 @@
 \alias{f7Panel}
 \title{Create a Framework7 panel}
 \usage{
-f7Panel(..., side = c("left", "right"), theme = c("dark", "light"))
+f7Panel(..., title = NULL, side = c("left", "right"),
+  theme = c("dark", "light"), style = c("reveal", "cover"))
 }
 \arguments{
 \item{...}{Panel content.}
 
+\item{title}{Panel title.}
+
 \item{side}{Panel side: "left" or "right".}
 
 \item{theme}{Panel background color: "dark" or "light".}
+
+\item{style}{Whether the panel should behave when opened: "cover" or "reveal".}
 }
 \description{
 Build a Framework7 panel
+}
+\note{
+When style is "reveal", makes the app freeze.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

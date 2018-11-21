@@ -3,6 +3,7 @@
 #' Build a Framework7 tabs
 #'
 #' @param ... Slot for \link{f7Tab}.
+#' @param position Tabs position: "top" or "bottom".
 #' @param hairline Whether to display a thin border on the top of the toolbar. TRUE by default.
 #' @param shadow Whether to display a shadow. TRUE by default.
 #' @param icons Whether to use icons instead of text.
@@ -15,9 +16,11 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tabs <- function(..., hairline = TRUE, shadow = TRUE,
+f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow = TRUE,
                      icons = FALSE, scrollable = FALSE,
                      swipeable = FALSE, animated = FALSE) {
+
+  position <- match.arg(position)
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
 
@@ -30,6 +33,7 @@ f7Tabs <- function(..., hairline = TRUE, shadow = TRUE,
   if (!shadow) toolbarClass <- paste0(toolbarClass, " no-shadow")
   if (icons) toolbarClass <- paste0(toolbarClass, " tabbar-labels")
   if (scrollable) toolbarClass <- paste0(toolbarClass, " tabbar-scrollable")
+  if (position == "bottom") toolbarClass <- paste0(toolbarClass, " toolbar-bottom-md")
 
 
   # toolbar items
@@ -78,7 +82,7 @@ f7Tabs <- function(..., hairline = TRUE, shadow = TRUE,
 
   # related page content
   contentTag <- shiny::tags$div(
-    class = "tabs",
+    class = "tabs ios-edges",
     toolbarItems
   )
 

@@ -4,11 +4,14 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., hairline = TRUE, shadow = TRUE, icons = FALSE,
-  scrollable = FALSE, swipeable = FALSE, animated = FALSE)
+f7Tabs(..., position = c("top", "bottom"), hairline = TRUE,
+  shadow = TRUE, icons = FALSE, scrollable = FALSE,
+  swipeable = FALSE, animated = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
+
+\item{position}{Tabs position: "top" or "bottom".}
 
 \item{hairline}{Whether to display a thin border on the top of the toolbar. TRUE by default.}
 

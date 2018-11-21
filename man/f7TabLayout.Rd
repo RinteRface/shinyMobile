@@ -7,7 +7,7 @@
 f7TabLayout(..., title = NULL, dark_mode = FALSE)
 }
 \arguments{
-\item{...}{Slot for \link{f7Tabs} and/or \link{f7Navbar}.}
+\item{...}{Slot for \link{f7Tabs} and/or \link{f7Navbar} and/or \link{f7Panel}.}
 
 \item{title}{Page title.}
 

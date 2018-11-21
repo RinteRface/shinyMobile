@@ -18,20 +18,27 @@ f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE) {
  leftNav <- shiny::tags$div(
     class = "left",
     shiny::tags$a(
-       class = "link back",
-       shiny::tags$i(class = "icon icon-back"),
-       shiny::span(class = "ios-only", "Back")
+       class = "link icon-only panel-open",
+       `data-panel` = "left",
+       shiny::tags$i(class = "icon material-icons md-only", "menu")
     )
  )
 
- rightNav <- shiny::tags$div(class = "right")
+ rightNav <- shiny::tags$div(
+     class = "right",
+     shiny::tags$a(
+         class = "link icon-only panel-open",
+         `data-panel` = "right",
+         shiny::tags$i(class = "icon material-icons md-only", "menu")
+     )
+ )
 
  shiny::tags$div(
    class = navbarClass,
    shiny::tags$div(
      class = "navbar-inner sliding",
      leftNav,
-     shiny::tags$div(class = "title", title),
+     shiny::tags$div(class = "title sliding", title),
      rightNav
    )
  )
