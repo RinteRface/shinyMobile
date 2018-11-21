@@ -9,4 +9,5 @@ var app = new Framework7({
   // ... other parameters
 });
 
+var theme = app.theme('ios');
 //var mainView = app.views.create('.view-main');

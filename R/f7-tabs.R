@@ -6,19 +6,21 @@
 #' @param position Tabs position: "top" or "bottom".
 #' @param hairline Whether to display a thin border on the top of the toolbar. TRUE by default.
 #' @param shadow Whether to display a shadow. TRUE by default.
-#' @param icons Whether to use icons instead of text.
+#' @param icons Whether to use icons instead of text. Either ios or md icons.
 #' @param scrollable Whether to allow scrolling. FALSE by default.
 #' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
-#' @param animated Whether to show transition between tabs. FALSE by default.
+#' @param animated Whether to show transition between tabs. TRUE by default.
 #' Not compatible with swipeable.
+#'
+#' @note swipeable does not work. Animated must also always be TRUE, for some reason.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow = TRUE,
                      icons = FALSE, scrollable = FALSE,
-                     swipeable = FALSE, animated = FALSE) {
+                     swipeable = FALSE, animated = TRUE) {
 
   position <- match.arg(position)
 

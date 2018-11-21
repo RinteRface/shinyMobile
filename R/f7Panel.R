@@ -21,7 +21,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
   theme <- match.arg(theme)
   panelCl <- sprintf("panel panel-%s panel-%s", side, style, " theme-%s", theme)
 
-  shiny::tags$div(
+  panelTag <- shiny::tags$div(
     class = panelCl,
     shiny::tags$div(
       class = "view",
@@ -43,4 +43,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
       )
     )
   )
+
+  f7Shadow(panelTag, intensity = 24)
+
 }

@@ -6,7 +6,7 @@
 \usage{
 f7Tabs(..., position = c("top", "bottom"), hairline = TRUE,
   shadow = TRUE, icons = FALSE, scrollable = FALSE,
-  swipeable = FALSE, animated = FALSE)
+  swipeable = FALSE, animated = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
@@ -17,18 +17,21 @@ f7Tabs(..., position = c("top", "bottom"), hairline = TRUE,
 
 \item{shadow}{Whether to display a shadow. TRUE by default.}
 
-\item{icons}{Whether to use icons instead of text.}
+\item{icons}{Whether to use icons instead of text. Either ios or md icons.}
 
 \item{scrollable}{Whether to allow scrolling. FALSE by default.}
 
 \item{swipeable}{Whether to allow finger swip. FALSE by default. Only for touch-screens.
 Not compatible with animated.}
 
-\item{animated}{Whether to show transition between tabs. FALSE by default.
+\item{animated}{Whether to show transition between tabs. TRUE by default.
 Not compatible with swipeable.}
 }
 \description{
 Build a Framework7 tabs
+}
+\note{
+swipeable does not work. Animated must also always be TRUE, for some reason.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

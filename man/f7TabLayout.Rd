@@ -2,52 +2,21 @@
 % Please edit documentation in R/f7Page.R
 \name{f7TabLayout}
 \alias{f7TabLayout}
-\title{Create a Framework7 page with tabbar layout}
+\title{Create a Framework7 page with tab layout}
 \usage{
-f7TabLayout(..., title = NULL, dark_mode = FALSE)
+f7TabLayout(...)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tabs} and/or \link{f7Navbar} and/or \link{f7Panel}.}
-
-\item{title}{Page title.}
-
-\item{dark_mode}{Whether to enable the dark mode. FALSE by default.}
 }
 \description{
-Build a Framework7 page with tabbar layout
+Build a Framework7 page with tab layout
 }
 \examples{
 if(interactive()){
  library(shiny)
  library(shinyF7)
 
- shiny::shinyApp(
-   ui = f7TabbarLayout(
-    title = "My app",
-    f7Tabs(
-     position = "bottom",
-     f7Tab(
-      tabName = "Tab 1",
-      icon = NULL,
-      active = TRUE,
-      f7Badge(1, color = "blue")
-     ),
-     f7Tab(
-      tabName = "Tab 2",
-      icon = NULL,
-      active = FALSE,
-      f7Badge(2, color = "green")
-     ),
-     f7Tab(
-      tabName = "Tab 3",
-      icon = NULL,
-      active = FALSE,
-      f7Badge(3, color = "orange")
-     )
-    )
-   ),
-   server = function(input, output) {}
- )
 }
 
 }
