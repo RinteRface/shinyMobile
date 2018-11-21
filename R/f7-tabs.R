@@ -83,7 +83,7 @@ f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow =
   # related page content
   contentTag <- shiny::tags$div(
     class = "tabs ios-edges",
-    toolbarItems
+    lapply(1:len, function(i) { toolbarItems[[i]][[1]]})
   )
 
   # handle swipeable tabs

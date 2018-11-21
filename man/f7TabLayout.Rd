@@ -25,6 +25,7 @@ if(interactive()){
    ui = f7TabbarLayout(
     title = "My app",
     f7Tabs(
+     position = "bottom",
      f7Tab(
       tabName = "Tab 1",
       icon = NULL,

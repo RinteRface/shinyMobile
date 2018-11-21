@@ -3,6 +3,7 @@ library(shinyF7)
 
 shiny::shinyApp(
   ui = f7TabLayout(
+    setTheme("ios"),
     title = "My app",
     f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
     f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
@@ -41,7 +42,7 @@ shiny::shinyApp(
       f7Tab(
         tabName = "Tab 2",
         icon = "today",
-        active = TRUE,
+        active = FALSE,
         f7Shadow(
           intensity = 10,
           hover = TRUE,
