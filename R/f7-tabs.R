@@ -1,126 +1,133 @@
-#' Create a Framework7 tab list
+#' Create a Framework7 tabs
 #'
-#' Build a Framework7 tab list
+#' Build a Framework7 tabs
 #'
-#' @inheritParams f7Toolbar
-#' @param mode Tab animation mode. Either "animated" or "swipeable".
-#'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#'  shiny::shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7TabList(
-#'      tabs = TRUE,
-#'      mode = "swipeable",
-#'      f7Tab(
-#'       active = TRUE,
-#'       id = "tab1",
-#'       "Tab 1"
-#'      ),
-#'      f7Tab(
-#'       id = "tab2",
-#'       "Tab 2"
-#'      ),
-#'      f7Tab(
-#'       id = "tab3",
-#'       "Tab 3"
-#'      )
-#'     )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
-#' }
+#' @param ... Slot for \link{f7Tab}.
+#' @param hairline Whether to display a thin border on the top of the toolbar. TRUE by default.
+#' @param shadow Whether to display a shadow. TRUE by default.
+#' @param icons Whether to use icons instead of text.
+#' @param scrollable Whether to allow scrolling. FALSE by default.
+#' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
+#' Not compatible with animated.
+#' @param animated Whether to show transition between tabs. FALSE by default.
+#' Not compatible with swipeable.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
-#' @inheritParams f7Toolbar
 #'
 #' @export
-f7TabList <- function(..., bottom = FALSE, hairline = TRUE, shadow = TRUE,
-                      tabs = TRUE, labels = FALSE, scrollable = FALSE,
-                      mode = c("animated", "swipeable")){
+f7Tabs <- function(..., hairline = TRUE, shadow = TRUE,
+                     icons = FALSE, scrollable = FALSE,
+                     swipeable = FALSE, animated = FALSE) {
 
-  mode <- match.arg(mode)
+  if (swipeable && animated) stop("Cannot use two effects at the same time")
 
-  # we are in tab mode
-  tabs <- TRUE
+  toolbarItems <- list(...)
+  len <- length(toolbarItems)
+  found_active <- FALSE
 
- items <- list(...)
- len <- length(items)
+  toolbarClass <- if (icons) "toolbar" else "toolbar tabbar"
+  if (!hairline) toolbarClass <- paste0(toolbarClass, " no-hairline")
+  if (!shadow) toolbarClass <- paste0(toolbarClass, " no-shadow")
+  if (icons) toolbarClass <- paste0(toolbarClass, " tabbar-labels")
+  if (scrollable) toolbarClass <- paste0(toolbarClass, " tabbar-scrollable")
 
- # create as much f7ToolbarItems as f7Tab
- tabsList <- lapply(1:len, FUN = function(i) {
 
-   tabName <- items[[i]]$children[[1]]
-   tabTag <- items[[i]][[2]]
+  # toolbar items
+  toolbarTag <- shiny::tags$div(
+    class = toolbarClass,
+    shiny::tags$div(
+      class = "toolbar-inner",
+      lapply(1:len, FUN = function(i) {
 
-   id <- tabTag$id
-   active <- sum(grep(x = tabTag$class, pattern = "active")) == 1
+        item <- toolbarItems[[i]][[1]]
+        itemIcon <- toolbarItems[[i]][[2]]
+        itemName <- toolbarItems[[i]][[3]]
+        itemClass <- item$attribs$class
+        itemId <- item$attribs$id
 
-   itemTag <- f7ToolbarItem(
-     name = tabName,
-     href = paste0("#", id)
-   )
+        # make sure that if the user set 2 tabs active at the same time,
+        # only the first one is selected
+        if (!found_active) {
+          active <- sum(grep(x = itemClass, pattern = "active")) == 1
+          if (active) found_active <<- TRUE
+          # if there is already an active panel, set all other to inactive
+        } else {
+          active <- FALSE
+        }
 
-   # if we are in tab mode which is always the case
-   if (tabs) {
-     # remove the link class
-     itemTag$attribs$class <- NULL
-     # replace it by tab-link
-     shiny::tagAppendAttributes(
-       itemTag,
-       class = if (active == 1) "tab-link tab-link-active" else "tab-link"
-     )
-   }
- })
+        # generate the link
+        if (!is.null(itemIcon)) {
+          shiny::a(
+            href = paste0("#", itemId),
+            class = if (active) "tab-link tab-link-active" else "tab-link",
+            shiny::tags$i(class = "icon f7-icons ios-only", itemIcon),
+            shiny::tags$i(class = "icon material-icons md-only", itemIcon),
+            shiny::span(class = "tabbar-label", itemName)
+          )
+        } else {
+          shiny::a(
+            href = paste0("#", itemId),
+            class = if (active) "tab-link tab-link-active" else "tab-link",
+            itemName
+          )
+        }
 
- # create the toolbar menu
- menu <- f7Toolbar(
-   bottom = bottom,
-   hairline = hairline,
-   shadow = shadow,
-   tabs = tabs,
-   labels = labels,
-   scrollable = scrollable,
-   tabsList
+      })
+    )
   )
 
- tabsTag <- shiny::tagList(
-   menu,
-   shiny::tags$div(
-     class = paste0("tabs-", mode, "-wrap"),
-     shiny::tags$div(class = "tabs", ...)
-   )
- )
+  # related page content
+  contentTag <- shiny::tags$div(
+    class = "tabs",
+    toolbarItems
+  )
 
- shiny::tags$div(class = "views tabs", tabsTag)
+  # handle swipeable tabs
+  if (swipeable) {
+    contentTag <- shiny::tags$div(
+      class = "tabs-swipeable-wrap",
+      contentTag
+    )
+  }
+
+  if (animated) {
+    contentTag <- shiny::tags$div(
+      class = "tabs-animated-wrap",
+      contentTag
+    )
+  }
+
+  shiny::tagList(toolbarTag, contentTag)
 
 }
 
 
 
-#' Create a Framework7 tab
+#' Create a Framework7 tab item
 #'
-#' Build a Framework7 tab
+#' Build a Framework7 tab item
 #'
-#' @param ... Any UI element.
-#' @param id Unique tab id.
-#' @param active Whether the tab is active at start.
+#' @param ... Item content.
+#' @param tabName Item id. Must be unique.
+#' @param icon Item icon.
+#' @param active Whether the tab is active at start. Do not select multiple tabs, only
+#' the first one will be set to active
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tab <- function(..., id, active = FALSE) {
+f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
 
-  tabClass <- "view tab"
-  if (active) tabClass <- paste0(tabClass, " view-main tab-active")
+  id <- tabName
+  # handle punctuation
+  id <- gsub(x = id, pattern = "[[:punct:]]", replacement = "")
+  # handle tab names with space
+  id <- gsub(x = id, pattern = " ", replacement = "")
 
- shiny::tags$div(
-   class = tabClass,
-   id = id,
-   ...
- )
+  itemTag <- shiny::tags$div(
+    class = if (active) "page-content tab tab-active" else "page-content tab",
+    id = id,
+    f7Block(...)
+  )
+  return(list(itemTag, icon, tabName))
 }

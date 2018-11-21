@@ -4,7 +4,8 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., title = NULL)
+f7Page(..., title = NULL, navbar = NULL, navbarHideScroll = FALSE,
+  dark_mode = FALSE)
 }
 \arguments{
 \item{...}{Any element. They are inserted in a grid. Use the shiny fluidRow function
@@ -12,6 +13,12 @@ to create a row and insert metroUiCol inside. The maximum with is 12
 (3 columns or lenght 4, 4 columns of lenght 3, ...).}
 
 \item{title}{Page title.}
+
+\item{navbar}{Slot for \link{f7Navbar}.}
+
+\item{navbarHideScroll}{Whether to hide the navbar on scroll. FALSE by default.}
+
+\item{dark_mode}{Whether to enable the dark mode. FALSE by default.}
 }
 \description{
 Build a Framework7 page

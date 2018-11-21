@@ -2,19 +2,22 @@
 % Please edit documentation in R/f7-tabs.R
 \name{f7Tab}
 \alias{f7Tab}
-\title{Create a Framework7 tab}
+\title{Create a Framework7 tab item}
 \usage{
-f7Tab(..., id, active = FALSE)
+f7Tab(..., tabName, icon = NULL, active = FALSE)
 }
 \arguments{
-\item{...}{Any UI element.}
+\item{...}{Item content.}
 
-\item{id}{Unique tab id.}
+\item{tabName}{Item id. Must be unique.}
 
-\item{active}{Whether the tab is active at start.}
+\item{icon}{Item icon.}
+
+\item{active}{Whether the tab is active at start. Do not select multiple tabs, only
+the first one will be set to active}
 }
 \description{
-Build a Framework7 tab
+Build a Framework7 tab item
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
