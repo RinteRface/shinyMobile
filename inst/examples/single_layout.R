@@ -21,10 +21,7 @@ shiny::shinyApp(
         hover = TRUE,
         f7Card(
           title = "Card header",
-          f7Align(
-            sliderInput("obs", "Number of observations", 0, 1000, 500),
-            side = "center"
-          ),
+          sliderInput("obs", "Number of observations", 0, 1000, 500),
           plotOutput("distPlot"),
           footer = tagList(
             f7Button(color = "blue", "My button", src = "https://www.google.com"),

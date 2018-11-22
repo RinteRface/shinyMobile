@@ -59,6 +59,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
     addDeps(
       shiny::tags$body(
         class = bodyCl,
+        style = "background-color: gainsboro;",
         shiny::tags$div(
           id = "app",
           ...
