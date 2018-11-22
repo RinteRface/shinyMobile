@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 tab — f7Tab • shinyF7</title>
+<title>Create a Framework7 tab item — f7Tab • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a Framework7 tab — f7Tab" />
+<meta property="og:title" content="Create a Framework7 tab item — f7Tab" />
 
-<meta property="og:description" content="Build a Framework7 tab" />
+<meta property="og:description" content="Build a Framework7 tab item" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,33 +100,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 tab</h1>
+    <h1>Create a Framework7 tab item</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7-tabs.R'><code>R/f7-tabs.R</code></a></small>
     <div class="hidden name"><code>f7Tab.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 tab</p>
+    <p>Build a Framework7 tab item</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Tab</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Tab</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Any UI element.</p></td>
+      <td><p>Item content.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Unique tab id.</p></td>
+      <th>tabName</th>
+      <td><p>Item id. Must be unique.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>Item icon.</p></td>
     </tr>
     <tr>
       <th>active</th>
-      <td><p>Whether the tab is active at start.</p></td>
+      <td><p>Whether the tab is active at start. Do not select multiple tabs, only
+the first one will be set to active</p></td>
     </tr>
     </table>
     

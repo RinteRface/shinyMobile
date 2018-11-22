@@ -111,20 +111,26 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Page</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Page</span>(<span class='no'>...</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dark_mode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Any element. They are inserted in a grid. Use the shiny fluidRow function
-to create a row and insert metroUiCol inside. The maximum with is 12
-(3 columns or lenght 4, 4 columns of lenght 3, ...).</p></td>
+      <td><p>Any element.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>Page title.</p></td>
+    </tr>
+    <tr>
+      <th>dark_mode</th>
+      <td><p>Whether to enable the dark mode. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>Color theme: See <a href='http://framework7.io/docs/color-themes.html'>http://framework7.io/docs/color-themes.html</a>.</p></td>
     </tr>
     </table>
     

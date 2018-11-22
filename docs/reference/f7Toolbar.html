@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 toolbar/tabbar — f7Toolbar • shinyF7</title>
+<title>Create a Framework7 Toolbar — f7Toolbar • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a Framework7 toolbar/tabbar — f7Toolbar" />
+<meta property="og:title" content="Create a Framework7 Toolbar — f7Toolbar" />
 
-<meta property="og:description" content="Build a Framework7 toolbar/tabbar" />
+<meta property="og:description" content="Build a Framework7 Toolbar" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,54 +100,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 toolbar/tabbar</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7-toolbars.R'><code>R/f7-toolbars.R</code></a></small>
+    <h1>Create a Framework7 Toolbar</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Toolbar.R'><code>R/f7Toolbar.R</code></a></small>
     <div class="hidden name"><code>f7Toolbar.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 toolbar/tabbar</p>
+    <p>Build a Framework7 Toolbar</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Toolbar</span>(<span class='no'>...</span>, <span class='kw'>bottom</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>tabs</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>scrollable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Toolbar</span>(<span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for f7ToolbarItem.</p></td>
-    </tr>
-    <tr>
-      <th>bottom</th>
-      <td><p>Toolbar position. FALSE by default, the toolbar is displayed
-below the navbar. If TRUE, it is displayed at the bottom of the page.</p></td>
-    </tr>
-    <tr>
-      <th>hairline</th>
-      <td><p>Whether to display a thin border on the top of the toolbar. TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>shadow</th>
-      <td><p>Whether to display a shadow. TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>tabs</th>
-      <td><p>Whether to use the toolbar with tabs. See f7TabList and f7Tab. FALSE
-by default.</p></td>
-    </tr>
-    <tr>
-      <th>labels</th>
-      <td><p>Whether to use icons instead of text. Only use when tabbar is TRUE.</p></td>
-    </tr>
-    <tr>
-      <th>scrollable</th>
-      <td><p>Whether to allow scrolling. FALSE by default.</p></td>
+      <td><p>Slot for <a href='f7Link.html'>f7Link</a> or any other element.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Does not render properly on iOS.</p>
     
 
   </div>
@@ -155,7 +132,9 @@ by default.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#note">Note</a></li>
+          </ul>
 
     <h2>Author</h2>
     

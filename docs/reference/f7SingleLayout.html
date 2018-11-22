@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 button — f7Button • shinyF7</title>
+<title>Create a Framework7 single layout — f7SingleLayout • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a Framework7 button — f7Button" />
+<meta property="og:title" content="Create a Framework7 single layout — f7SingleLayout" />
 
-<meta property="og:description" content="Build a Framework7 button" />
+<meta property="og:description" content="Build a Framework7 single layout" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,54 +100,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 button</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Button.R'><code>R/f7Button.R</code></a></small>
-    <div class="hidden name"><code>f7Button.Rd</code></div>
+    <h1>Create a Framework7 single layout</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Page.R'><code>R/f7Page.R</code></a></small>
+    <div class="hidden name"><code>f7SingleLayout.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 button</p>
+    <p>Build a Framework7 single layout</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Button</span>(<span class='no'>...</span>, <span class='no'>src</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7SingleLayout</span>(<span class='no'>...</span>, <span class='no'>navbar</span>, <span class='no'>toolbar</span>, <span class='kw'>navbarHideScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Button text.</p></td>
+      <td><p>Content.</p></td>
     </tr>
     <tr>
-      <th>src</th>
-      <td><p>Button link.</p></td>
+      <th>navbar</th>
+      <td><p>Slot for <a href='f7Navbar.html'>f7Navbar</a>.</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>Button color. See here for valid colors <a href='https://framework7.io/docs/badge.html'>https://framework7.io/docs/badge.html</a>.</p></td>
+      <th>toolbar</th>
+      <td><p>Slot for <a href='f7Toolbar.html'>f7Toolbar</a>.</p></td>
     </tr>
     <tr>
-      <th>fill</th>
-      <td><p>Fill style. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>outline</th>
-      <td><p>Outline style. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>shadow</th>
-      <td><p>Button shadow. FALSE by default. Only for material design.</p></td>
-    </tr>
-    <tr>
-      <th>rounded</th>
-      <td><p>Round style. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>Button size. NULL by default but also "big" or "small".</p></td>
+      <th>navbarHideScroll</th>
+      <td><p>Whether to hide the navbar on scroll. FALSE by default.</p></td>
     </tr>
     </table>
     
@@ -156,14 +139,42 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'>interactive</span>()){
  <span class='fu'>library</span>(<span class='no'>shiny</span>)
  <span class='fu'>library</span>(<span class='no'>shinyF7</span>)
-
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='fu'><a href='setTheme.html'>setTheme</a></span>(<span class='st'>"ios"</span>),
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'>f7Button</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-    <span class='fu'>f7Button</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <span class='fu'>f7SingleLayout</span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Single Layout"</span>,
+        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      ),
+      <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span>(
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+      ),
+      <span class='co'># main content</span>
+      <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+        <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+        <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+          <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
+          <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>),
+          <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
+            <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+            <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+          )
+        )
+      )
+    )
   ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'>rnorm</span>(<span class='no'>input</span>$<span class='no'>obs</span>)
+      <span class='fu'>hist</span>(<span class='no'>dist</span>)
+    })
+  }
  )
 }</div></pre>
   </div>

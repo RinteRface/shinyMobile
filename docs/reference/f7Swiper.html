@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 button — f7Button • shinyF7</title>
+<title>Create a Framework7 swiper — f7Swiper • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a Framework7 button — f7Button" />
+<meta property="og:title" content="Create a Framework7 swiper — f7Swiper" />
 
-<meta property="og:description" content="Build a Framework7 button" />
+<meta property="og:description" content="Build a Framework7 swiper (like carousel)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,54 +100,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 button</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Button.R'><code>R/f7Button.R</code></a></small>
-    <div class="hidden name"><code>f7Button.Rd</code></div>
+    <h1>Create a Framework7 swiper</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Swiper.R'><code>R/f7Swiper.R</code></a></small>
+    <div class="hidden name"><code>f7Swiper.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 button</p>
+    <p>Build a Framework7 swiper (like carousel)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Button</span>(<span class='no'>...</span>, <span class='no'>src</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Swiper</span>(<span class='no'>...</span>, <span class='kw'>pagination</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>n_slides</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>centered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>speed</span> <span class='kw'>=</span> <span class='fl'>900</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Button text.</p></td>
+      <td><p>Slot for <a href='f7Slide.html'>f7Slide</a>.</p></td>
     </tr>
     <tr>
-      <th>src</th>
-      <td><p>Button link.</p></td>
+      <th>pagination</th>
+      <td><p>Whether to show pagination. TRUE by default.</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>Button color. See here for valid colors <a href='https://framework7.io/docs/badge.html'>https://framework7.io/docs/badge.html</a>.</p></td>
+      <th>space</th>
+      <td><p>Space between slides. 50 by default. Only if pagination is TRUE.</p></td>
     </tr>
     <tr>
-      <th>fill</th>
-      <td><p>Fill style. FALSE by default.</p></td>
+      <th>n_slides</th>
+      <td><p>Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.</p></td>
     </tr>
     <tr>
-      <th>outline</th>
-      <td><p>Outline style. FALSE by default.</p></td>
+      <th>centered</th>
+      <td><p>Whether to center slides. Only if pagination is TRUE.</p></td>
     </tr>
     <tr>
-      <th>shadow</th>
-      <td><p>Button shadow. FALSE by default. Only for material design.</p></td>
+      <th>vertical</th>
+      <td><p>Whether to display slides vertically. FALSE by default. Only if pagination is TRUE.</p></td>
     </tr>
     <tr>
-      <th>rounded</th>
-      <td><p>Round style. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>Button size. NULL by default but also "big" or "small".</p></td>
+      <th>speed</th>
+      <td><p>Slides speed. Numeric.</p></td>
     </tr>
     </table>
     
@@ -158,12 +154,22 @@
  <span class='fu'>library</span>(<span class='no'>shinyF7</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'>f7Button</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-    <span class='fu'>f7Button</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/actionButton'>actionButton</a></span>(<span class='st'>"newplot"</span>, <span class='st'>"New plot"</span>),
+    <span class='fu'>f7Swiper</span>(
+     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(<span class='st'>"Slide 1"</span>),
+     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"plot"</span>))
+    )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+     <span class='no'>output</span>$<span class='no'>plot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+      <span class='no'>input</span>$<span class='no'>newplot</span>
+      <span class='co'># Add a little noise to the cars data</span>
+      <span class='no'>cars2</span> <span class='kw'>&lt;-</span> <span class='no'>cars</span> + <span class='fu'>rnorm</span>(<span class='fu'>nrow</span>(<span class='no'>cars</span>))
+      <span class='fu'>plot</span>(<span class='no'>cars2</span>)
+     })
+   }
  )
 }</div></pre>
   </div>

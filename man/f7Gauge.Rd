@@ -4,16 +4,13 @@
 \alias{f7Gauge}
 \title{Create a Framework7 gauge}
 \usage{
-f7Gauge(..., id, type = NULL, value = NULL, size = NULL,
-  bgColor = NULL, borderBgColor = NULL, borderColor = NULL,
-  borderWidth = NULL, text = NULL, textColor = NULL,
-  fontSize = NULL, fontWeight = NULL, labelText = NULL,
-  labelTextColor = NULL, labelFontSize = NULL,
-  labelFontWeight = NULL)
+f7Gauge(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
+  borderBgColor = NULL, borderColor = NULL, borderWidth = NULL,
+  valueText = NULL, valueTextColor = NULL, valueFontSize = NULL,
+  valueFontWeight = NULL, labelText = NULL, labelTextColor = NULL,
+  labelFontSize = NULL, labelFontWeight = NULL)
 }
 \arguments{
-\item{...}{Any text.}
-
 \item{id}{Gauge ID.}
 
 \item{type}{Gauge type. Can be "circle" or "semicircle". Default is "circle."}
@@ -30,13 +27,13 @@ f7Gauge(..., id, type = NULL, value = NULL, size = NULL,
 
 \item{borderWidth}{Main border/stroke width.}
 
-\item{text}{Gauge value text (large text in the center of gauge).}
+\item{valueText}{Gauge value text (large text in the center of gauge).}
 
-\item{textColor}{Value text color.}
+\item{valueTextColor}{Value text color.}
 
-\item{fontSize}{Value text font size.}
+\item{valueFontSize}{Value text font size.}
 
-\item{fontWeight}{Value text font weight.}
+\item{valueFontWeight}{Value text font weight.}
 
 \item{labelText}{Gauge additional label text.}
 
@@ -60,9 +57,17 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    f7Gauge(id = "ID", type  = "semircircle", value = 10,
-      textcolor = "#2196f3", bgcolor = "#2196f3",
-      text = "Hello", label = "label")
+    f7Gauge(
+     id = "mygauge",
+     type  = "semicircle",
+     value = 10,
+     borderColor = "#2196f3",
+     borderWidth = 10,
+     valueText = "50\%",
+     valueFontSize = 41,
+     valueTextColor = "#2196f3",
+     labelText = "amount of something"
+    )
   ),
   server = function(input, output) {}
  )
