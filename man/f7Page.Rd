@@ -4,7 +4,7 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., title = NULL, dark_mode = FALSE)
+f7Page(..., title = NULL, dark_mode = FALSE, color = NULL)
 }
 \arguments{
 \item{...}{Any element.}
@@ -12,6 +12,8 @@ f7Page(..., title = NULL, dark_mode = FALSE)
 \item{title}{Page title.}
 
 \item{dark_mode}{Whether to enable the dark mode. FALSE by default.}
+
+\item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.}
 }
 \description{
 Build a Framework7 page

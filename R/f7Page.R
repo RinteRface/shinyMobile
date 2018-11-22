@@ -5,6 +5,7 @@
 #' @param ... Any element.
 #' @param title Page title.
 #' @param dark_mode Whether to enable the dark mode. FALSE by default.
+#' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 #'
 #' @examples
 #' if(interactive()){
@@ -20,7 +21,18 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., title = NULL, dark_mode = FALSE){
+f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
+
+  bodyCl <- if (dark_mode) {
+    if (!is.null(color)) {
+      paste0("theme-dark", " color-theme-", color)
+    } else {
+      "theme-dark"
+    }
+    "theme-dark"
+  } else {
+    if (!is.null(color)) paste0("color-theme-", color)
+  }
 
   shiny::tags$html(
     # Head
@@ -46,7 +58,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE){
     # Body
     addDeps(
       shiny::tags$body(
-        class = if (dark_mode) "theme-dark" else NULL,
+        class = bodyCl,
         shiny::tags$div(
           id = "app",
           ...

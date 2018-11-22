@@ -8,6 +8,4 @@ var app = new Framework7({
   theme: 'auto'
   // ... other parameters
 });
-
-var theme = app.theme('ios');
 //var mainView = app.views.create('.view-main');
