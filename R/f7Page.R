@@ -46,7 +46,6 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
           maximum-scale=1,
           minimum-scale=1,
           user-scalable=no,
-          minimal-ui,
           viewport-fit=cover"
       ),
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),

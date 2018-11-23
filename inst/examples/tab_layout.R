@@ -5,7 +5,6 @@ shiny::shinyApp(
   ui = f7Page(
     title = "My app",
     f7TabLayout(
-      setTheme("ios"),
       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
       f7Navbar(
@@ -47,7 +46,14 @@ shiny::shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              sliderInput("obs2", "Number of observations", 0, 10000, 5000),
+              radioButtons(
+                "obs2",
+                "Distribution type:",
+                c("Normal" = "norm",
+                  "Uniform" = "unif",
+                  "Log-normal" = "lnorm",
+                  "Exponential" = "exp")
+              ),
               plotOutput("distPlot2"),
               footer = tagList(
                 f7Button(color = "blue", "My button", src = "https://www.google.com"),
@@ -65,8 +71,14 @@ shiny::shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              sliderInput("obs3", "Number of observations", 0, 10, 5),
-              plotOutput("distPlot3"),
+              checkboxGroupInput(
+                "variable",
+                "Variables to show:",
+                c("Cylinders" = "cyl",
+                  "Transmission" = "am",
+                  "Gears" = "gear")
+              ),
+              tableOutput("data"),
               footer = tagList(
                 f7Button(color = "blue", "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
@@ -82,13 +94,22 @@ shiny::shinyApp(
       dist <- rnorm(input$obs1)
       hist(dist)
     })
+
     output$distPlot2 <- renderPlot({
-      dist <- rnorm(input$obs2)
-      hist(dist)
+      dist <- switch(
+        input$obs2,
+        norm = rnorm,
+        unif = runif,
+        lnorm = rlnorm,
+        exp = rexp,
+        rnorm
+      )
+
+      hist(dist(500))
     })
-    output$distPlot3 <- renderPlot({
-      dist <- rnorm(input$obs3)
-      hist(dist)
-    })
+
+    output$data <- renderTable({
+      mtcars[, c("mpg", input$variable), drop = FALSE]
+    }, rownames = TRUE)
   }
 )

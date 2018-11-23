@@ -3,7 +3,6 @@ library(shinyF7)
 
 shiny::shinyApp(
   ui = f7Page(
-    setTheme("ios"),
     title = "My app",
     f7SidebarLayout(
       # sidebar content
