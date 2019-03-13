@@ -15,6 +15,11 @@ devtools::install_github("RinteRface/shinyF7")
 
 ## Demo
 
+### Tabs Layout
+
+A running demo is on [shinyapps.io](https://divadnojnarg.shinyapps.io/shinyF7).
+It is still work in progress and will significantly change!
+
 ![](man/figures/f7_tab_layout.png)
 
 ```r
@@ -141,4 +146,14 @@ shiny::shinyApp(
     }, rownames = TRUE)
   }
 )
+```
+
+
+### As a shiny gadget
+
+![](man/figures/f7_gadget.png)
+
+```r
+library(shiny)
+runGadget(shinyAppDir(system.file("examples/tab_layout", package = "shinyF7")))
 ```

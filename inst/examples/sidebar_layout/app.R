@@ -4,6 +4,7 @@ library(shinyF7)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
+    f7Init(theme = "auto"),
     f7SidebarLayout(
       # sidebar content
       sidebarPanel = f7Sidebar(
@@ -29,17 +30,22 @@ shiny::shinyApp(
           f7Card(
             title = "Card header",
             plotOutput("distPlot"),
-            footer = tagList(
-              f7Button(color = "blue", "My button", src = "https://www.google.com"),
-              f7Badge("Badge", color = "green")
-            )
+            footer = NULL
           )
+        ),
+        br(), br(), br(), br(), br(), br(),
+        f7Fabs(
+          position = "center-bottom",
+          color = "yellow",
+          sideOpen = "right",
+          f7Fab("show", "Show")
         )
       )
     )
   ),
   server = function(input, output) {
     output$distPlot <- renderPlot({
+      req(input$show > 0)
       dist <- rnorm(input$obs)
       hist(dist)
     })

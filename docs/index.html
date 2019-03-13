@@ -84,6 +84,10 @@
 <div id="demo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demo" class="anchor"></a>Demo</h2>
+<div id="tabs-layout" class="section level3">
+<h3 class="hasAnchor">
+<a href="#tabs-layout" class="anchor"></a>Tabs Layout</h3>
+<p>A running demo is on <a href="https://divadnojnarg.shinyapps.io/shinyF7">shinyapps.io</a>. It is still work in progress and will significantly change!</p>
 <p><img src="reference/figures/f7_tab_layout.png"></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shinyF7)</a>
@@ -208,6 +212,14 @@
 <a class="sourceLine" id="cb2-121" data-line-number="121">    }, <span class="dt">rownames =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-122" data-line-number="122">  }</a>
 <a class="sourceLine" id="cb2-123" data-line-number="123">)</a></code></pre></div>
+</div>
+<div id="as-a-shiny-gadget" class="section level3">
+<h3 class="hasAnchor">
+<a href="#as-a-shiny-gadget" class="anchor"></a>As a shiny gadget</h3>
+<p><img src="reference/figures/f7_gadget.png"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(shiny)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/runGadget">runGadget</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/shiny/topics/shinyApp">shinyAppDir</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"examples/tab_layout"</span>, <span class="dt">package =</span> <span class="st">"shinyF7"</span>)))</a></code></pre></div>
+</div>
 </div>
 </div>
   </div>
