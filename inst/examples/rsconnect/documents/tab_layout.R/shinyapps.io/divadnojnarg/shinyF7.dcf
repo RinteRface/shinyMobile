@@ -5,8 +5,9 @@ account: divadnojnarg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 788168
-bundleId: 1937842
+bundleId: 1937929
 url: https://divadnojnarg.shinyapps.io/shinyF7/
-when: 1552513914.12912
+when: 1552515501.16965
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: sidebar_layout.R|single_layout.R

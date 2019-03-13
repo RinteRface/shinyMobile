@@ -1,9 +1,23 @@
 library(shiny)
 library(shinyF7)
+library(echarts4r)
+
+plot <- USArrests %>%
+  dplyr::mutate(
+    State = row.names(.),
+    Rape = -Rape
+  ) %>%
+  e_charts(State) %>%
+  e_line(Murder) %>%
+  e_area(Rape, name = "Sick basterd", x_index = 1) %>%  # second y axis
+  e_title("Your plot", "Subtext", sublink = "https://john-coene.com") %>%
+  e_x_axis(1, show = FALSE) # hide scond X Axis
 
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
+    dark_mode = TRUE,
+    f7Init(theme = "md"),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -20,8 +34,7 @@ shiny::shinyApp(
         hover = TRUE,
         f7Card(
           title = "Card header",
-          sliderInput("obs", "Number of observations", 0, 1000, 500),
-          plotOutput("distPlot"),
+          e_theme(plot, "dark"),
           footer = tagList(
             f7Button(color = "blue", "My button", src = "https://www.google.com"),
             f7Badge("Badge", color = "green")
