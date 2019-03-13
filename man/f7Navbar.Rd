@@ -5,7 +5,7 @@
 \title{Create a Framework7 Navbar}
 \usage{
 f7Navbar(title = NULL, hairline = TRUE, shadow = TRUE,
-  left_panel = FALSE, right_panel = FALSE, hideOnScroll = TRUE)
+  left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE)
 }
 \arguments{
 \item{title}{Navbar title.}
@@ -18,7 +18,7 @@ f7Navbar(title = NULL, hairline = TRUE, shadow = TRUE,
 
 \item{right_panel}{Whether to enable the right panel. FALSE by default.}
 
-\item{hideOnScroll}{Whether to hide the navbar on scroll.}
+\item{hideOnScroll}{Whether to hide the navbar on scroll. FALSE by default.}
 }
 \description{
 Build a Framework7 Navbar

@@ -7,7 +7,7 @@
 #' @param shadow Whether to display a shadow. TRUE by default.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
-#' @param hideOnScroll Whether to hide the navbar on scroll.
+#' @param hideOnScroll Whether to hide the navbar on scroll. FALSE by default.
 #'
 #' @note hideOnScroll does not work yet.
 #'

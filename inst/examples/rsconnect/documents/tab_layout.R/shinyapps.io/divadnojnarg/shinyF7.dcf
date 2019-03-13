@@ -1,0 +1,12 @@
+name: shinyF7
+title: shinyF7
+username:
+account: divadnojnarg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 788168
+bundleId: 1937842
+url: https://divadnojnarg.shinyapps.io/shinyF7/
+when: 1552513914.12912
+asMultiple: FALSE
+asStatic: FALSE

@@ -70,6 +70,39 @@ f7Swiper <- function(..., pagination = TRUE, space = 50, n_slides = "auto",
 }
 
 
+#f7Swiper <- function(..., id) {
+#
+#
+#  swiperCl <- "swiper-container demo-swiper"
+#
+#  swiperTag <- shiny::tags$div(
+#    class = swiperCl,
+#    id = id,
+#    #shiny::tags$div(class = "swiper-pagination"),
+#    shiny::tags$div(
+#      class = "swiper-wrapper",
+#      ...
+#    )
+#  )
+#
+#  shiny::tagList(
+#    shiny::tags$head(
+#      shiny::tags$script(
+#        paste0(
+#          "var swiper = app.swiper.create('#", id, "', {
+#          speed: 400,
+#          spaceBetween: 100
+#        });
+#       "
+#        )
+#      )
+#    ),
+#    swiperTag
+#  )
+#
+#}
+
+
 
 
 #' Create a Framework7 slide
