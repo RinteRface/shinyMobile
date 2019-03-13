@@ -35,7 +35,7 @@ f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow =
   if (!shadow) toolbarClass <- paste0(toolbarClass, " no-shadow")
   if (icons) toolbarClass <- paste0(toolbarClass, " tabbar-labels")
   if (scrollable) toolbarClass <- paste0(toolbarClass, " tabbar-scrollable")
-  if (position == "bottom") toolbarClass <- paste0(toolbarClass, " toolbar-bottom-md")
+  if (position == "bottom") toolbarClass <- paste0(toolbarClass, " toolbar-bottom")
 
 
   # toolbar items

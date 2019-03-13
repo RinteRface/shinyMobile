@@ -15,7 +15,7 @@
 #'
 #' @export
 f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE,
-                     left_panel = FALSE, right_panel = FALSE, hideOnScroll = TRUE) {
+                     left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE) {
 
    navbarClass <- "navbar"
    if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
