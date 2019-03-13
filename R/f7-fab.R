@@ -5,6 +5,7 @@
 #' @param ... Slot for \link{f7Fab}.
 #' @param position Container position.
 #' @param color Container color.
+#' @param backgroundColor Container background color. "gainsboro" by default.
 #' @param sideOpen When the container is pressed, indicate where buttons are displayed.
 #'
 #' @note hideOnScroll does not work yet.
@@ -53,20 +54,10 @@
 #' }
 #'
 #' @export
-f7Fabs <- function(..., position = c(
-  "right-top",
-  "right-center",
-  "right-bottom",
-  "left-top",
-  "left-center",
-  "left-bottom",
-  "center-right",
-  "center-center",
-  "center-left",
-  "center-top",
-  "center-bottom"
-), color = NULL,
-                       sideOpen = c("left", "right", "top", "bottom", "center")) {
+f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom", "left-top",
+  "left-center", "left-bottom", "center-right", "center-center", "center-left",
+  "center-top", "center-bottom"), color = NULL, backgroundColor = "gainsboro",
+  sideOpen = c("left", "right", "top", "bottom", "center")) {
 
   position <- match.arg(position)
   fabCl <- paste0("fab fab-", position, if(!is.null(color)) " color-", color)
@@ -75,7 +66,7 @@ f7Fabs <- function(..., position = c(
 
   shiny::tags$div(
     class = fabCl,
-    style = "background-color: gainsboro;",
+    style = if (!is.null(backgroundColor)) paste0("background-color: ", backgroundColor, ";"),
     shiny::a(
       href = "#",
       shiny::tags$i(class="icon f7-icons", "add"),
