@@ -68,24 +68,87 @@ f7pickerInput <- function(inputId, label, placeHolder = NULL, choices) {
     )
   )
 
- # tag wrapper
- mainTag <- shiny::tags$div(
-   class = "block-title",
-   label,
-   shiny::tags$div(
-     class = "list no-hairlines-md",
-     shiny::tags$ul(
-       shiny::tags$li(
-         inputTag
-       )
-     )
-   )
- )
+  # tag wrapper
+  mainTag <- shiny::tags$div(
+    class = "block-title",
+    label,
+    shiny::tags$div(
+      class = "list no-hairlines-md",
+      shiny::tags$ul(
+        shiny::tags$li(
+          inputTag
+        )
+      )
+    )
+  )
 
- # final input tag
- shiny::tagList(
-   shiny::singleton(shiny::tags$head(pickerJS)),
-   mainTag
- )
+  # final input tag
+  shiny::tagList(
+    shiny::singleton(shiny::tags$head(pickerJS)),
+    mainTag
+  )
 
 }
+
+
+
+#' Create a F7 Checkbox
+#'
+#' @param id The input slot that will be used to access the value.
+#' @inheritParams shiny::checkboxInput
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7Card(
+#'      f7checkboxInput(
+#'       id = "check",
+#'       label = "Checkbox",
+#'       value = FALSE
+#'      ),
+#'      verbatimTextOutput("test")
+#'     )
+#'    ),
+#'    server = function(input, output) {
+#'     output$test <- renderPrint({input$check})
+#'    }
+#'  )
+#' }
+#
+#' @export
+#'
+#' @importFrom shiny checkboxInput
+#'
+f7checkboxInput <- function(id, label, value = FALSE, width = NULL){
+
+  checkTag <- htmltools::tags$label(
+    class = "item-checkbox item-content",
+    htmltools::tags$input(
+      type = "checkbox",
+      name = "checkbox",
+      value = id,
+      checked = if (value) "checked" else NULL
+    ),
+    htmltools::tags$i(class = "icon icon-checkbox"),
+    htmltools::tags$div(
+      class = "item-inner",
+      htmltools::tags$div(class = "item-title", label)
+    )
+  )
+
+  wrapper <- htmltools::tags$div(
+    class = "form-group shiny-input-container",
+    htmltools::tags$div(
+      class="checkbox",
+      checkTag
+    )
+  )
+
+  wrapper
+}
+

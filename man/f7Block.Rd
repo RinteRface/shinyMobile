@@ -14,7 +14,7 @@ f7Block(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 
 \item{strong}{Whether to put the text in bold. FALSE by default.}
 
-\item{inset}{Whether to set block inset. FALSE by default.}
+\item{inset}{Whether to set block inset. FALSE by default. Works only if strong is TRUE.}
 
 \item{tablet}{Whether to make block inset only on large screens. FALSE by default.}
 }
@@ -52,6 +52,7 @@ if(interactive()){
     ),
     f7Block(
      inset = TRUE,
+     strong = TRUE,
      f7BlockHeader(text = "Header"),
      "Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
@@ -63,6 +64,7 @@ if(interactive()){
     ),
     f7Block(
      tablet = TRUE,
+     strong = TRUE,
      f7BlockHeader(text = "Header"),
      "Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
@@ -74,6 +76,7 @@ if(interactive()){
     ),
     f7Block(
      inset = TRUE,
+     strong = TRUE,
      hairlines = FALSE,
      f7BlockHeader(text = "Header"),
      "Here comes paragraph within content block.

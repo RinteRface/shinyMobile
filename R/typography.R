@@ -13,9 +13,11 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Align(h1("Left"), side = "left"),
-#'     f7Align(h1("Center"), side = "center"),
-#'     f7Align(h1("Right"), side = "right")
+#'     f7Row(
+#'      f7Align(h1("Left"), side = "left"),
+#'      f7Align(h1("Center"), side = "center"),
+#'      f7Align(h1("Right"), side = "right")
+#'     )
 #'    ),
 #'    server = function(input, output) {}
 #'  )

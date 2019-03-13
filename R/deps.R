@@ -13,7 +13,7 @@ appendDependencies <- function(x, value) {
 addDeps <- function(x) {
 
   # CSS
-  framework7_css <- "framework7.min.css"
+  framework7_css <- "framework7.bundle.min.css"
   framework7_icons_css <- "framework7-icons.css"
   custom_css <- "my-app.css"
 
@@ -28,11 +28,11 @@ addDeps <- function(x) {
   grid_css <- "grid-extra.css"
 
   # JS
-  framework7_js <- "framework7.min.js"
+  framework7_js <- "framework7.bundle.min.js"
   custom_js <- "my-app.js"
 
   # material icons
-  material_icons_css <-"https://fonts.googleapis.com/icon?family=Material+Icons"
+  material_icons_css <- "material-icons.css"
 
   f7Deps <- list(
     # deps
@@ -43,6 +43,7 @@ addDeps <- function(x) {
       script = c(framework7_js, custom_js),
       stylesheet = c(
         framework7_css,
+        material_icons_css,
         custom_css,
         framework7_icons_css,
         social_cards_css,
@@ -50,13 +51,6 @@ addDeps <- function(x) {
         grid_css,
         swiper_css
       )
-    ),
-    # material icons
-    htmltools::htmlDependency(
-      name = "material",
-      version = as.character(utils::packageVersion("shinyF7")),
-      src = c(href = material_icons_css),
-      stylesheet = ""
     )
   )
   appendDependencies(x, f7Deps)

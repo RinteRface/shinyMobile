@@ -56,6 +56,7 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
   # content
   contentTag <- shiny::tags$div(
     class = "card-content card-content-padding",
+    style = "max-height: 600px;",
     ...
   )
 
@@ -330,6 +331,107 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
         shiny::tags$div(class = "item-title", title)
       ),
       shiny::tags$div(class = "item-subtitle", subtitle)
+    )
+  )
+}
+
+
+
+
+
+#' Create a Framework7 expandable card
+#'
+#' Build a Framework7 expandable card
+#'
+#' @param ... Card content.
+#' @param title Card title.
+#' @param subtitle Card subtitle.
+#' @param titleColor Title text color. Choose among "white" or "black".
+#' @param color Card background color. See \url{http://framework7.io/docs/cards.html}.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7ExpandableCard(
+#'      title = "Expandable Card",
+#'      color = "blue",
+#'      titleColor = "white",
+#'      subtitle = "Click on me pleaaaaase",
+#'      "Framework7 - is a free and open source HTML mobile framework
+#'      to develop hybrid mobile apps or web apps with iOS or Android
+#'      native look and feel. It is also an indispensable prototyping apps tool
+#'      to show working app prototype as soon as possible in case you need to."
+#'     ),
+#'     f7ExpandableCard(
+#'      title = "Expandable Card",
+#'      color = "green",
+#'      titleColor = "white",
+#'      "Framework7 - is a free and open source HTML mobile framework
+#'      to develop hybrid mobile apps or web apps with iOS or Android
+#'      native look and feel. It is also an indispensable prototyping apps tool
+#'      to show working app prototype as soon as possible in case you need to."
+#'     )
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7ExpandableCard <- function(..., title = NULL, subtitle = NULL, titleColor = c("white", "black"),
+                             color = NULL) {
+
+  titleColor <- match.arg(titleColor)
+
+  cardColorCl <- if (!is.null(color)) paste0("bg-color-", color)
+
+  titleColorCl <- if (!is.null(title)) paste0("text-color-", titleColor)
+
+  # card header if any
+  cardHeader <- if (!is.null(title)) {
+    shiny::tags$div(
+      class = paste0("card-header ", titleColorCl, " display-block"),
+      title,
+      if (!is.null(subtitle)) {
+        shiny::tagList(
+          shiny::br(),
+          shiny::tags$small(style = "opacity: 0.7", subtitle)
+        )
+      }
+    )
+  }
+
+  # trigger to close the card
+  closeCard <- shiny::tags$a(
+    href = "#",
+    class = paste0("link card-close card-opened-fade-in color-", titleColor),
+    style = "position: absolute; right: 15px; top: 15px",
+    shiny::tags$i(class = "icon f7-icons", "close_round_fill")
+  )
+
+
+  # card content
+  cardContent <- shiny::tags$div(class = "card-content-padding", shiny::p(...))
+
+
+  # main wrapper
+  shiny::tags$div(
+    class = "card card-expandable",
+    shiny::tags$div(
+      class = "card-content",
+      shiny::tags$div(
+        class = cardColorCl,
+        style= "height: 300px;",
+        cardHeader,
+        closeCard
+      ),
+      cardContent
     )
   )
 }

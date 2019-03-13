@@ -51,8 +51,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
       shiny::tags$meta(name = "theme-color", content = "#2196f3"),
 
-      shiny::tags$title(title),
-      shiny::includeCSS(path = "https://fonts.googleapis.com/icon?family=Material+Icons")
+      shiny::tags$title(title)
     ),
     # Body
     addDeps(

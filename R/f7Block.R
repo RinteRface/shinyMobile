@@ -5,7 +5,7 @@
 #' @param ... Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.
 #' @param hairlines Whether to allow hairlines. TRUE by default.
 #' @param strong Whether to put the text in bold. FALSE by default.
-#' @param inset Whether to set block inset. FALSE by default.
+#' @param inset Whether to set block inset. FALSE by default. Works only if strong is TRUE.
 #' @param tablet Whether to make block inset only on large screens. FALSE by default.
 #'
 #' @examples
@@ -39,6 +39,7 @@
 #'     ),
 #'     f7Block(
 #'      inset = TRUE,
+#'      strong = TRUE,
 #'      f7BlockHeader(text = "Header"),
 #'      "Here comes paragraph within content block.
 #'      Donec et nulla auctor massa pharetra
@@ -50,6 +51,7 @@
 #'     ),
 #'     f7Block(
 #'      tablet = TRUE,
+#'      strong = TRUE,
 #'      f7BlockHeader(text = "Header"),
 #'      "Here comes paragraph within content block.
 #'      Donec et nulla auctor massa pharetra
@@ -61,6 +63,7 @@
 #'     ),
 #'     f7Block(
 #'      inset = TRUE,
+#'      strong = TRUE,
 #'      hairlines = FALSE,
 #'      f7BlockHeader(text = "Header"),
 #'      "Here comes paragraph within content block.
@@ -83,7 +86,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
                     tablet = FALSE) {
 
   blockCl <- "block"
-  if (!hairlines) blockCl <- paste0(blockCl, " no hairlines")
+  if (!hairlines) blockCl <- paste0(blockCl, " no-hairlines")
   if (strong) blockCl <- paste0(blockCl, " block-strong")
   if (inset) blockCl <- paste0(blockCl, " inset")
   if (tablet) blockCl <- paste0(blockCl, " tablet-inset")
