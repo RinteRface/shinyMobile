@@ -131,6 +131,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
     toolbar,
     # main content
     shiny::tags$div(
+      style = "max-height: 900px; overflow-y: auto;",
       class = if (navbarHideScroll) {
         "page-content hide-navbar-on-scroll"
       } else {
@@ -254,7 +255,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 f7TabLayout <- function(...) {
   shiny::tags$div(
     class = "page",
-    style="background-color: gainsboro;",
+    style = "background-color: gainsboro;",
     #shiny::tags$div(class = "panel-backdrop", style = NA),
     ...
   )
@@ -329,7 +330,7 @@ f7SidebarLayout <- function(sidebarPanel, mainPanel) {
   # need to set a left margin between the sidebar and the main content
   mainPanel <- htmltools::tagAppendAttributes(
     mainPanel,
-    style = "margin-left: 260px;"
+    style = "margin-left: 260px; max-height: 900px; overflow-y: auto;"
   )
 
   # set margin inside

@@ -7,48 +7,69 @@
 #' @param shadow Whether to display a shadow. TRUE by default.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
+#' @param hideOnScroll Whether to hide the navbar on scroll.
+#'
+#' @note hideOnScroll does not work yet.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE,
-                     left_panel = FALSE, right_panel = FALSE) {
+                     left_panel = FALSE, right_panel = FALSE, hideOnScroll = TRUE) {
 
- navbarClass <- "navbar"
- if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
- if (!shadow) navbarClass <- paste0(navbarClass, " no-shadow")
+   navbarClass <- "navbar"
+   if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
+   if (!shadow) navbarClass <- paste0(navbarClass, " no-shadow")
 
- leftNav <- if (left_panel) {
-     shiny::tags$div(
+   leftNav <- if (left_panel) {
+      shiny::tags$div(
          class = "left",
          shiny::tags$a(
-             class = "link icon-only panel-open",
-             `data-panel` = "left",
-             shiny::tags$i(class = "f7-icons ios-only", "bars"),
-             shiny::tags$i(class = "icon material-icons md-only", "menu")
+            class = "link icon-only panel-open",
+            `data-panel` = "left",
+            shiny::tags$i(class = "f7-icons ios-only", "bars"),
+            shiny::tags$i(class = "icon material-icons md-only", "menu")
          )
-     )
- }
+      )
+   }
 
- rightNav <- if (right_panel) {
-     shiny::tags$div(
+   rightNav <- if (right_panel) {
+      shiny::tags$div(
          class = "right",
          shiny::tags$a(
-             class = "link icon-only panel-open",
-             `data-panel` = "right",
-             shiny::tags$i(class = "f7-icons ios-only", "bars"),
-             shiny::tags$i(class = "icon material-icons md-only", "menu")
+            class = "link icon-only panel-open",
+            `data-panel` = "right",
+            shiny::tags$i(class = "f7-icons ios-only", "bars"),
+            shiny::tags$i(class = "icon material-icons md-only", "menu")
          )
-     )
- }
+      )
+   }
 
- shiny::tags$div(
-   class = navbarClass,
-   shiny::tags$div(
-     class = "navbar-inner sliding",
-     leftNav,
-     shiny::tags$div(class = "title sliding", title),
-     rightNav
+   navTag <- shiny::tags$div(
+      class = navbarClass,
+      shiny::tags$div(
+         class = if (hideOnScroll) "navbar-inner sliding" else "navbar-inner",
+         leftNav,
+         shiny::tags$div(class = "title", title),
+         rightNav
+      )
    )
- )
+
+   if (hideOnScroll) {
+      shiny::tagList(
+         shiny::singleton(
+            shiny::tags$head(
+               shiny::tags$script(
+                  "$(function () {
+                     $('.page-content').addClass('hide-navbar-on-scroll');
+                  });
+                  "
+               )
+            )
+         ),
+         navTag
+      )
+   } else {
+      navTag
+   }
 }

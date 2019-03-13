@@ -19,7 +19,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
   side <- match.arg(side)
   style <- match.arg(style)
   theme <- match.arg(theme)
-  panelCl <- sprintf("panel panel-%s panel-%s", side, style, " theme-%s", theme)
+  panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, style, theme)
 
   panelTag <- shiny::tags$div(
     class = panelCl,

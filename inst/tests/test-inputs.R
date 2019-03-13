@@ -3,6 +3,11 @@ shiny::shinyApp(
   ui = f7Page(
     title = "My app",
 
+    # action button
+    actionButton("goButton", "Go!"),
+    verbatimTextOutput("actionBttn"),
+    br(),
+
     # checkbox
     f7Row(
       prettyCheckbox(
@@ -126,6 +131,7 @@ shiny::shinyApp(
 
   ),
   server = function(input, output) {
+    output$actionBttn <- renderPrint(input$goButton)
     output$res1 <- renderPrint(input$checkbox1)
     output$res2 <- renderPrint(input$radio2)
     output$res3 <- renderPrint(input$switch3)

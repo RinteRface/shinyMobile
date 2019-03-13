@@ -133,6 +133,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   itemTag <- shiny::tags$div(
     class = if (active) "page-content tab tab-active" else "page-content tab",
     id = id,
+    style = "max-height: 900px; overflow-y: auto;",
     f7Block(...)
   )
   return(list(itemTag, icon, tabName))
