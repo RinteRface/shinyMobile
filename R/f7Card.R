@@ -56,7 +56,7 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
   # content
   contentTag <- shiny::tags$div(
     class = "card-content card-content-padding",
-    style = "max-height: 600px;",
+    style = "max-height: 600px; overflow-y: auto;",
     ...
   )
 

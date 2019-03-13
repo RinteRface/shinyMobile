@@ -38,8 +38,8 @@ addDeps <- function(x) {
     # deps
     htmltools::htmlDependency(
       name = "framework7",
-      version = "3.5.2",
-      src = c(file = system.file("framework7-3.5.2", package = "shinyF7")),
+      version = "4.1.0",
+      src = c(file = system.file("framework7-4.1.0", package = "shinyF7")),
       script = c(framework7_js, custom_js),
       stylesheet = c(
         framework7_css,

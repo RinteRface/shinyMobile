@@ -1,5 +1,6 @@
 library(shiny)
 library(shinyF7)
+library(shinyWidgets)
 
 shiny::shinyApp(
   ui = f7Page(
@@ -46,13 +47,16 @@ shiny::shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              radioButtons(
+              prettyRadioButtons(
                 "obs2",
                 "Distribution type:",
                 c("Normal" = "norm",
                   "Uniform" = "unif",
                   "Log-normal" = "lnorm",
-                  "Exponential" = "exp")
+                  "Exponential" = "exp"),
+                inline = TRUE,
+                status = "warning",
+                animation = "pulse"
               ),
               plotOutput("distPlot2"),
               footer = tagList(
@@ -71,12 +75,15 @@ shiny::shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              checkboxGroupInput(
+              prettyCheckboxGroup(
                 "variable",
                 "Variables to show:",
                 c("Cylinders" = "cyl",
                   "Transmission" = "am",
-                  "Gears" = "gear")
+                  "Gears" = "gear"),
+                inline = TRUE,
+                status = "danger",
+                animation = "pulse"
               ),
               tableOutput("data"),
               footer = tagList(
