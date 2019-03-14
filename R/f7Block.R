@@ -15,7 +15,8 @@
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Blocks",
+#'     f7Init(theme = "auto"),
 #'     f7Block(
 #'      f7BlockHeader(text = "Header"),
 #'      "Here comes paragraph within content block.

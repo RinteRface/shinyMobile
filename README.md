@@ -20,7 +20,9 @@ devtools::install_github("RinteRface/shinyF7")
 A running demo is on [shinyapps.io](https://divadnojnarg.shinyapps.io/shinyF7).
 It is still work in progress and will significantly change!
 
-![](man/figures/f7_tab_layout.png)
+
+<a href="https://divadnojnarg.shinyapps.io/shinyF7" target="_blank"><img src="man/figures/f7_tab_layout_md.png" class="img-shadow" width= "423" height=" 453"></a>
+
 
 ```r
 library(shiny)
@@ -151,7 +153,7 @@ shiny::shinyApp(
 
 ### As a shiny gadget
 
-![](man/figures/f7_gadget.png)
+<img src="man/figures/f7_gadget.png" width="405" height="629" class="img-shadow">
 
 ```r
 library(shiny)

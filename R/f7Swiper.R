@@ -10,6 +10,8 @@
 #' @param vertical Whether to display slides vertically. FALSE by default. Only if pagination is TRUE.
 #' @param speed Slides speed. Numeric.
 #'
+#' @note Does not work
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -18,6 +20,7 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
+#'     f7Init(theme = "auto"),
 #'     actionButton("newplot", "New plot"),
 #'     f7Swiper(
 #'      f7Slide("Slide 1"),

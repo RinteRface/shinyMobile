@@ -21,6 +21,9 @@ f7ExpandableCard(..., title = NULL, subtitle = NULL,
 \description{
 Build a Framework7 expandable card
 }
+\note{
+Does not render well.
+}
 \examples{
 if(interactive()){
  library(shiny)
@@ -28,7 +31,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Expandable Cards",
+    f7Init(theme = "auto"),
     f7ExpandableCard(
      title = "Expandable Card",
      color = "blue",

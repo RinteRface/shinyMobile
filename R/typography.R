@@ -12,7 +12,8 @@
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Align",
+#'     f7Init(theme = "auto"),
 #'     f7Row(
 #'      f7Align(h1("Left"), side = "left"),
 #'      f7Align(h1("Center"), side = "center"),
@@ -52,7 +53,8 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Float",
+#'     f7Init(theme = "auto"),
 #'     f7Float(h1("Left"), side = "left"),
 #'     f7Float(h1("Right"), side = "right")
 #'    ),
@@ -102,7 +104,8 @@ f7Float <- function(tag, side = c("left", "right")) {
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Margins",
+#'     f7Init(theme = "auto"),
 #'     f7Margin(cardTag),
 #'     cardTag
 #'    ),
@@ -151,7 +154,8 @@ f7Margin <- function(tag, side = NULL) {
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Padding",
+#'     f7Init(theme = "auto"),
 #'     cardTag
 #'    ),
 #'    server = function(input, output) {}

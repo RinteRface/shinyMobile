@@ -13,7 +13,7 @@ f7ProgressInf(status = NULL)
 Build a Framework7 infinite progress bar
 }
 \note{
-Buggy display
+Buggy display when status is not NULL.
 }
 \examples{
 if(interactive()){
@@ -22,7 +22,8 @@ if(interactive()){
 
  shiny::shinyApp(
    ui = f7Page(
-    title = "My app",
+    title = "Progress Infinite",
+    f7Init(theme = "auto"),
     f7Card(
      f7ProgressInf()
     )

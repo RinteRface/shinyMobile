@@ -18,18 +18,6 @@ f7Page(..., title = NULL, dark_mode = FALSE, color = NULL)
 \description{
 Build a Framework7 page
 }
-\examples{
-if(interactive()){
- library(shiny)
- library(shinyF7)
-
- shiny::shinyApp(
-   ui = f7Page(title = "My app"),
-   server = function(input, output) {}
- )
-}
-
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

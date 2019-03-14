@@ -22,7 +22,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    f7Init(theme = "auto"),
+    title = "Accordions",
     f7Accordion(
      f7AccordionItem(
       title = "Item 1",

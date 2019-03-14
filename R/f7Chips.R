@@ -10,7 +10,7 @@
 #' @param icon_status Chip icon color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
 #' @param closable Whether to close the chip. FALSE by default.
 #'
-#' @note Not ready for production (need to handle javascript close)
+#' @note Not ready for production (need to handle javascript close) and color isssues.
 #'
 #' @examples
 #' if(interactive()){
@@ -19,13 +19,17 @@
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
-#'     f7Chip(label = "Example Chip"),
-#'     f7Chip(label = "Example Chip", outline = TRUE),
-#'     f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
-#'     f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
-#'     f7Chip(label = "Example Chip", closable = TRUE),
-#'     f7Chip(label = "Example Chip", status = "green")
+#'     title = "Chips",
+#'     f7Init(theme = "auto"),
+#'     f7Block(
+#'      strong = TRUE,
+#'      f7Chip(label = "Example Chip"),
+#'      f7Chip(label = "Example Chip", outline = TRUE),
+#'      f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
+#'      f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
+#'      f7Chip(label = "Example Chip", closable = TRUE),
+#'      f7Chip(label = "Example Chip", status = "green")
+#'     )
 #'   ),
 #'   server = function(input, output) {}
 #'  )
@@ -43,8 +47,8 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
 
   iconTag <- if (!is.null(icon)) {
     shiny::tags$div(
-      class = if (!is.null(status)) {
-        paste0("chip-media bg-color-", status)
+      class = if (!is.null(icon_status)) {
+        paste0("chip-media bg-color-", icon_status)
       } else {
         "chip-media"
       },

@@ -30,6 +30,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Create a Framework7 chips — f7Chip" />
 
 <meta property="og:description" content="Build a Framework7 chips" />
@@ -151,7 +153,7 @@
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Not ready for production (need to handle javascript close)</p>
+    <p>Not ready for production (need to handle javascript close) and color isssues.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -161,13 +163,17 @@
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>),
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"add_round"</span>, <span class='kw'>icon_status</span> <span class='kw'>=</span> <span class='st'>"pink"</span>),
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>img</span> <span class='kw'>=</span> <span class='st'>"http://lorempixel.com/64/64/people/9/"</span>),
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-    <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Chips"</span>,
+    <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
+    <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
+     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>),
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"add_round"</span>, <span class='kw'>icon_status</span> <span class='kw'>=</span> <span class='st'>"pink"</span>),
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>img</span> <span class='kw'>=</span> <span class='st'>"http://lorempixel.com/64/64/people/9/"</span>),
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+    )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
  )

@@ -21,7 +21,8 @@ if(interactive()){
 
  shiny::shinyApp(
    ui = f7Page(
-    title = "My app",
+    title = "Float",
+    f7Init(theme = "auto"),
     f7Float(h1("Left"), side = "left"),
     f7Float(h1("Right"), side = "right")
    ),

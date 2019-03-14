@@ -19,7 +19,7 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Tab Layout",
     f7TabLayout(
       setTheme("ios"),
       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),

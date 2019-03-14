@@ -21,7 +21,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Grid",
+    f7Init(theme = "auto"),
     f7Row(
      f7Col(
       f7Card(

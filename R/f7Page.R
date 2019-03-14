@@ -7,17 +7,6 @@
 #' @param dark_mode Whether to enable the dark mode. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#'  shiny::shinyApp(
-#'    ui = f7Page(title = "My app"),
-#'    server = function(input, output) {}
-#'  )
-#' }
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -158,7 +147,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Tab Layout",
 #'     f7TabLayout(
 #'       setTheme("ios"),
 #'       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
@@ -278,7 +267,7 @@ f7TabLayout <- function(...) {
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     setTheme("ios"),
-#'     title = "My app",
+#'     title = "Sidebar Layout",
 #'     f7SidebarLayout(
 #'       # sidebar content
 #'       sidebarPanel = f7Sidebar(
@@ -373,13 +362,6 @@ f7mainPanel <- f7SingleLayout
 #' @param title Panel title.
 #' @param side Panel side: "left" or "right".
 #' @param theme Panel background color: "dark" or "light".
-#'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

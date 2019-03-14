@@ -25,6 +25,9 @@ f7Swiper(..., pagination = TRUE, space = 50, n_slides = "auto",
 \description{
 Build a Framework7 swiper (like carousel)
 }
+\note{
+Does not work
+}
 \examples{
 if(interactive()){
  library(shiny)
@@ -33,6 +36,7 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "My app",
+    f7Init(theme = "auto"),
     actionButton("newplot", "New plot"),
     f7Swiper(
      f7Slide("Slide 1"),

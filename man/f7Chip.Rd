@@ -26,7 +26,7 @@ f7Chip(label = NULL, img = NULL, icon = NULL, outline = FALSE,
 Build a Framework7 chips
 }
 \note{
-Not ready for production (need to handle javascript close)
+Not ready for production (need to handle javascript close) and color isssues.
 }
 \examples{
 if(interactive()){
@@ -35,13 +35,17 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
-    f7Chip(label = "Example Chip"),
-    f7Chip(label = "Example Chip", outline = TRUE),
-    f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
-    f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
-    f7Chip(label = "Example Chip", closable = TRUE),
-    f7Chip(label = "Example Chip", status = "green")
+    title = "Chips",
+    f7Init(theme = "auto"),
+    f7Block(
+     strong = TRUE,
+     f7Chip(label = "Example Chip"),
+     f7Chip(label = "Example Chip", outline = TRUE),
+     f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
+     f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
+     f7Chip(label = "Example Chip", closable = TRUE),
+     f7Chip(label = "Example Chip", status = "green")
+    )
   ),
   server = function(input, output) {}
  )

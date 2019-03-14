@@ -19,14 +19,6 @@ f7Sidebar(..., title = NULL, side = c("left", "right"),
 \description{
 Build a Framework7 sidebar
 }
-\examples{
-if(interactive()){
- library(shiny)
- library(shinyF7)
-
-}
-
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

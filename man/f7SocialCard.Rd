@@ -28,7 +28,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Social Card",
+    f7Init(theme = "auto"),
     f7SocialCard(
      author_img = "http://lorempixel.com/68/68/people/1/",
      author = "John Doe",

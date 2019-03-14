@@ -56,7 +56,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Gauges",
+    f7Init(theme = "auto"),
     f7Gauge(
      id = "mygauge",
      type  = "semicircle",

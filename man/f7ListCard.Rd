@@ -22,7 +22,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "List Card",
+    f7Init(theme = "auto"),
     f7ListCard(
      f7ListCardItem(
       url = "https://www.google.com",

@@ -10,7 +10,7 @@ f7Init(theme = c("ios", "md", "auto"))
 \item{theme}{App theme: "ios", "md", "auto".}
 }
 \description{
-Use inside \link{f7Page}.
+Use inside \link{f7Page}. Mandatory!
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

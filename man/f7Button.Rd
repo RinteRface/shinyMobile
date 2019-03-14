@@ -4,11 +4,15 @@
 \alias{f7Button}
 \title{Create a Framework7 button}
 \usage{
-f7Button(..., src, color = NULL, fill = FALSE, outline = FALSE,
-  shadow = FALSE, rounded = FALSE, size = NULL)
+f7Button(inputId = NULL, label = NULL, src = NULL, color = NULL,
+  fill = FALSE, outline = FALSE, shadow = FALSE, rounded = FALSE,
+  size = NULL)
 }
 \arguments{
-\item{...}{Button text.}
+\item{inputId}{The input slot that will be used to access the value.}
+
+\item{label}{The contents of the button or link–usually a text label,
+but you could also use any other HTML, like an image.}
 
 \item{src}{Button link.}
 
@@ -22,7 +26,7 @@ f7Button(..., src, color = NULL, fill = FALSE, outline = FALSE,
 
 \item{rounded}{Round style. FALSE by default.}
 
-\item{size}{Button size. NULL by default but also "big" or "small".}
+\item{size}{Button size. NULL by default but also "large" or "small".}
 }
 \description{
 Build a Framework7 button
@@ -34,11 +38,21 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
-    f7Button(color = "blue", "My button", src = "https://www.google.com"),
-    f7Button(color = "red", "My button", src = "https://www.google.com", fill = TRUE)
+    title = "Buttons",
+    f7Init(theme = "md"),
+    f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+    f7Button(color = "red", label = "Action Button", inputId = "button2", fill = TRUE),
+    f7Button(color = "green", label = "My button", outline = TRUE),
+    f7Button(color = "yellow", label = "My button", rounded = TRUE),
+    f7Button(color = "pink", label = "My button", shadow = TRUE),
+    f7Button(color = "purple", label = "My button", size = "large"),
+    f7Button(color = "orange", label = "My button", size = "small"),
+
+    verbatimTextOutput("val")
   ),
-  server = function(input, output) {}
+  server = function(input, output) {
+   output$val <- renderPrint(input$button2)
+  }
  )
 }
 

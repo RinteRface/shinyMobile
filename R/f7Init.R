@@ -1,6 +1,6 @@
 #' Custom initialization
 #'
-#' Use inside \link{f7Page}.
+#' Use inside \link{f7Page}. Mandatory!
 #'
 #' @param theme App theme: "ios", "md", "auto".
 #'

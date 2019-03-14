@@ -5,7 +5,7 @@
 #' @param value Progress value. Between 0 and 100.
 #' @param status Progress color. See \url{http://framework7.io/docs/progressbar.html}.
 #'
-#' @note Buggy display
+#' @note Buggy display when status is not NULL.
 #'
 #' @examples
 #' if(interactive()){
@@ -14,10 +14,10 @@
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Progress",
+#'     f7Init(theme = "auto"),
 #'     f7Card(
-#'      f7Progress(value = 10),
-#'      f7Progress(value = 10, status = "red")
+#'      f7Progress(value = 10)
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -62,7 +62,7 @@ f7Progress <- function(value, status = NULL) {
 #'
 #' @param status Progress color. See \url{http://framework7.io/docs/progressbar.html}.
 #'
-#' @note Buggy display
+#' @note Buggy display when status is not NULL.
 #'
 #' @examples
 #' if(interactive()){
@@ -71,7 +71,8 @@ f7Progress <- function(value, status = NULL) {
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Progress Infinite",
+#'     f7Init(theme = "auto"),
 #'     f7Card(
 #'      f7ProgressInf()
 #'     )

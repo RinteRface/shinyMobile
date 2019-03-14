@@ -28,7 +28,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Cards",
+    f7Init(theme = "auto"),
     f7Card("This is a simple card with plain text,
     but cards can also contain their own header,
     footer, list view, image, or any other element."),

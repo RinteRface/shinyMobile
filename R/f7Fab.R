@@ -1,6 +1,6 @@
-#' Create a Framework7 container for fast action button (FAB)
+#' Create a Framework7 container for floating action button (FAB)
 #'
-#' Build a Framework7 container for fast action button (FAB)
+#' Build a Framework7 container for floating action button (FAB)
 #'
 #' @param ... Slot for \link{f7Fab}.
 #' @param position Container position.
@@ -8,7 +8,8 @@
 #' @param backgroundColor Container background color. "gainsboro" by default.
 #' @param sideOpen When the container is pressed, indicate where buttons are displayed.
 #'
-#' @note hideOnScroll does not work yet.
+#' @note The background color might be an issue depending on the parent container. Consider
+#' it experimental.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -19,8 +20,9 @@
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
+#'     f7Init(theme = "auto"),
 #'     color = "pink",
-#'     title = "My app",
+#'     title = "Floating action buttons",
 #'     f7Fabs(
 #'       position = "center-top",
 #'       color = "yellow",
@@ -79,9 +81,9 @@ f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom"
 
 
 
-#' Create a Framework7 fast action button (FAB)
+#' Create a Framework7 floating action button (FAB)
 #'
-#' Build a Framework7 fast action button (FAB)
+#' Build a Framework7 floating action button (FAB)
 #'
 #' @inheritParams shiny::actionButton
 #'

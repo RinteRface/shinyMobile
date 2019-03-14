@@ -30,6 +30,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Create a Framework7 card — f7Card" />
 
 <meta property="og:description" content="Build a Framework7 card" />
@@ -149,7 +151,8 @@
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Cards"</span>,
+    <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
     <span class='fu'>f7Card</span>(<span class='st'>"This is a simple card with plain text,
     but cards can also contain their own header,
     footer, list view, image, or any other element."</span>),

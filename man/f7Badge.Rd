@@ -21,7 +21,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    f7Init(theme = "auto"),
+    title = "Badges",
     f7Badge(32, color = "blue"),
     f7Badge("Badge", color = "green")
   ),

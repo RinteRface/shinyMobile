@@ -23,7 +23,8 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Media Card",
+    f7Init(theme = "auto"),
     f7MediaCard(
      title = "New Releases:",
      f7MediaCardItem(

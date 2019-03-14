@@ -15,7 +15,8 @@
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Cards",
+#'     f7Init(theme = "auto"),
 #'     f7Card("This is a simple card with plain text,
 #'     but cards can also contain their own header,
 #'     footer, list view, image, or any other element."),
@@ -119,7 +120,8 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Social Card",
+#'     f7Init(theme = "auto"),
 #'     f7SocialCard(
 #'      author_img = "http://lorempixel.com/68/68/people/1/",
 #'      author = "John Doe",
@@ -184,7 +186,8 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "List Card",
+#'     f7Init(theme = "auto"),
 #'     f7ListCard(
 #'      f7ListCardItem(
 #'       url = "https://www.google.com",
@@ -254,7 +257,8 @@ f7ListCardItem <- function(url = NULL, title = NULL) {
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Media Card",
+#'     f7Init(theme = "auto"),
 #'     f7MediaCard(
 #'      title = "New Releases:",
 #'      f7MediaCardItem(
@@ -349,6 +353,8 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @param titleColor Title text color. Choose among "white" or "black".
 #' @param color Card background color. See \url{http://framework7.io/docs/cards.html}.
 #'
+#' @note Does not render well.
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -356,7 +362,8 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Expandable Cards",
+#'     f7Init(theme = "auto"),
 #'     f7ExpandableCard(
 #'      title = "Expandable Card",
 #'      color = "blue",
