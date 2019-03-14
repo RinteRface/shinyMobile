@@ -21,7 +21,7 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    setTheme("ios"),
+    f7Init("ios"),
     title = "Sidebar Layout",
     f7SidebarLayout(
       # sidebar content

@@ -73,7 +73,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #'  library(shinyF7)
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     setTheme("ios"),
+#'     f7Init("ios"),
 #'     title = "My app",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
@@ -148,8 +148,8 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Tab Layout",
+#'     f7Init("ios"),
 #'     f7TabLayout(
-#'       setTheme("ios"),
 #'       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
 #'       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
 #'       f7Navbar(
@@ -266,7 +266,7 @@ f7TabLayout <- function(...) {
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     setTheme("ios"),
+#'     f7Init("ios"),
 #'     title = "Sidebar Layout",
 #'     f7SidebarLayout(
 #'       # sidebar content

@@ -24,7 +24,7 @@ if(interactive()){
  library(shinyF7)
  shiny::shinyApp(
   ui = f7Page(
-    setTheme("ios"),
+    f7Init("ios"),
     title = "My app",
     f7SingleLayout(
       navbar = f7Navbar(
