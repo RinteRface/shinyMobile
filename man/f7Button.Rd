@@ -5,7 +5,7 @@
 \title{Create a Framework7 button}
 \usage{
 f7Button(inputId = NULL, label = NULL, src = NULL, color = NULL,
-  fill = FALSE, outline = FALSE, shadow = FALSE, rounded = FALSE,
+  fill = TRUE, outline = FALSE, shadow = FALSE, rounded = FALSE,
   size = NULL)
 }
 \arguments{
@@ -16,11 +16,12 @@ but you could also use any other HTML, like an image.}
 
 \item{src}{Button link.}
 
-\item{color}{Button color. See here for valid colors \url{https://framework7.io/docs/badge.html}.}
+\item{color}{Button color. Not compatible with outline.
+See here for valid colors \url{https://framework7.io/docs/badge.html}.}
 
-\item{fill}{Fill style. FALSE by default.}
+\item{fill}{Fill style. TRUE by default. Not compatible with outline}
 
-\item{outline}{Outline style. FALSE by default.}
+\item{outline}{Outline style. FALSE by default. Not compatible with fill.}
 
 \item{shadow}{Button shadow. FALSE by default. Only for material design.}
 
@@ -30,32 +31,6 @@ but you could also use any other HTML, like an image.}
 }
 \description{
 Build a Framework7 button
-}
-\examples{
-if(interactive()){
- library(shiny)
- library(shinyF7)
-
- shiny::shinyApp(
-  ui = f7Page(
-    title = "Buttons",
-    f7Init(theme = "md"),
-    f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
-    f7Button(color = "red", label = "Action Button", inputId = "button2", fill = TRUE),
-    f7Button(color = "green", label = "My button", outline = TRUE),
-    f7Button(color = "yellow", label = "My button", rounded = TRUE),
-    f7Button(color = "pink", label = "My button", shadow = TRUE),
-    f7Button(color = "purple", label = "My button", size = "large"),
-    f7Button(color = "orange", label = "My button", size = "small"),
-
-    verbatimTextOutput("val")
-  ),
-  server = function(input, output) {
-   output$val <- renderPrint(input$button2)
-  }
- )
-}
-
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

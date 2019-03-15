@@ -6,48 +6,32 @@
 #' @param label The contents of the button or link–usually a text label,
 #' but you could also use any other HTML, like an image.
 #' @param src Button link.
-#' @param color Button color. See here for valid colors \url{https://framework7.io/docs/badge.html}.
-#' @param fill Fill style. FALSE by default.
-#' @param outline Outline style. FALSE by default.
+#' @param color Button color. Not compatible with outline.
+#' See here for valid colors \url{https://framework7.io/docs/badge.html}.
+#' @param fill Fill style. TRUE by default. Not compatible with outline
+#' @param outline Outline style. FALSE by default. Not compatible with fill.
 #' @param shadow Button shadow. FALSE by default. Only for material design.
 #' @param rounded Round style. FALSE by default.
 #' @param size Button size. NULL by default but also "large" or "small".
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     title = "Buttons",
-#'     f7Init(theme = "md"),
-#'     f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
-#'     f7Button(color = "red", label = "Action Button", inputId = "button2", fill = TRUE),
-#'     f7Button(color = "green", label = "My button", outline = TRUE),
-#'     f7Button(color = "yellow", label = "My button", rounded = TRUE),
-#'     f7Button(color = "pink", label = "My button", shadow = TRUE),
-#'     f7Button(color = "purple", label = "My button", size = "large"),
-#'     f7Button(color = "orange", label = "My button", size = "small"),
-#'
-#'     verbatimTextOutput("val")
-#'   ),
-#'   server = function(input, output) {
-#'    output$val <- renderPrint(input$button2)
-#'   }
-#'  )
-#' }
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Button <- function(inputId = NULL, label = NULL, src = NULL, color = NULL, fill = FALSE, outline = FALSE,
+f7Button <- function(inputId = NULL, label = NULL, src = NULL,
+                     color = NULL, fill = TRUE, outline = FALSE,
                      shadow = FALSE, rounded = FALSE, size = NULL) {
 
   if (!is.null(inputId) & !is.null(src)) stop("Cannot set inputId and src at the same time.")
 
+  # outline and fill are incompatible by definition as well as color and outline
+  if (outline) {
+    fill <- FALSE
+    color <- NULL
+  }
+
   # need to add external to handle external url
-  buttonCl <- "button external"
+  buttonCl <- "button"
+  if (!is.null(src)) buttonCl <- paste0(buttonCl, " external")
   if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " action-button")
   if (!is.null(color)) buttonCl <- paste0(buttonCl, " color-", color)
   if (fill) buttonCl <- paste0(buttonCl, " button-fill")
@@ -91,20 +75,46 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL, color = NULL, fil
 #'   ui = f7Page(
 #'     title = "Button Segments",
 #'     f7Init(theme = "md"),
+#'     f7BlockTitle(title = "Simple Buttons in a row container"),
+#'     f7Segment(
+#'      container = "row",
+#'      f7Button(color = "blue", label = "My button", fill = FALSE),
+#'      f7Button(color = "green", label = "My button", src = "http://www.google.com", fill = FALSE),
+#'      f7Button(color = "yellow", label = "My button", fill = FALSE)
+#'     ),
+#'     f7BlockTitle(title = "Filled Buttons in a segment/rounded container"),
 #'     f7Segment(
 #'      rounded = TRUE,
 #'      container = "segment",
-#'      f7Button(color = "red", label = "Action Button", inputId = "button2", fill = TRUE),
-#'      f7Button(color = "green", label = "My button", outline = TRUE),
+#'      f7Button(color = "black", label = "Action Button", inputId = "button2"),
+#'      f7Button(color = "green", label = "My button", src = "http://www.google.com"),
+#'      f7Button(color = "yellow", label = "My button")
+#'     ),
+#'     f7BlockTitle(title = "Outline Buttons in a segment/shadow container"),
+#'     f7Segment(
+#'      shadow = TRUE,
+#'      container = "segment",
+#'      f7Button(label = "My button", outline = TRUE),
+#'      f7Button(label = "My button", outline = TRUE),
+#'      f7Button(label = "My button", outline = TRUE)
+#'     ),
+#'     f7BlockTitle(title = "Rounded Buttons in a segment container"),
+#'     f7Segment(
+#'      container = "segment",
+#'      f7Button(color = "blue", label = "My button", rounded = TRUE),
+#'      f7Button(color = "green", label = "My button", rounded = TRUE),
 #'      f7Button(color = "yellow", label = "My button", rounded = TRUE)
 #'     ),
+#'     f7BlockTitle(title = "Buttons of different size in a row container"),
 #'     f7Segment(
 #'      container = "row",
 #'      f7Button(color = "pink", label = "My button", shadow = TRUE),
-#'      f7Button(color = "purple", label = "My button", size = "large"),
-#'      f7Button(color = "orange", label = "My button", size = "small")
+#'      f7Button(color = "purple", label = "My button", size = "large", shadow = TRUE),
+#'      f7Button(color = "orange", label = "My button", size = "small", shadow = TRUE)
 #'     ),
 #'
+#'     br(), br(),
+#'     f7BlockTitle(title = "Click on the black action button to update the value"),
 #'     verbatimTextOutput("val")
 #'   ),
 #'   server = function(input, output) {
