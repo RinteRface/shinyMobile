@@ -32,9 +32,7 @@ if(interactive()){
         right_panel = TRUE
       ),
       f7Tabs(
-        icons = TRUE,
         animated = TRUE,
-        position = "bottom",
         #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
@@ -48,7 +46,7 @@ if(interactive()){
               sliderInput("obs1", "Number of observations", 0, 1000, 500),
               plotOutput("distPlot1"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )
@@ -66,7 +64,7 @@ if(interactive()){
               sliderInput("obs2", "Number of observations", 0, 10000, 5000),
               plotOutput("distPlot2"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )
@@ -84,7 +82,7 @@ if(interactive()){
               sliderInput("obs3", "Number of observations", 0, 10, 5),
               plotOutput("distPlot3"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )

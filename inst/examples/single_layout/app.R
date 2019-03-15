@@ -25,18 +25,19 @@ shiny::shinyApp(
         shadow = TRUE
       ),
       toolbar = f7Toolbar(
+        position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
       ),
       # main content
       f7Shadow(
-        intensity = 10,
+        intensity = 16,
         hover = TRUE,
         f7Card(
           title = "Card header",
           e_theme(plot, "dark"),
           footer = tagList(
-            f7Button(color = "blue", "My button", src = "https://www.google.com"),
+            f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
             f7Badge("Badge", color = "green")
           )
         )

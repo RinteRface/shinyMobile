@@ -65,7 +65,6 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #' @param ... Content.
 #' @param navbar Slot for \link{f7Navbar}.
 #' @param toolbar Slot for \link{f7Toolbar}.
-#' @param navbarHideScroll Whether to hide the navbar on scroll. FALSE by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -82,6 +81,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #'         shadow = TRUE
 #'       ),
 #'       toolbar = f7Toolbar(
+#'         position = "bottom",
 #'         f7Link(label = "Link 1", src = "https://www.google.com"),
 #'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
 #'       ),
@@ -94,7 +94,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #'           sliderInput("obs", "Number of observations", 0, 1000, 500),
 #'           plotOutput("distPlot"),
 #'           footer = tagList(
-#'             f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'             f7Badge("Badge", color = "green")
 #'           )
 #'         )
@@ -113,19 +113,14 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
+f7SingleLayout <- function(..., navbar, toolbar) {
   shiny::tags$div(
-    class = "view view-main ios-edges",
+    class = "page page-current",
     navbar,
     toolbar,
     # main content
     shiny::tags$div(
-      style = "max-height: 900px; overflow-y: auto;",
-      class = if (navbarHideScroll) {
-        "page-content hide-navbar-on-scroll"
-      } else {
-        "page-content"
-      },
+      class = "page-content",
       ...
     )
   )
@@ -160,9 +155,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'         right_panel = TRUE
 #'       ),
 #'       f7Tabs(
-#'         icons = TRUE,
 #'         animated = TRUE,
-#'         position = "bottom",
 #'         #swipeable = TRUE,
 #'         f7Tab(
 #'           tabName = "Tab 1",
@@ -176,7 +169,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'               sliderInput("obs1", "Number of observations", 0, 1000, 500),
 #'               plotOutput("distPlot1"),
 #'               footer = tagList(
-#'                 f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'                 f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'                 f7Badge("Badge", color = "green")
 #'               )
 #'             )
@@ -194,7 +187,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'               sliderInput("obs2", "Number of observations", 0, 10000, 5000),
 #'               plotOutput("distPlot2"),
 #'               footer = tagList(
-#'                 f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'                 f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'                 f7Badge("Badge", color = "green")
 #'               )
 #'             )
@@ -212,7 +205,7 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 #'               sliderInput("obs3", "Number of observations", 0, 10, 5),
 #'               plotOutput("distPlot3"),
 #'               footer = tagList(
-#'                 f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'                 f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'                 f7Badge("Badge", color = "green")
 #'               )
 #'             )
@@ -244,163 +237,6 @@ f7SingleLayout <- function(..., navbar, toolbar, navbarHideScroll = FALSE) {
 f7TabLayout <- function(...) {
   shiny::tags$div(
     class = "page",
-    style = "background-color: gainsboro;",
-    #shiny::tags$div(class = "panel-backdrop", style = NA),
     ...
   )
-}
-
-
-
-#' Create a Framework7 page with split layout
-#'
-#' Build a Framework7 page with split layout
-#'
-#' @param sidebarPanel Slot for \link{f7Sidebar}.
-#' @param mainPanel Slot for \link{f7mainPanel}.
-#'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     f7Init("ios"),
-#'     title = "Sidebar Layout",
-#'     f7SidebarLayout(
-#'       # sidebar content
-#'       sidebarPanel = f7Sidebar(
-#'         title = "Sidebar",
-#'         side = "left",
-#'         theme = "light",
-#'         sliderInput("obs", "Number of observations", 0, 1000, 500)
-#'       ),
-#'       # main content
-#'       mainPanel = f7mainPanel(
-#'         navbar = f7Navbar(
-#'           title = "Sidebar Layout",
-#'           hairline = FALSE,
-#'           shadow = TRUE
-#'         ),
-#'         toolbar = f7Toolbar(
-#'           f7Link(label = "Link 1", src = "https://www.google.com"),
-#'           f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
-#'         ),
-#'         f7Shadow(
-#'           intensity = 10,
-#'           hover = TRUE,
-#'           f7Card(
-#'             title = "Card header",
-#'             plotOutput("distPlot"),
-#'             footer = tagList(
-#'               f7Button(color = "blue", "My button", src = "https://www.google.com"),
-#'               f7Badge("Badge", color = "green")
-#'             )
-#'           )
-#'         )
-#'       )
-#'     )
-#'   ),
-#'   server = function(input, output) {
-#'     output$distPlot <- renderPlot({
-#'       dist <- rnorm(input$obs)
-#'       hist(dist)
-#'     })
-#'   }
-#'  )
-#' }
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-f7SidebarLayout <- function(sidebarPanel, mainPanel) {
-
-  # need to set a left margin between the sidebar and the main content
-  mainPanel <- htmltools::tagAppendAttributes(
-    mainPanel,
-    style = "margin-left: 260px; max-height: 900px; overflow-y: auto;"
-  )
-
-  # set margin inside
-  mainPanel$children[[3]] <- f7Margin(mainPanel$children[[3]])
-
-  # set elevation on sidebar and put margin for the content
-  sidebarPanel <- f7Shadow(sidebarPanel, intensity = 24)
-
-  shiny::tagList(sidebarPanel, mainPanel)
-}
-
-
-
-#' Create a Framework7 main panel container
-#'
-#' Build a Framework7 main panel container
-#'
-#' @inheritParams f7SingleLayout
-#'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyF7)
-#'
-#' }
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-f7mainPanel <- f7SingleLayout
-
-
-
-
-#' Create a Framework7 sidebar
-#'
-#' Build a Framework7 sidebar
-#'
-#' @param ... Panel content.
-#' @param title Panel title.
-#' @param side Panel side: "left" or "right".
-#' @param theme Panel background color: "dark" or "light".
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
-#' @export
-f7Sidebar <- function(..., title = NULL, side = c("left", "right"),
-                      theme = c("dark", "light")) {
-
-  sidebarCl <- "panel panel-left panel-reveal panel-visible-by-breakpoint"
-  side <- match.arg(side)
-  theme <- match.arg(theme)
-  sidebarCl <- sprintf(sidebarCl, " panel-%s", side, " theme-%s", theme)
-
-
-  sidebarTag <- shiny::tags$div(
-    class = sidebarCl,
-    shiny::tags$div(
-      class = "view view-left",
-      shiny::tags$div(
-        class = "page",
-        # Panel Header
-        f7Shadow(
-          shiny::tags$div(
-            class = "navbar",
-            shiny::tags$div(
-              class = "navbar-inner sliding",
-              shiny::tags$div(class = "title", title)
-            )
-          ),
-          intensity = 24
-        ),
-        # Panel content
-        shiny::tags$div(
-          class = "page-content",
-          f7Block(...)
-        )
-      )
-    )
-  )
-
-  f7Shadow(sidebarTag, intensity = 24)
-
 }

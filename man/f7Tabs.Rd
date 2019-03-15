@@ -4,22 +4,10 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., position = c("top", "bottom"), hairline = TRUE,
-  shadow = TRUE, icons = FALSE, scrollable = FALSE,
-  swipeable = FALSE, animated = TRUE)
+f7Tabs(..., swipeable = FALSE, animated = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
-
-\item{position}{Tabs position: "top" or "bottom".}
-
-\item{hairline}{Whether to display a thin border on the top of the toolbar. TRUE by default.}
-
-\item{shadow}{Whether to display a shadow. TRUE by default.}
-
-\item{icons}{Whether to use icons instead of text. Either ios or md icons.}
-
-\item{scrollable}{Whether to allow scrolling. FALSE by default.}
 
 \item{swipeable}{Whether to allow finger swip. FALSE by default. Only for touch-screens.
 Not compatible with animated.}

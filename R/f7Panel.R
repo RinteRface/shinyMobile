@@ -2,7 +2,7 @@
 #'
 #' Build a Framework7 panel
 #'
-#' @param ... Panel content.
+#' @param ... Panel content. Also include \link{f7PanelMenu} and \link{f7PanelItem}.
 #' @param title Panel title.
 #' @param side Panel side: "left" or "right".
 #' @param theme Panel background color: "dark" or "light".
@@ -47,3 +47,44 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
   f7Shadow(panelTag, intensity = 24)
 
 }
+
+
+
+#' Create a Framework7 sidebar menu
+#'
+#' Build a Framework7 sidebar menu
+#'
+#' @param ... Slot for \link{f7PanelItem}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7PanelMenu <- function(...) {
+  shiny::tags$div(
+    class = "list links-list",
+    shiny::tags$ul(...)
+  )
+}
+
+
+
+
+#' Create a Framework7 sidebar menu item
+#'
+#' Build a Framework7 sidebar menu item
+#'
+#' @param id Item id.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7PanelItem <- function(id) {
+  shiny::tags$li(
+    shiny::tags$a(
+      href = id,
+      class = "panel-close",
+      `data-view` = ".page"
+    )
+  )
+}
+

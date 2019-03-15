@@ -23,8 +23,11 @@ if(interactive()){
   ui = f7Page(
     f7Init(theme = "auto"),
     title = "Badges",
-    f7Badge(32, color = "blue"),
-    f7Badge("Badge", color = "green")
+    f7Block(
+     strong = TRUE,
+     f7Badge(32, color = "blue"),
+     f7Badge("Badge", color = "green")
+    )
   ),
   server = function(input, output) {}
  )

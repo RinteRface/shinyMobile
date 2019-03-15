@@ -3,11 +3,6 @@
 #' Build a Framework7 tabs
 #'
 #' @param ... Slot for \link{f7Tab}.
-#' @param position Tabs position: "top" or "bottom".
-#' @param hairline Whether to display a thin border on the top of the toolbar. TRUE by default.
-#' @param shadow Whether to display a shadow. TRUE by default.
-#' @param icons Whether to use icons instead of text. Either ios or md icons.
-#' @param scrollable Whether to allow scrolling. FALSE by default.
 #' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
 #' @param animated Whether to show transition between tabs. TRUE by default.
@@ -18,11 +13,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow = TRUE,
-                     icons = FALSE, scrollable = FALSE,
-                     swipeable = FALSE, animated = TRUE) {
-
-  position <- match.arg(position)
+f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
 
@@ -30,19 +21,13 @@ f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow =
   len <- length(toolbarItems)
   found_active <- FALSE
 
-  toolbarClass <- if (icons) "toolbar" else "toolbar tabbar"
-  if (!hairline) toolbarClass <- paste0(toolbarClass, " no-hairline")
-  if (!shadow) toolbarClass <- paste0(toolbarClass, " no-shadow")
-  if (icons) toolbarClass <- paste0(toolbarClass, " tabbar-labels")
-  if (scrollable) toolbarClass <- paste0(toolbarClass, " tabbar-scrollable")
-  if (position == "bottom") toolbarClass <- paste0(toolbarClass, " toolbar-bottom")
-
-
   # toolbar items
-  toolbarTag <- shiny::tags$div(
-    class = toolbarClass,
-    shiny::tags$div(
-      class = "toolbar-inner",
+  toolbarTag <- f7Toolbar(
+    position = "bottom",
+    hairline = TRUE,
+    shadow = TRUE,
+    icons = TRUE,
+    scrollable = FALSE,
       lapply(1:len, FUN = function(i) {
 
         item <- toolbarItems[[i]][[1]]
@@ -80,7 +65,6 @@ f7Tabs <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow =
 
       })
     )
-  )
 
   # related page content
   contentTag <- shiny::tags$div(
@@ -133,7 +117,6 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   itemTag <- shiny::tags$div(
     class = if (active) "page-content tab tab-active" else "page-content tab",
     id = id,
-    style = "max-height: 900px; overflow-y: auto;",
     f7Block(...)
   )
   return(list(itemTag, icon, tabName))

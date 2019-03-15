@@ -97,7 +97,7 @@ f7Float <- function(tag, side = c("left", "right")) {
 #'   but cards can also contain their own header,
 #'   footer, list view, image, or any other element.",
 #'   footer = tagList(
-#'     f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'     f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'     f7Badge("Badge", color = "green")
 #'   )
 #'  )
@@ -147,7 +147,7 @@ f7Margin <- function(tag, side = NULL) {
 #'    p("The padding is applied here.")
 #'   ),
 #'   footer = tagList(
-#'     f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'     f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'     f7Badge("Badge", color = "green")
 #'   )
 #'  )

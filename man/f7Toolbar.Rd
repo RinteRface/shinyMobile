@@ -4,10 +4,21 @@
 \alias{f7Toolbar}
 \title{Create a Framework7 Toolbar}
 \usage{
-f7Toolbar(...)
+f7Toolbar(..., position = c("top", "bottom"), hairline = TRUE,
+  shadow = TRUE, icons = FALSE, scrollable = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Link} or any other element.}
+
+\item{position}{Tabs position: "top" or "bottom".}
+
+\item{hairline}{Whether to display a thin border on the top of the toolbar. TRUE by default.}
+
+\item{shadow}{Whether to display a shadow. TRUE by default.}
+
+\item{icons}{Whether to use icons instead of text. Either ios or md icons.}
+
+\item{scrollable}{Whether to allow scrolling. FALSE by default.}
 }
 \description{
 Build a Framework7 Toolbar

@@ -17,9 +17,7 @@ shiny::shinyApp(
         right_panel = TRUE
       ),
       f7Tabs(
-        icons = TRUE,
         animated = TRUE,
-        position = "bottom",
         #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
@@ -33,7 +31,7 @@ shiny::shinyApp(
               sliderInput("obs1", "Number of observations", 0, 1000, 500),
               plotOutput("distPlot1"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )
@@ -61,7 +59,7 @@ shiny::shinyApp(
               ),
               plotOutput("distPlot2"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )
@@ -88,7 +86,7 @@ shiny::shinyApp(
               ),
               tableOutput("data"),
               footer = tagList(
-                f7Button(color = "blue", "My button", src = "https://www.google.com"),
+                f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
                 f7Badge("Badge", color = "green")
               )
             )

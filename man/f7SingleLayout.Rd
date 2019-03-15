@@ -4,7 +4,7 @@
 \alias{f7SingleLayout}
 \title{Create a Framework7 single layout}
 \usage{
-f7SingleLayout(..., navbar, toolbar, navbarHideScroll = FALSE)
+f7SingleLayout(..., navbar, toolbar)
 }
 \arguments{
 \item{...}{Content.}
@@ -12,8 +12,6 @@ f7SingleLayout(..., navbar, toolbar, navbarHideScroll = FALSE)
 \item{navbar}{Slot for \link{f7Navbar}.}
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
-
-\item{navbarHideScroll}{Whether to hide the navbar on scroll. FALSE by default.}
 }
 \description{
 Build a Framework7 single layout
@@ -33,6 +31,7 @@ if(interactive()){
         shadow = TRUE
       ),
       toolbar = f7Toolbar(
+        position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
       ),
@@ -45,7 +44,7 @@ if(interactive()){
           sliderInput("obs", "Number of observations", 0, 1000, 500),
           plotOutput("distPlot"),
           footer = tagList(
-            f7Button(color = "blue", "My button", src = "https://www.google.com"),
+            f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
             f7Badge("Badge", color = "green")
           )
         )
