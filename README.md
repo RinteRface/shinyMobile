@@ -148,6 +148,10 @@ shiny::shinyApp(
 )
 ```
 
+There is even a dark layout!
+
+<a href="https://divadnojnarg.shinyapps.io/shinyF7" target="_blank"><img src="man/figures/f7_tab_layout_dark_md.png" class="img-shadow" width= "514" height=" 400"></a>
+
 
 ### As a shiny gadget
 

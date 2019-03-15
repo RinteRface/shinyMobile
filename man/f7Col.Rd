@@ -13,6 +13,10 @@ on the number of columns.}
 \description{
 Build a Framework7 column container
 }
+\note{
+The dark theme does not work for items embedded in a column. Use \link{f7Flex}
+instead.
+}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

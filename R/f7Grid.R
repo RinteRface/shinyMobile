@@ -58,7 +58,48 @@ f7Row <- function(..., gap = TRUE) {
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
+#' @note The dark theme does not work for items embedded in a column. Use \link{f7Flex}
+#' instead.
+#'
 #' @export
 f7Col <- function(...) {
   shiny::tags$div(class = "col", ...)
+}
+
+
+
+
+#' Create a Framework7 flex container
+#'
+#' Build a Framework7 flex container
+#'
+#' @param ... Items.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "Align",
+#'     f7Init(theme = "auto"),
+#'     f7Flex(
+#'      f7Block(strong = TRUE),
+#'      f7Block(strong = TRUE),
+#'      f7Block(strong = TRUE)
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7Flex <- function(...) {
+  shiny::tags$div(
+    class = "display-flex justify-content-space-between align-items-flex-start",
+    ...
+  )
 }

@@ -8,7 +8,7 @@ f7Panel(..., title = NULL, side = c("left", "right"),
   theme = c("dark", "light"), style = c("reveal", "cover"))
 }
 \arguments{
-\item{...}{Panel content. Also include \link{f7PanelMenu} and \link{f7PanelItem}.}
+\item{...}{Panel content.}
 
 \item{title}{Panel title.}
 

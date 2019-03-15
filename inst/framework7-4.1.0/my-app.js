@@ -1,6 +1,11 @@
 $(function () {
   // select the first nav item by default at start
   $('.toolbar-inner .a:eq(0)').addClass('tab-link-active');
+  var ios = $('html').hasClass('ios');
+  // only add the highlight bar if the theme is material
+  if (ios === false) {
+   $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: 33.333333333333336%; transform: translate3d(0%, 0px, 0px);"></span>');
+  }
   $('.page-content.tab:eq(0)').addClass('tab-active');
 
   // handles shinyapps.io

@@ -28,43 +28,42 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
     shadow = TRUE,
     icons = TRUE,
     scrollable = FALSE,
-      lapply(1:len, FUN = function(i) {
+    lapply(1:len, FUN = function(i) {
 
-        item <- toolbarItems[[i]][[1]]
-        itemIcon <- toolbarItems[[i]][[2]]
-        itemName <- toolbarItems[[i]][[3]]
-        itemClass <- item$attribs$class
-        itemId <- item$attribs$id
+      item <- toolbarItems[[i]][[1]]
+      itemIcon <- toolbarItems[[i]][[2]]
+      itemName <- toolbarItems[[i]][[3]]
+      itemClass <- item$attribs$class
+      itemId <- item$attribs$id
 
-        # make sure that if the user set 2 tabs active at the same time,
-        # only the first one is selected
-        if (!found_active) {
-          active <- sum(grep(x = itemClass, pattern = "active")) == 1
-          if (active) found_active <<- TRUE
-          # if there is already an active panel, set all other to inactive
-        } else {
-          active <- FALSE
-        }
+      # make sure that if the user set 2 tabs active at the same time,
+      # only the first one is selected
+      if (!found_active) {
+        active <- sum(grep(x = itemClass, pattern = "active")) == 1
+        if (active) found_active <<- TRUE
+        # if there is already an active panel, set all other to inactive
+      } else {
+        active <- FALSE
+      }
 
-        # generate the link
-        if (!is.null(itemIcon)) {
-          shiny::a(
-            href = paste0("#", itemId),
-            class = if (active) "tab-link tab-link-active" else "tab-link",
-            shiny::tags$i(class = "icon f7-icons ios-only", itemIcon),
-            shiny::tags$i(class = "icon material-icons md-only", itemIcon),
-            shiny::span(class = "tabbar-label", itemName)
-          )
-        } else {
-          shiny::a(
-            href = paste0("#", itemId),
-            class = if (active) "tab-link tab-link-active" else "tab-link",
-            itemName
-          )
-        }
-
-      })
-    )
+      # generate the link
+      if (!is.null(itemIcon)) {
+        shiny::a(
+          href = paste0("#", itemId),
+          class = if (active) "tab-link tab-link-active" else "tab-link",
+          shiny::tags$i(class = "icon f7-icons ios-only", itemIcon),
+          shiny::tags$i(class = "icon material-icons md-only", itemIcon),
+          shiny::span(class = "tabbar-label", itemName)
+        )
+      } else {
+        shiny::a(
+          href = paste0("#", itemId),
+          class = if (active) "tab-link tab-link-active" else "tab-link",
+          itemName
+        )
+      }
+    })
+  )
 
   # related page content
   contentTag <- shiny::tags$div(
@@ -117,7 +116,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   itemTag <- shiny::tags$div(
     class = if (active) "page-content tab tab-active" else "page-content tab",
     id = id,
-    f7Block(...)
+    ...
   )
   return(list(itemTag, icon, tabName))
 }
