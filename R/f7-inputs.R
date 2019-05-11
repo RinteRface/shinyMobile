@@ -143,6 +143,97 @@ f7checkBox <- function(inputId, label, value = FALSE){
 
 
 
+#' Create a f7 slider
+#'
+#' @param inputId Slider input id.
+#' @param value Slider value.
+#' @param min Slider minimum range.
+#' @param max Slider maximum range.
+#' @param step Slider increase step size.
+#' @param scale Slider scale.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7Init(theme = "auto"),
+#'     f7Card(
+#'      f7Slider(
+#'       inputId = "obs",
+#'       max = 1000,
+#'       min = 0,
+#'       value = 100,
+#'       scale = TRUE
+#'      ),
+#'      verbatimTextOutput("test")
+#'     ),
+#'     plotOutput("distPlot")
+#'    ),
+#'    server = function(input, output) {
+#'     output$test <- renderPrint({input$obs})
+#'     output$distPlot <- renderPlot({
+#'      hist(rnorm(input$obs))
+#'     })
+#'    }
+#'  )
+#' }
+#'
+#'
+f7Slider <- function(inputId, value, min, max,
+                     step = NULL, scale = FALSE) {
+
+  inputId <- paste0("'", inputId, "'")
+
+    shiny::tagList(
+      #singleton(
+      #  shiny::tags$head(
+      #    shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
+      #  )
+      #),
+      shiny::singleton(
+        shiny::tags$head(
+          shiny::tags$script(
+            "$(document).on('shiny:sessioninitialized', function(event) {
+            var range = app.range.create({
+  el: '.range-slider',
+  on: {
+    change: function () {
+      var value = app.range.get('.range-slider').value;
+      Shiny.setInputValue(", inputId, ", value, {priority: 'event'});
+    }
+  }
+});
+
+var value = app.range.get('.range-slider').value;
+Shiny.setInputValue(", inputId, ", value, {priority: 'event'});
+
+            });
+            "
+          )
+        )
+      ),
+      shiny::br(),
+      shiny::tags$div(
+        class = "range-slider range-slider-init",
+        `data-min`= min,
+        `data-max`= max,
+        `data-label`="true",
+        `data-step`= 5,
+        `data-value`= value,
+        `data-scale`= tolower(scale),
+        `data-scale-steps`= 5,
+        `data-scale-sub-steps`="4"
+      )
+    )
+}
+
+
 # #' Create a F7 radio stepper
 # #'
 # #' @examples
