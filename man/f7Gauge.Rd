@@ -61,7 +61,7 @@ if(interactive()){
     f7Gauge(
      id = "mygauge",
      type  = "semicircle",
-     value = 10,
+     value = 0.5,
      borderColor = "#2196f3",
      borderWidth = 10,
      valueText = "50\%",

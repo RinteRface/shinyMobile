@@ -31,7 +31,7 @@
 #'     f7Gauge(
 #'      id = "mygauge",
 #'      type  = "semicircle",
-#'      value = 10,
+#'      value = 0.5,
 #'      borderColor = "#2196f3",
 #'      borderWidth = 10,
 #'      valueText = "50%",
@@ -55,87 +55,50 @@ f7Gauge <- function(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
                     valueFontWeight = NULL, labelText = NULL, labelTextColor = NULL,
                     labelFontSize = NULL, labelFontWeight = NULL) {
 
-  gaugeCl <- "gauge gauge-init"
+  gaugeCl <- "gauge"
 
-  # gaugeCl <- paste0("gauge ", id)
-  #
-  # gaugeProps <- dropNulls(
-  #   list(
-  #     el = id,
-  #     type = type,
-  #     size = size,
-  #     bgColor = bgColor,
-  #     borderBgColor = borderBgColor,
-  #     borderColor = borderColor,
-  #     borderWidth = borderWidth,
-  #     valueText = valueText,
-  #     valueTextColor = valueTextColor,
-  #     valueFontSize = valueFontSize,
-  #     valueFontWeight = valueFontWeight,
-  #     labelText = labelText,
-  #     labelTextColor = labelTextColor,
-  #     labelFontSize = labelFontSize,
-  #     labelFontWeight = labelFontWeight
-  #   )
-  # )
-  #
-  # gaugeProps <- as.data.frame(gaugeProps)
-  #
-  # gaugeProps <- jsonlite::toJSON(gaugeProps)
-  # gaugeProps <- gsub(x = gaugeProps, pattern = "\\[", replacement = "")
-  # gaugeProps <- gsub(x = gaugeProps, pattern = "\\]", replacement = "")
-  #
-  # gaugeJS <- shiny::tags$script(
-  #   paste0(
-  #     "var gauge", id, " = app.gauge.create(
-  #       ", gaugeProps,"
-  #      );
-  #     "
-  #   )
-  # )
-  #
-  # gaugeTag <- shiny::tags$div(class = gaugeCl)
+  gaugeCl <- paste0("gauge ", id)
 
-  #shiny::tagList(
-  #  shiny::singleton(shiny::tags$head(gaugeJS)),
-  #  gaugeTag
-  #)
-
-  innerTag <- dropNulls(
-   list(
-     shiny::tags$div(
-       id = id,
-       class = gaugeCl,
-       `data-type` = type,
-       `data-value` = value,
-       `data-size` = size,
-       `data-bg-color` = bgColor,
-       `data-border-bg-color` = borderBgColor,
-       `data-border-color` = borderColor,
-       `data-border-width` = borderWidth,
-       `data-value-text` = valueText,
-       `data-value-text-color` = valueTextColor,
-       `data-value-text-font-size` = valueFontSize,
-       `data-value-text-font-weight` = valueFontWeight,
-       `data-label-text` = labelText,
-       `data-label-text-color` = labelTextColor,
-       `data-label-font-size` = labelFontSize,
-       `data-label-font-weight` = labelFontWeight
+   gaugeProps <- dropNulls(
+     list(
+       el = paste0(".", id),
+       type = type,
+       value = value,
+       size = size,
+       bgColor = bgColor,
+       borderBgColor = borderBgColor,
+       borderColor = borderColor,
+       borderWidth = borderWidth,
+       valueText = valueText,
+       valueTextColor = valueTextColor,
+       valueFontSize = valueFontSize,
+       valueFontWeight = valueFontWeight,
+       labelText = labelText,
+       labelTextColor = labelTextColor,
+       labelFontSize = labelFontSize,
+       labelFontWeight = labelFontWeight
      )
    )
+
+   gaugeProps <- as.data.frame(gaugeProps)
+
+   gaugeProps <- jsonlite::toJSON(gaugeProps)
+   gaugeProps <- gsub(x = gaugeProps, pattern = "\\[", replacement = "")
+   gaugeProps <- gsub(x = gaugeProps, pattern = "\\]", replacement = "")
+
+   gaugeJS <- shiny::tags$script(
+     paste0(
+       "$(function() {
+          var gauge = app.gauge.create(", gaugeProps," );
+       });
+       "
+     )
+   )
+
+   gaugeTag <- shiny::tags$div(class = gaugeCl)
+
+  shiny::tagList(
+    shiny::singleton(shiny::tags$head(gaugeJS)),
+    gaugeTag
   )
-
-  innerTag
-  #outerTag <- shiny::tags$div(
-  #  class = "block block-strong text-align-center",
-  #  shiny::tags$div(
-  #    class = "row",
-  #    shiny::tags$div(
-  #      class = "col text-align-center",
-  #      innerTag
-  #    )
-  #  )
-  #)
-
-
 }
