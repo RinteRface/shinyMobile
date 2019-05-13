@@ -46,9 +46,6 @@ f7Gauge(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
 \description{
 Build a Framework7 gauge
 }
-\note{
-not working yet
-}
 \examples{
 if(interactive()){
  library(shiny)

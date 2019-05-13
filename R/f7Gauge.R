@@ -44,8 +44,6 @@
 #'  )
 #' }
 #'
-#' @note not working yet
-#'
 #' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
 #'
 #' @export
