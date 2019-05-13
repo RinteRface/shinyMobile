@@ -4,17 +4,19 @@
 \alias{f7Slider}
 \title{Create a f7 slider}
 \usage{
-f7Slider(inputId, value, min, max, step = NULL, scale = FALSE,
+f7Slider(inputId, label, min, max, value, step = NULL, scale = FALSE,
   vertical = FALSE)
 }
 \arguments{
 \item{inputId}{Slider input id.}
 
-\item{value}{Slider value.}
+\item{label}{Slider label.}
 
 \item{min}{Slider minimum range.}
 
 \item{max}{Slider maximum range.}
+
+\item{value}{Slider value.}
 
 \item{step}{Slider increase step size.}
 
@@ -37,6 +39,7 @@ if(interactive()){
     f7Card(
      f7Slider(
       inputId = "obs",
+      label = "Number of observations",
       max = 1000,
       min = 0,
       value = 100,

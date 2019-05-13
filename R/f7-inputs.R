@@ -146,9 +146,10 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' Create a f7 slider
 #'
 #' @param inputId Slider input id.
-#' @param value Slider value.
+#' @param label Slider label.
 #' @param min Slider minimum range.
 #' @param max Slider maximum range.
+#' @param value Slider value.
 #' @param step Slider increase step size.
 #' @param scale Slider scale.
 #' @param vertical Whether to apply a vertical display. FALSE by default. Does not work yet.
@@ -167,6 +168,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'     f7Card(
 #'      f7Slider(
 #'       inputId = "obs",
+#'       label = "Number of observations",
 #'       max = 1000,
 #'       min = 0,
 #'       value = 100,
@@ -184,28 +186,32 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'    }
 #'  )
 #' }
-f7Slider <- function(inputId, value, min, max,
+f7Slider <- function(inputId, label, min, max, value,
                      step = NULL, scale = FALSE, vertical = FALSE) {
 
+    # custom input binding
     shiny::tagList(
       shiny::singleton(
         shiny::tags$head(
           shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
         )
       ),
+      # slider initialization
       shiny::singleton(
         shiny::tags$head(
           shiny::tags$script(
-            paste0("// init the slider component
-$(function() {
-  var range = app.range.create({ el: '#", inputId,"' });
-});
-
-            ")
+            paste0(
+              "// init the slider component
+                $(function() {
+                  var range = app.range.create({ el: '#", inputId,"' });
+                });
+              "
+            )
           )
         )
       ),
       shiny::br(),
+      shiny::tags$div(class = "block-title", label),
       shiny::tags$div(
         class = "range-slider",
         id = inputId,
