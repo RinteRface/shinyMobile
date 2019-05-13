@@ -149,7 +149,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' @param label Slider label.
 #' @param min Slider minimum range.
 #' @param max Slider maximum range.
-#' @param value Slider value.
+#' @param value Slider value or a vector containing 2 values (for a range).
 #' @param step Slider increase step size.
 #' @param scale Slider scale.
 #' @param vertical Whether to apply a vertical display. FALSE by default. Does not work yet.
@@ -186,6 +186,34 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'    }
 #'  )
 #' }
+#'
+#' # Create a range
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7Init(theme = "auto"),
+#'     f7Card(
+#'      f7Slider(
+#'       inputId = "obs",
+#'       label = "Range values",
+#'       max = 500,
+#'       min = 0,
+#'       value = c(50, 100),
+#'       scale = TRUE
+#'      ),
+#'      verbatimTextOutput("test")
+#'     )
+#'    ),
+#'    server = function(input, output) {
+#'     output$test <- renderPrint({input$obs})
+#'    }
+#'  )
+#' }
+#'
 f7Slider <- function(inputId, label, min, max, value,
                      step = NULL, scale = FALSE, vertical = FALSE) {
 
@@ -210,20 +238,24 @@ f7Slider <- function(inputId, label, min, max, value,
           )
         )
       ),
+      # HTML skeleton
       shiny::br(),
       shiny::tags$div(class = "block-title", label),
       shiny::tags$div(
         class = "range-slider",
         id = inputId,
+        `data-dual` = if (length(value) == 2) "true" else NULL,
         `data-min`= min,
         `data-max`= max,
         `data-vertical` = tolower(vertical),
-        `data-label`="true",
-        `data-step`= 5,
-        `data-value`= value,
+        `data-label`= "true",
+        `data-step`= if (is.null(step)) 5 else step,
+        `data-value`= if (length(value) == 1) value else NULL,
+        `data-value-left` = if (length(value) == 2) value[1] else NULL,
+        `data-value-right` = if (length(value) == 2) value[2] else NULL,
         `data-scale`= tolower(scale),
-        `data-scale-steps`= 5,
-        `data-scale-sub-steps`="4"
+        `data-scale-steps`= if (is.null(step)) 5 else step,
+        `data-scale-sub-steps` = "4"
       )
     )
 }

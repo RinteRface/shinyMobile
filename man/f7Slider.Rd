@@ -16,7 +16,7 @@ f7Slider(inputId, label, min, max, value, step = NULL, scale = FALSE,
 
 \item{max}{Slider maximum range.}
 
-\item{value}{Slider value.}
+\item{value}{Slider value or a vector containing 2 values (for a range).}
 
 \item{step}{Slider increase step size.}
 
@@ -57,4 +57,32 @@ if(interactive()){
    }
  )
 }
+
+# Create a range
+if(interactive()){
+ library(shiny)
+ library(shinyF7)
+
+ shiny::shinyApp(
+   ui = f7Page(
+    title = "My app",
+    f7Init(theme = "auto"),
+    f7Card(
+     f7Slider(
+      inputId = "obs",
+      label = "Range values",
+      max = 500,
+      min = 0,
+      value = c(50, 100),
+      scale = TRUE
+     ),
+     verbatimTextOutput("test")
+    )
+   ),
+   server = function(input, output) {
+    output$test <- renderPrint({input$obs})
+   }
+ )
+}
+
 }
