@@ -4,7 +4,8 @@
 \alias{f7Slider}
 \title{Create a f7 slider}
 \usage{
-f7Slider(inputId, value, min, max, step = NULL, scale = FALSE)
+f7Slider(inputId, value, min, max, step = NULL, scale = FALSE,
+  vertical = FALSE)
 }
 \arguments{
 \item{inputId}{Slider input id.}
@@ -18,6 +19,8 @@ f7Slider(inputId, value, min, max, step = NULL, scale = FALSE)
 \item{step}{Slider increase step size.}
 
 \item{scale}{Slider scale.}
+
+\item{vertical}{Whether to apply a vertical display. FALSE by default.}
 }
 \description{
 Create a f7 slider

@@ -151,6 +151,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' @param max Slider maximum range.
 #' @param step Slider increase step size.
 #' @param scale Slider scale.
+#' @param vertical Whether to apply a vertical display. FALSE by default. Does not work yet.
 #'
 #' @export
 #'
@@ -183,46 +184,34 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'    }
 #'  )
 #' }
-#'
-#'
 f7Slider <- function(inputId, value, min, max,
-                     step = NULL, scale = FALSE) {
-
-  inputId <- paste0("'", inputId, "'")
+                     step = NULL, scale = FALSE, vertical = FALSE) {
 
     shiny::tagList(
-      #singleton(
-      #  shiny::tags$head(
-      #    shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
-      #  )
-      #),
+      shiny::singleton(
+        shiny::tags$head(
+          shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
+        )
+      ),
       shiny::singleton(
         shiny::tags$head(
           shiny::tags$script(
-            "$(document).on('shiny:sessioninitialized', function(event) {
-            var range = app.range.create({
-  el: '.range-slider',
-  on: {
-    change: function () {
-      var value = app.range.get('.range-slider').value;
-      Shiny.setInputValue(", inputId, ", value, {priority: 'event'});
-    }
-  }
+            "// init the slider component
+$(function() {
+  var range = app.range.create({ el: '.range-slider' });
 });
 
-var value = app.range.get('.range-slider').value;
-Shiny.setInputValue(", inputId, ", value, {priority: 'event'});
-
-            });
             "
           )
         )
       ),
       shiny::br(),
       shiny::tags$div(
-        class = "range-slider range-slider-init",
+        class = "range-slider",
+        id = inputId,
         `data-min`= min,
         `data-max`= max,
+        `data-vertical` = tolower(vertical),
         `data-label`="true",
         `data-step`= 5,
         `data-value`= value,
