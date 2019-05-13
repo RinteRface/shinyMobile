@@ -347,6 +347,7 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'
 #' Build a Framework7 expandable card
 #'
+#' @param id Unique card id. Useful to handle multiple cards in the DOM.
 #' @param ... Card content.
 #' @param title Card title.
 #' @param subtitle Card subtitle.
@@ -391,7 +392,7 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7ExpandableCard <- function(..., title = NULL, subtitle = NULL, titleColor = c("white", "black"),
+f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, titleColor = c("white", "black"),
                              color = NULL) {
 
   titleColor <- match.arg(titleColor)
@@ -430,6 +431,7 @@ f7ExpandableCard <- function(..., title = NULL, subtitle = NULL, titleColor = c(
   # main wrapper
   shiny::tags$div(
     class = "card card-expandable",
+    #`data-card` = id,
     shiny::tags$div(
       class = "card-content",
       shiny::tags$div(

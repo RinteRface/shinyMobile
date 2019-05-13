@@ -34,7 +34,8 @@ shiny::shinyApp(
 
           shiny::tags$head(
             shiny::tags$script(
-              'Shiny.addCustomMessageHandler("theme", function(message) {
+              'Shiny.addCustomMessageHandler("theme-select", function(message) {
+                alert(message);
                 var ios = $("html").hasClass("ios");
                 var md = $("html").hasClass("md");
                 if (ios === true && theme == "md") {
@@ -44,7 +45,7 @@ shiny::shinyApp(
                   $( "html" ).addClass("ios");
                   $( "html" ).removeClass("md");
                 }
-               }
+               };
               '
             )
           ),
@@ -181,7 +182,7 @@ shiny::shinyApp(
 
     # send the theme to javascript
     observe({
-      session$sendCustomMessage("theme", input$theme)
+      session$sendCustomMessage(type = "theme-select", message = input$theme)
     })
 
   }

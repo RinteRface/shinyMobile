@@ -4,11 +4,13 @@
 \alias{f7ExpandableCard}
 \title{Create a Framework7 expandable card}
 \usage{
-f7ExpandableCard(..., title = NULL, subtitle = NULL,
+f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
   titleColor = c("white", "black"), color = NULL)
 }
 \arguments{
 \item{...}{Card content.}
+
+\item{id}{Unique card id. Useful to handle multiple cards in the DOM.}
 
 \item{title}{Card title.}
 
