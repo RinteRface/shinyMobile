@@ -20,7 +20,7 @@ f7Slider(inputId, value, min, max, step = NULL, scale = FALSE,
 
 \item{scale}{Slider scale.}
 
-\item{vertical}{Whether to apply a vertical display. FALSE by default.}
+\item{vertical}{Whether to apply a vertical display. FALSE by default. Does not work yet.}
 }
 \description{
 Create a f7 slider
@@ -54,6 +54,4 @@ if(interactive()){
    }
  )
 }
-
-
 }

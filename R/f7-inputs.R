@@ -196,12 +196,12 @@ f7Slider <- function(inputId, value, min, max,
       shiny::singleton(
         shiny::tags$head(
           shiny::tags$script(
-            "// init the slider component
+            paste0("// init the slider component
 $(function() {
-  var range = app.range.create({ el: '.range-slider' });
+  var range = app.range.create({ el: '#", inputId,"' });
 });
 
-            "
+            ")
           )
         )
       ),
