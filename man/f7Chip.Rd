@@ -26,7 +26,7 @@ f7Chip(label = NULL, img = NULL, icon = NULL, outline = FALSE,
 Build a Framework7 chips
 }
 \note{
-Not ready for production (need to handle javascript close) and color isssues.
+Not ready for production color and icon isssues.
 }
 \examples{
 if(interactive()){

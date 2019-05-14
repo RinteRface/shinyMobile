@@ -10,7 +10,7 @@
 #' @param icon_status Chip icon color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
 #' @param closable Whether to close the chip. FALSE by default.
 #'
-#' @note Not ready for production (need to handle javascript close) and color isssues.
+#' @note Not ready for production color and icon isssues.
 #'
 #' @examples
 #' if(interactive()){
