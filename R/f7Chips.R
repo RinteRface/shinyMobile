@@ -28,7 +28,8 @@
 #'      f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
 #'      f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
 #'      f7Chip(label = "Example Chip", closable = TRUE),
-#'      f7Chip(label = "Example Chip", status = "green")
+#'      f7Chip(label = "Example Chip", status = "green"),
+#'      f7Chip(label = "Example Chip", status = "green", outline = TRUE)
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -45,6 +46,20 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
   if (outline) chipCl <- paste0(chipCl, " chip-outline")
   if (!is.null(status)) chipCl <- paste0(chipCl, " color-", status)
 
+  # JS code to enable chip deletion
+  chipJS <- shiny::singleton(
+    shiny::tags$head(
+      shiny::tags$script(
+        "$(function() {
+          $('.chip-delete').on('click', function() {
+           $(this).closest('.chip').remove();
+          });
+         });
+        "
+      )
+    )
+  )
+
   iconTag <- if (!is.null(icon)) {
     shiny::tags$div(
       class = if (!is.null(icon_status)) {
@@ -52,7 +67,7 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
       } else {
         "chip-media"
       },
-      shiny::tags$i(class = "icon f7-icons ios-only", icon),
+      shiny::tags$i(class = "icon f7-icons if-not-md", icon),
       shiny::tags$i(class = "icon material-icons md-only", icon)
     )
   }
@@ -64,7 +79,7 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
     )
   }
 
-  shiny::tags$div(
+  chipTag <- shiny::tags$div(
     class = chipCl,
     if (!is.null(img)) imageTag,
     if (!is.null(icon)) iconTag,
@@ -74,4 +89,7 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
     ),
     if (closable) shiny::a(href = "#", class = "chip-delete")
   )
+
+  shiny::tagList(chipJS, chipTag)
+
 }

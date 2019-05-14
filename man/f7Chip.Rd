@@ -44,7 +44,8 @@ if(interactive()){
      f7Chip(label = "Example Chip", icon = "add_round", icon_status = "pink"),
      f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
      f7Chip(label = "Example Chip", closable = TRUE),
-     f7Chip(label = "Example Chip", status = "green")
+     f7Chip(label = "Example Chip", status = "green"),
+     f7Chip(label = "Example Chip", status = "green", outline = TRUE)
     )
   ),
   server = function(input, output) {}
