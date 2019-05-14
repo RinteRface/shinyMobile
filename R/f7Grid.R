@@ -63,7 +63,27 @@ f7Row <- function(..., gap = TRUE) {
 #'
 #' @export
 f7Col <- function(...) {
-  shiny::tags$div(class = "col", ...)
+  shiny::tagList(
+    # this CSS is because columns don't have CSS in framework7
+    # Yup this is strange, I know...
+    shiny::singleton(
+      tags$head(
+        tags$style(
+          "div[class*='col'] {
+            background: gainsboro;
+            text-align: center;
+            color: #000;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-bottom: 15px;
+            font-size: 12px;
+          }
+        "
+        )
+      )
+    ),
+    shiny::tags$div(class = "col", ...)
+  )
 }
 
 
