@@ -5,6 +5,7 @@
 #' @param title Navbar title.
 #' @param hairline Whether to display a thin border on the top of the navbar. TRUE by default.
 #' @param shadow Whether to display a shadow. TRUE by default.
+#' @param bigger Whether to display bigger title. FALSE by default.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
 #' @param hideOnScroll Whether to hide the navbar on scroll. FALSE by default.
@@ -14,7 +15,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE,
+f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
                      left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE) {
 
    navbarClass <- "navbar"
@@ -50,7 +51,14 @@ f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE,
       shiny::tags$div(
          class = if (hideOnScroll) "navbar-inner sliding" else "navbar-inner",
          leftNav,
-         shiny::tags$div(class = "title", title),
+         if (bigger) {
+            shiny::tags$div(
+               class = "title-large",
+               shiny::tags$div(class = "title-large-text", title)
+            )
+         } else {
+            shiny::tags$div(class = "title", title)
+         },
          rightNav
       )
    )
