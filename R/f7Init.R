@@ -12,8 +12,7 @@ f7Init <- function(theme = c("ios", "md", "auto")) {
   shiny::tags$head(
     shiny::tags$script(
       paste0(
-        "$(function() {
-          var app = new Framework7({
+        "var app = new Framework7({
             // App root element
             root: '#app',
             // App Name
@@ -23,7 +22,6 @@ f7Init <- function(theme = c("ios", "md", "auto")) {
             theme: '", theme, "'
             // ... other parameters
           });
-        });
         "
       )
     )

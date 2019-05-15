@@ -1,94 +1,95 @@
-# #' Create a Framework7 picker input
-# #'
-# #' Build a Framework7 picker input
-# #'
-# #' @param inputId Picker input id.
-# #' @param label Picker label.
-# #' @param placeHolder Text to write in the container.
-# #' @param choices Picker choices.
-# #'
-# #' @examples
-# #' if(interactive()){
-# #'  library(shiny)
-# #'  library(shinyF7)
-# #'
-# #'  shiny::shinyApp(
-# #'    ui = f7Page(
-# #'     title = "My app",
-# #'     f7pickerInput(
-# #'      inputId = "my-picker",
-# #'      placeHolder = "Some text here!",
-# #'      label = "Picker Input",
-# #'      choices = c('a', 'b', 'c')
-# #'     )
-# #'    ),
-# #'    server = function(input, output) {}
-# #'  )
-# #' }
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @export
-# f7pickerInput <- function(inputId, label, placeHolder = NULL, choices) {
-#
-#   # input tag
-#   inputTag <- shiny::tags$div(
-#     class = "item-content item-input item-input-with-value",
-#     shiny::tags$div(
-#       class = "item-inner",
-#       shiny::tags$div(
-#         class = "item-input-wrap",
-#         shiny::tags$input(
-#           class = "input-with-value",
-#           id = inputId,
-#           type = "text",
-#           placeholder = placeHolder,
-#           readonly = "readonly"
-#         )
-#       )
-#     )
-#   )
-#
-#   # JS
-#   choices <- jsonlite::toJSON(choices)
-#   choices <- paste("values: ", choices)
-#
-#   pickerJS <- shiny::tags$script(
-#     paste0(
-#       "var pickerDevice = app.picker.create({
-#           inputEl: '#", inputId,"',
-#           cols: [
-#             {
-#               textAlign: 'center',
-#               ", choices,"
-#             }
-#           ]
-#          });
-#         "
-#     )
-#   )
-#
-#   # tag wrapper
-#   mainTag <- shiny::tags$div(
-#     class = "block-title",
-#     label,
-#     shiny::tags$div(
-#       class = "list no-hairlines-md",
-#       shiny::tags$ul(
-#         shiny::tags$li(
-#           inputTag
-#         )
-#       )
-#     )
-#   )
-#
-#   # final input tag
-#   shiny::tagList(
-#     shiny::singleton(shiny::tags$head(pickerJS)),
-#     mainTag
-#   )
-#
-# }
+#' Create a Framework7 picker input
+#'
+#' Build a Framework7 picker input
+#'
+#' @param inputId Picker input id.
+#' @param label Picker label.
+#' @param placeHolder Text to write in the container.
+#' @param choices Picker choices.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7pickerInput(
+#'      inputId = "my-picker",
+#'      placeHolder = "Some text here!",
+#'      label = "Picker Input",
+#'      choices = c('a', 'b', 'c')
+#'     )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7pickerInput <- function(inputId, label, placeHolder = NULL, choices) {
+
+  # input tag
+  inputTag <- shiny::tags$div(
+    class = "item-content item-input",
+    shiny::tags$div(
+      class = "item-inner",
+      shiny::tags$div(
+        class = "item-input-wrap",
+        shiny::tags$input(
+          type = "text",
+          placeholder = placeHolder,
+          id = inputId
+        )
+      )
+    )
+  )
+
+  # JS
+  choices <- jsonlite::toJSON(choices)
+  choices <- paste("values: ", choices)
+
+  pickerJS <- shiny::tags$script(
+    paste0(
+      "$(function() {
+      var picker = app.picker.create({
+          inputEl: '#", inputId,"',
+          cols: [
+            {
+              textAlign: 'center',
+              ", choices,"
+            }
+          ]
+         });
+      });
+        "
+    )
+  )
+
+  # tag wrapper
+  mainTag <- shiny::tags$div(
+    class = "block-title",
+    label,
+    id = inputId,
+    shiny::tags$div(
+      class = "list no-hairlines-md",
+      shiny::tags$ul(
+        shiny::tags$li(
+          inputTag
+        )
+      )
+    )
+  )
+
+  # final input tag
+  shiny::tagList(
+    shiny::singleton(shiny::tags$head(pickerJS)),
+    mainTag
+  )
+
+}
 
 
 
@@ -385,6 +386,91 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
         )
       ),
       shiny::tags$div(class = "stepper-button-plus")
+    )
+  )
+}
+
+
+
+
+
+
+
+#' Create a F7 toggle switch
+#'
+#' @param inputId Toggle input id.
+#' @param label Toggle label.
+#' @param checked Whether to check the toggle. FALSE by default.
+#' @param color Toggle color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7Init(theme = "auto"),
+#'     f7Toggle(
+#'      inputId = "toggle",
+#'      label = "My toggle",
+#'      color = "pink",
+#'      checked = TRUE
+#'     ),
+#'     verbatimTextOutput("test"),
+#'     f7Toggle(
+#'      inputId = "toggle2",
+#'      label = "My toggle 2"
+#'     ),
+#'     verbatimTextOutput("test2")
+#'    ),
+#'    server = function(input, output) {
+#'     output$test <- renderPrint(input$toggle)
+#'     output$test2 <- renderPrint(input$toggle2)
+#'    }
+#'  )
+#' }
+#
+#' @export
+f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
+
+  toggleCl <- "toggle"
+  if (!is.null(color)) toggleCl <- paste0(toggleCl, " color-", color)
+
+  shiny::tagList(
+
+    # input binding
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/toggleInputBinding.js", package = "shinyF7"))
+      )
+    ),
+    # javascript initialization
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$script(
+          paste0(
+            "$(function(){
+              var toggle = app.toggle.create({
+                el: '#", inputId,"'
+              });
+             });
+            "
+          )
+        )
+      )
+    ),
+    # toggle tag
+    shiny::tags$span(label),
+    shiny::tags$label(
+      class = toggleCl,
+      id = inputId,
+      shiny::tags$input(
+        type = "checkbox",
+        checked = if (checked) NA else NULL
+      ),
+      shiny::tags$span(class = "toggle-icon")
     )
   )
 }
