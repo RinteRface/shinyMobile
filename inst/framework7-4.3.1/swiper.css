@@ -16,7 +16,8 @@
 .demo-swiper {
   margin: 0px 0 35px;
   font-size: 18px;
-  height: 120px;
+  max-height: 800px;
+  overflow-y: auto;
 }
 .demo-swiper.demo-swiper-auto .swiper-slide {
   width: 85%;
@@ -27,3 +28,4 @@
 .demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
   width: 30%;
 }
+

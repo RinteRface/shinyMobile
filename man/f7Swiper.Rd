@@ -4,52 +4,79 @@
 \alias{f7Swiper}
 \title{Create a Framework7 swiper}
 \usage{
-f7Swiper(..., pagination = TRUE, space = 50, n_slides = "auto",
-  centered = TRUE, vertical = FALSE, speed = 900)
+f7Swiper(..., id, spaceBetween = 50, slidePerView = "auto",
+  centered = TRUE, speed = 400)
 }
 \arguments{
 \item{...}{Slot for \link{f7Slide}.}
 
-\item{pagination}{Whether to show pagination. TRUE by default.}
+\item{spaceBetween}{Space between slides. 50 by default. Only if pagination is TRUE.}
 
-\item{space}{Space between slides. 50 by default. Only if pagination is TRUE.}
-
-\item{n_slides}{Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.}
+\item{slidePerView}{Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.}
 
 \item{centered}{Whether to center slides. Only if pagination is TRUE.}
-
-\item{vertical}{Whether to display slides vertically. FALSE by default. Only if pagination is TRUE.}
 
 \item{speed}{Slides speed. Numeric.}
 }
 \description{
 Build a Framework7 swiper (like carousel)
 }
-\note{
-Does not work
-}
 \examples{
 if(interactive()){
  library(shiny)
  library(shinyF7)
 
+ timeline <- f7Timeline(
+  sides = TRUE,
+  f7TimelineItem(
+   "Another text",
+   date = "01 Dec",
+   card = FALSE,
+   time = "12:30",
+   title = "Title",
+   subtitle = "Subtitle",
+   side = "left"
+  ),
+  f7TimelineItem(
+   "Another text",
+   date = "02 Dec",
+   card = TRUE,
+   time = "13:00",
+   title = "Title",
+   subtitle = "Subtitle"
+  ),
+  f7TimelineItem(
+   "Another text",
+   date = "03 Dec",
+   card = FALSE,
+   time = "14:45",
+   title = "Title",
+   subtitle = "Subtitle"
+  )
+ )
+
  shiny::shinyApp(
    ui = f7Page(
     title = "My app",
     f7Init(theme = "auto"),
-    actionButton("newplot", "New plot"),
     f7Swiper(
-     f7Slide("Slide 1"),
-     f7Slide(plotOutput("plot"))
+     id = "my-swiper",
+     f7Slide(
+      timeline
+     ),
+     f7Slide(
+      f7Toggle(
+       inputId = "toggle",
+       label = "My toggle",
+       color = "pink",
+       checked = TRUE
+      ),
+      verbatimTextOutput("test")
+     )
     )
    ),
    server = function(input, output) {
-     output$plot <- renderPlot({
-      input$newplot
-      # Add a little noise to the cars data
-      cars2 <- cars + rnorm(nrow(cars))
-      plot(cars2)
-     })
+    output$test <- renderPrint(input$toggle)
    }
  )
 }
