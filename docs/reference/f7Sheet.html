@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 chips — f7Chip • shinyF7</title>
+<title>Create an f7 sheet modal — f7Sheet • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 chips — f7Chip" />
+<meta property="og:title" content="Create an f7 sheet modal — f7Sheet" />
 
-<meta property="og:description" content="Build a Framework7 chips" />
+<meta property="og:description" content="Create an f7 sheet modal" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,94 +104,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 chips</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Chips.R'><code>R/f7Chips.R</code></a></small>
-    <div class="hidden name"><code>f7Chip.Rd</code></div>
+    <h1>Create an f7 sheet modal</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Sheet.R'><code>R/f7Sheet.R</code></a></small>
+    <div class="hidden name"><code>f7Sheet.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 chips</p>
+    <p>Create an f7 sheet modal</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>img</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>icon_status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Sheet</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>...</th>
+      <td><p>Sheet content.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>Sheet unique id.</p></td>
+    </tr>
+    <tr>
       <th>label</th>
-      <td><p>Chip label.</p></td>
+      <td><p>Trigger label.</p></td>
     </tr>
     <tr>
-      <th>img</th>
-      <td><p>Chip image, if any.</p></td>
-    </tr>
-    <tr>
-      <th>icon</th>
-      <td><p>Icon, if any. IOS and Material icons available.</p></td>
-    </tr>
-    <tr>
-      <th>outline</th>
-      <td><p>Whether to outline chip. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>status</th>
-      <td><p>Chip color: see here for valid colors <a href='https://framework7.io/docs/chips.html'>https://framework7.io/docs/chips.html</a>.</p></td>
-    </tr>
-    <tr>
-      <th>icon_status</th>
-      <td><p>Chip icon color: see here for valid colors <a href='https://framework7.io/docs/chips.html'>https://framework7.io/docs/chips.html</a>.</p></td>
-    </tr>
-    <tr>
-      <th>closable</th>
-      <td><p>Whether to close the chip. FALSE by default.</p></td>
+      <th>orientation</th>
+      <td><p>"top" or "bottom".</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Not ready for production color and icon isssues.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
-
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Chips"</span>,
-    <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
-    <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
-     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='st'>"add_round"</span>, <span class='kw'>icon_status</span> <span class='kw'>=</span> <span class='st'>"pink"</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>img</span> <span class='kw'>=</span> <span class='st'>"http://lorempixel.com/64/64/people/9/"</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>closable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
-     <span class='fu'>f7Chip</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Example Chip"</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
+  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
+      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+      <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='st'>"ios"</span>),
+      <span class='fu'>f7Sheet</span>(
+        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>,
+        <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,
+        <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
+        <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+        scelerisque est, at porta justo cursus ac"</span>
+      )
+    ),
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+  )
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

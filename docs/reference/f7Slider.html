@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 swiper — f7Swiper • shinyF7</title>
+<title>Create a f7 slider — f7Slider • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 swiper — f7Swiper" />
+<meta property="og:title" content="Create a f7 slider — f7Slider" />
 
-<meta property="og:description" content="Build a Framework7 swiper (like carousel)" />
+<meta property="og:description" content="Create a f7 slider" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,46 +104,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 swiper</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Swiper.R'><code>R/f7Swiper.R</code></a></small>
-    <div class="hidden name"><code>f7Swiper.Rd</code></div>
+    <h1>Create a f7 slider</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7-inputs.R'><code>R/f7-inputs.R</code></a></small>
+    <div class="hidden name"><code>f7Slider.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 swiper (like carousel)</p>
+    <p>Create a f7 slider</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Swiper</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>spaceBetween</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>slidePerView</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-  <span class='kw'>centered</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>speed</span> <span class='kw'>=</span> <span class='fl'>400</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Slider</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='no'>min</span>, <span class='no'>max</span>, <span class='no'>value</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for <a href='f7Slide.html'>f7Slide</a>.</p></td>
+      <th>inputId</th>
+      <td><p>Slider input id.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Swiper unique id.</p></td>
+      <th>label</th>
+      <td><p>Slider label.</p></td>
     </tr>
     <tr>
-      <th>spaceBetween</th>
-      <td><p>Space between slides. 50 by default. Only if pagination is TRUE.</p></td>
+      <th>min</th>
+      <td><p>Slider minimum range.</p></td>
     </tr>
     <tr>
-      <th>slidePerView</th>
-      <td><p>Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.</p></td>
+      <th>max</th>
+      <td><p>Slider maximum range.</p></td>
     </tr>
     <tr>
-      <th>centered</th>
-      <td><p>Whether to center slides. Only if pagination is TRUE.</p></td>
+      <th>value</th>
+      <td><p>Slider value or a vector containing 2 values (for a range).</p></td>
     </tr>
     <tr>
-      <th>speed</th>
-      <td><p>Slides speed. Numeric.</p></td>
+      <th>step</th>
+      <td><p>Slider increase step size.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>Slider scale.</p></td>
+    </tr>
+    <tr>
+      <th>vertical</th>
+      <td><p>Whether to apply a vertical display. FALSE by default. Does not work yet.</p></td>
     </tr>
     </table>
     
@@ -153,57 +161,55 @@
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
- <span class='no'>timeline</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='f7Timeline.html'>f7Timeline</a></span>(
-  <span class='kw'>sides</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
-   <span class='st'>"Another text"</span>,
-   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"01 Dec"</span>,
-   <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-   <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"12:30"</span>,
-   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title"</span>,
-   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Subtitle"</span>,
-   <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>
-  ),
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
-   <span class='st'>"Another text"</span>,
-   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"02 Dec"</span>,
-   <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-   <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"13:00"</span>,
-   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title"</span>,
-   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Subtitle"</span>
-  ),
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
-   <span class='st'>"Another text"</span>,
-   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"03 Dec"</span>,
-   <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-   <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"14:45"</span>,
-   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title"</span>,
-   <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Subtitle"</span>
-  )
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
+    <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+     <span class='fu'>f7Slider</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Number of observations"</span>,
+      <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+      <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+      <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+     ),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
+    ),
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
+    })
+   }
  )
+}
+
+<span class='co'># Create a range</span>
+<span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
     <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
-    <span class='fu'>f7Swiper</span>(
-     <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-swiper"</span>,
-     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(
-      <span class='no'>timeline</span>
+    <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+     <span class='fu'>f7Slider</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
+      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Range values"</span>,
+      <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+      <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>),
+      <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
      ),
-     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(
-      <span class='fu'><a href='f7Toggle.html'>f7Toggle</a></span>(
-       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"toggle"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My toggle"</span>,
-       <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-       <span class='kw'>checked</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-      ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
-     )
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>toggle</span>)
+    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
    }
  )
 }</div></pre>
@@ -216,8 +222,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

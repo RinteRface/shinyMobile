@@ -115,13 +115,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7ProgressInf</span>(<span class='kw'>status</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7ProgressInf</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>status</th>
+      <th>color</th>
       <td><p>Progress color. See <a href='http://framework7.io/docs/progressbar.html'>http://framework7.io/docs/progressbar.html</a>.</p></td>
     </tr>
     </table>
@@ -140,8 +140,9 @@
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Progress Infinite"</span>,
     <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
-    <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-     <span class='fu'>f7ProgressInf</span>()
+    <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
+     <span class='fu'>f7ProgressInf</span>(),
+     <span class='fu'>f7ProgressInf</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"yellow"</span>)
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
