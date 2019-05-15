@@ -4,18 +4,17 @@
 \alias{f7Progress}
 \title{Create a Framework7 progress bar}
 \usage{
-f7Progress(value, status = NULL)
+f7Progress(id, value, color)
 }
 \arguments{
+\item{id}{Progress id. Must be unique.}
+
 \item{value}{Progress value. Between 0 and 100.}
 
-\item{status}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
+\item{color}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
 }
 \description{
 Build a Framework7 progress bar
-}
-\note{
-Buggy display when status is not NULL.
 }
 \examples{
 if(interactive()){
@@ -26,8 +25,10 @@ if(interactive()){
    ui = f7Page(
     title = "Progress",
     f7Init(theme = "auto"),
-    f7Card(
-     f7Progress(value = 10)
+    f7Block(
+     f7Progress(id = "pg1", value = 10, color = "pink"),
+     f7Progress(id = "pg2", value = 100, color = "green"),
+     f7Progress(id = "pg3", value = 50, color = "orange")
     )
    ),
    server = function(input, output) {}

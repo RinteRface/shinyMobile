@@ -4,10 +4,10 @@
 \alias{f7ProgressInf}
 \title{Create a Framework7 infinite progress bar}
 \usage{
-f7ProgressInf(status = NULL)
+f7ProgressInf(color = NULL)
 }
 \arguments{
-\item{status}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
+\item{color}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
 }
 \description{
 Build a Framework7 infinite progress bar
@@ -24,8 +24,9 @@ if(interactive()){
    ui = f7Page(
     title = "Progress Infinite",
     f7Init(theme = "auto"),
-    f7Card(
-     f7ProgressInf()
+    f7Block(
+     f7ProgressInf(),
+     f7ProgressInf(color = "yellow")
     )
    ),
    server = function(input, output) {}

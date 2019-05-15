@@ -2,10 +2,9 @@
 #'
 #' Build a Framework7 progress bar
 #'
+#' @param id Progress id. Must be unique.
 #' @param value Progress value. Between 0 and 100.
-#' @param status Progress color. See \url{http://framework7.io/docs/progressbar.html}.
-#'
-#' @note Buggy display when status is not NULL.
+#' @param color Progress color. See \url{http://framework7.io/docs/progressbar.html}.
 #'
 #' @examples
 #' if(interactive()){
@@ -16,8 +15,10 @@
 #'    ui = f7Page(
 #'     title = "Progress",
 #'     f7Init(theme = "auto"),
-#'     f7Card(
-#'      f7Progress(value = 10)
+#'     f7Block(
+#'      f7Progress(id = "pg1", value = 10, color = "pink"),
+#'      f7Progress(id = "pg2", value = 100, color = "green"),
+#'      f7Progress(id = "pg3", value = 50, color = "orange")
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -27,16 +28,17 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Progress <- function(value, status = NULL) {
+f7Progress <- function(id, value, color) {
 
   progressCl <- "progressbar"
-  if (!is.null(status)) progressCl <- paste0(progressCl, " color-", status)
+  if (!is.null(color)) progressCl <- paste0(progressCl, " color-", color)
 
   initProgress <- shiny::tags$script(
     shiny::HTML(
       paste0(
-        "determinateLoading = true;
-         app.progressbar.show('.progressbar', ", value, " ,", status, ");
+        "$(function() {
+          app.progressbar.show('#", id, "', ", value, ", '", color, "');
+        });
         "
       )
     )
@@ -44,7 +46,8 @@ f7Progress <- function(value, status = NULL) {
 
   progressTag <- shiny::tags$div(
     class = progressCl,
-    `data-progress` = paste(value)
+    id = id,
+    shiny::span()
   )
 
   shiny::tagList(
@@ -60,7 +63,7 @@ f7Progress <- function(value, status = NULL) {
 #'
 #' Build a Framework7 infinite progress bar
 #'
-#' @param status Progress color. See \url{http://framework7.io/docs/progressbar.html}.
+#' @param color Progress color. See \url{http://framework7.io/docs/progressbar.html}.
 #'
 #' @note Buggy display when status is not NULL.
 #'
@@ -73,8 +76,9 @@ f7Progress <- function(value, status = NULL) {
 #'    ui = f7Page(
 #'     title = "Progress Infinite",
 #'     f7Init(theme = "auto"),
-#'     f7Card(
-#'      f7ProgressInf()
+#'     f7Block(
+#'      f7ProgressInf(),
+#'      f7ProgressInf(color = "yellow")
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -84,16 +88,18 @@ f7Progress <- function(value, status = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7ProgressInf <- function(status = NULL) {
+f7ProgressInf <- function(color = NULL) {
 
   progressCl <- "progressbar-infinite"
-  if (!is.null(status)) progressCl <- paste0(progressCl, " color-", status)
+  if (!is.null(color)) progressCl <- paste0(progressCl, " color-", color)
 
   initProgress <- shiny::tags$script(
     shiny::HTML(
       paste0(
-        "determinateLoading = false;
-         app.progressbar.show('.progressbar-infinite', ", status, ");
+        "$(function() {
+          determinateLoading = false;
+          app.progressbar.show('.progressbar-infinite', '", color, "');
+        })
         "
       )
     )
