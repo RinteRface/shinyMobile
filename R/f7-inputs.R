@@ -474,3 +474,73 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
     )
   )
 }
+
+
+
+
+
+#' Create an f7 radio button input
+#'
+#' @param inputId Radio input id.
+#' @param label Radio label
+#' @param choices List of choices.
+#' @param selected Selected element. NULL by default.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7Init(theme = "auto"),
+#'     f7Radio(
+#'      inputId = "radio",
+#'      label = "Choose a fruit:",
+#'      choices = c("banana", "apple", "peach"),
+#'      selected = "apple"
+#'     ),
+#'     plotOutput("plot")
+#'    ),
+#'    server = function(input, output) {
+#'     output$plot <- renderPlot({
+#'      if (input$radio == "apple") hist(mtcars[, "mpg"])
+#'     })
+#'    }
+#'  )
+#' }
+f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
+
+  selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
+
+  choicesTag <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$li(
+      shiny::tags$label(
+        class = "item-radio item-content",
+        shiny::tags$input(
+          type = "radio",
+          name = inputId,
+          value = choices[[i]]
+        ),
+        shiny::tags$i(class = "icon icon-radio"),
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class="item-title", choices[[i]])
+        )
+      )
+    )
+  })
+
+  if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
+
+  shiny::tags$div(
+    class = "list shiny-input-radiogroup",
+    id = inputId,
+    shiny::tags$ul(
+      choicesTag
+    )
+  )
+}
