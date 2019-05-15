@@ -142,6 +142,72 @@ f7checkBox <- function(inputId, label, value = FALSE){
 
 
 
+#' Create an f7 checkbox group input
+#'
+#' @param inputId Checkbox group input.
+#' @param label Checkbox group label.
+#' @param choices Checkbox group choices.
+#' @param selected Checkbox group selected value.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'   library(shiny)
+#'   library(shinyF7)
+#'
+#'   shiny::shinyApp(
+#'     ui = f7Page(
+#'      title = "My app",
+#'      f7Init(theme = "auto"),
+#'      f7checkBoxGroup(
+#'       inputId = "variable",
+#'       label = "Choose a fruit:",
+#'       choices = colnames(mtcars)[-1],
+#'       selected = NULL
+#'      ),
+#'      tableOutput("data")
+#'     ),
+#'     server = function(input, output) {
+#'      output$data <- renderTable({
+#'       mtcars[, c("mpg", input$variable), drop = FALSE]
+#'       }, rownames = TRUE)
+#'     }
+#'   )
+#'  }
+f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
+
+  selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
+
+  choicesTag <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$li(
+      shiny::tags$label(
+        class = "item-checkbox item-content",
+        shiny::tags$input(
+          type = "checkbox",
+          name = inputId,
+          value = choices[[i]]
+        ),
+        shiny::tags$i(class = "icon icon-checkbox"),
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class="item-title", choices[[i]])
+        )
+      )
+    )
+  })
+
+  if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
+
+  shiny::tags$div(
+    class = "list shiny-input-checkboxgroup",
+    id = inputId,
+    shiny::tags$ul(
+      choicesTag
+    )
+  )
+}
+
 
 
 #' Create a f7 slider
