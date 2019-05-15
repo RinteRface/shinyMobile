@@ -276,6 +276,67 @@ f7Select <- function(inputId, label, choices) {
 
 
 
+
+#' Create an f7 text input
+#'
+#' @param inputId Text input id.
+#' @param label Text input label.
+#' @param value Text input value.
+#' @param placeholder Text input placeholder.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7Init(theme = "auto"),
+#'      f7Text(
+#'       inputId = "caption",
+#'       label = "Caption",
+#'       value = "Data Summary",
+#'       placeholder = "Your text here"
+#'      ),
+#'      verbatimTextOutput("value")
+#'    ),
+#'    server = function(input, output) {
+#'      output$value <- renderPrint({ input$caption })
+#'    }
+#'  )
+#' }
+f7Text <- function(inputId, label, value = "", placeholder = NULL) {
+
+  shiny::tags$div(
+    class = "list",
+    id = inputId,
+    shiny::tags$ul(
+      shiny::tags$li(
+        class = "item-content item-input",
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class = "item-title item-label", label),
+          shiny::tags$div(
+            class = "item-input-wrap",
+            shiny::tags$input(
+              id = inputId,
+              type = "text",
+              placeholder = placeholder,
+              class = ""
+            ),
+            shiny::span(class="input-clear-button")
+          )
+        )
+      )
+    )
+  )
+}
+
+
+
 #' Create a f7 slider
 #'
 #' @param inputId Slider input id.
