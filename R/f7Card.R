@@ -351,7 +351,6 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @param ... Card content.
 #' @param title Card title.
 #' @param subtitle Card subtitle.
-#' @param titleColor Title text color. Choose among "white" or "black".
 #' @param color Card background color. See \url{http://framework7.io/docs/cards.html}.
 #'
 #' @note Does not render well.
@@ -366,9 +365,9 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'     title = "Expandable Cards",
 #'     f7Init(theme = "auto"),
 #'     f7ExpandableCard(
-#'      title = "Expandable Card",
+#'      id = "card1",
+#'      title = "Expandable Card 1",
 #'      color = "blue",
-#'      titleColor = "white",
 #'      subtitle = "Click on me pleaaaaase",
 #'      "Framework7 - is a free and open source HTML mobile framework
 #'      to develop hybrid mobile apps or web apps with iOS or Android
@@ -376,9 +375,9 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'      to show working app prototype as soon as possible in case you need to."
 #'     ),
 #'     f7ExpandableCard(
-#'      title = "Expandable Card",
+#'      id = "card2",
+#'      title = "Expandable Card 2",
 #'      color = "green",
-#'      titleColor = "white",
 #'      "Framework7 - is a free and open source HTML mobile framework
 #'      to develop hybrid mobile apps or web apps with iOS or Android
 #'      native look and feel. It is also an indispensable prototyping apps tool
@@ -392,19 +391,14 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, titleColor = c("white", "black"),
-                             color = NULL) {
-
-  titleColor <- match.arg(titleColor)
+f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, color = NULL) {
 
   cardColorCl <- if (!is.null(color)) paste0("bg-color-", color)
-
-  titleColorCl <- if (!is.null(title)) paste0("text-color-", titleColor)
 
   # card header if any
   cardHeader <- if (!is.null(title)) {
     shiny::tags$div(
-      class = paste0("card-header ", titleColorCl, " display-block"),
+      class = paste0("card-header display-block"),
       title,
       if (!is.null(subtitle)) {
         shiny::tagList(
@@ -418,7 +412,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, titl
   # trigger to close the card
   closeCard <- shiny::tags$a(
     href = "#",
-    class = paste0("link card-close card-opened-fade-in color-", titleColor),
+    class = paste0("link card-close card-opened-fade-in color-white"),
     style = "position: absolute; right: 15px; top: 15px",
     shiny::tags$i(class = "icon f7-icons", "close_round_fill")
   )
@@ -428,19 +422,43 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, titl
   cardContent <- shiny::tags$div(class = "card-content-padding", shiny::p(...))
 
 
+  # javascript events
+  #cardJS <- shiny::singleton(
+  #  shiny::tags$head(
+  #    shiny::tags$script(
+  #      paste0(
+  #        "$(function() {
+  #          $('#", id,"').on('click', function(e) {
+  #            $(this).addClass('card-open');
+  #            $(this).css({ 'transform': 'translate3d(-0.00000038268472479785487px, -34.00000245360718px, 0px) scale(1.1428571428571428, 2)'});
+  #            $(this).children('.card-content').css({'width': '320px', 'height': '600px', 'transform': 'translate3d(-20px, 0px, 0px) scale(0.875, 0.5)'});
+  #          });
+  #        });
+  #      "
+  #      )
+  #    )
+  #  )
+  #)
+
+
   # main wrapper
-  shiny::tags$div(
-    class = "card card-expandable",
-    #`data-card` = id,
+  shiny::tagList(
+    #cardJS,
     shiny::tags$div(
-      class = "card-content",
+      class = "card card-expandable",
+      `data-card` = paste0("#", id),
+      id = id,
       shiny::tags$div(
-        class = cardColorCl,
-        style= "height: 300px;",
-        cardHeader,
-        closeCard
-      ),
-      cardContent
+        class = "card-content",
+        shiny::tags$div(
+          class = cardColorCl,
+          style= "height: 300px;",
+          cardHeader,
+          closeCard
+        ),
+        cardContent
+      )#,
+      #shiny::tags$div(class="card-expandable-size")
     )
   )
 }

@@ -5,7 +5,7 @@
 \title{Create a Framework7 expandable card}
 \usage{
 f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
-  titleColor = c("white", "black"), color = NULL)
+  color = NULL)
 }
 \arguments{
 \item{...}{Card content.}
@@ -15,8 +15,6 @@ f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
 \item{title}{Card title.}
 
 \item{subtitle}{Card subtitle.}
-
-\item{titleColor}{Title text color. Choose among "white" or "black".}
 
 \item{color}{Card background color. See \url{http://framework7.io/docs/cards.html}.}
 }
@@ -36,9 +34,9 @@ if(interactive()){
     title = "Expandable Cards",
     f7Init(theme = "auto"),
     f7ExpandableCard(
-     title = "Expandable Card",
+     id = "card1",
+     title = "Expandable Card 1",
      color = "blue",
-     titleColor = "white",
      subtitle = "Click on me pleaaaaase",
      "Framework7 - is a free and open source HTML mobile framework
      to develop hybrid mobile apps or web apps with iOS or Android
@@ -46,9 +44,9 @@ if(interactive()){
      to show working app prototype as soon as possible in case you need to."
     ),
     f7ExpandableCard(
-     title = "Expandable Card",
+     id = "card2",
+     title = "Expandable Card 2",
      color = "green",
-     titleColor = "white",
      "Framework7 - is a free and open source HTML mobile framework
      to develop hybrid mobile apps or web apps with iOS or Android
      native look and feel. It is also an indispensable prototyping apps tool
