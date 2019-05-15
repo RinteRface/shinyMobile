@@ -4,7 +4,7 @@
 \alias{f7SingleLayout}
 \title{Create a Framework7 single layout}
 \usage{
-f7SingleLayout(..., navbar, toolbar)
+f7SingleLayout(..., navbar, toolbar = NULL)
 }
 \arguments{
 \item{...}{Content.}
