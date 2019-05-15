@@ -113,7 +113,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7SingleLayout <- function(..., navbar, toolbar) {
+f7SingleLayout <- function(..., navbar, toolbar = NULL) {
   shiny::tags$div(
     class = "page page-current",
     navbar,

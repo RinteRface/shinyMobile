@@ -4,10 +4,10 @@
 \alias{f7Init}
 \title{Custom initialization}
 \usage{
-f7Init(theme = c("ios", "md", "auto"))
+f7Init(theme = c("ios", "md", "auto", "aurora"))
 }
 \arguments{
-\item{theme}{App theme: "ios", "md", "auto".}
+\item{theme}{App theme: "ios", "md", "auto" or "aurora".}
 }
 \description{
 Use inside \link{f7Page}. Mandatory!

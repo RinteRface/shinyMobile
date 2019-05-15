@@ -2,12 +2,12 @@
 #'
 #' Use inside \link{f7Page}. Mandatory!
 #'
-#' @param theme App theme: "ios", "md", "auto".
+#' @param theme App theme: "ios", "md", "auto" or "aurora".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Init <- function(theme = c("ios", "md", "auto")) {
+f7Init <- function(theme = c("ios", "md", "auto", "aurora")) {
   theme <- match.arg(theme)
   shiny::tags$head(
     shiny::tags$script(
