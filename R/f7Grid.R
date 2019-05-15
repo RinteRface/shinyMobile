@@ -70,10 +70,10 @@ f7Col <- function(...) {
       shiny::tags$head(
         shiny::tags$style(
           "div[class*='col'] {
-            background: gainsboro;
+            background-color: 'gainsboro';
             text-align: center;
             color: #000;
-            border: 1px solid #ddd;
+            border: 1px solid 'gainsboro';
             padding: 5px;
             margin-bottom: 15px;
             font-size: 12px;
