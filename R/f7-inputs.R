@@ -162,7 +162,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'      f7Init(theme = "auto"),
 #'      f7checkBoxGroup(
 #'       inputId = "variable",
-#'       label = "Choose a fruit:",
+#'       label = "Choose a variable:",
 #'       choices = colnames(mtcars)[-1],
 #'       selected = NULL
 #'      ),
@@ -204,6 +204,72 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
     id = inputId,
     shiny::tags$ul(
       choicesTag
+    )
+  )
+}
+
+
+
+
+
+#' Create an f7 select input
+#'
+#' @param inputId Select input id.
+#' @param label Select input label.
+#' @param choices Select input choices.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7Init(theme = "auto"),
+#'      f7Select(
+#'        inputId = "variable",
+#'        label = "Choose a variable:",
+#'        choices = colnames(mtcars)[-1]
+#'      ),
+#'      tableOutput("data")
+#'    ),
+#'    server = function(input, output) {
+#'      output$data <- renderTable({
+#'        mtcars[, c("mpg", input$variable), drop = FALSE]
+#'      }, rownames = TRUE)
+#'    }
+#'  )
+#' }
+f7Select <- function(inputId, label, choices) {
+
+
+  options <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$option(value = choices[[i]], choices[[i]])
+  })
+
+  shiny::tags$div(
+    class = "list",
+    id = inputId,
+    shiny::tags$ul(
+      shiny::tags$li(
+        class = "item-content item-input",
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class = "item-title item-label", label),
+
+          shiny::tags$div(
+            class = "item-input-wrap input-dropdown-wrap",
+            shiny::tags$select(
+              id = inputId,
+              placeholer = "Please choose...",
+              options
+            )
+          )
+        )
+      )
     )
   )
 }

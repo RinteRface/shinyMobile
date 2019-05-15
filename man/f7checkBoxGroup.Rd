@@ -29,7 +29,7 @@ if(interactive()){
      f7Init(theme = "auto"),
      f7checkBoxGroup(
       inputId = "variable",
-      label = "Choose a fruit:",
+      label = "Choose a variable:",
       choices = colnames(mtcars)[-1],
       selected = NULL
      ),
