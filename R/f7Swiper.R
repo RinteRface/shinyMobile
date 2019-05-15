@@ -3,6 +3,7 @@
 #' Build a Framework7 swiper (like carousel)
 #'
 #' @param ... Slot for \link{f7Slide}.
+#' @param id Swiper unique id.
 #' @param spaceBetween Space between slides. 50 by default. Only if pagination is TRUE.
 #' @param slidePerView Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.
 #' @param centered Whether to center slides. Only if pagination is TRUE.
@@ -77,8 +78,8 @@ f7Swiper <- function(..., id, spaceBetween = 50, slidePerView = "auto",
 
   # javascript init + options
   swiperJS <- shiny::singleton(
-    tags$head(
-      tags$script(
+    shiny::tags$head(
+      shiny::tags$script(
         paste0(
           "$(function() {
             var swiper = app.swiper.create('#", id, "', {

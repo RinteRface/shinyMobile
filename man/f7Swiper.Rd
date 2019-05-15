@@ -10,6 +10,8 @@ f7Swiper(..., id, spaceBetween = 50, slidePerView = "auto",
 \arguments{
 \item{...}{Slot for \link{f7Slide}.}
 
+\item{id}{Swiper unique id.}
+
 \item{spaceBetween}{Space between slides. 50 by default. Only if pagination is TRUE.}
 
 \item{slidePerView}{Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.}

@@ -67,8 +67,8 @@ f7Col <- function(...) {
     # this CSS is because columns don't have CSS in framework7
     # Yup this is strange, I know...
     shiny::singleton(
-      tags$head(
-        tags$style(
+      shiny::tags$head(
+        shiny::tags$style(
           "div[class*='col'] {
             background: gainsboro;
             text-align: center;

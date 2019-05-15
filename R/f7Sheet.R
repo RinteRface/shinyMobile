@@ -39,8 +39,8 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom")) {
  shiny::tagList(
    # javascript initialization
    shiny::singleton(
-     tags$head(
-       tags$script(
+     shiny::tags$head(
+       shiny::tags$script(
          "$(function() {
           var sheet = app.sheet.create({
             el: '#, ", id, "'
