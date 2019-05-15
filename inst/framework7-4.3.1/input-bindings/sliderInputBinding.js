@@ -26,7 +26,7 @@ $.extend(f7SliderBinding, {
     return {
       // Can be 'debounce' or 'throttle'
       policy: 'debounce',
-      delay: 500
+      delay: 250
     };
   }
 });
