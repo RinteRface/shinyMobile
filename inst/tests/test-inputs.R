@@ -2,7 +2,7 @@ library(shinyWidgets)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-
+    f7Init(theme = "md"),
     f7Block(
       strong = TRUE,
       # action button
@@ -129,7 +129,15 @@ shiny::shinyApp(
                       "Transmission" = "am",
                       "Gears" = "gear")),
         tableOutput("data")
+      ),
+
+
+      # numericInput
+      f7Row(
+        numericInput("obs", "Observations:", 10, min = 1, max = 100),
+        verbatimTextOutput("value")
       )
+
     )
 
   ),
@@ -146,7 +154,8 @@ shiny::shinyApp(
     output$res_classic <- renderPrint(input$classic)
     output$res10 <- renderPrint(input$toggle3)
     output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
+      mtcars[1:4, c("mpg", input$variable), drop = FALSE]
     }, rownames = TRUE)
+    output$value <- renderPrint({ input$obs })
   }
 )
