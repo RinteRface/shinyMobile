@@ -55,3 +55,21 @@ addDeps <- function(x) {
   )
   appendDependencies(x, f7Deps)
 }
+
+#' @importFrom utils packageVersion
+#' @importFrom htmltools htmlDependency
+f7InputsDeps <- function() {
+  htmltools::htmlDependency(
+    name = "framework7-bindings",
+    version = as.character(packageVersion("shinyF7")),
+    src = c(
+      file = system.file("framework7-4.3.1/input-bindings", package = "shinyF7"),
+      href = "framework7-4.3.1/input-bindings"
+    ),
+    package = "shinyF7",
+    script = c("sliderInputBinding.js",
+               "stepperInputBinding.js",
+               "toggleInputBinding.js")
+  )
+}
+
