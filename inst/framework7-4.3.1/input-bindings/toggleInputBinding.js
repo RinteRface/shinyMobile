@@ -2,6 +2,11 @@
 var f7ToggleBinding = new Shiny.InputBinding();
 
 $.extend(f7ToggleBinding, {
+
+  initialize: function(el) {
+    app.toggle.create({el: el});
+  },
+
   find: function(scope) {
     return $(scope).find(".toggle");
   },

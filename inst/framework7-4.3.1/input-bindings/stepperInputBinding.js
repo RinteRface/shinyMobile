@@ -2,6 +2,11 @@
 var f7StepperBinding = new Shiny.InputBinding();
 
 $.extend(f7StepperBinding, {
+
+  initialize: function(el) {
+    app.stepper.create({el: el});
+  },
+
   find: function(scope) {
     return $(scope).find(".stepper");
   },

@@ -418,20 +418,6 @@ f7Slider <- function(inputId, label, min, max, value,
         shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
       )
     ),
-    # slider initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "// init the slider component
-                $(function() {
-                  var range = app.range.create({ el: '#", inputId,"' });
-                });
-              "
-          )
-        )
-      )
-    ),
     # HTML skeleton
     shiny::br(),
     shiny::tags$div(class = "block-title", label),
@@ -541,22 +527,6 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
         shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/stepperInputBinding.js", package = "shinyF7"))
       )
     ),
-    # javascript initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function(){
-              var stepper = app.stepper.create({
-                el: '#", inputId,"'
-              });
-             });
-            "
-          )
-        )
-      )
-    ),
-
     # stepper tag
     shiny::tags$small(label),
     shiny::tags$div(
@@ -637,21 +607,6 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
     shiny::singleton(
       shiny::tags$head(
         shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/toggleInputBinding.js", package = "shinyF7"))
-      )
-    ),
-    # javascript initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function(){
-              var toggle = app.toggle.create({
-                el: '#", inputId,"'
-              });
-             });
-            "
-          )
-        )
       )
     ),
     # toggle tag

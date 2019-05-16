@@ -2,6 +2,11 @@
 var f7SliderBinding = new Shiny.InputBinding();
 
 $.extend(f7SliderBinding, {
+
+  initialize: function(el) {
+    app.range.create({el: el});
+  },
+
   find: function(scope) {
     return $(scope).find(".range-slider");
   },
