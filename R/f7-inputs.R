@@ -413,25 +413,7 @@ f7Slider <- function(inputId, label, min, max, value,
 
   # custom input binding
   shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/sliderInputBinding.js", package = "shinyF7"))
-      )
-    ),
-    # slider initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "// init the slider component
-                $(function() {
-                  var range = app.range.create({ el: '#", inputId,"' });
-                });
-              "
-          )
-        )
-      )
-    ),
+    f7InputsDeps(),
     # HTML skeleton
     shiny::br(),
     shiny::tags$div(class = "block-title", label),
@@ -536,27 +518,7 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
   if (!is.null(color)) stepperCl <- paste0(stepperCl, " color-", color)
 
   shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/stepperInputBinding.js", package = "shinyF7"))
-      )
-    ),
-    # javascript initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function(){
-              var stepper = app.stepper.create({
-                el: '#", inputId,"'
-              });
-             });
-            "
-          )
-        )
-      )
-    ),
-
+    f7InputsDeps(),
     # stepper tag
     shiny::tags$small(label),
     shiny::tags$div(
@@ -634,26 +596,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   shiny::tagList(
 
     # input binding
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::includeScript(path = system.file("framework7-4.3.1/input-bindings/toggleInputBinding.js", package = "shinyF7"))
-      )
-    ),
-    # javascript initialization
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function(){
-              var toggle = app.toggle.create({
-                el: '#", inputId,"'
-              });
-             });
-            "
-          )
-        )
-      )
-    ),
+    f7InputsDeps(),
     # toggle tag
     shiny::tags$span(label),
     shiny::tags$label(
