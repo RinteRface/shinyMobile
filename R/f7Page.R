@@ -49,6 +49,7 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
         style = "background-color: gainsboro;",
         shiny::tags$div(
           id = "app",
+          #f7Init(theme = "ios"),
           ...
         )
       )
