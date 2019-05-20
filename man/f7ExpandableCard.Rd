@@ -22,7 +22,7 @@ f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
 Build a Framework7 expandable card
 }
 \note{
-Does not render well.
+Does not render well without \link{f7SingleLayout} or \link{f7TabLayout}.
 }
 \examples{
 if(interactive()){
@@ -33,24 +33,31 @@ if(interactive()){
   ui = f7Page(
     title = "Expandable Cards",
     f7Init(theme = "auto"),
-    f7ExpandableCard(
-     id = "card1",
-     title = "Expandable Card 1",
-     color = "blue",
-     subtitle = "Click on me pleaaaaase",
-     "Framework7 - is a free and open source HTML mobile framework
-     to develop hybrid mobile apps or web apps with iOS or Android
-     native look and feel. It is also an indispensable prototyping apps tool
-     to show working app prototype as soon as possible in case you need to."
-    ),
-    f7ExpandableCard(
-     id = "card2",
-     title = "Expandable Card 2",
-     color = "green",
-     "Framework7 - is a free and open source HTML mobile framework
-     to develop hybrid mobile apps or web apps with iOS or Android
-     native look and feel. It is also an indispensable prototyping apps tool
-     to show working app prototype as soon as possible in case you need to."
+    f7SingleLayout(
+      navbar = f7Navbar(
+       title = "Progress",
+       hairline = FALSE,
+       shadow = TRUE
+      ),
+      f7ExpandableCard(
+       id = "card1",
+       title = "Expandable Card 1",
+       color = "blue",
+       subtitle = "Click on me pleaaaaase",
+       "Framework7 - is a free and open source HTML mobile framework
+       to develop hybrid mobile apps or web apps with iOS or Android
+       native look and feel. It is also an indispensable prototyping apps tool
+       to show working app prototype as soon as possible in case you need to."
+      ),
+      f7ExpandableCard(
+       id = "card2",
+       title = "Expandable Card 2",
+       color = "green",
+       "Framework7 - is a free and open source HTML mobile framework
+       to develop hybrid mobile apps or web apps with iOS or Android
+       native look and feel. It is also an indispensable prototyping apps tool
+       to show working app prototype as soon as possible in case you need to."
+      )
     )
   ),
   server = function(input, output) {}
