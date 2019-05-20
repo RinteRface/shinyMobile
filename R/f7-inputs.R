@@ -323,7 +323,127 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
             class = "item-input-wrap",
             shiny::tags$input(
               id = inputId,
+              value = value,
               type = "text",
+              placeholder = placeholder,
+              class = ""
+            ),
+            shiny::span(class="input-clear-button")
+          )
+        )
+      )
+    )
+  )
+}
+
+
+
+
+
+# #' Create an f7 text area input
+# #'
+# #' @inheritParams f7Text
+# #'
+# #' @export
+# #'
+# #' @examples
+# #' if(interactive()){
+# #'  library(shiny)
+# #'  library(shinyF7)
+# #'
+# #'  shiny::shinyApp(
+# #'    ui = f7Page(
+# #'      title = "My app",
+# #'      f7Init(theme = "auto"),
+# #'      f7TextArea(
+# #'       inputId = "textarea",
+# #'       label = "Text Area",
+# #'       value = "Lorem ipsum dolor sit amet, consectetur
+# #'        adipiscing elit, sed do eiusmod tempor incididunt ut
+# #'        labore et dolore magna aliqua",
+# #'       placeholder = "Your text here"
+# #'      ),
+# #'      verbatimTextOutput("value")
+# #'    ),
+# #'    server = function(input, output) {
+# #'      output$value <- renderPrint({ input$textarea })
+# #'    }
+# #'  )
+# #' }
+# f7TextArea <- function(inputId, label, value = "", placeholder = NULL) {
+#   shiny::tags$div(
+#     class = "list",
+#     id = inputId,
+#     shiny::tags$ul(
+#       shiny::tags$li(
+#         class = "item-content item-input",
+#         shiny::tags$div(
+#           class = "item-inner",
+#           shiny::tags$div(class = "item-title item-label", label),
+#           shiny::tags$div(
+#             class = "item-input-wrap",
+#             shiny::tags$textarea(
+#               id = inputId,
+#               value,
+#               placeholder = placeholder,
+#               class = NA,
+#               rows = 4,
+#               cols = 4
+#             )
+#           )
+#         )
+#       )
+#     )
+#   )
+# }
+
+
+
+
+
+
+#' Create an f7 password input
+#'
+#' @inheritParams f7Text
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7Init(theme = "auto"),
+#'      f7Password(
+#'       inputId = "password",
+#'       label = "Password:",
+#'       placeholder = "Your password here"
+#'      ),
+#'      verbatimTextOutput("value")
+#'    ),
+#'    server = function(input, output) {
+#'      output$value <- renderPrint({ input$password })
+#'    }
+#'  )
+#' }
+f7Password <- function(inputId, label, value = "", placeholder = NULL) {
+  shiny::tags$div(
+    class = "list",
+    id = inputId,
+    shiny::tags$ul(
+      shiny::tags$li(
+        class = "item-content item-input",
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class = "item-title item-label", label),
+          shiny::tags$div(
+            class = "item-input-wrap",
+            shiny::tags$input(
+              id = inputId,
+              value = value,
+              type = "password",
               placeholder = placeholder,
               class = ""
             ),
