@@ -11,7 +11,7 @@ source("tabText.R")
 source("tabInfo.R")
 source("tabOthers.R")
 
-app <- shinyApp(
+shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
     dark_mode = FALSE,
@@ -57,5 +57,3 @@ app <- shinyApp(
     })
   }
 )
-
-runGadget(app)

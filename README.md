@@ -15,11 +15,10 @@ devtools::install_github("RinteRface/shinyF7")
 
 ## Demo
 
-### Tabs Layout
-
-A running demo is on [shinyapps.io](https://divadnojnarg.shinyapps.io/shinyF7).
+A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
 It is still work in progress and will significantly change!
 
+### Tabs Layout
 
 <a href="https://divadnojnarg.shinyapps.io/shinyF7" target="_blank"><img src="man/figures/f7_tab_layout_md.png" class="img-shadow" width= "423" height=" 453"></a>
 
