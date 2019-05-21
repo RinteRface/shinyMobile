@@ -4,3 +4,4 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 ^docs$
+^cran-comments\.md$

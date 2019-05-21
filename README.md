@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/RinteRface/shinyF7.svg?branch=master)](https://travis-ci.org/RinteRface/shinyF7)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Project Status](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+[![CRAN status](https://www.r-pkg.org/badges/version/shinyF7)](https://cran.r-project.org/package=shinyF7)
 
 > shiny API for Framework7 (IOS/android)
 
