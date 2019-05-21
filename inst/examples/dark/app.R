@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyF7)
 library(echarts4r)
+library(shinyWidgets)
 
 shiny::shinyApp(
   ui = f7Page(

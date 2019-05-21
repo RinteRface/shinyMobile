@@ -7,19 +7,21 @@
 #' @param side Panel side: "left" or "right".
 #' @param theme Panel background color: "dark" or "light".
 #' @param style Whether the panel should behave when opened: "cover" or "reveal".
+#' @param resizable Whether to enable panel resize. FALSE by default.
 #'
-#' @note When style is "reveal", makes the app freeze.
+#' @note When style is "reveal", makes the app freeze. resizable does not work neither.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dark", "light"),
-                    style = c("reveal", "cover")) {
+                    style = c("reveal", "cover"), resizable = FALSE) {
 
   side <- match.arg(side)
   style <- match.arg(style)
   theme <- match.arg(theme)
   panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, style, theme)
+  if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
   panelTag <- shiny::tags$div(
     class = panelCl,

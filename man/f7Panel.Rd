@@ -5,7 +5,8 @@
 \title{Create a Framework7 panel}
 \usage{
 f7Panel(..., title = NULL, side = c("left", "right"),
-  theme = c("dark", "light"), style = c("reveal", "cover"))
+  theme = c("dark", "light"), style = c("reveal", "cover"),
+  resizable = FALSE)
 }
 \arguments{
 \item{...}{Panel content.}
@@ -17,12 +18,14 @@ f7Panel(..., title = NULL, side = c("left", "right"),
 \item{theme}{Panel background color: "dark" or "light".}
 
 \item{style}{Whether the panel should behave when opened: "cover" or "reveal".}
+
+\item{resizable}{Whether to enable panel resize. FALSE by default.}
 }
 \description{
 Build a Framework7 panel
 }
 \note{
-When style is "reveal", makes the app freeze.
+When style is "reveal", makes the app freeze. resizable does not work neither.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

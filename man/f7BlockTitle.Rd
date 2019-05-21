@@ -4,10 +4,12 @@
 \alias{f7BlockTitle}
 \title{Create a Framework7 block title}
 \usage{
-f7BlockTitle(title = NULL)
+f7BlockTitle(title = NULL, size = NULL)
 }
 \arguments{
 \item{title}{Block title.}
+
+\item{size}{Block title size.}
 }
 \description{
 Build a Framework7 block title

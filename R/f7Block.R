@@ -17,6 +17,8 @@
 #'   ui = f7Page(
 #'     title = "Blocks",
 #'     f7Init(theme = "auto"),
+#'
+#'     f7BlockTitle(title = "A large title", size = "large"),
 #'     f7Block(
 #'      f7BlockHeader(text = "Header"),
 #'      "Here comes paragraph within content block.
@@ -27,6 +29,8 @@
 #'      turpis vel, sagittis felis.",
 #'      f7BlockFooter(text = "Footer")
 #'     ),
+#'
+#'     f7BlockTitle(title = "A medium title", size = "medium"),
 #'     f7Block(
 #'      strong = TRUE,
 #'      f7BlockHeader(text = "Header"),
@@ -38,6 +42,8 @@
 #'      turpis vel, sagittis felis.",
 #'      f7BlockFooter(text = "Footer")
 #'     ),
+#'
+#'     f7BlockTitle(title = "A normal title", size = NULL),
 #'     f7Block(
 #'      inset = TRUE,
 #'      strong = TRUE,
@@ -88,8 +94,13 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 
   blockCl <- "block"
   if (!hairlines) blockCl <- paste0(blockCl, " no-hairlines")
-  if (strong) blockCl <- paste0(blockCl, " block-strong")
-  if (inset) blockCl <- paste0(blockCl, " inset")
+  if (strong) {
+    if (inset) {
+      blockCl <- paste0(blockCl, " block-strong inset")
+    } else {
+      blockCl <- paste0(blockCl, " block-strong")
+    }
+  }
   if (tablet) blockCl <- paste0(blockCl, " tablet-inset")
 
  shiny::tags$div(
@@ -105,12 +116,23 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 #' Build a Framework7 block title
 #'
 #' @param title Block title.
+#' @param size Block title size.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7BlockTitle <- function(title = NULL) {
-  shiny::tags$div(class = "block-title", title)
+f7BlockTitle <- function(title = NULL, size = NULL) {
+  titleCl <- "block-title"
+  titleCl <- if (!is.null(size)) {
+    if (size == "large") {
+      titleCl <- paste0(titleCl, " block-title-large")
+    } else if (size == "medium") {
+      titleCl <- paste0(titleCl, " block-title-medium")
+    } else {
+      stop("Choose either NULL, medium or large!")
+    }
+  }
+  shiny::tags$div(class = titleCl, title)
 }
 
 

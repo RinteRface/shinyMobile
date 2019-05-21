@@ -30,6 +30,8 @@ if(interactive()){
   ui = f7Page(
     title = "Blocks",
     f7Init(theme = "auto"),
+
+    f7BlockTitle(title = "A large title", size = "large"),
     f7Block(
      f7BlockHeader(text = "Header"),
      "Here comes paragraph within content block.
@@ -40,6 +42,8 @@ if(interactive()){
      turpis vel, sagittis felis.",
      f7BlockFooter(text = "Footer")
     ),
+
+    f7BlockTitle(title = "A medium title", size = "medium"),
     f7Block(
      strong = TRUE,
      f7BlockHeader(text = "Header"),
@@ -51,6 +55,8 @@ if(interactive()){
      turpis vel, sagittis felis.",
      f7BlockFooter(text = "Footer")
     ),
+
+    f7BlockTitle(title = "A normal title", size = NULL),
     f7Block(
      inset = TRUE,
      strong = TRUE,
