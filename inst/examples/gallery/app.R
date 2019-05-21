@@ -3,7 +3,7 @@ library(shinyF7)
 
 source("tabInputs.R")
 
-shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
     dark_mode = FALSE,
@@ -37,3 +37,5 @@ shinyApp(
     output$select <- renderPrint(input$select)
   }
 )
+
+runGadget(app)
