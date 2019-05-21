@@ -1,6 +1,6 @@
 tabInputs <- f7Tab(
-  tabName = "tabinputs",
-  icon = "data_fill",
+  tabName = "Inputs",
+  icon = "filter",
   active = TRUE,
 
   f7Align(

@@ -1,7 +1,15 @@
 library(shiny)
 library(shinyF7)
+library(g2r)
 
 source("tabInputs.R")
+source("tabFabs.R")
+source("tabCards.R")
+source("tabSegments.R")
+source("tabTags.R")
+source("tabText.R")
+source("tabInfo.R")
+source("tabOthers.R")
 
 app <- shinyApp(
   ui = f7Page(
@@ -21,7 +29,14 @@ app <- shinyApp(
       ),
       f7Tabs(
         animated = TRUE,
-        tabInputs
+        tabInputs,
+        tabFabs,
+        tabCards,
+        tabSegments,
+        tabTags,
+        tabText,
+        tabInfo,
+        tabOthers
       )
     )
   ),
@@ -35,6 +50,11 @@ app <- shinyApp(
     output$radio <- renderPrint(input$radio)
     output$toggle <- renderPrint(input$toggle)
     output$select <- renderPrint(input$select)
+    output$val <- renderPrint(input$button2)
+
+    lapply(1:12, function(i) {
+      output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
+    })
   }
 )
 
