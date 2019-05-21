@@ -3,7 +3,7 @@ $(function () {
   $('.toolbar-inner .a:eq(0)').addClass('tab-link-active');
   var ios = $('html').hasClass('ios');
   // only add the highlight bar if the theme is material
-  if (ios === false) {
+  if (!ios) {
    $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: 33.333333333333336%; transform: translate3d(0%, 0px, 0px);"></span>');
   }
   $('.page-content.tab:eq(0)').addClass('tab-active');
@@ -14,7 +14,6 @@ $(function () {
   if (typeof workerId != "undefined") {
     var pathname = window.location.pathname;
     var newpath = pathname + workerId;
-    console.log(newpath);
     window.history.replaceState( {} , 'newpath', newpath);
   }
 });

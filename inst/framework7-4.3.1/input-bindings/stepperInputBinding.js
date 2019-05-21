@@ -13,8 +13,6 @@ $.extend(f7StepperBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var test = app.stepper.get($(el)).value;
-    console.log(test);
     return app.stepper.get($(el)).value;
   },
 

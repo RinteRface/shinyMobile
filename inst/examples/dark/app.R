@@ -1,3 +1,7 @@
+library(shiny)
+library(shinyF7)
+library(echarts4r)
+
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
@@ -27,25 +31,44 @@ shiny::shinyApp(
             thick = TRUE,
             inline = TRUE,
             selected = "md",
-            choices = c("ios", "auto", "md"),
+            choices = c("ios", "md"),
+            animation = "pulse",
+            status = "info"
+          ),
+
+          prettyRadioButtons(
+            inputId = "color",
+            label = "Select a color:",
+            thick = TRUE,
+            inline = TRUE,
+            selected = "dark",
+            choices = c("light", "dark"),
             animation = "pulse",
             status = "info"
           ),
 
           shiny::tags$head(
             shiny::tags$script(
-              'Shiny.addCustomMessageHandler("theme-select", function(message) {
-                alert(message);
-                var ios = $("html").hasClass("ios");
-                var md = $("html").hasClass("md");
-                if (ios === true && theme == "md") {
-                  $( "html" ).addClass("md");
-                  $( "html" ).removeClass("ios");
-                } else if (md === true && theme == "ios"){
-                  $( "html" ).addClass("ios");
-                  $( "html" ).removeClass("md");
+              'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
+                var os = message.os;
+                var skin = message.skin;
+                if (os === "md") {
+                  $("html").addClass("md");
+                  $("html").removeClass("ios");
+                  $(".tab-link-highlight").show();
+                } else if (os === "ios") {
+                  $("html").addClass("ios");
+                  $("html").removeClass("md");
+                  $(".tab-link-highlight").hide();
                 }
-               };
+
+                if (skin === "dark") {
+                 $("body").addClass("theme-dark");
+                } else {
+                  $("body").removeClass("theme-dark");
+                }
+
+               });
               '
             )
           ),
@@ -182,7 +205,10 @@ shiny::shinyApp(
 
     # send the theme to javascript
     observe({
-      session$sendCustomMessage(type = "theme-select", message = input$theme)
+      session$sendCustomMessage(
+        type = "ui-tweak",
+        message = list(os = input$theme, skin = input$color)
+      )
     })
 
   }

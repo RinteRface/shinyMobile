@@ -13,8 +13,6 @@ $.extend(f7ToggleBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var test = app.toggle.get($(el)).checked;
-    console.log(test);
     return app.toggle.get($(el)).checked;
   },
 
