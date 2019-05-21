@@ -1,116 +1,139 @@
 reference:
-- title: Basic dashboard functions
-  desc: Dashboard skeleton functions
+- title: Basic functions
+  desc: Page skeleton functions
   contents:
-  - '`bs4DashPage`'
-  - '`bs4DashNavbar`'
-  - '`bs4DashBody`'
-  - '`bs4DashFooter`'
-  - '`bs4DashSidebar`'
-  - '`bs4DashControlbar`'
+  - '`f7Init`'
+  - '`f7Navbar`'
+  - '`f7Page`'
+  - '`f7Panel`'
+  - '`f7Tab`'
+  - '`f7Tabs`'
+  - '`f7Toolbar`'
 
-- title: Body content functions
-  desc: Functions that are to be used in the bs4DashBody
-  contents:
-  - '`bs4TabItems`'
-  - '`bs4TabItem`'
 
-- title: Sidebar Content functions
-  desc: Functions that are to be used in the bs4DashSidebar
+- title: Grid functions
+  desc: Rows, columns, flex, ...
   contents:
-  - '`bs4SidebarMenu`'
-  - '`bs4SidebarMenuItem`'
-  - '`bs4SidebarHeader`'
-  - '`bs4SidebarUserPanel`'
+  - '`f7Col`'
+  - '`f7Flex`'
+  - '`f7Row`'
 
-- title: Navbar Content functions
-  desc: Functions that are to be used in the bs4DashNavbar
-  contents:
-  - '`bs4DropdownMenu`'
-  - '`bs4DropdownMenuItem`'
 
-- title: Cards and boxes
-  desc: Build cards and boxes
+- title: Layouts
+  desc: Functions that create layouts
   contents:
-  - '`bs4Box`'
-  - '`bs4InfoBox`'
-  - '`bs4ValueBox`'
-  - '`bs4Card`'
-  - '`bs4TabCard`'
-  - '`bs4UserCard`'
-  - '`bs4SocialCard`'
+  - '`f7SingleLayout`'
+  - '`f7TabLayout`'
 
-- title: Card Toolbar components
-  desc: Build dropdown menu in the tool area (close, collapse)
-  contents:
-  - '`dropdownDivider`'
-  - '`dropdownItem`'
-  - '`dropdownItemList`'
 
-- title: Tab card elements
-  desc: Functions that are to be used in bs4TabCard
-  contents:
-  - '`bs4TabPanel`'
-  - '`bs4TabSetPanel`'
 
-- title: Card extra elements
-  desc: Add more shiny elements to your cards
+- title: Inputs
+  desc: slider, radio, checkboxes, ...
   contents:
-  - '`attachmentBlock`'
-  - '`descriptionBlock`'
-  - '`cardComment`'
-  - '`cardPad`'
-  - '`cardProfile`'
-  - '`cardProfileItemList`'
-  - '`cardProfileItem`'
+  - '`f7checkBox`'
+  - '`f7checkBoxGroup`'
+  - '`f7Password`'
+  - '`f7Radio`'
+  - '`f7Select`'
+  - '`f7Slider`'
+  - '`f7Stepper`'
+  - '`f7Text`'
+  - '`f7Toggle`'
 
-- title: Sortable UI
-  desc: Sort elements such as cards
-  contents:
-  - '`bs4Sortable`'
 
-- title: Render functions
-  desc: Dynamically generate items
-  contents:
-  - '`bs4ValueBoxOutput`'
-  - '`bs4InfoBoxOutput`'
-  - '`renderbs4ValueBox`'
-  - '`renderbs4InfoBox`'
 
-- title: Other bs4 items
-  desc: To better customize your app
+- title: Cards
+  desc: social cards, cards, ...
   contents:
-  - '`bs4Accordion`'
-  - '`bs4AccordionItem`'
-  - '`bs4Alert`'
-  - '`bs4Badge`'
-  - '`bs4Callout`'
-  - '`bs4Carousel`'
-  - '`bs4CarouselItem`'
-  - '`bs4Jumbotron`'
-  - '`bs4ListGroup`'
-  - '`bs4ListGroupItem`'
-  - '`bs4Loading`'
-  - '`bs4ProgressBar`'
-  - '`bs4Stars`'
-  - '`bs4Timeline`'
-  - '`bs4TimelineEnd`'
-  - '`bs4TimelineItem`'
-  - '`bs4TimelineItemMedia`'
-  - '`bs4TimelineLabel`'
-  - '`bs4TimelineStart`'
-  - '`ionicon`'
-  - '`userMessage`'
-  - '`userMessages`'
-  - '`userPost`'
-  - '`userPostTagItems`'
-  - '`userPostTagItem`'
-  - '`userPostMedia`'
+  - '`f7Card`'
+  - '`f7ExpandableCard`'
+  - '`f7ListCard`'
+  - '`f7ListCardItem`'
+  - '`f7MediaCard`'
+  - '`f7MediaCardItem`'
+  - '`f7SocialCard`'
+
+
+
+- title: Text containers
+  desc: blocks to contain text
+  contents:
+  - '`f7Block`'
+  - '`f7BlockFooter`'
+  - '`f7BlockHeader`'
+  - '`f7BlockTitle`'
+
+
+
+- title: Buttons
+  desc: some are inputs
+  contents:
+  - '`f7Button`'
+  - '`f7Fab`'
+  - '`f7Fabs`'
+  - '`f7Link`'
+  - '`f7Segment`'
+
+
+
+- title: Modals, Popups...
+  desc: Functions that create layouts
+  contents:
+  - '`f7Popup`'
+  - '`f7Sheet`'
+
+
+
+
+- title: f7 elements
+  desc: timelines, carousels, ...
+  contents:
+  - '`f7Accordion`'
+  - '`f7AccordionItem`'
+  - '`f7Badge`'
+  - '`f7Chip`'
+  - '`f7Slide`'
+  - '`f7Swiper`'
+  - '`f7Timeline`'
+  - '`f7TimelineItem`'
+
+
+
+
+- title: Metric elements
+  desc: Gauges, progres, ...
+  contents:
+  - '`f7Gauge`'
+  - '`f7Progress`'
+  - '`f7ProgressInf`'
+
+
+- title: Typography functions
+  desc: Rows, columns, flex, ...
+  contents:
+  - '`f7Align`'
+  - '`f7Float`'
+  - '`f7Margin`'
+  - '`f7Padding`'
+
+
+- title: Icons
+  desc: icon wrapper function
+  contents:
+  - '`f7Icon`'
+
+
+- title: CSS effects
+  desc: shadows, ...
+  contents:
+  - '`f7Shadow`'
+
+
 
 - title: Gallery
-  desc: bs4Dash showcase
+  desc: shinyF7 showcase
   contents:
-  - '`bs4DashGallery`'
+  - '`f7Gallery`'
 
 
 template:

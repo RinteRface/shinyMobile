@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyF7</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -77,8 +77,20 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Changelog
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyF7 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -115,35 +127,219 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-basic-functions" class="hasAnchor"><a href="#section-basic-functions" class="anchor"></a>Basic functions</h2>
+          <p class="section-desc"><p>Page skeleton functions</p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="f7Accordion.html">f7Accordion()</a></code> </p>
+          <p><code><a href="f7Init.html">f7Init()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 accordion</p></td>
+        <td><p>Custom initialization</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7AccordionItem.html">f7AccordionItem()</a></code> </p>
+          <p><code><a href="f7Navbar.html">f7Navbar()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 accordion item</p></td>
+        <td><p>Create a Framework7 Navbar</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Align.html">f7Align()</a></code> </p>
+          <p><code><a href="f7Page.html">f7Page()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 align</p></td>
+        <td><p>Create a Framework7 page</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Badge.html">f7Badge()</a></code> </p>
+          <p><code><a href="f7Panel.html">f7Panel()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 badge</p></td>
+        <td><p>Create a Framework7 panel</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Tab.html">f7Tab()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 tab item</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Tabs.html">f7Tabs()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 tabs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Toolbar.html">f7Toolbar()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 Toolbar</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-grid-functions" class="hasAnchor"><a href="#section-grid-functions" class="anchor"></a>Grid functions</h2>
+          <p class="section-desc"><p>Rows, columns, flex, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Col.html">f7Col()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 column container</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Flex.html">f7Flex()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 flex container</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Row.html">f7Row()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 row container</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-layouts" class="hasAnchor"><a href="#section-layouts" class="anchor"></a>Layouts</h2>
+          <p class="section-desc"><p>Functions that create layouts</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7SingleLayout.html">f7SingleLayout()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 single layout</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7TabLayout.html">f7TabLayout()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 page with tab layout</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-inputs" class="hasAnchor"><a href="#section-inputs" class="anchor"></a>Inputs</h2>
+          <p class="section-desc"><p>slider, radio, checkboxes, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7checkBox.html">f7checkBox()</a></code> </p>
+        </td>
+        <td><p>Create a F7 Checkbox</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7checkBoxGroup.html">f7checkBoxGroup()</a></code> </p>
+        </td>
+        <td><p>Create an f7 checkbox group input</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Password.html">f7Password()</a></code> </p>
+        </td>
+        <td><p>Create an f7 password input</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Radio.html">f7Radio()</a></code> </p>
+        </td>
+        <td><p>Create an f7 radio button input</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Select.html">f7Select()</a></code> </p>
+        </td>
+        <td><p>Create an f7 select input</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Slider.html">f7Slider()</a></code> </p>
+        </td>
+        <td><p>Create a f7 slider</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Stepper.html">f7Stepper()</a></code> </p>
+        </td>
+        <td><p>Create a F7 radio stepper</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Text.html">f7Text()</a></code> </p>
+        </td>
+        <td><p>Create an f7 text input</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Toggle.html">f7Toggle()</a></code> </p>
+        </td>
+        <td><p>Create a F7 toggle switch</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-cards" class="hasAnchor"><a href="#section-cards" class="anchor"></a>Cards</h2>
+          <p class="section-desc"><p>social cards, cards, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Card.html">f7Card()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 card</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7ExpandableCard.html">f7ExpandableCard()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 expandable card</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7ListCard.html">f7ListCard()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 list card</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7ListCardItem.html">f7ListCardItem()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 list card item</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7MediaCard.html">f7MediaCard()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 media card</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7MediaCardItem.html">f7MediaCardItem()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 media card item</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7SocialCard.html">f7SocialCard()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 social card</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-text-containers" class="hasAnchor"><a href="#section-text-containers" class="anchor"></a>Text containers</h2>
+          <p class="section-desc"><p>blocks to contain text</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="f7Block.html">f7Block()</a></code> </p>
@@ -167,36 +363,20 @@
           <p><code><a href="f7BlockTitle.html">f7BlockTitle()</a></code> </p>
         </td>
         <td><p>Create a Framework7 block title</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-buttons" class="hasAnchor"><a href="#section-buttons" class="anchor"></a>Buttons</h2>
+          <p class="section-desc"><p>some are inputs</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="f7Button.html">f7Button()</a></code> </p>
         </td>
         <td><p>Create a Framework7 button</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Card.html">f7Card()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 card</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Chip.html">f7Chip()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 chips</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Col.html">f7Col()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 column container</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7ExpandableCard.html">f7ExpandableCard()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 expandable card</p></td>
       </tr><tr>
         
         <td>
@@ -212,100 +392,24 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Flex.html">f7Flex()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 flex container</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Float.html">f7Float()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 float</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Gauge.html">f7Gauge()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 gauge</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Icon.html">f7Icon()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 icon</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Init.html">f7Init()</a></code> </p>
-        </td>
-        <td><p>Custom initialization</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="f7Link.html">f7Link()</a></code> </p>
         </td>
         <td><p>Create a Framework7 link</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7ListCard.html">f7ListCard()</a></code> </p>
+          <p><code><a href="f7Segment.html">f7Segment()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 list card</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7ListCardItem.html">f7ListCardItem()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 list card item</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Margin.html">f7Margin()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 margin</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7MediaCard.html">f7MediaCard()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 media card</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7MediaCardItem.html">f7MediaCardItem()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 media card item</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Navbar.html">f7Navbar()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 Navbar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Padding.html">f7Padding()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 padding</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Page.html">f7Page()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 page</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Panel.html">f7Panel()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 panel</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Password.html">f7Password()</a></code> </p>
-        </td>
-        <td><p>Create an f7 password input</p></td>
-      </tr><tr>
+        <td><p>Create a Framework7 segmented button container</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-modals-popups-" class="hasAnchor"><a href="#section-modals-popups-" class="anchor"></a>Modals, Popups...</h2>
+          <p class="section-desc"><p>Functions that create layouts</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="f7Popup.html">f7Popup()</a></code> </p>
@@ -314,57 +418,41 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Progress.html">f7Progress()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 progress bar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7ProgressInf.html">f7ProgressInf()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 infinite progress bar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Radio.html">f7Radio()</a></code> </p>
-        </td>
-        <td><p>Create an f7 radio button input</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Row.html">f7Row()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 row container</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Segment.html">f7Segment()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 segmented button container</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Select.html">f7Select()</a></code> </p>
-        </td>
-        <td><p>Create an f7 select input</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Shadow.html">f7Shadow()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 shadow effect</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="f7Sheet.html">f7Sheet()</a></code> </p>
         </td>
         <td><p>Create an f7 sheet modal</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-f-elements" class="hasAnchor"><a href="#section-f-elements" class="anchor"></a>f7 elements</h2>
+          <p class="section-desc"><p>timelines, carousels, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Accordion.html">f7Accordion()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 accordion</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7SingleLayout.html">f7SingleLayout()</a></code> </p>
+          <p><code><a href="f7AccordionItem.html">f7AccordionItem()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 single layout</p></td>
+        <td><p>Create a Framework7 accordion item</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Badge.html">f7Badge()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 badge</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Chip.html">f7Chip()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 chips</p></td>
       </tr><tr>
         
         <td>
@@ -374,51 +462,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Slider.html">f7Slider()</a></code> </p>
-        </td>
-        <td><p>Create a f7 slider</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7SocialCard.html">f7SocialCard()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 social card</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Stepper.html">f7Stepper()</a></code> </p>
-        </td>
-        <td><p>Create a F7 radio stepper</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="f7Swiper.html">f7Swiper()</a></code> </p>
         </td>
         <td><p>Create a Framework7 swiper</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Tab.html">f7Tab()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 tab item</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7TabLayout.html">f7TabLayout()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 page with tab layout</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Tabs.html">f7Tabs()</a></code> </p>
-        </td>
-        <td><p>Create a Framework7 tabs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="f7Text.html">f7Text()</a></code> </p>
-        </td>
-        <td><p>Create an f7 text input</p></td>
       </tr><tr>
         
         <td>
@@ -431,30 +477,106 @@
           <p><code><a href="f7TimelineItem.html">f7TimelineItem()</a></code> </p>
         </td>
         <td><p>Create a Framework7 timeline item</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-metric-elements" class="hasAnchor"><a href="#section-metric-elements" class="anchor"></a>Metric elements</h2>
+          <p class="section-desc"><p>Gauges, progres, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Gauge.html">f7Gauge()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 gauge</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Toggle.html">f7Toggle()</a></code> </p>
+          <p><code><a href="f7Progress.html">f7Progress()</a></code> </p>
         </td>
-        <td><p>Create a F7 toggle switch</p></td>
+        <td><p>Create a Framework7 progress bar</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7Toolbar.html">f7Toolbar()</a></code> </p>
+          <p><code><a href="f7ProgressInf.html">f7ProgressInf()</a></code> </p>
         </td>
-        <td><p>Create a Framework7 Toolbar</p></td>
+        <td><p>Create a Framework7 infinite progress bar</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-typography-functions" class="hasAnchor"><a href="#section-typography-functions" class="anchor"></a>Typography functions</h2>
+          <p class="section-desc"><p>Rows, columns, flex, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Align.html">f7Align()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 align</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7checkBox.html">f7checkBox()</a></code> </p>
+          <p><code><a href="f7Float.html">f7Float()</a></code> </p>
         </td>
-        <td><p>Create a F7 Checkbox</p></td>
+        <td><p>Create a Framework7 float</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7checkBoxGroup.html">f7checkBoxGroup()</a></code> </p>
+          <p><code><a href="f7Margin.html">f7Margin()</a></code> </p>
         </td>
-        <td><p>Create an f7 checkbox group input</p></td>
+        <td><p>Create a Framework7 margin</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7Padding.html">f7Padding()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 padding</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-icons" class="hasAnchor"><a href="#section-icons" class="anchor"></a>Icons</h2>
+          <p class="section-desc"><p>icon wrapper function</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Icon.html">f7Icon()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 icon</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-css-effects" class="hasAnchor"><a href="#section-css-effects" class="anchor"></a>CSS effects</h2>
+          <p class="section-desc"><p>shadows, …</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Shadow.html">f7Shadow()</a></code> </p>
+        </td>
+        <td><p>Create a Framework7 shadow effect</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-gallery" class="hasAnchor"><a href="#section-gallery" class="anchor"></a>Gallery</h2>
+          <p class="section-desc"><p>shinyF7 showcase</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="f7Gallery.html">f7Gallery()</a></code> </p>
+        </td>
+        <td><p>Launch the shinyF7 Gallery</p></td>
       </tr>
     </tbody>
     </table>
@@ -463,7 +585,20 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-basic-functions">Basic functions</a></li>
+      <li><a href="#section-grid-functions">Grid functions</a></li>
+      <li><a href="#section-layouts">Layouts</a></li>
+      <li><a href="#section-inputs">Inputs</a></li>
+      <li><a href="#section-cards">Cards</a></li>
+      <li><a href="#section-text-containers">Text containers</a></li>
+      <li><a href="#section-buttons">Buttons</a></li>
+      <li><a href="#section-modals-popups-">Modals, Popups...</a></li>
+      <li><a href="#section-f-elements">f7 elements</a></li>
+      <li><a href="#section-metric-elements">Metric elements</a></li>
+      <li><a href="#section-typography-functions">Typography functions</a></li>
+      <li><a href="#section-icons">Icons</a></li>
+      <li><a href="#section-css-effects">CSS effects</a></li>
+      <li><a href="#section-gallery">Gallery</a></li>
     </ul>
   </div>
 </div>
