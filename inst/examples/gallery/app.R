@@ -21,7 +21,7 @@ shinyApp(
       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
       f7Navbar(
-        title = "Tabs",
+        title = "miniUI 2.0",
         hairline = TRUE,
         shadow = TRUE,
         left_panel = TRUE,
