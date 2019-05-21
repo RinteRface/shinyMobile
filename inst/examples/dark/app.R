@@ -25,26 +25,28 @@ shiny::shinyApp(
           icon = "email",
           active = TRUE,
 
-          prettyRadioButtons(
-            inputId = "theme",
-            label = "Select a theme:",
-            thick = TRUE,
-            inline = TRUE,
-            selected = "md",
-            choices = c("ios", "md"),
-            animation = "pulse",
-            status = "info"
-          ),
+          f7Flex(
+            prettyRadioButtons(
+              inputId = "theme",
+              label = "Select a theme:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "md",
+              choices = c("ios", "md"),
+              animation = "pulse",
+              status = "info"
+            ),
 
-          prettyRadioButtons(
-            inputId = "color",
-            label = "Select a color:",
-            thick = TRUE,
-            inline = TRUE,
-            selected = "dark",
-            choices = c("light", "dark"),
-            animation = "pulse",
-            status = "info"
+            prettyRadioButtons(
+              inputId = "color",
+              label = "Select a color:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "dark",
+              choices = c("light", "dark"),
+              animation = "pulse",
+              status = "info"
+            )
           ),
 
           shiny::tags$head(
