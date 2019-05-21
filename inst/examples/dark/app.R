@@ -12,7 +12,7 @@ shiny::shinyApp(
       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
       f7Navbar(
         title = "Tabs",
-        hairline = FALSE,
+        hairline = TRUE,
         shadow = TRUE,
         left_panel = TRUE,
         right_panel = TRUE

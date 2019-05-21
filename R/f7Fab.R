@@ -68,7 +68,7 @@ f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom"
 
   shiny::tags$div(
     class = fabCl,
-    style = if (!is.null(backgroundColor)) paste0("background-color: ", backgroundColor, ";"),
+    #style = if (!is.null(backgroundColor)) paste0("background-color: ", backgroundColor, ";"),
     shiny::a(
       href = "#",
       shiny::tags$i(class="icon f7-icons", "add"),
