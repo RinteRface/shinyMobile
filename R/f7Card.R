@@ -52,6 +52,7 @@
 f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE) {
 
   cardCl <- "card"
+  if (!is.null(img)) cardCl <- paste0(cardCl, " demo-card-header-pic")
   if (outline) cardCl <- paste0(cardCl, " card-outline")
 
   # content
@@ -65,12 +66,9 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
   headerTag <- if (!is.null(title)) {
     if (!is.null(img)) {
       shiny::tags$div(
-        class = "card demo-card-header-pic",
-        shiny::tags$div(
-          style = paste0("background-image:url(", img, ")"),
-          class = "card-header align-items-flex-end",
-          title
-        )
+        style = paste0("background-image:url(", img, ")"),
+        class = "card-header align-items-flex-end",
+        title
       )
     } else {
       shiny::tags$div(class = "card-header", title)
@@ -83,23 +81,23 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
   }
 
   # main tag
- mainTag <- if (!is.null(img)) {
-  shiny::tags$div(
-    class = "card demo-card-header-pic",
-    headerTag,
-    contentTag,
-    footerTag
-  )
- } else {
-   shiny::tags$div(
-     class = cardCl,
-     headerTag,
-     contentTag,
-     footerTag
-   )
- }
+  mainTag <- if (!is.null(img)) {
+    shiny::tags$div(
+      class = "card demo-card-header-pic",
+      headerTag,
+      contentTag,
+      footerTag
+    )
+  } else {
+    shiny::tags$div(
+      class = cardCl,
+      headerTag,
+      contentTag,
+      footerTag
+    )
+  }
 
- return(mainTag)
+  return(mainTag)
 }
 
 
@@ -161,12 +159,12 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
 
   footerTag <- if (!is.null(footer)) shiny::tags$div(class = "card-footer", footer)
 
- shiny::tags$div(
-   class = "card demo-facebook-card",
-   headerTag,
-   contentTag,
-   footerTag
- )
+  shiny::tags$div(
+    class = "card demo-facebook-card",
+    headerTag,
+    contentTag,
+    footerTag
+  )
 }
 
 
@@ -232,12 +230,12 @@ f7ListCard <- function(...) {
 #'
 #' @export
 f7ListCardItem <- function(url = NULL, title = NULL) {
- shiny::tags$li(
-   shiny::tags$a(
-     href = url,
-     title
-   )
- )
+  shiny::tags$li(
+    shiny::tags$a(
+      href = url,
+      title
+    )
+  )
 }
 
 
