@@ -3,10 +3,8 @@ library(shinyF7)
 library(g2r)
 
 source("tabInputs.R")
-source("tabFabs.R")
+source("tabBtns.R")
 source("tabCards.R")
-source("tabSegments.R")
-source("tabTags.R")
 source("tabText.R")
 source("tabInfo.R")
 source("tabOthers.R")
@@ -30,10 +28,8 @@ shinyApp(
       f7Tabs(
         animated = TRUE,
         tabInputs,
-        tabFabs,
+        tabBtns,
         tabCards,
-        tabSegments,
-        tabTags,
         tabText,
         tabInfo,
         tabOthers

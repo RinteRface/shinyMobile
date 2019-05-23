@@ -10,7 +10,7 @@ Authors@R: c(
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Make 'shiny' shining for mobiles.
     IOS and android support.
-Imports: shiny, htmltools, jsonlite
+Imports: shiny, htmltools, jsonlite, magrittr
 Suggested: shinyWidgets, echarts4r
 License: GPL-2
 Encoding: UTF-8

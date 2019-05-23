@@ -7,7 +7,19 @@ tabOthers <- f7Tab(
     h1("miniUI 2.0 brings other elements")
   ),
 
+  # Badges
+  f7BlockTitle(title = "f7Badge") %>% f7Align(side = "center"),
+  f7Block(
+    strong = TRUE,
+    f7Badge(32, color = "purple"),
+    f7Badge("Badge", color = "green"),
+    f7Badge(10, color = "teal"),
+    f7Badge("Ok", color = "orange")
+  ),
+  br(),
+
   # accordion
+  f7BlockTitle(title = "f7Accordion") %>% f7Align(side = "center"),
   f7Accordion(
     mode = "list",
     f7AccordionItem(
@@ -19,8 +31,10 @@ tabOthers <- f7Tab(
       "Item 2 content"
     )
   ),
+  br(),
 
   # swiper
+  f7BlockTitle(title = "f7Swiper") %>% f7Align(side = "center"),
   f7Swiper(
     id = "my-swiper",
     f7Slide(
@@ -37,6 +51,7 @@ tabOthers <- f7Tab(
   br(), br(), br(),
 
   # timelines
+  f7BlockTitle(title = "f7Timeline") %>% f7Align(side = "center"),
   f7Timeline(
     sides = TRUE,
     f7TimelineItem(
@@ -65,21 +80,26 @@ tabOthers <- f7Tab(
       subtitle = "Subtitle"
     )
   ),
+  br(),
 
   # progress bars
+  f7BlockTitle(title = "f7Progress") %>% f7Align(side = "center"),
   f7Block(
-    f7Progress(id = "pg1", value = 10, color = "pink"),
+    strong = TRUE,
+    f7Progress(id = "pg1", value = 10, color = "yellow"),
     f7Progress(id = "pg2", value = 100, color = "green"),
-    f7Progress(id = "pg3", value = 50, color = "orange"),
+    f7Progress(id = "pg3", value = 50, color = "deeppurple"),
     f7ProgressInf()
   ),
+  br(),
 
 
   # gauges
-  f7Row(
-    f7Col(
-      f7Block(
-        strong = TRUE,
+  f7BlockTitle(title = "f7Gauge") %>% f7Align(side = "center"),
+  f7Block(
+    strong = TRUE,
+    f7Row(
+      f7Col(
         f7Gauge(
           id = "mygauge1",
           type  = "semicircle",
@@ -91,11 +111,8 @@ tabOthers <- f7Tab(
           valueTextColor = "#2196f3",
           labelText = "amount of something"
         )
-      )
-    ),
-    f7Col(
-      f7Block(
-        strong = TRUE,
+      ),
+      f7Col(
         f7Gauge(
           id = "mygauge2",
           type  = "circle",

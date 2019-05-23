@@ -8,6 +8,7 @@ tabInfo <- f7Tab(
   ),
 
   # popup
+  f7BlockTitle(title = "f7Popup") %>% f7Align(side = "center"),
   f7Popup(
     id = "popup1",
     label = "Open",
@@ -16,9 +17,11 @@ tabInfo <- f7Tab(
          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
          scelerisque est, at porta justo cursus ac"
   ),
+  br(),
 
 
   # sheet
+  f7BlockTitle(title = "f7Sheet") %>% f7Align(side = "center"),
   f7Sheet(
     id = "sheet1",
     label = "More",
