@@ -42,6 +42,13 @@ reference:
 
 
 
+- title: Update inputs
+  desc: slider, radio, checkboxes, ...
+  contents:
+  - '`updateF7Checkbox`'
+
+
+
 - title: Cards
   desc: social cards, cards, ...
   contents:
