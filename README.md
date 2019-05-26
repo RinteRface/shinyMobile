@@ -1,4 +1,4 @@
-# shinyF7
+# shinyF7 <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
 [![Build Status](https://travis-ci.org/RinteRface/shinyF7.svg?branch=master)](https://travis-ci.org/RinteRface/shinyF7)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Project Status](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
