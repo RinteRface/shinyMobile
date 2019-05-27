@@ -177,8 +177,8 @@ navbar:
 
 articles:
 - title: All vignettes
-  desc: ~
   contents:
+  - '`F7-Elements`'
   - '`Single-Layout`'
   - '`Tabs-Layout`'
   - '`Gadgets`'
