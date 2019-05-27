@@ -19,6 +19,9 @@ BugReports: https://github.com/RinteRface/shinyF7/issues
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 
-    g2r (>= 0.1.0)
-Remotes:  
+    g2r (>= 0.1.0),
+    knitr,
+    rmarkdown
+Remotes: 
     JohnCoene/g2r
+VignetteBuilder: knitr

@@ -1,0 +1,23 @@
+---
+title: "Sidebars"
+author: "David Granjon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Sidebars}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+shinyF7 brings 2 panels with `f7Panel()` that can make you save a significant amount of space.
+They can contain any elements, even though inputs are better suitable.
+
+
+<div class="row">
+<div class="col-sm-4" align="center">
+<img src="figures/f7Panel_right_demo.png">
+</div>
+<div class="col-sm-4" align="center">
+<img src="figures/f7Panel_left_demo.png">
+</div>
+</div>

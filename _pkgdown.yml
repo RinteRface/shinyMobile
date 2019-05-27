@@ -175,6 +175,17 @@ navbar:
       href: https://github.com/RinteRface/shinyF7
 
 
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - '`Single-Layout`'
+  - '`Tabs-Layout`'
+  - '`Gadgets`'
+  - '`Sidebars`'
+  - '`Dark-Theme`'
+
+
 news:
  releases:
  - text: "shinyF7 0.1.0"

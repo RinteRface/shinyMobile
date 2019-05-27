@@ -16,12 +16,12 @@ plot <- USArrests %>%
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    dark_mode = TRUE,
-    f7Init(theme = "md"),
+    dark_mode = FALSE,
+    f7Init(theme = "ios"),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
-        hairline = FALSE,
+        hairline = TRUE,
         shadow = TRUE
       ),
       toolbar = f7Toolbar(
@@ -35,7 +35,7 @@ shiny::shinyApp(
         hover = TRUE,
         f7Card(
           title = "Card header",
-          e_theme(plot, "dark"),
+          plot,
           footer = tagList(
             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
             f7Badge("Badge", color = "green")
