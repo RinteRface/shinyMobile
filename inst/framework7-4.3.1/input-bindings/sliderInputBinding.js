@@ -16,6 +16,17 @@ $.extend(f7SliderBinding, {
     return app.range.get($(el)).value;
   },
 
+  // see updateF7Slider
+  setValue: function(el, value) {
+    //$(el).data('immediate', true);
+    app.range.setValue($(el)).value;
+  },
+
+  // see updateF7Slider
+  receiveMessage: function(el, data) {
+
+  },
+
   subscribe: function(el, callback) {
     $(el).on("range:change.f7SliderBinding", function(e) {
       callback(true);

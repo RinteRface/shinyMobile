@@ -97,3 +97,206 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
   message <- dropNulls(list(label=label, value=value, placeholder=placeholder))
   session$sendInputMessage(inputId, message)
 }
+
+
+
+
+
+
+
+#' Change the value of a \link{f7Fab} input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param label The label to set for the input object.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  ui <- f7Page(
+#'    f7Init(),
+#'    f7Fab("trigger", "Click me")
+#'  )
+#'
+#'  server <- function(input, output, session) {
+#'    observeEvent(input$trigger, {
+#'      updateF7Fab(session, "trigger", label = "Don't click me")
+#'    })
+#'  }
+#' shinyApp(ui, server)
+#' }
+updateF7Fab <- function(session, inputId, label = NULL) {
+  message <- dropNulls(list(label=label))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+# #' Change the value of a \link{f7Button} input on the client
+# #'
+# #' @note This function does not work if \link{f7Button} has a not NULL src argument.
+# #'
+# #' @param session The session object passed to function given to the server.
+# #' @param inputId The input slot that will be used to access the value.
+# #' @param label The contents of the button or link–usually a text label, but you could also use any other HTML, like an image.
+# #' @param color Button color. Not compatible with outline. See here for valid colors https://framework7.io/docs/badge.html.
+# #' @param fill Fill style. TRUE by default. Not compatible with outline
+# #' @param outline Outline style. FALSE by default. Not compatible with fill.
+# #' @param shadow Button shadow. FALSE by default. Only for material design.
+# #' @param rounded Round style. FALSE by default.
+# #' @param size Button size. NULL by default but also "large" or "small".
+# #'
+# #' @export
+# #'
+# #' @examples
+# #' if (interactive()) {
+# #'  library(shiny)
+# #'  library(shinyF7)
+# #'
+# #'  ui <- f7Page(
+# #'    f7Init(),
+# #'    f7Button(color = "black", label = "Action Button", inputId = "button")
+# #'  )
+# #'
+# #'  server <- function(input, output, session) {
+# #'    observeEvent(input$button, {
+# #'      updateF7Button(session, "button", label = "Don't click me", color = "red", size = "small", fill = FALSE)
+# #'    })
+# #'  }
+# #' shinyApp(ui, server)
+# #' }
+# updateF7Button <- function(session, inputId, label = NULL, color = NULL,
+#                            fill = TRUE, outline = FALSE, shadow = FALSE, rounded = FALSE,
+#                            size = NULL) {
+#   message <- dropNulls(
+#     list(
+#       label=label,
+#       color = color,
+#       fill = fill,
+#       outline = outline,
+#       shadow = shadow,
+#       rounded = rounded,
+#       size = size
+#     )
+#   )
+#   session$sendInputMessage(inputId, message)
+# }
+
+
+
+
+
+# #' Change the value of a checkboxGroup input on the client
+# #'
+# #' @param session The session object passed to function given to the server.
+# #' @param inputId The id of the input object.
+# #' @param label The label to set for the input object.
+# #' @param choices Checkbox group choices.
+# #' @param selected Checkbox group selected value.
+# #'
+# #' @export
+# #'
+# #' @examples
+# #' if(interactive()){
+# #'  library(shiny)
+# #'  library(shinyF7)
+# #'
+# #'  shiny::shinyApp(
+# #'    ui = f7Page(
+# #'      title = "My app",
+# #'      f7Init(theme = "auto"),
+# #'      f7Fab("update", "Update"),
+# #'      f7checkBoxGroup(
+# #'        inputId = "variable",
+# #'        label = "Choose a variable:",
+# #'        choices = colnames(mtcars)[-1],
+# #'        selected = NULL
+# #'      ),
+# #'      tableOutput("data")
+# #'    ),
+# #'    server = function(input, output, session) {
+# #'      output$data <- renderTable({
+# #'        mtcars[, c("mpg", input$variable), drop = FALSE]
+# #'      }, rownames = TRUE)
+# #'
+# #'      observeEvent(input$update, {
+# #'        updateF7CheckboxGroup(session, "variable", label = "Updated choices",
+# #'             choices = colnames(mtcars)[-1], selected = "disp")
+# #'      })
+# #'
+# #'    }
+# #'  )
+# #' }
+# updateF7CheckboxGroup <- function(session, inputId, label = NULL,
+#                                   choices = NULL, selected = NULL) {
+#   message <- dropNulls(list(label=label, choices = choices, selected=selected))
+#   session$sendInputMessage(inputId, message)
+# }
+
+
+
+
+# #' Change the value of a slider input on the client
+# #'
+# #' @param session The session object passed to function given to the server.
+# #' @param inputId The id of the input object.
+# #' @param label The label to set for the input object.
+# #' @param min Slider minimum range.
+# #' @param max Slider maximum range
+# #' @param value Slider value or a vector containing 2 values (for a range).
+# #' @param step Slider increase step size
+# #' @param scale Slider scale.
+# #'
+# #' @export
+# #'
+# #' @examples
+# #' if(interactive()){
+# #'  library(shiny)
+# #'  library(shinyF7)
+# #'
+# #'  shiny::shinyApp(
+# #'    ui = f7Page(
+# #'      title = "My app",
+# #'      f7Init(theme = "auto"),
+# #'      f7Card(
+# #'        f7Slider(
+# #'          inputId = "obs",
+# #'          label = "Number of observations",
+# #'          max = 1000,
+# #'          min = 0,
+# #'          value = 100,
+# #'          scale = TRUE
+# #'        ),
+# #'        verbatimTextOutput("test"),
+# #'        footer = f7Fab("update", "Update")
+# #'      ),
+# #'      plotOutput("distPlot")
+# #'    ),
+# #'    server = function(input, output, session) {
+# #'      output$test <- renderPrint({input$obs})
+# #'      output$distPlot <- renderPlot({
+# #'        hist(rnorm(input$obs))
+# #'      })
+# #'
+# #'      observeEvent(input$update, {
+# #'        updateF7Slider(session, inputId = "obs", value = 500)
+# #'      })
+# #'    }
+# #'  )
+# #' }
+# updateF7Slider <- function(session, inputId, label = NULL, min = NULL, max = NULL, value = NULL,
+#                            step = NULL, scale = FALSE) {
+#   message <- dropNulls(list(
+#     label = label,
+#     value = value,
+#     min = min,
+#     max = max,
+#     step = step,
+#     scale = scale
+#   ))
+#   session$sendInputMessage(inputId, message)
+# }
