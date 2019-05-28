@@ -5,3 +5,4 @@
 ^pkgdown$
 ^docs$
 ^cran-comments\.md$
+^appveyor\.yml$
