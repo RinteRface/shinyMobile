@@ -10,7 +10,7 @@ vignette: >
 ---
 
 shinyF7 brings 2 panels with `f7Panel()` that can make you save a significant amount of space.
-They can contain any elements, even though inputs are better suitable. Importantly, panels must be enabled
+They can contain any elements, even though better designed for inputs. Importantly, panels must be enabled
 in the `f7Navbar()` via the *left_panel* and *right_panel* arguments.
 
 ```r
@@ -22,9 +22,6 @@ f7Navbar(
   right_panel = TRUE
 )
 ```
-
-Only one panel may also be activated.
-
 
 <div class="row">
 <div class="col-sm-4" align="center">
