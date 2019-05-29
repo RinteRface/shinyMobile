@@ -116,6 +116,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   itemTag <- shiny::tags$div(
     class = if (active) "page-content tab tab-active" else "page-content tab",
     id = id,
+    style = "background-color: gainsboro;",
     ...
   )
   return(list(itemTag, icon, tabName))

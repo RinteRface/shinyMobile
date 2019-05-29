@@ -46,7 +46,6 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
     addDeps(
       shiny::tags$body(
         class = bodyCl,
-        style = "background-color: gainsboro;",
         shiny::tags$div(
           id = "app",
           #f7Init(theme = "ios"),
@@ -122,6 +121,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
     # main content
     shiny::tags$div(
       class = "page-content",
+      style = "background-color: gainsboro;",
       ...
     )
   )
