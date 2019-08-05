@@ -3,16 +3,18 @@
   font-style: normal;
   font-weight: 400;
   src: url("fonts/Framework7Icons-Regular.eot");
-  src: url("fonts/Framework7Icons-Regular.woff2") format("woff2"),
-       url("fonts/Framework7Icons-Regular.woff") format("woff"),
-       url("fonts/Framework7Icons-Regular.ttf") format("truetype");
+  src: local('Framework7 Icons'),
+     local('Framework7Icons-Regular'),
+     url("fonts/Framework7Icons-Regular.woff2") format("woff2"),
+     url("fonts/Framework7Icons-Regular.woff") format("woff"),
+     url("fonts/Framework7Icons-Regular.ttf") format("truetype");
 }
 
 .f7-icons, .framework7-icons {
   font-family: 'Framework7 Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 25px;
+  font-size: 28px;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -27,5 +29,4 @@
   -moz-font-feature-settings: "liga=1";
   -moz-font-feature-settings: "liga";
   font-feature-settings: "liga";
-  text-align: center;
 }
