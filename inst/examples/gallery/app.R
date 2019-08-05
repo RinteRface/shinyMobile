@@ -16,7 +16,7 @@ shinyApp(
     color = "teal",
     f7Init(theme = "ios"),
     f7TabLayout(
-      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover", resizable = TRUE),
+      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
       f7Navbar(
         title = "miniUI 2.0",
