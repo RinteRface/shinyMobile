@@ -1,6 +1,6 @@
 tabBtns <- f7Tab(
   tabName = "FABs",
-  icon = "add_round_fill",
+  icon = f7Icon("keyboard_fill"),
 
   # FABS
   f7Align(

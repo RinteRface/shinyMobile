@@ -21,7 +21,7 @@ shiny::shinyApp(
         #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
-          icon = "email",
+          icon = f7Icon("email"),
           active = TRUE,
           f7Shadow(
             intensity = 10,
@@ -39,7 +39,7 @@ shiny::shinyApp(
         ),
         f7Tab(
           tabName = "Tab 2",
-          icon = "today",
+          icon = f7Icon("today"),
           active = FALSE,
           f7Shadow(
             intensity = 10,
@@ -67,7 +67,7 @@ shiny::shinyApp(
         ),
         f7Tab(
           tabName = "Tab 3",
-          icon = "file_upload",
+          icon = f7Icon("cloud_upload"),
           active = FALSE,
           f7Shadow(
             intensity = 10,

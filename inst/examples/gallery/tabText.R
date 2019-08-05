@@ -1,6 +1,6 @@
 tabText <- f7Tab(
   tabName = "Text",
-  icon = "document_text_fill",
+  icon = f7Icon("document_text"),
 
   f7Align(
     side = "center",

@@ -1,6 +1,6 @@
 tabInputs <- f7Tab(
   tabName = "Inputs",
-  icon = "filter",
+  icon = f7Icon("rocket_fill"),
   active = TRUE,
 
   f7Align(

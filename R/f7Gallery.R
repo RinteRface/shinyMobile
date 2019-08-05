@@ -13,8 +13,8 @@
 f7Gallery <- function() { # nocov start
   if (!requireNamespace(package = "shiny"))
     message("Package 'shiny' is required to run this function")
-  if (!requireNamespace(package = "g2r"))
-    message("Package 'g2r' is required to run this function")
+  if (!requireNamespace(package = "plotly"))
+    message("Package 'plotly' is required to run this function")
 
   shiny::shinyAppFile(
     system.file(

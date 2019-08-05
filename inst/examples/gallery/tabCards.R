@@ -1,6 +1,6 @@
 tabCards <- f7Tab(
   tabName = "Cards",
-  icon = "layers_alt_fill",
+  icon = f7Icon("card"),
   active = FALSE,
 
   f7Align(

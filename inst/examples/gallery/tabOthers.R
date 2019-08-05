@@ -1,6 +1,6 @@
 tabOthers <- f7Tab(
   tabName = "Others",
-  icon = "more_vertical_round_fill",
+  icon = f7Icon("more_round"),
 
   f7Align(
     side = "center",

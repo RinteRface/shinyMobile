@@ -1,6 +1,6 @@
 tabInfo <- f7Tab(
   tabName = "Popups",
-  icon = "info_round_fill",
+  icon = f7Icon("info_round_fill"),
 
   f7Align(
     side = "center",

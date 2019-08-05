@@ -51,8 +51,7 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
         shiny::a(
           href = paste0("#", itemId),
           class = if (active) "tab-link tab-link-active" else "tab-link",
-          shiny::tags$i(class = "icon f7-icons ios-only", itemIcon),
-          shiny::tags$i(class = "icon material-icons md-only", itemIcon),
+          itemIcon,
           shiny::span(class = "tabbar-label", itemName)
         )
       } else {
@@ -98,7 +97,8 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
 #'
 #' @param ... Item content.
 #' @param tabName Item id. Must be unique.
-#' @param icon Item icon.
+#' @param icon Item icon. Expect \link{f7Icon} function with the suitable lib argument
+#' (either md or ios or NULL for native f7 icons).
 #' @param active Whether the tab is active at start. Do not select multiple tabs, only
 #' the first one will be set to active
 #'

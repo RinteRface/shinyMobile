@@ -11,7 +11,8 @@ f7Tab(..., tabName, icon = NULL, active = FALSE)
 
 \item{tabName}{Item id. Must be unique.}
 
-\item{icon}{Item icon.}
+\item{icon}{Item icon. Expect \link{f7Icon} function with the suitable lib argument
+(either md or ios or NULL for native f7 icons).}
 
 \item{active}{Whether the tab is active at start. Do not select multiple tabs, only
 the first one will be set to active}
