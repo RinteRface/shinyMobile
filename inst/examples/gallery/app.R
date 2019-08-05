@@ -1,6 +1,6 @@
 library(shiny)
 library(shinyF7)
-library(g2r)
+library(plotly)
 
 source("tabInputs.R")
 source("tabBtns.R")

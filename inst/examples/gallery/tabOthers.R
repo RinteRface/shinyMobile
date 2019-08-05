@@ -38,13 +38,10 @@ tabOthers <- f7Tab(
   f7Swiper(
     id = "my-swiper",
     f7Slide(
-      g2(gaus, asp(x, y, color = "count")) %>%
-        fig_bin(size_count = FALSE, type = "hexagon") %>%
-        gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+      plot_ly(z = ~volcano, type = "contour")
     ),
     f7Slide(
-      g2(iris, asp(Petal.Length, group = Species, color = Species)) %>%
-        fig_density()
+      plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
     )
   ),
 
