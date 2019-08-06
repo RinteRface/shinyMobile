@@ -41,12 +41,14 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom")) {
    shiny::singleton(
      shiny::tags$head(
        shiny::tags$script(
-         "$(function() {
-          var sheet = app.sheet.create({
-            el: '#, ", id, "'
-          });
-        });
-        "
+         paste(
+            "$(function() {
+               var sheet = app.sheet.create({
+                  el: '#", id, "'
+                });
+            });
+            "
+         )
        )
      )
    ),

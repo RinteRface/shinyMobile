@@ -4,7 +4,10 @@ $(function () {
   var ios = $('html').hasClass('ios');
   // only add the highlight bar if the theme is material
   if (!ios) {
-   $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: 33.333333333333336%; transform: translate3d(0%, 0px, 0px);"></span>');
+   // we programatically set up the with of the tabbar indicator
+   // which depends on the number of tab items in the tabbar...
+   segment_width = 100 / $('.toolbar-inner > a').length;
+   $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%; transform: translate3d(0%, 0px, 0px);"></span>');
   }
   $('.page-content.tab:eq(0)').addClass('tab-active');
 
