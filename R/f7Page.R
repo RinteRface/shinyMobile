@@ -40,7 +40,20 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
       shiny::tags$meta(name = "theme-color", content = "#2196f3"),
 
-      shiny::tags$title(title)
+      shiny::tags$title(title),
+
+      # handle background for dark mode
+      # need to remove the custom gainsboro color background
+      shiny::tags$script(
+        "$(function() {
+         var dark_mode = $('body').hasClass('theme-dark');
+         if (dark_mode) {
+          $('.page-content').css('background-color', '');
+          $('.page-content.tab').css('background-color', '');
+         }
+        });
+        "
+      )
     ),
     # Body
     addDeps(
