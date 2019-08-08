@@ -5,7 +5,7 @@
 \title{Create a Framework7 expandable card}
 \usage{
 f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
-  color = NULL)
+  color = NULL, img = NULL, fullBackground = FALSE)
 }
 \arguments{
 \item{...}{Card content.}
@@ -16,13 +16,17 @@ f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
 
 \item{subtitle}{Card subtitle.}
 
-\item{color}{Card background color. See \url{http://framework7.io/docs/cards.html}.}
+\item{color}{Card background color. See \url{http://framework7.io/docs/cards.html}.
+Not compatible with the img argument.}
+
+\item{img}{Card background image url. Tje JPG format is prefered. Not compatible
+with the color argument.}
 }
 \description{
 Build a Framework7 expandable card
 }
 \note{
-Does not render well without \link{f7SingleLayout} or \link{f7TabLayout}.
+img and color are not compatible. Choose one of them.
 }
 \examples{
 if(interactive()){
@@ -35,7 +39,7 @@ if(interactive()){
     f7Init(theme = "auto"),
     f7SingleLayout(
       navbar = f7Navbar(
-       title = "Progress",
+       title = "Expandable Cards",
        hairline = FALSE,
        shadow = TRUE
       ),
@@ -57,6 +61,25 @@ if(interactive()){
        to develop hybrid mobile apps or web apps with iOS or Android
        native look and feel. It is also an indispensable prototyping apps tool
        to show working app prototype as soon as possible in case you need to."
+      ),
+      f7ExpandableCard(
+       id = "card3",
+       title = "Expandable Card 3",
+       img = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+       "Framework7 - is a free and open source HTML mobile framework
+        to develop hybrid mobile apps or web apps with iOS or Android
+        native look and feel. It is also an indispensable prototyping apps tool
+        to show working app prototype as soon as possible in case you need to."
+      ),
+      f7ExpandableCard(
+       id = "card4",
+       title = "Expandable Card 4",
+       fullBackground = TRUE,
+       img = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+       "Framework7 - is a free and open source HTML mobile framework
+              to develop hybrid mobile apps or web apps with iOS or Android
+              native look and feel. It is also an indispensable prototyping apps tool
+              to show working app prototype as soon as possible in case you need to."
       )
     )
   ),

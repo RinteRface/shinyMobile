@@ -350,8 +350,11 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @param title Card title.
 #' @param subtitle Card subtitle.
 #' @param color Card background color. See \url{http://framework7.io/docs/cards.html}.
+#' Not compatible with the img argument.
+#' @param img Card background image url. Tje JPG format is prefered. Not compatible
+#' with the color argument.
 #'
-#' @note Does not render well without \link{f7SingleLayout} or \link{f7TabLayout}.
+#' @note img and color are not compatible. Choose one of them.
 #'
 #' @examples
 #' if(interactive()){
@@ -364,7 +367,7 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'     f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
-#'        title = "Progress",
+#'        title = "Expandable Cards",
 #'        hairline = FALSE,
 #'        shadow = TRUE
 #'       ),
@@ -386,6 +389,25 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'        to develop hybrid mobile apps or web apps with iOS or Android
 #'        native look and feel. It is also an indispensable prototyping apps tool
 #'        to show working app prototype as soon as possible in case you need to."
+#'       ),
+#'       f7ExpandableCard(
+#'        id = "card3",
+#'        title = "Expandable Card 3",
+#'        img = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+#'        "Framework7 - is a free and open source HTML mobile framework
+#'         to develop hybrid mobile apps or web apps with iOS or Android
+#'         native look and feel. It is also an indispensable prototyping apps tool
+#'         to show working app prototype as soon as possible in case you need to."
+#'       ),
+#'       f7ExpandableCard(
+#'        id = "card4",
+#'        title = "Expandable Card 4",
+#'        fullBackground = TRUE,
+#'        img = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+#'        "Framework7 - is a free and open source HTML mobile framework
+#'               to develop hybrid mobile apps or web apps with iOS or Android
+#'               native look and feel. It is also an indispensable prototyping apps tool
+#'               to show working app prototype as soon as possible in case you need to."
 #'       )
 #'     )
 #'   ),
@@ -396,15 +418,22 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, color = NULL) {
+f7ExpandableCard <- function(..., id = NULL, title = NULL,
+                             subtitle = NULL, color = NULL,
+                             img = NULL, fullBackground = FALSE) {
 
   cardColorCl <- if (!is.null(color)) paste0("bg-color-", color)
 
   # card header if any
   cardHeader <- if (!is.null(title)) {
     shiny::tags$div(
-      class = paste0("card-header display-block"),
+      class = if (fullBackground) {
+        paste0("card-header text-color-white")
+      } else {
+        paste0("card-header display-block")
+      },
       title,
+      style = if (!is.null(img) & !fullBackground) "height: 60px",
       if (!is.null(subtitle)) {
         shiny::tagList(
           shiny::br(),
@@ -418,9 +447,33 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, colo
   closeCard <- shiny::tags$a(
     href = "#",
     class = paste0("link card-close card-opened-fade-in color-white"),
-    style = "position: absolute; right: 15px; top: 15px",
+    style = "position: absolute; right: 15px; top: 15px;",
     shiny::tags$i(class = "icon f7-icons", "close_round_fill")
   )
+
+
+  # background image if any
+  backgroundImg <- if (!is.null(img)) {
+    if (fullBackground) {
+      shiny::tags$div(
+        style = paste0(
+          "background: url('", img, "') no-repeat center top;
+                background-size: cover;
+                height: 400px"
+        ),
+        closeCard,
+        cardHeader
+      )
+    } else {
+      shiny::tags$div(
+        style = paste0(
+          "background: url('", img, "') no-repeat center bottom;
+                background-size: cover;
+                height: 240px"
+        )
+      )
+    }
+  }
 
 
   # card content
@@ -446,6 +499,8 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, colo
   #)
 
 
+
+
   # main wrapper
   shiny::tagList(
     #cardJS,
@@ -455,12 +510,24 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL, subtitle = NULL, colo
       id = id,
       shiny::tags$div(
         class = "card-content",
-        shiny::tags$div(
-          class = cardColorCl,
-          style= "height: 300px;",
-          cardHeader,
-          closeCard
-        ),
+        if (!is.null(img)) {
+          if (!fullBackground) {
+            shiny::tagList(
+              backgroundImg,
+              closeCard,
+              cardHeader
+            )
+          } else {
+            backgroundImg
+          }
+        } else {
+          shiny::tags$div(
+            class = cardColorCl,
+            style = "height: 300px;",
+            cardHeader,
+            closeCard
+          )
+        },
         cardContent
       )#,
       #shiny::tags$div(class="card-expandable-size")
