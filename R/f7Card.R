@@ -353,6 +353,7 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #' Not compatible with the img argument.
 #' @param img Card background image url. Tje JPG format is prefered. Not compatible
 #' with the color argument.
+#' @param fullBackground Whether the image should cover the entire card.
 #'
 #' @note img and color are not compatible. Choose one of them.
 #'

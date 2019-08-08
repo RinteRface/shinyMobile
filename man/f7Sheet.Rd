@@ -4,7 +4,9 @@
 \alias{f7Sheet}
 \title{Create an f7 sheet modal}
 \usage{
-f7Sheet(..., id, label = "Open", orientation = c("top", "bottom"))
+f7Sheet(..., id, label = "Open", orientation = c("top", "bottom"),
+  swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
+  closeByOutsideClick = TRUE, swipeHandler = TRUE)
 }
 \arguments{
 \item{...}{Sheet content.}
@@ -14,6 +16,21 @@ f7Sheet(..., id, label = "Open", orientation = c("top", "bottom"))
 \item{label}{Trigger label.}
 
 \item{orientation}{"top" or "bottom".}
+
+\item{swipeToClose}{If TRUE, it can be closed by swiping down.}
+
+\item{swipeToStep}{If TRUE then sheet will be opened partially,
+and with swipe it can be further expanded.}
+
+\item{backdrop}{Enables Sheet backdrop (dark semi transparent layer
+behind). By default it is TRUE for MD and Aurora themes and
+FALSE for iOS theme.}
+
+\item{closeByOutsideClick}{When enabled, sheet will be closed on
+when click outside of it.}
+
+\item{swipeHandler}{Whether to display a swipe handler. TRUE by default.
+Need either swipeToClose or swipeToStep set to TRUE to work.}
 }
 \description{
 Create an f7 sheet modal

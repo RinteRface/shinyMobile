@@ -21,6 +21,8 @@ Not compatible with the img argument.}
 
 \item{img}{Card background image url. Tje JPG format is prefered. Not compatible
 with the color argument.}
+
+\item{fullBackground}{Whether the image should cover the entire card.}
 }
 \description{
 Build a Framework7 expandable card
