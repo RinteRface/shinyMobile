@@ -4,12 +4,14 @@
 \alias{f7Navbar}
 \title{Create a Framework7 Navbar}
 \usage{
-f7Navbar(title = NULL, hairline = TRUE, shadow = TRUE,
-  bigger = FALSE, left_panel = FALSE, right_panel = FALSE,
-  hideOnScroll = FALSE)
+f7Navbar(title = NULL, subtitle = NULL, hairline = TRUE,
+  shadow = TRUE, bigger = FALSE, left_panel = FALSE,
+  right_panel = FALSE, hideOnScroll = FALSE)
 }
 \arguments{
 \item{title}{Navbar title.}
+
+\item{subtitle}{Navbar subtitle.}
 
 \item{hairline}{Whether to display a thin border on the top of the navbar. TRUE by default.}
 

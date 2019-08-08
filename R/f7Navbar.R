@@ -3,6 +3,7 @@
 #' Build a Framework7 Navbar
 #'
 #' @param title Navbar title.
+#' @param subtitle Navbar subtitle.
 #' @param hairline Whether to display a thin border on the top of the navbar. TRUE by default.
 #' @param shadow Whether to display a shadow. TRUE by default.
 #' @param bigger Whether to display bigger title. FALSE by default.
@@ -15,7 +16,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
+f7Navbar <- function(title = NULL, subtitle = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
                      left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE) {
 
    navbarClass <- "navbar"
@@ -54,10 +55,18 @@ f7Navbar <- function(title = NULL, hairline = TRUE, shadow = TRUE, bigger = FALS
          if (bigger) {
             shiny::tags$div(
                class = "title-large",
-               shiny::tags$div(class = "title-large-text", title)
+               shiny::tags$div(
+                  class = "title-large-text",
+                  title,
+                  if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
+               )
             )
          } else {
-            shiny::tags$div(class = "title", title)
+            shiny::tags$div(
+               class = "title",
+               title,
+               if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
+            )
          },
          rightNav
       )
