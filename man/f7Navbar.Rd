@@ -4,11 +4,13 @@
 \alias{f7Navbar}
 \title{Create a Framework7 Navbar}
 \usage{
-f7Navbar(title = NULL, subtitle = NULL, hairline = TRUE,
-  shadow = TRUE, bigger = FALSE, left_panel = FALSE,
-  right_panel = FALSE, hideOnScroll = FALSE)
+f7Navbar(subNavbar = NULL, title = NULL, subtitle = NULL,
+  hairline = TRUE, shadow = TRUE, bigger = FALSE,
+  left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE)
 }
 \arguments{
+\item{subNavbar}{\link{f7SubNavbar} slot, if any.}
+
 \item{title}{Navbar title.}
 
 \item{subtitle}{Navbar subtitle.}

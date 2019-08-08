@@ -53,7 +53,21 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
          }
         });
         "
+      ),
+
+      # allow for subnavbar. If a subnavbar if provided in the navbar
+      # add a custom class to the page so that the subnavbar is rendered
+      shiny::tags$script(
+        "$(function() {
+         var subnavbar = $('.subnavbar');
+         if (subnavbar.length == 1) {
+          $('.page').addClass('page-with-subnavbar');
+         }
+        });
+        "
       )
+
+
     ),
     # Body
     addDeps(
@@ -173,7 +187,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'         #swipeable = TRUE,
 #'         f7Tab(
 #'           tabName = "Tab 1",
-#'           icon = "email",
+#'           icon = f7Icon("email"),
 #'           active = TRUE,
 #'           f7Shadow(
 #'             intensity = 10,
@@ -191,7 +205,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'         ),
 #'         f7Tab(
 #'           tabName = "Tab 2",
-#'           icon = "today",
+#'           icon = f7Icon("today"),
 #'           active = FALSE,
 #'           f7Shadow(
 #'             intensity = 10,
@@ -209,7 +223,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'         ),
 #'         f7Tab(
 #'           tabName = "Tab 3",
-#'           icon = "file_upload",
+#'           icon = f7Icon("cloud_upload"),
 #'           active = FALSE,
 #'           f7Shadow(
 #'             intensity = 10,

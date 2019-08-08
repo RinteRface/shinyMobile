@@ -2,6 +2,7 @@
 #'
 #' Build a Framework7 Navbar
 #'
+#' @param subNavbar \link{f7SubNavbar} slot, if any.
 #' @param title Navbar title.
 #' @param subtitle Navbar subtitle.
 #' @param hairline Whether to display a thin border on the top of the navbar. TRUE by default.
@@ -16,7 +17,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Navbar <- function(title = NULL, subtitle = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
+f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
                      left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE) {
 
    navbarClass <- "navbar"
@@ -68,7 +69,8 @@ f7Navbar <- function(title = NULL, subtitle = NULL, hairline = TRUE, shadow = TR
                if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
             )
          },
-         rightNav
+         rightNav,
+         subNavbar
       )
    )
 
@@ -89,4 +91,75 @@ f7Navbar <- function(title = NULL, subtitle = NULL, hairline = TRUE, shadow = TR
    } else {
       navTag
    }
+}
+
+
+#' Create a Framework7 sub navbar
+#'
+#' @param ... Any elements.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'      title = "Sub Navbar",
+#'      f7Init("ios"),
+#'      f7TabLayout(
+#'         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
+#'         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
+#'         f7Navbar(
+#'            title = "SubNavbar",
+#'            hairline = FALSE,
+#'            shadow = TRUE,
+#'            left_panel = TRUE,
+#'            right_panel = TRUE,
+#'            subNavbar = f7SubNavbar(
+#'               f7Button(label = "My button", outline = TRUE),
+#'               f7Button(label = "My button", outline = TRUE),
+#'               f7Button(label = "My button", outline = TRUE)
+#'            )
+#'         ),
+#'         f7Tabs(
+#'            animated = TRUE,
+#'            #swipeable = TRUE,
+#'            f7Tab(
+#'               tabName = "Tab 1",
+#'               icon = f7Icon("email"),
+#'               active = TRUE,
+#'               "Tab 1"
+#'            ),
+#'            f7Tab(
+#'               tabName = "Tab 2",
+#'               icon = f7Icon("today"),
+#'               active = FALSE,
+#'               "Tab 2"
+#'            ),
+#'            f7Tab(
+#'               tabName = "Tab 3",
+#'               icon = f7Icon("cloud_upload"),
+#'               active = FALSE,
+#'               "Tab 3"
+#'            )
+#'         )
+#'      )
+#'   ),
+#'   server = function(input, output) {}
+#'  )
+#' }
+f7SubNavbar <- function(...) {
+   shiny::tags$div(
+      class = "subnavbar",
+      shiny::tags$div(
+         class = "subnavbar-inner",
+         shiny::tags$div(
+            class = "segmented",
+            ...
+         )
+      )
+   )
 }
