@@ -35,7 +35,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Padding",
-    f7Init(theme = "auto"),
     cardTag
    ),
    server = function(input, output) {}

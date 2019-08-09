@@ -14,7 +14,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Icons",
-#'     f7Init(theme = "auto"),
 #'     f7ListCard(
 #'      f7ListCardItem(
 #'        title = tagList(

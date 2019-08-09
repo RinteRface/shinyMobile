@@ -74,7 +74,6 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Button Segments",
-#'     f7Init(theme = "md"),
 #'     f7BlockTitle(title = "Simple Buttons in a row container"),
 #'     f7Segment(
 #'      container = "row",

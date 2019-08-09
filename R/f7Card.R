@@ -365,7 +365,6 @@ f7MediaCardItem <- function(src = NULL, title = NULL, subtitle = NULL) {
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Expandable Cards",
-#'     f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'        title = "Expandable Cards",

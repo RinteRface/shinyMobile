@@ -24,7 +24,7 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
      title = "My app",
-     f7Init(theme = "auto"),
+     init = f7Init(theme = "auto"),
      f7Select(
        inputId = "variable",
        label = "Choose a variable:",

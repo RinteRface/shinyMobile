@@ -15,7 +15,6 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Links",
-#'     f7Init(theme = "auto"),
 #'     f7Link(label = "Google", src = "https://www.google.com"),
 #'     f7Link(label = "Google", src = "https://www.google.com", external = TRUE)
 #'    ),

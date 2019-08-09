@@ -26,7 +26,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Shadows",
-    f7Init(theme = "auto"),
     f7Shadow(
      intensity = 16,
      hover = TRUE,

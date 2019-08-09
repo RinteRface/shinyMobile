@@ -4,7 +4,8 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., init, title = NULL, dark_mode = FALSE, color = NULL)
+f7Page(..., init = f7Init(theme = "auto"), title = NULL,
+  dark_mode = FALSE, color = NULL)
 }
 \arguments{
 \item{...}{Any element.}

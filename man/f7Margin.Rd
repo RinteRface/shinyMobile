@@ -35,7 +35,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Margins",
-    f7Init(theme = "auto"),
     f7Margin(cardTag),
     cardTag
    ),

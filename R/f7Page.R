@@ -11,7 +11,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., init, title = NULL,
+f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
                    dark_mode = FALSE, color = NULL){
 
   bodyCl <- if (dark_mode) {
@@ -82,7 +82,6 @@ f7Page <- function(..., init, title = NULL,
 #'  library(shinyF7)
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     init = f7Init("ios"),
 #'     title = "My app",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
@@ -175,7 +174,6 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Tab Layout",
-#'     init = f7Init("ios"),
 #'     f7TabLayout(
 #'       panels = tagList(
 #'        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),

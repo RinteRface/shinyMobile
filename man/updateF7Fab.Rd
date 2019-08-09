@@ -22,7 +22,7 @@ if (interactive()) {
  library(shinyF7)
 
  ui <- f7Page(
-   f7Init(),
+   init = f7Init(theme = "ios"),
    f7Fab("trigger", "Click me")
  )
 

@@ -43,7 +43,6 @@ if (interactive()) {
     ui = f7Page(
       color = "pink",
       title = "My app",
-      f7Init("ios"),
       f7Sheet(
         id = "sheet1",
         label = "More",

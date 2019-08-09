@@ -35,7 +35,6 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    f7Init(theme = "auto"),
     color = "pink",
     title = "Floating action buttons",
     f7Fabs(
