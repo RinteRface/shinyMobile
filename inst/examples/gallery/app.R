@@ -77,5 +77,14 @@ shinyApp(
       )
     })
 
+    # toasts
+    observeEvent(input$toast, {
+      f7Toast(
+        session,
+        position = "bottom",
+        text = "I am a toast. Eat me!"
+      )
+    })
+
   }
 )

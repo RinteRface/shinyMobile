@@ -93,4 +93,18 @@ $(function () {
     });
   });
 
+
+  // handle toasts
+  Shiny.addCustomMessageHandler("toast", function(message) {
+    var toast = app.toast.create({
+      text: message.text,
+      position: message.position,
+      closeButton: message.closeButton,
+      closeButtonText: message.closeButtonText,
+      closeButtonColor: message.closeButtonColor,
+    });
+    // Open Notifications
+    toast.open();
+  });
+
 });

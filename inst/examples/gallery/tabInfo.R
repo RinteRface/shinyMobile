@@ -79,6 +79,11 @@ tabInfo <- f7Tab(
       "Click me!"
     ),
     targetId = "popoverTrigger"
-  )
+  ),
 
+  br(),
+
+  # toasts
+  f7BlockTitle(title = "Toasts") %>% f7Align("center"),
+  f7Button(inputId = "toast", label = "Open Toast", color = "lime")
 )
