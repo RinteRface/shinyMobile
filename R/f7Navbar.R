@@ -17,8 +17,9 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = TRUE, shadow = TRUE, bigger = FALSE,
-                     left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE) {
+f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = TRUE,
+                     shadow = TRUE, bigger = FALSE, left_panel = FALSE,
+                     right_panel = FALSE, hideOnScroll = FALSE) {
 
    navbarClass <- "navbar"
    if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
