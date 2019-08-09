@@ -36,4 +36,20 @@ $(function () {
    $('.page').addClass('page-with-subnavbar');
   }
 
+
+  // set up notifications
+  // for now, it only works for 1 notification at a time
+  Shiny.addCustomMessageHandler("notif", function(message) {
+    var notif = app.notification.create({
+      icon: '<i class="f7-icons">bolt_fill</i>',
+      title: ' ' + message.title,
+      titleRightText: ' ' + message.titleRightText,
+      subtitle: ' ' + message.subtitle,
+      text: ' ' + message.text,
+      closeTimeout: ' ' + message.closeTimeout,
+      closeButton: ' ' + message.closeButton,
+    });
+    // Open Notifications
+    notif.open();
+  });
 });
