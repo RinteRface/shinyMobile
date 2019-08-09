@@ -67,6 +67,18 @@ tabInfo <- f7Tab(
     f7Button(inputId = "goNotif1", "Open notification 1", color = "orange"),
     f7Button(inputId = "goNotif2", "Open notification 2", color = "purple"),
     f7Button(inputId = "goNotif3", "Open notification 3")
+  ),
+
+  br(),
+
+  # popovers
+  f7BlockTitle(title = "Popovers") %>% f7Align("center"),
+  f7PopoverTarget(
+    f7Button(
+      inputId = "popoverButton",
+      "Click me!"
+    ),
+    targetId = "popoverTrigger"
   )
 
 )

@@ -52,4 +52,45 @@ $(function () {
     // Open Notifications
     notif.open();
   });
+
+  // set up popovers
+  popoverIds = [];
+  getAllPopoverIds = function() {
+    //In data-popover attribute we specify CSS selector of popover we need to open
+    $('[data-popover]').each(function() {
+      popoverIds.push($(this).attr("data-popover"));
+    });
+  };
+
+  // call the function ...
+  getAllPopoverIds();
+
+  popoverIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      console.log('[data-popover = "' + index + '"]');
+      var popover = app.popover.create({
+        targetEl: '[data-popover = "' + index + '"]',
+        content: '<div class="popover">'+
+                 '<div class="popover-inner">'+
+                 '<div class="block">'+
+                  message.content +
+                '</div>'+
+                '</div>'+
+                '</div>',
+        // Events
+        on: {
+          open: function (popover) {
+            console.log('Popover open');
+          },
+          opened: function (popover) {
+            console.log('Popover opened');
+          },
+        }
+      });
+      $('[data-popover = "' + index + '"]').on('click', function() {
+        popover.open();
+      });
+    });
+  });
+
 });

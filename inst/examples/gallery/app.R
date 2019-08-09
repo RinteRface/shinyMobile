@@ -67,5 +67,15 @@ shinyApp(
         )
       })
     })
+
+    # popovers
+    observe({
+      f7Popover(
+        targetId = "popoverTrigger",
+        content = "This is a f7Button",
+        session
+      )
+    })
+
   }
 )

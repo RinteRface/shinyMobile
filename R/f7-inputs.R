@@ -532,7 +532,7 @@ f7Slider <- function(inputId, label, min, max, value,
                      step = NULL, scale = FALSE, vertical = FALSE) {
 
   # custom input binding
-  shiny::tagList(
+  shiny::tags$div(
     f7InputsDeps(),
     # HTML skeleton
     shiny::br(),
