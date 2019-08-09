@@ -39,7 +39,7 @@ shinyApp(
       )
     )
   ),
-  server = function(input, output) {
+  server = function(input, output, session) {
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$slider <- renderPrint(input$slider)
@@ -53,6 +53,19 @@ shinyApp(
 
     lapply(1:12, function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
+    })
+
+    # notifications
+    lapply(1:3, function(i) {
+      observeEvent(input[[paste0("goNotif", i)]],{
+        f7Notif(
+          text = "test",
+          title = paste("Notification", i),
+          subtitle = "A subtitle",
+          titleRightText = i,
+          session = session
+        )
+      })
     })
   }
 )

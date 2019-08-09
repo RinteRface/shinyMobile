@@ -56,6 +56,17 @@ tabInfo <- f7Tab(
     non intellegatur? Atqui perspicuum est hominem e
     corpore animoque constare, cum primae sint animi
     partes, secundae corporis."
+  ),
+
+  br(),
+  # notifications
+  f7BlockTitle(title = "Notifications") %>% f7Align("center"),
+
+  f7Segment(
+    container = "segment",
+    f7Button(inputId = "goNotif1", "Open notification 1", color = "orange"),
+    f7Button(inputId = "goNotif2", "Open notification 2", color = "purple"),
+    f7Button(inputId = "goNotif3", "Open notification 3")
   )
 
 )
