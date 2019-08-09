@@ -8,7 +8,7 @@
 #' @param animated Whether to show transition between tabs. TRUE by default.
 #' Not compatible with swipeable.
 #'
-#' @note swipeable does not work. Animated must also always be TRUE, for some reason.
+#' @note Animated does not work when set to FALSE and swipeable is FALSE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -66,6 +66,8 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
 
   # related page content
   contentTag <- shiny::tags$div(
+    # ios-edges necessary to have
+    # the good ios rendering
     class = "tabs ios-edges",
     lapply(1:len, function(i) { toolbarItems[[i]][[1]]})
   )

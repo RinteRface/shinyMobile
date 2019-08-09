@@ -4,10 +4,12 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., title = NULL, dark_mode = FALSE, color = NULL)
+f7Page(..., init, title = NULL, dark_mode = FALSE, color = NULL)
 }
 \arguments{
 \item{...}{Any element.}
+
+\item{init}{App configuration. See \link{f7Init}.}
 
 \item{title}{Page title.}
 

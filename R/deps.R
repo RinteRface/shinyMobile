@@ -9,28 +9,20 @@ appendDependencies <- function(x, value) {
   x
 }
 
-# Add dashboard dependencies to a tag object
-addDeps <- function(x) {
+# Add CSS dependencies to a tag object
+addCSSDeps <- function(x) {
 
   # CSS
   framework7_css <- "framework7.bundle.min.css"
   framework7_icons_css <- "framework7-icons.css"
   custom_css <- "my-app.css"
-
   # card extra elements
   social_cards_css <- "social-cards.css"
   card_img_css <- "card-img.css"
-
   # swiper css
   swiper_css <- "swiper.css"
-
   # grid extra css
   grid_css <- "grid-extra.css"
-
-  # JS
-  framework7_js <- "framework7.bundle.min.js"
-  custom_js <- "my-app.js"
-
   # material icons
   material_icons_css <- "material-icons.css"
 
@@ -40,7 +32,7 @@ addDeps <- function(x) {
       name = "framework7",
       version = "4.3.1",
       src = c(file = system.file("framework7-4.3.1", package = "shinyF7")),
-      script = c(framework7_js, custom_js),
+      script = NULL,
       stylesheet = c(
         framework7_css,
         material_icons_css,
@@ -53,8 +45,38 @@ addDeps <- function(x) {
       )
     )
   )
+  # currently, this piece is a bit useless since
+  # there is only 1 dependency. However, we never
+  # what will happen later!
   appendDependencies(x, f7Deps)
 }
+
+
+
+# Add JS dependencies to a tag object
+# for framework 7 htmldependency is not
+# what we want in order to include js files
+# we need the crapy tags$script function.
+# Indeed, framework7 js deps MUUUUUUST be
+# located at the end of the body.
+addJSDeps <- function() {
+
+  depsPath <- "framework7-4.3.1/"
+
+  # JS
+  framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
+  custom_js <- paste0(depsPath, "my-app.js")
+
+  shiny::tagList(
+    shiny::singleton(
+      shiny::tags$script(src = framework7_js)
+    ),
+    shiny::singleton(
+      shiny::tags$script(src = custom_js)
+    )
+  )
+}
+
 
 #' @importFrom utils packageVersion
 #' @importFrom htmltools htmlDependency

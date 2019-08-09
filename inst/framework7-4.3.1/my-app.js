@@ -19,4 +19,21 @@ $(function () {
     var newpath = pathname + workerId;
     window.history.replaceState( {} , 'newpath', newpath);
   }
+
+  // handle background for dark mode
+  // need to remove the custom gainsboro color   background
+  var dark_mode = $('body').hasClass('theme-dark');
+  if (dark_mode) {
+    $('.page-content').css('background-color', '');
+    $('.page-content.tab').css('background-color', '');
+  }
+
+
+      // allow for subnavbar. If a subnavbar if provided in the navbar
+      // add a custom class to the page so that the subnavbar is rendered
+  var subnavbar = $('.subnavbar');
+  if (subnavbar.length == 1) {
+   $('.page').addClass('page-with-subnavbar');
+  }
+
 });
