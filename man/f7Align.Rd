@@ -22,7 +22,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Align",
-    f7Init(theme = "auto"),
     f7Row(
      f7Align(h1("Left"), side = "left"),
      f7Align(h1("Center"), side = "center"),

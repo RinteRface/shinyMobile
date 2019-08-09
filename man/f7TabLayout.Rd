@@ -4,10 +4,20 @@
 \alias{f7TabLayout}
 \title{Create a Framework7 page with tab layout}
 \usage{
-f7TabLayout(...)
+f7TabLayout(..., navbar, panels = NULL, appbar = NULL,
+  statusbar = NULL)
 }
 \arguments{
-\item{...}{Slot for \link{f7Tabs} and/or \link{f7Navbar} and/or \link{f7Panel}.}
+\item{...}{Slot for \link{f7Tabs}.}
+
+\item{navbar}{Slot for \link{f7Navbar}.}
+
+\item{panels}{Slot for \link{f7Panel}.
+Wrap in \link[shiny]{tagList} if multiple panels.}
+
+\item{appbar}{Slot for \link{f7Appbar}.}
+
+\item{statusbar}{Slot for \link{f7Statusbar}.}
 }
 \description{
 Build a Framework7 page with tab layout
@@ -20,11 +30,12 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Tab Layout",
-    f7Init("ios"),
     f7TabLayout(
-      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
-      f7Navbar(
+      panels = tagList(
+       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
+       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+      ),
+      navbar = f7Navbar(
         title = "Tabs",
         hairline = FALSE,
         shadow = TRUE,
@@ -33,7 +44,6 @@ if(interactive()){
       ),
       f7Tabs(
         animated = TRUE,
-        #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
           icon = f7Icon("email"),

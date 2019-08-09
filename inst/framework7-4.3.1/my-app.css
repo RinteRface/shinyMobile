@@ -32,3 +32,9 @@
     border-radius: 3px;
     background: #666
 }
+
+/* Limit resizable panel width */
+.panel {
+  min-width: 100px;
+  max-width: 90vw;
+}

@@ -13,7 +13,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Grid",
-#'     f7Init(theme = "auto"),
 #'     f7Row(
 #'      f7Col(
 #'       f7Card(
@@ -103,7 +102,6 @@ f7Col <- function(...) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Align",
-#'     f7Init(theme = "auto"),
 #'     f7Flex(
 #'      f7Block(strong = TRUE),
 #'      f7Block(strong = TRUE),

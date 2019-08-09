@@ -3,6 +3,7 @@
 #' Build a Framework7 page
 #'
 #' @param ... Any element.
+#' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
 #' @param dark_mode Whether to enable the dark mode. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
@@ -10,7 +11,8 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
+f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
+                   dark_mode = FALSE, color = NULL){
 
   bodyCl <- if (dark_mode) {
     if (!is.null(color)) {
@@ -40,46 +42,23 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
       shiny::tags$meta(name = "theme-color", content = "#2196f3"),
 
-      shiny::tags$title(title),
-
-      # handle background for dark mode
-      # need to remove the custom gainsboro color background
-      shiny::tags$script(
-        "$(function() {
-         var dark_mode = $('body').hasClass('theme-dark');
-         if (dark_mode) {
-          $('.page-content').css('background-color', '');
-          $('.page-content.tab').css('background-color', '');
-         }
-        });
-        "
-      ),
-
-      # allow for subnavbar. If a subnavbar if provided in the navbar
-      # add a custom class to the page so that the subnavbar is rendered
-      shiny::tags$script(
-        "$(function() {
-         var subnavbar = $('.subnavbar');
-         if (subnavbar.length == 1) {
-          $('.page').addClass('page-with-subnavbar');
-         }
-        });
-        "
-      )
-
-
+      shiny::tags$title(title)
     ),
     # Body
-    addDeps(
+    addCSSDeps(
       shiny::tags$body(
         class = bodyCl,
         shiny::tags$div(
           id = "app",
-          #f7Init(theme = "ios"),
           ...
         )
       )
-    )
+    ),
+    # A bits strange but framework7.js codes do not
+    # work when placed in the head, as we traditionally do
+    # with shinydashboard or bs4Dash. We put them here so.
+    addJSDeps(),
+    init
   )
 }
 
@@ -92,6 +71,10 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #' @param ... Content.
 #' @param navbar Slot for \link{f7Navbar}.
 #' @param toolbar Slot for \link{f7Toolbar}.
+#' @param panels Slot for \link{f7Panel}.
+#' Wrap in \link[shiny]{tagList} if multiple panels.
+#' @param appbar Slot for \link{f7Appbar}.
+#' @param statusbar Slot for \link{f7Statusbar}.
 #'
 #' @examples
 #' if(interactive()){
@@ -99,7 +82,6 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #'  library(shinyF7)
 #'  shiny::shinyApp(
 #'   ui = f7Page(
-#'     f7Init("ios"),
 #'     title = "My app",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
@@ -140,16 +122,32 @@ f7Page <- function(..., title = NULL, dark_mode = FALSE, color = NULL){
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7SingleLayout <- function(..., navbar, toolbar = NULL) {
-  shiny::tags$div(
-    class = "page",
-    navbar,
-    toolbar,
-    # main content
+f7SingleLayout <- function(..., navbar, toolbar = NULL,
+                           panels = NULL, appbar = NULL,
+                           statusbar = NULL) {
+
+  shiny::tagList(
+    # status bar goes here
+    statusbar,
+    # appbar goes here
+    appbar,
+    # panels go here
+    panels,
     shiny::tags$div(
-      class = "page-content",
-      style = "background-color: gainsboro;",
-      ...
+      class = "view view-main",
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        navbar,
+        # toolbar goes here
+        toolbar,
+        shiny::tags$div(
+          class= "page-content",
+          style = "background-color: gainsboro;",
+          # page content
+          ...
+        )
+      )
     )
   )
 }
@@ -161,7 +159,12 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'
 #' Build a Framework7 page with tab layout
 #'
-#' @param ... Slot for \link{f7Tabs} and/or \link{f7Navbar} and/or \link{f7Panel}.
+#' @param ... Slot for \link{f7Tabs}.
+#' @param navbar Slot for \link{f7Navbar}.
+#' @param panels Slot for \link{f7Panel}.
+#' Wrap in \link[shiny]{tagList} if multiple panels.
+#' @param appbar Slot for \link{f7Appbar}.
+#' @param statusbar Slot for \link{f7Statusbar}.
 #'
 #' @examples
 #' if(interactive()){
@@ -171,11 +174,12 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Tab Layout",
-#'     f7Init("ios"),
 #'     f7TabLayout(
-#'       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-#'       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
-#'       f7Navbar(
+#'       panels = tagList(
+#'        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
+#'        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+#'       ),
+#'       navbar = f7Navbar(
 #'         title = "Tabs",
 #'         hairline = FALSE,
 #'         shadow = TRUE,
@@ -184,7 +188,6 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #'       ),
 #'       f7Tabs(
 #'         animated = TRUE,
-#'         #swipeable = TRUE,
 #'         f7Tab(
 #'           tabName = "Tab 1",
 #'           icon = f7Icon("email"),
@@ -262,9 +265,29 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7TabLayout <- function(...) {
-  shiny::tags$div(
-    class = "page",
-    ...
+f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = NULL) {
+
+  shiny::tagList(
+    # status bar goes here
+    statusbar,
+    # appbar goes here
+    appbar,
+    # panels go here
+    panels,
+    shiny::tags$div(
+      class = "view view-main",
+      # the page wrapper is important for tabs
+      # to swipe properly. It is not mentionned
+      # in the doc. Also necessary to adequately
+      # apply the dark mode
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        navbar,
+        # f7Tabs go here. The toolbar is
+        # automatically generated
+        ...
+      )
+    )
   )
 }

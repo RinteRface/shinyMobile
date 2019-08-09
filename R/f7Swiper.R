@@ -46,7 +46,6 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
 #'     f7Swiper(
 #'      id = "my-swiper",
 #'      f7Slide(

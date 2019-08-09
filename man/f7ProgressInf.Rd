@@ -23,7 +23,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Progress Infinite",
-    f7Init(theme = "auto"),
     f7Block(
      f7ProgressInf(),
      f7ProgressInf(color = "yellow")

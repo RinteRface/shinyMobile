@@ -21,7 +21,6 @@ if(interactive()){
 
  shiny::shinyApp(
   ui = f7Page(
-    f7Init(theme = "auto"),
     title = "Badges",
     f7Block(
      strong = TRUE,

@@ -26,7 +26,6 @@ if (interactive()) {
    ui = f7Page(
      color = "pink",
      title = "My app",
-     f7Init("ios"),
      f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",

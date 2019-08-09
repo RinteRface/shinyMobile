@@ -24,7 +24,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Progress",
-    f7Init(theme = "auto"),
     f7Block(
      f7Progress(id = "pg1", value = 10, color = "pink"),
      f7Progress(id = "pg2", value = 100, color = "green"),

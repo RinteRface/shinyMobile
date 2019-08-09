@@ -13,7 +13,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Timelines",
-#'     f7Init(theme = "auto"),
 #'     f7Timeline(
 #'      sides = TRUE,
 #'      f7TimelineItem(

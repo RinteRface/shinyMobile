@@ -16,7 +16,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Blocks",
-#'     f7Init(theme = "auto"),
 #'
 #'     f7BlockTitle(title = "A large title", size = "large"),
 #'     f7Block(

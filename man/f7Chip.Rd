@@ -36,7 +36,6 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Chips",
-    f7Init(theme = "auto"),
     f7Block(
      strong = TRUE,
      f7Chip(label = "Example Chip"),

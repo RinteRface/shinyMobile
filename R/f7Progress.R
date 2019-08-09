@@ -14,7 +14,6 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Progress",
-#'     f7Init(theme = "auto"),
 #'     f7Block(
 #'      f7Progress(id = "pg1", value = 10, color = "pink"),
 #'      f7Progress(id = "pg2", value = 100, color = "green"),
@@ -75,7 +74,6 @@ f7Progress <- function(id, value, color) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Progress Infinite",
-#'     f7Init(theme = "auto"),
 #'     f7Block(
 #'      f7ProgressInf(),
 #'      f7ProgressInf(color = "yellow")

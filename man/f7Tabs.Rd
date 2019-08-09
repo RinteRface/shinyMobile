@@ -19,7 +19,7 @@ Not compatible with swipeable.}
 Build a Framework7 tabs
 }
 \note{
-swipeable does not work. Animated must also always be TRUE, for some reason.
+Animated does not work when set to FALSE and swipeable is FALSE.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

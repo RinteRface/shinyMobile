@@ -14,11 +14,13 @@ shinyApp(
     title = "miniUI 2.0",
     dark_mode = FALSE,
     color = "teal",
-    f7Init(theme = "md"),
+    init = f7Init(theme = "ios"),
     f7TabLayout(
-      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
-      f7Navbar(
+      panels = tagList(
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "reveal"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+      ),
+      navbar = f7Navbar(
         title = "miniUI 2.0",
         subtitle = "for Shiny",
         hairline = TRUE,
@@ -37,7 +39,7 @@ shinyApp(
       )
     )
   ),
-  server = function(input, output) {
+  server = function(input, output, session) {
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$slider <- renderPrint(input$slider)
@@ -52,5 +54,37 @@ shinyApp(
     lapply(1:12, function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
     })
+
+    # notifications
+    lapply(1:3, function(i) {
+      observeEvent(input[[paste0("goNotif", i)]],{
+        f7Notif(
+          text = "test",
+          title = paste("Notification", i),
+          subtitle = "A subtitle",
+          titleRightText = i,
+          session = session
+        )
+      })
+    })
+
+    # popovers
+    observe({
+      f7Popover(
+        targetId = "popoverTrigger",
+        content = "This is a f7Button",
+        session
+      )
+    })
+
+    # toasts
+    observeEvent(input$toast, {
+      f7Toast(
+        session,
+        position = "bottom",
+        text = "I am a toast. Eat me!"
+      )
+    })
+
   }
 )

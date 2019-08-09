@@ -107,7 +107,7 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Card(
 #'      f7checkBox(
 #'       inputId = "check",
@@ -159,7 +159,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'   shiny::shinyApp(
 #'     ui = f7Page(
 #'      title = "My app",
-#'      f7Init(theme = "auto"),
+#'      init = f7Init(theme = "auto"),
 #'      f7checkBoxGroup(
 #'       inputId = "variable",
 #'       label = "Choose a variable:",
@@ -228,7 +228,7 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      f7Init(theme = "auto"),
+#'      init = f7Init(theme = "auto"),
 #'      f7Select(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
@@ -294,7 +294,7 @@ f7Select <- function(inputId, label, choices) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      f7Init(theme = "auto"),
+#'      init = f7Init(theme = "auto"),
 #'      f7Text(
 #'       inputId = "caption",
 #'       label = "Caption",
@@ -415,7 +415,7 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      f7Init(theme = "auto"),
+#'      init = f7Init(theme = "auto"),
 #'      f7Password(
 #'       inputId = "password",
 #'       label = "Password:",
@@ -478,7 +478,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Card(
 #'      f7Slider(
 #'       inputId = "obs",
@@ -509,7 +509,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Card(
 #'      f7Slider(
 #'       inputId = "obs",
@@ -532,7 +532,7 @@ f7Slider <- function(inputId, label, min, max, value,
                      step = NULL, scale = FALSE, vertical = FALSE) {
 
   # custom input binding
-  shiny::tagList(
+  shiny::tags$div(
     f7InputsDeps(),
     # HTML skeleton
     shiny::br(),
@@ -590,7 +590,7 @@ f7Slider <- function(inputId, label, min, max, value,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Stepper(
 #'      inputId = "stepper",
 #'      label = "My stepper",
@@ -686,7 +686,7 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Toggle(
 #'      inputId = "toggle",
 #'      label = "My toggle",
@@ -752,7 +752,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     f7Init(theme = "auto"),
+#'     init = f7Init(theme = "auto"),
 #'     f7Radio(
 #'      inputId = "radio",
 #'      label = "Choose a fruit:",

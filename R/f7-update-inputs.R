@@ -11,7 +11,7 @@
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    f7Init(),
+#'    init = f7Init(theme = "ios"),
 #'    f7Slider(
 #'     inputId = "controller",
 #'     label = "Number of observations",
@@ -74,7 +74,7 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    f7Init(),
+#'    init = f7Init(theme = "ios"),
 #'    f7Fab("trigger", "Click me"),
 #'    f7Text(
 #'     inputId = "text",
@@ -118,7 +118,7 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    f7Init(),
+#'    init = f7Init(theme = "ios"),
 #'    f7Fab("trigger", "Click me")
 #'  )
 #'

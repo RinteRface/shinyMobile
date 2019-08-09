@@ -24,7 +24,7 @@ if (interactive()) {
  library(shinyF7)
 
  ui <- f7Page(
-   f7Init(),
+   init = f7Init(theme = "ios"),
    f7Slider(
     inputId = "controller",
     label = "Number of observations",

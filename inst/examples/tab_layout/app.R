@@ -5,11 +5,13 @@ library(shinyWidgets)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    f7Init(theme = "md"),
+    init = f7Init(theme = "md"),
     f7TabLayout(
-      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover"),
-      f7Navbar(
+      panels = tagList(
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+      ),
+      navbar = f7Navbar(
         title = "Tabs",
         hairline = FALSE,
         shadow = TRUE,

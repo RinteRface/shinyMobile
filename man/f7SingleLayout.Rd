@@ -4,7 +4,8 @@
 \alias{f7SingleLayout}
 \title{Create a Framework7 single layout}
 \usage{
-f7SingleLayout(..., navbar, toolbar = NULL)
+f7SingleLayout(..., navbar, toolbar = NULL, panels = NULL,
+  appbar = NULL, statusbar = NULL)
 }
 \arguments{
 \item{...}{Content.}
@@ -12,6 +13,13 @@ f7SingleLayout(..., navbar, toolbar = NULL)
 \item{navbar}{Slot for \link{f7Navbar}.}
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
+
+\item{panels}{Slot for \link{f7Panel}.
+Wrap in \link[shiny]{tagList} if multiple panels.}
+
+\item{appbar}{Slot for \link{f7Appbar}.}
+
+\item{statusbar}{Slot for \link{f7Statusbar}.}
 }
 \description{
 Build a Framework7 single layout
@@ -22,7 +30,6 @@ if(interactive()){
  library(shinyF7)
  shiny::shinyApp(
   ui = f7Page(
-    f7Init("ios"),
     title = "My app",
     f7SingleLayout(
       navbar = f7Navbar(
