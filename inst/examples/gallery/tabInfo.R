@@ -85,5 +85,14 @@ tabInfo <- f7Tab(
 
   # toasts
   f7BlockTitle(title = "Toasts") %>% f7Align("center"),
-  f7Button(inputId = "toast", label = "Open Toast", color = "lime")
+  f7Button(inputId = "toast", label = "Open Toast", color = "lime"),
+
+  br(),
+
+  # Tooltips
+  f7BlockTitle(title = "Tooltips") %>% f7Align("center"),
+  f7Tooltip(
+    f7Badge("Hover on me", color = "pink"),
+    text = "A tooltip!"
+  )
 )
