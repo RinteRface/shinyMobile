@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a f7 popup — f7Popup • shinyF7</title>
+<title>Create a framework 7 popover — f7Popover • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a f7 popup — f7Popup" />
+<meta property="og:title" content="Create a framework 7 popover — f7Popover" />
 
-<meta property="og:description" content="Create a f7 popup" />
+<meta property="og:description" content="f7Popover has to be used in an oberve
+or observeEvent context. Only works for input elements!" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,37 +144,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a f7 popup</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Popup.R'><code>R/f7Popup.R</code></a></small>
-    <div class="hidden name"><code>f7Popup.Rd</code></div>
+    <h1>Create a framework 7 popover</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Popover.R'><code>R/f7Popover.R</code></a></small>
+    <div class="hidden name"><code>f7Popover.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a f7 popup</p>
+    <p>f7Popover has to be used in an oberve
+or observeEvent context. Only works for input elements!</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Popup</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='no'>title</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Popover</span>(<span class='no'>targetId</span>, <span class='no'>content</span>, <span class='no'>session</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Content.</p></td>
+      <th>targetId</th>
+      <td><p>Target to put the popover on.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Popup unique id.</p></td>
+      <th>content</th>
+      <td><p>Popover content.</p></td>
     </tr>
     <tr>
-      <th>label</th>
-      <td><p>Popup trigger label.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>Title.</p></td>
+      <th>session</th>
+      <td><p>shiny session.</p></td>
     </tr>
     </table>
     
@@ -182,27 +180,51 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Popover"</span>,
+     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"ios"</span>),
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Single Layout"</span>,
-        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-      ),
-      <span class='fu'>f7Popup</span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"popup1"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>,
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My first popup"</span>,
-       <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-         scelerisque est, at porta justo cursus ac"</span>
-      )
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(),
+       <span class='fu'><a href='f7PopoverTarget.html'>f7PopoverTarget</a></span>(
+         <span class='fu'><a href='f7Button.html'>f7Button</a></span>(
+           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>,
+           <span class='st'>"Go!"</span>
+         ),
+         <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test"</span>
+       ),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
+       <span class='fu'><a href='f7PopoverTarget.html'>f7PopoverTarget</a></span>(
+         <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
+           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"slider"</span>,
+           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Value"</span>,
+           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>20</span>
+         ),
+         <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test2"</span>
+       )
      )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'>f7Popover</span>(
+         <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
+         <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"This is a f7Button"</span>,
+         <span class='no'>session</span>
+       )
+     })
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'>f7Popover</span>(
+         <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test2"</span>,
+         <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"This is a f7Slider"</span>,
+         <span class='no'>session</span>
+       )
+     })
+   }
  )
 }</div></pre>
   </div>

@@ -154,7 +154,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Sheet</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>))</pre>
+    <pre class="usage"><span class='fu'>f7Sheet</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>),
+  <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>swipeToStep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closeByOutsideClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>swipeHandler</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,6 +177,31 @@
       <th>orientation</th>
       <td><p>"top" or "bottom".</p></td>
     </tr>
+    <tr>
+      <th>swipeToClose</th>
+      <td><p>If TRUE, it can be closed by swiping down.</p></td>
+    </tr>
+    <tr>
+      <th>swipeToStep</th>
+      <td><p>If TRUE then sheet will be opened partially,
+and with swipe it can be further expanded.</p></td>
+    </tr>
+    <tr>
+      <th>backdrop</th>
+      <td><p>Enables Sheet backdrop (dark semi transparent layer
+behind). By default it is TRUE for MD and Aurora themes and
+FALSE for iOS theme.</p></td>
+    </tr>
+    <tr>
+      <th>closeByOutsideClick</th>
+      <td><p>When enabled, sheet will be closed on
+when click outside of it.</p></td>
+    </tr>
+    <tr>
+      <th>swipeHandler</th>
+      <td><p>Whether to display a swipe handler. TRUE by default.
+Need either swipeToClose or swipeToStep set to TRUE to work.</p></td>
+    </tr>
     </table>
     
 
@@ -186,7 +213,6 @@
     <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
       <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-      <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='st'>"ios"</span>),
       <span class='fu'>f7Sheet</span>(
         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>,
         <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,

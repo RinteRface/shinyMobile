@@ -2,10 +2,13 @@ reference:
 - title: Basic functions
   desc: Page skeleton functions
   contents:
+  - '`f7Appbar`'
   - '`f7Init`'
   - '`f7Navbar`'
   - '`f7Page`'
   - '`f7Panel`'
+  - '`f7Statusbar`'
+  - '`f7SubNavbar`'
   - '`f7Tab`'
   - '`f7Tabs`'
   - '`f7Toolbar`'
@@ -88,8 +91,12 @@ reference:
 - title: Modals, Popups...
   desc: Functions that create layouts
   contents:
+  - '`f7Notif`'
+  - '`f7Popover`'
+  - '`f7PopoverTarget`'
   - '`f7Popup`'
   - '`f7Sheet`'
+  - '`f7Toast`'
 
 
 

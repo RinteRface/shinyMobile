@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a f7 popup — f7Popup • shinyF7</title>
+<title>Define a popover target — f7PopoverTarget • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a f7 popup — f7Popup" />
+<meta property="og:title" content="Define a popover target — f7PopoverTarget" />
 
-<meta property="og:description" content="Create a f7 popup" />
+<meta property="og:description" content="This must be used in combination of f7Popover.
+Only works for input elements!" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,76 +144,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a f7 popup</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Popup.R'><code>R/f7Popup.R</code></a></small>
-    <div class="hidden name"><code>f7Popup.Rd</code></div>
+    <h1>Define a popover target</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Popover.R'><code>R/f7Popover.R</code></a></small>
+    <div class="hidden name"><code>f7PopoverTarget.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a f7 popup</p>
+    <p>This must be used in combination of <a href='f7Popover.html'>f7Popover</a>.
+Only works for input elements!</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Popup</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='no'>title</span>)</pre>
+    <pre class="usage"><span class='fu'>f7PopoverTarget</span>(<span class='no'>tag</span>, <span class='no'>targetId</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Content.</p></td>
+      <th>tag</th>
+      <td><p>Tag that will be targeted. Must be a f7Input element.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Popup unique id.</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>Popup trigger label.</p></td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td><p>Title.</p></td>
+      <th>targetId</th>
+      <td><p>Popover id. Must correspond to the <a href='f7Popover.html'>f7Popover</a>targetId.</p></td>
     </tr>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Single Layout"</span>,
-        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-      ),
-      <span class='fu'>f7Popup</span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"popup1"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>,
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My first popup"</span>,
-       <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-         scelerisque est, at porta justo cursus ac"</span>
-      )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>
