@@ -93,6 +93,65 @@
 
 
 
+
+#' Create a Framework7 date input
+#'
+#' @param inputId Date input id.
+#' @param label Input label.
+#' @param value Start value.
+#' @param min Minimum date.
+#' @param max Maximum date.
+#' @param format Date format: "yyyy-mm-dd", for instance.
+#'
+#' @export
+f7Date <- function(inputId, label, value = NULL,
+                   min = NULL, max = NULL,
+                   format = "yyyy-mm-dd") {
+
+  # label
+  labelTag <- shiny::tags$div(
+    class = "block-title",
+    label
+  )
+
+  inputTag <- shiny::tags$input(
+    type = "text",
+    placeholder = value,
+    class = "calendar-input",
+    id = inputId,
+    `data-value` = value
+  )
+
+  wrapperTag <- shiny::tagList(
+    f7InputsDeps(),
+    labelTag,
+    # input tag
+    shiny::tags$div(
+      class = "list no-hairlines-md",
+      shiny::tags$ul(
+        shiny::tags$li(
+          shiny::tags$div(
+            class = "item-content item-input",
+            shiny::tags$div(
+              class = "item-inner",
+              shiny::tags$div(
+                class = "item-input-wrap",
+                inputTag
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+
+
+  wrapperTag
+
+}
+
+
+
 #' Create a F7 Checkbox
 #'
 #' @param inputId The input slot that will be used to access the value.

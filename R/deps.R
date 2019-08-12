@@ -91,7 +91,8 @@ f7InputsDeps <- function() {
     package = "shinyF7",
     script = c("sliderInputBinding.js",
                "stepperInputBinding.js",
-               "toggleInputBinding.js")
+               "toggleInputBinding.js",
+               "dateInputBinding.js")
   )
 }
 
