@@ -67,7 +67,6 @@ $(function () {
 
   popoverIds.forEach(function(index) {
     Shiny.addCustomMessageHandler(index, function(message) {
-      console.log('[data-popover = "' + index + '"]');
       var popover = app.popover.create({
         targetEl: '[data-popover = "' + index + '"]',
         content: '<div class="popover">'+

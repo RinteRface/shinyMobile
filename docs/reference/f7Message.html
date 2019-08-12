@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 page — f7Page • shinyF7</title>
+<title>Create a framework7 message — f7Message • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 page — f7Page" />
+<meta property="og:title" content="Create a framework7 message — f7Message" />
 
-<meta property="og:description" content="Build a Framework7 page" />
+<meta property="og:description" content="Create a framework7 message" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,52 +143,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 page</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Page.R'><code>R/f7Page.R</code></a></small>
-    <div class="hidden name"><code>f7Page.Rd</code></div>
+    <h1>Create a framework7 message</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Messages.R'><code>R/f7Messages.R</code></a></small>
+    <div class="hidden name"><code>f7Message.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 page</p>
+    <p>Create a framework7 message</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Page</span>(<span class='no'>...</span>, <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dark_mode</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Message</span>(<span class='no'>content</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>author</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>state</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"sent"</span>, <span class='st'>"received"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"text"</span>, <span class='st'>"img"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Any element.</p></td>
+      <th>content</th>
+      <td><p>Message content. If type is ing, content must
+be an url or path.</p></td>
     </tr>
     <tr>
-      <th>init</th>
-      <td><p>App configuration. See <a href='f7Init.html'>f7Init</a>.</p></td>
+      <th>src</th>
+      <td><p>Message author avatar</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>Page title.</p></td>
+      <th>author</th>
+      <td><p>Message author</p></td>
     </tr>
     <tr>
-      <th>dark_mode</th>
-      <td><p>Whether to enable the dark mode. FALSE by default.</p></td>
+      <th>date</th>
+      <td><p>Message date</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>Color theme: See <a href='http://framework7.io/docs/color-themes.html'>http://framework7.io/docs/color-themes.html</a>.</p></td>
+      <th>state</th>
+      <td><p>Whether it is a received or sent message.</p></td>
     </tr>
     <tr>
-      <th>preloader</th>
-      <td><p>Whether to display a preloader before the app starts.
-FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>loading_duration</th>
-      <td><p>Preloader duration.</p></td>
+      <th>type</th>
+      <td><p>Whether it is a text or image.</p></td>
     </tr>
     </table>
     
@@ -200,8 +195,6 @@ FALSE by default.</p></td>
       <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

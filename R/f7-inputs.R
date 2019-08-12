@@ -104,6 +104,32 @@
 #' @param format Date format: "yyyy-mm-dd", for instance.
 #'
 #' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shinyApp(
+#'    ui = f7Page(
+#'      preloader = FALSE,
+#'      color = "pink",
+#'      title = "My app",
+#'      init = f7Init(theme = "md"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Date"),
+#'        f7Date(
+#'          inputId = "date",
+#'          label = "Choose a date",
+#'          value = "2019-08-24"
+#'        ),
+#'        "The selected date is",
+#'        textOutput("selectDate")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      output$selectDate <- renderText(input$date)
+#'    }
+#'  )
+#' }
 f7Date <- function(inputId, label, value = NULL,
                    min = NULL, max = NULL,
                    format = "yyyy-mm-dd") {
@@ -143,10 +169,7 @@ f7Date <- function(inputId, label, value = NULL,
       )
     )
   )
-
-
   wrapperTag
-
 }
 
 

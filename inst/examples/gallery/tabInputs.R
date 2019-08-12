@@ -95,5 +95,27 @@ tabInputs <- f7Tab(
     label = "Choose a variable:",
     choices = colnames(mtcars)
   ),
-  verbatimTextOutput("select")
+  verbatimTextOutput("select"),
+  br(),
+
+  f7BlockTitle(title = "f7SmartSelect input") %>% f7Align(side = "center"),
+  f7SmartSelect(
+    inputId = "smartsel",
+    label = "Choose a variable:",
+    selected = "drat",
+    choices = colnames(mtcars)[-1],
+    type = "popup"
+  ),
+  tableOutput("smartdata"),
+  br(),
+
+  f7BlockTitle(title = "f7Date input") %>% f7Align(side = "center"),
+  f7Date(
+    inputId = "date",
+    label = "Choose a date",
+    value = "2019-08-24"
+  ),
+  "The selected date is",
+  textOutput("selectDate")
+
 )
