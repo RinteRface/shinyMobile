@@ -16,7 +16,7 @@
 #'      title = "My app",
 #'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(),
+#'        navbar = f7Navbar(title = "Messages"),
 #'        f7Messages(
 #'          id = "messagelist",
 #'          f7Message(

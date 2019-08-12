@@ -4,16 +4,10 @@ var f7DateBinding = new Shiny.InputBinding();
 $.extend(f7DateBinding, {
 
   initialize: function(el) {
-    var date = $(el).data("data-date");
-    // If initial_date is null, set to current date
-    if (date === undefined || date === null) {
-      // Get local date, but as UTC
-      date = new Date();
-    }
-
+    var today = new Date();
     app.calendar.create({
       inputEl: el,
-      value: [date]
+      value: [today]
     });
   },
 
@@ -23,16 +17,14 @@ $.extend(f7DateBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    $(el).on("change", function(el) {
-      console.log($(".calendar-day-selected").attr("data-date"));
-      var val = $(".calendar-day-selected").attr("data-date");
-      $(el).attr("value", val);
-    });
-    return app.calendar.get($(el)).value;
+    //return app.calendar.get($(el)).value;
   },
 
   // see updateF7Calendar
   setValue: function(el, value) {
+    //var val = $(".calendar-day-selected").attr("data-date");
+    //$(el).attr("value", val);
+    //console.log($(el).value);
     //$(el).data('immediate', true);
     app.calendar.setValue($(el)).value;
   },
@@ -43,7 +35,7 @@ $.extend(f7DateBinding, {
   },
 
   subscribe: function(el, callback) {
-    $(el).on("calendar:change.f7DateBinding", function(e) {
+    $(el).on("change.f7DateBinding", function(e) {
       callback();
     });
   },

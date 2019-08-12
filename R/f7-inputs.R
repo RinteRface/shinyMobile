@@ -118,8 +118,7 @@ f7Date <- function(inputId, label, value = NULL,
     type = "text",
     placeholder = value,
     class = "calendar-input",
-    id = inputId,
-    `data-value` = value
+    id = inputId
   )
 
   wrapperTag <- shiny::tagList(
@@ -334,6 +333,91 @@ f7Select <- function(inputId, label, choices) {
 }
 
 
+
+#' Create a Framework7 smart select
+#'
+#' It is nicer than the classic \link{f7Select}
+#' and allows for search.
+#'
+#' @param inputId Select input id.
+#' @param label Select input label.
+#' @param choices Select input choices.
+#' @param selected Default selected item.
+#' @param type Smart select type: either \code{c("sheet", "popup", "popover")}.
+#' Note that the search bar is only available when the type is popup.
+#' @param smart Whether to enable the search bar. TRUE by default.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#' library(shiny)
+#' library(shinyF7)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(theme = "ios"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "Smart select"),
+#'        f7SmartSelect(
+#'          inputId = "variable",
+#'          label = "Choose a variable:",
+#'          selected = "drat",
+#'          choices = colnames(mtcars)[-1],
+#'          type = "popup"
+#'        ),
+#'        tableOutput("data")
+#'      )
+#'    ),
+#'    server = function(input, output) {
+#'      output$data <- renderTable({
+#'        mtcars[, c("mpg", input$variable), drop = FALSE]
+#'      }, rownames = TRUE)
+#'    }
+#'  )
+#' }
+f7SmartSelect <- function(inputId, label, choices, selected = NULL,
+                          type = c("sheet", "popup", "popover"), smart = TRUE) {
+  options <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$option(
+      value = choices[[i]],
+      choices[[i]],
+      selected = if (!is.null(selected)) {
+        if (choices[[i]] == selected) NA else NULL
+      }
+    )
+  })
+
+  type <- match.arg(type)
+
+  shiny::tags$div(
+    class = "list",
+    shiny::tags$ul(
+      shiny::tags$li(
+        shiny::tags$a(
+          class = "item-link smart-select smart-select-init",
+          `data-open-in` = type,
+          `data-searchbar` = if (smart & type == "popup") "true" else NULL,
+          `data-searchbar-placeholder` = if (smart & type == "popup") "Search" else NULL,
+          shiny::tags$select(
+            id = inputId,
+            options
+          ),
+          shiny::tags$div(
+            class = "item-content",
+            shiny::tags$div(
+              class = "item-inner",
+              shiny::tags$div(
+                class = "item-title", label
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+}
 
 
 #' Create an f7 text input
