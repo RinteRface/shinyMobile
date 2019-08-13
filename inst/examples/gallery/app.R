@@ -2,13 +2,20 @@ library(shiny)
 library(shinyF7)
 library(plotly)
 
-source("tabInputs.R")
-source("tabBtns.R")
-source("tabCards.R")
-source("tabText.R")
-source("tabInfo.R")
-source("tabOthers.R")
+# source modules
+e <- environment()
+path <- system.file("examples/gallery/tabs/", package = "shinyF7")
+sapply(
+  list.files(
+    path,
+    include.dirs = FALSE,
+    pattern = ".R",
+    ignore.case = TRUE
+  ),
+  function(f) { source(paste0(path, f), local = e) }
+)
 
+# shiny app
 shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
@@ -27,6 +34,16 @@ shinyApp(
         shadow = TRUE,
         left_panel = TRUE,
         right_panel = TRUE
+      ),
+      # recover the color picker input and update the text background
+      # color accordingly.
+      shiny::tags$script(
+        "$(function() {
+          Shiny.addCustomMessageHandler('text-color', function(message) {
+            $('#colorPickerVal').css('background-color', message);
+          });
+        });
+        "
       ),
       f7Tabs(
         animated = TRUE,
@@ -60,6 +77,11 @@ shinyApp(
     })
     output$pickerval <- renderText(input$mypicker)
     output$colorPickerVal <- renderText(input$mycolorpicker)
+
+    # send the color picker input to JS
+    observe({
+      session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
+    })
 
     # notifications
     lapply(1:3, function(i) {
