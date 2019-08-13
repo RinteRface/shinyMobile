@@ -16,6 +16,25 @@ $.extend(f7ToggleBinding, {
     return app.toggle.get($(el)).checked;
   },
 
+  // see updateF7Toggle
+  setValue: function(el, value) {
+    var t = app.toggle.get($(el));
+    t.checked = value;
+  },
+
+  // see updateF7Toggle
+  receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("checked")) {
+      this.setValue(el, data.checked);
+    }
+    if (data.hasOwnProperty("color")) {
+      $(el).removeClass (function (index, className) {
+    return (className.match (/(^|\s)color-\S+/g) || []).join(' ');
+});
+      $(el).addClass("color-" + data.color);
+    }
+  },
+
   subscribe: function(el, callback) {
     $(el).on("toggle:change.f7ToggleBinding", function(e) {
       // no need to debounce here

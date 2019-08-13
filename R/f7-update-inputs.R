@@ -304,3 +304,62 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
   ))
   session$sendInputMessage(inputId, message)
 }
+
+
+
+
+
+#' Change the value of a toggle input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param checked Whether the toggle is TRUE or FALSE.
+#' @param color Toggle color.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(theme = "auto"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "Update toggle"),
+#'        f7Card(
+#'          f7Button(inputId = "update", label = "Update toggle"),
+#'          f7Toggle(
+#'            inputId = "toggle",
+#'            label = "My toggle",
+#'            color = "pink",
+#'            checked = FALSE
+#'          ),
+#'          verbatimTextOutput("test")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      output$test <- renderPrint({input$toggle})
+#'
+#'      observeEvent(input$update, {
+#'        updateF7Toggle(
+#'          session,
+#'          inputId = "toggle",
+#'          checked = TRUE,
+#'          color = "green"
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
+  message <- dropNulls(list(
+    checked = checked,
+    color = color
+  ))
+  session$sendInputMessage(inputId, message)
+}

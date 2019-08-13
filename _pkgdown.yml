@@ -53,9 +53,10 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`updateF7Checkbox`'
+  - '`updateF7Slider`'
   - '`updateF7Fab`'
   - '`updateF7Text`'
-  - '`updateF7Slider`'
+  - '`updateF7Toggle`'
 
 
 

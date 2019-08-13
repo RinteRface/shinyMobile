@@ -37,7 +37,6 @@ $.extend(f7SliderBinding, {
       } else {
         data.scale = false;
       }
-      console.log(data.scale);
       r.scale = data.scale;
     }
     r.updateScale();
@@ -46,7 +45,16 @@ $.extend(f7SliderBinding, {
     // updating the value. Otherwise the value will
     // be diplayed in the old scale, which is weird...
     if (data.hasOwnProperty('value')) {
-      this.setValue(el, data.value);
+      // handle the case where the updated slider
+      // switch from a dual value to a single value slider.
+      var val = data.value;
+      if ($.isArray(val)) {
+        this.setValue(el, val);
+      } else {
+        r.dual = false;
+        r.updateScale();
+        this.setValue(el, val);
+      }
     }
   },
 
