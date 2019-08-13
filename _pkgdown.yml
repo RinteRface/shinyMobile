@@ -35,8 +35,10 @@ reference:
   contents:
   - '`f7checkBox`'
   - '`f7checkBoxGroup`'
+  - '`f7ColorPicker`'
   - '`f7Date`'
   - '`f7Password`'
+  - '`f7Picker`'
   - '`f7Radio`'
   - '`f7Select`'
   - '`f7Slider`'

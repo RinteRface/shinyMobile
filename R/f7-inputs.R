@@ -1,95 +1,261 @@
-# #' Create a Framework7 picker input
-# #'
-# #' Build a Framework7 picker input
-# #'
-# #' @param inputId Picker input id.
-# #' @param label Picker label.
-# #' @param placeHolder Text to write in the container.
-# #' @param choices Picker choices.
-# #'
-# #' @examples
-# #' if(interactive()){
-# #'  library(shiny)
-# #'  library(shinyF7)
-# #'
-# #'  shiny::shinyApp(
-# #'    ui = f7Page(
-# #'     title = "My app",
-# #'     f7pickerInput(
-# #'      inputId = "my-picker",
-# #'      placeHolder = "Some text here!",
-# #'      label = "Picker Input",
-# #'      choices = c('a', 'b', 'c')
-# #'     )
-# #'    ),
-# #'    server = function(input, output) {}
-# #'  )
-# #' }
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @export
-# f7pickerInput <- function(inputId, label, placeHolder = NULL, choices) {
-#
-#   # input tag
-#   inputTag <- shiny::tags$div(
-#     class = "item-content item-input",
-#     shiny::tags$div(
-#       class = "item-inner",
-#       shiny::tags$div(
-#         class = "item-input-wrap",
-#         shiny::tags$input(
-#           type = "text",
-#           placeholder = placeHolder,
-#           id = inputId
-#         )
-#       )
-#     )
-#   )
-#
-#   # JS
-#   choices <- jsonlite::toJSON(choices)
-#   choices <- paste("values: ", choices)
-#
-#   pickerJS <- shiny::tags$script(
-#     paste0(
-#       "$(function() {
-#       var picker = app.picker.create({
-#           inputEl: '#", inputId,"',
-#           cols: [
-#             {
-#               textAlign: 'center',
-#               ", choices,"
-#             }
-#           ]
-#          });
-#       });
-#         "
-#     )
-#   )
-#
-#   # tag wrapper
-#   mainTag <- shiny::tags$div(
-#     class = "block-title",
-#     label,
-#     id = inputId,
-#     shiny::tags$div(
-#       class = "list no-hairlines-md",
-#       shiny::tags$ul(
-#         shiny::tags$li(
-#           inputTag
-#         )
-#       )
-#     )
-#   )
-#
-#   # final input tag
-#   shiny::tagList(
-#     shiny::singleton(shiny::tags$head(pickerJS)),
-#     mainTag
-#   )
-#
-# }
+#' Create a Framework7 picker input
+#'
+#' Build a Framework7 picker input
+#'
+#' @param inputId Picker input id.
+#' @param label Picker label.
+#' @param placeholder Text to write in the container.
+#' @param choices Picker choices.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(theme = "ios"),
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "Picker"),
+#'      f7Picker(
+#'       inputId = "mypicker",
+#'       placeholder = "Some text here!",
+#'       label = "Picker Input",
+#'       choices = c('a', 'b', 'c')
+#'      ),
+#'      textOutput("pickerval")
+#'     )
+#'    ),
+#'    server = function(input, output) {
+#'     output$pickerval <- renderText(input$mypicker)
+#'    }
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7Picker<- function(inputId, label, placeholder = NULL, choices) {
+
+  # input tag
+  inputTag <- shiny::tags$div(
+    class = "item-content item-input",
+    shiny::tags$div(
+      class = "item-inner",
+      shiny::tags$div(
+        class = "item-input-wrap",
+        shiny::tags$input(
+          type = "text",
+          placeholder = placeholder,
+          id = inputId,
+          class = "picker-input"
+        )
+      )
+    )
+  )
+
+  # JS
+  choices <- jsonlite::toJSON(choices)
+  # We define a global variable that is
+  # reused in the pickerInputBinding.js
+  pickerVals <- shiny::tags$script(
+    paste0(
+      "var vals = ", choices, ";
+        "
+    )
+  )
+
+  # tag wrapper
+  mainTag <- shiny::tags$div(
+    class = "block-title",
+    label,
+    id = inputId,
+    shiny::tags$div(
+      class = "list no-hairlines-md",
+      shiny::tags$ul(
+        shiny::tags$li(
+          inputTag
+        )
+      )
+    )
+  )
+
+  # final input tag
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::singleton(pickerVals),
+    mainTag
+  )
+
+}
+
+
+f7ColorPickerPalettes <- list(
+  c('#FFEBEE', '#FFCDD2', '#EF9A9A',
+    '#E57373', '#EF5350', '#F44336',
+    '#E53935', '#D32F2F', '#C62828',
+    '#B71C1C'),
+  c('#F3E5F5', '#E1BEE7', '#CE93D8',
+    '#BA68C8', '#AB47BC', '#9C27B0',
+    '#8E24AA', '#7B1FA2', '#6A1B9A',
+    '#4A148C'),
+  c('#E8EAF6', '#C5CAE9', '#9FA8DA',
+    '#7986CB', '#5C6BC0', '#3F51B5',
+    '#3949AB', '#303F9F', '#283593',
+    '#1A237E'),
+  c('#E1F5FE', '#B3E5FC', '#81D4FA',
+    '#4FC3F7', '#29B6F6', '#03A9F4',
+    '#039BE5', '#0288D1', '#0277BD',
+    '#01579B'),
+  c('#E0F2F1', '#B2DFDB', '#80CBC4',
+    '#4DB6AC', '#26A69A', '#009688',
+    '#00897B', '#00796B', '#00695C',
+    '#004D40'),
+  c('#F1F8E9', '#DCEDC8', '#C5E1A5',
+    '#AED581', '#9CCC65', '#8BC34A',
+    '#7CB342', '#689F38', '#558B2F',
+    '#33691E'),
+  c('#FFFDE7', '#FFF9C4', '#FFF59D',
+    '#FFF176', '#FFEE58', '#FFEB3B',
+    '#FDD835', '#FBC02D', '#F9A825',
+    '#F57F17'),
+  c('#FFF3E0', '#FFE0B2', '#FFCC80',
+    '#FFB74D', '#FFA726', '#FF9800',
+    '#FB8C00', '#F57C00', '#EF6C00',
+    '#E65100')
+)
+
+f7ColorPickerModules <- c(
+  "wheel", "sb-spectrum",
+  "hue-slider", "hs-spectrum",
+  "brightness-slider", "rgb-slider",
+  "hsb-sliders", "alpha-slider",
+  "rgb-bars", "palette", "hex",
+  "current-color", "initial-current-colors"
+)
+
+
+
+globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
+
+#' Create a Framework7 color picker input
+#'
+#' @param inputId Color picker input.
+#' @param label Color picker label.
+#' @param value Color picker value. hex, rgb, hsl, hsb, alpha, hue,
+#' rgba, hsla are supported.
+#' @param placeholder Color picker placeholder.
+#' @param modules Picker color modules. Choose at least one.
+#' @param palettes Picker color predefined palettes. Must be a list
+#' of color vectors, each value specified as HEX string.
+#' @param sliderValue When enabled, it will display sliders values.
+#' @param sliderValueEditable When enabled, it will display sliders values as <input>
+#' elements to edit directly.
+#' @param sliderLabel When enabled, it will display sliders labels with text.
+#' @param hexLabel When enabled, it will display HEX module label text, e.g. HEX.
+#' @param hexValueEditable When enabled, it will display HEX module value as <input> element to edit directly.
+#' @param groupedModules When enabled it will add more exposure
+#' to sliders modules to make them look more separated.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(theme = "ios"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "Color picker"),
+#'        f7ColorPicker(
+#'          inputId = "mycolorpicker",
+#'          placeholder = "Some text here!",
+#'          label = "Select a color"
+#'        ),
+#'        "The picker value is:",
+#'        textOutput("colorPickerVal")
+#'      )
+#'    ),
+#'    server = function(input, output) {
+#'      output$colorPickerVal <- renderText(input$mycolorpicker)
+#'    }
+#'  )
+#' }
+f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
+                          modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
+                          sliderValue =  TRUE, sliderValueEditable = TRUE,
+                          sliderLabel = TRUE, hexLabel = TRUE,
+                          hexValueEditable = TRUE, groupedModules = TRUE) {
+
+  # if the value is provided as a rgb, hsl, hsb, rgba or hsla
+  if (is.numeric(value) & length(value) > 1) value <- jsonlite::toJSON(value)
+
+  modules <- jsonlite::toJSON(modules)
+  palettes <- jsonlite::toJSON(palettes)
+  # We define a global variable that is
+  # reused in the pickerInputBinding.js
+  pickerProps <- shiny::tags$script(
+    paste0(
+      'var colorPickerModules = ', modules, ';
+       var colorPickerPalettes = ', palettes, ';
+       var colorPickerValue = "', value, '";
+       var colorPickerSliderValue = ', tolower(sliderValue), ';
+       var colorPickerSliderValueEditable = ', tolower(sliderValueEditable), ';
+       var colorPickerSliderLabel = ', tolower(sliderLabel), ';
+       var colorPickerHexLabel = ', tolower(hexLabel), ';
+       var colorPickerHexValueEditable = ', tolower(hexValueEditable), ';
+       var colorPickerGroupedModules = ', tolower(groupedModules), ';
+      '
+    )
+  )
+
+
+  inputTag <- shiny::tags$input(
+    type = "text",
+    placeholder = placeholder,
+    id = inputId,
+    class = "color-picker-input"
+  )
+
+  wrapperTag <- shiny::tags$div(
+    class = "list no-hairlines-md",
+    shiny::tags$ul(
+      shiny::tags$li(
+        shiny::tags$div(
+          class = "item-content item-input",
+          shiny::tags$div(
+            class = "item-media",
+            shiny::tags$i(
+              class = "icon demo-list-icon",
+              id = paste0(inputId, "-value")
+            )
+          ),
+          shiny::tags$div(
+            class = "item-inner",
+            shiny::tags$div(
+              class = "item-input-wrap",
+              inputTag
+            )
+          )
+        )
+      )
+    )
+  )
+
+  labelTag <- shiny::tags$div(class = "block-title", label)
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::singleton(pickerProps),
+    labelTag,
+    wrapperTag
+  )
+
+}
+
 
 
 

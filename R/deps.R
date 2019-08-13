@@ -92,7 +92,9 @@ f7InputsDeps <- function() {
     script = c("sliderInputBinding.js",
                "stepperInputBinding.js",
                "toggleInputBinding.js",
-               "dateInputBinding.js")
+               "dateInputBinding.js",
+               "pickerInputBinding.js",
+               "colorPickerInputBinding.js")
   )
 }
 
