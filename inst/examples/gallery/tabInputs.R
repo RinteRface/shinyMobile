@@ -116,6 +116,26 @@ tabInputs <- f7Tab(
     value = "2019-08-24"
   ),
   "The selected date is",
-  textOutput("selectDate")
+  textOutput("selectDate"),
+  br(),
 
+  f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),
+  f7Picker(
+    inputId = "mypicker",
+    placeholder = "Some text here!",
+    label = "Picker Input",
+    choices = c('a', 'b', 'c')
+  ),
+  textOutput("pickerval"),
+  br(),
+
+
+  f7BlockTitle(title = "f7ColorPicker input") %>% f7Align(side = "center"),
+  f7ColorPicker(
+    inputId = "mycolorpicker",
+    placeholder = "Some text here!",
+    label = "Select a color"
+  ),
+  "The picker value is:",
+  textOutput("colorPickerVal")
 )

@@ -58,6 +58,8 @@ shinyApp(
     lapply(1:12, function(i) {
       output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
     })
+    output$pickerval <- renderText(input$mypicker)
+    output$colorPickerVal <- renderText(input$mycolorpicker)
 
     # notifications
     lapply(1:3, function(i) {
