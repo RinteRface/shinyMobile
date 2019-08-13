@@ -55,6 +55,7 @@ reference:
   - '`updateF7Checkbox`'
   - '`updateF7Fab`'
   - '`updateF7Text`'
+  - '`updateF7Slider`'
 
 
 

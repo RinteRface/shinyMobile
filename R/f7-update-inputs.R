@@ -240,63 +240,67 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 
 
 
-# #' Change the value of a slider input on the client
-# #'
-# #' @param session The session object passed to function given to the server.
-# #' @param inputId The id of the input object.
-# #' @param label The label to set for the input object.
-# #' @param min Slider minimum range.
-# #' @param max Slider maximum range
-# #' @param value Slider value or a vector containing 2 values (for a range).
-# #' @param step Slider increase step size
-# #' @param scale Slider scale.
-# #'
-# #' @export
-# #'
-# #' @examples
-# #' if(interactive()){
-# #'  library(shiny)
-# #'  library(shinyF7)
-# #'
-# #'  shiny::shinyApp(
-# #'    ui = f7Page(
-# #'      title = "My app",
-# #'      f7Init(theme = "auto"),
-# #'      f7Card(
-# #'        f7Slider(
-# #'          inputId = "obs",
-# #'          label = "Number of observations",
-# #'          max = 1000,
-# #'          min = 0,
-# #'          value = 100,
-# #'          scale = TRUE
-# #'        ),
-# #'        verbatimTextOutput("test"),
-# #'        footer = f7Fab("update", "Update")
-# #'      ),
-# #'      plotOutput("distPlot")
-# #'    ),
-# #'    server = function(input, output, session) {
-# #'      output$test <- renderPrint({input$obs})
-# #'      output$distPlot <- renderPlot({
-# #'        hist(rnorm(input$obs))
-# #'      })
-# #'
-# #'      observeEvent(input$update, {
-# #'        updateF7Slider(session, inputId = "obs", value = 500)
-# #'      })
-# #'    }
-# #'  )
-# #' }
-# updateF7Slider <- function(session, inputId, label = NULL, min = NULL, max = NULL, value = NULL,
-#                            step = NULL, scale = FALSE) {
-#   message <- dropNulls(list(
-#     label = label,
-#     value = value,
-#     min = min,
-#     max = max,
-#     step = step,
-#     scale = scale
-#   ))
-#   session$sendInputMessage(inputId, message)
-# }
+#' Change the value of a slider input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param min Slider minimum range.
+#' @param max Slider maximum range
+#' @param value Slider value or a vector containing 2 values (for a range).
+#' @param scale Slider scale.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(theme = "auto"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7Slider"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update slider"),
+#'         f7Slider(
+#'           inputId = "obs",
+#'           label = "Range values",
+#'           max = 500,
+#'           min = 0,
+#'           value = c(50, 100),
+#'           scale = TRUE,
+#'           vertical = FALSE
+#'         ),
+#'         verbatimTextOutput("test")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$test <- renderPrint({input$obs})
+#'
+#'     observeEvent(input$update, {
+#'       updateF7Slider(
+#'         session,
+#'         inputId = "obs",
+#'         value = c(20, 40),
+#'         min = 10,
+#'         max = 50,
+#'         scale = FALSE
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NULL,
+                           scale = FALSE) {
+  message <- dropNulls(list(
+    value = value,
+    min = min,
+    max = max,
+    scale = scale
+  ))
+  session$sendInputMessage(inputId, message)
+}

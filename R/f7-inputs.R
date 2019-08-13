@@ -863,28 +863,39 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 f7Slider <- function(inputId, label, min, max, value,
                      step = NULL, scale = FALSE, vertical = FALSE) {
 
-  # custom input binding
+  rangeTag <- shiny::tags$div(
+    class = "range-slider",
+    id = inputId,
+    style = if (vertical) {
+      if (scale) {
+        "height: 160px; margin: 10px;"
+      } else {
+        "height: 160px;"
+      }
+    } else {
+      NULL
+    },
+    `data-dual` = if (length(value) == 2) "true" else NULL,
+    `data-min`= min,
+    `data-max`= max,
+    `data-vertical` = tolower(vertical),
+    `data-label`= "true",
+    `data-step`= if (is.null(step)) 5 else step,
+    `data-value`= if (length(value) == 1) value else NULL,
+    `data-value-left` = if (length(value) == 2) value[1] else NULL,
+    `data-value-right` = if (length(value) == 2) value[2] else NULL,
+    `data-scale`= tolower(scale),
+    `data-scale-steps`= if (is.null(step)) 5 else step,
+    `data-scale-sub-steps` = "4"
+  )
+
+  # wrapper
   shiny::tags$div(
     f7InputsDeps(),
     # HTML skeleton
     shiny::br(),
     shiny::tags$div(class = "block-title", label),
-    shiny::tags$div(
-      class = "range-slider",
-      id = inputId,
-      `data-dual` = if (length(value) == 2) "true" else NULL,
-      `data-min`= min,
-      `data-max`= max,
-      `data-vertical` = tolower(vertical),
-      `data-label`= "true",
-      `data-step`= if (is.null(step)) 5 else step,
-      `data-value`= if (length(value) == 1) value else NULL,
-      `data-value-left` = if (length(value) == 2) value[1] else NULL,
-      `data-value-right` = if (length(value) == 2) value[2] else NULL,
-      `data-scale`= tolower(scale),
-      `data-scale-steps`= if (is.null(step)) 5 else step,
-      `data-scale-sub-steps` = "4"
-    )
+    rangeTag
   )
 }
 
