@@ -363,3 +363,105 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
   ))
   session$sendInputMessage(inputId, message)
 }
+
+
+
+
+#' Change the value of a stepper input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param min Stepper minimum value.
+#' @param max Stepper maximum value.
+#' @param value Stepper value. Must belong to \[min, max\].
+#' @param step increment step. 1 by default.
+#' @param fill Whether to fill the stepper. FALSE by default.
+#' @param rounded Whether to round the stepper. FALSE by default.
+#' @param raised Whether to put a relied around the stepper. FALSE by default.
+#' @param size Stepper size: "small", "large" or NULL.
+#' @param color Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
+#' @param wraps In wraps mode incrementing beyond maximum value sets value to minimum value,
+#' likewise, decrementing below minimum value sets value to maximum value. FALSE by default.
+#' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
+#' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
+#' continues pressing the control. TRUE by default.
+#' @param manual It is possible to enter value manually from keyboard or mobile keypad. When click on input field, stepper enter into manual input mode, which allow type value from keyboar and check fractional part with defined accurancy. Click outside or enter Return key, ending manual mode. TRUE by default.
+#'
+#' @export
+#'
+#' @note While updating, the autorepeat field does not work correctly.
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(theme = "auto"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update stepper"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update stepper"),
+#'         f7Stepper(
+#'           inputId = "stepper",
+#'           label = "My stepper",
+#'           min = 0,
+#'           max = 10,
+#'           size = "small",
+#'           value = 4,
+#'           wraps = TRUE,
+#'           autorepeat = TRUE,
+#'           rounded = FALSE,
+#'           raised = FALSE,
+#'           manual = FALSE
+#'         ),
+#'         verbatimTextOutput("test")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$test <- renderPrint(input$stepper)
+#'
+#'     observeEvent(input$update, {
+#'       updateF7Stepper(
+#'         session,
+#'         inputId = "stepper",
+#'         value = 10,
+#'         size = "large",
+#'         min = 5,
+#'         max = 20,
+#'         wraps = FALSE,
+#'         autorepeat = FALSE,
+#'         rounded = TRUE,
+#'         raised = TRUE,
+#'         color = "pink",
+#'         manual = TRUE
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
+                            value = NULL, step = NULL, fill = NULL,
+                            rounded = NULL, raised = NULL, size = NULL,
+                            color = NULL, wraps = NULL,
+                            autorepeat = NULL, manual = NULL) {
+  message <- dropNulls(list(
+    min = min,
+    max = max,
+    value = value,
+    step = step,
+    fill = fill,
+    rounded = rounded,
+    raised = raised,
+    size = size,
+    color = color,
+    wraps = wraps,
+    autorepeat = autorepeat,
+    manual = manual
+  ))
+  session$sendInputMessage(inputId, message)
+}

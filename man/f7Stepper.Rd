@@ -6,7 +6,7 @@
 \usage{
 f7Stepper(inputId, label, min, max, value, step = 1, fill = FALSE,
   rounded = FALSE, raised = FALSE, size = NULL, color = NULL,
-  wrap = FALSE, autorepeat = TRUE, manual = TRUE)
+  wraps = FALSE, autorepeat = TRUE, manual = TRUE)
 }
 \arguments{
 \item{inputId}{Stepper input id.}
@@ -31,8 +31,8 @@ f7Stepper(inputId, label, min, max, value, step = 1, fill = FALSE,
 
 \item{color}{Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".}
 
-\item{wrap}{In wraps mode incrementing beyond maximum value sets value to minimum value,
-likewise, decrementing below minimum value sets value to maximum value. TRUE by default.}
+\item{wraps}{In wraps mode incrementing beyond maximum value sets value to minimum value,
+likewise, decrementing below minimum value sets value to maximum value. FALSE by default.}
 
 \item{autorepeat}{Pressing and holding one of its buttons increments or decrements the stepper’s
 value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
@@ -58,26 +58,29 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     init = f7Init(theme = "auto"),
-    f7Stepper(
-     inputId = "stepper",
-     label = "My stepper",
-     min = 0,
-     max = 10,
-     value = 4
-    ),
-    verbatimTextOutput("test"),
-    f7Stepper(
-     inputId = "stepper2",
-     label = "My stepper 2",
-     min = 0,
-     max = 10,
-     value = 4,
-     color = "orange",
-     raised = TRUE,
-     fill = TRUE,
-     rounded = TRUE
-    ),
-    verbatimTextOutput("test2")
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Stepper"),
+     f7Stepper(
+      inputId = "stepper",
+      label = "My stepper",
+      min = 0,
+      max = 10,
+      value = 4
+     ),
+     verbatimTextOutput("test"),
+     f7Stepper(
+      inputId = "stepper2",
+      label = "My stepper 2",
+      min = 0,
+      max = 10,
+      value = 4,
+      color = "orange",
+      raised = TRUE,
+      fill = TRUE,
+      rounded = TRUE
+     ),
+     verbatimTextOutput("test2")
+    )
    ),
    server = function(input, output) {
     output$test <- renderPrint(input$stepper)

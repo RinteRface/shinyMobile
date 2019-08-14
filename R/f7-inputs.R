@@ -913,8 +913,8 @@ f7Slider <- function(inputId, label, min, max, value,
 #' @param raised Whether to put a relied around the stepper. FALSE by default.
 #' @param size Stepper size: "small", "large" or NULL.
 #' @param color Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
-#' @param wrap In wraps mode incrementing beyond maximum value sets value to minimum value,
-#' likewise, decrementing below minimum value sets value to maximum value. TRUE by default.
+#' @param wraps In wraps mode incrementing beyond maximum value sets value to minimum value,
+#' likewise, decrementing below minimum value sets value to maximum value. FALSE by default.
 #' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
 #' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
 #' continues pressing the control. TRUE by default.
@@ -934,26 +934,29 @@ f7Slider <- function(inputId, label, min, max, value,
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Stepper(
-#'      inputId = "stepper",
-#'      label = "My stepper",
-#'      min = 0,
-#'      max = 10,
-#'      value = 4
-#'     ),
-#'     verbatimTextOutput("test"),
-#'     f7Stepper(
-#'      inputId = "stepper2",
-#'      label = "My stepper 2",
-#'      min = 0,
-#'      max = 10,
-#'      value = 4,
-#'      color = "orange",
-#'      raised = TRUE,
-#'      fill = TRUE,
-#'      rounded = TRUE
-#'     ),
-#'     verbatimTextOutput("test2")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Stepper"),
+#'      f7Stepper(
+#'       inputId = "stepper",
+#'       label = "My stepper",
+#'       min = 0,
+#'       max = 10,
+#'       value = 4
+#'      ),
+#'      verbatimTextOutput("test"),
+#'      f7Stepper(
+#'       inputId = "stepper2",
+#'       label = "My stepper 2",
+#'       min = 0,
+#'       max = 10,
+#'       value = 4,
+#'       color = "orange",
+#'       raised = TRUE,
+#'       fill = TRUE,
+#'       rounded = TRUE
+#'      ),
+#'      verbatimTextOutput("test2")
+#'     )
 #'    ),
 #'    server = function(input, output) {
 #'     output$test <- renderPrint(input$stepper)
@@ -965,7 +968,7 @@ f7Slider <- function(inputId, label, min, max, value,
 #' @export
 f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       fill = FALSE, rounded = FALSE, raised = FALSE, size = NULL,
-                      color = NULL, wrap = FALSE, autorepeat = TRUE, manual = TRUE) {
+                      color = NULL, wraps = FALSE, autorepeat = TRUE, manual = TRUE) {
 
   stepperCl <- "stepper"
   if (fill) stepperCl <- paste0(stepperCl, " stepper-fill")
@@ -980,18 +983,29 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
   if (raised) stepperCl <- paste0(stepperCl, " stepper-raised")
   if (!is.null(color)) stepperCl <- paste0(stepperCl, " color-", color)
 
+  # pass these as global JS variable.
+  # We need however to prefix by the inputId
+  # to handle multiple steppers
+  stepperProps <- shiny::tags$script(
+    paste0(
+      ' var ', inputId, '_stepperWraps = ', tolower(wraps), ';
+        var ', inputId, '_stepperAutoRepeat = ', tolower(autorepeat), ';
+        var ', inputId, '_stepperAutoRepeatDynamic = ', tolower(autorepeat), ';
+        var ', inputId, '_stepperManualInputMode = ', tolower(manual), ';
+      '
+    )
+  )
+
+  # wrapper
   shiny::tagList(
     f7InputsDeps(),
+    stepperProps,
     # stepper tag
     shiny::tags$small(label),
     shiny::tags$div(
       class = stepperCl,
       id = inputId,
-      `data-wraps` = tolower(wrap),
-      `data-autorepeat` = tolower(autorepeat),
-      `data-autorepeat-dynamic` = tolower(autorepeat),
       `data-decimal-point`= "2",
-      `data-manual-input-mode` = tolower(manual),
       shiny::tags$div(class = "stepper-button-minus"),
       shiny::tags$div(
         class = "stepper-input-wrap",
