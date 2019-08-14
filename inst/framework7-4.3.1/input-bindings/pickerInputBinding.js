@@ -4,6 +4,15 @@ var f7PickerBinding = new Shiny.InputBinding();
 $.extend(f7PickerBinding, {
 
   initialize: function(el) {
+
+    // recover the inputId passed in the R function
+    var id = $(el).attr("id");
+    // function to convert a string to variable
+    function SetTo5(inputId, varString) {
+      var res = eval(inputId + "_" + varString);
+      return res;
+    }
+
     // vals is a global variable defined in the UI side.
     // It contains an array of choices to populate
     // the picker input.
@@ -13,7 +22,7 @@ $.extend(f7PickerBinding, {
       cols: [
         {
           textAlign: 'center',
-          values: vals
+          values: SetTo5(id, "vals")
         }
       ]
     });
@@ -29,13 +38,13 @@ $.extend(f7PickerBinding, {
     return pickerval;
   },
 
-  // see updateF7Slider
+  // see updateF7Picker
   setValue: function(el, value) {
     //$(el).data('immediate', true);
     app.picker.setValue($(el)).value;
   },
 
-  // see updateF7Slider
+  // see updateF7Picker
   receiveMessage: function(el, data) {
 
   },

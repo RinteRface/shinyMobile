@@ -61,7 +61,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, choices) {
   # reused in the pickerInputBinding.js
   pickerVals <- shiny::tags$script(
     paste0(
-      "var vals = ", choices, ";
+      "var ", inputId, "_vals = ", choices, ";
         "
     )
   )
