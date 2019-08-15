@@ -14,7 +14,7 @@ tabBtns <- f7Tab(
     sideOpen = "right",
     lapply(1:4, function(i) f7Fab(paste0("btn", i), i))
   ),
-  lapply(1:4, function(i) verbatimTextOutput(paste0("res", i))),
+  lapply(1:4, function(i) textOutput(paste0("res", i))),
 
   f7Fabs(
     position = "center-center",
@@ -22,7 +22,7 @@ tabBtns <- f7Tab(
     sideOpen = "center",
     lapply(5:8, function(i) f7Fab(paste0("btn", i), i))
   ),
-  lapply(5:8, function(i) verbatimTextOutput(paste0("res", i))),
+  lapply(5:8, function(i) textOutput(paste0("res", i))),
 
   f7Fabs(
     position = "left-bottom",
@@ -79,5 +79,5 @@ tabBtns <- f7Tab(
 
   br(), br(),
   f7BlockTitle(title = "Click on the black action button to update the value"),
-  verbatimTextOutput("val")
+  textOutput("val")
 )

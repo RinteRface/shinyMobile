@@ -73,7 +73,7 @@ shinyApp(
     output$selectDate <- renderText(input$date)
 
     lapply(1:12, function(i) {
-      output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
+      output[[paste0("res", i)]] <- renderText(paste0("Button", i ," is ", input[[paste0("btn", i)]]))
     })
     output$pickerval <- renderText(input$mypicker)
     output$colorPickerVal <- renderText(input$mycolorpicker)
