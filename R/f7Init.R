@@ -12,27 +12,27 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora")) {
   shiny::tags$script(
     paste0(
       "var app = new Framework7({
-  // App root element
-  root: '#app',
-  // App Name
-  name: 'My App',
-  theme: '", theme, "',
-  iosTouchRipple: true,
-  // allow both panels to swipe
-  panel: {
-    swipe: 'both',
-  },
-  // App id
-  id: 'com.myapp.test',
-  navbar: {
-    hideOnPageScroll: true,
-    iosCenterTitle: true,
-  },
-  // ... other parameters
-});
-
-var mainView = app.views.create('.view-main');
-        "
+          // App root element
+          root: '#app',
+          // App Name
+          name: 'My App',
+          theme: '", theme, "',
+          fastClicks: true,
+          iosTouchRipple: true,
+          // allow both panels to swipe
+          panel: {
+            swipe: 'both',
+          },
+          // App id
+          id: 'f7App',
+          navbar: {
+            hideOnPageScroll: true,
+            iosCenterTitle: true,
+          },
+          // ... other parameters
+      });
+      var mainView = app.views.create('.view-main');
+      "
     )
   )
 }
