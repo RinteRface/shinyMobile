@@ -26,6 +26,8 @@ $(function () {
   if (dark_mode) {
     $('.page-content').css('background-color', '');
     $('.page-content.tab').css('background-color', '');
+  } else {
+    $('div.messages').css('background-color', 'gainsboro');
   }
 
 
