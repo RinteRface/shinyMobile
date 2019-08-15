@@ -21,7 +21,7 @@ $(function () {
   }
 
   // handle background for dark mode
-  // need to remove the custom gainsboro color   background
+  // need to remove the custom gainsboro color background
   var dark_mode = $('body').hasClass('theme-dark');
   if (dark_mode) {
     $('.page-content').css('background-color', '');

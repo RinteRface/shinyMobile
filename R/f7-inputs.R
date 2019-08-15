@@ -5,6 +5,7 @@
 #' @param inputId Picker input id.
 #' @param label Picker label.
 #' @param placeholder Text to write in the container.
+#' @param value Picker initial value, if any.
 #' @param choices Picker choices.
 #'
 #' @examples
@@ -36,7 +37,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Picker<- function(inputId, label, placeholder = NULL, choices) {
+f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices) {
 
   # input tag
   inputTag <- shiny::tags$div(
@@ -56,12 +57,14 @@ f7Picker<- function(inputId, label, placeholder = NULL, choices) {
   )
 
   # JS
+  value <- jsonlite::toJSON(value)
   choices <- jsonlite::toJSON(choices)
-  # We define a global variable that is
-  # reused in the pickerInputBinding.js
+  # We define global variables that are
+  # re-used in the pickerInputBinding.js
   pickerVals <- shiny::tags$script(
     paste0(
       "var ", inputId, "_vals = ", choices, ";
+       var ", inputId, "_val = ", value, ";
         "
     )
   )
@@ -895,7 +898,7 @@ f7Slider <- function(inputId, label, min, max, value,
     # HTML skeleton
     shiny::br(),
     shiny::tags$div(class = "block-title", label),
-    rangeTag
+    shiny::tags$div(class = "block", rangeTag)
   )
 }
 
