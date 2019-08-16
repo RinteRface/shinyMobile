@@ -59,6 +59,7 @@ shinyApp(
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$slider <- renderPrint(input$slider)
+    output$sliderRange <- renderPrint(input$sliderRange)
     output$stepper <- renderPrint(input$stepper)
     output$check <- renderPrint(input$check)
     output$checkgroup <- renderPrint(input$checkgroup)

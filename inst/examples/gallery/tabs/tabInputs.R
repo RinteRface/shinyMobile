@@ -32,13 +32,22 @@ tabInputs <- f7Tab(
     strong = TRUE,
     f7Slider(
       inputId = "slider",
+      label = "Unique value",
+      max = 20,
+      min = 0,
+      value = 10,
+      scale = FALSE
+    ),
+    verbatimTextOutput("slider"),
+    f7Slider(
+      inputId = "sliderRange",
       label = "Range values",
       max = 500,
       min = 0,
       value = c(50, 100),
       scale = TRUE
     ),
-    verbatimTextOutput("slider")
+    verbatimTextOutput("sliderRange")
   ),
   br(),
 
