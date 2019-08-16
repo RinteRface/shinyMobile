@@ -20,8 +20,7 @@ shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
     dark_mode = FALSE,
-    color = "teal",
-    init = f7Init(theme = "ios"),
+    init = f7Init(theme = "ios", filled = TRUE),
     f7TabLayout(
       panels = tagList(
         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "reveal"),

@@ -5,8 +5,7 @@
 \title{Create a Framework7 page}
 \usage{
 f7Page(..., init = f7Init(theme = "auto"), title = NULL,
-  dark_mode = FALSE, color = NULL, preloader = FALSE,
-  loading_duration = 3)
+  dark_mode = FALSE, preloader = FALSE, loading_duration = 3)
 }
 \arguments{
 \item{...}{Any element.}
@@ -16,8 +15,6 @@ f7Page(..., init = f7Init(theme = "auto"), title = NULL,
 \item{title}{Page title.}
 
 \item{dark_mode}{Whether to enable the dark mode. FALSE by default.}
-
-\item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.}
 
 \item{preloader}{Whether to display a preloader before the app starts.
 FALSE by default.}

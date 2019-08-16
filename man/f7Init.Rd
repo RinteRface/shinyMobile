@@ -4,10 +4,17 @@
 \alias{f7Init}
 \title{Custom initialization}
 \usage{
-f7Init(theme = c("ios", "md", "auto", "aurora"))
+f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
+  color = "blue")
 }
 \arguments{
 \item{theme}{App theme: "ios", "md", "auto" or "aurora".}
+
+\item{filled}{Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
+the current selected color. FALSE by default.}
+
+\item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.
+Expect a name like blue or red.}
 }
 \description{
 Use inside \link{f7Page}. Mandatory!

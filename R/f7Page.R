@@ -6,7 +6,6 @@
 #' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
 #' @param dark_mode Whether to enable the dark mode. FALSE by default.
-#' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 #' @param preloader Whether to display a preloader before the app starts.
 #' FALSE by default.
 #' @param loading_duration Preloader duration.
@@ -15,19 +14,10 @@
 #'
 #' @export
 f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
-                   dark_mode = FALSE, color = NULL, preloader = FALSE,
+                   dark_mode = FALSE, preloader = FALSE,
                    loading_duration = 3){
 
-  bodyCl <- if (dark_mode) {
-    if (!is.null(color)) {
-      paste0("theme-dark", " color-theme-", color)
-    } else {
-      "theme-dark"
-    }
-    "theme-dark"
-  } else {
-    if (!is.null(color)) paste0("color-theme-", color)
-  }
+  bodyCl <- if (dark_mode)  "theme-dark"
 
   shiny::tags$html(
     # Head
