@@ -10,7 +10,6 @@
 #' @param bigger Whether to display bigger title. FALSE by default.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
-#' @param hideOnScroll Whether to hide the navbar on scroll. FALSE by default.
 #'
 #' @note hideOnScroll does not work yet.
 #'
@@ -19,7 +18,7 @@
 #' @export
 f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = TRUE,
                      shadow = TRUE, bigger = FALSE, left_panel = FALSE,
-                     right_panel = FALSE, hideOnScroll = FALSE) {
+                     right_panel = FALSE) {
 
    navbarClass <- "navbar"
    if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
@@ -49,10 +48,10 @@ f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = 
       )
    }
 
-   navTag <- shiny::tags$div(
+   shiny::tags$div(
       class = navbarClass,
       shiny::tags$div(
-         class = if (hideOnScroll) "navbar-inner sliding" else "navbar-inner",
+         class = "navbar-inner sliding",
          leftNav,
          if (bigger) {
             shiny::tags$div(
@@ -74,24 +73,6 @@ f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = 
          subNavbar
       )
    )
-
-   if (hideOnScroll) {
-      shiny::tagList(
-         shiny::singleton(
-            shiny::tags$head(
-               shiny::tags$script(
-                  "$(function () {
-                     $('.page-content').addClass('hide-navbar-on-scroll');
-                  });
-                  "
-               )
-            )
-         ),
-         navTag
-      )
-   } else {
-      navTag
-   }
 }
 
 

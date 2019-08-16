@@ -29,6 +29,9 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora")) {
             hideOnPageScroll: true,
             iosCenterTitle: true,
           },
+          toolbar: {
+            hideOnPageScroll: true,
+          },
           // ... other parameters
       });
       var mainView = app.views.create('.view-main');

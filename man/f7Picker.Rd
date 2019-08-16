@@ -4,7 +4,8 @@
 \alias{f7Picker}
 \title{Create a Framework7 picker input}
 \usage{
-f7Picker(inputId, label, placeholder = NULL, choices)
+f7Picker(inputId, label, placeholder = NULL, value = choices[1],
+  choices)
 }
 \arguments{
 \item{inputId}{Picker input id.}
@@ -12,6 +13,8 @@ f7Picker(inputId, label, placeholder = NULL, choices)
 \item{label}{Picker label.}
 
 \item{placeholder}{Text to write in the container.}
+
+\item{value}{Picker initial value, if any.}
 
 \item{choices}{Picker choices.}
 }

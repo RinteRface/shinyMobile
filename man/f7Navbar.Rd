@@ -6,7 +6,7 @@
 \usage{
 f7Navbar(subNavbar = NULL, title = NULL, subtitle = NULL,
   hairline = TRUE, shadow = TRUE, bigger = FALSE,
-  left_panel = FALSE, right_panel = FALSE, hideOnScroll = FALSE)
+  left_panel = FALSE, right_panel = FALSE)
 }
 \arguments{
 \item{subNavbar}{\link{f7SubNavbar} slot, if any.}
@@ -24,8 +24,6 @@ f7Navbar(subNavbar = NULL, title = NULL, subtitle = NULL,
 \item{left_panel}{Whether to enable the left panel. FALSE by default.}
 
 \item{right_panel}{Whether to enable the right panel. FALSE by default.}
-
-\item{hideOnScroll}{Whether to hide the navbar on scroll. FALSE by default.}
 }
 \description{
 Build a Framework7 Navbar
