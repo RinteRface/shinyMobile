@@ -5,7 +5,7 @@
 \title{Custom initialization}
 \usage{
 f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
-  color = "blue")
+  color = NULL)
 }
 \arguments{
 \item{theme}{App theme: "ios", "md", "auto" or "aurora".}
@@ -14,7 +14,7 @@ f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
 the current selected color. FALSE by default.}
 
 \item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.
-Expect a name like blue or red.}
+Expect a name like blue or red. If NULL, use the default color.}
 }
 \description{
 Use inside \link{f7Page}. Mandatory!

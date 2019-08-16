@@ -28,35 +28,45 @@ tabInputs <- f7Tab(
   br(),
 
   f7BlockTitle(title = "f7Slider input") %>% f7Align(side = "center"),
-  f7Slider(
-    inputId = "slider",
-    label = "Range values",
-    max = 500,
-    min = 0,
-    value = c(50, 100),
-    scale = TRUE
+  f7Block(
+    strong = TRUE,
+    f7Slider(
+      inputId = "slider",
+      label = "Range values",
+      max = 500,
+      min = 0,
+      value = c(50, 100),
+      scale = TRUE
+    ),
+    verbatimTextOutput("slider")
   ),
-  verbatimTextOutput("slider"),
   br(),
 
   f7BlockTitle(title = "f7Stepper input") %>% f7Align(side = "center"),
-  f7Stepper(
-    inputId = "stepper",
-    label = "My stepper",
-    min = 0,
-    max = 10,
-    value = 4
+  f7Block(
+    strong = TRUE,
+    f7Stepper(
+      inputId = "stepper",
+      label = "My stepper",
+      min = 0,
+      color = "default",
+      max = 10,
+      value = 4
+    ),
+    verbatimTextOutput("stepper")
   ),
-  verbatimTextOutput("stepper"),
   br(),
 
   f7BlockTitle(title = "f7checkBox input") %>% f7Align(side = "center"),
-  f7checkBox(
-    inputId = "check",
-    label = "Checkbox",
-    value = FALSE
+  f7Block(
+    strong = TRUE,
+    f7checkBox(
+      inputId = "check",
+      label = "Checkbox",
+      value = FALSE
+    ),
+    verbatimTextOutput("check")
   ),
-  verbatimTextOutput("check"),
   br(),
 
   f7BlockTitle(title = "f7checkBoxGroup input") %>% f7Align(side = "center"),
@@ -80,13 +90,16 @@ tabInputs <- f7Tab(
   br(),
 
   f7BlockTitle(title = "f7Toggle input") %>% f7Align(side = "center"),
-  f7Toggle(
-    inputId = "toggle",
-    label = "My toggle",
-    color = "pink",
-    checked = TRUE
+  f7Block(
+    strong = TRUE,
+    f7Toggle(
+      inputId = "toggle",
+      label = "My toggle",
+      color = "default",
+      checked = TRUE
+    ),
+    verbatimTextOutput("toggle")
   ),
-  verbatimTextOutput("toggle"),
   br(),
 
   f7BlockTitle(title = "f7Select input") %>% f7Align(side = "center"),
