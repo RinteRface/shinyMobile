@@ -6,13 +6,13 @@
 #' @param filled Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #' the current selected color. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
-#' Expect a name like blue or red.
+#' Expect a name like blue or red. If NULL, use the default color.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
-                   color = "blue") {
+                   color = NULL) {
 
   color <- colorToHex(color)
 
