@@ -27,6 +27,9 @@ tabInfo <- f7Tab(
     label = "More",
     orientation = "bottom",
     swipeToStep = TRUE,
+    swipeToClose = TRUE,
+    backdrop = TRUE,
+    swipeHandler = TRUE,
     "Lorem ipsum dolor sit amet,
     consectetur adipiscing elit. Duo Reges:
     constructio interrete. An tu me de L.
