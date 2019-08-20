@@ -57,11 +57,11 @@ tabOthers <- f7Tab(
     mode = "list",
     f7AccordionItem(
       title = "Item 1",
-      "Item 1 content"
+      f7Block("Item 1 content")
     ),
     f7AccordionItem(
       title = "Item 2",
-      "Item 2 content"
+      f7Block("Item 2 content")
     )
   ),
   br(),

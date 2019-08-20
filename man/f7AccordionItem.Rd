@@ -7,7 +7,7 @@
 f7AccordionItem(..., title = NULL, open = FALSE)
 }
 \arguments{
-\item{...}{Item content.}
+\item{...}{Item content such as \link{f7Block} or any f7 element.}
 
 \item{title}{Item title.}
 

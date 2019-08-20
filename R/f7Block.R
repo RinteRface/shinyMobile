@@ -104,7 +104,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 
  shiny::tags$div(
    class = blockCl,
-   shiny::p(...)
+   ...
  )
 }
 

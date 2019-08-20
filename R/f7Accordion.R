@@ -14,26 +14,29 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Accordions",
-#'     f7Accordion(
-#'      f7AccordionItem(
-#'       title = "Item 1",
-#'       "Item 1 content",
-#'       open = TRUE
+#'     f7SingleLayout(
+#'      navbar = f7Navbar("Accordions"),
+#'      f7Accordion(
+#'       f7AccordionItem(
+#'        title = "Item 1",
+#'        f7Block("Item 1 content"),
+#'        open = TRUE
+#'       ),
+#'       f7AccordionItem(
+#'        title = "Item 2",
+#'        f7Block("Item 2 content")
+#'       )
 #'      ),
-#'      f7AccordionItem(
-#'       title = "Item 2",
-#'       "Item 2 content"
-#'      )
-#'     ),
-#'     f7Accordion(
-#'      mode = "list",
-#'      f7AccordionItem(
-#'       title = "Item 1",
-#'       "Item 1 content"
-#'      ),
-#'      f7AccordionItem(
-#'       title = "Item 2",
-#'       "Item 2 content"
+#'      f7Accordion(
+#'       mode = "list",
+#'       f7AccordionItem(
+#'        title = "Item 1",
+#'        f7Block("Item 1 content")
+#'       ),
+#'       f7AccordionItem(
+#'        title = "Item 2",
+#'        f7Block("Item 2 content")
+#'       )
 #'      )
 #'     )
 #'   ),
@@ -67,7 +70,7 @@ f7Accordion <- function(..., mode = NULL) {
 #'
 #' Build a Framework7 accordion item
 #'
-#' @param ... Item content.
+#' @param ... Item content such as \link{f7Block} or any f7 element.
 #' @param title Item title.
 #' @param open Whether the item is open at start. FALSE by default.
 #'
@@ -92,10 +95,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
     ),
     shiny::tags$div(
       class = "accordion-item-content",
-      shiny::tags$div(
-        class = "block",
-        shiny::tags$p(...)
-      )
+      ...
     )
   )
 }

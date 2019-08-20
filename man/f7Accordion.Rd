@@ -23,26 +23,29 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Accordions",
-    f7Accordion(
-     f7AccordionItem(
-      title = "Item 1",
-      "Item 1 content",
-      open = TRUE
+    f7SingleLayout(
+     navbar = f7Navbar("Accordions"),
+     f7Accordion(
+      f7AccordionItem(
+       title = "Item 1",
+       f7Block("Item 1 content"),
+       open = TRUE
+      ),
+      f7AccordionItem(
+       title = "Item 2",
+       f7Block("Item 2 content")
+      )
      ),
-     f7AccordionItem(
-      title = "Item 2",
-      "Item 2 content"
-     )
-    ),
-    f7Accordion(
-     mode = "list",
-     f7AccordionItem(
-      title = "Item 1",
-      "Item 1 content"
-     ),
-     f7AccordionItem(
-      title = "Item 2",
-      "Item 2 content"
+     f7Accordion(
+      mode = "list",
+      f7AccordionItem(
+       title = "Item 1",
+       f7Block("Item 1 content")
+      ),
+      f7AccordionItem(
+       title = "Item 2",
+       f7Block("Item 2 content")
+      )
      )
     )
   ),

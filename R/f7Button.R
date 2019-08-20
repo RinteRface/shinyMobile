@@ -139,7 +139,8 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, roun
   if (shadow & container == "segment") containerCl <- paste0(containerCl, " segmented-raised")
   if (rounded & container == "segment") containerCl <- paste0(containerCl, " segmented-round")
 
-  wrapper <- f7Block()
+  wrapperBlock <- function(...) shiny::tags$div(class = "block", shiny::tags$p(...))
+  wrapper <- wrapperBlock()
   wrapper$children[[1]]$attribs$class <- containerCl
 
   btns <- wrapper$children[[1]]$children
