@@ -31,7 +31,11 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
   side <- match.arg(side)
   alignCl <- paste0("text-align-", side)
 
-  tag$attribs$class <- paste(tag$attribs$class, alignCl)
+  tag$attribs$class <- if (is.null(tag$attribs$class)) {
+    alignCl
+  } else {
+    paste(tag$attribs$class, alignCl)
+  }
   return(tag)
 }
 
