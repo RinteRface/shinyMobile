@@ -7,6 +7,7 @@
 #' @param title Card title.
 #' @param footer Footer content, if any. Must be wrapped in a tagList.
 #' @param outline Outline style. FALSE by default.
+#' @param height Card height. NULL by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -49,16 +50,22 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE) {
+f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE,
+                   height = NULL) {
 
   cardCl <- "card"
   if (!is.null(img)) cardCl <- paste0(cardCl, " demo-card-header-pic")
   if (outline) cardCl <- paste0(cardCl, " card-outline")
 
+  cardStyle <- NULL
+  if (!is.null(height)) {
+    style <- paste0("height: ", shiny::validateCssUnit(height), " overflow-y: auto;")
+  }
+
   # content
   contentTag <- shiny::tags$div(
     class = "card-content card-content-padding",
-    style = "max-height: 600px; overflow-y: auto;",
+    style = cardStyle,
     ...
   )
 

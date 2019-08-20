@@ -5,7 +5,7 @@
 \title{Create a Framework7 card}
 \usage{
 f7Card(..., img = NULL, title = NULL, footer = NULL,
-  outline = FALSE)
+  outline = FALSE, height = NULL)
 }
 \arguments{
 \item{...}{Card content.}
@@ -17,6 +17,8 @@ f7Card(..., img = NULL, title = NULL, footer = NULL,
 \item{footer}{Footer content, if any. Must be wrapped in a tagList.}
 
 \item{outline}{Outline style. FALSE by default.}
+
+\item{height}{Card height. NULL by default.}
 }
 \description{
 Build a Framework7 card
