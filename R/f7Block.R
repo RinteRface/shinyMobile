@@ -115,7 +115,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 #' Build a Framework7 block title
 #'
 #' @param title Block title.
-#' @param size Block title size.
+#' @param size Block title size. NULL by default or "medium", "large".
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

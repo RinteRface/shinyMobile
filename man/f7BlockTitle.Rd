@@ -9,7 +9,7 @@ f7BlockTitle(title = NULL, size = NULL)
 \arguments{
 \item{title}{Block title.}
 
-\item{size}{Block title size.}
+\item{size}{Block title size. NULL by default or "medium", "large".}
 }
 \description{
 Build a Framework7 block title
