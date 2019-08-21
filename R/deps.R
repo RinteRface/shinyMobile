@@ -94,7 +94,8 @@ f7InputsDeps <- function() {
                "toggleInputBinding.js",
                "dateInputBinding.js",
                "pickerInputBinding.js",
-               "colorPickerInputBinding.js")
+               "colorPickerInputBinding.js",
+               "tabsInputBinding.js")
   )
 }
 

@@ -3,6 +3,7 @@
 #' Build a Framework7 tabs
 #'
 #' @param ... Slot for \link{f7Tab}.
+#' @param id Optional to get the id of the currently selected \link{f7Tab}.
 #' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
 #' @param animated Whether to show transition between tabs. TRUE by default.
@@ -13,7 +14,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
+f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
 
@@ -69,8 +70,12 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
     # ios-edges necessary to have
     # the good ios rendering
     class = "tabs ios-edges",
-    lapply(1:len, function(i) { toolbarItems[[i]][[1]]})
+    lapply(1:len, function(i) { toolbarItems[[i]][[1]]}),
+    # needed for the input binding
+    shiny::tags$div(class = "tabsBindingTarget")
   )
+
+  contentTag$attribs$id <- id
 
   # handle swipeable tabs
   if (swipeable) {
@@ -87,7 +92,28 @@ f7Tabs <- function(..., swipeable = FALSE, animated = TRUE) {
     )
   }
 
-  shiny::tagList(toolbarTag, contentTag)
+  tabsJS <- shiny::singleton(
+    shiny::tags$script(
+      paste0(
+        "$(document).on('shiny:sessioninitialized', function() {
+          // trigger a click on the window at start
+          // to be sure that the input value is setup
+          setTimeout(function() {
+            $(window).trigger('click');
+          }, 10);
+          // update the input value
+          $(window).on('click', function(e) {
+           var selectedTab = $('#", id, "').find('.tab-active');
+           var selectedTabVal = $(selectedTab).attr('data-value');
+           Shiny.setInputValue('", id, "', selectedTabVal);
+          });
+        });
+        "
+      )
+    )
+  )
+
+  shiny::tagList(tabsJS, toolbarTag, contentTag)
 
 }
 
@@ -118,6 +144,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   itemTag <- shiny::tags$div(
     class = if (active) "page-content tab tab-active" else "page-content tab",
     id = id,
+    `data-value` = tabName,
     style = "background-color: gainsboro;",
     ...
   )

@@ -4,10 +4,12 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., swipeable = FALSE, animated = TRUE)
+f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
+
+\item{id}{Optional to get the id of the currently selected \link{f7Tab}.}
 
 \item{swipeable}{Whether to allow finger swip. FALSE by default. Only for touch-screens.
 Not compatible with animated.}
