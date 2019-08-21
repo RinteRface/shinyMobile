@@ -31,7 +31,7 @@ if(interactive()){
     title = "My app",
     init = f7Init(theme = "ios"),
     f7SingleLayout(
-     navbar = f7Navbar(title = "Picker"),
+     navbar = f7Navbar(title = "f7Picker"),
      f7Picker(
       inputId = "mypicker",
       placeholder = "Some text here!",

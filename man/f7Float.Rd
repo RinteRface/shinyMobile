@@ -22,8 +22,11 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Float",
-    f7Float(h1("Left"), side = "left"),
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Float"),
+     f7Float(h1("Left"), side = "left"),
     f7Float(h1("Right"), side = "right")
+    )
    ),
    server = function(input, output) {}
  )

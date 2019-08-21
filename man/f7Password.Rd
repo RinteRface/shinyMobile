@@ -27,12 +27,15 @@ if(interactive()){
    ui = f7Page(
      title = "My app",
      init = f7Init(theme = "auto"),
-     f7Password(
-      inputId = "password",
-      label = "Password:",
-      placeholder = "Your password here"
-     ),
-     verbatimTextOutput("value")
+     f7SingleLayout(
+      navbar = f7Navbar(title = "f7Password"),
+      f7Password(
+       inputId = "password",
+       label = "Password:",
+       placeholder = "Your password here"
+      ),
+      verbatimTextOutput("value")
+     )
    ),
    server = function(input, output) {
      output$value <- renderPrint({ input$password })

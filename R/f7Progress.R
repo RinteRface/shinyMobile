@@ -14,10 +14,13 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Progress",
-#'     f7Block(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Progress"),
+#'      f7Block(
 #'      f7Progress(id = "pg1", value = 10, color = "pink"),
 #'      f7Progress(id = "pg2", value = 100, color = "green"),
 #'      f7Progress(id = "pg3", value = 50, color = "orange")
+#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -74,9 +77,12 @@ f7Progress <- function(id, value, color) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Progress Infinite",
-#'     f7Block(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7ProgressInf"),
+#'      f7Block(
 #'      f7ProgressInf(),
 #'      f7ProgressInf(color = "yellow")
+#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {}

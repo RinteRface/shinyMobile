@@ -35,8 +35,11 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Margins",
-    f7Margin(cardTag),
-    cardTag
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Margin"),
+     f7Margin(cardTag),
+     cardTag
+    )
    ),
    server = function(input, output) {}
  )

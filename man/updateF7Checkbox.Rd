@@ -25,18 +25,21 @@ if (interactive()) {
 
  ui <- f7Page(
    init = f7Init(theme = "ios"),
-   f7Slider(
-    inputId = "controller",
-    label = "Number of observations",
-    max = 10,
-    min = 0,
-    value = 1,
-    step = 1,
-    scale = TRUE
-   ),
-   f7checkBox(
-    inputId = "check",
-    label = "Checkbox"
+   f7SingleLayout(
+    navbar = f7Navbar(title = "updateF7CheckBox"),
+    f7Slider(
+     inputId = "controller",
+     label = "Number of observations",
+     max = 10,
+     min = 0,
+     value = 1,
+     step = 1,
+     scale = TRUE
+    ),
+    f7checkBox(
+     inputId = "check",
+     label = "Checkbox"
+    )
    )
  )
 

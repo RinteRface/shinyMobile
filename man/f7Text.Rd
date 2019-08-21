@@ -27,13 +27,16 @@ if(interactive()){
    ui = f7Page(
      title = "My app",
      init = f7Init(theme = "auto"),
-     f7Text(
-      inputId = "caption",
-      label = "Caption",
-      value = "Data Summary",
-      placeholder = "Your text here"
-     ),
-     verbatimTextOutput("value")
+     f7SingleLayout(
+      navbar = f7Navbar(title = "f7Text"),
+      f7Text(
+       inputId = "caption",
+       label = "Caption",
+       value = "Data Summary",
+       placeholder = "Your text here"
+      ),
+      verbatimTextOutput("value")
+     )
    ),
    server = function(input, output) {
      output$value <- renderPrint({ input$caption })

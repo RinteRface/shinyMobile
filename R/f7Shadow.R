@@ -15,7 +15,9 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Shadows",
-#'     f7Shadow(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Shadow"),
+#'      f7Shadow(
 #'      intensity = 16,
 #'      hover = TRUE,
 #'      pressed = TRUE,
@@ -29,6 +31,7 @@
 #'        f7Badge("Badge", color = "green")
 #'       )
 #'      )
+#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {}

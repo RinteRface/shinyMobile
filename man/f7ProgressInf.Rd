@@ -23,9 +23,12 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Progress Infinite",
-    f7Block(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7ProgressInf"),
+     f7Block(
      f7ProgressInf(),
      f7ProgressInf(color = "yellow")
+    )
     )
    ),
    server = function(input, output) {}

@@ -26,8 +26,11 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Links",
-    f7Link(label = "Google", src = "https://www.google.com"),
-    f7Link(label = "Google", src = "https://www.google.com", external = TRUE)
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Link"),
+     f7Link(label = "Google", src = "https://www.google.com"),
+     f7Link(label = "Google", src = "https://www.google.com", external = TRUE)
+    )
    ),
    server = function(input, output) {}
  )

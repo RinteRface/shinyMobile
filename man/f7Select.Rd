@@ -25,12 +25,15 @@ if(interactive()){
    ui = f7Page(
      title = "My app",
      init = f7Init(theme = "auto"),
-     f7Select(
+     f7SingleLayout(
+      navbar = f7Navbar(title = "f7Select"),
+      f7Select(
        inputId = "variable",
        label = "Choose a variable:",
        choices = colnames(mtcars)[-1]
-     ),
-     tableOutput("data")
+      ),
+      tableOutput("data")
+     )
    ),
    server = function(input, output) {
      output$data <- renderTable({

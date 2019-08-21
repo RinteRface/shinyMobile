@@ -25,7 +25,9 @@ if(interactive()){
   ui = f7Page(
     title = "Media Card",
     f7Init(theme = "auto"),
-    f7MediaCard(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7MediaCard"),
+     f7MediaCard(
      title = "New Releases:",
      f7MediaCardItem(
       src = "http://lorempixel.com/88/88/fashion/4",
@@ -41,6 +43,7 @@ if(interactive()){
       span("January 20", 2015),
       span(5, "comments")
      )
+    )
     )
   ),
   server = function(input, output) {}

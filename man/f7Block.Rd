@@ -29,8 +29,9 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Blocks",
-
-    f7BlockTitle(title = "A large title", size = "large"),
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Block"),
+     f7BlockTitle(title = "A large title", size = "large"),
     f7Block(
      f7BlockHeader(text = "Header"),
      "Here comes paragraph within content block.
@@ -92,6 +93,7 @@ if(interactive()){
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis.",
      f7BlockFooter(text = "Footer")
+    )
     )
   ),
   server = function(input, output) {}

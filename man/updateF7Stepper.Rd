@@ -57,7 +57,7 @@ if (interactive()) {
     title = "My app",
     init = f7Init(theme = "auto"),
     f7SingleLayout(
-      navbar = f7Navbar(title = "Update stepper"),
+      navbar = f7Navbar(title = "updateF7Stepper"),
       f7Card(
         f7Button(inputId = "update", label = "Update stepper"),
         f7Stepper(

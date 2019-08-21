@@ -13,10 +13,13 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Badges",
-#'     f7Block(
-#'      strong = TRUE,
-#'      f7Badge(32, color = "blue"),
-#'      f7Badge("Badge", color = "green")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Badge"),
+#'      f7Block(
+#'       strong = TRUE,
+#'       f7Badge(32, color = "blue"),
+#'       f7Badge("Badge", color = "green")
+#'      )
 #'     )
 #'   ),
 #'   server = function(input, output) {}

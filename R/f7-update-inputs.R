@@ -12,18 +12,21 @@
 #'
 #'  ui <- f7Page(
 #'    init = f7Init(theme = "ios"),
-#'    f7Slider(
-#'     inputId = "controller",
-#'     label = "Number of observations",
-#'     max = 10,
-#'     min = 0,
-#'     value = 1,
-#'     step = 1,
-#'     scale = TRUE
-#'    ),
-#'    f7checkBox(
-#'     inputId = "check",
-#'     label = "Checkbox"
+#'    f7SingleLayout(
+#'     navbar = f7Navbar(title = "updateF7CheckBox"),
+#'     f7Slider(
+#'      inputId = "controller",
+#'      label = "Number of observations",
+#'      max = 10,
+#'      min = 0,
+#'      value = 1,
+#'      step = 1,
+#'      scale = TRUE
+#'     ),
+#'     f7checkBox(
+#'      inputId = "check",
+#'      label = "Checkbox"
+#'     )
 #'    )
 #'  )
 #'
@@ -75,14 +78,17 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 #'
 #'  ui <- f7Page(
 #'    init = f7Init(theme = "ios"),
-#'    f7Fab("trigger", "Click me"),
-#'    f7Text(
-#'     inputId = "text",
-#'     label = "Caption",
-#'     value = "Some text",
-#'     placeholder = "Your text here"
-#'    ),
-#'    verbatimTextOutput("value")
+#'    f7SingleLayout(
+#'     navbar = f7Navbar(title = "updateF7Text"),
+#'     f7Fab("trigger", "Click me"),
+#'     f7Text(
+#'      inputId = "text",
+#'      label = "Caption",
+#'      value = "Some text",
+#'      placeholder = "Your text here"
+#'     ),
+#'     verbatimTextOutput("value")
+#'    )
 #'  )
 #'
 #'  server <- function(input, output, session) {
@@ -119,7 +125,10 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 #'
 #'  ui <- f7Page(
 #'    init = f7Init(theme = "ios"),
-#'    f7Fab("trigger", "Click me")
+#'    f7SingleLayout(
+#'     navbar = f7Navbar(title = "updateF7Fab"),
+#'     f7Fab("trigger", "Click me")
+#'    )
 #'  )
 #'
 #'  server <- function(input, output, session) {
@@ -261,7 +270,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update f7Slider"),
+#'       navbar = f7Navbar(title = "updateF7Slider"),
 #'       f7Card(
 #'         f7Button(inputId = "update", label = "Update slider"),
 #'         f7Slider(
@@ -328,7 +337,7 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 #'      title = "My app",
 #'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "Update toggle"),
+#'        navbar = f7Navbar(title = "updateF7Toggle"),
 #'        f7Card(
 #'          f7Button(inputId = "update", label = "Update toggle"),
 #'          f7Toggle(
@@ -401,7 +410,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update stepper"),
+#'       navbar = f7Navbar(title = "updateF7Stepper"),
 #'       f7Card(
 #'         f7Button(inputId = "update", label = "Update stepper"),
 #'         f7Stepper(
@@ -462,6 +471,35 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
     wraps = wraps,
     autorepeat = autorepeat,
     manual = manual
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+#' Change the value of a stepper input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param placeholder New picker placeholder.
+#' @param value Picker initial value, if any.
+#' @param choices New picker choices.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#' }
+updateF7Picker <- function(session, inputId, placeholder = NULL,
+                           value = NULL, choices = NULL) {
+  message <- dropNulls(list(
+    placeholder = placeholder,
+    value = value,
+    choices = choices
   ))
   session$sendInputMessage(inputId, message)
 }

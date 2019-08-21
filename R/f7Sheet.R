@@ -25,13 +25,19 @@
 #'     ui = f7Page(
 #'       color = "pink",
 #'       title = "My app",
-#'       f7Sheet(
+#'       f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Sheet"),
+#'        f7Sheet(
 #'         id = "sheet1",
 #'         label = "More",
 #'         orientation = "bottom",
+#'         swipeToClose = TRUE,
+#'         swipeToStep = TRUE,
+#'         backdrop = TRUE,
 #'         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 #'         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
 #'         scelerisque est, at porta justo cursus ac"
+#'       )
 #'       )
 #'     ),
 #'     server = function(input, output) {}

@@ -32,7 +32,9 @@ if(interactive()){
   ui = f7Page(
     title = "Cards",
     f7Init(theme = "auto"),
-    f7Card("This is a simple card with plain text,
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Card"),
+     f7Card("This is a simple card with plain text,
     but cards can also contain their own header,
     footer, list view, image, or any other element."),
     f7Card(
@@ -55,6 +57,7 @@ if(interactive()){
       f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
       f7Badge("Badge", color = "green")
      )
+    )
     )
   ),
   server = function(input, output) {}

@@ -13,10 +13,13 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Align",
-#'     f7Row(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Align"),
+#'      f7Row(
 #'      f7Align(h1("Left"), side = "left"),
 #'      f7Align(h1("Center"), side = "center"),
 #'      f7Align(h1("Right"), side = "right")
+#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -57,8 +60,11 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Float",
-#'     f7Float(h1("Left"), side = "left"),
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Float"),
+#'      f7Float(h1("Left"), side = "left"),
 #'     f7Float(h1("Right"), side = "right")
+#'     )
 #'    ),
 #'    server = function(input, output) {}
 #'  )
@@ -107,8 +113,11 @@ f7Float <- function(tag, side = c("left", "right")) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Margins",
-#'     f7Margin(cardTag),
-#'     cardTag
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Margin"),
+#'      f7Margin(cardTag),
+#'      cardTag
+#'     )
 #'    ),
 #'    server = function(input, output) {}
 #'  )
@@ -156,7 +165,7 @@ f7Margin <- function(tag, side = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Padding",
-#'     cardTag
+#'     f7SingleLayout(navbar = f7Navbar(title = "f7Padding"), cardTag)
 #'    ),
 #'    server = function(input, output) {}
 #'  )

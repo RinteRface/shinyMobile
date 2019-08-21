@@ -5,6 +5,8 @@ $.extend(f7PickerBinding, {
 
   initialize: function(el) {
 
+    var inputEl = $(el)[0];
+
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
     // function to convert a string to variable
@@ -16,16 +18,34 @@ $.extend(f7PickerBinding, {
     // vals is a global variable defined in the UI side.
     // It contains an array of choices to populate
     // the picker input.
-    app.picker.create({
-      inputEl: el,
+    var p = app.picker.create({
+      inputEl: inputEl,
       rotateEffect: true,
       cols: [
         {
           textAlign: 'center',
           values: SetTo5(id, "vals")
         }
-      ]
+      ],
+      value: SetTo5(id, "val"),
+      on: {
+        // need to trigger a click
+        // close the picker to initiate it properly
+        init: function(picker) {
+          //picker.open();
+          //setTimeout(function() {picker.close();}, 1000);
+        },
+        open: function(picker) {
+          console.log(id  + " was open");
+        },
+        close: function(picker) {
+          console.log(id  + " was closed");
+        }
+      }
     });
+    inputEl.f7Picker = p;
+    $(inputEl).click();
+    console.log(inputEl.f7Picker);
   },
 
   find: function(scope) {
@@ -34,19 +54,35 @@ $.extend(f7PickerBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var pickerval = $(".picker-item-selected").attr("data-picker-value");
-    return pickerval;
+    var p = app.picker.get($(el));
+    return p.cols[0].value;
+    //return app.picker.getValue(el);
   },
 
   // see updateF7Picker
   setValue: function(el, value) {
-    //$(el).data('immediate', true);
-    app.picker.setValue($(el)).value;
+    var p = app.picker.get($(el));
+    // value must of length 1
+    if (value.length == 1) {
+      p.cols[0].value = value;
+      p.cols[0].displayValue = value;
+      p.displayValue[0] = value;
+      p.value[0] = value;
+      p.open();
+    }
   },
 
   // see updateF7Picker
   receiveMessage: function(el, data) {
+    var p = app.picker.get($(el));
+    // update placeholder
+    if (data.hasOwnProperty('placeholder')) {
 
+    }
+    // Update value
+    if (data.hasOwnProperty('value')) {
+      this.setValue(el, data.value);
+    }
   },
 
   subscribe: function(el, callback) {

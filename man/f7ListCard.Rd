@@ -24,7 +24,9 @@ if(interactive()){
   ui = f7Page(
     title = "List Card",
     f7Init(theme = "auto"),
-    f7ListCard(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7ListCard"),
+     f7ListCard(
      f7ListCardItem(
       url = "https://www.google.com",
       title = "Item 1"
@@ -33,6 +35,7 @@ if(interactive()){
       url = "https://www.google.com",
       title = "Item 2"
      )
+    )
     )
   ),
   server = function(input, output) {}

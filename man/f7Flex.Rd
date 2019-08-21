@@ -20,10 +20,13 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "Align",
-    f7Flex(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Flex"),
+     f7Flex(
      f7Block(strong = TRUE),
      f7Block(strong = TRUE),
      f7Block(strong = TRUE)
+    )
     )
    ),
    server = function(input, output) {}

@@ -18,7 +18,9 @@
 #'   ui = f7Page(
 #'     title = "Cards",
 #'     f7Init(theme = "auto"),
-#'     f7Card("This is a simple card with plain text,
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Card"),
+#'      f7Card("This is a simple card with plain text,
 #'     but cards can also contain their own header,
 #'     footer, list view, image, or any other element."),
 #'     f7Card(
@@ -41,6 +43,7 @@
 #'       f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'       f7Badge("Badge", color = "green")
 #'      )
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -127,7 +130,9 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
 #'   ui = f7Page(
 #'     title = "Social Card",
 #'     f7Init(theme = "auto"),
-#'     f7SocialCard(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7SocialCard"),
+#'      f7SocialCard(
 #'      author_img = "http://lorempixel.com/68/68/people/1/",
 #'      author = "John Doe",
 #'      date = "Monday at 3:47 PM",
@@ -138,6 +143,7 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
 #'       f7Badge("2", color = "green"),
 #'       f7Badge("3", color = "blue")
 #'      )
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -193,7 +199,9 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
 #'   ui = f7Page(
 #'     title = "List Card",
 #'     f7Init(theme = "auto"),
-#'     f7ListCard(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7ListCard"),
+#'      f7ListCard(
 #'      f7ListCardItem(
 #'       url = "https://www.google.com",
 #'       title = "Item 1"
@@ -202,6 +210,7 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
 #'       url = "https://www.google.com",
 #'       title = "Item 2"
 #'      )
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -264,7 +273,9 @@ f7ListCardItem <- function(url = NULL, title = NULL) {
 #'   ui = f7Page(
 #'     title = "Media Card",
 #'     f7Init(theme = "auto"),
-#'     f7MediaCard(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7MediaCard"),
+#'      f7MediaCard(
 #'      title = "New Releases:",
 #'      f7MediaCardItem(
 #'       src = "http://lorempixel.com/88/88/fashion/4",
@@ -280,6 +291,7 @@ f7ListCardItem <- function(url = NULL, title = NULL) {
 #'       span("January 20", 2015),
 #'       span(5, "comments")
 #'      )
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}

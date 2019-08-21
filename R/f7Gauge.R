@@ -27,7 +27,9 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Gauges",
-#'     f7Gauge(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Gauge"),
+#'      f7Gauge(
 #'      id = "mygauge",
 #'      type  = "semicircle",
 #'      value = 0.5,
@@ -37,6 +39,7 @@
 #'      valueFontSize = 41,
 #'      valueTextColor = "#2196f3",
 #'      labelText = "amount of something"
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}

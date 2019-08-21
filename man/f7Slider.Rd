@@ -36,18 +36,21 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     init = f7Init(theme = "auto"),
-    f7Card(
-     f7Slider(
-      inputId = "obs",
-      label = "Number of observations",
-      max = 1000,
-      min = 0,
-      value = 100,
-      scale = TRUE
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Slider"),
+     f7Card(
+      f7Slider(
+       inputId = "obs",
+       label = "Number of observations",
+       max = 1000,
+       min = 0,
+       value = 100,
+       scale = TRUE
+      ),
+      verbatimTextOutput("test")
      ),
-     verbatimTextOutput("test")
-    ),
-    plotOutput("distPlot")
+     plotOutput("distPlot")
+    )
    ),
    server = function(input, output) {
     output$test <- renderPrint({input$obs})
@@ -67,16 +70,19 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     init = f7Init(theme = "auto"),
-    f7Card(
-     f7Slider(
-      inputId = "obs",
-      label = "Range values",
-      max = 500,
-      min = 0,
-      value = c(50, 100),
-      scale = TRUE
-     ),
-     verbatimTextOutput("test")
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Slider"),
+     f7Card(
+      f7Slider(
+       inputId = "obs",
+       label = "Range values",
+       max = 500,
+       min = 0,
+       value = c(50, 100),
+       scale = TRUE
+      ),
+      verbatimTextOutput("test")
+     )
     )
    ),
    server = function(input, output) {

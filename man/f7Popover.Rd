@@ -27,7 +27,7 @@ if (interactive()) {
      title = "f7Popover",
      init = f7Init(theme = "ios"),
      f7SingleLayout(
-       navbar = f7Navbar(),
+       navbar = f7Navbar(title = "f7Popover"),
        f7PopoverTarget(
          f7Button(
            inputId = "goButton",

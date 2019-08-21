@@ -36,7 +36,7 @@ if (interactive()) {
       title = "My app",
       init = f7Init(theme = "ios"),
       f7SingleLayout(
-        navbar = f7Navbar(),
+        navbar = f7Navbar(title = "f7Notif"),
         f7Button(inputId = "goButton", "Go!")
       )
     ),

@@ -18,7 +18,7 @@
 #'     title = "My app",
 #'     init = f7Init(theme = "ios"),
 #'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "Picker"),
+#'      navbar = f7Navbar(title = "f7Picker"),
 #'      f7Picker(
 #'       inputId = "mypicker",
 #'       placeholder = "Some text here!",
@@ -173,7 +173,7 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #'      title = "My app",
 #'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "Color picker"),
+#'        navbar = f7Navbar(title = "f7ColorPicker"),
 #'        f7ColorPicker(
 #'          inputId = "mycolorpicker",
 #'          placeholder = "Some text here!",
@@ -358,13 +358,16 @@ f7Date <- function(inputId, label, value = NULL,
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Card(
-#'      f7checkBox(
-#'       inputId = "check",
-#'       label = "Checkbox",
-#'       value = FALSE
-#'      ),
-#'      verbatimTextOutput("test")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7checkBox"),
+#'      f7Card(
+#'       f7checkBox(
+#'        inputId = "check",
+#'        label = "Checkbox",
+#'        value = FALSE
+#'       ),
+#'       verbatimTextOutput("test")
+#'      )
 #'     )
 #'    ),
 #'    server = function(input, output) {
@@ -410,13 +413,16 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'     ui = f7Page(
 #'      title = "My app",
 #'      init = f7Init(theme = "auto"),
-#'      f7checkBoxGroup(
-#'       inputId = "variable",
-#'       label = "Choose a variable:",
-#'       choices = colnames(mtcars)[-1],
-#'       selected = NULL
-#'      ),
-#'      tableOutput("data")
+#'      f7SingleLayout(
+#'       navbar = f7Navbar(title = "f7checkBoxGroup"),
+#'       f7checkBoxGroup(
+#'        inputId = "variable",
+#'        label = "Choose a variable:",
+#'        choices = colnames(mtcars)[-1],
+#'        selected = NULL
+#'       ),
+#'       tableOutput("data")
+#'      )
 #'     ),
 #'     server = function(input, output) {
 #'      output$data <- renderTable({
@@ -479,12 +485,15 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'    ui = f7Page(
 #'      title = "My app",
 #'      init = f7Init(theme = "auto"),
-#'      f7Select(
+#'      f7SingleLayout(
+#'       navbar = f7Navbar(title = "f7Select"),
+#'       f7Select(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
 #'        choices = colnames(mtcars)[-1]
-#'      ),
-#'      tableOutput("data")
+#'       ),
+#'       tableOutput("data")
+#'      )
 #'    ),
 #'    server = function(input, output) {
 #'      output$data <- renderTable({
@@ -551,7 +560,7 @@ f7Select <- function(inputId, label, choices) {
 #'      title = "My app",
 #'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "Smart select"),
+#'        navbar = f7Navbar(title = "f7SmartSelect"),
 #'        f7SmartSelect(
 #'          inputId = "variable",
 #'          label = "Choose a variable:",
@@ -630,13 +639,16 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'    ui = f7Page(
 #'      title = "My app",
 #'      init = f7Init(theme = "auto"),
-#'      f7Text(
-#'       inputId = "caption",
-#'       label = "Caption",
-#'       value = "Data Summary",
-#'       placeholder = "Your text here"
-#'      ),
-#'      verbatimTextOutput("value")
+#'      f7SingleLayout(
+#'       navbar = f7Navbar(title = "f7Text"),
+#'       f7Text(
+#'        inputId = "caption",
+#'        label = "Caption",
+#'        value = "Data Summary",
+#'        placeholder = "Your text here"
+#'       ),
+#'       verbatimTextOutput("value")
+#'      )
 #'    ),
 #'    server = function(input, output) {
 #'      output$value <- renderPrint({ input$caption })
@@ -751,12 +763,15 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 #'    ui = f7Page(
 #'      title = "My app",
 #'      init = f7Init(theme = "auto"),
-#'      f7Password(
-#'       inputId = "password",
-#'       label = "Password:",
-#'       placeholder = "Your password here"
-#'      ),
-#'      verbatimTextOutput("value")
+#'      f7SingleLayout(
+#'       navbar = f7Navbar(title = "f7Password"),
+#'       f7Password(
+#'        inputId = "password",
+#'        label = "Password:",
+#'        placeholder = "Your password here"
+#'       ),
+#'       verbatimTextOutput("value")
+#'      )
 #'    ),
 #'    server = function(input, output) {
 #'      output$value <- renderPrint({ input$password })
@@ -814,18 +829,21 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Card(
-#'      f7Slider(
-#'       inputId = "obs",
-#'       label = "Number of observations",
-#'       max = 1000,
-#'       min = 0,
-#'       value = 100,
-#'       scale = TRUE
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Slider"),
+#'      f7Card(
+#'       f7Slider(
+#'        inputId = "obs",
+#'        label = "Number of observations",
+#'        max = 1000,
+#'        min = 0,
+#'        value = 100,
+#'        scale = TRUE
+#'       ),
+#'       verbatimTextOutput("test")
 #'      ),
-#'      verbatimTextOutput("test")
-#'     ),
-#'     plotOutput("distPlot")
+#'      plotOutput("distPlot")
+#'     )
 #'    ),
 #'    server = function(input, output) {
 #'     output$test <- renderPrint({input$obs})
@@ -845,16 +863,19 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Card(
-#'      f7Slider(
-#'       inputId = "obs",
-#'       label = "Range values",
-#'       max = 500,
-#'       min = 0,
-#'       value = c(50, 100),
-#'       scale = TRUE
-#'      ),
-#'      verbatimTextOutput("test")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Slider"),
+#'      f7Card(
+#'       f7Slider(
+#'        inputId = "obs",
+#'        label = "Range values",
+#'        max = 500,
+#'        min = 0,
+#'        value = c(50, 100),
+#'        scale = TRUE
+#'       ),
+#'       verbatimTextOutput("test")
+#'      )
 #'     )
 #'    ),
 #'    server = function(input, output) {
@@ -1047,18 +1068,21 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Toggle(
-#'      inputId = "toggle",
-#'      label = "My toggle",
-#'      color = "pink",
-#'      checked = TRUE
-#'     ),
-#'     verbatimTextOutput("test"),
-#'     f7Toggle(
-#'      inputId = "toggle2",
-#'      label = "My toggle 2"
-#'     ),
-#'     verbatimTextOutput("test2")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Toggle"),
+#'      f7Toggle(
+#'       inputId = "toggle",
+#'       label = "My toggle",
+#'       color = "pink",
+#'       checked = TRUE
+#'      ),
+#'      verbatimTextOutput("test"),
+#'      f7Toggle(
+#'       inputId = "toggle2",
+#'       label = "My toggle 2"
+#'      ),
+#'      verbatimTextOutput("test2")
+#'     )
 #'    ),
 #'    server = function(input, output) {
 #'     output$test <- renderPrint(input$toggle)
@@ -1113,13 +1137,16 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'    ui = f7Page(
 #'     title = "My app",
 #'     init = f7Init(theme = "auto"),
-#'     f7Radio(
-#'      inputId = "radio",
-#'      label = "Choose a fruit:",
-#'      choices = c("banana", "apple", "peach"),
-#'      selected = "apple"
-#'     ),
-#'     plotOutput("plot")
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Radio"),
+#'      f7Radio(
+#'       inputId = "radio",
+#'       label = "Choose a fruit:",
+#'       choices = c("banana", "apple", "peach"),
+#'       selected = "apple"
+#'      ),
+#'      plotOutput("plot")
+#'     )
 #'    ),
 #'    server = function(input, output) {
 #'     output$plot <- renderPlot({

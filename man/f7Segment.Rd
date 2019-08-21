@@ -27,7 +27,9 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Button Segments",
-    f7BlockTitle(title = "Simple Buttons in a row container"),
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Segment, f7Button"),
+     f7BlockTitle(title = "Simple Buttons in a row container"),
     f7Segment(
      container = "row",
      f7Button(color = "blue", label = "My button", fill = FALSE),
@@ -68,6 +70,7 @@ if(interactive()){
     br(), br(),
     f7BlockTitle(title = "Click on the black action button to update the value"),
     verbatimTextOutput("val")
+    )
   ),
   server = function(input, output) {
    output$val <- renderPrint(input$button2)

@@ -23,7 +23,10 @@ if (interactive()) {
 
  ui <- f7Page(
    init = f7Init(theme = "ios"),
-   f7Fab("trigger", "Click me")
+   f7SingleLayout(
+    navbar = f7Navbar(title = "updateF7Fab"),
+    f7Fab("trigger", "Click me")
+   )
  )
 
  server <- function(input, output, session) {

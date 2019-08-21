@@ -60,7 +60,9 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
     title = "My app",
-    f7Swiper(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Swiper"),
+     f7Swiper(
      id = "my-swiper",
      f7Slide(
       timeline
@@ -74,6 +76,7 @@ if(interactive()){
       ),
       verbatimTextOutput("test")
      )
+    )
     )
    ),
    server = function(input, output) {

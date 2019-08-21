@@ -27,13 +27,16 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     init = f7Init(theme = "auto"),
-    f7Radio(
-     inputId = "radio",
-     label = "Choose a fruit:",
-     choices = c("banana", "apple", "peach"),
-     selected = "apple"
-    ),
-    plotOutput("plot")
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Radio"),
+     f7Radio(
+      inputId = "radio",
+      label = "Choose a fruit:",
+      choices = c("banana", "apple", "peach"),
+      selected = "apple"
+     ),
+     plotOutput("plot")
+    )
    ),
    server = function(input, output) {
     output$plot <- renderPlot({

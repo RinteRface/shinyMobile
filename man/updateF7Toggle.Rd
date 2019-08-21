@@ -28,7 +28,7 @@ if (interactive()) {
      title = "My app",
      init = f7Init(theme = "auto"),
      f7SingleLayout(
-       navbar = f7Navbar(title = "Update toggle"),
+       navbar = f7Navbar(title = "updateF7Toggle"),
        f7Card(
          f7Button(inputId = "update", label = "Update toggle"),
          f7Toggle(

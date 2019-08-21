@@ -13,7 +13,9 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Grid",
-#'     f7Row(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Row, f7Col"),
+#'      f7Row(
 #'      f7Col(
 #'       f7Card(
 #'        "This is a simple card with plain text,
@@ -33,6 +35,7 @@
 #'        )
 #'       )
 #'      )
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -102,10 +105,13 @@ f7Col <- function(...) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "Align",
-#'     f7Flex(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Flex"),
+#'      f7Flex(
 #'      f7Block(strong = TRUE),
 #'      f7Block(strong = TRUE),
 #'      f7Block(strong = TRUE)
+#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {}

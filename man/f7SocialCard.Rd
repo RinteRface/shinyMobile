@@ -30,7 +30,9 @@ if(interactive()){
   ui = f7Page(
     title = "Social Card",
     f7Init(theme = "auto"),
-    f7SocialCard(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7SocialCard"),
+     f7SocialCard(
      author_img = "http://lorempixel.com/68/68/people/1/",
      author = "John Doe",
      date = "Monday at 3:47 PM",
@@ -41,6 +43,7 @@ if(interactive()){
       f7Badge("2", color = "green"),
       f7Badge("3", color = "blue")
      )
+    )
     )
   ),
   server = function(input, output) {}

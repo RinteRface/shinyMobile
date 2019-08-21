@@ -22,7 +22,9 @@
 #'   ui = f7Page(
 #'     color = "pink",
 #'     title = "Floating action buttons",
-#'     f7Fabs(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Fabs"),
+#'      f7Fabs(
 #'       position = "center-top",
 #'       color = "yellow",
 #'       sideOpen = "right",
@@ -43,6 +45,7 @@
 #'       color = "pink",
 #'       sideOpen = "top",
 #'       lapply(9:12, function(i) f7Fab(paste0("btn", i), i))
+#'     )
 #'     )
 #'
 #'   ),

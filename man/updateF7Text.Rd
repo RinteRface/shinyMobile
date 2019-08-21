@@ -28,14 +28,17 @@ if (interactive()) {
 
  ui <- f7Page(
    init = f7Init(theme = "ios"),
-   f7Fab("trigger", "Click me"),
-   f7Text(
-    inputId = "text",
-    label = "Caption",
-    value = "Some text",
-    placeholder = "Your text here"
-   ),
-   verbatimTextOutput("value")
+   f7SingleLayout(
+    navbar = f7Navbar(title = "updateF7Text"),
+    f7Fab("trigger", "Click me"),
+    f7Text(
+     inputId = "text",
+     label = "Caption",
+     value = "Some text",
+     placeholder = "Your text here"
+    ),
+    verbatimTextOutput("value")
+   )
  )
 
  server <- function(input, output, session) {

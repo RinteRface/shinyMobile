@@ -22,7 +22,9 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Grid",
-    f7Row(
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7Row, f7Col"),
+     f7Row(
      f7Col(
       f7Card(
        "This is a simple card with plain text,
@@ -42,6 +44,7 @@ if(interactive()){
        )
       )
      )
+    )
     )
   ),
   server = function(input, output) {}

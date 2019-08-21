@@ -51,7 +51,7 @@ if (interactive()) {
      title = "My app",
      init = f7Init(theme = "ios"),
      f7SingleLayout(
-       navbar = f7Navbar(title = "Color picker"),
+       navbar = f7Navbar(title = "f7ColorPicker"),
        f7ColorPicker(
          inputId = "mycolorpicker",
          placeholder = "Some text here!",

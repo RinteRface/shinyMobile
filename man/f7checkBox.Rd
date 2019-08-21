@@ -25,13 +25,16 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     init = f7Init(theme = "auto"),
-    f7Card(
-     f7checkBox(
-      inputId = "check",
-      label = "Checkbox",
-      value = FALSE
-     ),
-     verbatimTextOutput("test")
+    f7SingleLayout(
+     navbar = f7Navbar(title = "f7checkBox"),
+     f7Card(
+      f7checkBox(
+       inputId = "check",
+       label = "Checkbox",
+       value = FALSE
+      ),
+      verbatimTextOutput("test")
+     )
     )
    ),
    server = function(input, output) {

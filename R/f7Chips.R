@@ -20,7 +20,9 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Chips",
-#'     f7Block(
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Navbar"),
+#'      f7Block(
 #'      strong = TRUE,
 #'      f7Chip(label = "Example Chip"),
 #'      f7Chip(label = "Example Chip", outline = TRUE),
@@ -29,6 +31,7 @@
 #'      f7Chip(label = "Example Chip", closable = TRUE),
 #'      f7Chip(label = "Example Chip", status = "green"),
 #'      f7Chip(label = "Example Chip", status = "green", outline = TRUE)
+#'     )
 #'     )
 #'   ),
 #'   server = function(input, output) {}

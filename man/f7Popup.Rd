@@ -28,7 +28,7 @@ if (interactive()) {
      title = "My app",
      f7SingleLayout(
       navbar = f7Navbar(
-        title = "Single Layout",
+        title = "f7Popup",
         hairline = FALSE,
         shadow = TRUE
       ),
