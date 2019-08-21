@@ -178,7 +178,9 @@
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Grid"</span>,
-    <span class='fu'>f7Row</span>(
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Row, f7Col"</span>),
+     <span class='fu'>f7Row</span>(
      <span class='fu'><a href='f7Col.html'>f7Col</a></span>(
       <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
        <span class='st'>"This is a simple card with plain text,
@@ -198,6 +200,7 @@
        )
       )
      )
+    )
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}

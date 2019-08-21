@@ -154,7 +154,10 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Init</span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span>))</pre>
+    <pre class="usage"><span class='fu'>f7Init</span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span>), <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fastClicks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>iosTouchRipple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>panelSwipeSide</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"both"</span>), <span class='kw'>iosCenterTitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,6 +165,46 @@
     <tr>
       <th>theme</th>
       <td><p>App theme: "ios", "md", "auto" or "aurora".</p></td>
+    </tr>
+    <tr>
+      <th>filled</th>
+      <td><p>Whether to fill the <a href='f7Navbar.html'>f7Navbar</a> and <a href='f7Toolbar.html'>f7Toolbar</a> with
+the current selected color. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>Color theme: See <a href='http://framework7.io/docs/color-themes.html'>http://framework7.io/docs/color-themes.html</a>.
+Expect a name like blue or red. If NULL, use the default color.</p></td>
+    </tr>
+    <tr>
+      <th>fastClicks</th>
+      <td><p>Default to TRUE. Fast clicks is a built-in library that removes
+300ms delay from links and form elements in mobile browser while you click them.
+Modern browsers are smart enough to eliminate that click delay. You can enable
+this built-in library if you target old devices or experience click delays.</p></td>
+    </tr>
+    <tr>
+      <th>iosTouchRipple</th>
+      <td><p>Default to FALSE. Enables touch ripple effect for iOS theme.</p></td>
+    </tr>
+    <tr>
+      <th>panelSwipeSide</th>
+      <td><p>c("left", "right", "both"). If you want to enable ability to
+open/close side panels with swipe you can pass here left (for left panel) or
+right (for right panel) or both (for both panels).</p></td>
+    </tr>
+    <tr>
+      <th>iosCenterTitle</th>
+      <td><p>Default to TRUE. When enabled then it will try to position
+title at the center in iOS theme. Sometime (with some custom design) it may not needed.</p></td>
+    </tr>
+    <tr>
+      <th>hideNavOnPageScroll</th>
+      <td><p>Default to TRUE. Will hide Navbars on page scroll.</p></td>
+    </tr>
+    <tr>
+      <th>hideTabsOnPageScroll</th>
+      <td><p>Default to FALSE. Will hide tabs on page scroll.</p></td>
     </tr>
     </table>
     

@@ -154,7 +154,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Picker</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>choices</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Picker</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>choices</span>[<span class='fl'>1</span>],
+  <span class='no'>choices</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +171,10 @@
     <tr>
       <th>placeholder</th>
       <td><p>Text to write in the container.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>Picker initial value, if any.</p></td>
     </tr>
     <tr>
       <th>choices</th>
@@ -188,7 +193,7 @@
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"ios"</span>),
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Picker"</span>),
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Picker"</span>),
      <span class='fu'>f7Picker</span>(
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
       <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,

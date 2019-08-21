@@ -224,7 +224,9 @@
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'>f7Swiper</span>(
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Swiper"</span>),
+     <span class='fu'>f7Swiper</span>(
      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-swiper"</span>,
      <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(
       <span class='no'>timeline</span>
@@ -238,6 +240,7 @@
       ),
       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
      )
+    )
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {

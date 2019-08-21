@@ -183,7 +183,9 @@
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Media Card"</span>,
     <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"auto"</span>),
-    <span class='fu'>f7MediaCard</span>(
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7MediaCard"</span>),
+     <span class='fu'>f7MediaCard</span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"New Releases:"</span>,
      <span class='fu'><a href='f7MediaCardItem.html'>f7MediaCardItem</a></span>(
       <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"http://lorempixel.com/88/88/fashion/4"</span>,
@@ -199,6 +201,7 @@
       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>span</a></span>(<span class='st'>"January 20"</span>, <span class='fl'>2015</span>),
       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>span</a></span>(<span class='fl'>5</span>, <span class='st'>"comments"</span>)
      )
+    )
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
