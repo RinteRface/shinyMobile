@@ -7,13 +7,29 @@
 #' the current selected color. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 #' Expect a name like blue or red. If NULL, use the default color.
+#' @param fastClicks Default to TRUE. Fast clicks is a built-in library that removes
+#' 300ms delay from links and form elements in mobile browser while you click them.
+#' Modern browsers are smart enough to eliminate that click delay. You can enable
+#' this built-in library if you target old devices or experience click delays.
+#' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
+#' @param panelSwipeSide c("left", "right", "both"). If you want to enable ability to
+#' open/close side panels with swipe you can pass here left (for left panel) or
+#' right (for right panel) or both (for both panels).
+#' @param iosCenterTitle Default to TRUE. When enabled then it will try to position
+#' title at the center in iOS theme. Sometime (with some custom design) it may not needed.
+#' @param hideNavOnPageScroll Default to TRUE. Will hide Navbars on page scroll.
+#' @param hideTabsOnPageScroll Default to FALSE. Will hide tabs on page scroll.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
-                   color = NULL) {
+                   color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
+                   panelSwipeSide = c("left", "right", "both"),
+                   iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
+                   hideTabsOnPageScroll = FALSE) {
 
+  panelSwipeSide <- match.arg(panelSwipeSide)
   color <- colorToHex(color)
 
   theme <- match.arg(theme)
@@ -72,20 +88,21 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
           // App Name
           name: 'My App',
           theme: '", theme, "',
-          fastClicks: true,
-          iosTouchRipple: true,
+          fastClicks: '", tolower(fastClicks), "',
+          swipeNoFollow: true,
+          iosTouchRipple: '", tolower(iosTouchRipple), "',
           // allow both panels to swipe
           panel: {
-            swipe: 'both',
+            swipe: '", panelSwipeSide, "',
           },
           // App id
           id: 'f7App',
           navbar: {
-            hideOnPageScroll: true,
-            iosCenterTitle: true,
+            hideOnPageScroll: '", tolower(hideNavOnPageScroll), "',
+            iosCenterTitle: '", tolower(iosCenterTitle), "',
           },
           toolbar: {
-            hideOnPageScroll: true,
+            hideOnPageScroll: '", tolower(hideTabsOnPageScroll), "',
           },
           // ... other parameters
       });

@@ -5,7 +5,9 @@
 \title{Custom initialization}
 \usage{
 f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
-  color = NULL)
+  color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
+  panelSwipeSide = c("left", "right", "both"), iosCenterTitle = TRUE,
+  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE)
 }
 \arguments{
 \item{theme}{App theme: "ios", "md", "auto" or "aurora".}
@@ -15,6 +17,24 @@ the current selected color. FALSE by default.}
 
 \item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 Expect a name like blue or red. If NULL, use the default color.}
+
+\item{fastClicks}{Default to TRUE. Fast clicks is a built-in library that removes
+300ms delay from links and form elements in mobile browser while you click them.
+Modern browsers are smart enough to eliminate that click delay. You can enable
+this built-in library if you target old devices or experience click delays.}
+
+\item{iosTouchRipple}{Default to FALSE. Enables touch ripple effect for iOS theme.}
+
+\item{panelSwipeSide}{c("left", "right", "both"). If you want to enable ability to
+open/close side panels with swipe you can pass here left (for left panel) or
+right (for right panel) or both (for both panels).}
+
+\item{iosCenterTitle}{Default to TRUE. When enabled then it will try to position
+title at the center in iOS theme. Sometime (with some custom design) it may not needed.}
+
+\item{hideNavOnPageScroll}{Default to TRUE. Will hide Navbars on page scroll.}
+
+\item{hideTabsOnPageScroll}{Default to FALSE. Will hide tabs on page scroll.}
 }
 \description{
 Use inside \link{f7Page}. Mandatory!
