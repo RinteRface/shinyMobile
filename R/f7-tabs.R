@@ -41,6 +41,7 @@
 f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
+  if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
 
   toolbarItems <- list(...)
   len <- length(toolbarItems)
