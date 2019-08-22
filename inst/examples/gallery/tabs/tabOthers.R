@@ -7,6 +7,21 @@ tabOthers <- f7Tab(
     h1("miniUI 2.0 brings other elements")
   ),
 
+  # skeletons
+  f7BlockTitle(title = "f7Skeleton") %>% f7Align(side = "center"),
+  f7ListCard(
+    f7ListCardItem(
+      url = NULL,
+      title = "Item 1"
+    ),
+    f7ListCardItem(
+      url = NULL,
+      title = "Item 2"
+    )
+  ) %>% f7Skeleton(duration = 5000),
+
+  br(),
+
   # Messages
   f7BlockTitle(title = "f7Messages") %>% f7Align(side = "center"),
   f7Messages(
