@@ -14,6 +14,30 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "Tab Layout",
+#'     f7TabLayout(
+#'       navbar = f7Navbar(title = HTML(paste("Currently selected:", textOutput("selected")))),
+#'       f7Tabs(
+#'         id = "tabdemo",
+#'         swipeable = TRUE,
+#'         animated = FALSE,
+#'         f7Tab(tabName = "Tab 1", "tab 1 text"),
+#'         f7Tab(tabName = "Tab 2", "tab 2 text"),
+#'         f7Tab(tabName = "Tab 3", "tab 3 text")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output) {
+#'     output$selected <- renderText(input$tabdemo)
+#'   }
+#'  )
+#' }
 f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
