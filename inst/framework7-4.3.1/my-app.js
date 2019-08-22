@@ -1,16 +1,4 @@
 $(function () {
-  // select the first nav item by default at start
-  $('.toolbar-inner .a:eq(0)').addClass('tab-link-active');
-  var ios = $('html').hasClass('ios');
-  // only add the highlight bar if the theme is material
-  if (!ios) {
-   // we programatically set up the with of the tabbar indicator
-   // which depends on the number of tab items in the tabbar...
-   segment_width = 100 / $('.toolbar-inner > a').length;
-   $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%; transform: translate3d(0%, 0px, 0px);"></span>');
-  }
-  $('.page-content.tab:eq(0)').addClass('tab-active');
-
   // handles shinyapps.io
   var workerId = $('base').attr('href');
   // ensure that this code does not locally
@@ -106,6 +94,24 @@ $(function () {
     });
     // Open Notifications
     toast.open();
+  });
+
+
+  // handle update f7Tabs
+  tabsIds = [];
+  getAllTabsIds = function() {
+    $('.tabs').each(function() {
+      tabsIds.push($(this).attr('id'));
+    });
+  };
+
+  // call the function ...
+  getAllTabsIds();
+
+  tabsIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      app.tab.show('#' + message.selected);
+    });
   });
 
 });

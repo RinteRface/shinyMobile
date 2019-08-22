@@ -119,12 +119,36 @@ f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
   tabsJS <- shiny::singleton(
     shiny::tags$script(
       paste0(
-        "$(document).on('shiny:sessioninitialized', function() {
+        "
+        // This function is necessary to activate the good tab at start.
+        // If one tab is active, it has a data-active attribute set to true.
+        // We then trigger the show function on that tab.
+        // If no tab is active at start, the first tab is shown by default.
+        $(function() {
+          var firstTabId = $('#", id," div:eq(0)').attr('id');
+          var tabActiveId = $('#", id," div[data-active = \"true\"]').attr('id');
+          if (tabActiveId != undefined) {
+            app.tab.show('#' + tabActiveId);
+          } else {
+            app.tab.show('#' + firstTabId);
+          }
+        });
+
+        // Below is necessary to set the input value for shiny
+        $(document).on('shiny:sessioninitialized', function() {
           // trigger a click on the window at start
           // to be sure that the input value is setup
           setTimeout(function() {
             $(window).trigger('click');
           }, 10);
+
+          // Below is to handle the case where tabs are swipeable
+          // Swiping left or right does not trigger any click by default.
+          // Therefore, we need to trigger a click to update the shiny input.
+          app.on('tabShow', function() {
+           $(window).trigger('click');
+          });
+
           // update the input value
           $(window).on('click', function(e) {
            var selectedTab = $('#", id, "').find('.tab-active');
@@ -166,11 +190,82 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   id <- gsub(x = id, pattern = " ", replacement = "")
 
   itemTag <- shiny::tags$div(
-    class = if (active) "page-content tab tab-active" else "page-content tab",
+    class = "page-content tab",
+    `data-active` = tolower(active),
     id = id,
     `data-value` = tabName,
     style = "background-color: gainsboro;",
     ...
   )
   return(list(itemTag, icon, tabName))
+}
+
+
+
+
+#' Update a Framework 7 tabsetPanel
+#'
+#' Update \link{f7Tabs}.
+#'
+#' @param session Shiny session object.
+#' @param id Id of the \link{f7Tabs} to update.
+#' @param selected Newly selected tab.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Tab Layout",
+#'      f7TabLayout(
+#'        navbar = f7Navbar(
+#'         title = HTML(paste("Currently selected:", textOutput("selected"))),
+#'         subNavbar = f7SubNavbar(
+#'          f7Flex(
+#'           f7Toggle(inputId = "updateTab", label = "Update Tab", checked = TRUE),
+#'           f7Toggle(inputId = "updateSubTab", label = "Update SubTab", checked = FALSE)
+#'          )
+#'         )
+#'        ),
+#'        f7Tabs(
+#'          id = "tabdemo",
+#'          swipeable = TRUE,
+#'          animated = FALSE,
+#'          f7Tab(
+#'           tabName = "Tab 1",
+#'           f7Tabs(
+#'            id = "subtabdemo",
+#'            animated = TRUE,
+#'            f7Tab(tabName = "SubTab 1", "SubTab 1"),
+#'            f7Tab(tabName = "SubTab 2", "SubTab 2", active = TRUE),
+#'            f7Tab(tabName = "SubTab 3", "SubTab 3")
+#'           )
+#'          ),
+#'          f7Tab(tabName = "Tab 2", "Tab 2"),
+#'          f7Tab(tabName = "Tab 3", "Tab 3")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      observeEvent(input$updateTab, {
+#'        selected <- ifelse(input$updateTab, "Tab 1", "Tab 2")
+#'        updateF7Tabs(session, id = "tabdemo", selected = selected)
+#'      })
+#'      observeEvent(input$updateSubTab, {
+#'        selected <- ifelse(input$updateSubTab, "SubTab 1", "SubTab 2")
+#'        updateF7Tabs(session, id = "subtabdemo", selected = selected)
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Tabs <- function(session, id, selected = NULL) {
+
+  # remove the space in the tab name
+  selected <- gsub(x = selected, pattern = " ", replacement = "")
+
+  message <- dropNulls(list(selected = selected))
+  session$sendCustomMessage(type = id, message = message)
 }
