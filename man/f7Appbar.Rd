@@ -2,13 +2,55 @@
 % Please edit documentation in R/f7Appbar.R
 \name{f7Appbar}
 \alias{f7Appbar}
-\title{Create an appbar}
+\title{Create a Framework 7 appbar}
 \usage{
-f7Appbar(...)
+f7Appbar(..., left_panel = FALSE, right_panel = FALSE)
 }
 \arguments{
 \item{...}{Any UI content.}
+
+\item{left_panel}{Whether to enable the left panel. FALSE by default.}
+
+\item{right_panel}{Whether to enable the right panel. FALSE by default.}
 }
 \description{
-Build a Framework7 appbar
+Displayed on top of \link{f7Navbar}. Interestingly, \link{f7Appbar} can also
+trigger \link{f7Panel}.
+}
+\examples{
+if (interactive()) {
+ library(shiny)
+ library(shinyF7)
+
+ cities <- names(precip)
+
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "My app",
+     init = f7Init(theme = "ios"),
+     f7Appbar(
+       left_panel = TRUE,
+       right_panel = TRUE,
+       f7Searchbar(id = "search1", inline = TRUE)
+     ),
+     f7SingleLayout(
+       navbar = f7Navbar(
+         title = "f7Searchbar",
+         hairline = FALSE,
+         shadow = TRUE
+       ),
+       panels = tagList(
+         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
+         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+       ),
+       f7List(
+         lapply(seq_along(cities), function(i) {
+           f7ListItem(cities[i])
+         })
+       ) \%>\% f7Found()
+     )
+   ),
+   server = function(input, output) {}
+ )
+}
 }

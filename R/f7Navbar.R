@@ -2,6 +2,7 @@
 #'
 #' Build a Framework7 Navbar
 #'
+#' @param ... Slot for \link{f7SearchbarTrigger}. Not compatible with \link{f7Panel}.
 #' @param subNavbar \link{f7SubNavbar} slot, if any.
 #' @param title Navbar title.
 #' @param subtitle Navbar subtitle.
@@ -16,7 +17,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = TRUE,
+f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairline = TRUE,
                      shadow = TRUE, bigger = FALSE, left_panel = FALSE,
                      right_panel = FALSE) {
 
@@ -70,6 +71,7 @@ f7Navbar <- function(subNavbar= NULL, title = NULL, subtitle = NULL, hairline = 
             )
          },
          rightNav,
+         ...,
          subNavbar
       )
    )
