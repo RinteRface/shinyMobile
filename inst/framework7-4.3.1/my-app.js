@@ -37,8 +37,18 @@ $(function () {
     var closeOnClick = (message.closeOnClick == 'true');
     var swipeToClose = (message.swipeToClose == 'true');
 
+    // create the HTML icon
+    var icon;
+    if (message.icon !== undefined) {
+      icon = '<i class="' +
+    message.icon.attribs.class +'">' +
+    message.icon.children[0] + '</i>';
+    } else {
+      icon = undefined;
+    }
+
     var notif = app.notification.create({
-      icon: '<i class="' + message.icon.attribs.class +'">' + message.icon.children[0] + '</i>' ,
+      icon: icon,
       title: message.title,
       titleRightText: message.titleRightText,
       subtitle: message.subtitle,

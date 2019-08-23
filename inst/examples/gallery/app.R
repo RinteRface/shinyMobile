@@ -87,8 +87,12 @@ shinyApp(
     # notifications
     lapply(1:3, function(i) {
       observeEvent(input[[paste0("goNotif", i)]],{
+
+        icon <- if (i %% 2 == 0) f7Icon("bolt_fill") else NULL
+
         f7Notif(
           text = "test",
+          icon = icon,
           title = paste("Notification", i),
           subtitle = "A subtitle",
           titleRightText = i,
