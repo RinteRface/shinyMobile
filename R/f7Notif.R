@@ -1,10 +1,11 @@
 #' Create a Framework7 notification
 #'
 #' @param text Notification content.
+#' @param icon Notification icon.
 #' @param title Notification title.
 #' @param titleRightText Notification right text.
 #' @param subtitle Notification subtitle
-#' @param closeTimeout Time before notification close.
+#' @param closeTimeout Time before notification closes.
 #' @param closeButton Whether to display a close button.
 #' FALSE by default.
 #' @param closeOnClick Whether to close the notification on click. TRUE by default.
@@ -31,6 +32,7 @@
 #'       shiny::observeEvent(input$goButton,{
 #'         f7Notif(
 #'           text = "test",
+#'           icon = f7Icon("bolt_fill"),
 #'           title = "Notification",
 #'           subtitle = "A subtitle",
 #'           titleRightText = "now",
@@ -40,13 +42,14 @@
 #'     }
 #'   )
 #' }
-f7Notif <- function(text, title = NULL, titleRightText = NULL, subtitle = NULL,
+f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subtitle = NULL,
                     closeTimeout = 5000, closeButton = FALSE,
                     closeOnClick = TRUE, swipeToClose = TRUE, session) {
 
   message <- dropNulls(
     list(
       title = title,
+      icon = icon,
       titleRightText = titleRightText,
       subtitle = subtitle,
       text = text,

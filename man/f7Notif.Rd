@@ -4,12 +4,14 @@
 \alias{f7Notif}
 \title{Create a Framework7 notification}
 \usage{
-f7Notif(text, title = NULL, titleRightText = NULL, subtitle = NULL,
-  closeTimeout = 5000, closeButton = FALSE, closeOnClick = TRUE,
-  swipeToClose = TRUE, session)
+f7Notif(text, icon = NULL, title = NULL, titleRightText = NULL,
+  subtitle = NULL, closeTimeout = 5000, closeButton = FALSE,
+  closeOnClick = TRUE, swipeToClose = TRUE, session)
 }
 \arguments{
 \item{text}{Notification content.}
+
+\item{icon}{Notification icon.}
 
 \item{title}{Notification title.}
 
@@ -17,7 +19,7 @@ f7Notif(text, title = NULL, titleRightText = NULL, subtitle = NULL,
 
 \item{subtitle}{Notification subtitle}
 
-\item{closeTimeout}{Time before notification close.}
+\item{closeTimeout}{Time before notification closes.}
 
 \item{closeButton}{Whether to display a close button.
 FALSE by default.}
@@ -49,6 +51,7 @@ if (interactive()) {
       shiny::observeEvent(input$goButton,{
         f7Notif(
           text = "test",
+          icon = f7Icon("bolt_fill"),
           title = "Notification",
           subtitle = "A subtitle",
           titleRightText = "now",

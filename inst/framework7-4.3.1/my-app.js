@@ -38,7 +38,7 @@ $(function () {
     var swipeToClose = (message.swipeToClose == 'true');
 
     var notif = app.notification.create({
-      icon: '<i class="f7-icons">bolt_fill</i>',
+      icon: '<i class="' + message.icon.attribs.class +'">' + message.icon.children[0] + '</i>' ,
       title: message.title,
       titleRightText: message.titleRightText,
       subtitle: message.subtitle,
