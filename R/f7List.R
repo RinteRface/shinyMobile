@@ -118,7 +118,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
 
   # avoid to have crazy large images
   if (!is.null(media)) {
-    if (media$name == "img") media$attribs$width <- 50
+    if (media$name == "img") media$attribs$width <- "50"
   }
 
   itemContent <- shiny::tagList(
@@ -137,23 +137,20 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
       if (is.null(title)) {
         shiny::tagList(
           shiny::tags$div(
-            class = "item-title-row",
-            shiny::tags$div(
-              class = "item-title",
-              if (!is.null(header)) {
-                shiny::tags$div(
-                  class = "item-header",
-                  header
-                )
-              },
-              ...,
-              if (!is.null(footer)) {
-                shiny::tags$div(
-                  class = "item-footer",
-                  footer
-                )
-              }
-            )
+            class = "item-title",
+            if (!is.null(header)) {
+              shiny::tags$div(
+                class = "item-header",
+                header
+              )
+            },
+            ...,
+            if (!is.null(footer)) {
+              shiny::tags$div(
+                class = "item-footer",
+                footer
+              )
+            }
           ),
 
           # right content

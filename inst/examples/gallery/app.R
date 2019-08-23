@@ -49,6 +49,7 @@ shinyApp(
         tabInputs,
         tabBtns,
         tabCards,
+        tabLists,
         tabText,
         tabInfo,
         tabOthers
