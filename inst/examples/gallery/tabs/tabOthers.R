@@ -60,6 +60,20 @@ tabOthers <- f7Tab(
   ),
   br(),
 
+  # chips
+  f7BlockTitle(title = "f7Chip") %>% f7Align(side = "center"),
+  f7Block(
+    strong = TRUE,
+    f7Chip(label = "Example Chip"),
+    f7Chip(label = "Example Chip", outline = TRUE),
+    f7Chip(label = "Example Chip", icon = f7Icon("add_round"), icon_status = "pink"),
+    f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
+    f7Chip(label = "Example Chip", closable = TRUE),
+    f7Chip(label = "Example Chip", status = "green"),
+    f7Chip(label = "Example Chip", status = "green", outline = TRUE)
+  ),
+  br(),
+
   # accordion
   f7BlockTitle(title = "f7Accordion") %>% f7Align(side = "center"),
   f7Accordion(

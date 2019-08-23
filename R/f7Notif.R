@@ -7,6 +7,9 @@
 #' @param closeTimeout Time before notification close.
 #' @param closeButton Whether to display a close button.
 #' FALSE by default.
+#' @param closeOnClick Whether to close the notification on click. TRUE by default.
+#' @param swipeToClose If enabled, notification can be closed by swipe gesture.
+#'
 #' @param session shiny session.
 #'
 #' @export
@@ -37,8 +40,9 @@
 #'     }
 #'   )
 #' }
-f7Notif <- function(text, title, titleRightText, subtitle = NULL,
-                    closeTimeout = 5000, closeButton = TRUE, session) {
+f7Notif <- function(text, title = NULL, titleRightText = NULL, subtitle = NULL,
+                    closeTimeout = 5000, closeButton = FALSE,
+                    closeOnClick = TRUE, swipeToClose = TRUE, session) {
 
   message <- dropNulls(
     list(
@@ -46,8 +50,10 @@ f7Notif <- function(text, title, titleRightText, subtitle = NULL,
       titleRightText = titleRightText,
       subtitle = subtitle,
       text = text,
-      closeTimeout = closeTimeout,
-      closeButton = tolower(closeButton)
+      closeOnClick = tolower(closeOnClick),
+      swipeToClose = tolower(swipeToClose),
+      closeButton = tolower(closeButton),
+      closeTimeout = closeTimeout
     )
   )
   # see my-app.js function

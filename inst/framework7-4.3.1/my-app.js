@@ -30,14 +30,23 @@ $(function () {
   // set up notifications
   // for now, it only works for 1 notification at a time
   Shiny.addCustomMessageHandler("notif", function(message) {
+
+    // properly treat Booleans get from R
+    // R returns strings containing 'true' or 'false'
+    var closeButton = (message.closeButton == 'true');
+    var closeOnClick = (message.closeOnClick == 'true');
+    var swipeToClose = (message.swipeToClose == 'true');
+
     var notif = app.notification.create({
       icon: '<i class="f7-icons">bolt_fill</i>',
-      title: ' ' + message.title,
-      titleRightText: ' ' + message.titleRightText,
-      subtitle: ' ' + message.subtitle,
-      text: ' ' + message.text,
-      closeTimeout: ' ' + message.closeTimeout,
-      closeButton: ' ' + message.closeButton,
+      title: message.title,
+      titleRightText: message.titleRightText,
+      subtitle: message.subtitle,
+      text: message.text,
+      closeTimeout: parseInt(message.closeTimeout),
+      closeOnClick: closeOnClick,
+      swipeToClose: swipeToClose,
+      closeButton: closeButton
     });
     // Open Notifications
     notif.open();

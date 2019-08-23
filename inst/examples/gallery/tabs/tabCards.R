@@ -1,6 +1,6 @@
 tabCards <- f7Tab(
   tabName = "Cards",
-  icon = f7Icon("card"),
+  icon = f7Icon("card", f7Badge(8, color = "green")),
   active = FALSE,
 
   f7Align(
@@ -21,7 +21,10 @@ tabCards <- f7Tab(
   # classic card without image
   f7BlockTitle(title = "f7Card with header and footer") %>% f7Align(side = "center"),
   f7Card(
-    title = "Card with header and footer",
+    title = tagList(
+      "Card with header and footer",
+      f7Icon("card", f7Badge("Hi!", color = "red"))
+    ),
     "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
@@ -87,6 +90,7 @@ tabCards <- f7Tab(
     ),
     footer = tagList(
       span("January 20", 2015),
+      f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
       span(5, "comments")
     )
   ),

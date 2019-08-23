@@ -1,6 +1,6 @@
 tabLists <- f7Tab(
   tabName = "Lists",
-  icon = f7Icon("list"),
+  icon = f7Icon("list", f7Badge("New", color = "red")),
   active = FALSE,
 
   f7Align(
