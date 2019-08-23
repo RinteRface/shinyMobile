@@ -49,7 +49,7 @@ if(interactive()){
     ),
     f7Card(
      title = "Card header",
-     img = "http://lorempixel.com/1000/600/nature/3/",
+     img = "https://lorempixel.com/1000/600/nature/3/",
      "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",

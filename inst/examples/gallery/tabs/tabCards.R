@@ -36,7 +36,7 @@ tabCards <- f7Tab(
   f7BlockTitle(title = "f7Card with media") %>% f7Align(side = "center"),
   f7Card(
     title = "Card with header, footer and image",
-    img = "http://lorempixel.com/1000/600/nature/3/",
+    img = "https://lorempixel.com/1000/600/nature/3/",
     "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
@@ -67,35 +67,27 @@ tabCards <- f7Tab(
 
   # media card
   f7BlockTitle(title = "f7MediaCard") %>% f7Align(side = "center"),
-  f7MediaCard(
-    title = "A media card:",
-    f7MediaCardItem(
-      src = "http://lorempixel.com/88/88/fashion/4",
-      title = "Yellow Submarine",
-      subtitle = "Beatles"
-    ),
-    f7MediaCardItem(
-      src = "http://lorempixel.com/88/88/fashion/5",
-      title = "Don't Stop Me Now",
-      subtitle = "Queen"
+  f7Card(
+    title = "A card with media:",
+
+    f7List(
+      mode = "media",
+      lapply(1:2, function(j) {
+        f7ListItem(
+          title = letters[j],
+          subtitle = "Subtitle",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum, ut dignissim
+            lacus tincidunt.",
+          media = tags$img(src = paste0("https://lorempixel.com/88/88/fashion/", j)),
+          right = "Right Text",
+          url = "test"
+        )
+      })
     ),
     footer = tagList(
       span("January 20", 2015),
       span(5, "comments")
-    )
-  ),
-  br(),
-
-  # list card
-  f7BlockTitle(title = "f7ListCard") %>% f7Align(side = "center"),
-  f7ListCard(
-    f7ListCardItem(
-      url = "https://www.google.com",
-      title = "Item 1"
-    ),
-    f7ListCardItem(
-      url = "https://www.google.com",
-      title = "Item 2"
     )
   ),
   br(),
@@ -117,9 +109,9 @@ tabCards <- f7Tab(
     title = "Expandable Card 2",
     img = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
     "Framework7 - is a free and open source HTML mobile framework
-        to develop hybrid mobile apps or web apps with iOS or Android
-        native look and feel. It is also an indispensable prototyping apps tool
-        to show working app prototype as soon as possible in case you need to."
+    to develop hybrid mobile apps or web apps with iOS or Android
+    native look and feel. It is also an indispensable prototyping apps tool
+    to show working app prototype as soon as possible in case you need to."
   ),
   f7ExpandableCard(
     id = "card3",
@@ -127,9 +119,9 @@ tabCards <- f7Tab(
     fullBackground = TRUE,
     img = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
     "Framework7 - is a free and open source HTML mobile framework
-              to develop hybrid mobile apps or web apps with iOS or Android
-              native look and feel. It is also an indispensable prototyping apps tool
-              to show working app prototype as soon as possible in case you need to."
+    to develop hybrid mobile apps or web apps with iOS or Android
+    native look and feel. It is also an indispensable prototyping apps tool
+    to show working app prototype as soon as possible in case you need to."
   )
 
 )

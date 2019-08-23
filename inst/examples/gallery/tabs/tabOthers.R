@@ -9,15 +9,9 @@ tabOthers <- f7Tab(
 
   # skeletons
   f7BlockTitle(title = "f7Skeleton") %>% f7Align(side = "center"),
-  f7ListCard(
-    f7ListCardItem(
-      url = NULL,
-      title = "Item 1"
-    ),
-    f7ListCardItem(
-      url = NULL,
-      title = "Item 2"
-    )
+  f7List(
+    f7ListItem(title = "Item 1"),
+    f7ListItem(title = "Item 2")
   ) %>% f7Skeleton(duration = 5000),
 
   br(),
