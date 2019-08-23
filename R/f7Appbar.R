@@ -3,7 +3,9 @@
 #' Displayed on top of \link{f7Navbar}. Interestingly, \link{f7Appbar} can also
 #' trigger \link{f7Panel}.
 #'
-#' @param ... Any UI content.
+#' @param ... Any UI content such as \link{f7Searchbar}, \link{f7Next} and
+#' \link{f7Back}. It is best practice to wrap \link{f7Next} and
+#' \link{f7Back} in a \link{f7Flex}.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
 #' @export
@@ -19,25 +21,38 @@
 #'      title = "My app",
 #'      init = f7Init(theme = "ios"),
 #'      f7Appbar(
-#'        left_panel = TRUE,
-#'        right_panel = TRUE,
+#'        f7Flex(f7Back(targetId = "tabset"),f7Next(targetId = "tabset")),
 #'        f7Searchbar(id = "search1", inline = TRUE)
 #'      ),
-#'      f7SingleLayout(
+#'      f7TabLayout(
 #'        navbar = f7Navbar(
-#'          title = "f7Searchbar",
+#'          title = "f7Appbar",
 #'          hairline = FALSE,
 #'          shadow = TRUE
 #'        ),
-#'        panels = tagList(
-#'          f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-#'          f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
-#'        ),
-#'        f7List(
-#'          lapply(seq_along(cities), function(i) {
-#'            f7ListItem(cities[i])
-#'          })
-#'        ) %>% f7Found()
+#'        f7Tabs(
+#'          animated = FALSE,
+#'          swipeable = TRUE,
+#'          id = "tabset",
+#'          f7Tab(
+#'            tabName = "Tab 1",
+#'            icon = f7Icon("email"),
+#'            active = TRUE,
+#'            "Text 1"
+#'          ),
+#'          f7Tab(
+#'            tabName = "Tab 2",
+#'            icon = f7Icon("today"),
+#'            active = FALSE,
+#'            "Text 2"
+#'          ),
+#'          f7Tab(
+#'            tabName = "Tab 3",
+#'            icon = f7Icon("cloud_upload"),
+#'            active = FALSE,
+#'            "Text 3"
+#'          )
+#'        )
 #'      )
 #'    ),
 #'    server = function(input, output) {}
@@ -78,4 +93,114 @@ f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
       }
     )
   )
+}
+
+
+
+
+#' Create a framework 7 back button
+#'
+#' This buttons allows to switch between multiple \link{f7Tab}.
+#'
+#' @param targetId \link{f7Tabs} id.
+#' @export
+f7Back <- function(targetId) {
+
+  backJS <- shiny::singleton(
+    shiny::tags$script(
+      shiny::HTML(
+        paste0(
+          "$(function() {
+            var firstTabId =  $('#", targetId," div:eq(0)').attr('id');
+            var currentTab = null;
+            var currentTabId = null;
+            // need to update the current tab on each click
+            $(window).on('click', function() {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('data-value');
+            });
+            $('#back_", targetId, "').on('click', function(e) {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('id');
+              //console.log(currentTabId);
+              // if the first tab is already active, we cannot go back
+              if (currentTabId !== firstTabId) {
+                var backTab = $(currentTab).prev();
+                var backTabId = $(backTab).attr('id');
+                console.log(backTab);
+                console.log(backTabId);
+                app.tab.show('#' + backTabId);
+              }
+            });
+          });
+          "
+        )
+      )
+    )
+  )
+
+  backTag <- shiny::tags$a(
+    href = "#",
+    id = paste0("back_", targetId),
+    class = "button button-small display-flex margin-left-half",
+    f7Icon("reply_fill")
+  )
+
+  shiny::tagList(backJS, backTag)
+
+}
+
+
+
+
+
+#' Create a framework 7 next button
+#'
+#' This buttons allows to switch between multiple \link{f7Tab}.
+#'
+#' @param targetId \link{f7Tabs} id.
+#' @export
+f7Next <- function(targetId) {
+
+  nextJS <- shiny::singleton(
+    shiny::tags$script(
+      shiny::HTML(
+        paste0(
+          "$(function() {
+            var lastTabId =  $('#", targetId," div:last-child').attr('id');
+            var currentTab = null;
+            var currentTabId = null;
+            // need to update the current tab on each click
+            $(window).on('click', function() {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('data-value');
+            });
+            $('#next_", targetId, "').on('click', function(e) {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('id');
+              // if the first tab is already active, we cannot go back
+              if (currentTabId !== lastTabId) {
+                var backTab = $(currentTab).next();
+                var backTabId = $(backTab).attr('id');
+                console.log(backTab);
+                console.log(backTabId);
+                app.tab.show('#' + backTabId);
+              }
+            });
+          });
+          "
+        )
+      )
+    )
+  )
+
+  nextTag <- shiny::tags$a(
+    href = "#",
+    id = paste0("next_", targetId),
+    class = "button button-small display-flex margin-left-half",
+    f7Icon("forward_fill")
+  )
+
+  shiny::tagList(nextJS, nextTag)
+
 }

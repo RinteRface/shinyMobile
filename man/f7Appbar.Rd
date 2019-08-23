@@ -7,7 +7,9 @@
 f7Appbar(..., left_panel = FALSE, right_panel = FALSE)
 }
 \arguments{
-\item{...}{Any UI content.}
+\item{...}{Any UI content such as \link{f7Searchbar}, \link{f7Next} and
+\link{f7Back}. It is best practice to wrap \link{f7Next} and
+\link{f7Back} in a \link{f7Flex}.}
 
 \item{left_panel}{Whether to enable the left panel. FALSE by default.}
 
@@ -29,25 +31,38 @@ if (interactive()) {
      title = "My app",
      init = f7Init(theme = "ios"),
      f7Appbar(
-       left_panel = TRUE,
-       right_panel = TRUE,
+       f7Flex(f7Back(targetId = "tabset"),f7Next(targetId = "tabset")),
        f7Searchbar(id = "search1", inline = TRUE)
      ),
-     f7SingleLayout(
+     f7TabLayout(
        navbar = f7Navbar(
-         title = "f7Searchbar",
+         title = "f7Appbar",
          hairline = FALSE,
          shadow = TRUE
        ),
-       panels = tagList(
-         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
-       ),
-       f7List(
-         lapply(seq_along(cities), function(i) {
-           f7ListItem(cities[i])
-         })
-       ) \%>\% f7Found()
+       f7Tabs(
+         animated = FALSE,
+         swipeable = TRUE,
+         id = "tabset",
+         f7Tab(
+           tabName = "Tab 1",
+           icon = f7Icon("email"),
+           active = TRUE,
+           "Text 1"
+         ),
+         f7Tab(
+           tabName = "Tab 2",
+           icon = f7Icon("today"),
+           active = FALSE,
+           "Text 2"
+         ),
+         f7Tab(
+           tabName = "Tab 3",
+           icon = f7Icon("cloud_upload"),
+           active = FALSE,
+           "Text 3"
+         )
+       )
      )
    ),
    server = function(input, output) {}
