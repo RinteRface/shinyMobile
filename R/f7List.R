@@ -243,3 +243,110 @@ f7ListGroup <- function(..., title) {
 }
 
 
+
+#' Create a Framework 7 list index
+#'
+#' @param ... Slot for \link{f7ListGroup}.
+#' @param id Unique id.
+#' @export
+#'
+#' @note For some reason, unable to get more than 1 list index working. See
+#' example below. The second list does not work.
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7TabLayout(
+#'        navbar = f7Navbar(
+#'          title = "f7ListIndex",
+#'          hairline = FALSE,
+#'          shadow = TRUE
+#'        ),
+#'        f7Tabs(
+#'          f7Tab(
+#'            tabName = "List 1",
+#'            f7ListIndex(
+#'              id = "listIndex1",
+#'              lapply(seq_along(LETTERS), function(i) {
+#'                f7ListGroup(
+#'                  title = LETTERS[i],
+#'                  lapply(1:3, function(j) {
+#'                    f7ListIndexItem(letters[j])
+#'                  })
+#'                )
+#'              })
+#'            )
+#'          ),
+#'          f7Tab(
+#'            tabName = "List 2",
+#'            f7ListIndex(
+#'              id = "listIndex2",
+#'              lapply(seq_along(LETTERS), function(i) {
+#'                f7ListGroup(
+#'                  title = LETTERS[i],
+#'                  lapply(1:3, function(j) {
+#'                    f7ListIndexItem(letters[j])
+#'                  })
+#'                )
+#'              })
+#'            )
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {}
+#'  )
+#' }
+f7ListIndex <- function(..., id) {
+
+  listIndexJS <- shiny::singleton(
+    shiny::tags$script(
+      shiny::HTML(
+        paste0(
+          "$(function() {
+          // We first insert the HTML <div class=\"list-index\"></div> before
+          // the page content div.
+          $('<div class=\"list-index\" id=\"", id, "\"></div>').insertAfter($('.navbar'));
+
+          // init the listIndex once we inserted the
+          app.listIndex.create({
+            // '.list-index' element
+            el: '#", id, "',
+            // List el where to look indexes and scroll for
+            listEl: '#", id, "_contacts-list',
+            // Generate indexes automatically based on '.list-group-title' and '.item-divider'
+            indexes: 'auto',
+            // Scroll list on indexes click and touchmove
+            scrollList: true,
+            // Enable bubble label when swiping over indexes
+            label: true,
+          });
+        });
+        "
+        )
+      )
+    )
+  )
+
+  listIndexTag <- shiny::tags$div(
+    class = "list simple-list contacts-list",
+    # listEl
+    id = paste0(id, "_contacts-list"),
+    ...
+  )
+
+  shiny::tagList(listIndexJS, listIndexTag)
+
+}
+
+
+
+#' Create a Framework 7 list index item
+#'
+#' @inheritParams shiny::tags
+#' @export
+f7ListIndexItem <- shiny::tags$li
