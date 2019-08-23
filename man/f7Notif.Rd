@@ -4,8 +4,9 @@
 \alias{f7Notif}
 \title{Create a Framework7 notification}
 \usage{
-f7Notif(text, title, titleRightText, subtitle = NULL,
-  closeTimeout = 5000, closeButton = TRUE, session)
+f7Notif(text, title = NULL, titleRightText = NULL, subtitle = NULL,
+  closeTimeout = 5000, closeButton = FALSE, closeOnClick = TRUE,
+  swipeToClose = TRUE, session)
 }
 \arguments{
 \item{text}{Notification content.}
@@ -20,6 +21,10 @@ f7Notif(text, title, titleRightText, subtitle = NULL,
 
 \item{closeButton}{Whether to display a close button.
 FALSE by default.}
+
+\item{closeOnClick}{Whether to close the notification on click. TRUE by default.}
+
+\item{swipeToClose}{If enabled, notification can be closed by swipe gesture.}
 
 \item{session}{shiny session.}
 }

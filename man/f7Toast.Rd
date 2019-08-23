@@ -6,7 +6,7 @@
 \usage{
 f7Toast(session, text, position = c("bottom", "top", "center"),
   closeButton = TRUE, closeButtonText = "close",
-  closeButtonColor = "red")
+  closeButtonColor = "red", closeTimeout = 3000)
 }
 \arguments{
 \item{session}{Shiny session.}
@@ -21,6 +21,8 @@ TRUE by default.}
 \item{closeButtonText}{Close button text.}
 
 \item{closeButtonColor}{Close button color.}
+
+\item{closeTimeout}{Time before toast closes.}
 }
 \description{
 Create a Framework7 toast

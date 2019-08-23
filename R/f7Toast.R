@@ -6,6 +6,7 @@
 #' TRUE by default.
 #' @param closeButtonText Close button text.
 #' @param closeButtonColor Close button color.
+#' @param closeTimeout Time before toast closes.
 #' @param session Shiny session.
 #'
 #' @export
@@ -37,7 +38,7 @@
 #' }
 f7Toast <- function(session, text, position = c("bottom", "top", "center"),
                     closeButton = TRUE, closeButtonText = "close",
-                    closeButtonColor = "red") {
+                    closeButtonColor = "red", closeTimeout = 3000) {
 
   position <- match.arg(position)
 
@@ -45,6 +46,7 @@ f7Toast <- function(session, text, position = c("bottom", "top", "center"),
     list(
       text = text,
       position = position,
+      closeTimeout = closeTimeout,
       closeButton = tolower(closeButton),
       closeButtonText = closeButtonText,
       closeButtonColor = closeButtonColor
