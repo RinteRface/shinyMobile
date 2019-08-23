@@ -215,7 +215,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     )
   } else {
     shiny::tags$a(
-      class = "item-link item-content",
+      class = "item-link item-content external",
       href = url,
       itemContent
     )
