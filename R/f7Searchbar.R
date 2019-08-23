@@ -1,6 +1,7 @@
 #' Create a Framework 7 searchbar
 #'
 #' @param id Necessary when using \link{f7SearchbarTrigger}. NULL otherwise.
+#' @param placeholder Searchbar placeholder.
 #' @param expandable Whether to enable the searchbar with a target link,
 #' in the navbar. See \link{f7SearchbarTrigger}.
 #' @param inline Useful to add a \link{f7Searchbar} in a \link{f7Appbar}.
@@ -107,7 +108,7 @@
 #'   server = function(input, output) {}
 #'  )
 #' }
-f7Searchbar <- function(id = NULL, expandable = FALSE, inline = FALSE) {
+f7Searchbar <- function(id = NULL, placeholder = NULL, expandable = FALSE, inline = FALSE) {
 
   searchBarCl <- "searchbar"
   if (expandable) searchBarCl <- paste0(searchBarCl, " searchbar-expandable")

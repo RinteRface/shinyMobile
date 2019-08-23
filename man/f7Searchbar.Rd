@@ -4,10 +4,13 @@
 \alias{f7Searchbar}
 \title{Create a Framework 7 searchbar}
 \usage{
-f7Searchbar(id = NULL, expandable = FALSE, inline = FALSE)
+f7Searchbar(id = NULL, placeholder = NULL, expandable = FALSE,
+  inline = FALSE)
 }
 \arguments{
 \item{id}{Necessary when using \link{f7SearchbarTrigger}. NULL otherwise.}
+
+\item{placeholder}{Searchbar placeholder.}
 
 \item{expandable}{Whether to enable the searchbar with a target link,
 in the navbar. See \link{f7SearchbarTrigger}.}
