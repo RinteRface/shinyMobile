@@ -2,50 +2,39 @@
 % Please edit documentation in R/f7-inputs.R
 \name{f7Date}
 \alias{f7Date}
-\title{Create a Framework7 date input}
+\title{Create an f7 date input}
 \usage{
-f7Date(inputId, label, value = NULL, min = NULL, max = NULL,
-  format = "yyyy-mm-dd")
+f7Date(inputId, label, value = "", placeholder = NULL)
 }
 \arguments{
 \item{inputId}{Date input id.}
 
-\item{label}{Input label.}
+\item{label}{Date input label.}
 
-\item{value}{Start value.}
+\item{value}{Date input value.}
 
-\item{min}{Minimum date.}
-
-\item{max}{Maximum date.}
-
-\item{format}{Date format: "yyyy-mm-dd", for instance.}
+\item{placeholder}{Date input placeholder.}
 }
 \description{
-Create a Framework7 date input
+This does only work for mobiles or tablets!
 }
 \examples{
-if (interactive()) {
+if(interactive()){
  library(shiny)
  library(shinyF7)
- shinyApp(
+
+ shiny::shinyApp(
    ui = f7Page(
-     preloader = FALSE,
-     color = "pink",
      title = "My app",
-     init = f7Init(theme = "md"),
+     init = f7Init(theme = "auto"),
      f7SingleLayout(
-       navbar = f7Navbar(title = "f7Date"),
-       f7Date(
-         inputId = "date",
-         label = "Choose a date",
-         value = "2019-08-24"
-       ),
-       "The selected date is",
-       textOutput("selectDate")
+      navbar = f7Navbar(title = "f7Date"),
+      f7Date(inputId = "date", label = "Date", value = "2014-04-30"),
+      verbatimTextOutput("datevalue")
      )
    ),
-   server = function(input, output, session) {
-     output$selectDate <- renderText(input$date)
+   server = function(input, output) {
+     output$datevalue <- renderPrint({ input$date })
    }
  )
 }
