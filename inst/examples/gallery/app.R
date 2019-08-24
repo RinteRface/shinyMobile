@@ -21,6 +21,11 @@ shinyApp(
     title = "miniUI 2.0",
     dark_mode = FALSE,
     init = f7Init(theme = "ios", filled = TRUE),
+    f7Appbar(
+      maximizable = TRUE,
+      f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
+      f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
+    ),
     f7TabLayout(
       panels = tagList(
         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "reveal"),
@@ -45,6 +50,7 @@ shinyApp(
         "
       ),
       f7Tabs(
+        id = "tabset",
         animated = TRUE,
         tabInputs,
         tabBtns,

@@ -2,9 +2,9 @@
 #'
 #' Build a Framework7 button
 #'
-#' @param inputId	The input slot that will be used to access the value.
+#' @param inputId The input slot that will be used to access the value.
 #' @param label The contents of the button or link–usually a text label,
-#' but you could also use any other HTML, like an image.
+#' but you could also use any other HTML, like an image or \link{f7Icon}.
 #' @param src Button link.
 #' @param color Button color. Not compatible with outline.
 #' See here for valid colors \url{https://framework7.io/docs/badge.html}.

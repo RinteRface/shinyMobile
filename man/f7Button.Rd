@@ -12,7 +12,7 @@ f7Button(inputId = NULL, label = NULL, src = NULL, color = NULL,
 \item{inputId}{The input slot that will be used to access the value.}
 
 \item{label}{The contents of the button or link–usually a text label,
-but you could also use any other HTML, like an image.}
+but you could also use any other HTML, like an image or \link{f7Icon}.}
 
 \item{src}{Button link.}
 

@@ -4,7 +4,8 @@
 \alias{f7Appbar}
 \title{Create a Framework 7 appbar}
 \usage{
-f7Appbar(..., left_panel = FALSE, right_panel = FALSE)
+f7Appbar(..., left_panel = FALSE, right_panel = FALSE,
+  maximizable = FALSE)
 }
 \arguments{
 \item{...}{Any UI content such as \link{f7Searchbar}, \link{f7Next} and
@@ -14,6 +15,8 @@ f7Appbar(..., left_panel = FALSE, right_panel = FALSE)
 \item{left_panel}{Whether to enable the left panel. FALSE by default.}
 
 \item{right_panel}{Whether to enable the right panel. FALSE by default.}
+
+\item{maximizable}{Whether to allow fullscreen. FALSE by default.}
 }
 \description{
 Displayed on top of \link{f7Navbar}. Interestingly, \link{f7Appbar} can also

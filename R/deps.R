@@ -66,6 +66,7 @@ addJSDeps <- function() {
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
   custom_js <- paste0(depsPath, "my-app.js")
+  fullScreen_js <- paste0(depsPath, "fullscreen.js")
 
   shiny::tagList(
     shiny::singleton(
@@ -73,6 +74,9 @@ addJSDeps <- function() {
     ),
     shiny::singleton(
       shiny::tags$script(src = custom_js)
+    ),
+    shiny::singleton(
+      shiny::tags$script(src = fullScreen_js)
     )
   )
 }
@@ -92,10 +96,11 @@ f7InputsDeps <- function() {
     script = c("sliderInputBinding.js",
                "stepperInputBinding.js",
                "toggleInputBinding.js",
-               "dateInputBinding.js",
+               "datePickerInputBinding.js",
                "pickerInputBinding.js",
                "colorPickerInputBinding.js",
-               "tabsInputBinding.js")
+               "tabsInputBinding.js",
+               "dateInputBinding.js")
   )
 }
 

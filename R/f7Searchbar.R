@@ -108,7 +108,7 @@
 #'   server = function(input, output) {}
 #'  )
 #' }
-f7Searchbar <- function(id = NULL, placeholder = NULL, expandable = FALSE, inline = FALSE) {
+f7Searchbar <- function(id = NULL, placeholder = "Search", expandable = FALSE, inline = FALSE) {
 
   searchBarCl <- "searchbar"
   if (expandable) searchBarCl <- paste0(searchBarCl, " searchbar-expandable")
@@ -119,7 +119,7 @@ f7Searchbar <- function(id = NULL, placeholder = NULL, expandable = FALSE, inlin
       id = id,
       shiny::tags$div(
         class = "searchbar-input-wrap",
-        shiny::tags$input(type = "search", placeholder = "Search"),
+        shiny::tags$input(type = "search", placeholder = placeholder),
         shiny::tags$i(class = "searchbar-icon"),
         shiny::tags$span(class = "input-clear-button")
       )
@@ -132,7 +132,7 @@ f7Searchbar <- function(id = NULL, placeholder = NULL, expandable = FALSE, inlin
         class = "searchbar-inner",
         shiny::tags$div(
           class = "searchbar-input-wrap",
-          shiny::tags$input(type = "search", placeholder = "Search"),
+          shiny::tags$input(type = "search", placeholder = placeholder),
           shiny::tags$i(class = "searchbar-icon"),
           shiny::tags$span(class = "input-clear-button")
         ),

@@ -8,6 +8,7 @@
 #' \link{f7Back} in a \link{f7Flex}.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
+#' @param maximizable Whether to allow fullscreen. FALSE by default.
 #' @export
 #' @examples
 #' if (interactive()) {
@@ -58,7 +59,8 @@
 #'    server = function(input, output) {}
 #'  )
 #' }
-f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
+f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE,
+                     maximizable = FALSE) {
 
   panelToggle <- if (left_panel | right_panel) {
     shiny::tags$a(
@@ -85,6 +87,14 @@ f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
         )
       },
       ...,
+      # fullScreen toggle
+      if (maximizable) {
+        shiny::tagAppendAttributes(
+          f7Button(label = f7Icon("zoom_in")),
+          onclick = "toggleFullScreen();",
+          id = "fullScreenToggle"
+        )
+      },
       if (right_panel) {
         shiny::tags$div(
           class = "right",

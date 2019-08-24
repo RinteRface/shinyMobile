@@ -85,5 +85,20 @@ tabLists <- f7Tab(
         lapply(1:3, function(j) f7ListItem(letters[j]))
       )
     })
-  )
+  )#,
+  #br(),
+  #
+  ## list index
+  #f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
+  #f7ListIndex(
+  #  id = "listIndex1",
+  #  lapply(seq_along(LETTERS), function(i) {
+  #    f7ListGroup(
+  #      title = LETTERS[i],
+  #      lapply(1:3, function(j) {
+  #        f7ListIndexItem(letters[j])
+  #      })
+  #    )
+  #  })
+  #)
 )
