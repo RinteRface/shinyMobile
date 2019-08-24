@@ -154,8 +154,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Notif</span>(<span class='no'>text</span>, <span class='no'>title</span>, <span class='no'>titleRightText</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>closeTimeout</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>closeButton</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>session</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Notif</span>(<span class='no'>text</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>closeTimeout</span> <span class='kw'>=</span> <span class='fl'>5000</span>, <span class='kw'>closeButton</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closeOnClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>session</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +164,10 @@
     <tr>
       <th>text</th>
       <td><p>Notification content.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>Notification icon.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -178,12 +183,20 @@
     </tr>
     <tr>
       <th>closeTimeout</th>
-      <td><p>Time before notification close.</p></td>
+      <td><p>Time before notification closes.</p></td>
     </tr>
     <tr>
       <th>closeButton</th>
       <td><p>Whether to display a close button.
 FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>closeOnClick</th>
+      <td><p>Whether to close the notification on click. TRUE by default.</p></td>
+    </tr>
+    <tr>
+      <th>swipeToClose</th>
+      <td><p>If enabled, notification can be closed by swipe gesture.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -210,6 +223,7 @@ FALSE by default.</p></td>
       <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
         <span class='fu'>f7Notif</span>(
           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
           <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"A subtitle"</span>,
           <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,

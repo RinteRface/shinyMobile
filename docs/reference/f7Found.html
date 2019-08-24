@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 toast — f7Toast • shinyF7</title>
+<title>Utility to display an item when the search is successful. — f7Found • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 toast — f7Toast" />
+<meta property="og:title" content="Utility to display an item when the search is successful. — f7Found" />
 
-<meta property="og:description" content="Create a Framework7 toast" />
+<meta property="og:description" content="Use with f7Searchbar." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,89 +143,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 toast</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Toast.R'><code>R/f7Toast.R</code></a></small>
-    <div class="hidden name"><code>f7Toast.Rd</code></div>
+    <h1>Utility to display an item when the search is successful.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Searchbar.R'><code>R/f7Searchbar.R</code></a></small>
+    <div class="hidden name"><code>f7Found.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a Framework7 toast</p>
+    <p>Use with <a href='f7Searchbar.html'>f7Searchbar</a>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Toast</span>(<span class='no'>session</span>, <span class='no'>text</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>, <span class='st'>"center"</span>),
-  <span class='kw'>closeButton</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>closeButtonText</span> <span class='kw'>=</span> <span class='st'>"close"</span>,
-  <span class='kw'>closeButtonColor</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>closeTimeout</span> <span class='kw'>=</span> <span class='fl'>3000</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Found</span>(<span class='no'>tag</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>session</th>
-      <td><p>Shiny session.</p></td>
-    </tr>
-    <tr>
-      <th>text</th>
-      <td><p>Toast content.</p></td>
-    </tr>
-    <tr>
-      <th>position</th>
-      <td><p>Toast position <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("bottom", "top", "center")</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>closeButton</th>
-      <td><p>Whether to close the toast with a button.
-TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>closeButtonText</th>
-      <td><p>Close button text.</p></td>
-    </tr>
-    <tr>
-      <th>closeButtonColor</th>
-      <td><p>Close button color.</p></td>
-    </tr>
-    <tr>
-      <th>closeTimeout</th>
-      <td><p>Time before toast closes.</p></td>
+      <th>tag</th>
+      <td><p>tag to display. When using <a href='f7Searchbar.html'>f7Searchbar</a>, one must
+wrap the items to search in inside f7Found.</p></td>
     </tr>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"ios"</span>),
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Toast"</span>),
-      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"toast"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open Toast"</span>)
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>toast</span>, {
-      <span class='fu'>f7Toast</span>(
-        <span class='no'>session</span>,
-        <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
-        <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"I am a toast. Eat me!"</span>
-      )
-    })
-  }
- )
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

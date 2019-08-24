@@ -22,6 +22,13 @@ reference:
   - '`f7Row`'
 
 
+- title: Tab Navigation
+  desc: Next, back
+  contents:
+  - '`f7Back`'
+  - '`f7Next`'
+
+
 - title: Layouts
   desc: Functions that create layouts
   contents:
@@ -37,6 +44,7 @@ reference:
   - '`f7checkBoxGroup`'
   - '`f7ColorPicker`'
   - '`f7Date`'
+  - '`f7DatePicker`'
   - '`f7Password`'
   - '`f7Picker`'
   - '`f7Radio`'
@@ -53,12 +61,26 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`updateF7Checkbox`'
+  - '`updateF7Date`'
   - '`updateF7Fab`'
+  - '`updateF7Picker`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
+  - '`updateF7Tabs`'
   - '`updateF7Text`'
   - '`updateF7Toggle`'
 
+
+- title: Search
+  desc: Searchbar and utilities
+  contents:
+  - '`f7Found`'
+  - '`f7NotFound`'
+  - '`f7HideOnEnable`'
+  - '`f7HideOnSearch`'
+  - '`f7Searchbar`'
+  - '`f7SearchIgnore`'
+  - '`f7SearchbarTrigger`'
 
 
 - title: Cards
@@ -66,11 +88,17 @@ reference:
   contents:
   - '`f7Card`'
   - '`f7ExpandableCard`'
-  - '`f7ListCard`'
-  - '`f7ListCardItem`'
-  - '`f7MediaCard`'
-  - '`f7MediaCardItem`'
   - '`f7SocialCard`'
+
+
+- title: Lists
+  desc: Framework 7 lists
+  contents:
+  - '`f7List`'
+  - '`f7ListGroup`'
+  - '`f7ListItem`'
+  - '`f7ListIndex`'
+  - '`f7ListIndexItem`'
 
 
 
