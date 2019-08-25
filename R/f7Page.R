@@ -33,8 +33,14 @@ f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
           user-scalable=no,
           viewport-fit=cover"
       ),
+
+      # PAW properties
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
       shiny::tags$meta(name = "theme-color", content = "#2196f3"),
+      shiny::tags$meta(name = "apple-mobile-web-app-status-bar-style", content="black-translucent"),
+      shiny::tags$link(rel = "apple-touch-icon", href = "assets/icons/apple-touch-icon.png"),
+      shiny::tags$link(rel = "icon", href = "assets/icons/favicon.png"),
+      shiny::tags$link(rel = "manifest", href = "/manifest.json"),
 
       shiny::tags$title(title)
     ),
