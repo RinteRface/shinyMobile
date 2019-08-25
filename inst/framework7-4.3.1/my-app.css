@@ -38,3 +38,11 @@
   min-width: 100px;
   max-width: 90vw;
 }
+
+
+/* Disable text selection */
+body {
+  -webkit-user-select: none;
+  -webkit-tap-highligth-color: transparent;
+  -webkit-touch-callout: none;
+}

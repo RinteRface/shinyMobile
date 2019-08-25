@@ -132,7 +132,7 @@ f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
 #' @export
 f7SingleLayout <- function(..., navbar, toolbar = NULL,
                            panels = NULL, appbar = NULL,
-                           statusbar = NULL) {
+                           statusbar = f7Statusbar()) {
 
   shiny::tagList(
     # status bar goes here
@@ -273,7 +273,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = NULL) {
+f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f7Statusbar()) {
 
   shiny::tagList(
     # status bar goes here
