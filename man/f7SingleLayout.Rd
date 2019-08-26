@@ -5,7 +5,7 @@
 \title{Create a Framework7 single layout}
 \usage{
 f7SingleLayout(..., navbar, toolbar = NULL, panels = NULL,
-  appbar = NULL, statusbar = NULL)
+  appbar = NULL, statusbar = f7Statusbar())
 }
 \arguments{
 \item{...}{Content.}
