@@ -141,15 +141,15 @@ tabInputs <- f7Tab(
   textOutput("selectDate"),
   br(),
 
-  # f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),
-  # f7Picker(
-  #   inputId = "mypicker",
-  #   placeholder = "Some text here!",
-  #   label = "Picker Input",
-  #   choices = c('a', 'b', 'c')
-  # ),
-  # textOutput("pickerval"),
-  # br(),
+  f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),
+  f7Picker(
+    inputId = "mypicker",
+    placeholder = "Some text here!",
+    label = "Picker Input",
+    choices = c('a', 'b', 'c')
+  ),
+  textOutput("pickerval"),
+  br(),
 
 
   f7BlockTitle(title = "f7ColorPicker input") %>% f7Align(side = "center"),
