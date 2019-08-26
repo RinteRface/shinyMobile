@@ -3,10 +3,8 @@
   "short_name": "My App",
   "description": "My App",
   "lang": "en-US",
-  "start_url": "https://dgranjon.shinyapps.io/miniUI2PWATest/",
+  "start_url": "https://dgranjon.shinyapps.io/miniUI2Demo/",
   "display": "standalone",
-  "background_color": "#EE350F",
-  "theme_color": "#EE350F",
   "icons": [
     {
       "src": "icons/128x128.png",
