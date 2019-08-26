@@ -7,7 +7,8 @@
 f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
   color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
   panelSwipeSide = c("left", "right", "both"), iosCenterTitle = TRUE,
-  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE)
+  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE,
+  serviceWorker = NULL)
 }
 \arguments{
 \item{theme}{App theme: "ios", "md", "auto" or "aurora".}
@@ -35,6 +36,8 @@ title at the center in iOS theme. Sometime (with some custom design) it may not 
 \item{hideNavOnPageScroll}{Default to TRUE. Will hide Navbars on page scroll.}
 
 \item{hideTabsOnPageScroll}{Default to FALSE. Will hide tabs on page scroll.}
+
+\item{serviceWorker}{Object with service worker module parameters. (Use for PWA).}
 }
 \description{
 Use inside \link{f7Page}. Mandatory!
