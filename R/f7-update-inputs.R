@@ -511,7 +511,6 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
-#' @param placeholder New picker placeholder.
 #' @param value Picker initial value, if any.
 #' @param choices New picker choices.
 #'
@@ -523,10 +522,8 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'  library(shinyF7)
 #'
 #' }
-updateF7Picker <- function(session, inputId, placeholder = NULL,
-                           value = NULL, choices = NULL) {
+updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
   message <- dropNulls(list(
-    placeholder = placeholder,
     value = value,
     choices = choices
   ))
