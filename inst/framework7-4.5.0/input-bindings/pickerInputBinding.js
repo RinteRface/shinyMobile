@@ -30,22 +30,21 @@ $.extend(f7PickerBinding, {
       value: SetTo5(id, "val"),
       on: {
         // need to trigger a click
-        // close the picker to initiate it properly
+        // close the picker to initiate it properly but need Timeout
+        // otherwise the picker cannot open anymore
         init: function(picker) {
-          //picker.open();
-          //setTimeout(function() {picker.close();}, 1000);
+          picker.open();
+          setTimeout(function() {picker.close();}, 10);
         },
         open: function(picker) {
-          console.log(id  + " was open");
+
         },
         close: function(picker) {
-          console.log(id  + " was closed");
+
         }
       }
     });
     inputEl.f7Picker = p;
-    $(inputEl).click();
-    console.log(inputEl.f7Picker);
   },
 
   find: function(scope) {
@@ -69,6 +68,7 @@ $.extend(f7PickerBinding, {
       p.displayValue[0] = value;
       p.value[0] = value;
       p.open();
+      setTimeout(function() {p.close();}, 10);
     }
   },
 
@@ -76,8 +76,8 @@ $.extend(f7PickerBinding, {
   receiveMessage: function(el, data) {
     var p = app.picker.get($(el));
     // update placeholder
-    if (data.hasOwnProperty('placeholder')) {
-
+    if (data.hasOwnProperty('choices')) {
+      p.cols[0].values = data.choices;
     }
     // Update value
     if (data.hasOwnProperty('value')) {

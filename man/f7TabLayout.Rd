@@ -5,7 +5,7 @@
 \title{Create a Framework7 page with tab layout}
 \usage{
 f7TabLayout(..., navbar, panels = NULL, appbar = NULL,
-  statusbar = NULL)
+  statusbar = f7Statusbar())
 }
 \arguments{
 \item{...}{Slot for \link{f7Tabs}.}

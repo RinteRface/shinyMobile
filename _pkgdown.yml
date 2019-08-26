@@ -33,6 +33,7 @@ reference:
   desc: Functions that create layouts
   contents:
   - '`f7SingleLayout`'
+  - '`f7SplitLayout`'
   - '`f7TabLayout`'
 
 
