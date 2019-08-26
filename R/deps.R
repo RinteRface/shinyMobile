@@ -30,8 +30,8 @@ addCSSDeps <- function(x) {
     # deps
     htmltools::htmlDependency(
       name = "framework7",
-      version = "4.3.1",
-      src = c(file = system.file("framework7-4.3.1", package = "shinyF7")),
+      version = "4.5.0",
+      src = c(file = system.file("framework7-4.5.0", package = "shinyF7")),
       script = NULL,
       stylesheet = c(
         framework7_css,
@@ -61,7 +61,7 @@ addCSSDeps <- function(x) {
 # located at the end of the body.
 addJSDeps <- function() {
 
-  depsPath <- "framework7-4.3.1/"
+  depsPath <- "framework7-4.5.0/"
 
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
@@ -89,8 +89,8 @@ f7InputsDeps <- function() {
     name = "framework7-bindings",
     version = as.character(packageVersion("shinyF7")),
     src = c(
-      file = system.file("framework7-4.3.1/input-bindings", package = "shinyF7"),
-      href = "framework7-4.3.1/input-bindings"
+      file = system.file("framework7-4.5.0/input-bindings", package = "shinyF7"),
+      href = "framework7-4.5.0/input-bindings"
     ),
     package = "shinyF7",
     script = c("sliderInputBinding.js",
