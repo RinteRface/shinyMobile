@@ -96,16 +96,34 @@ as other necessary assets.
 Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. Then,
 select the share button located in the bottom bar of your Iphone/Ipad. 
 
-![](man/figures/export_pwa_1.jpeg)
+<div class="row">
+<div class="card">
+<a href="#" target="_blank"><img src="man/figures/export_pwa_1.jpeg" width="50%"></a>
+</div>
+</div>
 
 Click on "Add to Home Screen", choose a relevant name and click on OK. 
 
-![](man/figures/export_pwa_2.jpeg)
-![](man/figures/export_pwa_3.jpeg)
+<div class="row">
+<div class="col-sm-6" align="center">
+<div class="card">
+<a href="#" target="_blank"><img src="man/figures/export_pwa_2.jpeg" width="75%"></a>
+</div>
+</div>
+<div class="col-sm-6" align="center">
+<div class="card">
+<a href="#" target="_blank"><img src="man/figures/export_pwa_3.jpeg" width="75%"></a>
+</div>
+</div>
+</div>
 
 The app will be added to your IOS Apps. In case you want custom icons, replace the content of the www folder with your own.
 
-![](man/figures/export_pwa_4.jpeg)
+<div class="row">
+<div class="card">
+<a href="#" target="_blank"><img src="man/figures/export_pwa_4.jpeg" width="50%"></a>
+</div>
+</div>
 
 
 
