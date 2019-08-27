@@ -19,6 +19,7 @@
 #' title at the center in iOS theme. Sometime (with some custom design) it may not needed.
 #' @param hideNavOnPageScroll Default to TRUE. Will hide Navbars on page scroll.
 #' @param hideTabsOnPageScroll Default to FALSE. Will hide tabs on page scroll.
+#' @param serviceWorker Object with service worker module parameters. (Use for PWA).
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -27,7 +28,7 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
                    color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
                    panelSwipeSide = c("left", "right", "both"),
                    iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
-                   hideTabsOnPageScroll = FALSE) {
+                   hideTabsOnPageScroll = FALSE, serviceWorker = NULL) {
 
   panelSwipeSide <- match.arg(panelSwipeSide)
   color <- colorToHex(color)
@@ -104,7 +105,10 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
           toolbar: {
             hideOnPageScroll: '", tolower(hideTabsOnPageScroll), "',
           },
-          // ... other parameters
+          // Register service worker
+          serviceWorker: {
+            path: '", serviceWorker, "',
+          },
       });
       var mainView = app.views.create('.view-main');
       "
