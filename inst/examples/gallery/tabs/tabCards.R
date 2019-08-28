@@ -84,7 +84,7 @@ tabCards <- f7Tab(
             lacus tincidunt.",
           media = tags$img(src = paste0("https://lorempixel.com/88/88/fashion/", j)),
           right = "Right Text",
-          url = "test"
+          url = "https://www.google.com"
         )
       })
     ),

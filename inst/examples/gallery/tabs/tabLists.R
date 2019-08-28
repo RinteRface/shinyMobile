@@ -46,7 +46,7 @@ tabLists <- f7Tab(
             commodo augue id, pulvinar lacus.",
         media = tags$img(src = paste0("https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg")),
         right = "Right Text",
-        url = "test"
+        url = "https://www.google.com"
       )
     })
   ),
