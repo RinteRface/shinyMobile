@@ -15,13 +15,14 @@ f7Navbar(..., subNavbar = NULL, title = NULL, subtitle = NULL,
 
 \item{title}{Navbar title.}
 
-\item{subtitle}{Navbar subtitle.}
+\item{subtitle}{Navbar subtitle. Not compatible with bigger.}
 
 \item{hairline}{Whether to display a thin border on the top of the navbar. TRUE by default.}
 
 \item{shadow}{Whether to display a shadow. TRUE by default.}
 
-\item{bigger}{Whether to display bigger title. FALSE by default.}
+\item{bigger}{Whether to display bigger title. FALSE by default. Not
+compatible with subtitle.}
 
 \item{left_panel}{Whether to enable the left panel. FALSE by default.}
 

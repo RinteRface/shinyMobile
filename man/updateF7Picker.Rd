@@ -4,15 +4,12 @@
 \alias{updateF7Picker}
 \title{Change the value of a stepper input on the client}
 \usage{
-updateF7Picker(session, inputId, placeholder = NULL, value = NULL,
-  choices = NULL)
+updateF7Picker(session, inputId, value = NULL, choices = NULL)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}
 
 \item{inputId}{The id of the input object.}
-
-\item{placeholder}{New picker placeholder.}
 
 \item{value}{Picker initial value, if any.}
 
@@ -25,6 +22,37 @@ Change the value of a stepper input on the client
 if (interactive()) {
  library(shiny)
  library(shinyF7)
+ shinyApp(
+  ui = f7Page(
+    title = "My app",
+    init = f7Init(theme = "auto"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update picker"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update picker"),
+        f7Picker(
+          inputId = "mypicker",
+          placeholder = "Some text here!",
+          label = "Picker Input",
+          choices = c('a', 'b', 'c')
+        ),
+        verbatimTextOutput("pickerval")
+      )
+    )
+  ),
+  server = function(input, output, session) {
 
+    output$pickerval <- renderText(input$mypicker)
+
+    observeEvent(input$update, {
+      updateF7Picker(
+        session,
+        inputId = "mypicker",
+        value = "b",
+        choices = letters
+      )
+    })
+  }
+ )
 }
 }

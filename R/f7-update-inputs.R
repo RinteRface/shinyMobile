@@ -511,7 +511,6 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
-#' @param placeholder New picker placeholder.
 #' @param value Picker initial value, if any.
 #' @param choices New picker choices.
 #'
@@ -521,12 +520,41 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyF7)
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(theme = "auto"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update picker"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update picker"),
+#'         f7Picker(
+#'           inputId = "mypicker",
+#'           placeholder = "Some text here!",
+#'           label = "Picker Input",
+#'           choices = c('a', 'b', 'c')
+#'         ),
+#'         verbatimTextOutput("pickerval")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
 #'
+#'     output$pickerval <- renderText(input$mypicker)
+#'
+#'     observeEvent(input$update, {
+#'       updateF7Picker(
+#'         session,
+#'         inputId = "mypicker",
+#'         value = "b",
+#'         choices = letters
+#'       )
+#'     })
+#'   }
+#'  )
 #' }
-updateF7Picker <- function(session, inputId, placeholder = NULL,
-                           value = NULL, choices = NULL) {
+updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
   message <- dropNulls(list(
-    placeholder = placeholder,
     value = value,
     choices = choices
   ))

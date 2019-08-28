@@ -54,11 +54,11 @@ tabCards <- f7Tab(
   # social card
   f7BlockTitle(title = "f7SocialCard") %>% f7Align(side = "center"),
   f7SocialCard(
-    author_img = "http://lorempixel.com/68/68/people/1/",
+    author_img = "https://lorempixel.com/68/68/people/1/",
     author = "A social Card",
     date = "Monday at 3:47 PM",
     "What a nice photo i took yesterday!",
-    img(src = "http://lorempixel.com/1000/700/nature/8/", width = "100%"),
+    img(src = "https://lorempixel.com/1000/700/nature/8/", width = "100%"),
     footer = tagList(
       f7Badge("1", color = "yellow"),
       f7Badge("2", color = "green"),
@@ -90,7 +90,7 @@ tabCards <- f7Tab(
     ),
     footer = tagList(
       span("January 20", 2015),
-      f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
+      f7Chip(label = "Example Chip", img = "https://lorempixel.com/64/64/people/9/"),
       span(5, "comments")
     )
   ),

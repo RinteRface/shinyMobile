@@ -33,8 +33,26 @@ f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
           user-scalable=no,
           viewport-fit=cover"
       ),
+
+      # PAW properties
       shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
-      shiny::tags$meta(name = "theme-color", content = "#2196f3"),
+      shiny::tags$meta(name = "apple-mobile-web-app-title", content = title),
+      shiny::tags$meta(name = "apple-mobile-web-app-status-bar-style", content = "black-translucent"),
+      shiny::tags$link(rel = "apple-touch-icon", href = "icons/apple-touch-icon.png"),
+      shiny::tags$link(rel = "icon", href = "icons/favicon.png"),
+      shiny::tags$link(rel = "manifest", href = "manifest.json"),
+
+      # Splatshscreen for IOS must be in a www folder
+      shiny::tags$link(href = "splashscreens/iphone5_splash.png", media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/iphone6_splash.png", media = "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/iphoneplus_splash.png", media = "(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/iphonex_splash.png", media = "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/iphonexr_splash.png", media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/iphonexsmax_splash.png", media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/ipad_splash.png", media = "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/ipadpro1_splash.png", media = "(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/ipadpro3_splash.png", media = "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      shiny::tags$link(href = "splashscreens/ipadpro2_splash.png", media = "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
 
       shiny::tags$title(title)
     ),
@@ -298,4 +316,150 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f
       )
     )
   )
+}
+
+
+
+
+
+
+#' Create a Framework7 split layout
+#'
+#' This is a modified version of the \link{f7SingleLayout}.
+#' It is intended to be used with tablets.
+#'
+#' @param ... Content.
+#' @param navbar Slot for \link{f7Navbar}.
+#' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
+#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}
+#' @param toolbar Slot for \link{f7Toolbar}.
+#' @param panels Slot for \link{f7Panel}. Expect only a right panel, for instance:
+#' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
+#' @param appbar Slot for \link{f7Appbar}.
+#' @param statusbar Slot for \link{f7Statusbar}.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
+#'     f7SplitLayout(
+#'       sidebar = f7Panel(
+#'        title = "Sidebar",
+#'        side = "left",
+#'        theme = "light",
+#'        "Blabla",
+#'        style = "reveal"
+#'       ),
+#'       navbar = f7Navbar(
+#'         title = "Split Layout",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       toolbar = f7Toolbar(
+#'         position = "bottom",
+#'         f7Link(label = "Link 1", src = "https://www.google.com"),
+#'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'       ),
+#'       # main content
+#'       f7Shadow(
+#'         intensity = 10,
+#'         hover = TRUE,
+#'         f7Card(
+#'           title = "Card header",
+#'           sliderInput("obs", "Number of observations", 0, 1000, 500),
+#'           plotOutput("distPlot"),
+#'           footer = tagList(
+#'             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'             f7Badge("Badge", color = "green")
+#'           )
+#'         )
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output) {
+#'     output$distPlot <- renderPlot({
+#'       dist <- rnorm(input$obs)
+#'       hist(dist)
+#'     })
+#'   }
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @export
+f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
+                          panels = NULL, appbar = NULL,
+                          statusbar = f7Statusbar()) {
+
+  sidebar <- shiny::tagAppendAttributes(sidebar, id = "f7-sidebar")
+  # this trick to prevent to select the panel view in the following
+  # javascript code
+  sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"
+
+  splitSkeleton <- f7SingleLayout(
+    ...,
+    navbar = navbar,
+    toolbar = toolbar,
+    panels = shiny::tagList(
+      sidebar,
+      panels
+    ),
+    appbar = appbar,
+    statusbar = statusbar
+  )
+
+  splitTemplateCSS <- shiny::singleton(
+    shiny::tags$style(
+      '/* Left Panel right border when it is visible by breakpoint */
+      .panel-left.panel-visible-by-breakpoint:before {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(0,0,0,0.1);
+        content: "";
+        z-index: 6000;
+      }
+
+      /* Hide navbar link which opens left panel when it is visible by breakpoint */
+      .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
+        display: none;
+      }
+
+      /*
+        Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
+      */
+      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
+      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(0,0,0,0.1);
+        content: "";
+        z-index: 6000;
+      }
+      '
+    )
+  )
+
+  splitTemplateJS <- shiny::singleton(
+    shiny::tags$script(
+      "$(function() {
+        $('#f7-sidebar').addClass('panel-visible-by-breakpoint');
+        $('.view:not(\"#f7-sidebar-view\")').addClass('safe-areas');
+        $('.view:not(\"#f7-sidebar-view\")').css('margin-left', '260px');
+      });
+      "
+    )
+  )
+
+  shiny::tagList(splitTemplateCSS, splitTemplateJS, splitSkeleton)
+
 }

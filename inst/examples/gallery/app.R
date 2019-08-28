@@ -20,7 +20,7 @@ shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
     dark_mode = FALSE,
-    init = f7Init(theme = "ios", filled = TRUE),
+    init = f7Init(theme = "ios", filled = TRUE, serviceWorker = "service-worker.js"),
     f7TabLayout(
       appbar = f7Appbar(
         maximizable = TRUE,
@@ -37,7 +37,8 @@ shinyApp(
         hairline = TRUE,
         shadow = TRUE,
         left_panel = TRUE,
-        right_panel = TRUE
+        right_panel = TRUE,
+        bigger = TRUE
       ),
       # recover the color picker input and update the text background
       # color accordingly.

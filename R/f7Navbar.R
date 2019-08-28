@@ -5,10 +5,11 @@
 #' @param ... Slot for \link{f7SearchbarTrigger}. Not compatible with \link{f7Panel}.
 #' @param subNavbar \link{f7SubNavbar} slot, if any.
 #' @param title Navbar title.
-#' @param subtitle Navbar subtitle.
+#' @param subtitle Navbar subtitle. Not compatible with bigger.
 #' @param hairline Whether to display a thin border on the top of the navbar. TRUE by default.
 #' @param shadow Whether to display a shadow. TRUE by default.
-#' @param bigger Whether to display bigger title. FALSE by default.
+#' @param bigger Whether to display bigger title. FALSE by default. Not
+#' compatible with subtitle.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
 #'
@@ -49,28 +50,39 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
       )
    }
 
+   innerCl <- "navbar-inner sliding"
+   if (bigger) innerCl <- paste0(innerCl, " navbar-inner-large")
+
    shiny::tags$div(
       class = navbarClass,
       shiny::tags$div(
-         class = "navbar-inner sliding",
+         class = innerCl,
          leftNav,
          if (bigger) {
-            shiny::tags$div(
-               class = "title-large",
+            shiny::tagList(
                shiny::tags$div(
-                  class = "title-large-text",
+                  class = "title sliding",
                   title,
-                  if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
+                  # add style to prevent title from
+                  # being black. Bug in Framework7?
+                  style = "color: white;"
+               ),
+               rightNav,
+               shiny::tags$div(
+                  class = "title-large",
+                  shiny::tags$div(class = "title-large-text", title)
                )
             )
          } else {
-            shiny::tags$div(
-               class = "title",
-               title,
-               if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
+            tagList(
+               shiny::tags$div(
+                  class = "title",
+                  title,
+                  if (!is.null(subtitle)) shiny::tags$span(class = "subtitle", subtitle)
+               ),
+               rightNav
             )
          },
-         rightNav,
          ...,
          subNavbar
       )
