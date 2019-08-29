@@ -73,6 +73,54 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
        )
      )
    ),
+
+   # custom css
+   shiny::tags$style(
+      if (orientation == "bottom") {
+         paste0(
+            "
+            /* sheet-modal will have top rounded corners */
+            .sheet-modal {
+               border-radius: 15px 15px 0 0;
+               overflow: hidden
+            }
+
+            .swipe-handler {
+               height: 16px;
+               position: absolute;
+               left: 0;
+               width: 100%;
+               top: 0;
+               background: #fff;
+               cursor: pointer;
+               z-index: 10
+            }
+            "
+         )
+      } else {
+         paste0(
+            "
+            /* sheet-modal will have bottom rounded corners */
+            .sheet-modal {
+               border-radius: 0 0 15px 15px;
+               overflow: hidden
+            }
+
+            .swipe-handler {
+               height: 16px;
+               position: absolute;
+               left: 0;
+               width: 100%;
+               bottom: 0;
+               background: #fff;
+               cursor: pointer;
+               z-index: 10
+            }
+            "
+         )
+      }
+   ),
+
    # sheet tag
    shiny::a(class = "button button-fill sheet-open", href="#", `data-sheet` = paste0("#", id), label),
    shiny::tags$div(
@@ -83,7 +131,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
      id = id,
      if (!(swipeToStep | swipeToClose)) {
         shiny::tags$div(
-           class = "toolbar",
+           class = if (orientation == "top") "toolbar toolbar-bottom" else "toolbar",
            shiny::tags$div(
               class = "toolbar-inner",
               shiny::tags$div(class = "left"),
