@@ -132,7 +132,7 @@ tabInputs <- f7Tab(
   br(),
 
   f7BlockTitle(title = "f7Date input") %>% f7Align(side = "center"),
-  f7Date(
+  f7DatePicker(
     inputId = "date",
     label = "Choose a date",
     value = "2019-08-24"
