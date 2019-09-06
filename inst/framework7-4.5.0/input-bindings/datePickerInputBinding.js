@@ -14,10 +14,17 @@ $.extend(f7DatePickerBinding, {
       multiple: false,
       dateFormat: 'yyyy-mm-dd',
       inputEl: el,
-      value: [date]
+      value: [date],
+      on: {
+        // need to trigger a click
+        // close the picker to initiate it properly but need Timeout
+        // otherwise the date picker cannot open anymore
+        init: function(datePicker) {
+          datePicker.open();
+          setTimeout(function() {datePicker.close();}, 10);
+        }
+      }
     });
-    $(el).click();
-    app.calendar.close();
   },
 
   find: function(scope) {
