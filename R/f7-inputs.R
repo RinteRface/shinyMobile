@@ -70,10 +70,11 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
   )
 
   # tag wrapper
-  mainTag <- shiny::tags$div(
-    class = "block-title",
-    label,
-    id = inputId,
+  mainTag <- shiny::tagList(
+    shiny::tags$div(
+      class = "block-title",
+      label
+    ),
     shiny::tags$div(
       class = "list no-hairlines-md",
       shiny::tags$ul(
