@@ -74,7 +74,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
                )
             )
          } else {
-            tagList(
+            shiny::tagList(
                shiny::tags$div(
                   class = "title",
                   title,
