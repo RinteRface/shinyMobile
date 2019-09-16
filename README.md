@@ -18,9 +18,51 @@ devtools::install_github("RinteRface/shinyF7")
 ## Demo
 
 A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
-It is still work in progress and will significantly change!
+Left side: android demo, right side: iOS demo
 
-![](man/figures/demo_ios.gif)
+<div class="row">
+  <div class="col-sm-6">
+  <div class="marvel-device note8">
+    <div class="inner"></div>
+    <div class="overflow">
+        <div class="shadow"></div>
+    </div>
+    <div class="speaker"></div>
+    <div class="sensors"></div>
+    <div class="more-sensors"></div>
+    <div class="sleep"></div>
+    <div class="volume"></div>
+    <div class="camera"></div>
+    <div class="screen">
+        <!-- Content goes here -->
+        <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2DemoMd" allowfullscreen="" frameborder="0" scrolling="no" height="822px"></iframe>
+    </div>
+</div>
+  </div>
+  <div class="col-sm-6">
+  <div class="marvel-device iphone-x">
+  <!--<div class="notch">
+    <div class="camera"></div>
+    <div class="speaker"></div> 
+  </div> -->
+  <div class="top-bar"></div>
+  <div class="sleep"></div>
+  <div class="bottom-bar"></div>
+  <div class="volume"></div>
+  <div class="overflow">
+    <div class="shadow shadow--tr"></div>
+    <div class="shadow shadow--tl"></div>
+    <div class="shadow shadow--br"></div>
+    <div class="shadow shadow--bl"></div>
+  </div>
+  <div class="inner-shadow"></div>
+  <div class="screen">
+    <!-- Content goes here -->
+    <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
+  </div>
+</div>
+  </div>
+</div>
 
 ## Progressive Web App (PWA)
 
@@ -93,35 +135,15 @@ Later, there will be a dedicated function that will create the manifest.json fil
 as other necessary assets.
 
 ### Add the PWA to your desktop Apps
-Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. Then,
-select the share button located in the bottom bar of your Iphone/Ipad. 
+Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. 
+- Select the share button located in the bottom bar of your Iphone/Ipad. 
+- Click on "Add to Home Screen"
+- Choose a relevant name and click on OK. 
+- The app will be added to your IOS Apps. In case you want custom icons, replace the content of the www folder with your own.
 
 <div class="row">
 <div class="card">
-<a href="#" target="_blank"><img src="man/figures/export_pwa_1.jpeg" width="50%"></a>
-</div>
-</div>
-
-Click on "Add to Home Screen", choose a relevant name and click on OK. 
-
-<div class="row">
-<div class="col-sm-6" align="center">
-<div class="card">
-<a href="#" target="_blank"><img src="man/figures/export_pwa_2.jpeg" width="75%"></a>
-</div>
-</div>
-<div class="col-sm-6" align="center">
-<div class="card">
-<a href="#" target="_blank"><img src="man/figures/export_pwa_3.jpeg" width="75%"></a>
-</div>
-</div>
-</div>
-
-The app will be added to your IOS Apps. In case you want custom icons, replace the content of the www folder with your own.
-
-<div class="row">
-<div class="card">
-<a href="#" target="_blank"><img src="man/figures/export_pwa_4.jpeg" width="50%"></a>
+<a href="#" target="_blank"><img src="man/figures/f7PWA.png"></a>
 </div>
 </div>
 

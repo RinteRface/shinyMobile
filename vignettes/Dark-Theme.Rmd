@@ -12,9 +12,22 @@ vignette: >
 By default, shinyF7 opens in light mode. However,
 specifying the `f7Page()` dark_mode option to TRUE will enable this mode.
 
-<a href="https://dgranjon.shinyapps.io/miniUI2TabsDark" target="_blank"><img src="figures/f7_tab_layout_dark_md.png" class="img-shadow" width= "514" height=" 400"></a>
-
-
+<div class="marvel-device iphone-x">
+<div class="top-bar"></div>
+<div class="sleep"></div>
+<div class="bottom-bar"></div>
+<div class="volume"></div>
+<div class="overflow">
+<div class="shadow shadow--tr"></div>
+<div class="shadow shadow--tl"></div>
+<div class="shadow shadow--br"></div>
+<div class="shadow shadow--bl"></div>
+</div>
+<div class="inner-shadow"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2TabsDark" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
+</div>
+</div>
 
 ```r
 library(shiny)
@@ -237,7 +250,3 @@ shiny::shinyApp(
   }
 )
 ```
-
-Another example below:
-
-<img src="figures/f7Dark_demo.png" class="img-shadow" width= "514" height=" 400">

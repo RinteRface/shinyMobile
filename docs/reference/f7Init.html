@@ -157,7 +157,8 @@
     <pre class="usage"><span class='fu'>f7Init</span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span>), <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fastClicks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>iosTouchRipple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>panelSwipeSide</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"both"</span>), <span class='kw'>iosCenterTitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>serviceWorker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,6 +206,10 @@ title at the center in iOS theme. Sometime (with some custom design) it may not 
     <tr>
       <th>hideTabsOnPageScroll</th>
       <td><p>Default to FALSE. Will hide tabs on page scroll.</p></td>
+    </tr>
+    <tr>
+      <th>serviceWorker</th>
+      <td><p>Object with service worker module parameters. (Use for PWA).</p></td>
     </tr>
     </table>
     

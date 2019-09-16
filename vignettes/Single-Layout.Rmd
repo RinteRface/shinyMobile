@@ -12,8 +12,22 @@ vignette: >
 shinyF7 comes with 2 predefined layouts. `f7SingleLayout()` is dedicated to build simple, 
 one-page apps or gadgets.
 
-<a href="https://dgranjon.shinyapps.io/miniUI2Single" target="_blank"><img src="figures/f7_single_layout_ios.png" class="img-shadow" width= "423" height=" 453"></a>
-
+<div class="marvel-device iphone-x">
+<div class="top-bar"></div>
+<div class="sleep"></div>
+<div class="bottom-bar"></div>
+<div class="volume"></div>
+<div class="overflow">
+<div class="shadow shadow--tr"></div>
+<div class="shadow shadow--tl"></div>
+<div class="shadow shadow--br"></div>
+<div class="shadow shadow--bl"></div>
+</div>
+<div class="inner-shadow"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Single" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
+</div>
+</div>
 
 ```r
 library(shiny)
