@@ -13,7 +13,7 @@ shinyF7 is particularly well suited to build shiny gagdet. To convert an existin
 to a gadget, wrap it in the `shiny::runGadget()` function. 
 
 
-<img src="figures/f7_gadget.png" width="405" height="629" class="img-shadow">
+<img src="./figures/f7_gadget.png" width="405" height="629" class="img-shadow">
 
 ```r
 library(shiny)

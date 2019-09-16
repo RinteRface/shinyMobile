@@ -25,9 +25,9 @@ f7Navbar(
 
 <div class="row">
 <div class="col-sm-4" align="center">
-<img src="figures/f7Panel_right_demo.png">
+<img src="./figures/f7Panel_right_demo.png">
 </div>
 <div class="col-sm-4" align="center">
-<img src="figures/f7Panel_left_demo.png">
+<img src="./figures/f7Panel_left_demo.png">
 </div>
 </div>
