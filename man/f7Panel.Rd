@@ -24,9 +24,6 @@ f7Panel(..., title = NULL, side = c("left", "right"),
 \description{
 Build a Framework7 panel
 }
-\note{
-When style is "reveal", makes the app freeze. resizable does not work neither.
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

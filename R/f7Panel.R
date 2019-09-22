@@ -9,8 +9,6 @@
 #' @param style Whether the panel should behave when opened: "cover" or "reveal".
 #' @param resizable Whether to enable panel resize. FALSE by default.
 #'
-#' @note When style is "reveal", makes the app freeze. resizable does not work neither.
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
