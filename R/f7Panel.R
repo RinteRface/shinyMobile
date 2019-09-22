@@ -23,7 +23,13 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
 
   items <- list(...)
   items <- lapply(seq_along(items), function(i) {
-    if (class(items[[i]]) == "shiny.tag") items[[i]] else f7Block(items[[i]])
+    if (length(items[[i]]) > 1) {
+      item <- items[[i]][[1]]
+      if (class(item) == "shiny.tag") items[[i]] else f7Block(items[[i]])
+    } else {
+      if (class(items[[i]]) == "shiny.tag") items[[i]] else f7Block(items[[i]])
+    }
+
   })
 
   panelTag <- shiny::tags$div(
