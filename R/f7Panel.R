@@ -78,10 +78,10 @@ f7PanelMenu <- function(..., id = NULL) {
         // We then trigger the show function on that tab.
         // If no tab is active at start, the first tab is shown by default.
         $(function() {
-          var firstPanelId = $('#", id," div:eq(0)').attr('id');
-          var panelActiveId = $('#", id," div[data-active = \"true\"]').attr('id');
+          var firstPanel = $('#", id," li:eq(0)');
+          var panelActiveId = $('#", id," a.tab-link-active').attr('href');
           if (panelActiveId != undefined) {
-            app.tab.show('#' + panelActiveId);
+            app.tab.show(panelActiveId);
           } else {
             app.tab.show('#' + firstPanelId);
           }
@@ -104,8 +104,8 @@ f7PanelMenu <- function(..., id = NULL) {
 
           // update the input value
           $(window).on('click', function(e) {
-           var selectedPanel = $('#", id, "').find('.tab-active');
-           var selectedPanelVal = $(selectedPanel).attr('data-value');
+           var selectedPanelVal = $('#", id," a.tab-link-active').attr('href');
+           var selectedPanelVal = selectedPanelVal.split('#')[1];
            Shiny.setInputValue('", id, "', selectedPanelVal);
           });
         });
@@ -118,7 +118,7 @@ f7PanelMenu <- function(..., id = NULL) {
     panelMenuJS,
     shiny::tags$div(
       class = "list links-list",
-      shiny::tags$ul(...)
+      shiny::tags$ul(..., id = id)
     )
   )
 }
