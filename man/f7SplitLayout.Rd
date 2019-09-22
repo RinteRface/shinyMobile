@@ -33,49 +33,56 @@ if(interactive()){
  library(shiny)
  library(shinyF7)
  shiny::shinyApp(
-  ui = f7Page(
-    title = "My app",
-    init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
-    f7SplitLayout(
-      sidebar = f7Panel(
-       title = "Sidebar",
-       side = "left",
-       theme = "light",
-       "Blabla",
-       style = "reveal"
-      ),
-      navbar = f7Navbar(
-        title = "Split Layout",
-        hairline = FALSE,
-        shadow = TRUE
-      ),
-      toolbar = f7Toolbar(
-        position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
-      ),
-      # main content
-      f7Shadow(
-        intensity = 10,
-        hover = TRUE,
-        f7Card(
-          title = "Card header",
-          sliderInput("obs", "Number of observations", 0, 1000, 500),
-          plotOutput("distPlot"),
-          footer = tagList(
-            f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
-            f7Badge("Badge", color = "green")
-          )
-        )
-      )
-    )
-  ),
-  server = function(input, output) {
-    output$distPlot <- renderPlot({
-      dist <- rnorm(input$obs)
-      hist(dist)
-    })
-  }
+   ui = f7Page(
+     title = "My app",
+     #dark_mode = TRUE,
+     init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
+     f7SplitLayout(
+       sidebar = f7Panel(
+         title = "Sidebar",
+         side = "left",
+         theme = "light",
+         f7PanelMenu(
+           id = "menu",
+           f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
+           f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home"))
+         ),
+         style = "reveal"
+       ),
+       navbar = f7Navbar(
+         title = "Split Layout",
+         hairline = FALSE,
+         shadow = TRUE
+       ),
+       toolbar = f7Toolbar(
+         position = "bottom",
+         f7Link(label = "Link 1", src = "https://www.google.com"),
+         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+       ),
+       # main content
+       f7Items(
+         f7Item(
+           tabName = "tab1",
+           sliderInput("obs", "Number of observations:",
+                       min = 0, max = 1000, value = 500
+           ),
+           plotOutput("distPlot")
+         ),
+         f7Item(tabName = "tab2", "Tab 2 content")
+       )
+     )
+   ),
+   server = function(input, output) {
+
+     observe({
+       print(input$menu)
+     })
+
+     output$distPlot <- renderPlot({
+       dist <- rnorm(input$obs)
+       hist(dist)
+     })
+   }
  )
 }
 
