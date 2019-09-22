@@ -463,3 +463,50 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   shiny::tagList(splitTemplateCSS, splitTemplateJS, splitSkeleton)
 
 }
+
+
+
+
+#' Create a Framework7 wrapper for \link{f7Item}
+#'
+#' Build a Framework7 wrapper for \link{f7Item}
+#'
+#' @param ... Slot for wrapper for \link{f7Item}.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7Items <- function(...){
+  shiny::tags$div(
+    class = "tabs-animated-wrap",
+    shiny::tags$div(
+      # ios-edges necessary to have
+      # the good ios rendering
+      class = "tabs ios-edges",
+      ...
+    )
+  )
+}
+
+
+
+
+#' Create a Framework7 \link{f7Item}.
+#'
+#' Similar to  \link{f7Tab} but for the \link{f7SplitLayout}.
+#'
+#' @inheritParams f7Tab
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7Item <- function(..., tabName, active = FALSE) {
+  shiny::tags$div(
+    class = "page-content tab",
+    `data-active` = tolower(active),
+    id = tabName,
+    `data-value` = tabName,
+    style = "background-color: gainsboro;",
+    ...
+  )
+}

@@ -9,7 +9,7 @@ $.extend(f7TabsBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    console.log($(el).filter(".tab-active").attr("data-value"));
+    //console.log($(el).filter(".tab-active").attr("data-value"));
     return $(el).filter(".tab-active").attr("data-value");
   },
 

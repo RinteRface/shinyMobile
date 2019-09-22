@@ -23,6 +23,11 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
   panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, style, theme)
   if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
+  items <- list(...)
+  items <- lapply(seq_along(items), function(i) {
+    if (class(items[[i]]) == "shiny.tag") items[[i]] else f7Block(items[[i]])
+  })
+
   panelTag <- shiny::tags$div(
     class = panelCl,
     shiny::tags$div(
@@ -40,7 +45,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
         # Panel content
         shiny::tags$div(
           class = "page-content",
-          f7Block(...)
+          items
         )
       )
     )
@@ -52,41 +57,106 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
 
 
 
-# #' Create a Framework7 sidebar menu
-# #'
-# #' Build a Framework7 sidebar menu
-# #'
-# #' @param ... Slot for \link{f7PanelItem}.
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @export
-# f7PanelMenu <- function(...) {
-#   shiny::tags$div(
-#     class = "list links-list",
-#     shiny::tags$ul(...)
-#   )
-# }
-#
-#
-#
-#
-# #' Create a Framework7 sidebar menu item
-# #'
-# #' Build a Framework7 sidebar menu item
-# #'
-# #' @param id Item id.
-# #'
-# #' @author David Granjon, \email{dgranjon@@ymail.com}
-# #'
-# #' @export
-# f7PanelItem <- function(id) {
-#   shiny::tags$li(
-#     shiny::tags$a(
-#       href = id,
-#       class = "panel-close",
-#       `data-view` = ".page"
-#     )
-#   )
-# }
+#' Create a Framework7 sidebar menu
+#'
+#' Build a Framework7 sidebar menu
+#'
+#' @param ... Slot for \link{f7PanelItem}.
+#' @param id Unique id to access the currently selected item.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7PanelMenu <- function(..., id = NULL) {
 
+  if (is.null(id)) id <- paste0("panelMenu_", round(stats::runif(1, min = 0, max = 1e9)))
+
+  panelMenuJS <- shiny::singleton(
+    shiny::tags$script(
+      paste0(
+        "
+        // This function is necessary to activate the good tab at start.
+        // If one tab is active, it has a data-active attribute set to true.
+        // We then trigger the show function on that tab.
+        // If no tab is active at start, the first tab is shown by default.
+        $(function() {
+          var firstPanelId = $('#", id," div:eq(0)').attr('id');
+          var panelActiveId = $('#", id," div[data-active = \"true\"]').attr('id');
+          if (panelActiveId != undefined) {
+            app.tab.show('#' + panelActiveId);
+          } else {
+            app.tab.show('#' + firstPanelId);
+          }
+        });
+
+        // Below is necessary to set the input value for shiny
+        $(document).on('shiny:sessioninitialized', function() {
+          // trigger a click on the window at start
+          // to be sure that the input value is setup
+          setTimeout(function() {
+            $(window).trigger('click');
+          }, 10);
+
+          // Below is to handle the case where tabs are swipeable
+          // Swiping left or right does not trigger any click by default.
+          // Therefore, we need to trigger a click to update the shiny input.
+          app.on('tabShow', function() {
+           $(window).trigger('click');
+          });
+
+          // update the input value
+          $(window).on('click', function(e) {
+           var selectedPanel = $('#", id, "').find('.tab-active');
+           var selectedPanelVal = $(selectedPanel).attr('data-value');
+           Shiny.setInputValue('", id, "', selectedPanelVal);
+          });
+        });
+        "
+      )
+    )
+  )
+
+  shiny::tagList(
+    panelMenuJS,
+    shiny::tags$div(
+      class = "list links-list",
+      shiny::tags$ul(...)
+    )
+  )
+}
+
+
+
+
+#' Create a Framework7 sidebar menu item
+#'
+#' Build a Framework7 sidebar menu item for \link{f7SplitLayout}.
+#'
+#' @param title Item name.
+#' @param tabName Item unique tabName. Must correspond to what is passed to
+#' \link{f7Item}.
+#' @param icon Item icon.
+#' @param active Whether the item is active at start. Default to FALSE.
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
+  shiny::tags$li(
+    # generate the link
+    if (!is.null(icon)) {
+      shiny::a(
+        href = paste0("#", tabName),
+        class = if (active) "tab-link tab-link-active" else "tab-link",
+        icon,
+        shiny::span(class = "tabbar-label", title)
+      )
+    } else {
+      shiny::a(
+        href = paste0("#", tabName),
+        class = if (active) "tab-link tab-link-active" else "tab-link",
+        title
+      )
+    }
+  )
+}
