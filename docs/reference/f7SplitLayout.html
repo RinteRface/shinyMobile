@@ -200,49 +200,56 @@ It is intended to be used with tablets.</p>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
-    <span class='fu'>f7SplitLayout</span>(
-      <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Sidebar"</span>,
-       <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
-       <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
-       <span class='st'>"Blabla"</span>,
-       <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"reveal"</span>
-      ),
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Split Layout"</span>,
-        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-      ),
-      <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span>(
-        <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-      ),
-      <span class='co'># main content</span>
-      <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
-        <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-        <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>),
-          <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-            <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-            <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
-          )
-        )
-      )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
-      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>)
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='no'>dist</span>)
-    })
-  }
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='co'>#dark_mode = TRUE,</span>
+     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+     <span class='fu'>f7SplitLayout</span>(
+       <span class='kw'>sidebar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Sidebar"</span>,
+         <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
+         <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
+         <span class='fu'><a href='f7PanelMenu.html'>f7PanelMenu</a></span>(
+           <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"menu"</span>,
+           <span class='fu'><a href='f7PanelItem.html'>f7PanelItem</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>), <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
+           <span class='fu'><a href='f7PanelItem.html'>f7PanelItem</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"home"</span>))
+         ),
+         <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"reveal"</span>
+       ),
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Split Layout"</span>,
+         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       ),
+       <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span>(
+         <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
+         <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+         <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+       ),
+       <span class='co'># main content</span>
+       <span class='fu'><a href='f7Items.html'>f7Items</a></span>(
+         <span class='fu'><a href='f7Item.html'>f7Item</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab1"</span>,
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations:"</span>,
+                       <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>
+           ),
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+         ),
+         <span class='fu'><a href='f7Item.html'>f7Item</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"tab2"</span>, <span class='st'>"Tab 2 content"</span>)
+       )
+     )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>menu</span>)
+     })
+
+     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPlot'>renderPlot</a></span>({
+       <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/hist'>hist</a></span>(<span class='no'>dist</span>)
+     })
+   }
  )
 }</div></pre>
   </div>

@@ -4,9 +4,13 @@ reference:
   contents:
   - '`f7Appbar`'
   - '`f7Init`'
+  - '`f7Item`'
+  - '`f7Items`'
   - '`f7Navbar`'
   - '`f7Page`'
   - '`f7Panel`'
+  - '`f7PanelMenu`'
+  - '`f7PanelItem`'
   - '`f7Statusbar`'
   - '`f7SubNavbar`'
   - '`f7Tab`'
