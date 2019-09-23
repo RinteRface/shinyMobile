@@ -1,0 +1,113 @@
+---
+title: "Split-Layout"
+author: "David Granjon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Split-Layout}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shinyF7)
+```
+
+`f7SplitLayout()` is the third layout introduced with shinyF7. This template is focused for 
+tablet use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to `f7Panel()`. While `f7Panel()` may also be embedded
+in both `f7SingleLayout()` and `f7TabsLayout`, it accepts extra arguments like `f7PanelMenu()` and
+`f7PanelItem()`, which are very similar to sidebar items of shinydashboard:
+
+```r
+f7Panel(
+  title = "Sidebar",
+  side = "left",
+  theme = "light",
+  f7PanelMenu(
+    id = "menu",
+    f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
+    f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home"))
+  ),
+  style = "reveal"
+)
+```
+
+The content must be passed in `...` If you have a menu in the sidebar, you must use the
+corresponding body function, namely `f7Items()` and `f7Item()`. Particularly, the *tabName*
+argument provided in `f7PanelItem()` and `f7Item()` must exactly match (like in shinydashboard, again).
+If you don't have any `f7PanelMenu()`, you can pass tags in the `...` directly. However, 
+this prevents you from having a tabbed navigation. 
+
+
+<div class="marvel-device ipad black">
+<div class="camera"></div>
+<div class="screen">
+<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Split" allowfullscreen="" frameborder="0" scrolling="no" height="750px"></iframe>
+</div>
+<div class="home"></div>
+</div>
+
+
+```r
+library(shiny)
+ library(shinyF7)
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "My app",
+     #dark_mode = TRUE,
+     init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
+     f7SplitLayout(
+       sidebar = f7Panel(
+         title = "Sidebar",
+         side = "left",
+         theme = "light",
+         f7PanelMenu(
+           id = "menu",
+           f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
+           f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home"))
+         ),
+         style = "reveal"
+       ),
+       navbar = f7Navbar(
+         title = "Split Layout",
+         hairline = FALSE,
+         shadow = TRUE
+       ),
+       toolbar = f7Toolbar(
+         position = "bottom",
+         f7Link(label = "Link 1", src = "https://www.google.com"),
+         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+       ),
+       # main content
+       f7Items(
+         f7Item(
+           tabName = "tab1",
+           sliderInput("obs", "Number of observations:",
+                       min = 0, max = 1000, value = 500
+           ),
+           plotOutput("distPlot")
+         ),
+         f7Item(tabName = "tab2", "Tab 2 content")
+       )
+     )
+   ),
+   server = function(input, output) {
+
+     observe({
+       print(input$menu)
+     })
+
+     output$distPlot <- renderPlot({
+       dist <- rnorm(input$obs)
+       hist(dist)
+     })
+   }
+ )
+```

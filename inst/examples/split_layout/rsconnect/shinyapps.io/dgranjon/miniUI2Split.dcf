@@ -1,0 +1,12 @@
+name: miniUI2Split
+title: miniUI2Split
+username:
+account: dgranjon
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1228926
+bundleId: 2436318
+url: https://dgranjon.shinyapps.io/miniUI2Split/
+when: 1569223370.43187
+asMultiple: FALSE
+asStatic: FALSE
