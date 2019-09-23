@@ -15,6 +15,7 @@ $(function () {
     $('.page-content').css('background-color', '');
     $('.page-content.tab').css('background-color', '');
     $('.demo-facebook-card .card-footer').css('background-color', '#1c1c1d');
+    $('.sheet-modal, .swipe-handler').css('background-color', '#1c1c1d');
   } else {
     $('div.messages').css('background-color', 'gainsboro');
   }
