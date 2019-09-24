@@ -24,7 +24,6 @@ library(shinyF7)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(theme = "auto"),
     f7SingleLayout(
       navbar = f7Navbar(title = "f7List"),
 

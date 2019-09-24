@@ -29,7 +29,6 @@ if(interactive()){
  shinyApp(
    ui = f7Page(
     title = "My app",
-    init = f7Init(theme = "ios"),
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Picker"),
      f7Picker(

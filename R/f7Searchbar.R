@@ -19,7 +19,6 @@
 #' shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "ios"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "f7Searchbar",
@@ -54,7 +53,6 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(
 #'          title = "f7Searchbar with trigger",
@@ -88,7 +86,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "ios"),
 #'     f7Appbar(
 #'       f7Searchbar(id = "search1", inline = TRUE)
 #'     ),

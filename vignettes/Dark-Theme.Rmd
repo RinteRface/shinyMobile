@@ -10,7 +10,7 @@ vignette: >
 ---
 
 By default, shinyF7 opens in light mode. However,
-specifying the `f7Page()` dark_mode option to TRUE will enable this mode.
+specifying the `f7Init()` theme option to "dark" will enable this mode.
 
 <div class="marvel-device iphone-x">
 <div class="top-bar"></div>
@@ -38,7 +38,7 @@ library(shinyWidgets)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    dark_mode = TRUE,
+    init = f7Init(theme = "dark"),
     f7TabLayout(
       panels = tagList(
        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
@@ -56,7 +56,7 @@ shiny::shinyApp(
         #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
-          icon = "email",
+          icon = f7Icon("email"),
           active = TRUE,
 
           f7Flex(
@@ -99,9 +99,9 @@ shiny::shinyApp(
                 }
 
                 if (skin === "dark") {
-                 $("body").addClass("theme-dark");
+                 $("html").addClass("theme-dark");
                 } else {
-                  $("body").removeClass("theme-dark");
+                  $("html").removeClass("theme-dark");
                 }
 
                });
@@ -131,7 +131,7 @@ shiny::shinyApp(
         ),
         f7Tab(
           tabName = "Tab 2",
-          icon = "today",
+          icon = f7Icon("today"),
           active = FALSE,
           f7Shadow(
             intensity = 10,
@@ -153,7 +153,7 @@ shiny::shinyApp(
         ),
         f7Tab(
           tabName = "Tab 3",
-          icon = "file_upload",
+          icon = f7Icon("cloud_upload"),
           active = FALSE,
           f7Shadow(
             intensity = 10,

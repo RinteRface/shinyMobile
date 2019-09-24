@@ -28,8 +28,7 @@ vectors$color <- log10(runif(nrow(vectors), 1, 10))
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    #dark_mode = TRUE,
-    init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
+    init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE, theme = "light"),
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",

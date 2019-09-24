@@ -5,7 +5,6 @@
 #' @param ... Any element.
 #' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
-#' @param dark_mode Whether to enable the dark mode. FALSE by default.
 #' @param preloader Whether to display a preloader before the app starts.
 #' FALSE by default.
 #' @param loading_duration Preloader duration.
@@ -13,11 +12,8 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
-                   dark_mode = FALSE, preloader = FALSE,
+f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = NULL, preloader = FALSE,
                    loading_duration = 3){
-
-  bodyCl <- if (dark_mode)  "theme-dark"
 
   shiny::tags$html(
     # Head
@@ -59,7 +55,6 @@ f7Page <- function(..., init = f7Init(theme = "auto"), title = NULL,
     # Body
     addCSSDeps(
       shiny::tags$body(
-        class = bodyCl,
         # preloader
         onLoad = if (preloader) {
           duration <- loading_duration * 1000
@@ -345,8 +340,6 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      #dark_mode = TRUE,
-#'      init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
 #'      f7SplitLayout(
 #'        sidebar = f7Panel(
 #'          title = "Sidebar",

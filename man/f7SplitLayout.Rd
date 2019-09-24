@@ -35,8 +35,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
      title = "My app",
-     #dark_mode = TRUE,
-     init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE),
      f7SplitLayout(
        sidebar = f7Panel(
          title = "Sidebar",

@@ -24,7 +24,6 @@ if (interactive()) {
  shiny::shinyApp(
    ui = f7Page(
      title = "Cards",
-     init = f7Init(theme = "auto"),
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Card"),
        f7Card(
@@ -38,16 +37,16 @@ if (interactive()) {
          )
        ) \%>\% f7Skeleton(),
 
-        f7ListCard(
-         f7ListCardItem(
+        f7List(
+         f7ListItem(
            url = "https://www.google.com",
            title = "Item 1"
-         ),
-         f7ListCardItem(
+         ) \%>\% f7Skeleton(effect = "pulse", duration = 5) ,
+         f7ListItem(
            url = "https://www.google.com",
            title = "Item 2"
-         )
-        ) \%>\% f7Skeleton(effect = "pulse", duration = 5)
+         ) \%>\% f7Skeleton(effect = "pulse", duration = 5)
+        )
      )
    ),
    server = function(input, output) {}

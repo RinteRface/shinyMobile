@@ -29,7 +29,6 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Social Card",
-    f7Init(theme = "auto"),
     f7SingleLayout(
      navbar = f7Navbar(title = "f7SocialCard"),
      f7SocialCard(

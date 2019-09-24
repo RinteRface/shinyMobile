@@ -26,7 +26,6 @@ if(interactive()){
  shiny::shinyApp(
    ui = f7Page(
      title = "My app",
-     init = f7Init(theme = "auto"),
      f7SingleLayout(
       navbar = f7Navbar(title = "f7Date"),
       f7Date(inputId = "date", label = "Date", value = "2014-04-30"),

@@ -33,7 +33,6 @@ library(shinyF7)
  shinyApp(
    ui = f7Page(
      title = "My app",
-     init = f7Init(theme = "ios"),
      f7SingleLayout(
        navbar = f7Navbar(title = "f7SmartSelect"),
        f7SmartSelect(

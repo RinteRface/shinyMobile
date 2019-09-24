@@ -32,7 +32,6 @@ if (interactive()) {
      preloader = FALSE,
      color = "pink",
      title = "My app",
-     init = f7Init(theme = "md"),
      f7SingleLayout(
        navbar = f7Navbar(title = "f7DatePicker"),
        f7DatePicker(

@@ -19,8 +19,7 @@ sapply(
 shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
-    dark_mode = FALSE,
-    init = f7Init(theme = "ios", filled = TRUE, serviceWorker = "service-worker.js"),
+    init = f7Init(skin = "ios", theme = "light", filled = TRUE, serviceWorker = "service-worker.js"),
     f7TabLayout(
       appbar = f7Appbar(
         maximizable = TRUE,

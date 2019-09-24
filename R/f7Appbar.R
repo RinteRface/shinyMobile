@@ -20,7 +20,6 @@
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "ios"),
 #'      f7Appbar(
 #'        f7Flex(f7Back(targetId = "tabset"),f7Next(targetId = "tabset")),
 #'        f7Searchbar(id = "search1", inline = TRUE)

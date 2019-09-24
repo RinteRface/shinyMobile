@@ -35,7 +35,6 @@ if (interactive()) {
   ui = f7Page(
     color = "pink",
     title = "My app",
-    init = f7Init(theme = "ios"),
     f7SingleLayout(
       navbar = f7Navbar(title = "f7Toast"),
       f7Button(inputId = "toast", label = "Open Toast")

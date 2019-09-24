@@ -4,14 +4,16 @@
 \alias{f7Init}
 \title{Custom initialization}
 \usage{
-f7Init(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
-  color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
-  panelSwipeSide = c("left", "right", "both"), iosCenterTitle = TRUE,
-  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE,
-  serviceWorker = NULL)
+f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
+  "light"), filled = FALSE, color = NULL, fastClicks = TRUE,
+  iosTouchRipple = FALSE, panelSwipeSide = c("left", "right", "both"),
+  iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
+  hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
 }
 \arguments{
-\item{theme}{App theme: "ios", "md", "auto" or "aurora".}
+\item{skin}{App skin: "ios", "md", "auto" or "aurora".}
+
+\item{theme}{App theme: "light" or "dark".}
 
 \item{filled}{Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 the current selected color. FALSE by default.}

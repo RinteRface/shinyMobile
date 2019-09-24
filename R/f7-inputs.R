@@ -16,7 +16,6 @@
 #'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "ios"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Picker"),
 #'      f7Picker(
@@ -172,7 +171,6 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7ColorPicker"),
 #'        f7ColorPicker(
@@ -283,7 +281,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'      preloader = FALSE,
 #'      color = "pink",
 #'      title = "My app",
-#'      init = f7Init(theme = "md"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7DatePicker"),
 #'        f7DatePicker(
@@ -358,7 +355,6 @@ f7DatePicker <- function(inputId, label, value = NULL,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7checkBox"),
 #'      f7Card(
@@ -413,7 +409,6 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'   shiny::shinyApp(
 #'     ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7checkBoxGroup"),
 #'       f7checkBoxGroup(
@@ -485,7 +480,6 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Select"),
 #'       f7Select(
@@ -559,7 +553,6 @@ f7Select <- function(inputId, label, choices) {
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7SmartSelect"),
 #'        f7SmartSelect(
@@ -639,7 +632,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Text"),
 #'       f7Text(
@@ -705,7 +697,6 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Date"),
 #'       f7Date(inputId = "date", label = "Date", value = "2014-04-30"),
@@ -763,7 +754,6 @@ f7Date <- function(inputId, label, value = "", placeholder = NULL) {
 # #'  shiny::shinyApp(
 # #'    ui = f7Page(
 # #'      title = "My app",
-# #'      f7Init(theme = "auto"),
 # #'      f7TextArea(
 # #'       inputId = "textarea",
 # #'       label = "Text Area",
@@ -824,7 +814,6 @@ f7Date <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Password"),
 #'       f7Password(
@@ -890,7 +879,6 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Slider"),
 #'      f7Card(
@@ -1019,7 +1007,6 @@ f7Slider <- function(inputId, label, min, max, value,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Stepper"),
 #'      f7Stepper(
@@ -1129,7 +1116,6 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Toggle"),
 #'      f7Toggle(
@@ -1198,7 +1184,6 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Radio"),
 #'      f7Radio(

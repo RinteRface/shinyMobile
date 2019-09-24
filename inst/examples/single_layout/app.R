@@ -17,7 +17,7 @@ shiny::shinyApp(
   ui = f7Page(
     title = "My app",
     dark_mode = FALSE,
-    init = f7Init(theme = "ios"),
+    init = f7Init(skin = "ios", theme = "light"),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",

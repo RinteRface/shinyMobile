@@ -31,7 +31,6 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Cards",
-    f7Init(theme = "auto"),
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Card"),
      f7Card("This is a simple card with plain text,

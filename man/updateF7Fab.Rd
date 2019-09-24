@@ -22,7 +22,6 @@ if (interactive()) {
  library(shinyF7)
 
  ui <- f7Page(
-   init = f7Init(theme = "ios"),
    f7SingleLayout(
     navbar = f7Navbar(title = "updateF7Fab"),
     f7Fab("trigger", "Click me")

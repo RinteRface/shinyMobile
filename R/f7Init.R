@@ -2,7 +2,8 @@
 #'
 #' Use inside \link{f7Page}. Mandatory!
 #'
-#' @param theme App theme: "ios", "md", "auto" or "aurora".
+#' @param skin App skin: "ios", "md", "auto" or "aurora".
+#' @param theme App theme: "light" or "dark".
 #' @param filled Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #' the current selected color. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
@@ -24,7 +25,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
+f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"), filled = FALSE,
                    color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
                    panelSwipeSide = c("left", "right", "both"),
                    iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
@@ -34,6 +35,8 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
   color <- colorToHex(color)
 
   theme <- match.arg(theme)
+  skin <- match.arg(skin)
+
   shiny::tagList(
     shiny::singleton(
       shiny::tags$style(
@@ -88,7 +91,7 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
           root: '#app',
           // App Name
           name: 'My App',
-          theme: '", theme, "',
+          theme: '", skin, "',
           fastClicks: '", tolower(fastClicks), "',
           swipeNoFollow: true,
           iosTouchRipple: '", tolower(iosTouchRipple), "',
@@ -109,8 +112,17 @@ f7Init <- function(theme = c("ios", "md", "auto", "aurora"), filled = FALSE,
           serviceWorker: {
             path: '", serviceWorker, "',
           },
-      });
-      var mainView = app.views.create('.view-main');
+          methods: {
+            setLayoutTheme: function (", theme, ") {
+              var self = this;
+              var $html = self.$('html');
+              globalTheme = ", theme, ";
+              $html.removeClass('theme-dark theme-light').addClass('theme-' + globalTheme);
+            }
+          }
+        });
+        var mainView = app.views.create('.view-main');
+        app.methods.setLayoutTheme('", theme, "');
       "
         )
       )

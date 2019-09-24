@@ -14,7 +14,6 @@
 #'      preloader = FALSE,
 #'      color = "pink",
 #'      title = "My app",
-#'      init = f7Init(theme = "ios"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Messages"),
 #'        f7Messages(

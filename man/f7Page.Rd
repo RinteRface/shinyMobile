@@ -4,8 +4,8 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., init = f7Init(theme = "auto"), title = NULL,
-  dark_mode = FALSE, preloader = FALSE, loading_duration = 3)
+f7Page(..., init = f7Init(skin = "auto", theme = "light"),
+  title = NULL, preloader = FALSE, loading_duration = 3)
 }
 \arguments{
 \item{...}{Any element.}
@@ -13,8 +13,6 @@ f7Page(..., init = f7Init(theme = "auto"), title = NULL,
 \item{init}{App configuration. See \link{f7Init}.}
 
 \item{title}{Page title.}
-
-\item{dark_mode}{Whether to enable the dark mode. FALSE by default.}
 
 \item{preloader}{Whether to display a preloader before the app starts.
 FALSE by default.}

@@ -10,12 +10,23 @@ $(function () {
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background
-  var dark_mode = $('body').hasClass('theme-dark');
+  var dark_mode = $('html').hasClass('theme-dark');
   if (dark_mode) {
     $('.page-content').css('background-color', '');
     $('.page-content.tab').css('background-color', '');
     $('.demo-facebook-card .card-footer').css('background-color', '#1c1c1d');
     $('.sheet-modal, .swipe-handler').css('background-color', '#1c1c1d');
+
+    // below the sidebar id #f7-sidebar-view ensures that we do not
+    // screw up the classic f7Panel style in dark mode
+    // The sidebar background has to be slightly lighter than the main background
+    var sidebarPanel = $('#f7-sidebar-view').find('.page-content');
+    $(sidebarPanel).css('background-color', '#1e1e1e');
+    // we also need to darken sidebar items in the sidebar menu
+    // the default color does not contrast enough with the
+    // new sidebar background
+    var sidebarItems = $('#f7-sidebar-view').find('li');
+    $(sidebarItems).css('background-color', '#171717');
   } else {
     $('div.messages').css('background-color', 'gainsboro');
   }

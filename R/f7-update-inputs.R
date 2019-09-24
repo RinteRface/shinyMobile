@@ -11,7 +11,6 @@
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    init = f7Init(theme = "ios"),
 #'    f7SingleLayout(
 #'     navbar = f7Navbar(title = "updateF7CheckBox"),
 #'     f7Slider(
@@ -77,7 +76,6 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    init = f7Init(theme = "ios"),
 #'    f7SingleLayout(
 #'     navbar = f7Navbar(title = "updateF7Text"),
 #'     f7Fab("trigger", "Click me"),
@@ -117,7 +115,6 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    init = f7Init(theme = "ios"),
 #'    f7SingleLayout(
 #'     navbar = f7Navbar(title = "updateF7Text"),
 #'     f7Fab("trigger", "Click me"),
@@ -153,7 +150,6 @@ updateF7Date <- updateF7Text
 #'  library(shinyF7)
 #'
 #'  ui <- f7Page(
-#'    init = f7Init(theme = "ios"),
 #'    f7SingleLayout(
 #'     navbar = f7Navbar(title = "updateF7Fab"),
 #'     f7Fab("trigger", "Click me")
@@ -196,7 +192,6 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 # #'  library(shinyF7)
 # #'
 # #'  ui <- f7Page(
-# #'    f7Init(),
 # #'    f7Button(color = "black", label = "Action Button", inputId = "button")
 # #'  )
 # #'
@@ -246,7 +241,6 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 # #'  shiny::shinyApp(
 # #'    ui = f7Page(
 # #'      title = "My app",
-# #'      f7Init(theme = "auto"),
 # #'      f7Fab("update", "Update"),
 # #'      f7checkBoxGroup(
 # #'        inputId = "variable",
@@ -297,7 +291,6 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'  shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "updateF7Slider"),
 #'       f7Card(
@@ -364,7 +357,6 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
-#'      init = f7Init(theme = "auto"),
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "updateF7Toggle"),
 #'        f7Card(
@@ -437,7 +429,6 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'  shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "updateF7Stepper"),
 #'       f7Card(
@@ -523,7 +514,6 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'  shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
-#'     init = f7Init(theme = "auto"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "Update picker"),
 #'       f7Card(

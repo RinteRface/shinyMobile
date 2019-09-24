@@ -6,8 +6,7 @@ library(shinyWidgets)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    dark_mode = TRUE,
-    init = f7Init(theme = "md"),
+    init = f7Init(skin = "md", theme = "dark"),
     f7TabLayout(
       panels = tagList(
         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
@@ -68,9 +67,9 @@ shiny::shinyApp(
                 }
 
                 if (skin === "dark") {
-                 $("body").addClass("theme-dark");
+                 $("html").addClass("theme-dark");
                 } else {
-                  $("body").removeClass("theme-dark");
+                  $("html").removeClass("theme-dark");
                 }
 
                });
