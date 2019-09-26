@@ -500,10 +500,9 @@ f7Items <- function(...){
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Item <- function(..., tabName, active = FALSE) {
+f7Item <- function(..., tabName) {
   shiny::tags$div(
     class = "page-content tab",
-    `data-active` = tolower(active),
     id = tabName,
     `data-value` = tabName,
     style = "background-color: gainsboro;",

@@ -4,15 +4,12 @@
 \alias{f7Item}
 \title{Create a Framework7 \link{f7Item}.}
 \usage{
-f7Item(..., tabName, active = FALSE)
+f7Item(..., tabName)
 }
 \arguments{
 \item{...}{Item content.}
 
 \item{tabName}{Item id. Must be unique.}
-
-\item{active}{Whether the tab is active at start. Do not select multiple tabs, only
-the first one will be set to active}
 }
 \description{
 Similar to  \link{f7Tab} but for the \link{f7SplitLayout}.
