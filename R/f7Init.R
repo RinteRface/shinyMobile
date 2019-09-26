@@ -92,9 +92,9 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           // App Name
           name: 'My App',
           theme: '", skin, "',
-          fastClicks: '", tolower(fastClicks), "',
+          fastClicks: ", tolower(fastClicks), ",
           swipeNoFollow: true,
-          iosTouchRipple: '", tolower(iosTouchRipple), "',
+          iosTouchRipple: ", tolower(iosTouchRipple), ",
           // allow both panels to swipe
           panel: {
             swipe: '", panelSwipeSide, "',
@@ -102,11 +102,11 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           // App id
           id: 'f7App',
           navbar: {
-            hideOnPageScroll: '", tolower(hideNavOnPageScroll), "',
-            iosCenterTitle: '", tolower(iosCenterTitle), "',
+            hideOnPageScroll: ", tolower(hideNavOnPageScroll), ",
+            iosCenterTitle: ", tolower(iosCenterTitle), ",
           },
           toolbar: {
-            hideOnPageScroll: '", tolower(hideTabsOnPageScroll), "',
+            hideOnPageScroll: ", tolower(hideTabsOnPageScroll), ",
           },
           // Register service worker
           serviceWorker: {
