@@ -2,7 +2,7 @@
 #'
 #' Build a Framework7 panel
 #'
-#' @param ... Panel content.
+#' @param ... Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.
 #' @param title Panel title.
 #' @param side Panel side: "left" or "right".
 #' @param theme Panel background color: "dark" or "light".

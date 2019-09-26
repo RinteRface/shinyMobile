@@ -9,7 +9,7 @@ f7Panel(..., title = NULL, side = c("left", "right"),
   resizable = FALSE)
 }
 \arguments{
-\item{...}{Panel content.}
+\item{...}{Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.}
 
 \item{title}{Panel title.}
 
