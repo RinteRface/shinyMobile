@@ -63,6 +63,42 @@
 #'    }
 #'  )
 #' }
+#' # login dialog
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My App",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Dialog"),
+#'        f7Button(inputId = "goButton", "Go!"),
+#'        uiOutput("ui")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observe({
+#'        print(input$login)
+#'      })
+#'
+#'      observeEvent(input$goButton,{
+#'        f7Dialog(
+#'          inputId = "login",
+#'          title = "Dialog title",
+#'          type = "login",
+#'          text = "This is an login dialog",
+#'          session = session
+#'        )
+#'      })
+#'
+#'      output$ui <- renderUI({
+#'        req(input$login$user == "David" & input$login$password == "prout")
+#'        img(src = "https://media2.giphy.com/media/12gfL8Xxrhv7C1fXiV/giphy.gif")
+#'      })
+#'    }
+#'  )
+#' }
 f7Dialog <- function(inputId = NULL, title = NULL, text,
                      type = c("alert", "confirm", "prompt", "login"), session) {
 

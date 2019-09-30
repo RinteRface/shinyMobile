@@ -145,7 +145,7 @@ $(function () {
         var dialog = app.dialog.alert(message.text, message.title);
         break;
       case 'confirm':
-        var dialog = app.dialog.confirm(
+        var confirm = app.dialog.confirm(
           text = message.text,
           title = message.title,
           callbackOk = function() {
@@ -156,11 +156,24 @@ $(function () {
             Shiny.setInputValue(message.id, false);
           }
         );
+        confirm.closed(Shiny.setInputValue(message.id, null));
+        break;
+      case 'login':
+        console.log(login);
+        var login = app.dialog.login(
+          text = message.text,
+          title = message.title,
+          callbackOk = function (username, password) {
+            Shiny.setInputValue(message.id, {user: username, password: password});
+          },
+          callbackCancel = function() {
+            Shiny.setInputValue(message.id, null);
+          }
+        ).open(Shiny.setInputValue(message.id, null));
         break;
       default:
         console.log('');
     }
-    dialog.closed(Shiny.setInputValue(message.id, null));
   });
 
 
