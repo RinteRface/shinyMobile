@@ -138,7 +138,29 @@ $(function () {
 
   // handle dialog
   Shiny.addCustomMessageHandler("dialog", function(message) {
-    var dialog = app.dialog.alert(message.text);
+
+    var type = message.type;
+    switch (type) {
+      case 'alert':
+        var dialog = app.dialog.alert(message.text, message.title);
+        break;
+      case 'confirm':
+        var dialog = app.dialog.confirm(
+          text = message.text,
+          title = message.title,
+          callbackOk = function() {
+            console.log(message.inputId);
+            Shiny.setInputValue(message.id, true);
+          },
+          callbackCancel = function() {
+            Shiny.setInputValue(message.id, false);
+          }
+        );
+        break;
+      default:
+        console.log('');
+    }
+    dialog.closed(Shiny.setInputValue(message.id, null));
   });
 
 

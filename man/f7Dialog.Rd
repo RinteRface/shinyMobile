@@ -4,10 +4,18 @@
 \alias{f7Dialog}
 \title{Create a Framework7 dialog window}
 \usage{
-f7Dialog(text, session)
+f7Dialog(inputId = NULL, title = NULL, text, type = c("alert",
+  "confirm", "prompt", "login"), session)
 }
 \arguments{
+\item{inputId}{Input associated to the alert. Works when type is one of
+"confirm", "prompt" or "login".}
+
+\item{title}{Dialog title}
+
 \item{text}{Dialog text.}
+
+\item{type}{Dialog type: \code{c("alert", "confirm", "prompt", "login")}.}
 
 \item{session}{shiny session.}
 }
@@ -15,6 +23,7 @@ f7Dialog(text, session)
 Create a Framework7 dialog window
 }
 \examples{
+# simple alert
 if (interactive()) {
   library(shiny)
   library(shinyF7)
@@ -29,11 +38,43 @@ if (interactive()) {
     server = function(input, output, session) {
       shiny::observeEvent(input$goButton,{
         f7Dialog(
+         title = "Dialog title",
          text = "This is an alert dialog",
-         session
+         session = session
         )
       })
     }
   )
+}
+# confirm alert
+if (interactive()) {
+ library(shiny)
+ library(shinyF7)
+ shinyApp(
+   ui = f7Page(
+     title = "My App",
+     f7SingleLayout(
+       navbar = f7Navbar(title = "f7Dialog"),
+       f7Button(inputId = "goButton", "Go!")
+     )
+   ),
+   server = function(input, output, session) {
+
+     observeEvent(input$goButton,{
+       f7Dialog(
+         inputId = "test",
+         title = "Dialog title",
+         type = "confirm",
+         text = "This is an alert dialog",
+         session = session
+       )
+     })
+
+     observeEvent(input$test, {
+       f7Toast(session, text = paste("Alert input is:", input$test))
+     })
+
+   }
+ )
 }
 }
