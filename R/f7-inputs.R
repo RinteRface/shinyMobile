@@ -581,7 +581,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
       value = choices[[i]],
       choices[[i]],
       selected = if (!is.null(selected)) {
-        if (choices[[i]] == selected) NA else NULL
+        if (choices[[i]] %in% selected) NA else NULL
       }
     )
   })
