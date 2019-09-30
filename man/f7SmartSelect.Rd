@@ -5,7 +5,8 @@
 \title{Create a Framework7 smart select}
 \usage{
 f7SmartSelect(inputId, label, choices, selected = NULL,
-  type = c("sheet", "popup", "popover"), smart = TRUE)
+  type = c("sheet", "popup", "popover"), smart = TRUE,
+  multiple = FALSE)
 }
 \arguments{
 \item{inputId}{Select input id.}
@@ -20,6 +21,8 @@ f7SmartSelect(inputId, label, choices, selected = NULL,
 Note that the search bar is only available when the type is popup.}
 
 \item{smart}{Whether to enable the search bar. TRUE by default.}
+
+\item{multiple}{Whether to allow multiple values. FALSE by default.}
 }
 \description{
 It is nicer than the classic \link{f7Select}

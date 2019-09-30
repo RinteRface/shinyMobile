@@ -542,6 +542,7 @@ f7Select <- function(inputId, label, choices) {
 #' @param type Smart select type: either \code{c("sheet", "popup", "popover")}.
 #' Note that the search bar is only available when the type is popup.
 #' @param smart Whether to enable the search bar. TRUE by default.
+#' @param multiple Whether to allow multiple values. FALSE by default.
 #'
 #' @export
 #'
@@ -573,7 +574,8 @@ f7Select <- function(inputId, label, choices) {
 #'  )
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
-                          type = c("sheet", "popup", "popover"), smart = TRUE) {
+                          type = c("sheet", "popup", "popover"),
+                          smart = TRUE, multiple = FALSE) {
   options <- lapply(X = seq_along(choices), function(i) {
     shiny::tags$option(
       value = choices[[i]],
@@ -597,6 +599,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
           `data-searchbar-placeholder` = if (smart & type == "popup") "Search" else NULL,
           shiny::tags$select(
             id = inputId,
+            multiple = if (multiple) NA else NULL,
             options
           ),
           shiny::tags$div(

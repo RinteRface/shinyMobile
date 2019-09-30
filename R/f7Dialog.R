@@ -140,7 +140,7 @@ f7Dialog <- function(inputId = NULL, title = NULL, text,
 
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
-  text <- if (class(text) == "shiny.tag") as.character(force(text))
+  text <- if (class(text) %in% c("shiny.tag" , "shiny.tag.list")) as.character(force(text))
 
   message <- dropNulls(
     list(
