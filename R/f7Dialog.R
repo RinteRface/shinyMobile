@@ -63,6 +63,40 @@
 #'    }
 #'  )
 #' }
+#' # prompt dialog
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My App",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Dialog"),
+#'        f7Button(inputId = "goButton", "Go!"),
+#'        uiOutput("res")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observe({
+#'        print(input$prompt)
+#'      })
+#'
+#'      observeEvent(input$goButton,{
+#'        f7Dialog(
+#'          inputId = "prompt",
+#'          title = "Dialog title",
+#'          type = "prompt",
+#'          text = "This is a prompt dialog",
+#'          session = session
+#'        )
+#'      })
+#'
+#'      output$res <- renderUI(f7BlockTitle(title = input$prompt, size = "large"))
+#'    }
+#'  )
+#' }
+#'
 #' # login dialog
 #' if (interactive()) {
 #'  library(shiny)

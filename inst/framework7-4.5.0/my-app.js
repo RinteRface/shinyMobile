@@ -149,14 +149,25 @@ $(function () {
           text = message.text,
           title = message.title,
           callbackOk = function() {
-            console.log(message.inputId);
             Shiny.setInputValue(message.id, true);
           },
           callbackCancel = function() {
             Shiny.setInputValue(message.id, false);
           }
-        );
-        confirm.closed(Shiny.setInputValue(message.id, null));
+        ).open(Shiny.setInputValue(message.id, null));
+        //confirm.closed(Shiny.setInputValue(message.id, null));
+        break;
+      case 'prompt':
+        var prompt = app.dialog.prompt(
+          text = message.text,
+          title = message.title,
+          callbackOk = function(value) {
+            Shiny.setInputValue(message.id, value);
+          },
+          callbackCancel = function() {
+            Shiny.setInputValue(message.id, null);
+          }
+        ).open(Shiny.setInputValue(message.id, null));
         break;
       case 'login':
         console.log(login);
