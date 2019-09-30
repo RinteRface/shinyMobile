@@ -135,6 +135,14 @@ $(function () {
   });
 
 
+
+  // handle dialog
+  Shiny.addCustomMessageHandler("dialog", function(message) {
+    var dialog = app.dialog.alert(message.text);
+  });
+
+
+
   // handle update f7Tabs
   tabsIds = [];
   getAllTabsIds = function() {

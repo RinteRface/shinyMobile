@@ -131,6 +131,7 @@ reference:
 - title: Modals, Popups...
   desc: Functions that create layouts
   contents:
+  - '`f7Dialog`'
   - '`f7Notif`'
   - '`f7Popover`'
   - '`f7PopoverTarget`'

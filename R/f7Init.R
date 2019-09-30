@@ -90,7 +90,7 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           // App root element
           root: '#app',
           // App Name
-          name: 'My App',
+          name: '',
           theme: '", skin, "',
           fastClicks: ", tolower(fastClicks), ",
           swipeNoFollow: true,
