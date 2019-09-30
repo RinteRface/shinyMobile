@@ -110,7 +110,8 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           },
           // Register service worker
           serviceWorker: {
-            path: '", serviceWorker, "',
+            path: './", serviceWorker, "',
+            scope: '/'
           },
           methods: {
             setLayoutTheme: function (", theme, ") {

@@ -228,7 +228,7 @@ navbar:
 articles:
 - title: All vignettes
   contents:
-  - '`F7-Elements`'
+  - '`getting-started`'
   - '`Single-Layout`'
   - '`Tabs-Layout`'
   - '`Split-Layout`'

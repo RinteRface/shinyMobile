@@ -126,8 +126,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
    shiny::tags$div(
      class = sheetCl,
      style = if (swipeToStep | swipeToClose) "height: auto;
-     --f7-sheet-bg-color: #fff;
-     --f7-sheet-swipe-step: 222px;",
+     --f7-sheet-bg-color: #fff;",
      id = id,
      if (!(swipeToStep | swipeToClose)) {
         shiny::tags$div(
