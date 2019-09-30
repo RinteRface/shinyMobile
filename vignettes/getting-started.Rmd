@@ -1,10 +1,10 @@
 ---
-title: "F7-Elements"
+title: "Getting Started"
 author: "David Granjon"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{F7-Elements}
+  %\VignetteIndexEntry{Getting Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

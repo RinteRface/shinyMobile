@@ -228,7 +228,7 @@ navbar:
 articles:
 - title: All vignettes
   contents:
-  - '`getting-started`'
+  - '`Getting-Started`'
   - '`Single-Layout`'
   - '`Tabs-Layout`'
   - '`Split-Layout`'
