@@ -206,4 +206,12 @@ $(function () {
     });
   });
 
+
+  // handle taphold events
+  Shiny.addCustomMessageHandler('tap-hold', function(message) {
+    $(message.target).on('taphold', function() {
+      message.callback;
+    });
+  });
+
 });
