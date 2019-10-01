@@ -12,6 +12,9 @@
 #' 300ms delay from links and form elements in mobile browser while you click them.
 #' Modern browsers are smart enough to eliminate that click delay. You can enable
 #' this built-in library if you target old devices or experience click delays.
+#' @param tapHold  It triggers (if enabled) after a sustained, complete touch event.
+#' By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
+#' so Fast Clicks should be also enabled.
 #' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
 #' @param panelSwipeSide c("left", "right", "both"). If you want to enable ability to
 #' open/close side panels with swipe you can pass here left (for left panel) or
@@ -25,9 +28,9 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"), filled = FALSE,
-                   color = NULL, fastClicks = TRUE, iosTouchRipple = FALSE,
-                   panelSwipeSide = c("left", "right", "both"),
+f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"),
+                   filled = FALSE, color = NULL, fastClicks = TRUE, tapHold = TRUE,
+                   iosTouchRipple = FALSE, panelSwipeSide = c("left", "right", "both"),
                    iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
                    hideTabsOnPageScroll = FALSE, serviceWorker = NULL) {
 
@@ -48,6 +51,16 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
         )
       )
     ),
+    if (tapHold) {
+      shiny::singleton(
+        shiny::tags$style(
+          "-moz-user-select: none;
+           -webkit-user-select: none;
+           user-select: none;
+          "
+        )
+      )
+    },
     if (filled) {
       shiny::singleton(
         shiny::tags$style(
@@ -94,6 +107,9 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           theme: '", skin, "',
           fastClicks: ", tolower(fastClicks), ",
           swipeNoFollow: true,
+          touch: {
+            tapHold: ", tolower(tapHold), " //enable tap hold events
+          },
           iosTouchRipple: ", tolower(iosTouchRipple), ",
           // allow both panels to swipe
           panel: {

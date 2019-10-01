@@ -6,8 +6,8 @@
 \usage{
 f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
   "light"), filled = FALSE, color = NULL, fastClicks = TRUE,
-  iosTouchRipple = FALSE, panelSwipeSide = c("left", "right", "both"),
-  iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
+  tapHold = TRUE, iosTouchRipple = FALSE, panelSwipeSide = c("left",
+  "right", "both"), iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
   hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
 }
 \arguments{
@@ -25,6 +25,10 @@ Expect a name like blue or red. If NULL, use the default color.}
 300ms delay from links and form elements in mobile browser while you click them.
 Modern browsers are smart enough to eliminate that click delay. You can enable
 this built-in library if you target old devices or experience click delays.}
+
+\item{tapHold}{It triggers (if enabled) after a sustained, complete touch event.
+By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
+so Fast Clicks should be also enabled.}
 
 \item{iosTouchRipple}{Default to FALSE. Enables touch ripple effect for iOS theme.}
 
