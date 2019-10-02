@@ -16,8 +16,8 @@
 #' By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 #' so Fast Clicks should be also enabled.
 #' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
-#' @param panelSwipeSide c("left", "right", "both"). If you want to enable ability to
-#' open/close side panels with swipe you can pass here left (for left panel) or
+#' @param panelSwipeSide NULL by default. Other choices are c("left", "right", "both").
+#' If you want to enable ability to open/close side panels with swipe you can pass here left (for left panel) or
 #' right (for right panel) or both (for both panels).
 #' @param iosCenterTitle Default to TRUE. When enabled then it will try to position
 #' title at the center in iOS theme. Sometime (with some custom design) it may not needed.
@@ -30,11 +30,10 @@
 #' @export
 f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"),
                    filled = FALSE, color = NULL, fastClicks = TRUE, tapHold = TRUE,
-                   iosTouchRipple = FALSE, panelSwipeSide = c("left", "right", "both"),
+                   iosTouchRipple = FALSE, panelSwipeSide = NULL,
                    iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
                    hideTabsOnPageScroll = FALSE, serviceWorker = NULL) {
 
-  panelSwipeSide <- match.arg(panelSwipeSide)
   color <- colorToHex(color)
 
   theme <- match.arg(theme)

@@ -137,6 +137,7 @@ reference:
   - '`f7PopoverTarget`'
   - '`f7Popup`'
   - '`f7Sheet`'
+  - '`f7TapHold`'
   - '`f7Toast`'
   - '`f7Tooltip`'
 
