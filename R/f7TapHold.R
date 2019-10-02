@@ -23,7 +23,7 @@
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
-#'     observeEvent(input$pressme,{
+#'     observe({
 #'       f7TapHold(
 #'        target = "#pressme",
 #'        callback = "app.dialog.alert('Tap hold fired!');",
