@@ -4,7 +4,7 @@
 #'
 #' @param target Element to apply the tapHold event on. Must be a jQuery selector,
 #' such as "#id" or ".class", ".class1, .class2", "a"...
-#' @param callback Javascript callback. Must be wrapped in \link{I}.
+#' @param callback Javascript callback.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -23,10 +23,10 @@
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
-#'     observeEvent(input$pressme,{
+#'     observe({
 #'       f7TapHold(
 #'        target = "#pressme",
-#'        callback = I("app.dialog.alert('Tap hold fired!');"),
+#'        callback = "app.dialog.alert('Tap hold fired!');",
 #'        session = session
 #'       )
 #'     })
