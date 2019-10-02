@@ -10,10 +10,10 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-    observeEvent(input$pressme,{
+    observe({
       f7TapHold(
         target = "#pressme",
-        callback = I("app.dialog.alert('Tap hold fired!');"),
+        callback = "app.dialog.alert('Tap hold fired!');",
         session = session
       )
     })
