@@ -13,8 +13,6 @@
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
 #'
-#' @note hideOnScroll does not work yet.
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export

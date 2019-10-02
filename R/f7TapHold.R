@@ -4,7 +4,7 @@
 #'
 #' @param target Element to apply the tapHold event on. Must be a jQuery selector,
 #' such as "#id" or ".class", ".class1, .class2", "a"...
-#' @param callback. Javascript callback. Must be wrapped in \link{I}.
+#' @param callback Javascript callback. Must be wrapped in \link{I}.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -42,5 +42,5 @@ f7TapHold <- function(target, callback, session) {
     )
   )
 
-  session$sendCustomMessage(type = "tap-hold", message)
+  session$sendCustomMessage(type = "tapHold", message)
 }

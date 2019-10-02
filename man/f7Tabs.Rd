@@ -4,10 +4,14 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)
+f7Tabs(..., .items = NULL, id = NULL, swipeable = FALSE,
+  animated = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
+
+\item{.items}{Slot for other items that could be part of the toolbar such as
+buttons or \link{f7Sheet}.}
 
 \item{id}{Optional to get the id of the currently selected \link{f7Tab}.}
 
@@ -38,7 +42,13 @@ if (interactive()) {
         animated = FALSE,
         f7Tab(tabName = "Tab 1", "tab 1 text"),
         f7Tab(tabName = "Tab 2", "tab 2 text"),
-        f7Tab(tabName = "Tab 3", "tab 3 text")
+        f7Tab(tabName = "Tab 3", "tab 3 text"),
+        items = shiny::tags$a(
+         class = "tab-link",
+         href = "#",
+         f7Icon("bolt_fill"),
+         shiny::span(class = "tabbar-label", "Optional Item")
+        )
       )
     )
   ),

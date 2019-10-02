@@ -3,6 +3,8 @@
 #' Build a Framework7 tabs
 #'
 #' @param ... Slot for \link{f7Tab}.
+#' @param .items Slot for other items that could be part of the toolbar such as
+#' buttons or \link{f7Sheet}.
 #' @param id Optional to get the id of the currently selected \link{f7Tab}.
 #' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
@@ -29,7 +31,13 @@
 #'         animated = FALSE,
 #'         f7Tab(tabName = "Tab 1", "tab 1 text"),
 #'         f7Tab(tabName = "Tab 2", "tab 2 text"),
-#'         f7Tab(tabName = "Tab 3", "tab 3 text")
+#'         f7Tab(tabName = "Tab 3", "tab 3 text"),
+#'         items = shiny::tags$a(
+#'          class = "tab-link",
+#'          href = "#",
+#'          f7Icon("bolt_fill"),
+#'          shiny::span(class = "tabbar-label", "Optional Item")
+#'         )
 #'       )
 #'     )
 #'   ),
@@ -38,7 +46,7 @@
 #'   }
 #'  )
 #' }
-f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
+f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE) {
 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
@@ -87,7 +95,8 @@ f7Tabs <- function(..., id = NULL, swipeable = FALSE, animated = TRUE) {
           itemName
         )
       }
-    })
+    }),
+    .items
   )
 
   # related page content

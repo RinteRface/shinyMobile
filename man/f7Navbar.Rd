@@ -31,9 +31,6 @@ compatible with subtitle.}
 \description{
 Build a Framework7 Navbar
 }
-\note{
-hideOnScroll does not work yet.
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

@@ -2,7 +2,8 @@
 #'
 #' Build a Framework7 page
 #'
-#' @param ... Any element.
+#' @param ... Slot for shinyF7 skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+#' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
 #' @param preloader Whether to display a preloader before the app starts.

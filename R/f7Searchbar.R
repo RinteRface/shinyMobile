@@ -162,9 +162,7 @@ f7Searchbar <- function(id = NULL, placeholder = "Search", expandable = FALSE, i
     )
   )
 
-  searchBarBackdrop <- shiny::tags$div(class = "searchbar-backdrop")
-
-  shiny::tagList(searchBarJS, searchBarBackdrop, searchBarTag)
+  shiny::tagList(searchBarJS, searchBarTag)
 
 }
 

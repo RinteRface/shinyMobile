@@ -208,7 +208,7 @@ $(function () {
 
 
   // handle taphold events
-  Shiny.addCustomMessageHandler('tap-hold', function(message) {
+  Shiny.addCustomMessageHandler('tapHold', function(message) {
     var selector = String(message.target);
     $(selector).on('taphold', function() {
       eval(message.callback[0]);

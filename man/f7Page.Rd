@@ -8,7 +8,8 @@ f7Page(..., init = f7Init(skin = "auto", theme = "light"),
   title = NULL, preloader = FALSE, loading_duration = 3)
 }
 \arguments{
-\item{...}{Any element.}
+\item{...}{Slot for shinyF7 skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+\link{f7TabLayout}, \link{f7SplitLayout}.}
 
 \item{init}{App configuration. See \link{f7Init}.}
 

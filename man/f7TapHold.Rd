@@ -10,9 +10,9 @@ f7TapHold(target, callback, session)
 \item{target}{Element to apply the tapHold event on. Must be a jQuery selector,
 such as "#id" or ".class", ".class1, .class2", "a"...}
 
-\item{session}{Shiny session object.}
+\item{callback}{Javascript callback. Must be wrapped in \link{I}.}
 
-\item{callback.}{Javascript callback. Must be wrapped in \link{I}.}
+\item{session}{Shiny session object.}
 }
 \description{
 Triggered after long press on an element.
