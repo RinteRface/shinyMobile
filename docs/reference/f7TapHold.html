@@ -169,7 +169,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
     </tr>
     <tr>
       <th>callback</th>
-      <td><p>Javascript callback. Must be wrapped in <a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a>.</p></td>
+      <td><p>Javascript callback.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -192,10 +192,10 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>pressme</span>,{
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
       <span class='fu'>f7TapHold</span>(
        <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"#pressme"</span>,
-       <span class='kw'>callback</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='st'>"app.dialog.alert('Tap hold fired!');"</span>),
+       <span class='kw'>callback</span> <span class='kw'>=</span> <span class='st'>"app.dialog.alert('Tap hold fired!');"</span>,
        <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
       )
     })
