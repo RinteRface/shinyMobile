@@ -129,7 +129,7 @@ reference:
 
 
 - title: Modals, Popups...
-  desc: Functions that create layouts
+  desc: Functions that trigger server actions
   contents:
   - '`f7Dialog`'
   - '`f7Notif`'
@@ -137,6 +137,9 @@ reference:
   - '`f7PopoverTarget`'
   - '`f7Popup`'
   - '`f7Sheet`'
+  - '`f7Swipeout`'
+  - '`f7SwipeoutItem`'
+  - '`f7TapHold`'
   - '`f7Toast`'
   - '`f7Tooltip`'
 
