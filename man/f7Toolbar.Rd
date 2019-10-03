@@ -23,9 +23,6 @@ f7Toolbar(..., position = c("top", "bottom"), hairline = TRUE,
 \description{
 Build a Framework7 Toolbar
 }
-\note{
-Does not render properly on iOS.
-}
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }

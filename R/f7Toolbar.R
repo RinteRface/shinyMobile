@@ -11,20 +11,17 @@
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
-#' @note Does not render properly on iOS.
-#'
 #' @export
 f7Toolbar <- function(..., position = c("top", "bottom"), hairline = TRUE, shadow = TRUE,
                       icons = FALSE, scrollable = FALSE) {
 
    position <- match.arg(position)
 
-   toolbarCl <- if (icons)  "toolbar tabbar" else "toolbar"
+   toolbarCl <- if (icons)  "toolbar tabbar tabbar-labels" else "toolbar"
    if (!hairline) toolbarCl <- paste0(toolbarCl, " no-hairline")
    if (!shadow) toolbarCl <- paste0(toolbarCl, " no-shadow")
-   if (icons) toolbarCl <- paste0(toolbarCl, " tabbar-labels")
    if (scrollable) toolbarCl <- paste0(toolbarCl, " tabbar-scrollable")
-   if (position == "bottom") toolbarCl <- paste0(toolbarCl, " toolbar-bottom")
+   toolbarCl <- paste0(toolbarCl, " toolbar-", position)
 
    shiny::tags$div(
       class = toolbarCl,
