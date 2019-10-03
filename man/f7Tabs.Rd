@@ -43,7 +43,7 @@ if (interactive()) {
         f7Tab(tabName = "Tab 1", "tab 1 text"),
         f7Tab(tabName = "Tab 2", "tab 2 text"),
         f7Tab(tabName = "Tab 3", "tab 3 text"),
-        items = shiny::tags$a(
+        .items = shiny::tags$a(
          class = "tab-link",
          href = "#",
          f7Icon("bolt_fill"),
