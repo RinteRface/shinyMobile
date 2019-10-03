@@ -4,12 +4,15 @@
 \alias{f7Panel}
 \title{Create a Framework7 panel}
 \usage{
-f7Panel(..., title = NULL, side = c("left", "right"),
-  theme = c("dark", "light"), style = c("reveal", "cover"),
+f7Panel(..., inputId = NULL, title = NULL, side = c("left", "right"),
+  theme = c("dark", "light"), effect = c("reveal", "cover"),
   resizable = FALSE)
 }
 \arguments{
 \item{...}{Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.}
+
+\item{inputId}{Panel unique id. This is to access the input$id giving the panel
+state, namely open or closed.}
 
 \item{title}{Panel title.}
 
@@ -17,12 +20,81 @@ f7Panel(..., title = NULL, side = c("left", "right"),
 
 \item{theme}{Panel background color: "dark" or "light".}
 
-\item{style}{Whether the panel should behave when opened: "cover" or "reveal".}
+\item{effect}{Whether the panel should behave when opened: "cover" or "reveal".}
 
 \item{resizable}{Whether to enable panel resize. FALSE by default.}
 }
 \description{
 Build a Framework7 panel
+}
+\examples{
+if (interactive()) {
+ library(shiny)
+ library(shinyF7)
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "My app",
+     init = f7Init(skin = "ios", theme = "light"),
+     f7SingleLayout(
+       navbar = f7Navbar(
+         title = "Single Layout",
+         hairline = FALSE,
+         shadow = TRUE,
+         left_panel = TRUE,
+         right_panel = TRUE
+       ),
+       panels = tagList(
+         f7Panel(side = "left", inputId = "mypanel1"),
+         f7Panel(side = "right", inputId = "mypanel2")
+       ),
+       toolbar = f7Toolbar(
+         position = "bottom",
+         icons = TRUE,
+         hairline = FALSE,
+         shadow = FALSE,
+         f7Link(label = "Link 1", src = "https://www.google.com"),
+         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+       ),
+       # main content
+       f7Shadow(
+         intensity = 10,
+         hover = TRUE,
+         f7Card(
+           title = "Card header",
+           sliderInput("obs", "Number of observations", 0, 1000, 500),
+           h1("You only see me by opening the left panel"),
+           plotOutput("distPlot"),
+           footer = tagList(
+             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+             f7Badge("Badge", color = "green")
+           )
+         )
+       )
+     )
+   ),
+   server = function(input, output, session) {
+
+     observeEvent(input$mypanel2, {
+
+       state <- if (input$mypanel2) "open" else "closed"
+
+       f7Toast(
+         session,
+         text = paste0("Right panel is ", state),
+         position = "center",
+         closeTimeout = 1000
+       )
+     })
+
+     output$distPlot <- renderPlot({
+       if (input$mypanel1) {
+         dist <- rnorm(input$obs)
+         hist(dist)
+       }
+     })
+   }
+ )
+}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
