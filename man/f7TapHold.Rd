@@ -10,7 +10,7 @@ f7TapHold(target, callback, session)
 \item{target}{Element to apply the tapHold event on. Must be a jQuery selector,
 such as "#id" or ".class", ".class1, .class2", "a"...}
 
-\item{callback}{Javascript callback. Must be wrapped in \link{I}.}
+\item{callback}{Javascript callback.}
 
 \item{session}{Shiny session object.}
 }
@@ -31,10 +31,10 @@ library(shinyF7)
      )
    ),
    server = function(input, output, session) {
-    observeEvent(input$pressme,{
+    observe({
       f7TapHold(
        target = "#pressme",
-       callback = I("app.dialog.alert('Tap hold fired!');"),
+       callback = "app.dialog.alert('Tap hold fired!');",
        session = session
       )
     })

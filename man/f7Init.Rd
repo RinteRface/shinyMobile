@@ -6,8 +6,8 @@
 \usage{
 f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
   "light"), filled = FALSE, color = NULL, fastClicks = TRUE,
-  tapHold = TRUE, iosTouchRipple = FALSE, panelSwipeSide = c("left",
-  "right", "both"), iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
+  tapHold = TRUE, iosTouchRipple = FALSE, panelSwipeSide = NULL,
+  iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
   hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
 }
 \arguments{
@@ -32,8 +32,8 @@ so Fast Clicks should be also enabled.}
 
 \item{iosTouchRipple}{Default to FALSE. Enables touch ripple effect for iOS theme.}
 
-\item{panelSwipeSide}{c("left", "right", "both"). If you want to enable ability to
-open/close side panels with swipe you can pass here left (for left panel) or
+\item{panelSwipeSide}{NULL by default. Other choices are c("left", "right", "both").
+If you want to enable ability to open/close side panels with swipe you can pass here left (for left panel) or
 right (for right panel) or both (for both panels).}
 
 \item{iosCenterTitle}{Default to TRUE. When enabled then it will try to position
