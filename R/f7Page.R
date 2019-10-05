@@ -396,7 +396,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
                           panels = NULL, appbar = NULL,
                           statusbar = f7Statusbar()) {
 
-  sidebar <- shiny::tagAppendAttributes(sidebar, id = "f7-sidebar")
+  sidebar <- shiny::tagAppendAttributes(sidebar[[2]], id = "f7-sidebar")
   # this trick to prevent to select the panel view in the following
   # javascript code
   sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"
