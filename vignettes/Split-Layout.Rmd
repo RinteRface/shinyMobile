@@ -95,7 +95,7 @@ shiny::shinyApp(
           f7PanelItem(tabName = "tab3", title = "Tab 3", icon = f7Icon("home"))
         ),
         uiOutput("selected_tab"),
-        style = "reveal"
+        effect = "reveal"
       ),
       navbar = f7Navbar(
         title = "Split Layout",
