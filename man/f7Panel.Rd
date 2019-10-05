@@ -82,7 +82,8 @@ if (interactive()) {
          session,
          text = paste0("Right panel is ", state),
          position = "center",
-         closeTimeout = 1000
+         closeTimeout = 1000,
+         closeButton = FALSE
        )
      })
 

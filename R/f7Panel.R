@@ -69,7 +69,8 @@
 #'          session,
 #'          text = paste0("Right panel is ", state),
 #'          position = "center",
-#'          closeTimeout = 1000
+#'          closeTimeout = 1000,
+#'          closeButton = FALSE
 #'        )
 #'      })
 #'
@@ -104,8 +105,8 @@ f7Panel <- function(..., inputId = NULL, title = NULL,
   })
 
   panelTag <- shiny::tags$div(
-    id = inputId,
     class = panelCl,
+    id = inputId,
     shiny::tags$div(
       class = "view",
       shiny::tags$div(
@@ -127,19 +128,7 @@ f7Panel <- function(..., inputId = NULL, title = NULL,
     )
   )
 
-  # pass these as global JS variable.
-  # We need however to prefix by the inputId
-  # to handle multiple steppers
-  panelProps <- shiny::tags$script(
-    paste0(
-      ' var ', inputId, '_side = \'', side, '\';
-        var ', inputId, '_effect = \'', effect, '\';
-        var ', inputId, '_resizable = ', tolower(resizable), ';
-      '
-    )
-  )
-
-  shiny::tagList(f7InputsDeps(), panelProps, f7Shadow(panelTag, intensity = 24))
+  shiny::tagList(f7InputsDeps(), f7Shadow(panelTag, intensity = 24))
 
 }
 
@@ -247,4 +236,61 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
       )
     }
   )
+}
+
+
+
+
+
+#' Function to programmatically update the state of a \link{f7Panel}
+#'
+#' From open to close state and inversely
+#'
+#' @inheritParams f7Panel
+#' @param session Shiny session object.
+#'
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(skin = "md", theme = "light"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(
+#'          title = "Single Layout",
+#'          hairline = FALSE,
+#'          shadow = TRUE,
+#'          left_panel = TRUE,
+#'          right_panel = TRUE
+#'        ),
+#'        panels = tagList(
+#'          f7Panel(side = "left", inputId = "mypanel1", theme = "light", effect = "cover"),
+#'          f7Panel(side = "right", inputId = "mypanel2", theme = "light")
+#'        ),
+#'        toolbar = f7Toolbar(
+#'          position = "bottom",
+#'          icons = TRUE,
+#'          hairline = FALSE,
+#'          shadow = FALSE,
+#'          f7Link(label = "Link 1", src = "https://www.google.com"),
+#'          f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observe({
+#'        invalidateLater(1000)
+#'        updateF7Panel(inputId = "mypanel1", session = session)
+#'      })
+#'
+#'    }
+#'  )
+#' }
+updateF7Panel <- function(inputId, session) {
+  message <- NULL
+  session$sendInputMessage(inputId, NULL)
 }

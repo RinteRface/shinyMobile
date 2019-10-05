@@ -3,42 +3,23 @@ var f7PanelBinding = new Shiny.InputBinding();
 
 $.extend(f7PanelBinding, {
 
-  initialize: function(el) {
-
-    // recover the inputId passed in the R function
-    var id = $(el).attr("id");
-    // function to convert a string to variable
-    function SetTo5(inputId, varString) {
-      var res = eval(inputId + "_" + varString);
-      return res;
-    }
-
-    // create the stepper to access API
-    app.panel.create({
-      el: el,
-      side: SetTo5(id, "side"),
-      effect: SetTo5(id , "effect"),
-      resizable: SetTo5(id, "resizable")
-    });
-
-  },
   find: function(scope) {
     return $(scope).find(".panel");
   },
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return $(el)[0].f7Panel.opened;
+    var p = $(el)[0];
+    return p.f7Panel.opened;
   },
 
-  // see updateF7Slider
-  setValue: function(el, value) {
-
-  },
-
-  // see updateF7Slider
+  // see updateF7Panel
   receiveMessage: function(el, data) {
-    // create a variable to update the range
+    // create a variable to update the panel
+    var p = $(el)[0].f7Panel;
+    p.toggle(p.side);
+
+
   },
 
   subscribe: function(el, callback) {
