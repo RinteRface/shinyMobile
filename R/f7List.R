@@ -347,6 +347,6 @@ f7ListIndex <- function(..., id) {
 
 #' Create a Framework 7 list index item
 #'
-#' @inheritParams shiny::tags
+#' @param ... Any element.
 #' @export
 f7ListIndexItem <- shiny::tags$li
