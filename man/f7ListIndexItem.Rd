@@ -9,9 +9,9 @@ f7ListIndexItem(...)
 \arguments{
 \item{...}{Attributes and children of the element. Named arguments become
 attributes, and positional arguments become children. Valid children are
-tags, single-character character vectors (which become text nodes), and raw
-HTML (see \code{\link{HTML}}). You can also pass lists that contain tags,
-text nodes, and HTML.}
+tags, single-character character vectors (which become text nodes), raw
+HTML (see \code{\link{HTML}}), and \code{html_dependency} objects. You can
+also pass lists that contain tags, text nodes, or HTML.}
 }
 \description{
 Create a Framework 7 list index item
