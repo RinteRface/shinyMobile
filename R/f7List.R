@@ -348,5 +348,6 @@ f7ListIndex <- function(..., id) {
 #' Create a Framework 7 list index item
 #'
 #' @inheritParams htmltools::tags
+#'
 #' @export
 f7ListIndexItem <- htmltools::tags$li
