@@ -198,8 +198,8 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'     title = "Tab Layout",
 #'     f7TabLayout(
 #'       panels = tagList(
-#'        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-#'        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+#'        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+#'        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
 #'       ),
 #'       navbar = f7Navbar(
 #'         title = "Tabs",
@@ -351,7 +351,7 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f
 #'            f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
 #'            f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home"))
 #'          ),
-#'          style = "reveal"
+#'          effect = "reveal"
 #'        ),
 #'        navbar = f7Navbar(
 #'          title = "Split Layout",
@@ -396,7 +396,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
                           panels = NULL, appbar = NULL,
                           statusbar = f7Statusbar()) {
 
-  sidebar <- shiny::tagAppendAttributes(sidebar, id = "f7-sidebar")
+  sidebar <- shiny::tagAppendAttributes(sidebar[[2]], id = "f7-sidebar")
   # this trick to prevent to select the panel view in the following
   # javascript code
   sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"

@@ -63,9 +63,6 @@
       <a href="../articles/Getting-Started.html">Getting Started</a>
     </li>
     <li>
-      <a href="../articles/Sidebars.html">Sidebars</a>
-    </li>
-    <li>
       <a href="../articles/Single-Layout.html">Single-Layout</a>
     </li>
     <li>
@@ -114,7 +111,7 @@
       <h1>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-10-03</h4>
+            <h4 class="date">2019-10-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyF7/blob/master/vignettes/Getting-Started.Rmd"><code>vignettes/Getting-Started.Rmd</code></a></small>
       <div class="hidden name"><code>Getting-Started.Rmd</code></div>
@@ -215,6 +212,12 @@
 <ul>
 <li>updateF7Tabs</li>
 <li>more to come soon</li>
+</ul>
+</li>
+<li>
+<p>shinyF7 has custom input for sidebar (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a serve side update function:</p>
+<ul>
+<li>updateF7Panel</li>
 </ul>
 </li>
 </ul>
@@ -337,12 +340,20 @@
 <a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">title =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">side =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"left"</span>, <span class="st">"right"</span>),</a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">theme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dark"</span>, <span class="st">"light"</span>), </a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">style =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"reveal"</span>, <span class="st">"cover"</span>),</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">effect =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"reveal"</span>, <span class="st">"cover"</span>),</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">resizable =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">)</a></code></pre></div>
-<p>Although the App has a theme parameter, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independant theme option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the style argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
-<p>Note that for the moment, there is no option to control the width of each panel. This will be probably included in a future release.</p>
-<p>As stated previously for the <code>f7SplitLayout</code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>.</p>
+<p>Although the App has a theme parameter, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independant theme option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
+<p>Note that for the moment, there is no option to control the width of each panel.</p>
+<p>As stated previously for the <code>f7SplitLayout</code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>. Finally do not forget to set up the <code>f7Navbar</code> so that panels are allowed!</p>
+<div class="row">
+<div class="col-sm-4" align="center">
+<p><img src="figures/f7Panel_right_demo.png"></p>
+</div>
+<div class="col-sm-4" align="center">
+<p><img src="figures/f7Panel_left_demo.png"></p>
+</div>
+</div>
 </div>
 <div id="the-appbar" class="section level5">
 <h5 class="hasAnchor">
@@ -366,14 +377,15 @@
 <a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">filled =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="dt">color =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="dt">fastClicks =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="dt">iosTouchRipple =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">  <span class="dt">panelSwipeSide =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"both"</span>),</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">iosCenterTitle =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">  <span class="dt">hideNavOnPageScroll =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">hideTabsOnPageScroll =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">serviceWorker =</span> <span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">)</a></code></pre></div>
-<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyF7 brings a lot of different colors. The “panelSwipeSide” let panels to be shifted by hand. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. Note that the serviceWorker option is not working at the moment.</p>
+<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="dt">tapHold =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">  <span class="dt">iosTouchRipple =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">  <span class="dt">panelSwipeSide =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"both"</span>),</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">  <span class="dt">iosCenterTitle =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">  <span class="dt">hideNavOnPageScroll =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">  <span class="dt">hideTabsOnPageScroll =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">  <span class="dt">serviceWorker =</span> <span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">)</a></code></pre></div>
+<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyF7 brings a lot of different colors. The “panelSwipeSide” let panels to be shifted by hand. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. Note that the serviceWorker option is not working at the moment. The tapHold parameter ensure that the “long-press” feature is activated.</p>
 <p>framework7 has more options which will be implemented in a next version of shinyF7.</p>
 </div>
 </div>

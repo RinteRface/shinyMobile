@@ -4,14 +4,20 @@
 \alias{f7ListIndexItem}
 \title{Create a Framework 7 list index item}
 \usage{
-f7ListIndexItem(...)
+f7ListIndexItem(..., .noWS = NULL)
 }
 \arguments{
 \item{...}{Attributes and children of the element. Named arguments become
 attributes, and positional arguments become children. Valid children are
-tags, single-character character vectors (which become text nodes), and raw
-HTML (see \code{\link{HTML}}). You can also pass lists that contain tags,
-text nodes, and HTML.}
+tags, single-character character vectors (which become text nodes), raw
+HTML (see \code{\link{HTML}}), and \code{html_dependency} objects. You can
+also pass lists that contain tags, text nodes, or HTML. To use boolean
+attributes, use a named argument with a \code{NA} value. (see example)}
+
+\item{.noWS}{A character vector used to omit some of the whitespace that
+would normally be written around this tag. Valid options include
+\code{before}, \code{after}, \code{outside}, \code{after-begin}, and
+\code{before-end}. Any number of these options can be specified.}
 }
 \description{
 Create a Framework 7 list index item

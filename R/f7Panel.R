@@ -3,22 +3,94 @@
 #' Build a Framework7 panel
 #'
 #' @param ... Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.
+#' @param inputId Panel unique id. This is to access the input$id giving the panel
+#' state, namely open or closed.
 #' @param title Panel title.
 #' @param side Panel side: "left" or "right".
 #' @param theme Panel background color: "dark" or "light".
-#' @param style Whether the panel should behave when opened: "cover" or "reveal".
+#' @param effect Whether the panel should behave when opened: "cover" or "reveal".
 #' @param resizable Whether to enable panel resize. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dark", "light"),
-                    style = c("reveal", "cover"), resizable = FALSE) {
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(skin = "ios", theme = "light"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(
+#'          title = "Single Layout",
+#'          hairline = FALSE,
+#'          shadow = TRUE,
+#'          left_panel = TRUE,
+#'          right_panel = TRUE
+#'        ),
+#'        panels = tagList(
+#'          f7Panel(side = "left", inputId = "mypanel1"),
+#'          f7Panel(side = "right", inputId = "mypanel2")
+#'        ),
+#'        toolbar = f7Toolbar(
+#'          position = "bottom",
+#'          icons = TRUE,
+#'          hairline = FALSE,
+#'          shadow = FALSE,
+#'          f7Link(label = "Link 1", src = "https://www.google.com"),
+#'          f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'        ),
+#'        # main content
+#'        f7Shadow(
+#'          intensity = 10,
+#'          hover = TRUE,
+#'          f7Card(
+#'            title = "Card header",
+#'            sliderInput("obs", "Number of observations", 0, 1000, 500),
+#'            h1("You only see me by opening the left panel"),
+#'            plotOutput("distPlot"),
+#'            footer = tagList(
+#'              f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'              f7Badge("Badge", color = "green")
+#'            )
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observeEvent(input$mypanel2, {
+#'
+#'        state <- if (input$mypanel2) "open" else "closed"
+#'
+#'        f7Toast(
+#'          session,
+#'          text = paste0("Right panel is ", state),
+#'          position = "center",
+#'          closeTimeout = 1000,
+#'          closeButton = FALSE
+#'        )
+#'      })
+#'
+#'      output$distPlot <- renderPlot({
+#'        if (input$mypanel1) {
+#'          dist <- rnorm(input$obs)
+#'          hist(dist)
+#'        }
+#'      })
+#'    }
+#'  )
+#' }
+f7Panel <- function(..., inputId = NULL, title = NULL,
+                    side = c("left", "right"), theme = c("dark", "light"),
+                    effect = c("reveal", "cover"), resizable = FALSE) {
 
   side <- match.arg(side)
-  style <- match.arg(style)
+  effect <- match.arg(effect)
   theme <- match.arg(theme)
-  panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, style, theme)
+  panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, effect, theme)
   if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
   items <- list(...)
@@ -34,6 +106,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
 
   panelTag <- shiny::tags$div(
     class = panelCl,
+    id = inputId,
     shiny::tags$div(
       class = "view",
       shiny::tags$div(
@@ -55,7 +128,7 @@ f7Panel <- function(..., title = NULL, side = c("left", "right"), theme = c("dar
     )
   )
 
-  f7Shadow(panelTag, intensity = 24)
+  shiny::tagList(f7InputsDeps(), f7Shadow(panelTag, intensity = 24))
 
 }
 
@@ -163,4 +236,61 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
       )
     }
   )
+}
+
+
+
+
+
+#' Function to programmatically update the state of a \link{f7Panel}
+#'
+#' From open to close state and inversely
+#'
+#' @inheritParams f7Panel
+#' @param session Shiny session object.
+#'
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      init = f7Init(skin = "md", theme = "light"),
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(
+#'          title = "Single Layout",
+#'          hairline = FALSE,
+#'          shadow = TRUE,
+#'          left_panel = TRUE,
+#'          right_panel = TRUE
+#'        ),
+#'        panels = tagList(
+#'          f7Panel(side = "left", inputId = "mypanel1", theme = "light", effect = "cover"),
+#'          f7Panel(side = "right", inputId = "mypanel2", theme = "light")
+#'        ),
+#'        toolbar = f7Toolbar(
+#'          position = "bottom",
+#'          icons = TRUE,
+#'          hairline = FALSE,
+#'          shadow = FALSE,
+#'          f7Link(label = "Link 1", src = "https://www.google.com"),
+#'          f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observe({
+#'        invalidateLater(1000)
+#'        updateF7Panel(inputId = "mypanel1", session = session)
+#'      })
+#'
+#'    }
+#'  )
+#' }
+updateF7Panel <- function(inputId, session) {
+  message <- NULL
+  session$sendInputMessage(inputId, NULL)
 }

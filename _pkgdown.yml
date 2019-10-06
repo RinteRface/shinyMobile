@@ -68,6 +68,7 @@ reference:
   - '`updateF7Checkbox`'
   - '`updateF7Date`'
   - '`updateF7Fab`'
+  - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
@@ -237,7 +238,6 @@ articles:
   - '`Tabs-Layout`'
   - '`Split-Layout`'
   - '`Gadgets`'
-  - '`Sidebars`'
   - '`Dark-Theme`'
 
 

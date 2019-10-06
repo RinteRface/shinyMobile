@@ -81,6 +81,10 @@ functions to act on the server side:
   * updateF7Tabs
   * more to come soon
   
+- shinyF7 has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
+
+  * updateF7Panel
+  
 ### Create your first App
 
 #### Select a template
@@ -236,23 +240,32 @@ f7Panel(
   title = NULL, 
   side = c("left", "right"),
   theme = c("dark", "light"), 
-  style = c("reveal", "cover"),
+  effect = c("reveal", "cover"),
   resizable = FALSE
 )
 ```
 
 Although the App has a theme parameter, `f7Panel()` has an independant theme option.
 For instance, it is definitely possible to create a dark `f7Panel()` while the page
-theme is light, and conversely. Its behaviour is controlled via the style argument:
+theme is light, and conversely. Its behaviour is controlled via the effect argument:
 - "reveal" will make the body content move and resize
 - "cover" will cover the body content
 The resizable argument allows to dynamically resize the panel.
 
 Note that for the moment, there is no option to control the width of each panel.
-This will be probably included in a future release.
   
 As stated previously for the `f7SplitLayout`, the `f7Panel()` may also be considered
 as a sidebar. In that case, we may include `f7PanelMenu()`.
+Finally do not forget to set up the `f7Navbar` so that panels are allowed!
+
+<div class="row">
+<div class="col-sm-4" align="center">
+<img src="./figures/f7Panel_right_demo.png">
+</div>
+<div class="col-sm-4" align="center">
+<img src="./figures/f7Panel_left_demo.png">
+</div>
+</div>
 
 
 ##### The appbar
@@ -281,6 +294,7 @@ f7Init(
   filled = FALSE, 
   color = NULL, 
   fastClicks = TRUE,
+  tapHold = TRUE,
   iosTouchRipple = FALSE, 
   panelSwipeSide = c("left", "right", "both"),
   iosCenterTitle = TRUE, 
@@ -296,6 +310,7 @@ changes the color of elements such as buttons, panel triggers, tabs triggers, ..
 shinyF7 brings a lot of different colors. The "panelSwipeSide" let panels to be shifted
 by hand. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar
 which is useful to focus on the content. Note that the serviceWorker option is not working at the moment.
+The tapHold parameter ensure that the "long-press" feature is activated.
 
 framework7 has more options which will be implemented in a next version of shinyF7.
 

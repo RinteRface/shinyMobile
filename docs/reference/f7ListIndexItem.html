@@ -97,9 +97,6 @@
       <a href="../articles/Getting-Started.html">Getting Started</a>
     </li>
     <li>
-      <a href="../articles/Sidebars.html">Sidebars</a>
-    </li>
-    <li>
       <a href="../articles/Single-Layout.html">Single-Layout</a>
     </li>
     <li>
@@ -157,7 +154,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7ListIndexItem</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>f7ListIndexItem</span>(<span class='no'>...</span>, <span class='kw'>.noWS</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,9 +163,17 @@
       <th>...</th>
       <td><p>Attributes and children of the element. Named arguments become
 attributes, and positional arguments become children. Valid children are
-tags, single-character character vectors (which become text nodes), and raw
-HTML (see <code>HTML</code>). You can also pass lists that contain tags,
-text nodes, and HTML.</p></td>
+tags, single-character character vectors (which become text nodes), raw
+HTML (see <code>HTML</code>), and <code>html_dependency</code> objects. You can
+also pass lists that contain tags, text nodes, or HTML. To use boolean
+attributes, use a named argument with a <code>NA</code> value. (see example)</p></td>
+    </tr>
+    <tr>
+      <th>.noWS</th>
+      <td><p>A character vector used to omit some of the whitespace that
+would normally be written around this tag. Valid options include
+<code>before</code>, <code>after</code>, <code>outside</code>, <code>after-begin</code>, and
+<code>before-end</code>. Any number of these options can be specified.</p></td>
     </tr>
     </table>
     

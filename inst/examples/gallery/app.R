@@ -27,8 +27,8 @@ shinyApp(
         f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
       ),
       panels = tagList(
-        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "reveal"),
-        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "reveal"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
       ),
       navbar = f7Navbar(
         title = "miniUI 2.0",
