@@ -58,7 +58,9 @@ if (interactive()) {
       )
       )
     ),
-    server = function(input, output) {}
+    server = function(input, output) {
+     observe({print(input$sheet1)})
+    }
   )
 }
 }

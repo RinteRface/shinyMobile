@@ -40,7 +40,9 @@
 #'       )
 #'       )
 #'     ),
-#'     server = function(input, output) {}
+#'     server = function(input, output) {
+#'      observe({print(input$sheet1)})
+#'     }
 #'   )
 #' }
 f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
@@ -52,28 +54,20 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
   sheetCl <- "sheet-modal"
   if (orientation == "top") sheetCl <- paste0(sheetCl, " sheet-modal-top")
 
+  sheetProps <- shiny::tags$script(
+     paste0(
+        "var ", id, "_swipeToClose = ", tolower(swipeToClose), ";
+         var ", id, "_swipeToStep = ", tolower(swipeToStep), ";
+         var ", id, "_closeByOutsideClick = ", tolower(closeByOutsideClick), ";
+         var ", id, "_backdrop = ", tolower(backdrop), ";
+        "
+     )
+  )
 
  shiny::tagList(
    # javascript initialization
-   shiny::singleton(
-     shiny::tags$head(
-       shiny::tags$script(
-          paste0(
-             "$(function() {
-               var sheet = app.sheet.create({
-                  el: '#", id, "',
-                  swipeToClose: ", tolower(swipeToClose), ",
-                  swipeToStep: ", tolower(swipeToStep), ",
-                  backdrop: ", tolower(backdrop), ",
-                  closeByOutsideClick : ", tolower(closeByOutsideClick), "
-                });
-            });
-            "
-          )
-       )
-     )
-   ),
-
+   f7InputsDeps(),
+   sheetProps,
    # custom css
    shiny::tags$style(
       if (orientation == "bottom") {
@@ -159,4 +153,49 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
      )
    )
  )
+}
+
+
+
+
+#' update a framework 7 sheet modal
+#'
+#' @param inputId Sheet id.
+#' @param session Shiny session object
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'     ui = f7Page(
+#'        color = "pink",
+#'        title = "My app",
+#'        f7SingleLayout(
+#'           navbar = f7Navbar(title = "f7Sheet"),
+#'           f7Button(inputId = "go", label = "Go"),
+#'           f7Sheet(
+#'              id = "sheet1",
+#'              label = "More",
+#'              orientation = "bottom",
+#'              swipeToClose = TRUE,
+#'              swipeToStep = TRUE,
+#'              backdrop = TRUE,
+#'              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#'          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+#'          scelerisque est, at porta justo cursus ac"
+#'           )
+#'        )
+#'     ),
+#'     server = function(input, output, session) {
+#'        observe({print(input$sheet1)})
+#'        observeEvent(input$go, {
+#'           updateF7Sheet(inputId = "sheet1", session = session)
+#'        })
+#'     }
+#'  )
+#' }
+updateF7Sheet <- function(inputId, session) {
+   message <- NULL
+   session$sendInputMessage(inputId, NULL)
 }

@@ -71,6 +71,7 @@ reference:
   - '`updateF7Fab`'
   - '`updateF7Panel`'
   - '`updateF7Picker`'
+  - '`updateF7Sheet`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
   - '`updateF7Tabs`'

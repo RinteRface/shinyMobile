@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an f7 sheet modal — f7Sheet • shinyF7</title>
+<title>update a framework 7 sheet modal — updateF7Sheet • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create an f7 sheet modal — f7Sheet" />
+<meta property="og:title" content="update a framework 7 sheet modal — updateF7Sheet" />
 
-<meta property="og:description" content="Create an f7 sheet modal" />
+<meta property="og:description" content="update a framework 7 sheet modal" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,64 +143,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an f7 sheet modal</h1>
+    <h1>update a framework 7 sheet modal</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Sheet.R'><code>R/f7Sheet.R</code></a></small>
-    <div class="hidden name"><code>f7Sheet.Rd</code></div>
+    <div class="hidden name"><code>updateF7Sheet.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create an f7 sheet modal</p>
+    <p>update a framework 7 sheet modal</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Sheet</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>),
-  <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>swipeToStep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>closeByOutsideClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>swipeHandler</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Sheet</span>(<span class='no'>inputId</span>, <span class='no'>session</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Sheet content.</p></td>
+      <th>inputId</th>
+      <td><p>Sheet id.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Sheet unique id.</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>Trigger label.</p></td>
-    </tr>
-    <tr>
-      <th>orientation</th>
-      <td><p>"top" or "bottom".</p></td>
-    </tr>
-    <tr>
-      <th>swipeToClose</th>
-      <td><p>If TRUE, it can be closed by swiping down.</p></td>
-    </tr>
-    <tr>
-      <th>swipeToStep</th>
-      <td><p>If TRUE then sheet will be opened partially,
-and with swipe it can be further expanded.</p></td>
-    </tr>
-    <tr>
-      <th>backdrop</th>
-      <td><p>Enables Sheet backdrop (dark semi transparent layer
-behind). By default it is TRUE for MD and Aurora themes and
-FALSE for iOS theme.</p></td>
-    </tr>
-    <tr>
-      <th>closeByOutsideClick</th>
-      <td><p>When enabled, sheet will be closed on
-when click outside of it.</p></td>
-    </tr>
-    <tr>
-      <th>swipeHandler</th>
-      <td><p>Whether to display a swipe handler. TRUE by default.
-Need either swipeToClose or swipeToStep set to TRUE to work.</p></td>
+      <th>session</th>
+      <td><p>Shiny session object</p></td>
     </tr>
     </table>
     
@@ -209,29 +174,33 @@ Need either swipeToClose or swipeToStep set to TRUE to work.</p></td>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
-  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
     <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Sheet"</span>),
-       <span class='fu'>f7Sheet</span>(
-        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>,
-        <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,
-        <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
-        <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>swipeToStep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-        scelerisque est, at porta justo cursus ac"</span>
-      )
-      )
+       <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
+       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Sheet"</span>),
+          <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
+          <span class='fu'><a href='f7Sheet.html'>f7Sheet</a></span>(
+             <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>,
+             <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,
+             <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
+             <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='kw'>swipeToStep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+         scelerisque est, at porta justo cursus ac"</span>
+          )
+       )
     ),
-    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>sheet1</span>)})
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>sheet1</span>)})
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+          <span class='fu'>updateF7Sheet</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
+       })
     }
-  )
+ )
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
