@@ -82,7 +82,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
             /* sheet-modal will have top rounded corners */
             .sheet-modal {
                border-radius: 15px 15px 0 0;
-               overflow: hidden
+               overflow: hidden;
             }
 
             .swipe-handler {
@@ -93,7 +93,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
                top: 0;
                background: #fff;
                cursor: pointer;
-               z-index: 10
+               z-index: 10;
             }
             "
          )
@@ -103,7 +103,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
             /* sheet-modal will have bottom rounded corners */
             .sheet-modal {
                border-radius: 0 0 15px 15px;
-               overflow: hidden
+               overflow: hidden;
             }
 
             .swipe-handler {
@@ -114,7 +114,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
                bottom: 0;
                background: #fff;
                cursor: pointer;
-               z-index: 10
+               z-index: 10;
             }
             "
          )

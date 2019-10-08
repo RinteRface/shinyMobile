@@ -94,9 +94,6 @@
       <a href="../articles/Gadgets.html">Gadgets</a>
     </li>
     <li>
-      <a href="../articles/Getting-Started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/Single-Layout.html">Single-Layout</a>
     </li>
     <li>
@@ -104,6 +101,9 @@
     </li>
     <li>
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
+    </li>
+    <li>
+      <a href="../articles/getting-started.html">Getting Started</a>
     </li>
   </ul>
 </li>
@@ -154,7 +154,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Accordion</span>(<span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Accordion</span>(<span class='no'>...</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,6 +162,10 @@
     <tr>
       <th>...</th>
       <td><p>Slot for <a href='f7AccordionItem.html'>f7AccordionItem</a>.</p></td>
+    </tr>
+    <tr>
+      <th>inputId</th>
+      <td><p>Optional id to recover the state of the accordion.</p></td>
     </tr>
     <tr>
       <th>mode</th>
@@ -182,6 +186,7 @@ style.</p></td>
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Accordions"</span>),
      <span class='fu'>f7Accordion</span>(
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>,
       <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
        <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>),
@@ -194,6 +199,7 @@ style.</p></td>
      ),
      <span class='fu'>f7Accordion</span>(
       <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"list"</span>,
+      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion2"</span>,
       <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
        <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>)
@@ -205,7 +211,16 @@ style.</p></td>
      )
     )
   ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+      <span class='kw'>accordion1</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>myaccordion1</span>,
+      <span class='kw'>accordion2</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>myaccordion2</span>
+     )
+    )
+   })
+  }
  )
 }</div></pre>
   </div>

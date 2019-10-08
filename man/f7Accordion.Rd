@@ -4,10 +4,12 @@
 \alias{f7Accordion}
 \title{Create a Framework7 accordion}
 \usage{
-f7Accordion(..., mode = NULL)
+f7Accordion(..., inputId = NULL, mode = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{f7AccordionItem}.}
+
+\item{inputId}{Optional id to recover the state of the accordion.}
 
 \item{mode}{Accordion style. NULL by default. Use "list" to access the list
 style.}
@@ -26,6 +28,7 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar("Accordions"),
      f7Accordion(
+      inputId = "myaccordion1",
       f7AccordionItem(
        title = "Item 1",
        f7Block("Item 1 content"),
@@ -38,6 +41,7 @@ if(interactive()){
      ),
      f7Accordion(
       mode = "list",
+      inputId = "myaccordion2",
       f7AccordionItem(
        title = "Item 1",
        f7Block("Item 1 content")
@@ -49,7 +53,16 @@ if(interactive()){
      )
     )
   ),
-  server = function(input, output) {}
+  server = function(input, output, session) {
+   observe({
+    print(
+     list(
+      accordion1 = input$myaccordion1,
+      accordion2 = input$myaccordion2
+     )
+    )
+   })
+  }
  )
 }
 

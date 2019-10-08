@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 flex container — f7Flex • shinyF7</title>
+<title>Update a Framework 7 accordion — updateF7Accordion • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 flex container — f7Flex" />
+<meta property="og:title" content="Update a Framework 7 accordion — updateF7Accordion" />
 
-<meta property="og:description" content="Build a Framework7 flex container" />
+<meta property="og:description" content="Update a Framework 7 accordion" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,47 +143,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 flex container</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Grid.R'><code>R/f7Grid.R</code></a></small>
-    <div class="hidden name"><code>f7Flex.Rd</code></div>
+    <h1>Update a Framework 7 accordion</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Accordion.R'><code>R/f7Accordion.R</code></a></small>
+    <div class="hidden name"><code>updateF7Accordion.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 flex container</p>
+    <p>Update a Framework 7 accordion</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Flex</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Accordion</span>(<span class='no'>inputId</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>session</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Items.</p></td>
+      <th>inputId</th>
+      <td><p>Accordion instance.</p></td>
+    </tr>
+    <tr>
+      <th>selected</th>
+      <td><p>Index of item to select.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Align"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Flex"</span>),
-     <span class='fu'>f7Flex</span>(
-     <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-     <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-     <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-    )
-    )
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Accordions"</span>),
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Go"</span>),
+       <span class='fu'><a href='f7Accordion.html'>f7Accordion</a></span>(
+         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>,
+         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
+           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
+           <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>),
+           <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+         ),
+         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
+           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 2"</span>,
+           <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
+         )
+       )
+     )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+       <span class='fu'>updateF7Accordion</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
+     })
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+           <span class='kw'>accordion1_state</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>myaccordion1</span>$<span class='no'>state</span>,
+           <span class='kw'>accordion1_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>(<span class='no'>input</span>$<span class='no'>myaccordion1</span>$<span class='no'>value</span>)
+         )
+       )
+     })
+   }
  )
 }</div></pre>
   </div>
@@ -195,8 +225,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

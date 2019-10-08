@@ -3,6 +3,7 @@
 #' Build a Framework7 accordion
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
+#' @param inputId Optional id to recover the state of the accordion.
 #' @param mode Accordion style. NULL by default. Use "list" to access the list
 #' style.
 #'
@@ -17,6 +18,7 @@
 #'     f7SingleLayout(
 #'      navbar = f7Navbar("Accordions"),
 #'      f7Accordion(
+#'       inputId = "myaccordion1",
 #'       f7AccordionItem(
 #'        title = "Item 1",
 #'        f7Block("Item 1 content"),
@@ -29,6 +31,7 @@
 #'      ),
 #'      f7Accordion(
 #'       mode = "list",
+#'       inputId = "myaccordion2",
 #'       f7AccordionItem(
 #'        title = "Item 1",
 #'        f7Block("Item 1 content")
@@ -40,16 +43,25 @@
 #'      )
 #'     )
 #'   ),
-#'   server = function(input, output) {}
+#'   server = function(input, output, session) {
+#'    observe({
+#'     print(
+#'      list(
+#'       accordion1 = input$myaccordion1,
+#'       accordion2 = input$myaccordion2
+#'      )
+#'     )
+#'    })
+#'   }
 #'  )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Accordion <- function(..., mode = NULL) {
+f7Accordion <- function(..., inputId = NULL, mode = NULL) {
 
- if (is.null(mode)) {
+ accordionTag <- if (is.null(mode)) {
    shiny::tags$div(
      class = "list",
      shiny::tags$ul(...)
@@ -62,6 +74,15 @@ f7Accordion <- function(..., mode = NULL) {
      )
    }
  }
+
+ accordionTag <- shiny::tagAppendAttributes(
+   accordionTag,
+   id = inputId,
+   class = "collapsible"
+ )
+
+ shiny::tagList(f7InputsDeps(), accordionTag)
+
 }
 
 
@@ -98,4 +119,61 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
       ...
     )
   )
+}
+
+
+
+
+
+#' Update a Framework 7 accordion
+#'
+#' @param inputId Accordion instance.
+#' @param selected Index of item to select.
+#' @param session Shiny session object
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Accordions",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar("Accordions"),
+#'        f7Button(inputId = "go", "Go"),
+#'        f7Accordion(
+#'          inputId = "myaccordion1",
+#'          f7AccordionItem(
+#'            title = "Item 1",
+#'            f7Block("Item 1 content"),
+#'            open = TRUE
+#'          ),
+#'          f7AccordionItem(
+#'            title = "Item 2",
+#'            f7Block("Item 2 content")
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observeEvent(input$go, {
+#'        updateF7Accordion(inputId = "myaccordion1", selected = 2, session = session)
+#'      })
+#'
+#'      observe({
+#'        print(
+#'          list(
+#'            accordion1_state = input$myaccordion1$state,
+#'            accordion1_values = unlist(input$myaccordion1$value)
+#'          )
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Accordion <- function(inputId, selected = NULL, session) {
+  message <-list(selected = selected)
+  session$sendInputMessage(inputId, message)
 }
