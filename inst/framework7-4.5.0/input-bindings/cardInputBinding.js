@@ -9,7 +9,6 @@ $.extend(f7CardBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    console.log($(el));
     var open = $(el).hasClass('card-opened');
     return open;
   },
