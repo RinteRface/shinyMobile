@@ -103,7 +103,8 @@ f7InputsDeps <- function() {
                "dateInputBinding.js",
                "panelInputBinding.js",
                "collapsibleInputBinding.js",
-               "sheetInputBinding.js"
+               "sheetInputBinding.js",
+               "cardInputBinding.js"
                )
   )
 }
