@@ -40,3 +40,10 @@ colorToHex <- function(color) {
     )
   }
 }
+
+
+tagAppendAttributes <- function (tag, ...)
+{
+  tag$attribs <- c(tag$attribs, dropNulls(list(...)))
+  tag
+}
