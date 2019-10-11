@@ -187,26 +187,6 @@ $(function () {
     }
   });
 
-
-
-  // handle update f7Tabs
-  tabsIds = [];
-  getAllTabsIds = function() {
-    $('.tabs').each(function() {
-      tabsIds.push($(this).attr('id'));
-    });
-  };
-
-  // call the function ...
-  getAllTabsIds();
-
-  tabsIds.forEach(function(index) {
-    Shiny.addCustomMessageHandler(index, function(message) {
-      app.tab.show('#' + message.selected);
-    });
-  });
-
-
   // handle taphold events
   Shiny.addCustomMessageHandler('tapHold', function(message) {
     var selector = String(message.target);

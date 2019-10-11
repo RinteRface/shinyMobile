@@ -4,27 +4,26 @@ var f7TabsBinding = new Shiny.InputBinding();
 $.extend(f7TabsBinding, {
 
   find: function(scope) {
-    return $(scope).find(".tabsBindingTarget").siblings();
+    return $(scope).find(".tabs");
   },
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    //console.log($(el).filter(".tab-active").attr("data-value"));
-    return $(el).filter(".tab-active").attr("data-value");
+    var activeTab = $(el).find(".tab-active").attr("data-value");
+    return activeTab;
   },
 
-  // see updateF7Slider
-  setValue: function(el, value) {
-
-  },
-
-  // see updateF7Slider
+  // see updateF7Tabs
   receiveMessage: function(el, data) {
-    // create a variable to update the range
+    // create a variable to update the active tab
+    console.log(data.selected);
+    if (data.hasOwnProperty('selected')) {
+      app.tab.show('#' + data.selected);
+    }
   },
 
   subscribe: function(el, callback) {
-    $(el).on("change.f7TabsBinding", function(e) {
+    $(el).on("tab:show.f7TabsBinding", function(e) {
       callback();
     });
   },

@@ -126,52 +126,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     )
   }
 
-  tabsJS <- shiny::singleton(
-    shiny::tags$script(
-      paste0(
-        "
-        // This function is necessary to activate the good tab at start.
-        // If one tab is active, it has a data-active attribute set to true.
-        // We then trigger the show function on that tab.
-        // If no tab is active at start, the first tab is shown by default.
-        $(function() {
-          var firstTabId = $('#", id," div:eq(0)').attr('id');
-          var tabActiveId = $('#", id," div[data-active = \"true\"]').attr('id');
-          if (tabActiveId != undefined) {
-            app.tab.show('#' + tabActiveId);
-          } else {
-            app.tab.show('#' + firstTabId);
-          }
-        });
-
-        // Below is necessary to set the input value for shiny
-        $(document).on('shiny:sessioninitialized', function() {
-          // trigger a click on the window at start
-          // to be sure that the input value is setup
-          setTimeout(function() {
-            $(window).trigger('click');
-          }, 10);
-
-          // Below is to handle the case where tabs are swipeable
-          // Swiping left or right does not trigger any click by default.
-          // Therefore, we need to trigger a click to update the shiny input.
-          app.on('tabShow', function() {
-           $(window).trigger('click');
-          });
-
-          // update the input value
-          $(window).on('click', function(e) {
-           var selectedTab = $('#", id, "').find('.tab-active');
-           var selectedTabVal = $(selectedTab).attr('data-value');
-           Shiny.setInputValue('", id, "', selectedTabVal);
-          });
-        });
-        "
-      )
-    )
-  )
-
-  shiny::tagList(tabsJS, toolbarTag, contentTag)
+  shiny::tagList(f7InputsDeps(), toolbarTag, contentTag)
 
 }
 
@@ -277,5 +232,5 @@ updateF7Tabs <- function(session, id, selected = NULL) {
   selected <- gsub(x = selected, pattern = " ", replacement = "")
 
   message <- dropNulls(list(selected = selected))
-  session$sendCustomMessage(type = id, message = message)
+  session$sendInputMessage(id, message)
 }
