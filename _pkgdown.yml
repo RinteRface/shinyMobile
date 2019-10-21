@@ -65,6 +65,7 @@ reference:
 - title: Update inputs
   desc: slider, radio, checkboxes, ...
   contents:
+  - '`f7InsertTab`'
   - '`updateF7Accordion`'
   - '`updateF7Card`'
   - '`updateF7Checkbox`'

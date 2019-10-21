@@ -4,6 +4,8 @@ Title: 'shiny' API for 'Framework7'
 Version: 0.1.0
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
+  person("Victor", "Perrier", email = "info@dreamrs.fr", role = "aut"),
+  person("John", "Coene", email = "jcoenep@gmail.com", role = "ctb"),
   person("Isabelle", "Rudolf", email = "", role = "aut"),
   person(family = "Framework7", role = c("ctb", "cph"), 
   comment = "Full featured HTML framework for building iOS & Android apps"))

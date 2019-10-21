@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework 7 list index — f7ListIndex • shinyF7</title>
+<title>Insert a <a href='f7Tab.html'>f7Tab</a> in a <a href='f7Tabs.html'>f7Tabs</a> — f7InsertTab • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework 7 list index — f7ListIndex" />
+<meta property="og:title" content="Insert a <a href='f7Tab.html'>f7Tab</a> in a <a href='f7Tabs.html'>f7Tabs</a> — f7InsertTab" />
 
-<meta property="og:description" content="Create a Framework 7 list index" />
+<meta property="og:description" content="Insert a f7Tab in a f7Tabs" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,36 +143,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework 7 list index</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7List.R'><code>R/f7List.R</code></a></small>
-    <div class="hidden name"><code>f7ListIndex.Rd</code></div>
+    <h1>Insert a <a href='f7Tab.html'>f7Tab</a> in a <a href='f7Tabs.html'>f7Tabs</a></h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7-tabs.R'><code>R/f7-tabs.R</code></a></small>
+    <div class="hidden name"><code>f7InsertTab.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a Framework 7 list index</p>
+    <p>Insert a <a href='f7Tab.html'>f7Tab</a> in a <a href='f7Tabs.html'>f7Tabs</a></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7ListIndex</span>(<span class='no'>...</span>, <span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>f7InsertTab</span>(<span class='no'>inputId</span>, <span class='no'>tab</span>, <span class='no'>target</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"before"</span>, <span class='st'>"after"</span>),
+  <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for <a href='f7ListGroup.html'>f7ListGroup</a>.</p></td>
+      <th>inputId</th>
+      <td><p><a href='f7Tabs.html'>f7Tabs</a> id.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>Unique id.</p></td>
+      <th>tab</th>
+      <td><p><a href='f7Tab.html'>f7Tab</a> to insert.</p></td>
+    </tr>
+    <tr>
+      <th>target</th>
+      <td><p><a href='f7Tab.html'>f7Tab</a> after of before which the new tab will be inserted.</p></td>
+    </tr>
+    <tr>
+      <th>position</th>
+      <td><p>Insert before or after: <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("before", "after")</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>select</th>
+      <td><p>Whether to select the newly inserted tab. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>For some reason, unable to get more than 1 list index working. See
-example below. The second list does not work.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -181,46 +193,49 @@ example below. The second list does not work.</p>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Insert a tab Before the target"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
+       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
+         <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
+         <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
+       ),
        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7ListIndex"</span>,
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tabs"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        ),
        <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
+         <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
          <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
-           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"List 1"</span>,
-           <span class='fu'>f7ListIndex</span>(
-             <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"listIndex1"</span>,
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>LETTERS</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-               <span class='fu'><a href='f7ListGroup.html'>f7ListGroup</a></span>(
-                 <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
-                 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-                   <span class='fu'><a href='f7ListIndexItem.html'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
-                 })
-               )
-             })
-           )
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+           <span class='st'>"Tab 1"</span>,
+           <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>)
          ),
          <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
-           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"List 2"</span>,
-           <span class='fu'>f7ListIndex</span>(
-             <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"listIndex2"</span>,
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>LETTERS</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-               <span class='fu'><a href='f7ListGroup.html'>f7ListGroup</a></span>(
-                 <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
-                 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-                   <span class='fu'><a href='f7ListIndexItem.html'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
-                 })
-               )
-             })
-           )
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"today"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='st'>"Tab 2"</span>
          )
        )
      )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+       <span class='fu'>f7InsertTab</span>(
+         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
+         <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"before"</span>,
+         <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+         <span class='kw'>tab</span> <span class='kw'>=</span> <span class='fu'><a href='f7Tab.html'>f7Tab</a></span> (<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"tab_"</span>, <span class='no'>input</span>$<span class='no'>go</span>), <span class='st'>"Test"</span>),
+         <span class='kw'>select</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       )
+     })
+   }
  )
 }</div></pre>
   </div>
@@ -228,9 +243,7 @@ example below. The second list does not work.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

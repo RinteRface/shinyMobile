@@ -234,3 +234,119 @@ updateF7Tabs <- function(session, id, selected = NULL) {
   message <- dropNulls(list(selected = selected))
   session$sendInputMessage(id, message)
 }
+
+
+
+
+#' Insert a \link{f7Tab} in a \link{f7Tabs}
+#'
+#' @param inputId  \link{f7Tabs} id.
+#' @param tab \link{f7Tab} to insert.
+#' @param target \link{f7Tab} after of before which the new tab will be inserted.
+#' @param position Insert before or after: \code{c("before", "after")}.
+#' @param select Whether to select the newly inserted tab. FALSE by default.
+#' @param session Shiny session object.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Insert a tab Before the target",
+#'      f7TabLayout(
+#'        panels = tagList(
+#'          f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+#'          f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+#'        ),
+#'        navbar = f7Navbar(
+#'          title = "Tabs",
+#'          hairline = FALSE,
+#'          shadow = TRUE,
+#'          left_panel = TRUE,
+#'          right_panel = TRUE
+#'        ),
+#'        f7Tabs(
+#'          animated = TRUE,
+#'          id = "tabs",
+#'          f7Tab(
+#'            tabName = "Tab 1",
+#'            icon = f7Icon("email"),
+#'            active = TRUE,
+#'            "Tab 1",
+#'            f7Button(inputId = "go", label = "Go")
+#'          ),
+#'          f7Tab(
+#'            tabName = "Tab 2",
+#'            icon = f7Icon("today"),
+#'            active = FALSE,
+#'            "Tab 2"
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      observeEvent(input$go, {
+#'        f7InsertTab(
+#'          inputId = "tabs",
+#'          position = "before",
+#'          target = "Tab 2",
+#'          tab = f7Tab (tabName = paste0("tab_", input$go), "Test"),
+#'          select = TRUE
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+#'
+f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
+                        select = FALSE, session = shiny::getDefaultReactiveDomain()) {
+
+  # in shinyF7, f7Tab returns a list of 3 elements:
+  # - 1 is the tag\
+  # - 2 is the icon name
+  # - 3 is the tabName
+  # Below we check if the tag is really a shiny tag...
+  if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
+
+  ns <- inputId
+
+  # we need to create a new id not to overlap with the updateF7Tab id
+  # prefix by insert_ makes sense
+  inputId <- paste0("insert_", inputId)
+
+  position <- match.arg(position)
+
+  # create the corresponding tablink
+  tabId <- gsub(" ", "", tab[[1]]$attribs$id, fixed = TRUE)
+
+  tabLink <- shiny::a(
+    class = "tab-link",
+    href = paste0("#", tab[[1]]$attribs$id),
+    tab[[3]]
+  )
+  tabLink <- as.character(force(tabLink))
+
+  # force to render shiny.tag and convert it to character
+  # since text does not accept anything else
+  tab <- as.character(force(tab[[1]]))
+
+  # remove all whitespace from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+
+  message <- dropNulls(
+    list(
+      value = tab,
+      id = tabId,
+      link = tabLink,
+      target = target,
+      position = position,
+      select = tolower(select),
+      ns = ns
+    )
+  )
+
+  session$sendCustomMessage(type = inputId, message)
+}

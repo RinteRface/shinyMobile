@@ -195,4 +195,46 @@ $(function () {
     });
   });
 
+  // handle f7InsertTab...
+  // recover all tabSet ids in an array
+  // The idea is that we will add each respective
+  // id to the Shiny.addCustomMessageHandler function
+  // which first argument is the type and should be the id
+  // of the targeted tabSet
+  var tabIds = [];
+  getAllTabSetIds = function() {
+    $('.tabs.ios-edges').each(function() {
+      tabIds.push(this.id);
+    });
+  };
+
+  // call the function ...
+  getAllTabSetIds();
+
+  tabIds.forEach(function(index) {
+    var id = "insert_" + index;
+    Shiny.addCustomMessageHandler(id, function(message) {
+      var tabId = $("#" + message.ns + " #" + message.target);
+      console.log(tabId);
+      if (message.position === "after") {
+        // insert after the targeted tag in the tab-panel div
+        $(message.value).insertAfter($(tabId));
+        // we also need to insert an item in the navigation
+        $(message.link).insertAfter($('.toolbar-inner [href ="#' + message.target + '"]'));
+      } else if (message.position === "before") {
+        // insert before the targeted tag in the tab-panel div
+        $(message.value).insertBefore($(tabId));
+        // we also need to insert an item in the navigation
+        $(message.link).insertBefore($('.toolbar-inner [href ="#' + message.target + '"]'));
+      }
+
+      // if the newly inserted tab is active, disable other tabs
+      if (message.select === "true") {
+        // trigger a click on corresponding the new tab button.
+        app.tab.show('#' + message.id);
+      }
+    });
+  });
+
+
 });
