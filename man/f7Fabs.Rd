@@ -7,8 +7,8 @@
 f7Fabs(..., position = c("right-top", "right-center", "right-bottom",
   "left-top", "left-center", "left-bottom", "center-right",
   "center-center", "center-left", "center-top", "center-bottom"),
-  color = NULL, backgroundColor = "gainsboro", sideOpen = c("left",
-  "right", "top", "bottom", "center"))
+  color = NULL, extended = FALSE, label = NULL,
+  sideOpen = c("left", "right", "top", "bottom", "center"))
 }
 \arguments{
 \item{...}{Slot for \link{f7Fab}.}
@@ -17,7 +17,9 @@ f7Fabs(..., position = c("right-top", "right-center", "right-bottom",
 
 \item{color}{Container color.}
 
-\item{backgroundColor}{Container background color. "gainsboro" by default.}
+\item{extended}{If TRUE, the FAB will be wider. This allows to use a label (see below).}
+
+\item{label}{Container label. Only if extended is TRUE.}
 
 \item{sideOpen}{When the container is pressed, indicate where buttons are displayed.}
 }
@@ -40,6 +42,8 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Fabs"),
      f7Fabs(
+      extended = TRUE,
+      label = "Menu",
       position = "center-top",
       color = "yellow",
       sideOpen = "right",

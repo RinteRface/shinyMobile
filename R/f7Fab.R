@@ -5,7 +5,8 @@
 #' @param ... Slot for \link{f7Fab}.
 #' @param position Container position.
 #' @param color Container color.
-#' @param backgroundColor Container background color. "gainsboro" by default.
+#' @param extended If TRUE, the FAB will be wider. This allows to use a label (see below).
+#' @param label Container label. Only if extended is TRUE.
 #' @param sideOpen When the container is pressed, indicate where buttons are displayed.
 #'
 #' @note The background color might be an issue depending on the parent container. Consider
@@ -25,6 +26,8 @@
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Fabs"),
 #'      f7Fabs(
+#'       extended = TRUE,
+#'       label = "Menu",
 #'       position = "center-top",
 #'       color = "yellow",
 #'       sideOpen = "right",
@@ -60,21 +63,24 @@
 #' @export
 f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom", "left-top",
   "left-center", "left-bottom", "center-right", "center-center", "center-left",
-  "center-top", "center-bottom"), color = NULL, backgroundColor = "gainsboro",
+  "center-top", "center-bottom"), color = NULL, extended = FALSE, label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center")) {
 
   position <- match.arg(position)
   fabCl <- paste0("fab fab-", position, if(!is.null(color)) " color-", color)
+  if (extended) fabCl <- paste0(fabCl, " fab-extended")
 
   sideOpen <- match.arg(sideOpen)
 
   shiny::tags$div(
     class = fabCl,
-    #style = if (!is.null(backgroundColor)) paste0("background-color: ", backgroundColor, ";"),
     shiny::a(
       href = "#",
       shiny::tags$i(class="icon f7-icons", "add"),
-      shiny::tags$i(class="icon f7-icons", "close")
+      shiny::tags$i(class="icon f7-icons", "close"),
+      if (!is.null(label)) {
+        shiny::tags$div(class = "fab-text", label)
+      }
     ),
     shiny::tags$div(class = paste0("fab-buttons fab-buttons-", sideOpen), ...)
   )
