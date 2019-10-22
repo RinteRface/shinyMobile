@@ -54,8 +54,8 @@ $(function () {
     var icon;
     if (message.icon !== undefined) {
       icon = '<i class="' +
-    message.icon.attribs.class +'">' +
-    message.icon.children[0] + '</i>';
+      message.icon.attribs.class +'">' +
+      message.icon.children[0] + '</i>';
     } else {
       icon = undefined;
     }
@@ -195,7 +195,7 @@ $(function () {
     });
   });
 
-  // handle f7InsertTab...
+  // handle f7InsertTab and f7RemoveTab ...
   // recover all tabSet ids in an array
   // The idea is that we will add each respective
   // id to the Shiny.addCustomMessageHandler function
@@ -211,11 +211,11 @@ $(function () {
   // call the function ...
   getAllTabSetIds();
 
+  // f7InsertTab js
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
       var tabId = $("#" + message.ns + " #" + message.target);
-      console.log(tabId);
       if (message.position === "after") {
         // insert after the targeted tag in the tab-panel div
         $(message.value).insertAfter($(tabId));
@@ -236,5 +236,29 @@ $(function () {
     });
   });
 
+  // f7RemoveTab js
+  tabIds.forEach(function(index) {
+    var id = "remove_" + index;
+    Shiny.addCustomMessageHandler(id, function(message) {
+      // show the next tab first
+      var tabToRemove = $('#' + message.ns + " #" + message.target);
+      var nextTabId = $(tabToRemove).next().attr('id');
+      app.tab.show('#' + nextTabId);
 
+      // important: prevent tab from translating which would lead to a
+      // white screen
+      $(".tabs.ios-edges").css('transform', '');
+
+      // remove the target
+      $('.toolbar-inner a[href="#' +  message.target +'"]').remove();
+      $('#' + message.ns + " #" + message.target).remove();
+
+      // we programatically remove the old tabbar indicator and rebuild it.
+      // The with of the tabbar indicator depends on the number of tab items it contains
+      segment_width = 100 / $('.toolbar-inner > a').length;
+      console.log(segment_width);
+      $('.tab-link-highlight').remove();
+      $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
+    });
+  });
 });

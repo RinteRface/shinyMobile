@@ -104,9 +104,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     # ios-edges necessary to have
     # the good ios rendering
     class = "tabs ios-edges",
-    lapply(1:len, function(i) { toolbarItems[[i]][[1]]}),
-    # needed for the input binding
-    shiny::tags$div(class = "tabsBindingTarget")
+    lapply(1:len, function(i) { toolbarItems[[i]][[1]]})
   )
 
   contentTag$attribs$id <- id
@@ -155,7 +153,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
   id <- gsub(x = id, pattern = " ", replacement = "")
 
   itemTag <- shiny::tags$div(
-    class = "page-content tab",
+    class = if (!active) "page-content tab" else "page-content tab tab-active",
     `data-active` = tolower(active),
     id = id,
     `data-value` = tabName,
@@ -349,4 +347,89 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
   )
 
   session$sendCustomMessage(type = inputId, message)
+}
+
+
+
+
+#' Remove a \link{f7Tab} in a \link{f7Tabs}
+#'
+#' @param inputId  \link{f7Tabs} id.
+#' @param target \link{f7Tab} to remove.
+#' @param session Shiny session object.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  ui <- f7Page(
+#'   title = "Remove a tab",
+#'   f7TabLayout(
+#'    panels = tagList(
+#'      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+#'      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+#'    ),
+#'    navbar = f7Navbar(
+#'      title = "Tabs",
+#'      hairline = FALSE,
+#'      shadow = TRUE,
+#'      left_panel = TRUE,
+#'      right_panel = TRUE
+#'    ),
+#'    f7Tabs(
+#'      id = "tabset1",
+#'      f7Tab(
+#'        tabName = "Tab 1",
+#'        active = TRUE,
+#'        p("Text 1"),
+#'        f7Button("remove1","Remove tab 1")
+#'      ),
+#'      f7Tab(
+#'        tabName = "Tab 2",
+#'        active = FALSE,
+#'        p("Text 2")
+#'      ),
+#'      f7Tab(
+#'        tabName = "Tab 3",
+#'        active = FALSE,
+#'        p("Text 3")
+#'      )
+#'    )
+#'   )
+#'  )
+#'
+#'  server <- function(input, output, session) {
+#'    observe(print(input$tabset1))
+#'    observeEvent(input$remove1, {
+#'      f7RemoveTab(
+#'        inputId = "tabset1",
+#'        target = "Tab 1"
+#'      )
+#'    })
+#'  }
+#'  shinyApp(ui, server)
+#' }
+f7RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
+
+  # tabsetpanel namespace
+  ns <- inputId
+
+  # we need to create a new id not to overlap with the updatebs4TabSetPanel id
+  # prefix by remove_ makes sense
+  inputId <- paste0("remove_", inputId)
+
+  # remove all whitespace from the target name
+  target <- gsub(" ", "", target, fixed = TRUE)
+
+  message <- dropNulls(
+    list(
+      target = target,
+      ns = ns
+    )
+  )
+  session$sendCustomMessage(type = inputId, message = message)
+
 }
