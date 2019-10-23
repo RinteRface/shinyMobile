@@ -134,6 +134,14 @@ reference:
 
 
 
+- title: Buttons Effects
+  desc: FAB can morph into other HTML elements
+  contents:
+  - '`f7FabClose`'
+  - '`f7FabMorphTarget`'
+
+
+
 - title: Modals, Popups...
   desc: Functions that trigger server actions
   contents:

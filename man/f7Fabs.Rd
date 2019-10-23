@@ -8,7 +8,8 @@ f7Fabs(..., position = c("right-top", "right-center", "right-bottom",
   "left-top", "left-center", "left-bottom", "center-right",
   "center-center", "center-left", "center-top", "center-bottom"),
   color = NULL, extended = FALSE, label = NULL,
-  sideOpen = c("left", "right", "top", "bottom", "center"))
+  sideOpen = c("left", "right", "top", "bottom", "center"),
+  morph = FALSE, morphTarget = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{f7Fab}.}
@@ -22,6 +23,10 @@ f7Fabs(..., position = c("right-top", "right-center", "right-bottom",
 \item{label}{Container label. Only if extended is TRUE.}
 
 \item{sideOpen}{When the container is pressed, indicate where buttons are displayed.}
+
+\item{morph}{Whether to allow the FAB to transofrm into another UI element.}
+
+\item{morphTarget}{CSS selector of the morph target: \code{".toolbar"} for instance.}
 }
 \description{
 Build a Framework7 container for floating action button (FAB)
