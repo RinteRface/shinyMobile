@@ -24,5 +24,9 @@ Suggests:
     knitr,
     rmarkdown,
     plotly,
-    stats
+    stats,
+    testthat (>= 2.1.0),
+    V8,
+    cli,
+    rstudioapi
 VignetteBuilder: knitr

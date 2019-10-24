@@ -45,15 +45,14 @@ $.extend(f7DatePickerBinding, {
       value = value[0] + "-0" + n + "-" + value[2];
     }
     return value;
-    //return app.calendar.get($(el)).value;
   },
 
-  // see updateF7Calendar
+  // see updateF7DatePicker
   setValue: function(el, value) {
-    app.calendar.setValue($(el)).value;
+
   },
 
-  // see updateF7Calendar
+  // see updateF7DatePicker
   receiveMessage: function(el, data) {
 
   },

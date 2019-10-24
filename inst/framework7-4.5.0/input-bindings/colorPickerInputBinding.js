@@ -43,13 +43,12 @@ $.extend(f7ColorPickerBinding, {
     return document.getElementById(ID).value;
   },
 
-  // see updateF7Slider
+  // see updateF7ColorPicker
   setValue: function(el, value) {
-    //$(el).data('immediate', true);
-    app.colorPicker.setValue($(el)).value;
+
   },
 
-  // see updateF7Slider
+  // see updateF7ColorPicker
   receiveMessage: function(el, data) {
 
   },

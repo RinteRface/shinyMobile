@@ -17,7 +17,7 @@ $.extend(f7CollapsibleBinding, {
       var val = $(items[0]).find('.item-title').html();
       return {state: true, value: val};
      } else {
-       titles = [];
+       var titles = [];
        $(items).each(function(i) {
          titles.push($(items[i]).find('.item-title').html());
        });
