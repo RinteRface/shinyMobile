@@ -4,15 +4,15 @@
 \alias{f7Accordion}
 \title{Create a Framework7 accordion}
 \usage{
-f7Accordion(..., inputId = NULL, mode = NULL)
+f7Accordion(..., inputId = NULL, multiCollapse = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7AccordionItem}.}
 
 \item{inputId}{Optional id to recover the state of the accordion.}
 
-\item{mode}{Accordion style. NULL by default. Use "list" to access the list
-style.}
+\item{multiCollapse}{Whether to open multiple items at the same time. FALSE
+by default.}
 }
 \description{
 Build a Framework7 accordion
@@ -40,7 +40,7 @@ if(interactive()){
       )
      ),
      f7Accordion(
-      mode = "list",
+      multiCollapse = TRUE,
       inputId = "myaccordion2",
       f7AccordionItem(
        title = "Item 1",

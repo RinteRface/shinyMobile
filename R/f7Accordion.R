@@ -4,8 +4,8 @@
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
 #' @param inputId Optional id to recover the state of the accordion.
-#' @param mode Accordion style. NULL by default. Use "list" to access the list
-#' style.
+#' @param multiCollapse Whether to open multiple items at the same time. FALSE
+#' by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -30,7 +30,7 @@
 #'       )
 #'      ),
 #'      f7Accordion(
-#'       mode = "list",
+#'       multiCollapse = TRUE,
 #'       inputId = "myaccordion2",
 #'       f7AccordionItem(
 #'        title = "Item 1",
@@ -59,9 +59,9 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Accordion <- function(..., inputId = NULL, mode = NULL) {
+f7Accordion <- function(..., inputId = NULL, multiCollapse = FALSE) {
 
- accordionTag <- if (is.null(mode)) {
+ accordionTag <- if (multiCollapse) {
    shiny::tags$div(
      class = "list",
      shiny::tags$ul(...)

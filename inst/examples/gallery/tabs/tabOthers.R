@@ -77,7 +77,6 @@ tabOthers <- f7Tab(
   # accordion
   f7BlockTitle(title = "f7Accordion") %>% f7Align(side = "center"),
   f7Accordion(
-    mode = "list",
     f7AccordionItem(
       title = "Item 1",
       f7Block("Item 1 content")

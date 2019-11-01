@@ -154,7 +154,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Accordion</span>(<span class='no'>...</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Accordion</span>(<span class='no'>...</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>multiCollapse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,9 +168,9 @@
       <td><p>Optional id to recover the state of the accordion.</p></td>
     </tr>
     <tr>
-      <th>mode</th>
-      <td><p>Accordion style. NULL by default. Use "list" to access the list
-style.</p></td>
+      <th>multiCollapse</th>
+      <td><p>Whether to open multiple items at the same time. FALSE
+by default.</p></td>
     </tr>
     </table>
     
@@ -198,7 +198,7 @@ style.</p></td>
       )
      ),
      <span class='fu'>f7Accordion</span>(
-      <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"list"</span>,
+      <span class='kw'>multiCollapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion2"</span>,
       <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
