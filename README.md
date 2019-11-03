@@ -20,9 +20,7 @@ devtools::install_github("RinteRface/shinyF7")
 A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
 Left side: android demo, right side: iOS demo
 
-<div class="row">
-  <div class="col-sm-6">
-  <div class="marvel-device note8">
+<div class="marvel-device note8" style="margin: 10px;">
     <div class="inner"></div>
     <div class="overflow">
         <div class="shadow"></div>
@@ -38,9 +36,8 @@ Left side: android demo, right side: iOS demo
         <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2DemoMd" allowfullscreen="" frameborder="0" scrolling="no" height="822px"></iframe>
     </div>
 </div>
-  </div>
-  <div class="col-sm-6">
-  <div class="marvel-device iphone-x">
+
+<div class="marvel-device iphone-x" style="margin: 10px;">
   <!--<div class="notch">
     <div class="camera"></div>
     <div class="speaker"></div> 
@@ -58,9 +55,7 @@ Left side: android demo, right side: iOS demo
   <div class="inner-shadow"></div>
   <div class="screen">
     <!-- Content goes here -->
-    <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
-  </div>
-</div>
+    <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen="" frameborder="0" scrolling="no" height="710px"></iframe>
   </div>
 </div>
 
