@@ -5,6 +5,9 @@
 #' @param ... Slot for \link{f7TimelineItem}.
 #' @param sides Enable side-by-side timeline mode.
 #' @param horizontal Whether to use the horizontal layout. Not compatible with sides.
+#' @param calendar Special type of horizontal layout with current year and month.
+#' @param year Current year, only if calendar is TRUE.
+#' @param month Current month, only if calendar is TRUE.
 #'
 #' @examples
 #' if(interactive()){
@@ -59,7 +62,10 @@
 #'        ),
 #'        f7BlockTitle(title = "Vertical timeline", size = "large") %>%
 #'        f7Align(side = "center"),
-#'        f7Timeline(items)
+#'        f7Timeline(items),
+#'        f7BlockTitle(title = "Calendar timeline", size = "large") %>%
+#'        f7Align(side = "center"),
+#'        f7Timeline(items, calendar = TRUE, year = "2019", month = "November")
 #'      )
 #'    ),
 #'    server = function(input, output) {}
@@ -69,7 +75,8 @@
 #' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Timeline <- function(..., sides = FALSE, horizontal = FALSE) {
+f7Timeline <- function(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
+                       year = NULL, month = NULL) {
 
   if (sides & horizontal) {
     stop("Choose either sides or horizontal. Not compatible together.")
@@ -78,11 +85,37 @@ f7Timeline <- function(..., sides = FALSE, horizontal = FALSE) {
   timelineCl <- "timeline"
   if (sides) timelineCl <- paste0(timelineCl, " timeline-sides")
   if (horizontal) timelineCl <- paste0(timelineCl, " timeline-horizontal col-50 tablet-20")
+  if (calendar) timelineCl <- paste0(timelineCl, " timeline-horizontal col-33 tablet-15")
 
-  shiny::tags$div(
+
+  timelineTag <- shiny::tags$div(
     class = timelineCl,
     ...
   )
+
+  timelineWrapper <- if (calendar) {
+
+    shiny::tags$div(
+      class = "timeline-year",
+      shiny::tags$div(
+        class = "timeline-year-title",
+        shiny::span(year)
+      ),
+      shiny::tags$div(
+        class = "timeline-month",
+        shiny::tags$div(
+          class = "timeline-month-title",
+          shiny::span(month)
+        ),
+        timelineTag
+      )
+    )
+  } else {
+    timelineTag
+  }
+
+  timelineWrapper
+
 }
 
 

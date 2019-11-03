@@ -4,7 +4,8 @@
 \alias{f7Timeline}
 \title{Create a Framework7 timeline}
 \usage{
-f7Timeline(..., sides = FALSE, horizontal = FALSE)
+f7Timeline(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
+  year = NULL, month = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{f7TimelineItem}.}
@@ -12,6 +13,12 @@ f7Timeline(..., sides = FALSE, horizontal = FALSE)
 \item{sides}{Enable side-by-side timeline mode.}
 
 \item{horizontal}{Whether to use the horizontal layout. Not compatible with sides.}
+
+\item{calendar}{Special type of horizontal layout with current year and month.}
+
+\item{year}{Current year, only if calendar is TRUE.}
+
+\item{month}{Current month, only if calendar is TRUE.}
 }
 \description{
 Build a Framework7 timeline
@@ -69,7 +76,10 @@ if(interactive()){
        ),
        f7BlockTitle(title = "Vertical timeline", size = "large") \%>\%
        f7Align(side = "center"),
-       f7Timeline(items)
+       f7Timeline(items),
+       f7BlockTitle(title = "Calendar timeline", size = "large") \%>\%
+       f7Align(side = "center"),
+       f7Timeline(items, calendar = TRUE, year = "2019", month = "November")
      )
    ),
    server = function(input, output) {}
