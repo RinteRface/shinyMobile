@@ -4,12 +4,14 @@
 \alias{f7Timeline}
 \title{Create a Framework7 timeline}
 \usage{
-f7Timeline(..., sides = FALSE)
+f7Timeline(..., sides = FALSE, horizontal = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7TimelineItem}.}
 
 \item{sides}{Enable side-by-side timeline mode.}
+
+\item{horizontal}{Whether to use the horizontal layout. Not compatible with sides.}
 }
 \description{
 Build a Framework7 timeline
@@ -19,39 +21,58 @@ if(interactive()){
  library(shiny)
  library(shinyF7)
 
- shiny::shinyApp(
-  ui = f7Page(
-    title = "Timelines",
-    f7Timeline(
-     sides = TRUE,
-     f7TimelineItem(
+ items <- tagList(
+   f7TimelineItem(
      "Another text",
-      date = "01 Dec",
-      card = FALSE,
-      time = "12:30",
-      title = "Title",
-      subtitle = "Subtitle",
-      side = "left"
-      ),
-      f7TimelineItem(
-      "Another text",
-      date = "02 Dec",
-      card = TRUE,
-      time = "13:00",
-      title = "Title",
-      subtitle = "Subtitle"
-      ),
-      f7TimelineItem(
-      "Another text",
-      date = "03 Dec",
-      card = FALSE,
-      time = "14:45",
-      title = "Title",
-      subtitle = "Subtitle"
-      )
+     date = "01 Dec",
+     card = FALSE,
+     time = "12:30",
+     title = "Title",
+     subtitle = "Subtitle",
+     side = "left"
+   ),
+   f7TimelineItem(
+     "Another text",
+     date = "02 Dec",
+     card = TRUE,
+     time = "13:00",
+     title = "Title",
+     subtitle = "Subtitle"
+   ),
+   f7TimelineItem(
+     "Another text",
+     date = "03 Dec",
+     card = FALSE,
+     time = "14:45",
+     title = "Title",
+     subtitle = "Subtitle"
+   )
+ )
+
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "Timelines",
+     f7SingleLayout(
+       navbar = f7Navbar(title = "Timelines"),
+       f7BlockTitle(title = "Horizontal timeline", size = "large") \%>\%
+       f7Align(side = "center"),
+       f7Timeline(
+         sides = FALSE,
+         horizontal = TRUE,
+         items
+       ),
+       f7BlockTitle(title = "Vertical side by side timeline", size = "large") \%>\%
+       f7Align(side = "center"),
+       f7Timeline(
+         sides = TRUE,
+         items
+       ),
+       f7BlockTitle(title = "Vertical timeline", size = "large") \%>\%
+       f7Align(side = "center"),
+       f7Timeline(items)
      )
-  ),
-  server = function(input, output) {}
+   ),
+   server = function(input, output) {}
  )
 }
 

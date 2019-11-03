@@ -4,55 +4,80 @@
 #'
 #' @param ... Slot for \link{f7TimelineItem}.
 #' @param sides Enable side-by-side timeline mode.
+#' @param horizontal Whether to use the horizontal layout. Not compatible with sides.
 #'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyF7)
 #'
-#'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     title = "Timelines",
-#'     f7Timeline(
-#'      sides = TRUE,
-#'      f7TimelineItem(
+#'  items <- tagList(
+#'    f7TimelineItem(
 #'      "Another text",
-#'       date = "01 Dec",
-#'       card = FALSE,
-#'       time = "12:30",
-#'       title = "Title",
-#'       subtitle = "Subtitle",
-#'       side = "left"
-#'       ),
-#'       f7TimelineItem(
-#'       "Another text",
-#'       date = "02 Dec",
-#'       card = TRUE,
-#'       time = "13:00",
-#'       title = "Title",
-#'       subtitle = "Subtitle"
-#'       ),
-#'       f7TimelineItem(
-#'       "Another text",
-#'       date = "03 Dec",
-#'       card = FALSE,
-#'       time = "14:45",
-#'       title = "Title",
-#'       subtitle = "Subtitle"
-#'       )
+#'      date = "01 Dec",
+#'      card = FALSE,
+#'      time = "12:30",
+#'      title = "Title",
+#'      subtitle = "Subtitle",
+#'      side = "left"
+#'    ),
+#'    f7TimelineItem(
+#'      "Another text",
+#'      date = "02 Dec",
+#'      card = TRUE,
+#'      time = "13:00",
+#'      title = "Title",
+#'      subtitle = "Subtitle"
+#'    ),
+#'    f7TimelineItem(
+#'      "Another text",
+#'      date = "03 Dec",
+#'      card = FALSE,
+#'      time = "14:45",
+#'      title = "Title",
+#'      subtitle = "Subtitle"
+#'    )
+#'  )
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Timelines",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "Timelines"),
+#'        f7BlockTitle(title = "Horizontal timeline", size = "large") %>%
+#'        f7Align(side = "center"),
+#'        f7Timeline(
+#'          sides = FALSE,
+#'          horizontal = TRUE,
+#'          items
+#'        ),
+#'        f7BlockTitle(title = "Vertical side by side timeline", size = "large") %>%
+#'        f7Align(side = "center"),
+#'        f7Timeline(
+#'          sides = TRUE,
+#'          items
+#'        ),
+#'        f7BlockTitle(title = "Vertical timeline", size = "large") %>%
+#'        f7Align(side = "center"),
+#'        f7Timeline(items)
 #'      )
-#'   ),
-#'   server = function(input, output) {}
+#'    ),
+#'    server = function(input, output) {}
 #'  )
 #' }
 #'
 #' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Timeline <- function(..., sides = FALSE) {
+f7Timeline <- function(..., sides = FALSE, horizontal = FALSE) {
+
+  if (sides & horizontal) {
+    stop("Choose either sides or horizontal. Not compatible together.")
+  }
 
   timelineCl <- "timeline"
-  if (sides) timelineCl <- paste0(class = timelineCl, " timeline-sides")
+  if (sides) timelineCl <- paste0(timelineCl, " timeline-sides")
+  if (horizontal) timelineCl <- paste0(timelineCl, " timeline-horizontal col-50 tablet-20")
 
   shiny::tags$div(
     class = timelineCl,
