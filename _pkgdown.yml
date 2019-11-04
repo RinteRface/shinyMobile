@@ -45,6 +45,7 @@ reference:
 - title: Inputs
   desc: slider, radio, checkboxes, ...
   contents:
+  - '`f7AutoComplete`'
   - '`f7checkBox`'
   - '`f7checkBoxGroup`'
   - '`f7ColorPicker`'

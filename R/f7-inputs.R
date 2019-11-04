@@ -1,3 +1,113 @@
+#' Create a Framework7 autocomplete input
+#'
+#' Build a Framework7 autocomplete input
+#'
+#' @param inputId Autocomplete input id.
+#' @param label Autocomplete label.
+#' @param placeholder Text to write in the container.
+#' @param value Autocomplete initial value, if any.
+#' @param choices Autocomplete choices.
+#' @param typeahead Enables type ahead, will prefill input
+#' value with first item in match.
+#' @param expandInput If TRUE then input which is used as
+#' item-input in List View will be expanded to full
+#' screen wide during dropdown visible.
+#' @param type Defines how to open Autocomplete,
+#' can be page or popup (for Standalone) or dropdown.
+#' @param dropdownPlaceholderText Specify dropdown placeholder text.
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'      navbar = f7Navbar(title = "f7Picker"),
+#'      f7AutoComplete(
+#'       inputId = "myautocomplete",
+#'       placeholder = "Some text here!",
+#'       dropdownPlaceholderText = "Try to type Apple",
+#'       label = "Type a fruit name",
+#'       type = "dropdown",
+#'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
+#'        'Orange', 'Peach', 'Pear', 'Pineapple')
+#'      ),
+#'      textOutput("autocompleteval")
+#'     )
+#'    ),
+#'    server = function(input, output) {
+#'     output$autocompleteval <- renderText(input$myautocomplete)
+#'    }
+#'  )
+#' }
+#'
+#' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @export
+f7AutoComplete <- function(inputId, label, placeholder = NULL,
+                           value = choices[1], choices,
+                           typeahead = TRUE, expandInput = TRUE,
+                           type = c("popup", "page", "dropdown"),
+                           dropdownPlaceholderText = NULL) {
+
+  type <- match.arg(type)
+
+  # input tag + label wrapper
+  mainTag <- shiny::tags$div(
+    class = "list no-hairlines-md",
+    shiny::tags$ul(
+      shiny::tags$li(
+        class = "item-content item-input inline-label",
+        shiny::tags$div(
+          class = "item-inner",
+          # label
+          shiny::tags$div(class = "item-title item-label", label),
+          # input
+          shiny::tags$div(
+            class = "item-input-wrap",
+            shiny::tags$input(
+              id = inputId,
+              type = "text",
+              placeholder = placeholder,
+              class = "autocomplete-input"
+            )
+          )
+        )
+      )
+    )
+  )
+
+  value <- jsonlite::toJSON(value)
+  choices <- jsonlite::toJSON(choices)
+  # We define global variables that are
+  # re-used in the pickerInputBinding.js
+  autoCompleteVals <- shiny::tags$script(
+    paste0(
+      "var ", inputId, "_vals = ", choices, ";
+       var ", inputId, "_val = ", value, ";
+       var ", inputId, "_type = '", type, "';
+       var ", inputId, "_dropdownPlaceholderText = '", dropdownPlaceholderText, "';
+       var ", inputId, "_typeahead = ", tolower(typeahead), ";
+       var ", inputId, "_expandInput = ", tolower(expandInput), ";
+      "
+    )
+  )
+
+  # final input tag
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::singleton(autoCompleteVals),
+    mainTag
+  )
+
+}
+
+
+
+
 #' Create a Framework7 picker input
 #'
 #' Build a Framework7 picker input
