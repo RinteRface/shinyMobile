@@ -61,19 +61,17 @@
 #' @export
 f7Accordion <- function(..., inputId = NULL, multiCollapse = FALSE) {
 
- accordionTag <- if (multiCollapse) {
-   shiny::tags$div(
-     class = "list",
-     shiny::tags$ul(...)
-   )
- } else {
-   if (mode == "list") {
-     shiny::tags$div(
-       class = "list accordion-list",
-       shiny::tags$ul(...)
-     )
-   }
- }
+  accordionTag <- if (multiCollapse) {
+    shiny::tags$div(
+      class = "list",
+      shiny::tags$ul(...)
+    )
+  } else {
+    shiny::tags$div(
+      class = "list accordion-list",
+      shiny::tags$ul(...)
+    )
+  }
 
  accordionTag <- tagAppendAttributes(
    accordionTag,

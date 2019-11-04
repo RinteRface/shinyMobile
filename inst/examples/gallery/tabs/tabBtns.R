@@ -17,6 +17,8 @@ tabBtns <- f7Tab(
   lapply(1:4, function(i) textOutput(paste0("res", i))),
 
   f7Fabs(
+    extended = TRUE,
+    label = "Menu",
     position = "center-center",
     color = "purple",
     sideOpen = "center",

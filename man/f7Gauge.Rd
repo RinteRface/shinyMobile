@@ -15,7 +15,7 @@ f7Gauge(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
 
 \item{type}{Gauge type. Can be "circle" or "semicircle". Default is "circle."}
 
-\item{value}{Gauge value/percentage. Must be a number between 0 and 1. Default is 0.}
+\item{value}{Gauge value/percentage. Must be a number between 0 and 100.}
 
 \item{size}{Generated SVG image size (in px). Default is 200.}
 
@@ -56,17 +56,19 @@ if(interactive()){
     title = "Gauges",
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Gauge"),
-     f7Gauge(
-     id = "mygauge",
-     type  = "semicircle",
-     value = 0.5,
-     borderColor = "#2196f3",
-     borderWidth = 10,
-     valueText = "50\%",
-     valueFontSize = 41,
-     valueTextColor = "#2196f3",
-     labelText = "amount of something"
-    )
+     f7Block(
+      f7Gauge(
+       id = "mygauge",
+       type  = "semicircle",
+       value = 50,
+       borderColor = "#2196f3",
+       borderWidth = 10,
+       valueText = "50\%",
+       valueFontSize = 41,
+       valueTextColor = "#2196f3",
+       labelText = "amount of something"
+      )
+     )
     )
   ),
   server = function(input, output) {}

@@ -262,4 +262,32 @@ $(function () {
       $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
     });
   });
+
+
+  // set up gauges
+  gaugeIds = [];
+  getAllGaugeIds = function() {
+    //In data-popover attribute we specify CSS selector of popover we need to open
+    $('.gauge').each(function() {
+      gaugeIds.push($(this).attr('id'));
+    });
+  };
+
+  // call the function ...
+  getAllGaugeIds();
+  console.log(gaugeIds);
+
+  gaugeIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      // get the gauge instance
+      var gauge = app.gauge.get('.' + index);
+
+      // update the gauge
+      gauge.update({
+        value: message / 100,
+        valueText: message + '%'
+      });
+    });
+  });
+
 });

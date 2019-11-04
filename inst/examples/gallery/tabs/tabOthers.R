@@ -155,7 +155,7 @@ tabOthers <- f7Tab(
         f7Gauge(
           id = "mygauge1",
           type  = "semicircle",
-          value = 0.5,
+          value = 50,
           borderColor = "#2196f3",
           borderWidth = 10,
           valueText = "50%",
@@ -168,7 +168,7 @@ tabOthers <- f7Tab(
         f7Gauge(
           id = "mygauge2",
           type  = "circle",
-          value = 0.3,
+          value = 30,
           borderColor = "orange",
           borderWidth = 10,
           valueText = "30%",

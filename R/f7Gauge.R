@@ -4,7 +4,7 @@
 #'
 #' @param id Gauge ID.
 #' @param type Gauge type. Can be "circle" or "semicircle". Default is "circle."
-#' @param value Gauge value/percentage. Must be a number between 0 and 1. Default is 0.
+#' @param value Gauge value/percentage. Must be a number between 0 and 100.
 #' @param size Generated SVG image size (in px). Default is 200.
 #' @param bgColor Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".
 #' @param borderBgColor Main border/stroke background color.
@@ -29,17 +29,19 @@
 #'     title = "Gauges",
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Gauge"),
-#'      f7Gauge(
-#'      id = "mygauge",
-#'      type  = "semicircle",
-#'      value = 0.5,
-#'      borderColor = "#2196f3",
-#'      borderWidth = 10,
-#'      valueText = "50%",
-#'      valueFontSize = 41,
-#'      valueTextColor = "#2196f3",
-#'      labelText = "amount of something"
-#'     )
+#'      f7Block(
+#'       f7Gauge(
+#'        id = "mygauge",
+#'        type  = "semicircle",
+#'        value = 50,
+#'        borderColor = "#2196f3",
+#'        borderWidth = 10,
+#'        valueText = "50%",
+#'        valueFontSize = 41,
+#'        valueTextColor = "#2196f3",
+#'        labelText = "amount of something"
+#'       )
+#'      )
 #'     )
 #'   ),
 #'   server = function(input, output) {}
@@ -55,15 +57,13 @@ f7Gauge <- function(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
                     valueFontWeight = NULL, labelText = NULL, labelTextColor = NULL,
                     labelFontSize = NULL, labelFontWeight = NULL) {
 
-  gaugeCl <- "gauge"
-
-  gaugeCl <- paste0("gauge ", id)
+  gaugeCl <- paste("gauge", id)
 
    gaugeProps <- dropNulls(
      list(
        el = paste0(".", id),
        type = type,
-       value = value,
+       value = value / 100,
        size = size,
        bgColor = bgColor,
        borderBgColor = borderBgColor,
@@ -89,16 +89,61 @@ f7Gauge <- function(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
    gaugeJS <- shiny::tags$script(
      paste0(
        "$(function() {
-          var gauge = app.gauge.create(", gaugeProps," );
+         app.gauge.create(", gaugeProps," );
        });
        "
      )
    )
 
-   gaugeTag <- shiny::tags$div(class = gaugeCl)
+   gaugeTag <- shiny::tags$div(class = gaugeCl, id = id)
 
   shiny::tagList(
     shiny::singleton(shiny::tags$head(gaugeJS)),
     gaugeTag
   )
+}
+
+
+
+#' update a framework7 gauge from the server side
+#'
+#' @param session Shiny session object.
+#' @param id Gauge id.
+#' @param value New value. Numeric between 0 and 100.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'
+#'  shiny::shinyApp(
+#'     ui = f7Page(
+#'        title = "Gauges",
+#'        f7SingleLayout(
+#'           navbar = f7Navbar(title = "update f7Gauge"),
+#'           f7Gauge(
+#'              id = "mygauge",
+#'              type  = "semicircle",
+#'              value = 50,
+#'              borderColor = "#2196f3",
+#'              borderWidth = 10,
+#'              valueText = "50%",
+#'              valueFontSize = 41,
+#'              valueTextColor = "#2196f3",
+#'              labelText = "amount of something"
+#'           ),
+#'           f7Button("go", "Update Gauge")
+#'        )
+#'     ),
+#'     server = function(input, output, session) {
+#'        observeEvent(input$go, {
+#'           updateF7Gauge(session, id = "mygauge", value = 75)
+#'        })
+#'     }
+#'  )
+#' }
+updateF7Gauge <- function(session, id, value) {
+   session$sendCustomMessage(type = id, message = value)
 }

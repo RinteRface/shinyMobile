@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 gauge — f7Gauge • shinyF7</title>
+<title>update a framework7 gauge from the server side — updateF7Gauge • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 gauge — f7Gauge" />
+<meta property="og:title" content="update a framework7 gauge from the server side — updateF7Gauge" />
 
-<meta property="og:description" content="Build a Framework7 gauge" />
+<meta property="og:description" content="update a framework7 gauge from the server side" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,119 +143,67 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 gauge</h1>
+    <h1>update a framework7 gauge from the server side</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Gauge.R'><code>R/f7Gauge.R</code></a></small>
-    <div class="hidden name"><code>f7Gauge.Rd</code></div>
+    <div class="hidden name"><code>updateF7Gauge.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 gauge</p>
+    <p>update a framework7 gauge from the server side</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Gauge</span>(<span class='no'>id</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>bgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>borderBgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>valueFontWeight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelTextColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>labelFontSize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labelFontWeight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Gauge</span>(<span class='no'>session</span>, <span class='no'>id</span>, <span class='no'>value</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>Gauge ID.</p></td>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Gauge type. Can be "circle" or "semicircle". Default is "circle."</p></td>
+      <th>id</th>
+      <td><p>Gauge id.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>Gauge value/percentage. Must be a number between 0 and 100.</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>Generated SVG image size (in px). Default is 200.</p></td>
-    </tr>
-    <tr>
-      <th>bgColor</th>
-      <td><p>Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".</p></td>
-    </tr>
-    <tr>
-      <th>borderBgColor</th>
-      <td><p>Main border/stroke background color.</p></td>
-    </tr>
-    <tr>
-      <th>borderColor</th>
-      <td><p>Main border/stroke color.</p></td>
-    </tr>
-    <tr>
-      <th>borderWidth</th>
-      <td><p>Main border/stroke width.</p></td>
-    </tr>
-    <tr>
-      <th>valueText</th>
-      <td><p>Gauge value text (large text in the center of gauge).</p></td>
-    </tr>
-    <tr>
-      <th>valueTextColor</th>
-      <td><p>Value text color.</p></td>
-    </tr>
-    <tr>
-      <th>valueFontSize</th>
-      <td><p>Value text font size.</p></td>
-    </tr>
-    <tr>
-      <th>valueFontWeight</th>
-      <td><p>Value text font weight.</p></td>
-    </tr>
-    <tr>
-      <th>labelText</th>
-      <td><p>Gauge additional label text.</p></td>
-    </tr>
-    <tr>
-      <th>labelTextColor</th>
-      <td><p>Label text color.</p></td>
-    </tr>
-    <tr>
-      <th>labelFontSize</th>
-      <td><p>Label text font size.</p></td>
-    </tr>
-    <tr>
-      <th>labelFontWeight</th>
-      <td><p>Label text font weight.</p></td>
+      <td><p>New value. Numeric between 0 and 100.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
+
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Gauges"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Gauge"</span>),
-     <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
-      <span class='fu'>f7Gauge</span>(
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>,
-       <span class='kw'>type</span>  <span class='kw'>=</span> <span class='st'>"semicircle"</span>,
-       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-       <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
-       <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-       <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='st'>"50%"</span>,
-       <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='fl'>41</span>,
-       <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
-       <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='st'>"amount of something"</span>
-      )
-     )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Gauges"</span>,
+       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"update f7Gauge"</span>),
+          <span class='fu'><a href='f7Gauge.html'>f7Gauge</a></span>(
+             <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>,
+             <span class='kw'>type</span>  <span class='kw'>=</span> <span class='st'>"semicircle"</span>,
+             <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+             <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
+             <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='st'>"50%"</span>,
+             <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='fl'>41</span>,
+             <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
+             <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='st'>"amount of something"</span>
+          ),
+          <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='st'>"go"</span>, <span class='st'>"Update Gauge"</span>)
+       )
+    ),
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+          <span class='fu'>updateF7Gauge</span>(<span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>75</span>)
+       })
+    }
  )
 }</div></pre>
   </div>
@@ -267,8 +215,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon and Isabelle Rudolf, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 
