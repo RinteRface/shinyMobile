@@ -123,6 +123,7 @@ $(function () {
     var closeButton = (message.closeButton == 'true');
 
     var toast = app.toast.create({
+      icon: message.icon,
       text: message.text,
       position: message.position,
       closeButton: closeButton,

@@ -7,6 +7,8 @@
 #' @param closeButtonText Close button text.
 #' @param closeButtonColor Close button color.
 #' @param closeTimeout Time before toast closes.
+#' @param icon Optional. Expect \link{f7Icon}. Warning:
+#' Adding icon will hide the close button.
 #' @param session Shiny session.
 #'
 #' @export
@@ -37,7 +39,9 @@
 #' }
 f7Toast <- function(session, text, position = c("bottom", "top", "center"),
                     closeButton = TRUE, closeButtonText = "close",
-                    closeButtonColor = "red", closeTimeout = 3000) {
+                    closeButtonColor = "red", closeTimeout = 3000, icon = NULL) {
+
+  icon <- if(!is.null(icon)) as.character(icon)
 
   position <- match.arg(position)
 
@@ -46,6 +50,7 @@ f7Toast <- function(session, text, position = c("bottom", "top", "center"),
       text = text,
       position = position,
       closeTimeout = closeTimeout,
+      icon = icon,
       closeButton = tolower(closeButton),
       closeButtonText = closeButtonText,
       closeButtonColor = closeButtonColor

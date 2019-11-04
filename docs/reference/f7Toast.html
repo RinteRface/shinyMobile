@@ -156,7 +156,7 @@
 
     <pre class="usage"><span class='fu'>f7Toast</span>(<span class='no'>session</span>, <span class='no'>text</span>, <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>, <span class='st'>"center"</span>),
   <span class='kw'>closeButton</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>closeButtonText</span> <span class='kw'>=</span> <span class='st'>"close"</span>,
-  <span class='kw'>closeButtonColor</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>closeTimeout</span> <span class='kw'>=</span> <span class='fl'>3000</span>)</pre>
+  <span class='kw'>closeButtonColor</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>closeTimeout</span> <span class='kw'>=</span> <span class='fl'>3000</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,6 +189,11 @@ TRUE by default.</p></td>
     <tr>
       <th>closeTimeout</th>
       <td><p>Time before toast closes.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>Optional. Expect <a href='f7Icon.html'>f7Icon</a>. Warning:
+Adding icon will hide the close button.</p></td>
     </tr>
     </table>
     
