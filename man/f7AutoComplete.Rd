@@ -45,7 +45,7 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Picker"),
      f7AutoComplete(
-      inputId = "myautocomplete",
+      inputId = "myautocomplete1",
       placeholder = "Some text here!",
       dropdownPlaceholderText = "Try to type Apple",
       label = "Type a fruit name",
@@ -53,11 +53,25 @@ if(interactive()){
       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
        'Orange', 'Peach', 'Pear', 'Pineapple')
      ),
-     textOutput("autocompleteval")
+     textOutput("autocompleteval1"),
+     f7AutoComplete(
+      inputId = "myautocomplete2",
+      placeholder = "Some text here!",
+      type = "popup",
+      label = "Type a fruit name",
+      choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
+                  'Orange', 'Peach', 'Pear', 'Pineapple')
+     ),
+     textOutput("autocompleteval2")
     )
    ),
    server = function(input, output) {
-    output$autocompleteval <- renderText(input$myautocomplete)
+    observe({
+     print(input$myautocomplete1)
+     print(input$myautocomplete2)
+    })
+    output$autocompleteval1 <- renderText(input$myautocomplete1)
+    output$autocompleteval2 <- renderText(input$myautocomplete2)
    }
  )
 }

@@ -15,17 +15,42 @@ $.extend(f7AutoCompleteBinding, {
 
     var vals = SetTo5(id, "vals");
     var initVal = SetTo5(id, "val");
+    var type = SetTo5(id, "type");
 
+    // special case where the autocomplete is standalone
+    var inputEl;
+    var openerEl;
+    var closeOnSelect;
+    var typeahead;
+    var expandInput;
+    var dropdownPlaceholderText;
+    if (type == "dropdown") {
+      inputEl = '#' + id;
+      typeahead = SetTo5(id, "typeahead");
+      expandInput = SetTo5(id, "expandInput");
+      dropdownPlaceholderText = SetTo5(id, "dropdownPlaceholderText");
+      openerEl = undefined;
+      closeOnSelect = undefined;
+    } else {
+      inputEl = undefined;
+      openerEl = '#' + id;
+      closeOnSelect = true;
+      typeahead = undefined;
+      expandInput = undefined;
+      dropdownPlaceholderText = undefined;
+    }
     // vals is a global variable defined in the UI side.
     // It contains an array of choices to populate
     // the autocomplete input.
     app.autocomplete.create({
-      inputEl: '#' + id,
+      inputEl: inputEl,
+      openerEl: openerEl,
+      closeOnSelect: closeOnSelect,
       openIn: SetTo5(id, "type"),
       value: initVal,
-      typeahead: SetTo5(id, "typeahead"),
-      expandInput: SetTo5(id, "expandInput"),
-      dropdownPlaceholderText: SetTo5(id, "dropdownPlaceholderText"),
+      typeahead: typeahead,
+      expandInput: expandInput,
+      dropdownPlaceholderText: dropdownPlaceholderText,
       source: function (query, render) {
         var results = [];
         if (query.length === 0) {
@@ -38,6 +63,17 @@ $.extend(f7AutoCompleteBinding, {
         }
         // Render items by passing array with result items
         render(results);
+      },
+      on: {
+        change: function (value) {
+          // Add item text value to item-after
+          $('#' + id).find('.item-after').text(value[0]);
+          // Add item value to input value
+          $('#' + id).find('input').val(value[0]);
+          // important: trigger change so that the input value
+          // is updated for Shiny
+          $('#' + id).trigger('change');
+        }
       }
     });
   },

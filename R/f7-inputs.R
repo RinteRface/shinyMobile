@@ -27,7 +27,7 @@
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Picker"),
 #'      f7AutoComplete(
-#'       inputId = "myautocomplete",
+#'       inputId = "myautocomplete1",
 #'       placeholder = "Some text here!",
 #'       dropdownPlaceholderText = "Try to type Apple",
 #'       label = "Type a fruit name",
@@ -35,11 +35,25 @@
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'        'Orange', 'Peach', 'Pear', 'Pineapple')
 #'      ),
-#'      textOutput("autocompleteval")
+#'      textOutput("autocompleteval1"),
+#'      f7AutoComplete(
+#'       inputId = "myautocomplete2",
+#'       placeholder = "Some text here!",
+#'       type = "popup",
+#'       label = "Type a fruit name",
+#'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
+#'                   'Orange', 'Peach', 'Pear', 'Pineapple')
+#'      ),
+#'      textOutput("autocompleteval2")
 #'     )
 #'    ),
 #'    server = function(input, output) {
-#'     output$autocompleteval <- renderText(input$myautocomplete)
+#'     observe({
+#'      print(input$myautocomplete1)
+#'      print(input$myautocomplete2)
+#'     })
+#'     output$autocompleteval1 <- renderText(input$myautocomplete1)
+#'     output$autocompleteval2 <- renderText(input$myautocomplete2)
 #'    }
 #'  )
 #' }
@@ -56,43 +70,72 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   type <- match.arg(type)
 
   # input tag + label wrapper
-  mainTag <- shiny::tags$div(
-    class = "list no-hairlines-md",
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = "item-content item-input inline-label",
-        shiny::tags$div(
-          class = "item-inner",
-          # label
-          shiny::tags$div(class = "item-title item-label", label),
-          # input
+  mainTag <- if (!(type %in% c("page", "popup"))) {
+    shiny::tags$div(
+      class = "list no-hairlines-md",
+      shiny::tags$ul(
+        shiny::tags$li(
+          class = "item-content item-input inline-label",
           shiny::tags$div(
-            class = "item-input-wrap",
-            shiny::tags$input(
-              id = inputId,
-              type = "text",
-              placeholder = placeholder,
-              class = "autocomplete-input"
+            class = "item-inner",
+            # label
+            shiny::tags$div(class = "item-title item-label", label),
+            # input
+            shiny::tags$div(
+              class = "item-input-wrap",
+              shiny::tags$input(
+                id = inputId,
+                type = "text",
+                placeholder = placeholder,
+                class = "autocomplete-input"
+              )
             )
           )
         )
       )
     )
-  )
+  } else {
+    shiny::tags$div(
+      class = "list",
+      shiny::tags$ul(
+        shiny::tags$a(
+          class = "item-link item-content",
+          href= "#",
+          id = inputId,
+          class = "autocomplete-input",
+          shiny::tags$input(type = "hidden"),
+          shiny::tags$div(
+            class = "item-inner",
+            # label
+            shiny::tags$div(class = "item-title", label),
+            # input
+            shiny::tags$div(class = "item-after")
+          )
+        )
+      )
+    )
+  }
 
   value <- jsonlite::toJSON(value)
   choices <- jsonlite::toJSON(choices)
   # We define global variables that are
   # re-used in the pickerInputBinding.js
+
+  otherProps <- if (!(type %in% c("popup", "page"))) {
+    paste0(
+      "var ", inputId, "_typeahead = ", tolower(typeahead), ";
+       var ", inputId, "_expandInput = ", tolower(expandInput), ";
+      "
+    )
+  }
+
   autoCompleteVals <- shiny::tags$script(
     paste0(
       "var ", inputId, "_vals = ", choices, ";
        var ", inputId, "_val = ", value, ";
        var ", inputId, "_type = '", type, "';
        var ", inputId, "_dropdownPlaceholderText = '", dropdownPlaceholderText, "';
-       var ", inputId, "_typeahead = ", tolower(typeahead), ";
-       var ", inputId, "_expandInput = ", tolower(expandInput), ";
-      "
+      ", otherProps
     )
   )
 
