@@ -156,7 +156,8 @@
 
     <pre class="usage"><span class='fu'>f7AutoComplete</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>choices</span>[<span class='fl'>1</span>],
   <span class='no'>choices</span>, <span class='kw'>typeahead</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>expandInput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"popup"</span>,
-  <span class='st'>"page"</span>, <span class='st'>"dropdown"</span>), <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='st'>"page"</span>, <span class='st'>"dropdown"</span>), <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -201,6 +202,11 @@ can be page or popup (for Standalone) or dropdown.</p></td>
       <th>dropdownPlaceholderText</th>
       <td><p>Specify dropdown placeholder text.</p></td>
     </tr>
+    <tr>
+      <th>multiple</th>
+      <td><p>Whether to allow multiple value selection. Only works
+when type is 'popup' or 'page'.</p></td>
+    </tr>
     </table>
     
 
@@ -228,11 +234,12 @@ can be page or popup (for Standalone) or dropdown.</p></td>
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myautocomplete2"</span>,
       <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"popup"</span>,
+      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Type a fruit name"</span>,
       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
                   <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span>)
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/textOutput'>textOutput</a></span>(<span class='st'>"autocompleteval2"</span>)
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/verbatimTextOutput'>verbatimTextOutput</a></span>(<span class='st'>"autocompleteval2"</span>)
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
@@ -241,7 +248,7 @@ can be page or popup (for Standalone) or dropdown.</p></td>
      <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete2</span>)
     })
     <span class='no'>output</span>$<span class='no'>autocompleteval1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete1</span>)
-    <span class='no'>output</span>$<span class='no'>autocompleteval2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete2</span>)
+    <span class='no'>output</span>$<span class='no'>autocompleteval2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete2</span>)
    }
  )
 }</div></pre>

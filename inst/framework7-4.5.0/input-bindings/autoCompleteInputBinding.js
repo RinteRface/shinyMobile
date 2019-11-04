@@ -24,6 +24,7 @@ $.extend(f7AutoCompleteBinding, {
     var typeahead;
     var expandInput;
     var dropdownPlaceholderText;
+    var multiple;
     if (type == "dropdown") {
       inputEl = '#' + id;
       typeahead = SetTo5(id, "typeahead");
@@ -38,6 +39,7 @@ $.extend(f7AutoCompleteBinding, {
       typeahead = undefined;
       expandInput = undefined;
       dropdownPlaceholderText = undefined;
+      multiple = SetTo5(id, "multiple");
     }
     // vals is a global variable defined in the UI side.
     // It contains an array of choices to populate
@@ -51,6 +53,7 @@ $.extend(f7AutoCompleteBinding, {
       typeahead: typeahead,
       expandInput: expandInput,
       dropdownPlaceholderText: dropdownPlaceholderText,
+      multiple: multiple, //allow multiple values
       source: function (query, render) {
         var results = [];
         if (query.length === 0) {
@@ -64,6 +67,7 @@ $.extend(f7AutoCompleteBinding, {
         // Render items by passing array with result items
         render(results);
       },
+      // necessary for standalone autocomplete
       on: {
         change: function (value) {
           // Add item text value to item-after

@@ -15,6 +15,8 @@
 #' @param type Defines how to open Autocomplete,
 #' can be page or popup (for Standalone) or dropdown.
 #' @param dropdownPlaceholderText Specify dropdown placeholder text.
+#' @param multiple Whether to allow multiple value selection. Only works
+#' when type is 'popup' or 'page'.
 #'
 #' @examples
 #' if(interactive()){
@@ -40,11 +42,12 @@
 #'       inputId = "myautocomplete2",
 #'       placeholder = "Some text here!",
 #'       type = "popup",
+#'       multiple = TRUE,
 #'       label = "Type a fruit name",
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'                   'Orange', 'Peach', 'Pear', 'Pineapple')
 #'      ),
-#'      textOutput("autocompleteval2")
+#'      verbatimTextOutput("autocompleteval2")
 #'     )
 #'    ),
 #'    server = function(input, output) {
@@ -53,7 +56,7 @@
 #'      print(input$myautocomplete2)
 #'     })
 #'     output$autocompleteval1 <- renderText(input$myautocomplete1)
-#'     output$autocompleteval2 <- renderText(input$myautocomplete2)
+#'     output$autocompleteval2 <- renderPrint(input$myautocomplete2)
 #'    }
 #'  )
 #' }
@@ -65,7 +68,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
                            value = choices[1], choices,
                            typeahead = TRUE, expandInput = TRUE,
                            type = c("popup", "page", "dropdown"),
-                           dropdownPlaceholderText = NULL) {
+                           dropdownPlaceholderText = NULL, multiple = FALSE) {
 
   type <- match.arg(type)
 
@@ -127,6 +130,8 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
        var ", inputId, "_expandInput = ", tolower(expandInput), ";
       "
     )
+  } else {
+    paste0("var ", inputId, "_multiple = ", tolower(multiple), ";")
   }
 
   autoCompleteVals <- shiny::tags$script(
