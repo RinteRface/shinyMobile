@@ -32,6 +32,7 @@ $.extend(f7AutoCompleteBinding, {
       dropdownPlaceholderText = SetTo5(id, "dropdownPlaceholderText");
       openerEl = undefined;
       closeOnSelect = undefined;
+      multiple = undefined;
     } else {
       inputEl = undefined;
       openerEl = '#' + id;

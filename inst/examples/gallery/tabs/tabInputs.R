@@ -131,6 +131,18 @@ tabInputs <- f7Tab(
   tableOutput("smartdata"),
   br(),
 
+  f7BlockTitle(title = "f7AutoComplete input") %>% f7Align(side = "center"),
+  f7AutoComplete(
+    inputId = "myautocomplete",
+    placeholder = "Select a fruit!",
+    type = "dropdown",
+    label = "Type a fruit name",
+    choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
+                'Orange', 'Peach', 'Pear', 'Pineapple')
+  ),
+  verbatimTextOutput("autocompleteval"),
+  br(),
+
   f7BlockTitle(title = "f7Date input") %>% f7Align(side = "center"),
   f7DatePicker(
     inputId = "date",
