@@ -103,6 +103,21 @@ tabOthers <- f7Tab(
   br(), br(), br(),
 
   # timelines
+  f7BlockTitle(title = "f7PhotoBrowser") %>% f7Align(side = "center"),
+  f7PhotoBrowser(
+    id = "photobrowser1",
+    label = "Open",
+    theme = "light",
+    type = "standalone",
+    photos = c(
+      "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+      "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+      "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+    )
+  ),
+  br(), br(),
+
+  # timelines
   f7BlockTitle(title = "f7Timeline") %>% f7Align(side = "center"),
   f7Timeline(
     sides = TRUE,

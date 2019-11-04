@@ -171,6 +171,7 @@ reference:
   - '`f7Chip`'
   - '`f7Message`'
   - '`f7Messages`'
+  - '`f7PhotoBrowser`'
   - '`f7Slide`'
   - '`f7Swiper`'
   - '`f7Timeline`'
