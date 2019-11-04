@@ -34,7 +34,7 @@ $.extend(f7PickerBinding, {
         // otherwise the picker cannot open anymore
         init: function(picker) {
           picker.open();
-          setTimeout(function() {picker.close();}, 10);
+          setTimeout(function() {picker.close();}, 4);
         },
         open: function(picker) {
 

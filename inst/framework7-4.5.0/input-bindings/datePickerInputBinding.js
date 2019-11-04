@@ -21,7 +21,8 @@ $.extend(f7DatePickerBinding, {
         // otherwise the date picker cannot open anymore
         init: function(datePicker) {
           datePicker.open();
-          setTimeout(function() {datePicker.close();}, 10);
+          // minimum timeout value: 4 ms (HTML5 spec)
+          setTimeout(function() {datePicker.close();}, 4);
         }
       }
     });
