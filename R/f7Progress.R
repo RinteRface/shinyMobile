@@ -61,6 +61,51 @@ f7Progress <- function(id, value, color) {
 
 
 
+
+#' update a framework7 progress bar from the server side
+#'
+#' @param session Shiny session object.
+#' @param id Unique progress bar id.
+#' @param value New value.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Progress",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Progress"),
+#'        f7Block(
+#'          f7Progress(id = "pg1", value = 10, color = "blue")
+#'        ),
+#'        f7Slider(
+#'          inputId = "obs",
+#'          label = "Progress value",
+#'          max = 100,
+#'          min = 0,
+#'          value = 50,
+#'          scale = TRUE
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'      observeEvent(input$obs, {
+#'        updateF7Progress(session, id = "pg1", value = input$obs)
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Progress <- function(session, id, value) {
+  session$sendCustomMessage(type = id, message = value)
+}
+
+
+
 #' Create a Framework7 infinite progress bar
 #'
 #' Build a Framework7 infinite progress bar

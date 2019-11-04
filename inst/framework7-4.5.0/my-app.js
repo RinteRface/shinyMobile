@@ -264,10 +264,9 @@ $(function () {
   });
 
 
-  // set up gauges
+  // updateF7Gauge
   gaugeIds = [];
   getAllGaugeIds = function() {
-    //In data-popover attribute we specify CSS selector of popover we need to open
     $('.gauge').each(function() {
       gaugeIds.push($(this).attr('id'));
     });
@@ -275,7 +274,6 @@ $(function () {
 
   // call the function ...
   getAllGaugeIds();
-  console.log(gaugeIds);
 
   gaugeIds.forEach(function(index) {
     Shiny.addCustomMessageHandler(index, function(message) {
@@ -287,6 +285,23 @@ $(function () {
         value: message / 100,
         valueText: message + '%'
       });
+    });
+  });
+
+  // update f7Progress
+  progressIds = [];
+  getAllProgressIds = function() {
+    $('.progressbar').each(function() {
+      progressIds.push($(this).attr('id'));
+    });
+  };
+
+  // call the function ...
+  getAllProgressIds();
+
+  progressIds.forEach(function(index) {
+    Shiny.addCustomMessageHandler(index, function(message) {
+      app.progressbar.set('#' + index, message);
     });
   });
 
