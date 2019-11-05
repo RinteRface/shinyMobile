@@ -19,7 +19,15 @@ sapply(
 shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
-    init = f7Init(skin = "ios", theme = "light", filled = TRUE, serviceWorker = "service-worker.js"),
+    init = f7Init(
+      skin = "md",
+      theme = "light",
+      filled = TRUE,
+      hideNavOnPageScroll = FALSE,
+      hideTabsOnPageScroll = FALSE,
+      serviceWorker = "service-worker.js",
+      panelSwipeSide = NULL
+    ),
     f7TabLayout(
       appbar = f7Appbar(
         maximizable = TRUE,
@@ -37,7 +45,7 @@ shinyApp(
         shadow = TRUE,
         left_panel = TRUE,
         right_panel = TRUE,
-        bigger = TRUE
+        bigger = FALSE
       ),
       # recover the color picker input and update the text background
       # color accordingly.
@@ -78,6 +86,7 @@ shinyApp(
       head(mtcars[, c("mpg", input$smartsel), drop = FALSE])
     }, rownames = TRUE)
     output$selectDate <- renderText(input$date)
+    output$autocompleteval <- renderPrint(input$myautocomplete)
 
     lapply(1:12, function(i) {
       output[[paste0("res", i)]] <- renderText(paste0("Button", i ," is ", input[[paste0("btn", i)]]))
