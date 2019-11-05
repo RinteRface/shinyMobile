@@ -63,7 +63,9 @@ $.extend(f7AutoCompleteBinding, {
         }
         // Find matched items
         for (var i = 0; i < vals.length; i++) {
-          if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0)             results.push(vals[i]);
+          if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+            results.push(vals[i]);
+          }
         }
         // Render items by passing array with result items
         render(results);
@@ -90,25 +92,28 @@ $.extend(f7AutoCompleteBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var a = app.autocomplete.get($(el));
+    console.log(a);
     return a.value;
   },
 
   // see updateF7AutoComplete
   setValue: function(el, value) {
-    //var a= app.autocomplete.get($(el));
+    var a= app.autocomplete.get($(el));
+    a.value = value;
+    $(el).trigger('change');
   },
 
   // see updateF7AutoComplete
   receiveMessage: function(el, data) {
     //var a = app.autocomplete.get($(el));
-    // update placeholder
+    // update choices
     //if (data.hasOwnProperty('choices')) {
-    //  p.cols[0].values = data.choices;
+
     //}
-    //// Update value
-    //if (data.hasOwnProperty('value')) {
-    //  this.setValue(el, data.value);
-    //}
+    // Update value
+    if (data.hasOwnProperty('value')) {
+      this.setValue(el, data.value);
+    }
   },
 
   subscribe: function(el, callback) {

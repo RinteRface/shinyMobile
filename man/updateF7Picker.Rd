@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7-update-inputs.R
 \name{updateF7Picker}
 \alias{updateF7Picker}
-\title{Change the value of a stepper input on the client}
+\title{Change the value of a picker input on the client}
 \usage{
 updateF7Picker(session, inputId, value = NULL, choices = NULL)
 }
@@ -16,7 +16,7 @@ updateF7Picker(session, inputId, value = NULL, choices = NULL)
 \item{choices}{New picker choices.}
 }
 \description{
-Change the value of a stepper input on the client
+Change the value of a picker input on the client
 }
 \examples{
 if (interactive()) {

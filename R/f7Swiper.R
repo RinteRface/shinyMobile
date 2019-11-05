@@ -84,7 +84,7 @@ f7Swiper <- function(..., id, spaceBetween = 50, slidePerView = "auto",
       shiny::tags$script(
         paste0(
           "$(function() {
-            var swiper = app.swiper.create('#", id, "', {
+            app.swiper.create('#", id, "', {
               speed: ", speed, ",
               spaceBetween: ", spaceBetween,",
               slidesPerView: '", slidePerView,"',

@@ -69,6 +69,7 @@ reference:
   - '`f7InsertTab`'
   - '`f7RemoveTab`'
   - '`updateF7Accordion`'
+  - '`updateF7AutoComplete`'
   - '`updateF7Card`'
   - '`updateF7Checkbox`'
   - '`updateF7Date`'

@@ -498,7 +498,7 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 
 
 
-#' Change the value of a stepper input on the client
+#' Change the value of a picker input on the client
 #'
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
@@ -550,3 +550,70 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
   ))
   session$sendInputMessage(inputId, message)
 }
+
+
+
+
+
+#' Change the value of an autocomplete input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param value Picker initial value, if any.
+#'
+#' @note You cannot update choices yet.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update autocomplete"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update autocomplete"),
+#'         f7AutoComplete(
+#'          inputId = "myautocomplete",
+#'          placeholder = "Some text here!",
+#'          type = "dropdown",
+#'          label = "Type a fruit name",
+#'          choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
+#'                      'Orange', 'Peach', 'Pear', 'Pineapple')
+#'         ),
+#'         verbatimTextOutput("autocompleteval")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     observe({
+#'      print(input$myautocomplete)
+#'     })
+#'
+#'     output$autocompleteval <- renderText(input$myautocomplete)
+#'
+#'     observeEvent(input$update, {
+#'       updateF7AutoComplete(
+#'         session,
+#'         inputId = "myautocomplete",
+#'         value = "Banana"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7AutoComplete <- function(session, inputId, value =  NULL) {
+  message <- dropNulls(
+    list(
+      value = value
+    )
+  )
+  session$sendInputMessage(inputId, message)
+}
+
+
+
