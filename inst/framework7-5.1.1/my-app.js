@@ -15,7 +15,9 @@ $(function () {
     $('.page-content').css('background-color', '');
     $('.page-content.tab').css('background-color', '');
     $('.demo-facebook-card .card-footer').css('background-color', '#1c1c1d');
-    $('.sheet-modal, .swipe-handler').css('background-color', '#1c1c1d');
+    $('.sheet-modal, .swipe-handler').css('background-color', '#1b1b1d');
+    $('.popup').css('background-color', '#1b1b1d');
+
 
     // below the sidebar id #f7-sidebar-view ensures that we do not
     // screw up the classic f7Panel style in dark mode
@@ -257,7 +259,6 @@ $(function () {
       // we programatically remove the old tabbar indicator and rebuild it.
       // The with of the tabbar indicator depends on the number of tab items it contains
       segment_width = 100 / $('.toolbar-inner > a').length;
-      console.log(segment_width);
       $('.tab-link-highlight').remove();
       $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
     });
@@ -303,6 +304,25 @@ $(function () {
     Shiny.addCustomMessageHandler(index, function(message) {
       app.progressbar.set('#' + index, message);
     });
+  });
+
+  // show navbar
+  Shiny.addCustomMessageHandler('show_navbar', function(message) {
+    var animate;
+    if (message.animate == "true") animate = true; else animate = false;
+    app.navbar.show('.navbar', animate = message.animate);
+  });
+
+  // hide navbar
+  Shiny.addCustomMessageHandler('hide_navbar', function(message) {
+    var animate; var hideStatusbar;
+    if (message.animate == "true") animate = true; else animate = false;
+    if (message.hideStatusbar == "true") hideStatusbar = true; else hideStatusbar = false;
+    app.navbar.hide(
+      '.navbar',
+      animate = animate,
+      hideStatusbar = hideStatusbar
+    );
   });
 
 });

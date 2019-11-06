@@ -52,9 +52,12 @@ f7Popup <- function(..., id, label = "Open", title) {
       id = id,
       shiny::br(),
       shiny::br(),
-      shiny::p(title),
-      shiny::p(shiny::a(class = "link popup-close", href = "#", "Close")),
-      shiny::p(...)
+      shiny::div(
+        class = "block",
+        shiny::p(title),
+        shiny::p(shiny::a(class = "link popup-close", href = "#", "Close")),
+        shiny::p(...)
+      )
     )
   )
 }

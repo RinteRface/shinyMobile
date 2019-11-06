@@ -6,7 +6,7 @@
 \usage{
 f7Navbar(..., subNavbar = NULL, title = NULL, subtitle = NULL,
   hairline = TRUE, shadow = TRUE, bigger = FALSE,
-  left_panel = FALSE, right_panel = FALSE)
+  transparent = FALSE, left_panel = FALSE, right_panel = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7SearchbarTrigger}. Not compatible with \link{f7Panel}.}
@@ -24,12 +24,18 @@ f7Navbar(..., subNavbar = NULL, title = NULL, subtitle = NULL,
 \item{bigger}{Whether to display bigger title. FALSE by default. Not
 compatible with subtitle.}
 
+\item{transparent}{Whether the navbar should be transparent. FALSE by default.
+Only works if bigger is TRUE.}
+
 \item{left_panel}{Whether to enable the left panel. FALSE by default.}
 
 \item{right_panel}{Whether to enable the right panel. FALSE by default.}
 }
 \description{
 Build a Framework7 Navbar
+}
+\note{
+Currently, bigger parameters does mess with the CSS.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
