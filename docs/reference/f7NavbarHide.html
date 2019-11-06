@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 Navbar — f7Navbar • shinyF7</title>
+<title>Hide a framework7 navbar — f7NavbarHide • shinyF7</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Create a Framework7 Navbar — f7Navbar" />
+<meta property="og:title" content="Hide a framework7 navbar — f7NavbarHide" />
 
-<meta property="og:description" content="Build a Framework7 Navbar" />
+<meta property="og:description" content="Hide a framework7 navbar" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,84 +143,76 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 Navbar</h1>
+    <h1>Hide a framework7 navbar</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Navbar.R'><code>R/f7Navbar.R</code></a></small>
-    <div class="hidden name"><code>f7Navbar.Rd</code></div>
+    <div class="hidden name"><code>f7NavbarHide.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Build a Framework7 Navbar</p>
+    <p>Hide a framework7 navbar</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>f7Navbar</span>(<span class='no'>...</span>, <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bigger</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>transparent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7NavbarHide</span>(<span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/domains'>getDefaultReactiveDomain</a></span>(),
+  <span class='kw'>animate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideStatusbar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>Slot for <a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a>. Not compatible with <a href='f7Panel.html'>f7Panel</a>.</p></td>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     <tr>
-      <th>subNavbar</th>
-      <td><p><a href='f7SubNavbar.html'>f7SubNavbar</a> slot, if any.</p></td>
+      <th>animate</th>
+      <td><p>Whether it should be hidden with animation or not. By default is TRUE.</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>Navbar title.</p></td>
-    </tr>
-    <tr>
-      <th>subtitle</th>
-      <td><p>Navbar subtitle. Not compatible with bigger.</p></td>
-    </tr>
-    <tr>
-      <th>hairline</th>
-      <td><p>Whether to display a thin border on the top of the navbar. TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>shadow</th>
-      <td><p>Whether to display a shadow. TRUE by default.</p></td>
-    </tr>
-    <tr>
-      <th>bigger</th>
-      <td><p>Whether to display bigger title. FALSE by default. Not
-compatible with subtitle.</p></td>
-    </tr>
-    <tr>
-      <th>transparent</th>
-      <td><p>Whether the navbar should be transparent. FALSE by default.
-Only works if bigger is TRUE.</p></td>
-    </tr>
-    <tr>
-      <th>left_panel</th>
-      <td><p>Whether to enable the left panel. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>right_panel</th>
-      <td><p>Whether to enable the right panel. FALSE by default.</p></td>
+      <th>hideStatusbar</th>
+      <td><p>When FALSE (default) it hides navbar partially keeping space
+required to cover statusbar area. Otherwise, navbar will be fully hidden.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Currently, bigger parameters does mess with the CSS.</p>
-    
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
+       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Hide/Show navbar"</span>),
+          <span class='fu'><a href='f7Segment.html'>f7Segment</a></span>(
+             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"hide"</span>, <span class='st'>"Hide navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>),
+             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"show"</span>, <span class='st'>"Show navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
+          )
+       )
+    ),
+    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hide</span>, {
+          <span class='fu'>f7NavbarHide</span>()
+       })
+
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>show</span>, {
+          <span class='fu'><a href='f7NavbarShow.html'>f7NavbarShow</a></span>()
+       })
+    }
+ )
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#note">Note</a></li>
-          </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
-    <h2>Author</h2>
-    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
   </div>
 </div>
 

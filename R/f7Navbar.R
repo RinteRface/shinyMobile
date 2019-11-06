@@ -10,17 +10,29 @@
 #' @param shadow Whether to display a shadow. TRUE by default.
 #' @param bigger Whether to display bigger title. FALSE by default. Not
 #' compatible with subtitle.
+#' @param transparent Whether the navbar should be transparent. FALSE by default.
+#' Only works if bigger is TRUE.
 #' @param left_panel Whether to enable the left panel. FALSE by default.
 #' @param right_panel Whether to enable the right panel. FALSE by default.
+#'
+#' @note Currently, bigger parameters does mess with the CSS.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairline = TRUE,
-                     shadow = TRUE, bigger = FALSE, left_panel = FALSE,
+                     shadow = TRUE, bigger = FALSE, transparent = FALSE, left_panel = FALSE,
                      right_panel = FALSE) {
 
    navbarClass <- "navbar"
+   # bigger and transparent work together
+   if (bigger) {
+      if (transparent) {
+         navbarClass <- paste0(navbarClass, " navbar-large navbar-large-transparent")
+      } else {
+         navbarClass <- paste0(navbarClass, " navbar-large")
+      }
+   }
    if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
    if (!shadow) navbarClass <- paste0(navbarClass, " no-shadow")
 
@@ -53,13 +65,14 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 
    shiny::tags$div(
       class = navbarClass,
+      shiny::tags$div(class = "navbar-bg"),
       shiny::tags$div(
          class = innerCl,
          leftNav,
          if (bigger) {
             shiny::tagList(
                shiny::tags$div(
-                  class = "title sliding",
+                  class = "title",
                   title,
                   # add style to prevent title from
                   # being black. Bug in Framework7?
@@ -157,4 +170,97 @@ f7SubNavbar <- function(...) {
          )
       )
    )
+}
+
+
+
+
+
+#' Hide a framework7 navbar
+#'
+#' @param session Shiny session object.
+#' @param animate Whether it should be hidden with animation or not. By default is TRUE.
+#' @param hideStatusbar  When FALSE (default) it hides navbar partially keeping space
+#' required to cover statusbar area. Otherwise, navbar will be fully hidden.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'     ui = f7Page(
+#'        title = "Accordions",
+#'        f7SingleLayout(
+#'           navbar = f7Navbar("Hide/Show navbar"),
+#'           f7Segment(
+#'              f7Button(inputId = "hide", "Hide navbar", color = "red"),
+#'              f7Button(inputId = "show", "Show navbar", color = "green"),
+#'           )
+#'        )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'        observeEvent(input$hide, {
+#'           f7NavbarHide()
+#'        })
+#'
+#'        observeEvent(input$show, {
+#'           f7NavbarShow()
+#'        })
+#'     }
+#'  )
+#' }
+f7NavbarHide <- function(session = shiny::getDefaultReactiveDomain(), animate = TRUE,
+                         hideStatusbar = FALSE) {
+   message <- dropNulls(
+      list(
+         animate = tolower(animate),
+         hideStatusbar = tolower(hideStatusbar)
+      )
+   )
+   session$sendCustomMessage(type = "hide_navbar", message)
+}
+
+
+
+#' Show a framework7 navbar
+#'
+#' @param session Shiny session object.
+#' @param animate Whether it should be hidden with animation or not. By default is TRUE.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'     ui = f7Page(
+#'        title = "Accordions",
+#'        f7SingleLayout(
+#'           navbar = f7Navbar("Hide/Show navbar"),
+#'           f7Segment(
+#'              f7Button(inputId = "hide", "Hide navbar", color = "red"),
+#'              f7Button(inputId = "show", "Show navbar", color = "green"),
+#'           )
+#'        )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'        observeEvent(input$hide, {
+#'           f7NavbarHide()
+#'        })
+#'
+#'        observeEvent(input$show, {
+#'           f7NavbarShow()
+#'        })
+#'     }
+#'  )
+#' }
+f7NavbarShow <- function(session = shiny::getDefaultReactiveDomain(), animate = TRUE) {
+   session$sendCustomMessage(type = "show_navbar", message = tolower(animate))
 }

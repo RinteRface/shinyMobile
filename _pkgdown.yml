@@ -67,6 +67,8 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`f7InsertTab`'
+  - '`f7NavbarHide`'
+  - '`f7NavbarShow`'
   - '`f7RemoveTab`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
