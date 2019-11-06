@@ -24,8 +24,10 @@
 
 
 /* Disable text selection */
-body {
-  -webkit-user-select: none;
-  -webkit-tap-highligth-color: transparent;
-  -webkit-touch-callout: none;
+@media only screen and (min-width: 800px) {
+  body {
+    -webkit-user-select: none;
+    -webkit-tap-highligth-color: transparent;
+    -webkit-touch-callout: none;
+  }
 }
