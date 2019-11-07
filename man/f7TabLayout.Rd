@@ -4,8 +4,7 @@
 \alias{f7TabLayout}
 \title{Create a Framework7 page with tab layout}
 \usage{
-f7TabLayout(..., navbar, panels = NULL, appbar = NULL,
-  statusbar = f7Statusbar())
+f7TabLayout(..., navbar, panels = NULL, appbar = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tabs}.}
@@ -16,8 +15,6 @@ f7TabLayout(..., navbar, panels = NULL, appbar = NULL,
 Wrap in \link[shiny]{tagList} if multiple panels.}
 
 \item{appbar}{Slot for \link{f7Appbar}.}
-
-\item{statusbar}{Slot for \link{f7Statusbar}.}
 }
 \description{
 Build a Framework7 page with tab layout

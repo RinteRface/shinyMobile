@@ -96,7 +96,6 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = N
 #' @param panels Slot for \link{f7Panel}.
 #' Wrap in \link[shiny]{tagList} if multiple panels.
 #' @param appbar Slot for \link{f7Appbar}.
-#' @param statusbar Slot for \link{f7Statusbar}.
 #'
 #' @examples
 #' if(interactive()){
@@ -145,12 +144,9 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = N
 #'
 #' @export
 f7SingleLayout <- function(..., navbar, toolbar = NULL,
-                           panels = NULL, appbar = NULL,
-                           statusbar = f7Statusbar()) {
+                           panels = NULL, appbar = NULL) {
 
   shiny::tagList(
-    # status bar goes here
-    statusbar,
     # appbar goes here
     appbar,
     # panels go here
@@ -186,7 +182,6 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @param panels Slot for \link{f7Panel}.
 #' Wrap in \link[shiny]{tagList} if multiple panels.
 #' @param appbar Slot for \link{f7Appbar}.
-#' @param statusbar Slot for \link{f7Statusbar}.
 #'
 #' @examples
 #' if(interactive()){
@@ -287,11 +282,9 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f7Statusbar()) {
+f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
 
   shiny::tagList(
-    # status bar goes here
-    statusbar,
     # appbar goes here
     appbar,
     # panels go here
@@ -332,7 +325,6 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f
 #' @param panels Slot for \link{f7Panel}. Expect only a right panel, for instance:
 #' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
 #' @param appbar Slot for \link{f7Appbar}.
-#' @param statusbar Slot for \link{f7Statusbar}.
 #'
 #' @examples
 #' if(interactive()){
@@ -393,8 +385,7 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL, statusbar = f
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
-                          panels = NULL, appbar = NULL,
-                          statusbar = f7Statusbar()) {
+                          panels = NULL, appbar = NULL) {
 
   sidebar <- shiny::tagAppendAttributes(sidebar[[2]], id = "f7-sidebar")
   # this trick to prevent to select the panel view in the following
@@ -409,8 +400,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
       sidebar,
       panels
     ),
-    appbar = appbar,
-    statusbar = statusbar
+    appbar = appbar
   )
 
   splitTemplateCSS <- shiny::singleton(

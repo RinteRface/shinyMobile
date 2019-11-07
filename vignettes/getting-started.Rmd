@@ -101,8 +101,7 @@ f7SingleLayout(
   navbar, 
   toolbar = NULL, 
   panels = NULL,
-  appbar = NULL, 
-  statusbar = f7Statusbar()
+  appbar = NULL
 )
 ```
 
@@ -117,8 +116,7 @@ f7TabLayout(
   ..., 
   navbar, 
   panels = NULL, 
-  appbar = NULL,
-  statusbar = f7Statusbar()
+  appbar = NULL
 )
 ```
   
@@ -136,8 +134,7 @@ f7SplitLayout(.
   sidebar, 
   toolbar = NULL, 
   panels = NULL,
-  appbar = NULL, 
-  statusbar = f7Statusbar()
+  appbar = NULL
 )
 ```
 

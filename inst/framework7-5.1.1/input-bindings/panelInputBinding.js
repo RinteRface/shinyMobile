@@ -3,23 +3,28 @@ var f7PanelBinding = new Shiny.InputBinding();
 
 $.extend(f7PanelBinding, {
 
+  initialize: function(el) {
+    console.log($(el));
+    app.panel.create({
+      el: '#' + $(el).attr('id')
+    });
+  },
+
   find: function(scope) {
     return $(scope).find(".panel");
   },
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var p = $(el)[0];
-    return p.f7Panel.opened;
+    var p = app.panel.get($(el));
+    return p.opened;
   },
 
   // see updateF7Panel
   receiveMessage: function(el, data) {
     // create a variable to update the panel
-    var p = $(el)[0].f7Panel;
+    var p = app.panel.get($(el));
     p.toggle(p.side);
-
-
   },
 
   subscribe: function(el, callback) {

@@ -283,7 +283,16 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #'    server = function(input, output, session) {
 #'
 #'      observe({
-#'        invalidateLater(1000)
+#'        print(
+#'          list(
+#'            panel1 = input$mypanel1,
+#'            panel2 = input$mypanel2
+#'          )
+#'        )
+#'      })
+#'
+#'      observe({
+#'        invalidateLater(2000)
 #'        updateF7Panel(inputId = "mypanel1", session = session)
 #'      })
 #'

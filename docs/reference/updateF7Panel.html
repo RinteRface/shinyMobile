@@ -204,7 +204,16 @@ state, namely open or closed.</p></td>
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/invalidateLater'>invalidateLater</a></span>(<span class='fl'>1000</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+           <span class='kw'>panel1</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>mypanel1</span>,
+           <span class='kw'>panel2</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>mypanel2</span>
+         )
+       )
+     })
+
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/invalidateLater'>invalidateLater</a></span>(<span class='fl'>2000</span>)
        <span class='fu'>updateF7Panel</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypanel1"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
      })
 

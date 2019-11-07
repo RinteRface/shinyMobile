@@ -5,7 +5,7 @@
 \title{Create a Framework7 split layout}
 \usage{
 f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panels = NULL,
-  appbar = NULL, statusbar = f7Statusbar())
+  appbar = NULL)
 }
 \arguments{
 \item{...}{Content.}
@@ -21,8 +21,6 @@ f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panels = NULL,
 \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}}
 
 \item{appbar}{Slot for \link{f7Appbar}.}
-
-\item{statusbar}{Slot for \link{f7Statusbar}.}
 }
 \description{
 This is a modified version of the \link{f7SingleLayout}.
