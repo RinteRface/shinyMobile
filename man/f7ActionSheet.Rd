@@ -8,9 +8,9 @@ f7ActionSheet(id, session = shiny::getDefaultReactiveDomain(),
   grid = FALSE, buttons, icons = NULL)
 }
 \arguments{
-\item{id}{Unique id. This gives the state of the action sheet. \code{input$id} is TRUE
+\item{id}{Unique id. This gives the state of the action sheet. input$id is TRUE
 when opened and inversely. Importantly, if the action sheet has never been opened,
-\code{input$id} is NULL.}
+input$id is NULL.}
 
 \item{session}{Shiny session object.}
 
@@ -20,8 +20,8 @@ when opened and inversely. Importantly, if the action sheet has never been opene
 \code{buttons <- data.frame(
   text = c('Button 1', 'Button 2'),
   color = c(NA, NA)
- ). The currently selection button can be accessed via \code{input$button}. The value is
- numeric. When the action sheet is closed, \code{input$button} is NULL. This is useful
+ ). The currently selection button can be accessed via input$button. The value is
+ numeric. When the action sheet is closed, input$button is NULL. This is useful
  when you want to trigger events after a specific button click.
 }}
 
