@@ -3,6 +3,7 @@
 export("%>%")
 export(f7Accordion)
 export(f7AccordionItem)
+export(f7ActionSheet)
 export(f7Align)
 export(f7Appbar)
 export(f7AutoComplete)

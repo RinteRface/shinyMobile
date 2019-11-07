@@ -1,6 +1,6 @@
 # list all input bindings
 bindings <- list.files(
-  path = system.file("framework7-4.5.0/input-bindings", package = "shinyF7"),
+  path = system.file("framework7-5.1.1/input-bindings", package = "shinyF7"),
   pattern = "Binding\\.js$",
   recursive = TRUE,
   full.names = TRUE

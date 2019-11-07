@@ -151,6 +151,7 @@ reference:
 - title: Modals, Popups...
   desc: Functions that trigger server actions
   contents:
+  - '`f7ActionSheet`'
   - '`f7Dialog`'
   - '`f7Notif`'
   - '`f7Popover`'

@@ -1,0 +1,92 @@
+#' Create a framework7 action sheet
+#'
+#' @param id Unique id. This gives the state of the action sheet. \code{input$id} is TRUE
+#' when opened and inversely. Importantly, if the action sheet has never been opened,
+#' \code{input$id} is NULL.
+#' @param grid Whether to display buttons on a grid. Default to FALSE.
+#' @param buttons dataframe of buttons such as
+#' \code{buttons <- data.frame(
+#'   text = c('Button 1', 'Button 2'),
+#'   color = c(NA, NA)
+#'  ). The currently selection button can be accessed via \code{input$button}. The value is
+#'  numeric. When the action sheet is closed, \code{input$button} is NULL. This is useful
+#'  when you want to trigger events after a specific button click.
+#' }
+#' @param icons A list of icons for buttons. Expect \link{f7Icon}.
+#' @param session Shiny session object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyF7)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "Action sheet",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar("Action sheet"),
+#'        br(),
+#'        f7Button(inputId = "go", "Show action sheet", color = "red")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      observe({
+#'        print(list(
+#'          sheetOpen = input$action1,
+#'          button = input$button
+#'        ))
+#'      })
+#'
+#'      observeEvent(input$button, {
+#'        if (input$button == 1) {
+#'          f7Notif(
+#'            text = "You clicked on the first button",
+#'            icon = f7Icon("bolt_fill"),
+#'            title = "Notification",
+#'            titleRightText = "now",
+#'            session = session
+#'          )
+#'        } else if (input$button == 2) {
+#'          f7Dialog(
+#'            inputId = "test",
+#'            title = "Click me to launch a Toast!",
+#'            type = "confirm",
+#'            text = "You clicked on the second button",
+#'            session = session
+#'          )
+#'        }
+#'      })
+#'
+#'      observeEvent(input$test, {
+#'        f7Toast(session, text = paste("Alert input is:", input$test))
+#'      })
+#'
+#'      observeEvent(input$go, {
+#'        f7ActionSheet(
+#'          grid = TRUE,
+#'          id = "action1",
+#'          icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
+#'          buttons = data.frame(
+#'            text = c('Notification', 'Dialog'),
+#'            color = c(NA, NA)
+#'          )
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+f7ActionSheet <- function(id, session = shiny::getDefaultReactiveDomain(),
+                          grid = FALSE, buttons, icons = NULL) {
+
+  icons <- if (!is.null(icons)) vapply(icons, as.character, character(1))
+
+  message <- list(
+    buttons = jsonlite::toJSON(buttons, pretty = TRUE),
+    grid = tolower(grid),
+    icons = icons,
+    id = id
+  )
+  session$sendCustomMessage(type = "action-sheet", message)
+}

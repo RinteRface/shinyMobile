@@ -20,7 +20,7 @@ shinyApp(
   ui = f7Page(
     title = "miniUI 2.0",
     init = f7Init(
-      skin = "md",
+      skin = "ios",
       theme = "light",
       filled = TRUE,
       hideNavOnPageScroll = FALSE,

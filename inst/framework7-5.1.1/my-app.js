@@ -325,4 +325,50 @@ $(function () {
     );
   });
 
+
+  // handle action sheet
+  Shiny.addCustomMessageHandler('action-sheet', function(message) {
+    var grid;
+    if (message.grid == "true") grid = true; else grid = false;
+
+    // define function that set an inputvalue those name depends on an index
+    // parameter
+    function setButtonInput(index) { Shiny.setInputValue('button', index) }
+
+    // add those functions to the message.button array
+    function setOnClick(element, index) {
+      Object.defineProperty(element, 'onClick', {
+        value: function() {setButtonInput(index + 1);},
+        writable: false
+      });
+    }
+
+    message.buttons.forEach(setOnClick);
+
+    // add icons
+    for (i = 0; i < message.buttons.length; i++) {
+      message.buttons[i].icon = message.icons[i];
+    }
+
+    // create the sheet
+    var actionSheet = app.actions.create({
+      //el: message.id,
+      grid: grid,
+      buttons: message.buttons,
+      // below we set up events to set/update input values for Shiny
+      on: {
+        opened: function () {
+          Shiny.setInputValue(message.id, true);
+        },
+        closed: function () {
+          Shiny.setInputValue(message.id, false);
+          // input$button is null when the action is closed
+          Shiny.setInputValue('button', null);
+        }
+      }
+    });
+    // open the sheet
+    actionSheet.open();
+  });
+
 });
