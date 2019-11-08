@@ -77,7 +77,7 @@ shiny::tags$link(rel = "manifest", href = "manifest.json"),
 
 
 However to access launch
-icons and splatch screens, you must create a manifest.json file and an icon asset folder in the www folder of your app: more [here](https://github.com/RinteRface/shinyF7/tree/master/inst/examples/gallery).
+icons and splatch screens, you must create a manifest.json file and an icon asset folder in the www folder of your app: more [here](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery).
 
 The manifest.json file could be like:
 
