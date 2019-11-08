@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-By default, shinyF7 opens in light mode. However,
+By default, shinyMobile opens in light mode. However,
 specifying the `f7Init()` theme option to "dark" will enable this mode.
 
 <div class="marvel-device iphone-x">
@@ -31,7 +31,7 @@ specifying the `f7Init()` theme option to "dark" will enable this mode.
 
 ```r
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(echarts4r)
 library(shinyWidgets)
 
@@ -42,7 +42,7 @@ shiny::shinyApp(
     f7TabLayout(
       panels = tagList(
        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
       ),
       navbar = f7Navbar(
         title = "Tabs",

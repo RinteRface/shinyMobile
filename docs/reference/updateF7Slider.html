@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Change the value of a slider input on the client — updateF7Slider • shinyF7</title>
+<title>Change the value of a slider input on the client — updateF7Slider • shinyMobile</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -64,7 +64,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">shinyF7</a>
+        <a class="navbar-link" href="../index.html">shinyMobile</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -144,7 +144,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Change the value of a slider input on the client</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7-update-inputs.R'><code>R/f7-update-inputs.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7-update-inputs.R'><code>R/f7-update-inputs.R</code></a></small>
     <div class="hidden name"><code>updateF7Slider.Rd</code></div>
     </div>
 
@@ -193,13 +193,13 @@
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Slider"</span>),
-      <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update slider"</span>),
-        <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Slider"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Card'>f7Card</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update slider"</span>),
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Slider'>f7Slider</a></span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Range values"</span>,
           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
@@ -217,7 +217,7 @@
     <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
 
     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
-      <span class='fu'>updateF7Slider</span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/updateF7Slider'>updateF7Slider</a></span>(
         <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>),

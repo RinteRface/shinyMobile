@@ -1,4 +1,4 @@
-Package: shinyF7
+Package: shinyMobile
 Type: Package
 Title: 'shiny' API for 'Framework7'
 Version: 0.1.0
@@ -16,8 +16,8 @@ Imports: shiny, htmltools, jsonlite, magrittr
 Suggested: shinyWidgets, echarts4r
 License: GPL-2
 Encoding: UTF-8
-URL: https://github.com/RinteRface/shinyF7, https://rinterface.github.io/shinyF7/
-BugReports: https://github.com/RinteRface/shinyF7/issues
+URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
+BugReports: https://github.com/RinteRface/shinyMobile/issues
 LazyData: true
 RoxygenNote: 6.1.1
 Suggests: 

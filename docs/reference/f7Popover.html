@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a framework 7 popover — f7Popover • shinyF7</title>
+<title>Create a framework 7 popover — f7Popover • shinyMobile</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -65,7 +65,7 @@ or observeEvent context. Only works for input elements!" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">shinyF7</a>
+        <a class="navbar-link" href="../index.html">shinyMobile</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -145,7 +145,7 @@ or observeEvent context. Only works for input elements!" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a framework 7 popover</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Popover.R'><code>R/f7Popover.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Popover.R'><code>R/f7Popover.R</code></a></small>
     <div class="hidden name"><code>f7Popover.Rd</code></div>
     </div>
 
@@ -181,13 +181,13 @@ or observeEvent context. Only works for input elements!</p>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Popover"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Popover"</span>),
-       <span class='fu'><a href='f7PopoverTarget.html'>f7PopoverTarget</a></span>(
-         <span class='fu'><a href='f7Button.html'>f7Button</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Popover"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7PopoverTarget'>f7PopoverTarget</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(
            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>,
            <span class='st'>"Go!"</span>
          ),
@@ -195,8 +195,8 @@ or observeEvent context. Only works for input elements!</p>
        ),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
-       <span class='fu'><a href='f7PopoverTarget.html'>f7PopoverTarget</a></span>(
-         <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7PopoverTarget'>f7PopoverTarget</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Slider'>f7Slider</a></span>(
            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"slider"</span>,
            <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Value"</span>,
            <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
@@ -209,7 +209,7 @@ or observeEvent context. Only works for input elements!</p>
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
-       <span class='fu'>f7Popover</span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Popover'>f7Popover</a></span>(
          <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
          <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"This is a f7Button"</span>,
          <span class='no'>session</span>
@@ -217,7 +217,7 @@ or observeEvent context. Only works for input elements!</p>
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({
-       <span class='fu'>f7Popover</span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Popover'>f7Popover</a></span>(
          <span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"test2"</span>,
          <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"This is a f7Slider"</span>,
          <span class='no'>session</span>

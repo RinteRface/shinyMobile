@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-shinyF7 comes with 2 predefined layouts. The second layout is the `f7TabLayout()`,
+shinyMobile comes with 2 predefined layouts. The second layout is the `f7TabLayout()`,
 very similar to that of [miniUI](https://github.com/rstudio/miniUI).
 
 <div class="marvel-device iphone-x">
@@ -33,7 +33,7 @@ The `f7Init()` function allows to change theme from material design to iOS.
 
 ```r
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(shinyWidgets)
 
 shiny::shinyApp(

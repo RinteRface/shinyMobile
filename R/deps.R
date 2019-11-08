@@ -31,7 +31,7 @@ addCSSDeps <- function(x) {
     htmltools::htmlDependency(
       name = "framework7",
       version = "5.1.1",
-      src = c(file = system.file("framework7-5.1.1", package = "shinyF7")),
+      src = c(file = system.file("framework7-5.1.1", package = "shinyMobile")),
       script = NULL,
       stylesheet = c(
         framework7_css,
@@ -87,9 +87,9 @@ addJSDeps <- function() {
 f7InputsDeps <- function() {
   htmltools::htmlDependency(
     name = "framework7-bindings",
-    version = as.character(packageVersion("shinyF7")),
+    version = as.character(packageVersion("shinyMobile")),
     src = c(
-      file = system.file("framework7-5.1.1/input-bindings", package = "shinyF7"),
+      file = system.file("framework7-5.1.1/input-bindings", package = "shinyMobile"),
       href = "framework7-5.1.1/input-bindings"
     ),
     package = "shinyF7",

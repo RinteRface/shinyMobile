@@ -1,9 +1,9 @@
-# shinyF7 <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
+# shinyMobile <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
 [![Build Status](https://travis-ci.org/RinteRface/shinyF7.svg?branch=master)](https://travis-ci.org/RinteRface/shinyF7)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RinteRface/shinyF7?branch=master&svg=true)](https://ci.appveyor.com/project/RinteRface/shinyF7)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Project Status](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![CRAN status](https://www.r-pkg.org/badges/version/shinyF7)](https://cran.r-project.org/package=shinyF7)
+[![CRAN status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-project.org/package=shinyMobile)
 
 > shiny API for Framework7 (IOS/android)
 
@@ -12,7 +12,7 @@
 
 ```r
 # for the latest version
-devtools::install_github("RinteRface/shinyF7")
+devtools::install_github("RinteRface/shinyMobile")
 ```
 
 ## Demo
@@ -63,7 +63,7 @@ Left side: android demo, right side: iOS demo
 
 ### Configuration
 
-shinyF7 is PWA capable, meaning that it can be displayed full screen on many mobile
+shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile
 devices. This feature is automatically handled by `f7Page()`: 
 
 ```r
@@ -77,7 +77,7 @@ shiny::tags$link(rel = "manifest", href = "manifest.json"),
 
 
 However to access launch
-icons, splatch screens ... you must create a manifest.json file and an icon asset folder in the www folder of your app: more [here](https://github.com/RinteRface/shinyF7/tree/master/inst/examples/gallery).
+icons and splatch screens, you must create a manifest.json file and an icon asset folder in the www folder of your app: more [here](https://github.com/RinteRface/shinyF7/tree/master/inst/examples/gallery).
 
 The manifest.json file could be like:
 

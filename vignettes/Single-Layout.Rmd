@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-shinyF7 comes with 2 predefined layouts. `f7SingleLayout()` is dedicated to build simple, 
+shinyMobile comes with 3 predefined layouts. `f7SingleLayout()` is dedicated to build simple, 
 one-page apps or gadgets.
 
 <div class="marvel-device iphone-x">
@@ -31,7 +31,7 @@ one-page apps or gadgets.
 
 ```r
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(echarts4r)
 
 plot <- USArrests %>%

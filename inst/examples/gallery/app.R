@@ -1,10 +1,10 @@
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(plotly)
 
 # source modules
 e <- environment()
-path <- system.file("examples/gallery/tabs/", package = "shinyF7")
+path <- system.file("examples/gallery/tabs/", package = "shinyMobile")
 sapply(
   list.files(
     path,
@@ -18,15 +18,14 @@ sapply(
 # shiny app
 shinyApp(
   ui = f7Page(
-    title = "miniUI 2.0",
+    title = "shinyMobile",
     init = f7Init(
-      skin = "ios",
+      skin = "md",
       theme = "light",
       filled = TRUE,
       hideNavOnPageScroll = FALSE,
       hideTabsOnPageScroll = FALSE,
-      serviceWorker = "service-worker.js",
-      panelSwipeSide = NULL
+      serviceWorker = "service-worker.js"
     ),
     f7TabLayout(
       appbar = f7Appbar(

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`f7SplitLayout()` is the third layout introduced with shinyF7. This template is focused for 
+`f7SplitLayout()` is the third layout introduced with shinyMobile. This template is focused for 
 tablet use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to `f7Panel()`. While `f7Panel()` may also be embedded
 in both `f7SingleLayout()` and `f7TabsLayout`, it accepts extra arguments like `f7PanelMenu()` and
 `f7PanelItem()`, which are very similar to sidebar items of shinydashboard:
@@ -53,7 +53,7 @@ this prevents you from having a tabbed navigation.
 
 ```r
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(echarts4r)
 
 # polar diagram

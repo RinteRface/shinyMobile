@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 swiper — f7Swiper • shinyF7</title>
+<title>Create a Framework7 swiper — f7Swiper • shinyMobile</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -64,7 +64,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">shinyF7</a>
+        <a class="navbar-link" href="../index.html">shinyMobile</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
@@ -144,7 +144,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a Framework7 swiper</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyF7/blob/master/R/f7Swiper.R'><code>R/f7Swiper.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Swiper.R'><code>R/f7Swiper.R</code></a></small>
     <div class="hidden name"><code>f7Swiper.Rd</code></div>
     </div>
 
@@ -162,7 +162,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for <a href='f7Slide.html'>f7Slide</a>.</p></td>
+      <td><p>Slot for f7Slide.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -192,9 +192,9 @@
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
 
- <span class='no'>timeline</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='f7Timeline.html'>f7Timeline</a></span>(
+ <span class='no'>timeline</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Timeline'>f7Timeline</a></span>(
   <span class='kw'>sides</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TimelineItem'>f7TimelineItem</a></span>(
    <span class='st'>"Another text"</span>,
    <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"01 Dec"</span>,
    <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -203,7 +203,7 @@
    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Subtitle"</span>,
    <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>
   ),
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TimelineItem'>f7TimelineItem</a></span>(
    <span class='st'>"Another text"</span>,
    <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"02 Dec"</span>,
    <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -211,7 +211,7 @@
    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Title"</span>,
    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"Subtitle"</span>
   ),
-  <span class='fu'><a href='f7TimelineItem.html'>f7TimelineItem</a></span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TimelineItem'>f7TimelineItem</a></span>(
    <span class='st'>"Another text"</span>,
    <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"03 Dec"</span>,
    <span class='kw'>card</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -222,17 +222,17 @@
  )
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Swiper"</span>),
-     <span class='fu'>f7Swiper</span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Swiper"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Swiper'>f7Swiper</a></span>(
      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"my-swiper"</span>,
-     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Slide'>f7Slide</a></span>(
       <span class='no'>timeline</span>
      ),
-     <span class='fu'><a href='f7Slide.html'>f7Slide</a></span>(
-      <span class='fu'><a href='f7Toggle.html'>f7Toggle</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Slide'>f7Slide</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Toggle'>f7Toggle</a></span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"toggle"</span>,
        <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My toggle"</span>,
        <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,

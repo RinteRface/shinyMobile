@@ -11,16 +11,16 @@ vignette: >
 
 ## Introduction
 
-- shinyF7 is built on top of the [framework7](https://framework7.io) template. It may be 
+- shinyMobile is built on top of the latest [framework7](https://framework7.io) template (V5.1.1). It may be 
 used for different purposes:
 
-  * develop desktop shinyapps
   * develop mobile-ready shinyapps
   * develop progressive web shinyapps (PWA, similar to native apps)
+  * develop desktop shinyapps
   
 ### 3 Custom skins
 
-- shinyF7 has 3 skins:
+- shinyMobile has 3 skins:
 
   * aurora for desktop apps
   * ios and md for mobile apps
@@ -34,16 +34,16 @@ It is possible to apply the iOS skin on android and inversely, even though not r
 
 ### 3 Layouts
 
-- shinyF7 brings 3 out of the box layouts:
+- shinyMobile brings 3 out of the box layouts:
 
-  * `f7SingleLayout`: develop simple shinyF7 Apps (best choice for iOS/android Apps)
+  * `f7SingleLayout`: develop simple shinyMobile Apps (best choice for iOS/android Apps)
   * `f7TabLayout`: develop complex multi tabbed Apps (best choice for iOS/android Apps)
   * `f7SplitLayout`: for tablets and desktop with a sidebar, navbar and a main panel
 
 
 ### New Inputs
 
-- shinyF7 has its own custom input widgets with unique design for each skin (iOS/android/aurora):
+- shinyMobile has its own custom input widgets with unique design for each skin (iOS/android/aurora):
 
   * f7Slider
   * f7Text
@@ -75,13 +75,13 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * more to come on a future release
   
 
-- shinyF7 has custom input values for sidebar and tabs as well as dedicated update 
+- shinyMobile has custom input values for sidebar and tabs as well as dedicated update 
 functions to act on the server side:
  
   * updateF7Tabs
   * more to come soon
   
-- shinyF7 has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
+- shinyMobile has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
 
   * updateF7Panel
   
@@ -183,10 +183,10 @@ f7Page(
 ```
 
 `f7Init()` is mandatory (see below) since it sets up the app. preloader is useful
-in case you want to display a loading screen. `f7Page()` accepts any shinyF7 layout.
+in case you want to display a loading screen. `f7Page()` accepts any shinyMobile layout.
 
 ##### Navbar
-The navbar is one of the most important element of any shinyF7 layout.
+The navbar is one of the most important element of any shinyMobile layout.
 It contains a title, a subtitle, triggers for both right and left panels (`f7Panel()`) as well
 as a subnavbar (`f7SubNavbar()`).
 
@@ -290,10 +290,8 @@ f7Init(
   theme = c("dark", "light"), 
   filled = FALSE, 
   color = NULL, 
-  fastClicks = TRUE,
   tapHold = TRUE,
   iosTouchRipple = FALSE, 
-  panelSwipeSide = c("left", "right", "both"),
   iosCenterTitle = TRUE, 
   hideNavOnPageScroll = TRUE,
   hideTabsOnPageScroll = FALSE, 
@@ -304,12 +302,9 @@ f7Init(
 As stated above, you may choose between 3 skins and 2 color themes. There is a third option
 called "filled" that allows to fill the navbar and toolbar if enabled. The color options simply
 changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
-shinyF7 brings a lot of different colors. The "panelSwipeSide" let panels to be shifted
-by hand. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar
-which is useful to focus on the content. Note that the serviceWorker option is not working at the moment.
-The tapHold parameter ensure that the "long-press" feature is activated.
-
-framework7 has more options which will be implemented in a next version of shinyF7.
+shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar
+which is useful to focus on the content. Note that the serviceWorker option is not working at the moment. The tapHold parameter ensure that the "long-press" feature is activated.
+framework7 has more options which will be implemented in a next version of shinyMobile.
 
 
 

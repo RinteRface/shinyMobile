@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-shinyF7 is particularly well suited to build shiny gagdet. To convert an existing app
+shinyMobile is particularly well suited to build shiny gagdet. To convert an existing app
 to a gadget, wrap it in the `shiny::runGadget()` function. 
 
 
@@ -18,5 +18,5 @@ to a gadget, wrap it in the `shiny::runGadget()` function.
 ```r
 library(shiny)
 library(shinyF7)
-runGadget(shinyAppDir(system.file("examples/tab_layout", package = "shinyF7")))
+runGadget(shinyAppDir(system.file("examples/tab_layout", package = "shinyMobile")))
 ```
