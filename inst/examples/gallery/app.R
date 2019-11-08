@@ -212,5 +212,15 @@ shinyApp(
       f7Toast(session, text = paste("Alert input is:", input$actionSheetDialog))
     })
 
+    # update progress bar
+    observeEvent(input$updatepg1, {
+      updateF7Progress(session, id = "pg1", value = input$updatepg1)
+    })
+
+    # update gauge
+    observeEvent(input$updategauge1, {
+      updateF7Gauge(session, id = "mygauge1", value = input$updategauge1)
+    })
+
   }
 )

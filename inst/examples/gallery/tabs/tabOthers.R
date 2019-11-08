@@ -154,6 +154,14 @@ tabOthers <- f7Tab(
   f7Block(
     strong = TRUE,
     f7Progress(id = "pg1", value = 10, color = "yellow"),
+    f7Slider(
+      inputId = "updatepg1",
+      label = "Update progress 1",
+      max = 100,
+      min = 0,
+      value = 50,
+      scale = TRUE
+    ),
     f7Progress(id = "pg2", value = 100, color = "green"),
     f7Progress(id = "pg3", value = 50, color = "deeppurple"),
     f7ProgressInf()
@@ -192,6 +200,14 @@ tabOthers <- f7Tab(
           labelText = "Other thing"
         )
       )
+    ),
+    f7Stepper(
+      inputId = "updategauge1",
+      label = "Update gauge 1",
+      step = 10,
+      min = 0,
+      max = 100,
+      value = 50
     )
   )
 )
