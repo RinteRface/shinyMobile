@@ -26,7 +26,7 @@ Create a Framework7 dialog window
 # simple alert
 if (interactive()) {
   library(shiny)
-  library(shinyF7)
+  library(shinyMobile)
   shinyApp(
     ui = f7Page(
       title = "My App",
@@ -49,7 +49,7 @@ if (interactive()) {
 # confirm alert
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
    ui = f7Page(
      title = "My App",
@@ -80,7 +80,7 @@ if (interactive()) {
 # prompt dialog
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
    ui = f7Page(
      title = "My App",
@@ -114,7 +114,7 @@ if (interactive()) {
 # login dialog
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
    ui = f7Page(
      title = "My App",

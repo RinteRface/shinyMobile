@@ -19,7 +19,7 @@ Remove a \link{f7Tab} in a \link{f7Tabs}
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  ui <- f7Page(
   title = "Remove a tab",

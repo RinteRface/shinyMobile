@@ -1,5 +1,5 @@
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(shinyWidgets)
 
 shiny::shinyApp(

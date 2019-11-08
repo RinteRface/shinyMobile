@@ -178,40 +178,40 @@ example below. The second list does not work.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TabLayout'>f7TabLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7TabLayout'>f7TabLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7ListIndex"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        ),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tabs'>f7Tabs</a></span>(
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tabs'>f7Tabs</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"List 1"</span>,
-           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListIndex'>f7ListIndex</a></span>(
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListIndex'>f7ListIndex</a></span>(
              <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"listIndex1"</span>,
              <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>LETTERS</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-               <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListGroup'>f7ListGroup</a></span>(
+               <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListGroup'>f7ListGroup</a></span>(
                  <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
                  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-                   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListIndexItem'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
+                   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListIndexItem'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
                  })
                )
              })
            )
          ),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"List 2"</span>,
-           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListIndex'>f7ListIndex</a></span>(
+           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListIndex'>f7ListIndex</a></span>(
              <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"listIndex2"</span>,
              <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>LETTERS</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-               <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListGroup'>f7ListGroup</a></span>(
+               <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListGroup'>f7ListGroup</a></span>(
                  <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
                  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-                   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ListIndexItem'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
+                   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListIndexItem'>f7ListIndexItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
                  })
                )
              })

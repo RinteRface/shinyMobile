@@ -12,7 +12,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  timeline <- f7Timeline(
 #'   sides = TRUE,

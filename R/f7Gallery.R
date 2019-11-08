@@ -1,6 +1,6 @@
-#' @title Launch the shinyF7 Gallery
+#' @title Launch the shinyMobile Gallery
 #'
-#' @description A gallery of all components available in shinyF7.
+#' @description A gallery of all components available in shinyMobile.
 #'
 #' @export
 #'
@@ -19,7 +19,7 @@ f7Gallery <- function() { # nocov start
   shiny::shinyAppFile(
     system.file(
       "examples/gallery/app.R",
-      package = 'shinyF7',
+      package = 'shinyMobile',
       mustWork = TRUE
     )
   )

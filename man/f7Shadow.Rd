@@ -21,7 +21,7 @@ Build a Framework7 shadow effect
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

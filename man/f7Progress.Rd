@@ -19,7 +19,7 @@ Build a Framework7 progress bar
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

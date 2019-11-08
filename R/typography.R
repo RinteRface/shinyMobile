@@ -8,7 +8,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -55,7 +55,7 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -97,7 +97,7 @@ f7Float <- function(tag, side = c("left", "right")) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  cardTag <- f7Card(
 #'   title = "Card header",
@@ -149,7 +149,7 @@ f7Margin <- function(tag, side = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  cardTag <- f7Card(
 #'   title = "Card header",

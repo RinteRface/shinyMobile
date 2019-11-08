@@ -20,7 +20,7 @@ Triggered after long press on an element.
 \examples{
 if (interactive()) {
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 
  shinyApp(
    ui = f7Page(

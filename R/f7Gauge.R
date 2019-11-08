@@ -22,7 +22,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -115,7 +115,7 @@ f7Gauge <- function(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'
 #'  shiny::shinyApp(

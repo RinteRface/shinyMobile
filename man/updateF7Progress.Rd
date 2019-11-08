@@ -19,7 +19,7 @@ update a framework7 progress bar from the server side
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

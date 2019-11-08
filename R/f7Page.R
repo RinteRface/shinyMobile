@@ -2,7 +2,7 @@
 #'
 #' Build a Framework7 page
 #'
-#' @param ... Slot for shinyF7 skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+#' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
@@ -100,7 +100,7 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = N
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
@@ -186,7 +186,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -329,7 +329,7 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",

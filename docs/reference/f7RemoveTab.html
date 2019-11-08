@@ -177,36 +177,36 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
- <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+ <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Remove a tab"</span>,
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TabLayout'>f7TabLayout</a></span>(
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7TabLayout'>f7TabLayout</a></span>(
    <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
    ),
-   <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(
+   <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tabs"</span>,
      <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
      <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
      <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
      <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
    ),
-   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tabs'>f7Tabs</a></span>(
+   <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tabs'>f7Tabs</a></span>(
      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Text 1"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='st'>"remove1"</span>,<span class='st'>"Remove tab 1"</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='st'>"remove1"</span>,<span class='st'>"Remove tab 1"</span>)
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Text 2"</span>)
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
        <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
        <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Text 3"</span>)
@@ -218,7 +218,7 @@
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>tabset1</span>))
    <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>remove1</span>, {
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7RemoveTab'>f7RemoveTab</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7RemoveTab'>f7RemoveTab</a></span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tabset1"</span>,
        <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>
      )

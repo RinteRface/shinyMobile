@@ -17,7 +17,7 @@ update a framework 7 sheet modal
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
     ui = f7Page(
        color = "pink",

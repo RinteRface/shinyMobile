@@ -110,7 +110,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -188,7 +188,7 @@ f7SubNavbar <- function(...) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'     ui = f7Page(
@@ -236,7 +236,7 @@ f7NavbarHide <- function(session = shiny::getDefaultReactiveDomain(), animate = 
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'     ui = f7Page(

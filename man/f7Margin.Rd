@@ -19,7 +19,7 @@ Build a Framework7 margin
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  cardTag <- f7Card(
   title = "Card header",

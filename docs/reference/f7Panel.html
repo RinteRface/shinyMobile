@@ -196,13 +196,13 @@ state, namely open or closed.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Init'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"ios"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(
+     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Init'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"ios"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Single Layout"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -210,29 +210,29 @@ state, namely open or closed.</p></td>
          <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        ),
        <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypanel1"</span>),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypanel2"</span>)
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypanel1"</span>),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypanel2"</span>)
        ),
-       <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Toolbar'>f7Toolbar</a></span>(
+       <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Toolbar'>f7Toolbar</a></span>(
          <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
          <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Link'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Link'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Link'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Link'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
        ),
        <span class='co'># main content</span>
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Shadow'>f7Shadow</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Shadow'>f7Shadow</a></span>(
          <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
          <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Card'>f7Card</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
            <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
            <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>h1</a></span>(<span class='st'>"You only see me by opening the left panel"</span>),
            <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot"</span>),
            <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Badge'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Badge'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
            )
          )
        )
@@ -244,7 +244,7 @@ state, namely open or closed.</p></td>
 
        <span class='no'>state</span> <span class='kw'>&lt;-</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>mypanel2</span>) <span class='st'>"open"</span> <span class='kw'>else</span> <span class='st'>"closed"</span>
 
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Toast'>f7Toast</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Toast'>f7Toast</a></span>(
          <span class='no'>session</span>,
          <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"Right panel is "</span>, <span class='no'>state</span>),
          <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"center"</span>,

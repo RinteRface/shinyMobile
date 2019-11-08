@@ -25,7 +25,7 @@ To be used in combination with \link{f7ListItem}
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

@@ -181,15 +181,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Update picker"</span>),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Card'>f7Card</a></span>(
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update picker"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Picker'>f7Picker</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Update picker"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update picker"</span>),
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Picker'>f7Picker</a></span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
           <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Picker Input"</span>,
@@ -204,7 +204,7 @@
     <span class='no'>output</span>$<span class='no'>pickerval</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderText'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>mypicker</span>)
 
     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/updateF7Picker'>updateF7Picker</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/updateF7Picker'>updateF7Picker</a></span>(
         <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"b"</span>,

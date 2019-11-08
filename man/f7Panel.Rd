@@ -30,7 +30,7 @@ Build a Framework7 panel
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
    ui = f7Page(
      title = "My app",

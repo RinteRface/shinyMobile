@@ -8,7 +8,7 @@
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  ui <- f7Page(
 #'    f7SingleLayout(
@@ -73,7 +73,7 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  ui <- f7Page(
 #'    f7SingleLayout(
@@ -112,7 +112,7 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  ui <- f7Page(
 #'    f7SingleLayout(
@@ -147,7 +147,7 @@ updateF7Date <- updateF7Text
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  ui <- f7Page(
 #'    f7SingleLayout(
@@ -189,7 +189,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 # #' @examples
 # #' if (interactive()) {
 # #'  library(shiny)
-# #'  library(shinyF7)
+# #'  library(shinyMobile)
 # #'
 # #'  ui <- f7Page(
 # #'    f7Button(color = "black", label = "Action Button", inputId = "button")
@@ -236,7 +236,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 # #' @examples
 # #' if(interactive()){
 # #'  library(shiny)
-# #'  library(shinyF7)
+# #'  library(shinyMobile)
 # #'
 # #'  shiny::shinyApp(
 # #'    ui = f7Page(
@@ -286,7 +286,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'   ui = f7Page(
@@ -352,7 +352,7 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'    ui = f7Page(
@@ -424,7 +424,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'   ui = f7Page(
@@ -510,7 +510,7 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
@@ -568,7 +568,7 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",

@@ -26,7 +26,7 @@ Insert a \link{f7Tab} in a \link{f7Tabs}
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
    ui = f7Page(
      title = "Insert a tab Before the target",

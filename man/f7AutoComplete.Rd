@@ -41,7 +41,7 @@ Build a Framework7 autocomplete input
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shinyApp(
    ui = f7Page(

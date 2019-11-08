@@ -21,7 +21,7 @@ Hide a framework7 navbar
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
     ui = f7Page(

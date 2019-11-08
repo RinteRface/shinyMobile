@@ -12,7 +12,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  items <- tagList(
 #'    f7TimelineItem(

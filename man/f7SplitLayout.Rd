@@ -29,7 +29,7 @@ It is intended to be used with tablets.
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
    ui = f7Page(
      title = "My app",

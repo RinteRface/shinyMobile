@@ -24,7 +24,7 @@ Build a Framework7 picker input
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shinyApp(
    ui = f7Page(

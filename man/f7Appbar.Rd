@@ -26,7 +26,7 @@ trigger \link{f7Panel}.
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  cities <- names(precip)
 

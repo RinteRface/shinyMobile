@@ -26,7 +26,7 @@ Change the value of a slider input on the client
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shinyApp(
   ui = f7Page(

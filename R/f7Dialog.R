@@ -12,7 +12,7 @@
 #' # simple alert
 #' if (interactive()) {
 #'   library(shiny)
-#'   library(shinyF7)
+#'   library(shinyMobile)
 #'   shinyApp(
 #'     ui = f7Page(
 #'       title = "My App",
@@ -35,7 +35,7 @@
 #' # confirm alert
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My App",
@@ -66,7 +66,7 @@
 #' # prompt dialog
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My App",
@@ -100,7 +100,7 @@
 #' # login dialog
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My App",

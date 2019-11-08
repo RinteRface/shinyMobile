@@ -30,7 +30,7 @@ Create a f7 slider
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(
@@ -63,7 +63,7 @@ if(interactive()){
 # Create a range
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

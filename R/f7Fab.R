@@ -19,7 +19,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -129,7 +129,7 @@ f7Fab <- function(inputId, label, width = NULL, ...) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(

@@ -18,7 +18,7 @@ Buggy display when status is not NULL.
 \examples{
 if(interactive()){
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shiny::shinyApp(
    ui = f7Page(

@@ -20,7 +20,7 @@
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'   shiny::shinyApp(
 #'     ui = f7Page(
 #'       color = "pink",
@@ -166,7 +166,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'     ui = f7Page(
 #'        color = "pink",

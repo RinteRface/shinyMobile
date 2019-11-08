@@ -30,7 +30,7 @@ Animated does not work when set to FALSE and swipeable is FALSE.
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
   ui = f7Page(
     title = "Tab Layout",

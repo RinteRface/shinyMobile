@@ -21,7 +21,7 @@ Create an f7 checkbox group input
 \examples{
 if(interactive()){
   library(shiny)
-  library(shinyF7)
+  library(shinyMobile)
 
   shiny::shinyApp(
     ui = f7Page(

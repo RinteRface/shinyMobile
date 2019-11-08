@@ -188,18 +188,18 @@
     <pre class="examples"><div class='input'><span class='co'># simple alert</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
       )
     ),
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
       <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Dialog'>f7Dialog</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Dialog'>f7Dialog</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
          <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is an alert dialog"</span>,
          <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
@@ -211,19 +211,19 @@
 <span class='co'># confirm alert</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Dialog'>f7Dialog</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Dialog'>f7Dialog</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"confirm"</span>,
@@ -233,7 +233,7 @@
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Toast'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Toast'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
      })
 
    }
@@ -242,13 +242,13 @@
 <span class='co'># prompt dialog</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"res"</span>)
      )
    ),
@@ -259,7 +259,7 @@
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Dialog'>f7Dialog</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Dialog'>f7Dialog</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"prompt"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prompt"</span>,
@@ -268,7 +268,7 @@
        )
      })
 
-     <span class='no'>output</span>$<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderUI'>renderUI</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7BlockTitle'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>prompt</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>))
+     <span class='no'>output</span>$<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderUI'>renderUI</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7BlockTitle'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>prompt</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>))
    }
  )
 }
@@ -276,13 +276,13 @@
 <span class='co'># login dialog</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/htmlOutput'>uiOutput</a></span>(<span class='st'>"ui"</span>)
      )
    ),
@@ -293,7 +293,7 @@
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Dialog'>f7Dialog</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Dialog'>f7Dialog</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"login"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"login"</span>,

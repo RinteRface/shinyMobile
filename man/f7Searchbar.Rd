@@ -25,7 +25,7 @@ Create a Framework 7 searchbar
 \examples{
 if (interactive()) {
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 
 cars <- rownames(mtcars)
 

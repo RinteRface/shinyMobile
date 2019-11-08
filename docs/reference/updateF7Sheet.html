@@ -173,15 +173,15 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
        <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Sheet"</span>),
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Sheet'>f7Sheet</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Sheet"</span>),
+          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
+          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Sheet'>f7Sheet</a></span>(
              <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>,
              <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,
              <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
@@ -197,7 +197,7 @@
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>input</span>$<span class='no'>sheet1</span>)})
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/updateF7Sheet'>updateF7Sheet</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
+          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/updateF7Sheet'>updateF7Sheet</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
        })
     }
  )

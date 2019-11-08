@@ -1,5 +1,5 @@
 library(shiny)
-library(shinyF7)
+library(shinyMobile)
 library(echarts4r)
 library(shinyWidgets)
 

@@ -187,42 +187,42 @@ be used when the app runs on a desktop.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='no'>cities</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>precip</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Appbar'>f7Appbar</a></span>(
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Flex'>f7Flex</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Back'>f7Back</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>),<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Next'>f7Next</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>)),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Searchbar'>f7Searchbar</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Appbar'>f7Appbar</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Flex'>f7Flex</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Back'>f7Back</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>),<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Next'>f7Next</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>)),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Searchbar'>f7Searchbar</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7TabLayout'>f7TabLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7TabLayout'>f7TabLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Appbar"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        ),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tabs'>f7Tabs</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tabs'>f7Tabs</a></span>(
          <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabset"</span>,
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"email"</span>),
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"email"</span>),
            <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
            <span class='st'>"Text 1"</span>
          ),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"today"</span>),
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"today"</span>),
            <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
            <span class='st'>"Text 2"</span>
          ),
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Tab'>f7Tab</a></span>(
+         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
            <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
            <span class='st'>"Text 3"</span>
          )

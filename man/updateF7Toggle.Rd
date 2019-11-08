@@ -21,7 +21,7 @@ Change the value of a toggle input on the client
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  shinyApp(
    ui = f7Page(

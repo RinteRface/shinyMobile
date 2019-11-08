@@ -12,7 +12,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -123,7 +123,7 @@ f7Card <- function(..., img = NULL, title = NULL, footer = NULL, outline = FALSE
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -201,7 +201,7 @@ f7SocialCard <- function(..., author_img = NULL, author = NULL, date = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'   ui = f7Page(
@@ -364,7 +364,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(

@@ -21,7 +21,7 @@ Change the value of a picker input on the client
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
   ui = f7Page(
     title = "My app",

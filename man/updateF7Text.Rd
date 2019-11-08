@@ -24,7 +24,7 @@ Change the value of a text input on the client
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
 
  ui <- f7Page(
    f7SingleLayout(

@@ -17,7 +17,7 @@
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
@@ -253,7 +253,7 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",

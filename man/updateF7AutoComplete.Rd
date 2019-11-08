@@ -22,7 +22,7 @@ You cannot update choices yet.
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
   ui = f7Page(
     title = "My app",

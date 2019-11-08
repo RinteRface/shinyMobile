@@ -21,7 +21,7 @@ Create a f7 popup
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shiny::shinyApp(
    ui = f7Page(
      color = "pink",

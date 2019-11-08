@@ -21,7 +21,7 @@
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'    ui = f7Page(
@@ -169,7 +169,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'    ui = f7Page(
@@ -324,7 +324,7 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shinyApp(
 #'    ui = f7Page(
@@ -433,7 +433,7 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
 #'      preloader = FALSE,
@@ -508,7 +508,7 @@ f7DatePicker <- function(inputId, label, value = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -562,7 +562,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' @examples
 #' if(interactive()){
 #'   library(shiny)
-#'   library(shinyF7)
+#'   library(shinyMobile)
 #'
 #'   shiny::shinyApp(
 #'     ui = f7Page(
@@ -633,7 +633,7 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -707,7 +707,7 @@ f7Select <- function(inputId, label, choices) {
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
-#' library(shinyF7)
+#' library(shinyMobile)
 #'
 #'  shinyApp(
 #'    ui = f7Page(
@@ -788,7 +788,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -853,7 +853,7 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -910,7 +910,7 @@ f7Date <- function(inputId, label, value = "", placeholder = NULL) {
 # #' @examples
 # #' if(interactive()){
 # #'  library(shiny)
-# #'  library(shinyF7)
+# #'  library(shinyMobile)
 # #'
 # #'  shiny::shinyApp(
 # #'    ui = f7Page(
@@ -970,7 +970,7 @@ f7Date <- function(inputId, label, value = "", placeholder = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -1035,7 +1035,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -1068,7 +1068,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' # Create a range
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -1163,7 +1163,7 @@ f7Slider <- function(inputId, label, min, max, value,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -1272,7 +1272,7 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
@@ -1340,7 +1340,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(

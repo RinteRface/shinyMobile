@@ -173,18 +173,18 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Cards"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Cards"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
        ),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ExpandableCard'>f7ExpandableCard</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ExpandableCard'>f7ExpandableCard</a></span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card1"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Card 1"</span>,
          <span class='kw'>img</span> <span class='kw'>=</span> <span class='st'>"https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg"</span>,
@@ -195,10 +195,10 @@
        ),
 
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>hr</a></span>(),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7BlockTitle'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click below to expand the card!"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Align'>f7Align</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7BlockTitle'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click below to expand the card!"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Align'>f7Align</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7ExpandableCard'>f7ExpandableCard</a></span>(
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ExpandableCard'>f7ExpandableCard</a></span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card2"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Card 2"</span>,
          <span class='kw'>fullBackground</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -213,7 +213,7 @@
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/updateF7Card'>updateF7Card</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card2"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/updateF7Card'>updateF7Card</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card2"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observe'>observe</a></span>({

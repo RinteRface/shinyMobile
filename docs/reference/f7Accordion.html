@@ -178,35 +178,35 @@ by default.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()){
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='st'>"Accordions"</span>),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Accordion'>f7Accordion</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='st'>"Accordions"</span>),
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Accordion'>f7Accordion</a></span>(
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>,
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7AccordionItem'>f7AccordionItem</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7AccordionItem'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>),
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>),
        <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7AccordionItem'>f7AccordionItem</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7AccordionItem'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 2"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
       )
      ),
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Accordion'>f7Accordion</a></span>(
+     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Accordion'>f7Accordion</a></span>(
       <span class='kw'>multiCollapse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion2"</span>,
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7AccordionItem'>f7AccordionItem</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7AccordionItem'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>)
       ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7AccordionItem'>f7AccordionItem</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7AccordionItem'>f7AccordionItem</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 2"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
+       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
       )
      )
     )

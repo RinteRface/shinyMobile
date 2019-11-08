@@ -17,7 +17,7 @@ This uses the auto init framework 7 tooltip
 \examples{
 if (interactive()) {
  library(shiny)
- library(shinyF7)
+ library(shinyMobile)
  shinyApp(
    ui = f7Page(
      color = "pink",

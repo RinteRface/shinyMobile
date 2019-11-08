@@ -19,7 +19,7 @@
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Tab Layout",
@@ -179,7 +179,7 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "Tab Layout",
@@ -250,7 +250,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'  shiny::shinyApp(
 #'    ui = f7Page(
 #'      title = "Insert a tab Before the target",
@@ -302,7 +302,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
-  # in shinyF7, f7Tab returns a list of 3 elements:
+  # in shinyMobile, f7Tab returns a list of 3 elements:
   # - 1 is the tag\
   # - 2 is the icon name
   # - 3 is the tabName
@@ -363,7 +363,7 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
-#'  library(shinyF7)
+#'  library(shinyMobile)
 #'
 #'  ui <- f7Page(
 #'   title = "Remove a tab",

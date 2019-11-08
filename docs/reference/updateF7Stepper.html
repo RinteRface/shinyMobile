@@ -231,16 +231,16 @@ continues pressing the control. TRUE by default.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interactive'>interactive</a></span>()) {
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyF7</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Stepper"</span>),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Card'>f7Card</a></span>(
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update stepper"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/f7Stepper'>f7Stepper</a></span>(
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Stepper"</span>),
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update stepper"</span>),
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Stepper'>f7Stepper</a></span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"stepper"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My stepper"</span>,
           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
@@ -262,7 +262,7 @@ continues pressing the control. TRUE by default.</p></td>
     <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/renderPrint'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>stepper</span>)
 
     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyF7/topics/updateF7Stepper'>updateF7Stepper</a></span>(
+      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/updateF7Stepper'>updateF7Stepper</a></span>(
         <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"stepper"</span>,
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,

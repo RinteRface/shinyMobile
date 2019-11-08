@@ -1,5 +1,5 @@
 library(testthat)
-library(shinyF7)
+library(shinyMobile)
 library(V8)
 library(rstudioapi)
 library(cli)
@@ -64,4 +64,4 @@ jshint_addin <- function() {
   jshint_file(input = context$path)
 }
 
-test_check("shinyF7")
+test_check("shinyMobile")

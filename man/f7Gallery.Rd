@@ -2,12 +2,12 @@
 % Please edit documentation in R/f7Gallery.R
 \name{f7Gallery}
 \alias{f7Gallery}
-\title{Launch the shinyF7 Gallery}
+\title{Launch the shinyMobile Gallery}
 \usage{
 f7Gallery()
 }
 \description{
-A gallery of all components available in shinyF7.
+A gallery of all components available in shinyMobile.
 }
 \examples{
 if (interactive()) {
