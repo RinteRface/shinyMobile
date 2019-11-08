@@ -77,6 +77,7 @@ tabOthers <- f7Tab(
   # accordion
   f7BlockTitle(title = "f7Accordion") %>% f7Align(side = "center"),
   f7Accordion(
+    inputId = "accordion1",
     f7AccordionItem(
       title = "Item 1",
       f7Block("Item 1 content")
@@ -85,6 +86,11 @@ tabOthers <- f7Tab(
       title = "Item 2",
       f7Block("Item 2 content")
     )
+  ),
+  f7Toggle(
+    inputId = "goAccordion",
+    label = "Toggle accordion item 1",
+    color = "orange"
   ),
   br(),
 
@@ -104,15 +110,17 @@ tabOthers <- f7Tab(
 
   # timelines
   f7BlockTitle(title = "f7PhotoBrowser") %>% f7Align(side = "center"),
-  f7PhotoBrowser(
-    id = "photobrowser1",
-    label = "Open",
-    theme = "light",
-    type = "standalone",
-    photos = c(
-      "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
-      "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
-      "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+  f7Block(
+    f7PhotoBrowser(
+      id = "photobrowser1",
+      label = "Open",
+      theme = "light",
+      type = "standalone",
+      photos = c(
+        "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+        "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+        "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+      )
     )
   ),
   br(), br(),
@@ -209,6 +217,17 @@ tabOthers <- f7Tab(
       max = 100,
       value = 50
     )
+  ),
+
+  # update f7Panel
+  br(),
+  f7BlockTitle(title = "updateF7Panel") %>% f7Align(side = "center"),
+  f7Block(
+    f7Button(
+      inputId = "goPanel",
+      label = "Toggle left panel"
+    )
   )
+
 )
 

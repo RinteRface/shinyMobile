@@ -22,15 +22,16 @@ tabInfo <- f7Tab(
 
   # sheet
   f7BlockTitle(title = "f7Sheet") %>% f7Align(side = "center"),
-  f7Sheet(
-    id = "sheet1",
-    label = "More",
-    orientation = "bottom",
-    swipeToStep = TRUE,
-    swipeToClose = TRUE,
-    backdrop = TRUE,
-    swipeHandler = TRUE,
-    "Lorem ipsum dolor sit amet,
+  f7Block(
+    f7Sheet(
+      id = "sheet1",
+      label = "More",
+      orientation = "bottom",
+      swipeToStep = TRUE,
+      swipeToClose = TRUE,
+      backdrop = TRUE,
+      swipeHandler = TRUE,
+      "Lorem ipsum dolor sit amet,
     consectetur adipiscing elit. Duo Reges:
     constructio interrete. An tu me de L.
     Quae diligentissime contra Aristonem
@@ -59,13 +60,16 @@ tabInfo <- f7Tab(
     non intellegatur? Atqui perspicuum est hominem e
     corpore animoque constare, cum primae sint animi
     partes, secundae corporis."
+    )
   ),
 
 
   br(),
   # action sheet
   f7BlockTitle(title = "Action Sheet") %>% f7Align("center"),
-  f7Button(inputId = "goActionSheet", "Show action sheet", color = "red"),
+  f7Block(
+    f7Button(inputId = "goActionSheet", "Show action sheet", color = "red")
+  ),
 
 
   br(),
@@ -75,8 +79,8 @@ tabInfo <- f7Tab(
   uiOutput("promptres"),
   f7Segment(
     container = "segment",
-    f7Button(inputId = "goDialog1", "Open dialog 1", color = "orange"),
-    f7Button(inputId = "goDialog2", "Open confirm dialog 2", color = "purple"),
+    f7Button(inputId = "goDialog1", "Open dialog 1", color = "yellow"),
+    f7Button(inputId = "goDialog2", "Open confirm dialog 2", color = "blue"),
     f7Button(inputId = "goDialog3", "Open prompt dialog 3")
   ),
 
@@ -96,19 +100,21 @@ tabInfo <- f7Tab(
 
   # popovers
   f7BlockTitle(title = "Popovers") %>% f7Align("center"),
-  f7PopoverTarget(
-    f7Button(
-      inputId = "popoverButton",
-      "Click me!"
-    ),
-    targetId = "popoverTrigger"
+  f7Block(
+    f7PopoverTarget(
+      f7Button(
+        inputId = "popoverButton",
+        "Click me!"
+      ),
+      targetId = "popoverTrigger"
+    )
   ),
 
   br(),
 
   # toasts
   f7BlockTitle(title = "Toasts") %>% f7Align("center"),
-  f7Button(inputId = "toast", label = "Open Toast", color = "lime"),
+  f7Block(f7Button(inputId = "toast", label = "Open Toast", color = "lime")),
 
   br(),
 

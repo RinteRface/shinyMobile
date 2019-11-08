@@ -126,6 +126,9 @@ tabCards <- f7Tab(
     to develop hybrid mobile apps or web apps with iOS or Android
     native look and feel. It is also an indispensable prototyping apps tool
     to show working app prototype as soon as possible in case you need to."
-  )
+  ),
 
+  # update cards
+  f7BlockTitle(title = "updateF7Card") %>% f7Align(side = "center"),
+  f7Block(f7Button(inputId = "goCard", label = "Expand card 3"))
 )

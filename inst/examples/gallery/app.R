@@ -34,8 +34,21 @@ shinyApp(
         f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
       ),
       panels = tagList(
-        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "reveal"),
-        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+        f7Panel(
+          inputId = "panelLeft",
+          title = "Left Panel",
+          side = "left",
+          theme = "light",
+          "Blabla",
+          effect = "reveal"
+        ),
+        f7Panel(
+          title = "Right Panel",
+          side = "right",
+          theme = "dark",
+          "Blabla",
+          effect = "cover"
+        )
       ),
       navbar = f7Navbar(
         title = "shinyMobile",
@@ -220,6 +233,25 @@ shinyApp(
     # update gauge
     observeEvent(input$updategauge1, {
       updateF7Gauge(session, id = "mygauge1", value = input$updategauge1)
+    })
+
+    # expand card 3
+    observeEvent(input$goCard, {
+      updateF7Card(id = "card3", session = session)
+    })
+
+    # toggle accordion
+    observeEvent(input$goAccordion, {
+      updateF7Accordion(
+        inputId = "accordion1",
+        selected = 1,
+        session = session
+      )
+    })
+
+    # update panel
+    observeEvent(input$goPanel, {
+      updateF7Panel(inputId = "panelLeft", session = session)
     })
 
   }
