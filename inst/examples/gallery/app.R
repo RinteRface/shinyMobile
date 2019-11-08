@@ -38,7 +38,7 @@ shinyApp(
         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
       ),
       navbar = f7Navbar(
-        title = "miniUI 2.0",
+        title = "shinyMobile",
         subtitle = "for Shiny",
         hairline = TRUE,
         shadow = TRUE,
@@ -115,6 +115,48 @@ shinyApp(
       })
     })
 
+    # Dialogs
+    # notifications
+    lapply(1:3, function(i) {
+      observeEvent(input[[paste0("goDialog", i)]], {
+
+        if (i == 1) {
+          f7Dialog(
+            title = "Dialog title",
+            text = "This is an alert dialog",
+            session = session
+          )
+        } else if (i == 2) {
+          f7Dialog(
+            inputId = "confirmDialog",
+            title = "Dialog title",
+            type = "confirm",
+            text = "This is an confirm dialog",
+            session = session
+          )
+        } else if (i == 3) {
+          f7Dialog(
+            inputId = "promptDialog",
+            title = "Dialog title",
+            type = "prompt",
+            text = "This is a prompt dialog",
+            session = session
+          )
+        }
+      })
+    })
+
+    observeEvent(input$confirmDialog, {
+      f7Toast(session, text = paste("Alert input is:", input$confirmDialog))
+    })
+
+    output$promptres <- renderUI({
+      if (is.null(input$promptDialog)) {
+        f7BlockTitle(title = "Click on dialog button 3")
+      }
+      f7BlockTitle(title = input$promptDialog)
+    })
+
     # popovers
     observe({
       f7Popover(
@@ -131,6 +173,43 @@ shinyApp(
         position = "bottom",
         text = "I am a toast. Eat me!"
       )
+    })
+
+    # action sheet
+    observeEvent(input$goActionSheet, {
+      f7ActionSheet(
+        grid = TRUE,
+        id = "action1",
+        icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
+        buttons = data.frame(
+          text = c('Notification', 'Dialog'),
+          color = c(NA, NA)
+        )
+      )
+    })
+
+    observeEvent(input$button, {
+      if (input$button == 1) {
+        f7Notif(
+          text = "You clicked on the first button",
+          icon = f7Icon("bolt_fill"),
+          title = "Notification",
+          titleRightText = "now",
+          session = session
+        )
+      } else if (input$button == 2) {
+        f7Dialog(
+          inputId = "actionSheetDialog",
+          title = "Click me to launch a Toast!",
+          type = "confirm",
+          text = "You clicked on the second button",
+          session = session
+        )
+      }
+    })
+
+    observeEvent(input$actionSheetDialog, {
+      f7Toast(session, text = paste("Alert input is:", input$actionSheetDialog))
     })
 
   }
