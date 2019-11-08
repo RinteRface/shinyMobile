@@ -8,17 +8,10 @@
 #' the current selected color. FALSE by default.
 #' @param color Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 #' Expect a name like blue or red. If NULL, use the default color.
-#' @param fastClicks Default to TRUE. Fast clicks is a built-in library that removes
-#' 300ms delay from links and form elements in mobile browser while you click them.
-#' Modern browsers are smart enough to eliminate that click delay. You can enable
-#' this built-in library if you target old devices or experience click delays.
 #' @param tapHold  It triggers (if enabled) after a sustained, complete touch event.
 #' By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 #' so Fast Clicks should be also enabled.
 #' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
-#' @param panelSwipeSide NULL by default. Other choices are c("left", "right", "both").
-#' If you want to enable ability to open/close side panels with swipe you can pass here left (for left panel) or
-#' right (for right panel) or both (for both panels).
 #' @param iosCenterTitle Default to TRUE. When enabled then it will try to position
 #' title at the center in iOS theme. Sometime (with some custom design) it may not needed.
 #' @param hideNavOnPageScroll Default to TRUE. Will hide Navbars on page scroll.
@@ -29,8 +22,7 @@
 #'
 #' @export
 f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"),
-                   filled = FALSE, color = NULL, fastClicks = TRUE, tapHold = TRUE,
-                   iosTouchRipple = FALSE, panelSwipeSide = NULL,
+                   filled = FALSE, color = NULL, tapHold = TRUE, iosTouchRipple = FALSE,
                    iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
                    hideTabsOnPageScroll = FALSE, serviceWorker = NULL) {
 
@@ -104,16 +96,11 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           // App Name
           name: '',
           theme: '", skin, "',
-          fastClicks: ", tolower(fastClicks), ",
           swipeNoFollow: true,
           touch: {
             tapHold: ", tolower(tapHold), " //enable tap hold events
           },
           iosTouchRipple: ", tolower(iosTouchRipple), ",
-          // allow both panels to swipe
-          panel: {
-            swipe: '", panelSwipeSide, "',
-          },
           // App id
           id: 'f7App',
           navbar: {

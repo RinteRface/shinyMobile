@@ -35,6 +35,7 @@ if(interactive()){
      title = "My app",
      f7SplitLayout(
        sidebar = f7Panel(
+         inputId = "sidebar",
          title = "Sidebar",
          side = "left",
          theme = "light",

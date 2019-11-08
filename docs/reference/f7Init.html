@@ -155,10 +155,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>f7Init</span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span>), <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dark"</span>,
-  <span class='st'>"light"</span>), <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fastClicks</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>tapHold</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>iosTouchRipple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>panelSwipeSide</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iosCenterTitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>serviceWorker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='st'>"light"</span>), <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tapHold</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>iosTouchRipple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>iosCenterTitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>serviceWorker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,13 +182,6 @@ the current selected color. FALSE by default.</p></td>
 Expect a name like blue or red. If NULL, use the default color.</p></td>
     </tr>
     <tr>
-      <th>fastClicks</th>
-      <td><p>Default to TRUE. Fast clicks is a built-in library that removes
-300ms delay from links and form elements in mobile browser while you click them.
-Modern browsers are smart enough to eliminate that click delay. You can enable
-this built-in library if you target old devices or experience click delays.</p></td>
-    </tr>
-    <tr>
       <th>tapHold</th>
       <td><p>It triggers (if enabled) after a sustained, complete touch event.
 By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
@@ -197,12 +190,6 @@ so Fast Clicks should be also enabled.</p></td>
     <tr>
       <th>iosTouchRipple</th>
       <td><p>Default to FALSE. Enables touch ripple effect for iOS theme.</p></td>
-    </tr>
-    <tr>
-      <th>panelSwipeSide</th>
-      <td><p>NULL by default. Other choices are c("left", "right", "both").
-If you want to enable ability to open/close side panels with swipe you can pass here left (for left panel) or
-right (for right panel) or both (for both panels).</p></td>
     </tr>
     <tr>
       <th>iosCenterTitle</th>

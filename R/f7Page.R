@@ -335,6 +335,7 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
 #'      title = "My app",
 #'      f7SplitLayout(
 #'        sidebar = f7Panel(
+#'          inputId = "sidebar",
 #'          title = "Sidebar",
 #'          side = "left",
 #'          theme = "light",
@@ -387,13 +388,16 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
                           panels = NULL, appbar = NULL) {
 
-  sidebar <- shiny::tagAppendAttributes(sidebar[[2]], id = "f7-sidebar")
+  # add margins
+  items <- shiny::div(...) %>% f7Margin(side = "left") %>% f7Margin(side = "right")
+
+  sidebar <- shiny::tagAppendAttributes(sidebar[[2]], class = "panel-in")
   # this trick to prevent to select the panel view in the following
   # javascript code
   sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"
 
   splitSkeleton <- f7SingleLayout(
-    ...,
+    items,
     navbar = navbar,
     toolbar = toolbar,
     panels = shiny::tagList(

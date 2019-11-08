@@ -5,10 +5,10 @@
 \title{Custom initialization}
 \usage{
 f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
-  "light"), filled = FALSE, color = NULL, fastClicks = TRUE,
-  tapHold = TRUE, iosTouchRipple = FALSE, panelSwipeSide = NULL,
-  iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
-  hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
+  "light"), filled = FALSE, color = NULL, tapHold = TRUE,
+  iosTouchRipple = FALSE, iosCenterTitle = TRUE,
+  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE,
+  serviceWorker = NULL)
 }
 \arguments{
 \item{skin}{App skin: "ios", "md", "auto" or "aurora".}
@@ -21,20 +21,11 @@ the current selected color. FALSE by default.}
 \item{color}{Color theme: See \url{http://framework7.io/docs/color-themes.html}.
 Expect a name like blue or red. If NULL, use the default color.}
 
-\item{fastClicks}{Default to TRUE. Fast clicks is a built-in library that removes
-300ms delay from links and form elements in mobile browser while you click them.
-Modern browsers are smart enough to eliminate that click delay. You can enable
-this built-in library if you target old devices or experience click delays.}
-
 \item{tapHold}{It triggers (if enabled) after a sustained, complete touch event.
 By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 so Fast Clicks should be also enabled.}
 
 \item{iosTouchRipple}{Default to FALSE. Enables touch ripple effect for iOS theme.}
-
-\item{panelSwipeSide}{NULL by default. Other choices are c("left", "right", "both").
-If you want to enable ability to open/close side panels with swipe you can pass here left (for left panel) or
-right (for right panel) or both (for both panels).}
 
 \item{iosCenterTitle}{Default to TRUE. When enabled then it will try to position
 title at the center in iOS theme. Sometime (with some custom design) it may not needed.}
