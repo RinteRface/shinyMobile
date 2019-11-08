@@ -1,5 +1,11 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: required
 cache: packages
+
+apt_packages:
+  - libv8-dev
+
+before_install:
+  - sudo apt-get install -y libv8-dev
