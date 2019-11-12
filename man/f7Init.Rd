@@ -7,8 +7,8 @@
 f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
   "light"), filled = FALSE, color = NULL, tapHold = TRUE,
   iosTouchRipple = FALSE, iosCenterTitle = TRUE,
-  hideNavOnPageScroll = TRUE, hideTabsOnPageScroll = FALSE,
-  serviceWorker = NULL)
+  iosTranslucentBars = FALSE, hideNavOnPageScroll = TRUE,
+  hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
 }
 \arguments{
 \item{skin}{App skin: "ios", "md", "auto" or "aurora".}
@@ -29,6 +29,9 @@ so Fast Clicks should be also enabled.}
 
 \item{iosCenterTitle}{Default to TRUE. When enabled then it will try to position
 title at the center in iOS theme. Sometime (with some custom design) it may not needed.}
+
+\item{iosTranslucentBars}{Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+FALSE by default.}
 
 \item{hideNavOnPageScroll}{Default to TRUE. Will hide Navbars on page scroll.}
 

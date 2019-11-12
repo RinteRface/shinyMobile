@@ -14,6 +14,8 @@
 #' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
 #' @param iosCenterTitle Default to TRUE. When enabled then it will try to position
 #' title at the center in iOS theme. Sometime (with some custom design) it may not needed.
+#' @param iosTranslucentBars Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+#' FALSE by default.
 #' @param hideNavOnPageScroll Default to TRUE. Will hide Navbars on page scroll.
 #' @param hideTabsOnPageScroll Default to FALSE. Will hide tabs on page scroll.
 #' @param serviceWorker Object with service worker module parameters. (Use for PWA).
@@ -23,7 +25,7 @@
 #' @export
 f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"),
                    filled = FALSE, color = NULL, tapHold = TRUE, iosTouchRipple = FALSE,
-                   iosCenterTitle = TRUE, hideNavOnPageScroll = TRUE,
+                   iosCenterTitle = TRUE, iosTranslucentBars = FALSE, hideNavOnPageScroll = TRUE,
                    hideTabsOnPageScroll = FALSE, serviceWorker = NULL) {
 
   color <- colorToHex(color)
@@ -110,6 +112,7 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           toolbar: {
             hideOnPageScroll: ", tolower(hideTabsOnPageScroll), ",
           },
+          iosTranslucentBars: ", tolower(iosTranslucentBars), ",
           // Register service worker
           serviceWorker: {
             path: './", serviceWorker, "',

@@ -157,8 +157,8 @@
     <pre class="usage"><span class='fu'>f7Init</span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span>), <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"dark"</span>,
   <span class='st'>"light"</span>), <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tapHold</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>iosTouchRipple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>iosCenterTitle</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>serviceWorker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>iosTranslucentBars</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>serviceWorker</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,6 +195,11 @@ so Fast Clicks should be also enabled.</p></td>
       <th>iosCenterTitle</th>
       <td><p>Default to TRUE. When enabled then it will try to position
 title at the center in iOS theme. Sometime (with some custom design) it may not needed.</p></td>
+    </tr>
+    <tr>
+      <th>iosTranslucentBars</th>
+      <td><p>Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+FALSE by default.</p></td>
     </tr>
     <tr>
       <th>hideNavOnPageScroll</th>
