@@ -20,7 +20,7 @@ shinyApp(
   ui = f7Page(
     title = "shinyMobile",
     init = f7Init(
-      skin = "md",
+      skin = "ios",
       theme = "light",
       filled = TRUE,
       hideNavOnPageScroll = FALSE,
@@ -29,7 +29,6 @@ shinyApp(
     ),
     f7TabLayout(
       appbar = f7Appbar(
-        maximizable = TRUE,
         f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
         f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
       ),
@@ -114,11 +113,6 @@ shinyApp(
     # sheet plot
     output$sheetPlot <- renderPlot({
       hist(rnorm(input$sheetObs))
-    })
-
-    # sheet gauge
-    observeEvent(input$sheetObs, {
-      updateF7Gauge(session, id = "sheetGauge", value = input$sheetObs)
     })
 
     # notifications

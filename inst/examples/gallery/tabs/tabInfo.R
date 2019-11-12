@@ -30,34 +30,8 @@ tabInfo <- f7Tab(
       swipeToClose = TRUE,
       swipeToStep = TRUE,
       backdrop = TRUE,
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-       Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-       scelerisque est, at porta justo cursus ac",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       hiddenItems = tagList(
-        f7Segment(
-          container = "segment",
-          rounded = TRUE,
-          f7Button(color = "blue", label = "My button 1", rounded = TRUE),
-          f7Button(color = "green", label = "My button 2", rounded = TRUE),
-          f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
-        ),
-        f7Flex(
-          f7Badge(32, color = "blue"),
-          f7Badge("Badge", color = "green")
-        ),
-        f7Flex(
-          f7Gauge(
-            id = "sheetGauge",
-            type  = "semicircle",
-            value = 10,
-            borderColor = "#2196f3",
-            borderWidth = 10,
-            valueText = "50%",
-            valueFontSize = 41,
-            valueTextColor = "#2196f3",
-            labelText = "amount of something"
-          )
-        ),
         f7Slider(
           inputId = "sheetObs",
           label = "Number of observations",
@@ -66,7 +40,7 @@ tabInfo <- f7Tab(
           value = 10,
           scale = TRUE
         ),
-        plotOutput("sheetPlot")
+        plotOutput("sheetPlot", height = "200px")
       )
     )
   ),
