@@ -8,6 +8,32 @@ tabLists <- f7Tab(
     h1("miniUI 2.0 brings new list containers")
   ),
 
+  # swipeable list
+  f7BlockTitle(title = "f7Swipeout, swipeable list") %>%
+    f7Align(side = "center"),
+  f7List(
+    lapply(1:3, function(j) {
+      if (j == 1) {
+        f7Swipeout(
+          tag = f7ListItem(
+            if (j == 1) {
+              "Swipe me to the right"
+            } else {
+              "You can't swipe me!"
+            }
+          ),
+          side = "left",
+          f7SwipeoutItem(id = "swipeAlert", color = "pink", "Alert"),
+          f7SwipeoutItem(id = "swipeNotif", color = "green", "Notif"),
+          f7SwipeoutItem(id = "swipeActionSheet", color = "purple", "Action")
+        )
+      } else {
+        f7ListItem(letters[j])
+      }
+    })
+  ),
+  br(),
+
   # simple list
   f7BlockTitle(title = "Simple f7List") %>% f7Align(side = "center"),
   f7List(

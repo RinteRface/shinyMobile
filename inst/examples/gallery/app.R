@@ -254,5 +254,37 @@ shinyApp(
       updateF7Panel(inputId = "panelLeft", session = session)
     })
 
+    # swipeout
+    observeEvent(input$swipeNotif, {
+      f7Notif(
+        text = "test",
+        icon = f7Icon("bolt_fill"),
+        title = "Notification",
+        subtitle = "A subtitle",
+        titleRightText = "now",
+        session = session
+      )
+    })
+
+    observeEvent(input$swipeAlert, {
+      f7Dialog(
+        title = "Dialog title",
+        text = "This is an alert dialog",
+        session = session
+      )
+    })
+
+    observeEvent(input$swipeActionSheet, {
+      f7ActionSheet(
+        grid = TRUE,
+        id = "swipeAction",
+        icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
+        buttons = data.frame(
+          text = c('Notification', 'Dialog'),
+          color = c(NA, NA)
+        )
+      )
+    })
+
   }
 )
