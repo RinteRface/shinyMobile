@@ -1,6 +1,8 @@
 #' Create an f7 sheet modal
 #'
-#' @param ... Sheet content.
+#' @param ... Sheet content. If wipeToStep is TRUE, these items will be visible at start.
+#' @param hiddenItems Put items you want to hide inside. Only works when
+#' wipeToStep is TRUE.
 #' @param id Sheet unique id.
 #' @param label Trigger label.
 #' @param orientation "top" or "bottom".
@@ -21,31 +23,72 @@
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'   shiny::shinyApp(
+#'  shiny::shinyApp(
 #'     ui = f7Page(
-#'       color = "pink",
-#'       title = "My app",
-#'       f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Sheet"),
-#'        f7Sheet(
-#'         id = "sheet1",
-#'         label = "More",
-#'         orientation = "bottom",
-#'         swipeToClose = TRUE,
-#'         swipeToStep = TRUE,
-#'         backdrop = TRUE,
-#'         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#'         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-#'         scelerisque est, at porta justo cursus ac"
-#'       )
-#'       )
+#'        color = "pink",
+#'        title = "My app",
+#'        f7SingleLayout(
+#'           navbar = f7Navbar(title = "f7Sheet"),
+#'           f7Sheet(
+#'              id = "sheet1",
+#'              label = "More",
+#'              orientation = "bottom",
+#'              swipeToClose = TRUE,
+#'              swipeToStep = TRUE,
+#'              backdrop = TRUE,
+#'              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#'          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+#'          scelerisque est, at porta justo cursus ac",
+#'              hiddenItems = tagList(
+#'                 f7Segment(
+#'                    container = "segment",
+#'                    rounded = TRUE,
+#'                    f7Button(color = "blue", label = "My button 1", rounded = TRUE),
+#'                    f7Button(color = "green", label = "My button 2", rounded = TRUE),
+#'                    f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
+#'                 ),
+#'                 f7Flex(
+#'                    f7Badge(32, color = "blue"),
+#'                    f7Badge("Badge", color = "green")
+#'                 ),
+#'                 f7Flex(
+#'                    f7Gauge(
+#'                       id = "mygauge",
+#'                       type  = "semicircle",
+#'                       value = 10,
+#'                       borderColor = "#2196f3",
+#'                       borderWidth = 10,
+#'                       valueText = "50%",
+#'                       valueFontSize = 41,
+#'                       valueTextColor = "#2196f3",
+#'                       labelText = "amount of something"
+#'                    )
+#'                 ),
+#'                 f7Slider(
+#'                    inputId = "obs",
+#'                    label = "Number of observations",
+#'                    max = 100,
+#'                    min = 0,
+#'                    value = 10,
+#'                    scale = TRUE
+#'                 ),
+#'                 plotOutput("distPlot")
+#'              )
+#'           )
+#'        )
 #'     ),
-#'     server = function(input, output) {
-#'      observe({print(input$sheet1)})
+#'     server = function(input, output, session) {
+#'        observe({print(input$sheet1)})
+#'        output$distPlot <- renderPlot({
+#'           hist(rnorm(input$obs))
+#'        })
+#'        observeEvent(input$obs, {
+#'           updateF7Gauge(session, id = "mygauge", value = input$obs)
+#'        })
 #'     }
-#'   )
+#'  )
 #' }
-f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
+f7Sheet <- function(..., hiddenItems, id, label = "Open", orientation = c("top", "bottom"),
                     swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
                     closeByOutsideClick = TRUE, swipeHandler = TRUE) {
 
@@ -142,6 +185,7 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
            shiny::tags$div(class = "swipe-handler")
          }
        },
+       # item shown
        shiny::tags$div(
          class = if (swipeToStep) {
             "block sheet-modal-swipe-step"
@@ -149,7 +193,9 @@ f7Sheet <- function(..., id, label = "Open", orientation = c("top", "bottom"),
             "block"
          },
          ...
-       )
+       ),
+       # hidden items
+       hiddenItems
      )
    )
  )

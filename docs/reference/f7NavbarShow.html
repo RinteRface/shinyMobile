@@ -177,24 +177,24 @@
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='st'>"Hide/Show navbar"</span>),
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Segment'>f7Segment</a></span>(
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"hide"</span>, <span class='st'>"Hide navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>),
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"show"</span>, <span class='st'>"Show navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
+       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Hide/Show navbar"</span>),
+          <span class='fu'><a href='f7Segment.html'>f7Segment</a></span>(
+             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"hide"</span>, <span class='st'>"Hide navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>),
+             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"show"</span>, <span class='st'>"Show navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
           )
        )
     ),
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hide</span>, {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7NavbarHide'>f7NavbarHide</a></span>()
+          <span class='fu'><a href='f7NavbarHide.html'>f7NavbarHide</a></span>()
        })
 
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>show</span>, {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7NavbarShow'>f7NavbarShow</a></span>()
+          <span class='fu'>f7NavbarShow</span>()
        })
     }
  )

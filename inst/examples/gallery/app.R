@@ -111,6 +111,16 @@ shinyApp(
       session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
     })
 
+    # sheet plot
+    output$sheetPlot <- renderPlot({
+      hist(rnorm(input$sheetObs))
+    })
+
+    # sheet gauge
+    observeEvent(input$sheetObs, {
+      updateF7Gauge(session, id = "sheetGauge", value = input$sheetObs)
+    })
+
     # notifications
     lapply(1:3, function(i) {
       observeEvent(input[[paste0("goNotif", i)]],{

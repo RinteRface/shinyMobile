@@ -192,7 +192,7 @@ TRUE by default.</p></td>
     </tr>
     <tr>
       <th>icon</th>
-      <td><p>Optional. Expect f7Icon. Warning:
+      <td><p>Optional. Expect <a href='f7Icon.html'>f7Icon</a>. Warning:
 Adding icon will hide the close button.</p></td>
     </tr>
     </table>
@@ -203,17 +203,17 @@ Adding icon will hide the close button.</p></td>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Toast"</span>),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"toast"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open Toast"</span>)
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Toast"</span>),
+      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"toast"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open Toast"</span>)
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
     <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>toast</span>, {
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Toast'>f7Toast</a></span>(
+      <span class='fu'>f7Toast</span>(
         <span class='no'>session</span>,
         <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"I am a toast. Eat me!"</span>

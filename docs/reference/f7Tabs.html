@@ -162,16 +162,16 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for f7Tab.</p></td>
+      <td><p>Slot for <a href='f7Tab.html'>f7Tab</a>.</p></td>
     </tr>
     <tr>
       <th>.items</th>
       <td><p>Slot for other items that could be part of the toolbar such as
-buttons or f7Sheet.</p></td>
+buttons or <a href='f7Sheet.html'>f7Sheet</a>.</p></td>
     </tr>
     <tr>
       <th>id</th>
-      <td><p>Optional to get the id of the currently selected f7Tab.</p></td>
+      <td><p>Optional to get the id of the currently selected <a href='f7Tab.html'>f7Tab</a>.</p></td>
     </tr>
     <tr>
       <th>swipeable</th>
@@ -195,21 +195,21 @@ Not compatible with swipeable.</p></td>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab Layout"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7TabLayout'>f7TabLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/HTML'>HTML</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Currently selected:"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/textOutput'>textOutput</a></span>(<span class='st'>"selected"</span>)))),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tabs'>f7Tabs</a></span>(
+    <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/HTML'>HTML</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Currently selected:"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/textOutput'>textOutput</a></span>(<span class='st'>"selected"</span>)))),
+      <span class='fu'>f7Tabs</span>(
         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabdemo"</span>,
         <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>, <span class='st'>"tab 1 text"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>, <span class='st'>"tab 2 text"</span>),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>, <span class='st'>"tab 3 text"</span>),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>, <span class='st'>"tab 1 text"</span>),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>, <span class='st'>"tab 2 text"</span>),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>, <span class='st'>"tab 3 text"</span>),
         <span class='kw'>.items</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>tags</a></span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>a</a></span>(
          <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"tab-link"</span>,
          <span class='kw'>href</span> <span class='kw'>=</span> <span class='st'>"#"</span>,
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
+         <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
          <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>span</a></span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"tabbar-label"</span>, <span class='st'>"Optional Item"</span>)
         )
       )

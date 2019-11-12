@@ -4,7 +4,6 @@ var f7PanelBinding = new Shiny.InputBinding();
 $.extend(f7PanelBinding, {
 
   initialize: function(el) {
-    console.log($(el));
     app.panel.create({
       el: '#' + $(el).attr('id')
     });

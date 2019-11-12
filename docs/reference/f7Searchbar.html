@@ -162,7 +162,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>id</th>
-      <td><p>Necessary when using f7SearchbarTrigger. NULL otherwise.</p></td>
+      <td><p>Necessary when using <a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a>. NULL otherwise.</p></td>
     </tr>
     <tr>
       <th>placeholder</th>
@@ -171,12 +171,12 @@
     <tr>
       <th>expandable</th>
       <td><p>Whether to enable the searchbar with a target link,
-in the navbar. See f7SearchbarTrigger.</p></td>
+in the navbar. See <a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a>.</p></td>
     </tr>
     <tr>
       <th>inline</th>
-      <td><p>Useful to add a f7Searchbar in a f7Appbar.
-Notice that utilities like f7HideOnSearch and f7NotFound are not
+      <td><p>Useful to add a f7Searchbar in a <a href='f7Appbar.html'>f7Appbar</a>.
+Notice that utilities like <a href='f7HideOnSearch.html'>f7HideOnSearch</a> and <a href='f7NotFound.html'>f7NotFound</a> are not
 compatible with this mode.</p></td>
     </tr>
     </table>
@@ -190,30 +190,30 @@ compatible with this mode.</p></td>
 <span class='no'>cars</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>mtcars</span>)
 
 <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Searchbar"</span>,
         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SubNavbar'>f7SubNavbar</a></span>(
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Searchbar'>f7Searchbar</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>)
+        <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7SubNavbar.html'>f7SubNavbar</a></span>(
+          <span class='fu'>f7Searchbar</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>)
         )
       ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(
+      <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
         <span class='st'>"This block will be hidden on search.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit."</span>
-      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7HideOnSearch'>f7HideOnSearch</a></span>(),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7HideOnSearch.html'>f7HideOnSearch</a></span>(),
+      <span class='fu'><a href='f7List.html'>f7List</a></span>(
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>cars</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='no'>cars</span>[<span class='no'>i</span>])
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>cars</span>[<span class='no'>i</span>])
         })
-      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Found'>f7Found</a></span>(),
+      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Found.html'>f7Found</a></span>(),
 
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(
+      <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
         <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Nothing found"</span>)
-      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7NotFound'>f7NotFound</a></span>()
+      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7NotFound.html'>f7NotFound</a></span>()
 
     )
   ),
@@ -224,31 +224,31 @@ compatible with this mode.</p></td>
  <span class='no'>cities</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>precip</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Searchbar with trigger"</span>,
          <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
          <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SearchbarTrigger'>f7SearchbarTrigger</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"search1"</span>),
-         <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SubNavbar'>f7SubNavbar</a></span>(
-           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Searchbar'>f7Searchbar</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>expandable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+         <span class='fu'><a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a></span>(<span class='kw'>targetId</span> <span class='kw'>=</span> <span class='st'>"search1"</span>),
+         <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7SubNavbar.html'>f7SubNavbar</a></span>(
+           <span class='fu'>f7Searchbar</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>expandable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
          )
        ),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(
+       <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
          <span class='st'>"This block will be hidden on search.
          Lorem ipsum dolor sit amet, consectetur adipisicing elit."</span>
-       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7HideOnSearch'>f7HideOnSearch</a></span>(),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7HideOnSearch.html'>f7HideOnSearch</a></span>(),
+       <span class='fu'><a href='f7List.html'>f7List</a></span>(
          <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>cities</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-           <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='no'>cities</span>[<span class='no'>i</span>])
+           <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>cities</span>[<span class='no'>i</span>])
          })
-       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Found'>f7Found</a></span>(),
+       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Found.html'>f7Found</a></span>(),
 
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Block'>f7Block</a></span>(
+       <span class='fu'><a href='f7Block.html'>f7Block</a></span>(
          <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>p</a></span>(<span class='st'>"Nothing found"</span>)
-       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7NotFound'>f7NotFound</a></span>()
+       ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7NotFound.html'>f7NotFound</a></span>()
 
      )
    ),
@@ -257,22 +257,22 @@ compatible with this mode.</p></td>
 
  <span class='co'># Searchbar in \link{f7Appbar}</span>
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Appbar'>f7Appbar</a></span>(
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Searchbar'>f7Searchbar</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <span class='fu'><a href='f7Appbar.html'>f7Appbar</a></span>(
+      <span class='fu'>f7Searchbar</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"search1"</span>, <span class='kw'>inline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
     ),
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Searchbar in f7Appbar"</span>,
         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      <span class='fu'><a href='f7List.html'>f7List</a></span>(
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq_along</a></span>(<span class='no'>cities</span>), <span class='kw'>function</span>(<span class='no'>i</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='no'>cities</span>[<span class='no'>i</span>])
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>cities</span>[<span class='no'>i</span>])
         })
-      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Found'>f7Found</a></span>()
+      ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Found.html'>f7Found</a></span>()
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}

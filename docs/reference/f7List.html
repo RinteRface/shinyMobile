@@ -161,7 +161,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for f7ListGroup or f7ListItem.</p></td>
+      <td><p>Slot for <a href='f7ListGroup.html'>f7ListGroup</a> or <a href='f7ListItem.html'>f7ListItem</a>.</p></td>
     </tr>
     <tr>
       <th>mode</th>
@@ -180,22 +180,22 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
 <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7List"</span>),
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7List"</span>),
 
       <span class='co'># simple list</span>
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
+      <span class='fu'>f7List</span>(
+        <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
       ),
 
       <span class='co'># list with complex items</span>
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      <span class='fu'>f7List</span>(
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
             <span class='no'>letters</span>[<span class='no'>j</span>],
-            <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"alarm_fill"</span>),
+            <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"alarm_fill"</span>),
             <span class='kw'>right</span> <span class='kw'>=</span> <span class='st'>"Right Text"</span>,
             <span class='kw'>header</span> <span class='kw'>=</span> <span class='st'>"Header"</span>,
             <span class='kw'>footer</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>
@@ -204,10 +204,10 @@
       ),
 
       <span class='co'># list with complex items</span>
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      <span class='fu'>f7List</span>(
         <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"media"</span>,
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
             <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>letters</span>[<span class='no'>j</span>],
             <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"subtitle"</span>,
             <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -227,19 +227,19 @@
       ),
 
       <span class='co'># list with links</span>
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      <span class='fu'>f7List</span>(
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://google.com"</span>, <span class='no'>letters</span>[<span class='no'>j</span>])
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://google.com"</span>, <span class='no'>letters</span>[<span class='no'>j</span>])
         })
       ),
 
       <span class='co'># grouped lists</span>
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7List'>f7List</a></span>(
+      <span class='fu'>f7List</span>(
         <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"contacts"</span>,
         <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>i</span>) {
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListGroup'>f7ListGroup</a></span>(
+          <span class='fu'><a href='f7ListGroup.html'>f7ListGroup</a></span>(
             <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
-            <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ListItem'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
+            <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
           )
         })
       )

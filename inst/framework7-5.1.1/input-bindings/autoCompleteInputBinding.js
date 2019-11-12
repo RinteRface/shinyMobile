@@ -92,7 +92,6 @@ $.extend(f7AutoCompleteBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var a = app.autocomplete.get($(el));
-    console.log(a);
     return a.value;
   },
 

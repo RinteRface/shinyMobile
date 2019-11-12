@@ -111,7 +111,7 @@
       <h1>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-11-08</h4>
+            <h4 class="date">2019-11-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Getting-Started.Rmd"><code>vignettes/Getting-Started.Rmd</code></a></small>
       <div class="hidden name"><code>Getting-Started.Rmd</code></div>
@@ -190,7 +190,7 @@
 <li>f7SmartSelect</li>
 <li>f7Select</li>
 <li>f7Button: similar to <code>actionButton()</code> from {shiny}</li>
-<li>f7Fab: enhanced <code>f7Button()</code> with ability to be gathered in a <code>f7Fabs()</code> container</li>
+<li>f7Fab: enhanced <code><a href="../reference/f7Button.html">f7Button()</a></code> with ability to be gathered in a <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> container</li>
 </ul>
 </li>
 <li>
@@ -215,7 +215,7 @@
 </ul>
 </li>
 <li>
-<p>shinyMobile has custom input for sidebar (<code>f7Panel()</code>) as well as a serve side update function:</p>
+<p>shinyMobile has custom input for sidebar (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a serve side update function:</p>
 <ul>
 <li>updateF7Panel</li>
 </ul>
@@ -228,35 +228,35 @@
 <div id="select-a-template" class="section level4">
 <h4 class="hasAnchor">
 <a href="#select-a-template" class="anchor"></a>Select a template</h4>
-<p>This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the <code>f7SingleLayout()</code> option. For more complex design, the best is <code>f7TabLayout()</code>. <code>f7SplitLayout()</code> is specific for tablets and desktop apps.</p>
+<p>This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> option. For more complex design, the best is <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is specific for tablets and desktop apps.</p>
 </div>
 <div id="simple-layout" class="section level4">
 <h4 class="hasAnchor">
 <a href="#simple-layout" class="anchor"></a>Simple Layout</h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">f7SingleLayout</span>(</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">  navbar, </a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">toolbar =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">  <span class="dt">panels =</span> <span class="ot">NULL</span>,</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">appbar =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">)</a></code></pre></div>
-<p>While only the navbar is mandatory, other components such as the toolbar are optionnal for the <code>f7SingleLayout()</code>.</p>
+<p>While only the navbar is mandatory, other components such as the toolbar are optionnal for the <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code>.</p>
 </div>
 <div id="tabs-layout" class="section level4">
 <h4 class="hasAnchor">
 <a href="#tabs-layout" class="anchor"></a>Tabs Layout</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">f7TabLayout</span>(</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span>(</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">  navbar, </a>
 <a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">panels =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">appbar =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">)</a></code></pre></div>
-<p>The … argument requires <code>f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)</code>. The id argument is mandatory if you want to exploit the <code>updateF7Tabs()</code> function. <code>f7Tabs()</code> expect to have <code>f7Tab(..., tabName, icon = NULL, active = FALSE)</code> passed inside.</p>
+<p>The … argument requires <code><a href="../reference/f7Tabs.html">f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)</a></code>. The id argument is mandatory if you want to exploit the <code><a href="../reference/updateF7Tabs.html">updateF7Tabs()</a></code> function. <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> expect to have <code><a href="../reference/f7Tab.html">f7Tab(..., tabName, icon = NULL, active = FALSE)</a></code> passed inside.</p>
 </div>
 <div id="split-layout-similar-to-sidebarlayout-in-shiny" class="section level4">
 <h4 class="hasAnchor">
 <a href="#split-layout-similar-to-sidebarlayout-in-shiny" class="anchor"></a>Split Layout (similar to sidebarLayout in {shiny})</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">f7SplitLayout</span>(.</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/f7SplitLayout.html">f7SplitLayout</a></span>(.</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">  navbar, </a>
 <a class="sourceLine" id="cb3-4" data-line-number="4">  sidebar, </a>
@@ -265,21 +265,21 @@
 <a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">appbar =</span> <span class="ot">NULL</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8">)</a></code></pre></div>
 <p>The main content goes in the … parameter. Navigation items are gathered in the sidebar slot. The sidebar expect a <code>f7Panel</code>. Importantly, the side parameter must be set to “left” and the style to “reveal”. The navigation menu is organized as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">f7PanelMenu</span>(</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/f7PanelMenu.html">f7PanelMenu</a></span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">id =</span> <span class="st">"menu"</span>,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="kw">f7PanelItem</span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="kw"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span>(</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="dt">tabName =</span> <span class="st">"tab1"</span>, </a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="dt">title =</span> <span class="st">"Tab 1"</span>, </a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">icon =</span> <span class="kw">f7Icon</span>(<span class="st">"email"</span>), </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="dt">icon =</span> <span class="kw"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"email"</span>), </a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="dt">active =</span> <span class="ot">TRUE</span></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  ),</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="kw">f7PanelItem</span>(</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="kw"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span>(</a>
 <a class="sourceLine" id="cb4-10" data-line-number="10">    <span class="dt">tabName =</span> <span class="st">"tab2"</span>, </a>
 <a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="dt">title =</span> <span class="st">"Tab 2"</span>, </a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="dt">icon =</span> <span class="kw">f7Icon</span>(<span class="st">"home"</span>)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="dt">icon =</span> <span class="kw"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"home"</span>)</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">  )</a>
 <a class="sourceLine" id="cb4-14" data-line-number="14">)</a></code></pre></div>
-<p>The id argument is important if you want to get the currently selected item or update the select tab. Each <code>f7PanelItem</code> has a mandatory tabName. The associated input will be <code>input$menu</code> in that example, with “tab1” for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in <code>f7Items()</code> containing as many <code>f7Item()</code> as sidebar items. The tabName must correspond!</p>
+<p>The id argument is important if you want to get the currently selected item or update the select tab. Each <code>f7PanelItem</code> has a mandatory tabName. The associated input will be <code>input$menu</code> in that example, with “tab1” for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in <code><a href="../reference/f7Items.html">f7Items()</a></code> containing as many <code><a href="../reference/f7Item.html">f7Item()</a></code> as sidebar items. The tabName must correspond!</p>
 </div>
 <div id="core-layout-components" class="section level4">
 <h4 class="hasAnchor">
@@ -289,19 +289,19 @@
 <h4 class="hasAnchor">
 <a href="#page" class="anchor"></a>Page</h4>
 <p>It is the main skeleton of the template.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">f7Page</span>(</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  ..., </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">init =</span> <span class="kw">f7Init</span>(<span class="dt">skin =</span> <span class="st">"auto"</span>, <span class="dt">theme =</span> <span class="st">"light"</span>),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">init =</span> <span class="kw"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="dt">skin =</span> <span class="st">"auto"</span>, <span class="dt">theme =</span> <span class="st">"light"</span>),</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">title =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">preloader =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">  <span class="dt">loading_duration =</span> <span class="dv">3</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">)</a></code></pre></div>
-<p><code>f7Init()</code> is mandatory (see below) since it sets up the app. preloader is useful in case you want to display a loading screen. <code>f7Page()</code> accepts any shinyMobile layout.</p>
+<p><code><a href="../reference/f7Init.html">f7Init()</a></code> is mandatory (see below) since it sets up the app. preloader is useful in case you want to display a loading screen. <code><a href="../reference/f7Page.html">f7Page()</a></code> accepts any shinyMobile layout.</p>
 <div id="navbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#navbar" class="anchor"></a>Navbar</h5>
-<p>The navbar is one of the most important element of any shinyMobile layout. It contains a title, a subtitle, triggers for both right and left panels (<code>f7Panel()</code>) as well as a subnavbar (<code>f7SubNavbar()</code>).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">f7Navbar</span>(</a>
+<p>The navbar is one of the most important element of any shinyMobile layout. It contains a title, a subtitle, triggers for both right and left panels (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a subnavbar (<code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">  <span class="dt">subNavbar =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="dt">title =</span> <span class="ot">NULL</span>, </a>
@@ -312,13 +312,13 @@
 <a class="sourceLine" id="cb6-9" data-line-number="9">  <span class="dt">left_panel =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb6-10" data-line-number="10">  <span class="dt">right_panel =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11">)</a></code></pre></div>
-<p>For complex apps, it might be interesting to add a <code>f7SubNavbar(...)</code>. It may contain any element like <code>f7Button()</code> or text. <code>f7Navbar()</code> has also styling parameters such as shadow and hairline.</p>
+<p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline.</p>
 </div>
 <div id="the-toolbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#the-toolbar" class="anchor"></a>The Toolbar</h5>
-<p>This is an option if you decide not to embed a <code>f7SubNavbar()</code>. The toolbar is the rigth place to add <code>f7Button()</code>, <code>f7Link()</code>, <code>f7Badge()</code>… Its position is controlled with the position parameter (either top or bottom).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">f7Toolbar</span>(</a>
+<p>This is an option if you decide not to embed a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>. The toolbar is the rigth place to add <code><a href="../reference/f7Button.html">f7Button()</a></code>, <code><a href="../reference/f7Link.html">f7Link()</a></code>, <code><a href="../reference/f7Badge.html">f7Badge()</a></code>… Its position is controlled with the position parameter (either top or bottom).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span>(</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">position =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"top"</span>, <span class="st">"bottom"</span>), </a>
 <a class="sourceLine" id="cb7-4" data-line-number="4">  <span class="dt">hairline =</span> <span class="ot">TRUE</span>,</a>
@@ -326,13 +326,13 @@
 <a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="dt">icons =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">scrollable =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb7-8" data-line-number="8">)</a></code></pre></div>
-<p>Interestingly, <code>f7Tabs()</code> is a custom <code>f7Toolbar()</code>!</p>
+<p>Interestingly, <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> is a custom <code><a href="../reference/f7Toolbar.html">f7Toolbar()</a></code>!</p>
 </div>
 <div id="panels" class="section level5">
 <h5 class="hasAnchor">
 <a href="#panels" class="anchor"></a>Panels</h5>
-<p>Panels are also called sidebars. <code>f7Panel()</code> is the corresponding function.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">f7Panel</span>(</a>
+<p>Panels are also called sidebars. <code><a href="../reference/f7Panel.html">f7Panel()</a></code> is the corresponding function.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/f7Panel.html">f7Panel</a></span>(</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">title =</span> <span class="ot">NULL</span>, </a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">side =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"left"</span>, <span class="st">"right"</span>),</a>
@@ -340,9 +340,9 @@
 <a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">effect =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"reveal"</span>, <span class="st">"cover"</span>),</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">resizable =</span> <span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">)</a></code></pre></div>
-<p>Although the App has a theme parameter, <code>f7Panel()</code> has an independant theme option. For instance, it is definitely possible to create a dark <code>f7Panel()</code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
+<p>Although the App has a theme parameter, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independant theme option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
 <p>Note that for the moment, there is no option to control the width of each panel.</p>
-<p>As stated previously for the <code>f7SplitLayout</code>, the <code>f7Panel()</code> may also be considered as a sidebar. In that case, we may include <code>f7PanelMenu()</code>. Finally do not forget to set up the <code>f7Navbar</code> so that panels are allowed!</p>
+<p>As stated previously for the <code>f7SplitLayout</code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>. Finally do not forget to set up the <code>f7Navbar</code> so that panels are allowed!</p>
 <div class="row">
 <div class="col-sm-4" align="center">
 <p><img src="figures/f7Panel_right_demo.png"></p>
@@ -355,8 +355,8 @@
 <div id="the-appbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#the-appbar" class="anchor"></a>The appbar</h5>
-<p><code>f7Appbar()</code> is displayed on top of the <code>f7Navbar()</code>. It is a best choice to embed <code>f7Searchbar()</code>. <code>f7Appbar()</code> may also trigger <code>f7Panel()</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">f7Appbar</span>(</a>
+<p><code><a href="../reference/f7Appbar.html">f7Appbar()</a></code> is displayed on top of the <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code>. It is a best choice to embed <code><a href="../reference/f7Searchbar.html">f7Searchbar()</a></code>. <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code> may also trigger <code><a href="../reference/f7Panel.html">f7Panel()</a></code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/f7Appbar.html">f7Appbar</a></span>(</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">  ..., </a>
 <a class="sourceLine" id="cb9-3" data-line-number="3">  <span class="dt">left_panel =</span> <span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">right_panel =</span> <span class="ot">FALSE</span>,</a>
@@ -367,8 +367,8 @@
 <div id="app-initialization" class="section level4">
 <h4 class="hasAnchor">
 <a href="#app-initialization" class="anchor"></a>App Initialization</h4>
-<p>This is probably the most inportant function of the template: <code>f7Init()</code>. This functions helps to set up the template as well as properly initializing the main view of your app.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">f7Init</span>(</a>
+<p>This is probably the most inportant function of the template: <code><a href="../reference/f7Init.html">f7Init()</a></code>. This functions helps to set up the template as well as properly initializing the main view of your app.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/f7Init.html">f7Init</a></span>(</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">skin =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span>), </a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">theme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dark"</span>, <span class="st">"light"</span>), </a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">filled =</span> <span class="ot">FALSE</span>, </a>

@@ -161,20 +161,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Slot for f7Tabs.</p></td>
+      <td><p>Slot for <a href='f7Tabs.html'>f7Tabs</a>.</p></td>
     </tr>
     <tr>
       <th>navbar</th>
-      <td><p>Slot for f7Navbar.</p></td>
+      <td><p>Slot for <a href='f7Navbar.html'>f7Navbar</a>.</p></td>
     </tr>
     <tr>
       <th>panels</th>
-      <td><p>Slot for f7Panel.
+      <td><p>Slot for <a href='f7Panel.html'>f7Panel</a>.
 Wrap in <a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a> if multiple panels.</p></td>
     </tr>
     <tr>
       <th>appbar</th>
-      <td><p>Slot for f7Appbar.</p></td>
+      <td><p>Slot for <a href='f7Appbar.html'>f7Appbar</a>.</p></td>
     </tr>
     </table>
     
@@ -185,72 +185,72 @@ Wrap in <a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagLi
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab Layout"</span>,
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7TabLayout'>f7TabLayout</a></span>(
+    <span class='fu'>f7TabLayout</span>(
       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Panel'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
+       <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
+       <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
       ),
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tabs"</span>,
         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
-      <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tabs'>f7Tabs</a></span>(
+      <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
         <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"email"</span>),
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>),
           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Shadow'>f7Shadow</a></span>(
+          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
+            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs1"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot1"</span>),
               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Badge'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
               )
             )
           )
         ),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"today"</span>),
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"today"</span>),
           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Shadow'>f7Shadow</a></span>(
+          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
+            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs2"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>10000</span>, <span class='fl'>5000</span>),
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>),
               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Badge'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
               )
             )
           )
         ),
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Tab'>f7Tab</a></span>(
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-          <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Shadow'>f7Shadow</a></span>(
+          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Card'>f7Card</a></span>(
+            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/sliderInput'>sliderInput</a></span>(<span class='st'>"obs3"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>5</span>),
               <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/plotOutput'>plotOutput</a></span>(<span class='st'>"distPlot3"</span>),
               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/tag'>tagList</a></span>(
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Badge'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
               )
             )
           )

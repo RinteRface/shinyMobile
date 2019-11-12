@@ -187,7 +187,7 @@ input$id is NULL.</p></td>
     </tr>
     <tr>
       <th>icons</th>
-      <td><p>A list of icons for buttons. Expect f7Icon.</p></td>
+      <td><p>A list of icons for buttons. Expect <a href='f7Icon.html'>f7Icon</a>.</p></td>
     </tr>
     </table>
     
@@ -198,12 +198,12 @@ input$id is NULL.</p></td>
  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Page'>f7Page</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Action sheet"</span>,
-     <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7SingleLayout'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Navbar'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
        <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/builder'>br</a></span>(),
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Button'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Show action sheet"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Show action sheet"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
@@ -217,15 +217,15 @@ input$id is NULL.</p></td>
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>button</span>, {
        <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>button</span> <span class='kw'>==</span> <span class='fl'>1</span>) {
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Notif'>f7Notif</a></span>(
+         <span class='fu'><a href='f7Notif.html'>f7Notif</a></span>(
            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"You clicked on the first button"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
            <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,
            <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
          )
        } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>button</span> <span class='kw'>==</span> <span class='fl'>2</span>) {
-         <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Dialog'>f7Dialog</a></span>(
+         <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span>(
            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
            <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"confirm"</span>,
@@ -236,14 +236,14 @@ input$id is NULL.</p></td>
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Toast'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
+       <span class='fu'><a href='f7Toast.html'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
      })
 
      <span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/observeEvent'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-       <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7ActionSheet'>f7ActionSheet</a></span>(
+       <span class='fu'>f7ActionSheet</span>(
          <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"action1"</span>,
-         <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"info"</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/shinyMobile/topics/f7Icon'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>)),
+         <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>), <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>)),
          <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
            <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'Notification'</span>, <span class='st'>'Dialog'</span>),
            <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>)

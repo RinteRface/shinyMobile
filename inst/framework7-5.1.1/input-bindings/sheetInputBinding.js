@@ -18,7 +18,13 @@ $.extend(f7SheetBinding, {
       swipeToClose: SetTo5(id, "swipeToClose"),
       swipeToStep: SetTo5(id, "swipeToStep"),
       backdrop: SetTo5(id, "backdrop"),
-      closeByOutsideClick : SetTo5(id, "closeByOutsideClick")
+      closeByOutsideClick : SetTo5(id, "closeByOutsideClick"),
+      on: {
+        opened: function () {
+          // tells shiny to show the content inside
+          $(el).trigger('shown');
+        }
+      }
     });
   },
 

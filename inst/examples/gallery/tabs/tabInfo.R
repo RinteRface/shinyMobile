@@ -27,39 +27,47 @@ tabInfo <- f7Tab(
       id = "sheet1",
       label = "More",
       orientation = "bottom",
-      swipeToStep = TRUE,
       swipeToClose = TRUE,
+      swipeToStep = TRUE,
       backdrop = TRUE,
-      swipeHandler = TRUE,
-      "Lorem ipsum dolor sit amet,
-    consectetur adipiscing elit. Duo Reges:
-    constructio interrete. An tu me de L.
-    Quae diligentissime contra Aristonem
-    dicuntur a Chryippo. Magni enim aestimabat
-    pecuniam non modo non contra leges, sed
-    etiam legibus partam. Eademne, quae restincta
-    siti? Indicant pueri, in quibus ut in
-    speculis natura cernitur. Cupit enim
-    dícere nihil posse ad beatam vitam deesse
-    sapienti. Qui autem de summo bono dissentit de tota
-    philosophiae ratione dissentit. A mene tu? Quid
-    ad utilitatem tantae pecuniae?
-
-    Quarum ambarum rerum cum medicinam pollicetur,
-    luxuriae licentiam pollicetur. Itaque rursus eadem
-    ratione, qua sum paulo ante usus, haerebitis.
-    Possumusne ergo in vita summum bonum dicere, cum
-    id ne in cena quidem posse videamur? Et si
-    turpitudinem fugimus in statu et motu corporis,
-    quid est cur pulchritudinem non sequamur? Ratio
-    enim nostra consentit, pugnat oratio. Maximas
-    vero virtutes iacere omnis necesse est voluptate
-    dominante. Quam illa ardentis amores excitaret sui!
-    Cur tandem? Cur igitur easdem res, inquam,
-    Peripateticis dicentibus verbum nullum est, quod
-    non intellegatur? Atqui perspicuum est hominem e
-    corpore animoque constare, cum primae sint animi
-    partes, secundae corporis."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+       Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+       scelerisque est, at porta justo cursus ac",
+      hiddenItems = tagList(
+        f7Segment(
+          container = "segment",
+          rounded = TRUE,
+          f7Button(color = "blue", label = "My button 1", rounded = TRUE),
+          f7Button(color = "green", label = "My button 2", rounded = TRUE),
+          f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
+        ),
+        f7Flex(
+          f7Badge(32, color = "blue"),
+          f7Badge("Badge", color = "green")
+        ),
+        f7Flex(
+          f7Gauge(
+            id = "sheetGauge",
+            type  = "semicircle",
+            value = 10,
+            borderColor = "#2196f3",
+            borderWidth = 10,
+            valueText = "50%",
+            valueFontSize = 41,
+            valueTextColor = "#2196f3",
+            labelText = "amount of something"
+          )
+        ),
+        f7Slider(
+          inputId = "sheetObs",
+          label = "Number of observations",
+          max = 100,
+          min = 0,
+          value = 10,
+          scale = TRUE
+        ),
+        plotOutput("sheetPlot")
+      )
     )
   ),
 
