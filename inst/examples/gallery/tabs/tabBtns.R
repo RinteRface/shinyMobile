@@ -5,14 +5,14 @@ tabBtns <- f7Tab(
   # FABS
   f7Align(
     side = "center",
-    h1("miniUI 2.0 brings brand new containers for actionButtons")
+    h1("miniUI 2.0 brings brand new containers for actionButtons: f7Fabs")
   ),
 
   f7Fabs(
-    position = "center-top",
+    position = "right-top",
     color = "yellow",
-    sideOpen = "right",
-    lapply(1:4, function(i) f7Fab(paste0("btn", i), i))
+    sideOpen = "bottom",
+    lapply(1:4, function(i) f7Fab(paste0("btn", i), label = i, flag = paste0("btn", i)))
   ),
   lapply(1:4, function(i) textOutput(paste0("res", i))),
 
@@ -22,7 +22,7 @@ tabBtns <- f7Tab(
     position = "center-center",
     color = "purple",
     sideOpen = "center",
-    lapply(5:8, function(i) f7Fab(paste0("btn", i), i))
+    lapply(5:8, function(i) f7Fab(inputId = paste0("btn", i), label = i))
   ),
   lapply(5:8, function(i) textOutput(paste0("res", i))),
 
@@ -30,7 +30,7 @@ tabBtns <- f7Tab(
     position = "left-bottom",
     color = "pink",
     sideOpen = "top",
-    lapply(9:12, function(i) f7Fab(paste0("btn", i), i))
+    lapply(9:12, function(i) f7Fab(paste0("btn", i), label = i, flag = paste0("btn", i)))
   ),
   br(),
 

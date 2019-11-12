@@ -5,9 +5,8 @@
 \title{Create a Framework7 container for floating action button (FAB)}
 \usage{
 f7Fabs(..., position = c("right-top", "right-center", "right-bottom",
-  "left-top", "left-center", "left-bottom", "center-right",
-  "center-center", "center-left", "center-top", "center-bottom"),
-  color = NULL, extended = FALSE, label = NULL,
+  "left-top", "left-center", "left-bottom", "center-center", "center-top",
+  "center-bottom"), color = NULL, extended = FALSE, label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center"),
   morph = FALSE, morphTarget = NULL)
 }

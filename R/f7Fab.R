@@ -64,8 +64,8 @@
 #'
 #' @export
 f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom", "left-top",
-  "left-center", "left-bottom", "center-right", "center-center", "center-left",
-  "center-top", "center-bottom"), color = NULL, extended = FALSE, label = NULL,
+  "left-center", "left-bottom", "center-center", "center-top", "center-bottom"),
+  color = NULL, extended = FALSE, label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center"), morph = FALSE, morphTarget = NULL) {
 
   position <- match.arg(position)
@@ -101,20 +101,24 @@ f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom"
 #' Build a Framework7 floating action button (FAB)
 #'
 #' @inheritParams shiny::actionButton
+#' @param flag Additional text displayed next to the button content. Only works
+#' if \link{f7Fabs} position parameter is not starting with center-...
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Fab <- function(inputId, label, width = NULL, ...) {
+f7Fab <- function(inputId, label, width = NULL, ..., flag = NULL) {
   value <- shiny::restoreInput(id = inputId, default = NULL)
-  shiny::tags$a(id = inputId, style = if (!is.null(width))
-    paste0("width: ", shiny::validateCssUnit(width), ";"),
+  shiny::tags$a(
+    id = inputId,
+    style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
     type = "button",
-    class = "action-button fab-label-button",
+    class = if (!is.null(flag)) "fab-label-button action-button" else "action-button",
     `data-val` = value,
-    shiny::span(...),
-    if (!is.null(label)) {
-      shiny::span(class = "fab-label", label)
+    list(...),
+    shiny::span(label),
+    if (!is.null(flag)) {
+      shiny::span(class = "fab-label", flag)
     }
   )
 }

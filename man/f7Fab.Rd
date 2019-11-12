@@ -4,7 +4,7 @@
 \alias{f7Fab}
 \title{Create a Framework7 floating action button (FAB)}
 \usage{
-f7Fab(inputId, label, width = NULL, ...)
+f7Fab(inputId, label, width = NULL, ..., flag = NULL)
 }
 \arguments{
 \item{inputId}{The \code{input} slot that will be used to access the value.}
@@ -16,6 +16,9 @@ you could also use any other HTML, like an image.}
 see \code{\link{validateCssUnit}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
+
+\item{flag}{Additional text displayed next to the button content. Only works
+if \link{f7Fabs} position parameter is not starting with center-...}
 }
 \description{
 Build a Framework7 floating action button (FAB)
