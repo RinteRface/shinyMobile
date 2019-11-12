@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 inst/doc
+inst/examples/**/rsconnect/
 .DS_Store
