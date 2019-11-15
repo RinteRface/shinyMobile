@@ -13,6 +13,11 @@ $(function () {
     $('.toolbar').css('margin-bottom', '20px');
   }
 
+  // Framework7.device is extremely useful to set up custom design
+  $(document).on('shiny:connected', function(event) {
+    Shiny.setInputValue('deviceInfo', Framework7.device);
+  });
+
   // handle background for dark mode
   // need to remove the custom gainsboro color background
   var dark_mode = $('html').hasClass('theme-dark');
