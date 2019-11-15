@@ -18,6 +18,10 @@ $(function () {
     $('.sheet-modal, .swipe-handler').css('background-color', '#1b1b1d');
     $('.popup').css('background-color', '#1b1b1d');
 
+    // fix black accordion text in dark mode
+    $('.accordion-item .item-content .item-inner').css('color', 'white');
+    $('.accordion-item .accordion-item-content').css('color', 'white');
+
 
     // below the sidebar id #f7-sidebar-view ensures that we do not
     // screw up the classic f7Panel style in dark mode
