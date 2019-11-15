@@ -22,7 +22,6 @@ $(function () {
     $('.accordion-item .item-content .item-inner').css('color', 'white');
     $('.accordion-item .accordion-item-content').css('color', 'white');
 
-
     // below the sidebar id #f7-sidebar-view ensures that we do not
     // screw up the classic f7Panel style in dark mode
     // The sidebar background has to be slightly lighter than the main background
@@ -35,6 +34,17 @@ $(function () {
     $(sidebarItems).css('background-color', '#171717');
   } else {
     $('div.messages').css('background-color', 'gainsboro');
+    // fix photo browser links issue
+    $('a').on('click', function() {
+      setTimeout(function() {
+        // we recover the body class that contains the page
+        // color we set up in f7Init
+        var linkColors = $('body').attr('class');
+        $('.navbar-photo-browser .navbar-inner .title').css('color', 'black');
+        $('.navbar-photo-browser .navbar-inner .right .popup-close').css('color', linkColors);
+        $('.photo-browser-page .toolbar .toolbar-inner a').css('color', linkColors);
+      }, 100);
+    });
   }
 
 

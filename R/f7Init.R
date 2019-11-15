@@ -129,6 +129,10 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
         });
         var mainView = app.views.create('.view-main');
         app.methods.setLayoutTheme('", theme, "');
+        // trick to fix the photo browser link issue
+        // we set the body class that will contain the color.
+        // We then recover this class in a variable in the my-app.js code
+        $('body').addClass('", color, "')
       "
         )
       )
