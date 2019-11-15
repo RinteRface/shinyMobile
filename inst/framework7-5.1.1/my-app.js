@@ -8,6 +8,11 @@ $(function () {
     window.history.replaceState( {} , 'newpath', newpath);
   }
 
+  // handle toolbar padding for mobiles in standalone mode
+  if (Framework7.device.standalone) {
+    $('.toolbar').css('margin-bottom', '20px');
+  }
+
   // handle background for dark mode
   // need to remove the custom gainsboro color background
   var dark_mode = $('html').hasClass('theme-dark');
