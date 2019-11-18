@@ -4,8 +4,16 @@
 \alias{f7ListItem}
 \title{Create a Framework 7 contact item}
 \usage{
-f7ListItem(..., title = NULL, subtitle = NULL, header = NULL,
-  footer = NULL, url = NULL, media = NULL, right = NULL)
+f7ListItem(
+  ...,
+  title = NULL,
+  subtitle = NULL,
+  header = NULL,
+  footer = NULL,
+  url = NULL,
+  media = NULL,
+  right = NULL
+)
 }
 \arguments{
 \item{...}{Item text.}

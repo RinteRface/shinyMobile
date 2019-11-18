@@ -4,11 +4,19 @@
 \alias{f7Init}
 \title{Custom initialization}
 \usage{
-f7Init(skin = c("ios", "md", "auto", "aurora"), theme = c("dark",
-  "light"), filled = FALSE, color = NULL, tapHold = TRUE,
-  iosTouchRipple = FALSE, iosCenterTitle = TRUE,
-  iosTranslucentBars = FALSE, hideNavOnPageScroll = TRUE,
-  hideTabsOnPageScroll = FALSE, serviceWorker = NULL)
+f7Init(
+  skin = c("ios", "md", "auto", "aurora"),
+  theme = c("dark", "light"),
+  filled = FALSE,
+  color = NULL,
+  tapHold = TRUE,
+  iosTouchRipple = FALSE,
+  iosCenterTitle = TRUE,
+  iosTranslucentBars = FALSE,
+  hideNavOnPageScroll = TRUE,
+  hideTabsOnPageScroll = FALSE,
+  serviceWorker = NULL
+)
 }
 \arguments{
 \item{skin}{App skin: "ios", "md", "auto" or "aurora".}

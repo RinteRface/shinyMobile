@@ -4,8 +4,14 @@
 \alias{f7SplitLayout}
 \title{Create a Framework7 split layout}
 \usage{
-f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panels = NULL,
-  appbar = NULL)
+f7SplitLayout(
+  ...,
+  navbar,
+  sidebar,
+  toolbar = NULL,
+  panels = NULL,
+  appbar = NULL
+)
 }
 \arguments{
 \item{...}{Content.}

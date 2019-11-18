@@ -4,9 +4,18 @@
 \alias{f7Sheet}
 \title{Create an f7 sheet modal}
 \usage{
-f7Sheet(..., hiddenItems, id, label = "Open", orientation = c("top",
-  "bottom"), swipeToClose = FALSE, swipeToStep = FALSE,
-  backdrop = FALSE, closeByOutsideClick = TRUE, swipeHandler = TRUE)
+f7Sheet(
+  ...,
+  hiddenItems,
+  id,
+  label = "Open",
+  orientation = c("top", "bottom"),
+  swipeToClose = FALSE,
+  swipeToStep = FALSE,
+  backdrop = FALSE,
+  closeByOutsideClick = TRUE,
+  swipeHandler = TRUE
+)
 }
 \arguments{
 \item{...}{Sheet content. If wipeToStep is TRUE, these items will be visible at start.}

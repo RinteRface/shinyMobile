@@ -4,8 +4,14 @@
 \alias{updateF7Slider}
 \title{Change the value of a slider input on the client}
 \usage{
-updateF7Slider(session, inputId, min = NULL, max = NULL,
-  value = NULL, scale = FALSE)
+updateF7Slider(
+  session,
+  inputId,
+  min = NULL,
+  max = NULL,
+  value = NULL,
+  scale = FALSE
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}

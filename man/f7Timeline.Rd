@@ -4,8 +4,14 @@
 \alias{f7Timeline}
 \title{Create a Framework7 timeline}
 \usage{
-f7Timeline(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
-  year = NULL, month = NULL)
+f7Timeline(
+  ...,
+  sides = FALSE,
+  horizontal = FALSE,
+  calendar = FALSE,
+  year = NULL,
+  month = NULL
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7TimelineItem}.}

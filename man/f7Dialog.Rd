@@ -4,8 +4,13 @@
 \alias{f7Dialog}
 \title{Create a Framework7 dialog window}
 \usage{
-f7Dialog(inputId = NULL, title = NULL, text, type = c("alert",
-  "confirm", "prompt", "login"), session)
+f7Dialog(
+  inputId = NULL,
+  title = NULL,
+  text,
+  type = c("alert", "confirm", "prompt", "login"),
+  session
+)
 }
 \arguments{
 \item{inputId}{Input associated to the alert. Works when type is one of

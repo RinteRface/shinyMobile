@@ -4,9 +4,16 @@
 \alias{f7Toast}
 \title{Create a Framework7 toast}
 \usage{
-f7Toast(session, text, position = c("bottom", "top", "center"),
-  closeButton = TRUE, closeButtonText = "close",
-  closeButtonColor = "red", closeTimeout = 3000, icon = NULL)
+f7Toast(
+  session,
+  text,
+  position = c("bottom", "top", "center"),
+  closeButton = TRUE,
+  closeButtonText = "close",
+  closeButtonColor = "red",
+  closeTimeout = 3000,
+  icon = NULL
+)
 }
 \arguments{
 \item{session}{Shiny session.}

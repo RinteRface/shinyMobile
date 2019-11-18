@@ -4,8 +4,14 @@
 \alias{f7Swiper}
 \title{Create a Framework7 swiper}
 \usage{
-f7Swiper(..., id, spaceBetween = 50, slidePerView = "auto",
-  centered = TRUE, speed = 400)
+f7Swiper(
+  ...,
+  id,
+  spaceBetween = 50,
+  slidePerView = "auto",
+  centered = TRUE,
+  speed = 400
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7Slide}.}

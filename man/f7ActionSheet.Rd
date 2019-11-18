@@ -4,8 +4,13 @@
 \alias{f7ActionSheet}
 \title{Create a framework7 action sheet}
 \usage{
-f7ActionSheet(id, session = shiny::getDefaultReactiveDomain(),
-  grid = FALSE, buttons, icons = NULL)
+f7ActionSheet(
+  id,
+  session = shiny::getDefaultReactiveDomain(),
+  grid = FALSE,
+  buttons,
+  icons = NULL
+)
 }
 \arguments{
 \item{id}{Unique id. This gives the state of the action sheet. input$id is TRUE

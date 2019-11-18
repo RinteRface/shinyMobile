@@ -4,10 +4,18 @@
 \alias{f7AutoComplete}
 \title{Create a Framework7 autocomplete input}
 \usage{
-f7AutoComplete(inputId, label, placeholder = NULL, value = choices[1],
-  choices, typeahead = TRUE, expandInput = TRUE, type = c("popup",
-  "page", "dropdown"), dropdownPlaceholderText = NULL,
-  multiple = FALSE)
+f7AutoComplete(
+  inputId,
+  label,
+  placeholder = NULL,
+  value = choices[1],
+  choices,
+  typeahead = TRUE,
+  expandInput = TRUE,
+  type = c("popup", "page", "dropdown"),
+  dropdownPlaceholderText = NULL,
+  multiple = FALSE
+)
 }
 \arguments{
 \item{inputId}{Autocomplete input id.}

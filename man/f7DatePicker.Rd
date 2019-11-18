@@ -4,8 +4,14 @@
 \alias{f7DatePicker}
 \title{Create a Framework7 date input}
 \usage{
-f7DatePicker(inputId, label, value = NULL, min = NULL, max = NULL,
-  format = "yyyy-mm-dd")
+f7DatePicker(
+  inputId,
+  label,
+  value = NULL,
+  min = NULL,
+  max = NULL,
+  format = "yyyy-mm-dd"
+)
 }
 \arguments{
 \item{inputId}{Date input id.}

@@ -4,8 +4,7 @@
 \alias{f7SocialCard}
 \title{Create a Framework7 social card}
 \usage{
-f7SocialCard(..., author_img = NULL, author = NULL, date = NULL,
-  footer = NULL)
+f7SocialCard(..., author_img = NULL, author = NULL, date = NULL, footer = NULL)
 }
 \arguments{
 \item{...}{Card content.}

@@ -4,8 +4,13 @@
 \alias{f7PhotoBrowser}
 \title{Create a fremework7 photo browser}
 \usage{
-f7PhotoBrowser(id, label, photos, theme = c("light", "dark"),
-  type = c("popup", "standalone", "page"))
+f7PhotoBrowser(
+  id,
+  label,
+  photos,
+  theme = c("light", "dark"),
+  type = c("popup", "standalone", "page")
+)
 }
 \arguments{
 \item{id}{Unique id.}

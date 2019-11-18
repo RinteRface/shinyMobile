@@ -4,8 +4,11 @@
 \alias{f7NavbarHide}
 \title{Hide a framework7 navbar}
 \usage{
-f7NavbarHide(session = shiny::getDefaultReactiveDomain(),
-  animate = TRUE, hideStatusbar = FALSE)
+f7NavbarHide(
+  session = shiny::getDefaultReactiveDomain(),
+  animate = TRUE,
+  hideStatusbar = FALSE
+)
 }
 \arguments{
 \item{session}{Shiny session object.}

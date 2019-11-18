@@ -13,7 +13,7 @@ f7Fab(inputId, label, width = NULL, ..., flag = NULL)
 you could also use any other HTML, like an image.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link{validateCssUnit}}.}
+see \code{\link[=validateCssUnit]{validateCssUnit()}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
 

@@ -4,11 +4,24 @@
 \alias{f7Gauge}
 \title{Create a Framework7 gauge}
 \usage{
-f7Gauge(id, type = NULL, value = NULL, size = NULL, bgColor = NULL,
-  borderBgColor = NULL, borderColor = NULL, borderWidth = NULL,
-  valueText = NULL, valueTextColor = NULL, valueFontSize = NULL,
-  valueFontWeight = NULL, labelText = NULL, labelTextColor = NULL,
-  labelFontSize = NULL, labelFontWeight = NULL)
+f7Gauge(
+  id,
+  type = NULL,
+  value = NULL,
+  size = NULL,
+  bgColor = NULL,
+  borderBgColor = NULL,
+  borderColor = NULL,
+  borderWidth = NULL,
+  valueText = NULL,
+  valueTextColor = NULL,
+  valueFontSize = NULL,
+  valueFontWeight = NULL,
+  labelText = NULL,
+  labelTextColor = NULL,
+  labelFontSize = NULL,
+  labelFontWeight = NULL
+)
 }
 \arguments{
 \item{id}{Gauge ID.}

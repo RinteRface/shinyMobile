@@ -4,10 +4,20 @@
 \alias{f7ColorPicker}
 \title{Create a Framework7 color picker input}
 \usage{
-f7ColorPicker(inputId, label, value = "#ff0000", placeholder = NULL,
-  modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
-  sliderValue = TRUE, sliderValueEditable = TRUE, sliderLabel = TRUE,
-  hexLabel = TRUE, hexValueEditable = TRUE, groupedModules = TRUE)
+f7ColorPicker(
+  inputId,
+  label,
+  value = "#ff0000",
+  placeholder = NULL,
+  modules = f7ColorPickerModules,
+  palettes = f7ColorPickerPalettes,
+  sliderValue = TRUE,
+  sliderValueEditable = TRUE,
+  sliderLabel = TRUE,
+  hexLabel = TRUE,
+  hexValueEditable = TRUE,
+  groupedModules = TRUE
+)
 }
 \arguments{
 \item{inputId}{Color picker input.}

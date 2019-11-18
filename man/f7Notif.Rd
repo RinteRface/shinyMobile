@@ -4,9 +4,18 @@
 \alias{f7Notif}
 \title{Create a Framework7 notification}
 \usage{
-f7Notif(text, icon = NULL, title = NULL, titleRightText = NULL,
-  subtitle = NULL, closeTimeout = 5000, closeButton = FALSE,
-  closeOnClick = TRUE, swipeToClose = TRUE, session)
+f7Notif(
+  text,
+  icon = NULL,
+  title = NULL,
+  titleRightText = NULL,
+  subtitle = NULL,
+  closeTimeout = 5000,
+  closeButton = FALSE,
+  closeOnClick = TRUE,
+  swipeToClose = TRUE,
+  session
+)
 }
 \arguments{
 \item{text}{Notification content.}

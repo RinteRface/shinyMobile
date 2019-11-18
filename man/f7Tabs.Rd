@@ -4,8 +4,7 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., .items = NULL, id = NULL, swipeable = FALSE,
-  animated = TRUE)
+f7Tabs(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}

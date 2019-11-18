@@ -4,8 +4,14 @@
 \alias{f7Message}
 \title{Create a framework7 message}
 \usage{
-f7Message(content, src = NULL, author = NULL, date = NULL,
-  state = c("sent", "received"), type = c("text", "img"))
+f7Message(
+  content,
+  src = NULL,
+  author = NULL,
+  date = NULL,
+  state = c("sent", "received"),
+  type = c("text", "img")
+)
 }
 \arguments{
 \item{content}{Message content. If type is ing, content must

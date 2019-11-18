@@ -4,8 +4,14 @@
 \alias{f7Card}
 \title{Create a Framework7 card}
 \usage{
-f7Card(..., img = NULL, title = NULL, footer = NULL,
-  outline = FALSE, height = NULL)
+f7Card(
+  ...,
+  img = NULL,
+  title = NULL,
+  footer = NULL,
+  outline = FALSE,
+  height = NULL
+)
 }
 \arguments{
 \item{...}{Card content.}

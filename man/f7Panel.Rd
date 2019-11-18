@@ -4,9 +4,15 @@
 \alias{f7Panel}
 \title{Create a Framework7 panel}
 \usage{
-f7Panel(..., inputId = NULL, title = NULL, side = c("left", "right"),
-  theme = c("dark", "light"), effect = c("reveal", "cover"),
-  resizable = FALSE)
+f7Panel(
+  ...,
+  inputId = NULL,
+  title = NULL,
+  side = c("left", "right"),
+  theme = c("dark", "light"),
+  effect = c("reveal", "cover"),
+  resizable = FALSE
+)
 }
 \arguments{
 \item{...}{Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.}

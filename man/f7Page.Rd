@@ -4,8 +4,13 @@
 \alias{f7Page}
 \title{Create a Framework7 page}
 \usage{
-f7Page(..., init = f7Init(skin = "auto", theme = "light"),
-  title = NULL, preloader = FALSE, loading_duration = 3)
+f7Page(
+  ...,
+  init = f7Init(skin = "auto", theme = "light"),
+  title = NULL,
+  preloader = FALSE,
+  loading_duration = 3
+)
 }
 \arguments{
 \item{...}{Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},

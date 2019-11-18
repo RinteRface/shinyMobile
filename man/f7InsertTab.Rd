@@ -4,8 +4,14 @@
 \alias{f7InsertTab}
 \title{Insert a \link{f7Tab} in a \link{f7Tabs}}
 \usage{
-f7InsertTab(inputId, tab, target, position = c("before", "after"),
-  select = FALSE, session = shiny::getDefaultReactiveDomain())
+f7InsertTab(
+  inputId,
+  tab,
+  target,
+  position = c("before", "after"),
+  select = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{inputId}{\link{f7Tabs} id.}

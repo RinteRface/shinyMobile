@@ -4,8 +4,13 @@
 \alias{f7Swipeout}
 \title{Create a framework7 swipeout element}
 \usage{
-f7Swipeout(tag, ..., left = NULL, right = NULL, side = c("left",
-  "right", "both"))
+f7Swipeout(
+  tag,
+  ...,
+  left = NULL,
+  right = NULL,
+  side = c("left", "right", "both")
+)
 }
 \arguments{
 \item{tag}{Tag to be swiped.}

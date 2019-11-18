@@ -4,8 +4,15 @@
 \alias{f7ExpandableCard}
 \title{Create a Framework7 expandable card}
 \usage{
-f7ExpandableCard(..., id = NULL, title = NULL, subtitle = NULL,
-  color = NULL, img = NULL, fullBackground = FALSE)
+f7ExpandableCard(
+  ...,
+  id = NULL,
+  title = NULL,
+  subtitle = NULL,
+  color = NULL,
+  img = NULL,
+  fullBackground = FALSE
+)
 }
 \arguments{
 \item{...}{Card content.}

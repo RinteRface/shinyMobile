@@ -4,8 +4,7 @@
 \alias{f7NavbarShow}
 \title{Show a framework7 navbar}
 \usage{
-f7NavbarShow(session = shiny::getDefaultReactiveDomain(),
-  animate = TRUE)
+f7NavbarShow(session = shiny::getDefaultReactiveDomain(), animate = TRUE)
 }
 \arguments{
 \item{session}{Shiny session object.}

@@ -4,8 +4,16 @@
 \alias{f7Slider}
 \title{Create a f7 slider}
 \usage{
-f7Slider(inputId, label, min, max, value, step = NULL, scale = FALSE,
-  vertical = FALSE)
+f7Slider(
+  inputId,
+  label,
+  min,
+  max,
+  value,
+  step = NULL,
+  scale = FALSE,
+  vertical = FALSE
+)
 }
 \arguments{
 \item{inputId}{Slider input id.}

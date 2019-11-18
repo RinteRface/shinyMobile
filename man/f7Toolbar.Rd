@@ -4,8 +4,14 @@
 \alias{f7Toolbar}
 \title{Create a Framework7 Toolbar}
 \usage{
-f7Toolbar(..., position = c("top", "bottom"), hairline = TRUE,
-  shadow = TRUE, icons = FALSE, scrollable = FALSE)
+f7Toolbar(
+  ...,
+  position = c("top", "bottom"),
+  hairline = TRUE,
+  shadow = TRUE,
+  icons = FALSE,
+  scrollable = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7Link} or any other element.}

@@ -10,7 +10,7 @@ f7ListIndexItem(..., .noWS = NULL)
 \item{...}{Attributes and children of the element. Named arguments become
 attributes, and positional arguments become children. Valid children are
 tags, single-character character vectors (which become text nodes), raw
-HTML (see \code{\link{HTML}}), and \code{html_dependency} objects. You can
+HTML (see \code{\link[htmltools]{HTML}}), and \code{html_dependency} objects. You can
 also pass lists that contain tags, text nodes, or HTML. To use boolean
 attributes, use a named argument with a \code{NA} value. (see example)}
 

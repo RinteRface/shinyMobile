@@ -4,8 +4,7 @@
 \alias{updateF7Text}
 \title{Change the value of a text input on the client}
 \usage{
-updateF7Text(session, inputId, label = NULL, value = NULL,
-  placeholder = NULL)
+updateF7Text(session, inputId, label = NULL, value = NULL, placeholder = NULL)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}

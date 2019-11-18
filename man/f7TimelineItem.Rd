@@ -4,8 +4,15 @@
 \alias{f7TimelineItem}
 \title{Create a Framework7 timeline item}
 \usage{
-f7TimelineItem(..., date = NULL, card = FALSE, time = NULL,
-  title = NULL, subtitle = NULL, side = NULL)
+f7TimelineItem(
+  ...,
+  date = NULL,
+  card = FALSE,
+  time = NULL,
+  title = NULL,
+  subtitle = NULL,
+  side = NULL
+)
 }
 \arguments{
 \item{...}{Item content, text for instance.}

@@ -4,8 +4,7 @@
 \alias{f7Block}
 \title{Create a Framework7 block}
 \usage{
-f7Block(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
-  tablet = FALSE)
+f7Block(..., hairlines = TRUE, strong = FALSE, inset = FALSE, tablet = FALSE)
 }
 \arguments{
 \item{...}{Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.}

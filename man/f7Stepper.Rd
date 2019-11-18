@@ -4,9 +4,22 @@
 \alias{f7Stepper}
 \title{Create a F7 radio stepper}
 \usage{
-f7Stepper(inputId, label, min, max, value, step = 1, fill = FALSE,
-  rounded = FALSE, raised = FALSE, size = NULL, color = NULL,
-  wraps = FALSE, autorepeat = TRUE, manual = TRUE)
+f7Stepper(
+  inputId,
+  label,
+  min,
+  max,
+  value,
+  step = 1,
+  fill = FALSE,
+  rounded = FALSE,
+  raised = FALSE,
+  size = NULL,
+  color = NULL,
+  wraps = FALSE,
+  autorepeat = TRUE,
+  manual = TRUE
+)
 }
 \arguments{
 \item{inputId}{Stepper input id.}

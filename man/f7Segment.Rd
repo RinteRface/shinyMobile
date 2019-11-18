@@ -4,8 +4,12 @@
 \alias{f7Segment}
 \title{Create a Framework7 segmented button container}
 \usage{
-f7Segment(..., container = c("segment", "row"), shadow = FALSE,
-  rounded = FALSE)
+f7Segment(
+  ...,
+  container = c("segment", "row"),
+  shadow = FALSE,
+  rounded = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7Button}.}

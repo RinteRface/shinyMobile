@@ -4,9 +4,15 @@
 \alias{f7SmartSelect}
 \title{Create a Framework7 smart select}
 \usage{
-f7SmartSelect(inputId, label, choices, selected = NULL,
-  type = c("sheet", "popup", "popover"), smart = TRUE,
-  multiple = FALSE)
+f7SmartSelect(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  type = c("sheet", "popup", "popover"),
+  smart = TRUE,
+  multiple = FALSE
+)
 }
 \arguments{
 \item{inputId}{Select input id.}

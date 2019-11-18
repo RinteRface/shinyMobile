@@ -4,8 +4,15 @@
 \alias{f7Chip}
 \title{Create a Framework7 chips}
 \usage{
-f7Chip(label = NULL, img = NULL, icon = NULL, outline = FALSE,
-  status = NULL, icon_status = NULL, closable = FALSE)
+f7Chip(
+  label = NULL,
+  img = NULL,
+  icon = NULL,
+  outline = FALSE,
+  status = NULL,
+  icon_status = NULL,
+  closable = FALSE
+)
 }
 \arguments{
 \item{label}{Chip label.}

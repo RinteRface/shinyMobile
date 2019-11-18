@@ -4,8 +4,7 @@
 \alias{f7Appbar}
 \title{Create a Framework 7 appbar}
 \usage{
-f7Appbar(..., left_panel = FALSE, right_panel = FALSE,
-  maximizable = FALSE)
+f7Appbar(..., left_panel = FALSE, right_panel = FALSE, maximizable = FALSE)
 }
 \arguments{
 \item{...}{Any UI content such as \link{f7Searchbar}, \link{f7Next} and

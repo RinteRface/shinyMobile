@@ -4,9 +4,17 @@
 \alias{f7Button}
 \title{Create a Framework7 button}
 \usage{
-f7Button(inputId = NULL, label = NULL, src = NULL, color = NULL,
-  fill = TRUE, outline = FALSE, shadow = FALSE, rounded = FALSE,
-  size = NULL)
+f7Button(
+  inputId = NULL,
+  label = NULL,
+  src = NULL,
+  color = NULL,
+  fill = TRUE,
+  outline = FALSE,
+  shadow = FALSE,
+  rounded = FALSE,
+  size = NULL
+)
 }
 \arguments{
 \item{inputId}{The input slot that will be used to access the value.}

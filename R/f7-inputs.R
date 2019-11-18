@@ -839,64 +839,64 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 
 
 
-#' Create an f7 date input
-#'
-#' This does only work for mobiles or tablets!
-#'
-#' @param inputId Date input id.
-#' @param label Date input label.
-#' @param value Date input value.
-#' @param placeholder Date input placeholder.
-#'
-#' @export
-#'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'
-#'  shiny::shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Date"),
-#'       f7Date(inputId = "date", label = "Date", value = "2014-04-30"),
-#'       verbatimTextOutput("datevalue")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$datevalue <- renderPrint({ input$date })
-#'    }
-#'  )
-#' }
-f7Date <- function(inputId, label, value = "", placeholder = NULL) {
-
-  dateTag <- shiny::tags$div(
-    class = "list",
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = "item-content item-input item-input-outline",
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(class = "item-title item-label", label),
-          shiny::tags$div(
-            class = "item-input-wrap",
-            shiny::tags$input(
-              id = inputId,
-              value = value,
-              type = "date",
-              placeholder = placeholder,
-              class = "date-input"
-            )
-          )
-        )
-      )
-    )
-  )
-
-  shiny::tagList(f7InputsDeps(), dateTag)
-
-}
+# #' Create an f7 date input
+# #'
+# #' This does only work for mobiles or tablets!
+# #'
+# #' @param inputId Date input id.
+# #' @param label Date input label.
+# #' @param value Date input value.
+# #' @param placeholder Date input placeholder.
+# #'
+# #' @export
+# #'
+# #' @examples
+# #' if(interactive()){
+# #'  library(shiny)
+# #'  library(shinyMobile)
+# #'
+# #'  shiny::shinyApp(
+# #'    ui = f7Page(
+# #'      title = "My app",
+# #'      f7SingleLayout(
+# #'       navbar = f7Navbar(title = "f7Date"),
+# #'       f7Date(inputId = "date", label = "Date", value = "2014-04-30"),
+# #'       verbatimTextOutput("datevalue")
+# #'      )
+# #'    ),
+# #'    server = function(input, output) {
+# #'      output$datevalue <- renderPrint({ input$date })
+# #'    }
+# #'  )
+# #' }
+# f7Date <- function(inputId, label, value = "", placeholder = NULL) {
+#
+#   dateTag <- shiny::tags$div(
+#     class = "list",
+#     shiny::tags$ul(
+#       shiny::tags$li(
+#         class = "item-content item-input item-input-outline",
+#         shiny::tags$div(
+#           class = "item-inner",
+#           shiny::tags$div(class = "item-title item-label", label),
+#           shiny::tags$div(
+#             class = "item-input-wrap",
+#             shiny::tags$input(
+#               id = inputId,
+#               value = value,
+#               type = "date",
+#               placeholder = placeholder,
+#               class = "date-input"
+#             )
+#           )
+#         )
+#       )
+#     )
+#   )
+#
+#   shiny::tagList(f7InputsDeps(), dateTag)
+#
+# }
 
 
 

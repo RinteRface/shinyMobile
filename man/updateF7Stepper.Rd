@@ -4,10 +4,22 @@
 \alias{updateF7Stepper}
 \title{Change the value of a stepper input on the client}
 \usage{
-updateF7Stepper(session, inputId, min = NULL, max = NULL,
-  value = NULL, step = NULL, fill = NULL, rounded = NULL,
-  raised = NULL, size = NULL, color = NULL, wraps = NULL,
-  autorepeat = NULL, manual = NULL)
+updateF7Stepper(
+  session,
+  inputId,
+  min = NULL,
+  max = NULL,
+  value = NULL,
+  step = NULL,
+  fill = NULL,
+  rounded = NULL,
+  raised = NULL,
+  size = NULL,
+  color = NULL,
+  wraps = NULL,
+  autorepeat = NULL,
+  manual = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}

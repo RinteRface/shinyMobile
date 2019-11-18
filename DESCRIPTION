@@ -19,7 +19,7 @@ Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
 BugReports: https://github.com/RinteRface/shinyMobile/issues
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Suggests: 
     knitr,
     rmarkdown,
