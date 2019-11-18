@@ -114,10 +114,10 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           },
           iosTranslucentBars: ", tolower(iosTranslucentBars), ",
           // Register service worker
-          serviceWorker: {
-            path: './", serviceWorker, "',
-            scope: '/'
-          },
+          //serviceWorker: {
+          //  path: './", serviceWorker, "',
+          //  scope: '/'
+          //},
           methods: {
             setLayoutTheme: function (", theme, ") {
               var self = this;
