@@ -17,6 +17,12 @@ reference:
   - '`f7Toolbar`'
 
 
+- title: Toward progressive web app
+  desc: Tools to build a progressive web app
+  contents:
+  - '`create_manifest`'
+
+
 - title: Grid functions
   desc: Rows, columns, flex, ...
   contents:
@@ -215,7 +221,7 @@ reference:
 
 
 - title: Gallery
-  desc: shinyF7 showcase
+  desc: shinyMobile showcase
   contents:
   - '`f7Gallery`'
 
@@ -259,8 +265,9 @@ articles:
   - '`Split-Layout`'
   - '`Gadgets`'
   - '`Dark-Theme`'
+  - '`shinyMobile_tools`'
 
 
 news:
  releases:
- - text: "shinyF7 0.1.0"
+ - text: "shinyMobile 0.1.0"

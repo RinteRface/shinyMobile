@@ -72,6 +72,9 @@
     <li>
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
+    <li>
+      <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -101,7 +104,7 @@
       <h1>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2019-11-18</h4>
+            <h4 class="date">2019-11-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Getting-Started.Rmd"><code>vignettes/Getting-Started.Rmd</code></a></small>
       <div class="hidden name"><code>Getting-Started.Rmd</code></div>
@@ -132,13 +135,13 @@
 <ul>
 <li>aurora for desktop apps</li>
 <li>ios and md for mobile apps</li>
-<li>auto automatically detect if the app is running with android or iOS and accordingly adapt the layout</li>
+<li>automatically detects if the app is running with android or iOS and accordingly adapt the layout</li>
 </ul>
 </li>
 </ul>
 <p>It is possible to apply the iOS skin on android and inversely, even though not recommended.</p>
 <ul>
-<li>This package also provides 2 themes, namely light and dark.</li>
+<li>This package also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the “widget level”, shinyMobile does not support that feature, to improve the overall consistancy. Only panels can have a color independant of the global theme.</li>
 </ul>
 </div>
 <div id="layouts" class="section level3">
@@ -154,6 +157,7 @@
 <code>f7TabLayout</code>: develop complex multi tabbed Apps (best choice for iOS/android Apps)</li>
 <li>
 <code>f7SplitLayout</code>: for tablets and desktop with a sidebar, navbar and a main panel</li>
+<li>Coming soon: a multi-pages layout with animations between pages!</li>
 </ul>
 </li>
 </ul>
@@ -172,13 +176,13 @@
 <li>f7Radio</li>
 <li>f7Toggle</li>
 <li>f7Stepper: equivalent to <code>numericInput()</code> from {shiny}</li>
-<li>f7Date: experimental</li>
 <li>f7Picker</li>
 <li>f7DatePicker</li>
 <li>f7ColorPicker</li>
 <li>f7Password</li>
 <li>f7SmartSelect</li>
 <li>f7Select</li>
+<li>f7AutoComplete</li>
 <li>f7Button: similar to <code>actionButton()</code> from {shiny}</li>
 <li>f7Fab: enhanced <code><a href="../reference/f7Button.html">f7Button()</a></code> with ability to be gathered in a <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> container</li>
 </ul>
@@ -186,22 +190,21 @@
 <li>
 <p>It also has custom update functions to act on the server side:</p>
 <ul>
+<li>updateF7AutoComplete</li>
 <li>updateF7Picker</li>
 <li>updateF7Stepper</li>
 <li>updateF7Toggle</li>
 <li>updateF7Slider</li>
 <li>updateF7Fab</li>
-<li>updateF7Date</li>
 <li>updateF7Text</li>
 <li>updateF7Checkbox</li>
 <li>more to come on a future release</li>
 </ul>
 </li>
 <li>
-<p>shinyMobile has custom input values for sidebar and tabs as well as dedicated update functions to act on the server side:</p>
+<p>shinyMobile has custom input values tabs as well as dedicated update functions to act on the server side:</p>
 <ul>
 <li>updateF7Tabs</li>
-<li>more to come soon</li>
 </ul>
 </li>
 <li>
@@ -210,6 +213,15 @@
 <li>updateF7Panel</li>
 </ul>
 </li>
+</ul>
+<p>Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions and more:</p>
+<ul>
+<li>updateF7Accordion</li>
+<li>updateF7Card</li>
+<li>updateF7Gauge</li>
+<li>updateF7Progress</li>
+<li>updateF7Sheet</li>
+<li>more to come soon</li>
 </ul>
 </div>
 <div id="create-your-first-app" class="section level3">
@@ -302,7 +314,7 @@
 <span id="cb6-9"><a href="#cb6-9"></a>  <span class="dt">left_panel =</span> <span class="ot">FALSE</span>, </span>
 <span id="cb6-10"><a href="#cb6-10"></a>  <span class="dt">right_panel =</span> <span class="ot">FALSE</span></span>
 <span id="cb6-11"><a href="#cb6-11"></a>)</span></code></pre></div>
-<p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline.</p>
+<p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline. Disclaimer: the bigger parameters does not work well yet… and I suggest to ignore it for the moment.</p>
 </div>
 <div id="the-toolbar" class="section level5">
 <h5 class="hasAnchor">
@@ -367,10 +379,9 @@
 <span id="cb10-7"><a href="#cb10-7"></a>  <span class="dt">iosTouchRipple =</span> <span class="ot">FALSE</span>, </span>
 <span id="cb10-8"><a href="#cb10-8"></a>  <span class="dt">iosCenterTitle =</span> <span class="ot">TRUE</span>, </span>
 <span id="cb10-9"><a href="#cb10-9"></a>  <span class="dt">hideNavOnPageScroll =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="dt">hideTabsOnPageScroll =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb10-11"><a href="#cb10-11"></a>  <span class="dt">serviceWorker =</span> <span class="ot">NULL</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a>)</span></code></pre></div>
-<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. Note that the serviceWorker option is not working at the moment. The tapHold parameter ensure that the “long-press” feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.</p>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="dt">hideTabsOnPageScroll =</span> <span class="ot">FALSE</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>)</span></code></pre></div>
+<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. The tapHold parameter ensure that the “long-press” feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.</p>
 </div>
 </div>
 </div>

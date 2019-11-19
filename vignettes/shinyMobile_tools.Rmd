@@ -1,0 +1,114 @@
+---
+title: "shinyMobile Tools"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shinyMobile Tools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shiny)
+library(shinyMobile)
+```
+
+## Introduction
+shinyMobile contains a set of useful functions to help you setting the layout as best as
+possible. It contains a predefined input, namely **input$deviceInfo**:
+
+```{r, eval = FALSE}
+shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Access device info",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      # main content
+      verbatimTextOutput("info")
+    )
+  ),
+  server = function(input, output) {
+    output$info <- renderPrint({
+      input$deviceInfo
+    })
+  }
+)
+```
+
+The following fields are returned:
+
+- `input$deviceInfo$os`, returns a string containing your OS
+- `input$deviceInfo$desktop`, TRUE or FALSE (if you are running the app on your laptop or desktop)
+- `input$deviceInfo$standalone`, TRUE or FALSE (standalone, namely whether you access the app like a native app)
+- `input$deviceInfo$webview`, TRUE or FALSE (webview)
+- `input$deviceInfo$electron`, TRUE or FALSE (electron)
+
+There are other fields, with less inportance:
+
+- `input$deviceInfo$ios`, TRUE or FALSE (if you are running under iOS)
+- `input$deviceInfo$android`, TRUE or FALSE (if you are running under android)
+- `input$deviceInfo$androidChrome`, TRUE or FALSE (if you are running under android with Chrome)
+- `input$deviceInfo$iphone`, TRUE or FALSE (if you have an iphone)
+- `input$deviceInfo$ipod`, TRUE or FALSE (if you have an ipod)
+- `input$deviceInfo$ipad`, TRUE or FALSE (if you have an ipad)
+- `input$deviceInfo$edge`, TRUE or FALSE (if you are using edge)
+- `input$deviceInfo$ie`, TRUE or FALSE (if you are using Internet Explorer)
+- `input$deviceInfo$firefox`, TRUE or FALSE (if you are using Firefox)
+- `input$deviceInfo$macos`, TRUE or FALSE (if you have macOS)
+- `input$deviceInfo$windows`, TRUE or FALSE (if you have Windows)
+- `input$deviceInfo$cordova`, TRUE or FALSE (cordova)
+- `input$deviceInfo$phonegap`, TRUE or FALSE (phonegap)
+
+
+## Example
+
+Below the example displays a card only when the app is on desktop.
+
+```{r, eval = FALSE}
+shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Access device info",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      # main content
+      uiOutput("card"),
+      textOutput("userAgent"),
+    )
+  ),
+  server = function(input, output) {
+    
+    output$userAgent <- renderText(input$deviceInfo$desktop)
+    
+    # generate a card inkly for desktop
+    output$card <- renderUI({
+      if (input$deviceInfo$desktop) {
+        f7Card(
+          "This is a simple card with plain text,
+          but cards can also contain their own header,
+          footer, list view, image, or any other element."
+        )
+      }
+    })
+  }
+)
+```
+
+
+
+
+
+

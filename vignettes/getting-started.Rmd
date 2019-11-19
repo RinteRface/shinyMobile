@@ -24,12 +24,12 @@ used for different purposes:
 
   * aurora for desktop apps
   * ios and md for mobile apps
-  * auto automatically detect if the app is running with android or iOS and accordingly adapt 
+  * automatically detects if the app is running with android or iOS and accordingly adapt 
 the layout
 
 It is possible to apply the iOS skin on android and inversely, even though not recommended.
 
-- This package also provides 2 themes, namely light and dark. 
+- This package also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the "widget level", shinyMobile does not support that feature, to improve the overall consistancy. Only panels can have a color independant of the global theme.
 
 
 ### 3 Layouts
@@ -39,6 +39,7 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * `f7SingleLayout`: develop simple shinyMobile Apps (best choice for iOS/android Apps)
   * `f7TabLayout`: develop complex multi tabbed Apps (best choice for iOS/android Apps)
   * `f7SplitLayout`: for tablets and desktop with a sidebar, navbar and a main panel
+  * Coming soon: a multi-pages layout with animations between pages!
 
 
 ### New Inputs
@@ -52,38 +53,45 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * f7Radio
   * f7Toggle
   * f7Stepper: equivalent to `numericInput()` from {shiny}
-  * f7Date: experimental
   * f7Picker
   * f7DatePicker
   * f7ColorPicker
   * f7Password
   * f7SmartSelect
   * f7Select
+  * f7AutoComplete
   * f7Button: similar to `actionButton()` from {shiny}
   * f7Fab: enhanced `f7Button()` with ability to be gathered in a `f7Fabs()` container
   
 - It also has custom update functions to act on the server side:
 
+  * updateF7AutoComplete
   * updateF7Picker
   * updateF7Stepper
   * updateF7Toggle
   * updateF7Slider
   * updateF7Fab
-  * updateF7Date
   * updateF7Text
   * updateF7Checkbox
   * more to come on a future release
   
 
-- shinyMobile has custom input values for sidebar and tabs as well as dedicated update 
-functions to act on the server side:
- 
+- shinyMobile has custom input values tabs as well as dedicated update functions to act on the server side:
+
   * updateF7Tabs
-  * more to come soon
   
 - shinyMobile has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
 
   * updateF7Panel
+  
+Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions and more:
+
+  * updateF7Accordion
+  * updateF7Card
+  * updateF7Gauge
+  * updateF7Progress
+  * updateF7Sheet
+  * more to come soon
   
 ### Create your first App
 
@@ -206,7 +214,7 @@ f7Navbar(
 
 For complex apps, it might be interesting to add a `f7SubNavbar(...)`. It may contain
 any element like `f7Button()` or text. `f7Navbar()` has also styling parameters such as
-shadow and hairline.
+shadow and hairline. Disclaimer: the bigger parameters does not work well yet... and I suggest to ignore it for the moment.
 
 
 ##### The Toolbar
@@ -294,8 +302,7 @@ f7Init(
   iosTouchRipple = FALSE, 
   iosCenterTitle = TRUE, 
   hideNavOnPageScroll = TRUE,
-  hideTabsOnPageScroll = FALSE, 
-  serviceWorker = NULL
+  hideTabsOnPageScroll = FALSE
 )
 ```
 
@@ -303,8 +310,7 @@ As stated above, you may choose between 3 skins and 2 color themes. There is a t
 called "filled" that allows to fill the navbar and toolbar if enabled. The color options simply
 changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
 shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar
-which is useful to focus on the content. Note that the serviceWorker option is not working at the moment. The tapHold parameter ensure that the "long-press" feature is activated.
-framework7 has more options which will be implemented in a next version of shinyMobile.
+which is useful to focus on the content. The tapHold parameter ensure that the "long-press" feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.
 
 
 
