@@ -60,7 +60,5 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
     dir.create(paste0(path, "/www/icons"))
     dir.create(paste0(path, "/www/splashscreens"))
   }
-  file.create(paste0(path, "/www/manifest.json"))
-  writeLines(paste0(path, "/www/manifest.json"))
   jsonlite::write_json(manifest, path = paste0(path, "/www/manifest.json"))
 }
