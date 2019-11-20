@@ -14,7 +14,6 @@
 #'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
-#'      color = "pink",
 #'      title = "f7Popover",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Popover"),
