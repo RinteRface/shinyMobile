@@ -21,7 +21,6 @@ if (interactive()) {
  shinyApp(
    ui = f7Page(
      preloader = FALSE,
-     color = "pink",
      title = "My app",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Messages"),
