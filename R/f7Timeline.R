@@ -65,7 +65,7 @@
 #'        f7Timeline(items),
 #'        f7BlockTitle(title = "Calendar timeline", size = "large") %>%
 #'        f7Align(side = "center"),
-#'        f7Timeline(items, calendar = TRUE, year = "2019", month = "November")
+#'        f7Timeline(items, calendar = TRUE, year = "2019", month = "December")
 #'      )
 #'    ),
 #'    server = function(input, output) {}
