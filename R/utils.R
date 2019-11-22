@@ -42,6 +42,32 @@ colorToHex <- function(color) {
 }
 
 
+
+#' Function to get all colors available in shinyMobile
+#'
+#' @return A vector containing colors
+#' @export
+getF7Colors <- function() {
+  colors <- c(
+    "red",
+    "green",
+    "blue",
+    "pink",
+    "yellow",
+    "orange",
+    "purple" ,
+    "deeppurple",
+    "lightblue",
+    "teal" ,
+    "lime",
+    "deeporange",
+    "gray",
+    "black"
+  )
+  colors
+}
+
+
 tagAppendAttributes <- function (tag, ...)
 {
   tag$attribs <- c(tag$attribs, dropNulls(list(...)))

@@ -10,19 +10,22 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
+#'  colors <- getF7Colors()
+#'
 #'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     title = "Badges",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Badge"),
-#'      f7Block(
-#'       strong = TRUE,
-#'       f7Badge(32, color = "blue"),
-#'       f7Badge("Badge", color = "green")
+#'    ui = f7Page(
+#'      title = "Badges",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "f7Badge"),
+#'        f7Block(
+#'          strong = TRUE,
+#'          lapply(seq_along(colors), function(i) {
+#'            f7Badge(colors[[i]], color = colors[[i]])
+#'          })
+#'        )
 #'      )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
+#'    ),
+#'    server = function(input, output) {}
 #'  )
 #' }
 #'

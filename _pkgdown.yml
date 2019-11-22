@@ -223,6 +223,11 @@ reference:
   contents:
   - '`f7Gallery`'
 
+- title: Utils
+  desc: colors, ...
+  contents:
+  - '`getF7Colors`'
+
 
 template:
   params:
