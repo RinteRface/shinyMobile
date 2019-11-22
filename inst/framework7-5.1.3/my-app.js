@@ -395,4 +395,54 @@ $(function () {
     actionSheet.open();
   });
 
+
+  // pull to refresh
+  Shiny.addCustomMessageHandler('pullToRefresh', function(message) {
+
+    var ptrId = 'ptr_' + message.id; // for inputId in case there are multiple ptr
+
+    var bottom;
+    if (message.bottom == "true") bottom  = true; else bottom  = false;
+
+    // add the preoloader tag dynamically
+    const ptrLoader = $(
+      '<div class="ptr-preloader">' +
+      '<div class="preloader"></div>' +
+      '<div class="ptr-arrow"></div>' +
+      '</div>'
+    );
+    $('.page-content').addClass('ptr-content');
+    // the preloader tag is not added at the same place
+    // depending on the bottom value...
+    if (bottom) {
+      $('.page-content')
+        .addClass('ptr-bottom')
+        .append(ptrLoader);
+    } else {
+      $('.page-content').prepend(ptrLoader);
+    }
+
+    // add pther attributes
+    $('.page-content').attr('data-ptr-distance', '55');
+    $('.page-content').attr('data-ptr-mousewheel', 'true');
+
+    // we need to create the ptr manually since it
+    // is added after the page initialization
+    var ptr = app.ptr.create('.ptr-content');
+    // handle refresh
+    $('.ptr-content').on('ptr-refresh', function(e) {
+      // 2 seconds loading
+      setTimeout(function () {
+        // TO DO
+        Shiny.setInputValue(ptrId, true);
+        app.ptr.done();
+      }, message.timeout);
+    });
+
+    // reset input
+    $('.ptr-content').on('ptr-done', function() {
+      Shiny.setInputValue(ptrId, false);
+    });
+  });
+
 });
