@@ -43,18 +43,19 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Chips",
+    init = f7Init(theme = "light", skin = "md"),
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Navbar"),
-     f7Block(
-     strong = TRUE,
-     f7Chip(label = "Example Chip"),
-     f7Chip(label = "Example Chip", outline = TRUE),
-     f7Chip(label = "Example Chip", icon = f7Icon("add_round"), icon_status = "pink"),
-     f7Chip(label = "Example Chip", img = "http://lorempixel.com/64/64/people/9/"),
-     f7Chip(label = "Example Chip", closable = TRUE),
-     f7Chip(label = "Example Chip", status = "green"),
-     f7Chip(label = "Example Chip", status = "green", outline = TRUE)
-    )
+      navbar = f7Navbar(title = "f7Navbar"),
+      f7Block(
+        strong = TRUE,
+        f7Chip(label = "simple Chip"),
+        f7Chip(label = "outline Chip", outline = TRUE),
+        f7Chip(label = "icon Chip", icon = f7Icon("add_round"), icon_status = "pink"),
+        f7Chip(label = "image Chip", img = "https://lorempixel.com/64/64/people/9/"),
+        f7Chip(label = "closable Chip", closable = TRUE),
+        f7Chip(label = "colored Chip", status = "green"),
+        f7Chip(label = "colored outline Chip", status = "green", outline = TRUE)
+      )
     )
   ),
   server = function(input, output) {}
