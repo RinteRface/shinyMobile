@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 
-- shinyMobile is built on top of the latest [framework7](https://framework7.io) template (V5.1.1). It may be 
+- shinyMobile is built on top of the latest [framework7](https://framework7.io) template (V5.1.3). It may be 
 used for different purposes:
 
   * develop mobile-ready shinyapps

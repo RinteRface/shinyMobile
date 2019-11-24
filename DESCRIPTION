@@ -1,6 +1,6 @@
 Package: shinyMobile
 Type: Package
-Title: 'shiny' API for 'Framework7'
+Title: Develop mobile ready 'shiny' apps with standalone capabilities
 Version: 0.1.0
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
@@ -10,10 +10,20 @@ Authors@R: c(
   person(family = "Framework7", role = c("ctb", "cph"), 
   comment = "Full featured HTML framework for building iOS & Android apps"))
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Make 'shiny' shining for mobiles.
-    IOS and android support.
+Description: Develop outsanding 'shiny' apps for iOS, android, desktop as well as beautiful 'shiny' gadgets.
+    'shinyMobile' is built on top of the latest 'Framework7' template <https://framework7.io>.
+    Discover 14 new inputs widgets (sliders, vertical sliders, stepper, 
+    grouped action buttons, toggles, picker, smart select, ...)
+    with unique design for iOS, android, desktop. 'shinyMobile' supports 2 themes, light and dark. 
+    12 new widgets (expandable cards, badges, chips, timelines, gauges, progress bars, ...) 
+    combined to the power of server side notifications, alerts, modals, toasts,
+    action sheets, sheets and more will help you to deliver full featured apps.
+    There are currently 3 layouts: the single layout for simple apps, the tabs layout for
+    more complex apps and the split layout, the latter specific to tablets or desktop.
+    Finally, 'shinyMobile' handles progressive web apps: configure the manifest
+    so that your app may be launched directly from your phone apps instead of 'Safari'
+    or 'Chrome' (see <https://rinterface.github.io/shinyMobile/reference/create_manifest.html>).
 Imports: shiny, htmltools, jsonlite, magrittr
-Suggested: shinyWidgets, echarts4r
 License: GPL-2
 Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
@@ -28,5 +38,7 @@ Suggests:
     testthat (>= 2.1.0),
     V8,
     cli,
-    rstudioapi
+    rstudioapi,
+    shinyWidgets, 
+    echarts4r
 VignetteBuilder: knitr
