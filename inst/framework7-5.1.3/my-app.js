@@ -426,23 +426,41 @@ $(function () {
     $('.page-content').attr('data-ptr-distance', '55');
     $('.page-content').attr('data-ptr-mousewheel', 'true');
 
-    // we need to create the ptr manually since it
-    // is added after the page initialization
-    var ptr = app.ptr.create('.ptr-content');
     // handle refresh
-    $('.ptr-content').on('ptr-refresh', function(e) {
-      // 2 seconds loading
-      setTimeout(function () {
-        // TO DO
-        Shiny.setInputValue(ptrId, true);
-        app.ptr.done();
-      }, message.timeout);
+
+    $(document).ready(function() {
+      // we need to create the ptr manually since it
+    // is added after the page initialization
+    app.ptr.create('.ptr-content');
+      console.log('init');
+		  // Add 'refresh' listener on it
+	    $('.ptr-content').on('ptr-refresh', function(e) {
+	      console.log('test');
+			  // Emulate 2s loading
+		    setTimeout(function () {
+			    Shiny.setInputValue(ptrId, true);
+			    console.log("refresh! VL");
+			    app.ptr.done();
+			    Shiny.setInputValue(ptrId, false);
+		    }, message.timeout);
+	    });
     });
 
+    //$('.ptr-content').on('ptr-refresh', function(e) {
+    //  console.log('test');
+    //  Shiny.setInputValue(ptrId, true);
+    //  // 2 seconds loading
+    //  setTimeout(function () {
+    //    // TO DO
+    //    app.ptr.done();
+    //    Shiny.setInputValue(ptrId, false);
+    //  }, message.timeout);
+    //});
+
     // reset input
-    $('.ptr-content').on('ptr-done', function() {
-      Shiny.setInputValue(ptrId, false);
-    });
+    //$('.ptr-content').on('ptr-done', function(e) {
+    //  Shiny.setInputValue(ptrId, false);
+    //});
   });
 
 });
