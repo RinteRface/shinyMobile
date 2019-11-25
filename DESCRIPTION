@@ -10,7 +10,7 @@ Authors@R: c(
   person(family = "Framework7", role = c("ctb", "cph"), 
   comment = "Full featured HTML framework for building iOS & Android apps"))
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Develop outsanding 'shiny' apps for 'iOS', 'Android', desktop as well as beautiful 'shiny' gadgets.
+Description: Develop outstanding 'shiny' apps for 'iOS', 'Android', desktop as well as beautiful 'shiny' gadgets.
     'shinyMobile' is built on top of the latest 'Framework7' template <https://framework7.io>.
     Discover 14 new input widgets (sliders, vertical sliders, stepper, 
     grouped action buttons, toggles, picker, smart select, ...)
