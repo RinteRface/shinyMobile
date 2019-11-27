@@ -6,21 +6,21 @@
 \usage{
 f7Gauge(
   id,
-  type = NULL,
-  value = NULL,
-  size = NULL,
-  bgColor = NULL,
-  borderBgColor = NULL,
-  borderColor = NULL,
-  borderWidth = NULL,
+  type = "circle",
+  value,
   valueText = NULL,
-  valueTextColor = NULL,
-  valueFontSize = NULL,
-  valueFontWeight = NULL,
+  size = 200,
+  bgColor = "transparent",
+  borderBgColor = "#eeeeee",
+  borderColor = "#000000",
+  borderWidth = "10",
+  valueTextColor = "#000000",
+  valueFontSize = "31",
+  valueFontWeight = "500",
   labelText = NULL,
-  labelTextColor = NULL,
-  labelFontSize = NULL,
-  labelFontWeight = NULL
+  labelTextColor = "#888888",
+  labelFontSize = "14",
+  labelFontWeight = "400"
 )
 }
 \arguments{
@@ -29,6 +29,8 @@ f7Gauge(
 \item{type}{Gauge type. Can be "circle" or "semicircle". Default is "circle."}
 
 \item{value}{Gauge value/percentage. Must be a number between 0 and 100.}
+
+\item{valueText}{Gauge value text (large text in the center of gauge).}
 
 \item{size}{Generated SVG image size (in px). Default is 200.}
 
@@ -39,8 +41,6 @@ f7Gauge(
 \item{borderColor}{Main border/stroke color.}
 
 \item{borderWidth}{Main border/stroke width.}
-
-\item{valueText}{Gauge value text (large text in the center of gauge).}
 
 \item{valueTextColor}{Value text color.}
 

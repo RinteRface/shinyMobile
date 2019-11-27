@@ -289,30 +289,6 @@ $(function () {
   });
 
 
-  // updateF7Gauge
-  gaugeIds = [];
-  getAllGaugeIds = function() {
-    $('.gauge').each(function() {
-      gaugeIds.push($(this).attr('id'));
-    });
-  };
-
-  // call the function ...
-  getAllGaugeIds();
-
-  gaugeIds.forEach(function(index) {
-    Shiny.addCustomMessageHandler(index, function(message) {
-      // get the gauge instance
-      var gauge = app.gauge.get('.' + index);
-
-      // update the gauge
-      gauge.update({
-        value: message / 100,
-        valueText: message + '%'
-      });
-    });
-  });
-
   // update f7Progress
   progressIds = [];
   getAllProgressIds = function() {

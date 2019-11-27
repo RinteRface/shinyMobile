@@ -107,7 +107,8 @@ f7InputsDeps <- function() {
       "sheetInputBinding.js",
       "cardInputBinding.js",
       "autoCompleteInputBinding.js",
-      "actionSheetInputBinding.js"
+      "actionSheetInputBinding.js",
+      "gaugeInputBinding.js"
     )
   )
 }
