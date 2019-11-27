@@ -10,6 +10,8 @@
 * This is a new release.
 
 ## Note for CRAN maintainers
+Please ignore the previous CRAN submission
+
 check_rhub revelead 2 FALSE positive: 
 - iOS is correctly spelled (https://fr.wikipedia.org/wiki/IOS)
 - timelines is correctly spelled (https://framework7.io/docs/timeline.html)
