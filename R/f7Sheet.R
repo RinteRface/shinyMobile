@@ -2,7 +2,7 @@
 #'
 #' @param ... Sheet content. If wipeToStep is TRUE, these items will be visible at start.
 #' @param hiddenItems Put items you want to hide inside. Only works when
-#' wipeToStep is TRUE.
+#' swipeToStep is TRUE. Default to NULL.
 #' @param id Sheet unique id.
 #' @param label Trigger label.
 #' @param orientation "top" or "bottom".
@@ -87,7 +87,7 @@
 #'     }
 #'  )
 #' }
-f7Sheet <- function(..., hiddenItems, id, label = "Open", orientation = c("top", "bottom"),
+f7Sheet <- function(..., hiddenItems = NULL, id, label = "Open", orientation = c("top", "bottom"),
                     swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
                     closeByOutsideClick = TRUE, swipeHandler = TRUE) {
 

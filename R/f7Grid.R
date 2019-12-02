@@ -30,7 +30,7 @@
 #'         but cards can also contain their own header,
 #'         footer, list view, image, or any other element.",
 #'        footer = tagList(
-#'         f7Button(color = "blue", "My button", src = "https://www.google.com"),
+#'         f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
 #'         f7Badge("Badge", color = "green")
 #'        )
 #'       )
@@ -64,29 +64,7 @@ f7Row <- function(..., gap = TRUE) {
 #' instead.
 #'
 #' @export
-f7Col <- function(...) {
-  shiny::tagList(
-    # this CSS is because columns don't have CSS in framework7
-    # Yup this is strange, I know...
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$style(
-          "div[class*='col'] {
-            background-color: 'gainsboro';
-            text-align: center;
-            color: #000;
-            border: 1px solid 'gainsboro';
-            padding: 5px;
-            margin-bottom: 15px;
-            font-size: 12px;
-          }
-        "
-        )
-      )
-    ),
-    shiny::tags$div(class = "col", ...)
-  )
-}
+f7Col <- function(...) shiny::tags$div(class = "col", ...)
 
 
 
@@ -127,3 +105,89 @@ f7Flex <- function(...) {
     ...
   )
 }
+
+
+
+
+
+# #' Allow to resize a row or column
+# #'
+# #' Use with \link{f7Row} and/or \link{f7Col}.
+# #'
+# #' @param tag Tag to resize.
+# #' @param fixed Whether to fix the element size. FALSE by default.
+# #' @param minWidth Tag minimum width when resizing. Default to 100px. Ignored
+# #' if the tag is a row.
+# #' @param minHeight Tag minimum height when resizing. Default to 100px. Ignored
+# #' if the tag is a col.
+# #' @export
+# #' @examples
+# #' if (interactive()) {
+# #'  library(shiny)
+# #'  library(shinyMobile)
+# #'
+# #'  shiny::shinyApp(
+# #'  ui = f7Page(
+# #'    title = "Grid",
+# #'    f7SingleLayout(
+# #'      navbar = f7Navbar(title = "f7Row, f7Col"),
+# #'      f7Row(
+# #'        f7Col(
+# #'          f7Card(
+# #'            "This is a simple card with plain text,
+# #'         but cards can also contain their own header,
+# #'         footer, list view, image, or any other element."
+# #'          )
+# #'        ) %>% f7Resize(),
+# #'        f7Col(
+# #'          f7Row(
+# #'           f7Col(
+# #'            f7Card(
+# #'             "This is a simple card with plain text,
+# #'             but cards can also contain their own header,
+# #'             footer, list view, image, or any other element."
+# #'            )
+# #'           )
+# #'          ) %>% f7Resize(),
+# #'          f7Row(
+# #'           f7Col(
+# #'            f7Card(
+# #'             "This is a simple card with plain text,
+# #'             but cards can also contain their own header,
+# #'             footer, list view, image, or any other element."
+# #'            )
+# #'           )
+# #'          ) %>% f7Resize()
+# #'        ) %>% f7Resize(),
+# #'        f7Col(
+# #'          f7Card(
+# #'            title = "Card header",
+# #'            "This is a simple card with plain text,
+# #'          but cards can also contain their own header,
+# #'          footer, list view, image, or any other element.",
+# #'            footer = tagList(
+# #'              f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+# #'              f7Badge("Badge", color = "green")
+# #'            )
+# #'          )
+# #'        ) %>% f7Resize()
+# #'      ) %>% f7Resize()
+# #'    )
+# #'  ),
+# #'  server = function(input, output) {}
+# #'  )
+# #'
+# #' }
+# f7Resize <- function(tag, fixed = FALSE, minWidth = "100px", minHeight = "100px") {
+#
+#   resizeCl <- if (fixed) "resizable-fixed" else "resizable"
+#
+#   style <- switch(tag$attribs$class,
+#     "row" = paste0("min-height: ", minWidth),
+#     "col" = paste0("min-width: ", minWidth)
+#   )
+#   tag %>% shiny::tagAppendAttributes(class = resizeCl, style = style) %>%
+#     shiny::tagAppendChild(shiny::tags$span(class = "resize-handler"))
+#
+# }
+#

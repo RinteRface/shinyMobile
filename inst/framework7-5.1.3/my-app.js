@@ -9,8 +9,11 @@ $(function () {
   }
 
   // handle toolbar padding for mobiles in standalone mode
+  // only if there is an appbar
   if (Framework7.device.standalone) {
-    $('.toolbar').css('margin-bottom', '20px');
+    if ($('.appbar').length > 0) {
+      $('.toolbar').css('margin-bottom', '20px');
+    }
   }
 
   // Framework7.device is extremely useful to set up custom design

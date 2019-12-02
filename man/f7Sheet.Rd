@@ -6,7 +6,7 @@
 \usage{
 f7Sheet(
   ...,
-  hiddenItems,
+  hiddenItems = NULL,
   id,
   label = "Open",
   orientation = c("top", "bottom"),
@@ -21,7 +21,7 @@ f7Sheet(
 \item{...}{Sheet content. If wipeToStep is TRUE, these items will be visible at start.}
 
 \item{hiddenItems}{Put items you want to hide inside. Only works when
-wipeToStep is TRUE.}
+swipeToStep is TRUE. Default to NULL.}
 
 \item{id}{Sheet unique id.}
 

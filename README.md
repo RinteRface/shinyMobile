@@ -124,10 +124,10 @@ The manifest.json file could be like:
 }
 ```
 
-Be sure to replace the `start_url` with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. 
-
-Later, there will be a dedicated function that will create the manifest.json file as well
-as other necessary assets.
+Be sure to replace the `start_url` with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
+`create_manifest`. However, it does not generate any icon nor splashscreens. Fortunately, there are tools
+such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+those files.
 
 ### Add the PWA to your desktop Apps
 Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. 
@@ -142,5 +142,7 @@ Go to the url of your app. In this example this is: https://dgranjon.shinyapps.i
 </div>
 </div>
 
-
+### Acknowledgement
+A special thanks to [Vladimir Kharlampidi](https://github.com/nolimits4web) for creating this
+amazing framework7 HTML template.
 
