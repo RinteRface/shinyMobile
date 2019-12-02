@@ -178,95 +178,141 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyWidgets</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tab Layout"</span>,
-    <span class='fu'>f7TabLayout</span>(
-      <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-       <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
-       <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
-      ),
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tabs"</span>,
-        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-      ),
-      <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
-        <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
-          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>),
-          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
-            <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-            <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs1"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot1"</span>),
-              <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
-              )
-            )
-          )
-        ),
-        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
-          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"today"</span>),
-          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
-            <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-            <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs2"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>10000</span>, <span class='fl'>5000</span>),
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>),
-              <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
-              )
-            )
-          )
-        ),
-        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
-          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
-          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
-          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-          <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
-            <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-            <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-            <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-              <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span>(<span class='st'>"obs3"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>10</span>, <span class='fl'>5</span>),
-              <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot3"</span>),
-              <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-                <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-                <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
-              )
-            )
-          )
-        )
-      )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>distPlot1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
-      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs1</span>)
-      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
-    })
-    <span class='no'>output</span>$<span class='no'>distPlot2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
-      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs2</span>)
-      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
-    })
-    <span class='no'>output</span>$<span class='no'>distPlot3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
-      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs3</span>)
-      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
-    })
-  }
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"md"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
+     <span class='fu'>f7TabLayout</span>(
+       <span class='no'>tags</span>$<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(
+         <span class='no'>tags</span>$<span class='fu'>script</span>(
+           <span class='st'>"$(function(){
+               $('#tapHold').on('taphold', function () {
+                 app.dialog.alert('Tap hold fired!');
+               });
+             });
+             "</span>
+         )
+       ),
+       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+         <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
+         <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
+       ),
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Tabs"</span>,
+         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       ),
+       <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
+         <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span>(
+                 <span class='st'>"obs1"</span>,
+                 <span class='st'>"Number of observations"</span>,
+                 <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+                 <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+                 <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+                 <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>100</span>
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot1"</span>),
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+                 <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tapHold"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>),
+                 <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+               )
+             )
+           )
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"today"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7Select.html'>f7Select</a></span>(
+                 <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs2"</span>,
+                 <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Distribution type:"</span>,
+                 <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+                   <span class='st'>"Normal"</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
+                   <span class='st'>"Uniform"</span> <span class='kw'>=</span> <span class='st'>"unif"</span>,
+                   <span class='st'>"Log-normal"</span> <span class='kw'>=</span> <span class='st'>"lnorm"</span>,
+                   <span class='st'>"Exponential"</span> <span class='kw'>=</span> <span class='st'>"exp"</span>
+                 )
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>),
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+                 <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+                 <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"orange"</span>)
+               )
+             )
+           )
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7SmartSelect.html'>f7SmartSelect</a></span>(
+                 <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"variable"</span>,
+                 <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Variables to show:"</span>,
+                 <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
+                   <span class='st'>"Transmission"</span> <span class='kw'>=</span> <span class='st'>"am"</span>,
+                   <span class='st'>"Gears"</span> <span class='kw'>=</span> <span class='st'>"gear"</span>),
+                 <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                 <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>),
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+                 <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+                 <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+               )
+             )
+           )
+         )
+       )
+     )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+     <span class='no'>output</span>$<span class='no'>distPlot1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+       <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs1</span>)
+       <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
+     })
+
+     <span class='no'>output</span>$<span class='no'>distPlot2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+       <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span>(
+         <span class='no'>input</span>$<span class='no'>obs2</span>,
+         <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>rnorm</span>,
+         <span class='kw'>unif</span> <span class='kw'>=</span> <span class='no'>runif</span>,
+         <span class='kw'>lnorm</span> <span class='kw'>=</span> <span class='no'>rlnorm</span>,
+         <span class='kw'>exp</span> <span class='kw'>=</span> <span class='no'>rexp</span>,
+         <span class='no'>rnorm</span>
+       )
+
+       <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='fl'>500</span>))
+     })
+
+     <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span>({
+       <span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]
+     }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+   }
  )
 }</div></pre>
   </div>

@@ -24,17 +24,17 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Icons",
-    f7ListCard(
-     f7ListCardItem(
+    f7List(
+     f7ListItem(
        title = tagList(
         f7Icon("email_fill", lib = "ios"),
         "This does not appear for material design devices."
        )
      ),
-     f7ListCardItem(
+     f7ListItem(
        title = f7Icon("home", f7Badge("1", color = "red"))
      ),
-     f7ListCardItem(
+     f7ListItem(
        title = f7Icon("email", lib = "md")
      )
     )

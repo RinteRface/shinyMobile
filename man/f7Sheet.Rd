@@ -64,8 +64,8 @@ if (interactive()) {
              swipeToStep = TRUE,
              backdrop = TRUE,
              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-         scelerisque est, at porta justo cursus ac",
+             Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+             scelerisque est, at porta justo cursus ac",
              hiddenItems = tagList(
                 f7Segment(
                    container = "segment",
@@ -73,10 +73,6 @@ if (interactive()) {
                    f7Button(color = "blue", label = "My button 1", rounded = TRUE),
                    f7Button(color = "green", label = "My button 2", rounded = TRUE),
                    f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
-                ),
-                f7Flex(
-                   f7Badge(32, color = "blue"),
-                   f7Badge("Badge", color = "green")
                 ),
                 f7Flex(
                    f7Gauge(

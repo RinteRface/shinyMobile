@@ -66,7 +66,7 @@ if(interactive()){
        f7Items(
          f7Item(
            tabName = "tab1",
-           sliderInput("obs", "Number of observations:",
+           f7Slider("obs", "Number of observations:",
                        min = 0, max = 1000, value = 500
            ),
            plotOutput("distPlot")
