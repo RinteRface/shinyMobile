@@ -4,7 +4,37 @@ var f7SliderBinding = new Shiny.InputBinding();
 $.extend(f7SliderBinding, {
 
   initialize: function(el) {
-    app.range.create({el: el});
+
+    // recover the inputId passed in the R function
+    var id = $(el).attr("id");
+
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false
+        if (["min", "max", "step", "value",
+        "scaleSteps", "scaleSubSteps",
+        "valueLeft", "valueRight"].indexOf(camelCaseName) == -1) {
+          var isTrueSet = (attr.value == "true");
+          data[camelCaseName] = isTrueSet;
+        } else {
+          // convert strings to numeric
+          data[camelCaseName] = parseFloat(attr.value);
+        }
+
+      }
+    });
+
+     // add the id
+    data.el = '#' + id;
+
+    // feed the create method
+    var r = app.range.create(data);
+    console.log(r);
+
   },
 
   find: function(scope) {

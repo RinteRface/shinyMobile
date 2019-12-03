@@ -1028,7 +1028,12 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param value Slider value or a vector containing 2 values (for a range).
 #' @param step Slider increase step size.
 #' @param scale Slider scale.
-#' @param vertical Whether to apply a vertical display. FALSE by default. Does not work yet.
+#' @param scaleSteps Number of scale steps.
+#' @param scaleSubSteps Number of scale sub steps (each step will be divided by this value).
+#' @param vertical Whether to apply a vertical display. FALSE by default.
+#' @param verticalReversed Makes vertical range slider reversed (vertical must be also enabled).
+#' FALSE by default.
+#' @param enableLabels Enables additional label around range slider knob. FALSE by default.
 #'
 #' @export
 #'
@@ -1049,6 +1054,8 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'        max = 1000,
 #'        min = 0,
 #'        value = 100,
+#'        scaleSteps = 5,
+#'        scaleSubSteps = 3,
 #'        scale = TRUE
 #'       ),
 #'       verbatimTextOutput("test")
@@ -1082,7 +1089,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'        max = 500,
 #'        min = 0,
 #'        value = c(50, 100),
-#'        scale = TRUE
+#'        scale = FALSE
 #'       ),
 #'       verbatimTextOutput("test")
 #'      )
@@ -1094,34 +1101,42 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  )
 #' }
 #'
-f7Slider <- function(inputId, label, min, max, value,
-                     step = NULL, scale = FALSE, vertical = FALSE) {
+f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
+                     scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
+                     verticalReversed = FALSE, enableLabels = FALSE) {
 
-  rangeTag <- shiny::tags$div(
-    class = "range-slider",
-    id = inputId,
-    style = if (vertical) {
-      if (scale) {
-        "height: 160px; margin: 10px;"
+  sliderProps <- dropNulls(
+    list(
+      class = "range-slider",
+      id = inputId,
+      style = if (vertical) {
+        if (scale) {
+          "height: 160px; margin: 10px;"
+        } else {
+          "height: 160px;"
+        }
       } else {
-        "height: 160px;"
-      }
-    } else {
-      NULL
-    },
-    `data-dual` = if (length(value) == 2) "true" else NULL,
-    `data-min`= min,
-    `data-max`= max,
-    `data-vertical` = tolower(vertical),
-    `data-label`= "true",
-    `data-step`= if (is.null(step)) 5 else step,
-    `data-value`= if (length(value) == 1) value else NULL,
-    `data-value-left` = if (length(value) == 2) value[1] else NULL,
-    `data-value-right` = if (length(value) == 2) value[2] else NULL,
-    `data-scale`= tolower(scale),
-    `data-scale-steps`= if (is.null(step)) 5 else step,
-    `data-scale-sub-steps` = "4"
+        NULL
+      },
+      `data-dual` = if (length(value) == 2) "true" else NULL,
+      `data-min`= min,
+      `data-max`= max,
+      `data-vertical` = tolower(vertical),
+      `data-vertical-reversed` = if (vertical) tolower(verticalReversed) else NULL,
+      `data-label`= "true",
+      `data-step`= step,
+      `data-value`= if (length(value) == 1) value else NULL,
+      `data-value-left` = if (length(value) == 2) value[1] else NULL,
+      `data-value-right` = if (length(value) == 2) value[2] else NULL,
+      `data-scale`= tolower(scale),
+      `data-scale-steps`= scaleSteps,
+      `data-scale-sub-steps` = scaleSubSteps,
+      `data-label` = tolower(enableLabels)
+    )
   )
+
+  # wrap props
+  rangeTag <- do.call(shiny::tags$div, sliderProps)
 
   # wrapper
   shiny::tags$div(

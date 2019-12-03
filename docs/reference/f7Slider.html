@@ -155,9 +155,13 @@
   <span class='no'>min</span>,
   <span class='no'>max</span>,
   <span class='no'>value</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>verticalReversed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>enableLabels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -192,8 +196,25 @@
       <td><p>Slider scale.</p></td>
     </tr>
     <tr>
+      <th>scaleSteps</th>
+      <td><p>Number of scale steps.</p></td>
+    </tr>
+    <tr>
+      <th>scaleSubSteps</th>
+      <td><p>Number of scale sub steps (each step will be divided by this value).</p></td>
+    </tr>
+    <tr>
       <th>vertical</th>
-      <td><p>Whether to apply a vertical display. FALSE by default. Does not work yet.</p></td>
+      <td><p>Whether to apply a vertical display. FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>verticalReversed</th>
+      <td><p>Makes vertical range slider reversed (vertical must be also enabled).
+FALSE by default.</p></td>
+    </tr>
+    <tr>
+      <th>enableLabels</th>
+      <td><p>Enables additional label around range slider knob. FALSE by default.</p></td>
     </tr>
     </table>
 
@@ -215,6 +236,8 @@
        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+       <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+       <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>3</span>,
        <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
@@ -248,7 +271,7 @@
        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>),
-       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
       ),
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
      )

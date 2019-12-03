@@ -10,9 +10,13 @@ f7Slider(
   min,
   max,
   value,
-  step = NULL,
+  step = 1,
   scale = FALSE,
-  vertical = FALSE
+  scaleSteps = 5,
+  scaleSubSteps = 0,
+  vertical = FALSE,
+  verticalReversed = FALSE,
+  enableLabels = FALSE
 )
 }
 \arguments{
@@ -30,7 +34,16 @@ f7Slider(
 
 \item{scale}{Slider scale.}
 
-\item{vertical}{Whether to apply a vertical display. FALSE by default. Does not work yet.}
+\item{scaleSteps}{Number of scale steps.}
+
+\item{scaleSubSteps}{Number of scale sub steps (each step will be divided by this value).}
+
+\item{vertical}{Whether to apply a vertical display. FALSE by default.}
+
+\item{verticalReversed}{Makes vertical range slider reversed (vertical must be also enabled).
+FALSE by default.}
+
+\item{enableLabels}{Enables additional label around range slider knob. FALSE by default.}
 }
 \description{
 Create a f7 slider
@@ -52,6 +65,8 @@ if(interactive()){
        max = 1000,
        min = 0,
        value = 100,
+       scaleSteps = 5,
+       scaleSubSteps = 3,
        scale = TRUE
       ),
       verbatimTextOutput("test")
@@ -85,7 +100,7 @@ if(interactive()){
        max = 500,
        min = 0,
        value = c(50, 100),
-       scale = TRUE
+       scale = FALSE
       ),
       verbatimTextOutput("test")
      )
