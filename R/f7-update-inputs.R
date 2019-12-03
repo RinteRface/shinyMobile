@@ -412,6 +412,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #' @param color Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
 #' @param wraps In wraps mode incrementing beyond maximum value sets value to minimum value,
 #' likewise, decrementing below minimum value sets value to maximum value. FALSE by default.
+#' @param decimalPoint Number of digits after dot, when in manual input mode.
 #' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
 #' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
 #' continues pressing the control. TRUE by default.
@@ -458,16 +459,18 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'       updateF7Stepper(
 #'         session,
 #'         inputId = "stepper",
-#'         value = 10,
+#'         value = 0.1,
+#'         step = 0.01,
 #'         size = "large",
-#'         min = 5,
-#'         max = 20,
+#'         min = 0,
+#'         max = 1,
 #'         wraps = FALSE,
 #'         autorepeat = FALSE,
 #'         rounded = TRUE,
 #'         raised = TRUE,
 #'         color = "pink",
-#'         manual = TRUE
+#'         manual = TRUE,
+#'         decimalPoint = 2
 #'       )
 #'     })
 #'   }
@@ -476,7 +479,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
                             value = NULL, step = NULL, fill = NULL,
                             rounded = NULL, raised = NULL, size = NULL,
-                            color = NULL, wraps = NULL,
+                            color = NULL, wraps = NULL, decimalPoint = NULL,
                             autorepeat = NULL, manual = NULL) {
   message <- dropNulls(list(
     min = min,
@@ -489,6 +492,7 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
     size = size,
     color = color,
     wraps = wraps,
+    decimalPoint = decimalPoint,
     autorepeat = autorepeat,
     manual = manual
   ))

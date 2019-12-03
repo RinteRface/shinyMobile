@@ -3,10 +3,12 @@
 ## Breaking changes
 
 ## Major changes
-- add aknowledgement
-- add links to pwa generator in readme
+- redesign the way inputs options are passed from R to Javascript. This does not have impact
+on the user side but improves security and code quality
 
 ## Minor changes
+- add decimalPoint to `updateF7Stepper`
+- rework `f7Stepper`: add 2 more parameters (decimalPoint and buttonsEndInputMode)
 - hideNavOnPageScroll is set to FALSE by default in `f7Init`. This improves perfomances
 on old devices
 - improve `f7SingleLayout` example (replace sliderInput by f7Slider)
@@ -14,6 +16,7 @@ on old devices
 - improve `f7TabLayout` example
 
 ## Bug fix
+- fix `f7Stepper`: some options were not properly initialized (max, min, ...)
 - fix `f7Slider` example 2: wrong argument in help
 - fix `f7Icon` example: wrong function name
 - fix `f7Row` example

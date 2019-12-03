@@ -163,7 +163,9 @@
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wraps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>autorepeat</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>decimalPoint</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>buttonsEndInputMode</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -231,11 +233,16 @@ input field, stepper enter into manual input mode, which allow type value from k
 fractional part with defined accurancy. Click outside or enter Return key, ending manual mode.
 TRUE by default.</p></td>
     </tr>
+    <tr>
+      <th>decimalPoint</th>
+      <td><p>Number of digits after dot, when in manual input mode.</p></td>
+    </tr>
+    <tr>
+      <th>buttonsEndInputMode</th>
+      <td><p>Disables manual input mode on Stepper's minus or plus button click.</p></td>
+    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Note that wrap, autorepeat and manual do not work.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
@@ -280,7 +287,6 @@ TRUE by default.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -7,24 +7,34 @@ $.extend(f7StepperBinding, {
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
-    // function to convert a string to variable
-    function SetTo5(inputId, varString) {
-      var res = eval(inputId + "_" + varString);
-      return res;
-    }
 
-    // create the stepper to access API
-    app.stepper.create({
-      el: el,
-      wraps: SetTo5(id, "stepperWraps"),
-      autorepeat: SetTo5(id , "stepperAutoRepeat"),
-      autorepeatDynamic: SetTo5(id, "stepperAutoRepeatDynamic"),
-      manualInputMode: SetTo5(id, "stepperManualInputMode")
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false
+        if (["min", "max", "step", "value", "decimalPoint"].indexOf(camelCaseName) == -1) {
+          var isTrueSet = (attr.value == 'true');
+          data[camelCaseName] = isTrueSet;
+        } else {
+          // convert strings to numeric
+          data[camelCaseName] = parseFloat(attr.value);
+        }
+
+      }
     });
+
+    // add the id
+    data.el = '#' + id;
+
+    // feed the create method
+    var s = app.stepper.create(data);
 
     // add readonly attr if the stepper is initially
     // not in manual mode
-    if (!SetTo5(id, "stepperManualInputMode")) {
+    if (!data.manualInputMode) {
       var inputTarget = $(el).find('input');
       $(inputTarget).attr('readonly', '');
     }
@@ -73,6 +83,10 @@ $.extend(f7StepperBinding, {
     }
     if (data.hasOwnProperty('wraps')) {
       s.params.wraps = data.wraps;
+    }
+    if (data.hasOwnProperty('decimalPoint')) {
+      s.decimalPoint = data.decimalPoint;
+      s.params.decimalPoint = data.decimalPoint;
     }
 
     // handle the readOnly property

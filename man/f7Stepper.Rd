@@ -18,7 +18,9 @@ f7Stepper(
   color = NULL,
   wraps = FALSE,
   autorepeat = TRUE,
-  manual = TRUE
+  manual = FALSE,
+  decimalPoint = 4,
+  buttonsEndInputMode = TRUE
 )
 }
 \arguments{
@@ -55,12 +57,13 @@ continues pressing the control. TRUE by default.}
 input field, stepper enter into manual input mode, which allow type value from keyboar and check
 fractional part with defined accurancy. Click outside or enter Return key, ending manual mode.
 TRUE by default.}
+
+\item{decimalPoint}{Number of digits after dot, when in manual input mode.}
+
+\item{buttonsEndInputMode}{Disables manual input mode on Stepper's minus or plus button click.}
 }
 \description{
 Create a F7 radio stepper
-}
-\note{
-Note that wrap, autorepeat and manual do not work.
 }
 \examples{
 if(interactive()){

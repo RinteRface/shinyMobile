@@ -162,6 +162,7 @@
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wraps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>decimalPoint</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>autorepeat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>manual</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
@@ -219,6 +220,10 @@
 likewise, decrementing below minimum value sets value to maximum value. FALSE by default.</p></td>
     </tr>
     <tr>
+      <th>decimalPoint</th>
+      <td><p>Number of digits after dot, when in manual input mode.</p></td>
+    </tr>
+    <tr>
       <th>autorepeat</th>
       <td><p>Pressing and holding one of its buttons increments or decrements the stepper’s
 value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
@@ -271,16 +276,18 @@ continues pressing the control. TRUE by default.</p></td>
       <span class='fu'>updateF7Stepper</span>(
         <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"stepper"</span>,
-        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+        <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
         <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>,
-        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1</span>,
         <span class='kw'>wraps</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>autorepeat</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>raised</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-        <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+        <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>decimalPoint</span> <span class='kw'>=</span> <span class='fl'>2</span>
       )
     })
   }

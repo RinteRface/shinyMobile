@@ -1156,8 +1156,8 @@ f7Slider <- function(inputId, label, min, max, value,
 #' input field, stepper enter into manual input mode, which allow type value from keyboar and check
 #' fractional part with defined accurancy. Click outside or enter Return key, ending manual mode.
 #' TRUE by default.
-#'
-#' @note Note that wrap, autorepeat and manual do not work.
+#' @param decimalPoint Number of digits after dot, when in manual input mode.
+#' @param buttonsEndInputMode Disables manual input mode on Stepper's minus or plus button click.
 #'
 #' @examples
 #' if(interactive()){
@@ -1201,7 +1201,8 @@ f7Slider <- function(inputId, label, min, max, value,
 #' @export
 f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       fill = FALSE, rounded = FALSE, raised = FALSE, size = NULL,
-                      color = NULL, wraps = FALSE, autorepeat = TRUE, manual = TRUE) {
+                      color = NULL, wraps = FALSE, autorepeat = TRUE, manual = FALSE,
+                      decimalPoint = 4, buttonsEndInputMode = TRUE) {
 
   stepperCl <- "stepper"
   if (fill) stepperCl <- paste0(stepperCl, " stepper-fill")
@@ -1216,42 +1217,58 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
   if (raised) stepperCl <- paste0(stepperCl, " stepper-raised")
   if (!is.null(color)) stepperCl <- paste0(stepperCl, " color-", color)
 
-  # pass these as global JS variable.
-  # We need however to prefix by the inputId
-  # to handle multiple steppers
-  stepperProps <- shiny::tags$script(
-    paste0(
-      ' var ', inputId, '_stepperWraps = ', tolower(wraps), ';
-        var ', inputId, '_stepperAutoRepeat = ', tolower(autorepeat), ';
-        var ', inputId, '_stepperAutoRepeatDynamic = ', tolower(autorepeat), ';
-        var ', inputId, '_stepperManualInputMode = ', tolower(manual), ';
-      '
+  # stepper props
+  stepperProps <- dropNulls(
+    list(
+      class = stepperCl,
+      id = inputId,
+      # numeric
+      `data-min` = min,
+      `data-max` = max,
+      `data-step` = step,
+      `data-value` = value,
+      `data-decimal-point` = decimalPoint,
+      # booleans
+      `data-wraps` = wraps,
+      `data-autorepeat` = autorepeat,
+      `data-autorepeat-dynamic` = autorepeat,
+      `data-manual-input-mode` = manual,
+      `data-buttons-end-input-mode` = buttonsEndInputMode
     )
   )
 
-  # wrapper
+  # replace TRUE and FALSE by true and false for javascript
+  stepperProps <- lapply(stepperProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  stepperProps <- do.call(shiny::tags$div, stepperProps)
+
+  stepperTag <- shiny::tagAppendChildren(
+    stepperProps,
+    shiny::tags$div(class = "stepper-button-minus"),
+    shiny::tags$div(
+      class = "stepper-input-wrap",
+      shiny::tags$input(
+        type = "text",
+        value = value,
+        min = min,
+        max = max,
+        step = step
+      )
+    ),
+    shiny::tags$div(class = "stepper-button-plus")
+  )
+
+  # main wrapper
   shiny::tagList(
     f7InputsDeps(),
-    stepperProps,
     # stepper tag
     shiny::tags$small(label),
-    shiny::tags$div(
-      class = stepperCl,
-      id = inputId,
-      `data-decimal-point`= "2",
-      shiny::tags$div(class = "stepper-button-minus"),
-      shiny::tags$div(
-        class = "stepper-input-wrap",
-        shiny::tags$input(
-          type = "text",
-          value = value,
-          min = min,
-          max = max,
-          step = step
-        )
-      ),
-      shiny::tags$div(class = "stepper-button-plus")
-    )
+    stepperTag
   )
 }
 

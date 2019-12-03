@@ -17,6 +17,7 @@ updateF7Stepper(
   size = NULL,
   color = NULL,
   wraps = NULL,
+  decimalPoint = NULL,
   autorepeat = NULL,
   manual = NULL
 )
@@ -46,6 +47,8 @@ updateF7Stepper(
 
 \item{wraps}{In wraps mode incrementing beyond maximum value sets value to minimum value,
 likewise, decrementing below minimum value sets value to maximum value. FALSE by default.}
+
+\item{decimalPoint}{Number of digits after dot, when in manual input mode.}
 
 \item{autorepeat}{Pressing and holding one of its buttons increments or decrements the stepper’s
 value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
@@ -96,16 +99,18 @@ if (interactive()) {
       updateF7Stepper(
         session,
         inputId = "stepper",
-        value = 10,
+        value = 0.1,
+        step = 0.01,
         size = "large",
-        min = 5,
-        max = 20,
+        min = 0,
+        max = 1,
         wraps = FALSE,
         autorepeat = FALSE,
         rounded = TRUE,
         raised = TRUE,
         color = "pink",
-        manual = TRUE
+        manual = TRUE,
+        decimalPoint = 2
       )
     })
   }
