@@ -16,7 +16,7 @@ f7Slider(
   scaleSubSteps = 0,
   vertical = FALSE,
   verticalReversed = FALSE,
-  enableLabels = FALSE
+  labels = NULL
 )
 }
 \arguments{
@@ -43,7 +43,8 @@ f7Slider(
 \item{verticalReversed}{Makes vertical range slider reversed (vertical must be also enabled).
 FALSE by default.}
 
-\item{enableLabels}{Enables additional label around range slider knob. FALSE by default.}
+\item{labels}{Enables additional label around range slider knob. List of 2 \link{f7Icon}
+expected.}
 }
 \description{
 Create a f7 slider
@@ -67,7 +68,11 @@ if(interactive()){
        value = 100,
        scaleSteps = 5,
        scaleSubSteps = 3,
-       scale = TRUE
+       scale = TRUE,
+       labels = tagList(
+        f7Icon("circle"),
+        f7Icon("circle_fill")
+       )
       ),
       verbatimTextOutput("test")
      ),

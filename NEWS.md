@@ -7,6 +7,7 @@
 on the user side but improves security and code quality
 
 ## Minor changes
+- add `f7Slider()` labels (remove enableLabels param)
 - add step, scaleSteps and scaleSubSteps to `updateF7Slider()`
 - add scaleSteps, scaleSubSteps and verticalReversed to `f7Slider()`
 - add decimalPoint to `updateF7Stepper()`

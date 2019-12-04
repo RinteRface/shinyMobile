@@ -1033,7 +1033,8 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param vertical Whether to apply a vertical display. FALSE by default.
 #' @param verticalReversed Makes vertical range slider reversed (vertical must be also enabled).
 #' FALSE by default.
-#' @param enableLabels Enables additional label around range slider knob. FALSE by default.
+#' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
+#' expected.
 #'
 #' @export
 #'
@@ -1056,7 +1057,11 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'        value = 100,
 #'        scaleSteps = 5,
 #'        scaleSubSteps = 3,
-#'        scale = TRUE
+#'        scale = TRUE,
+#'        labels = tagList(
+#'         f7Icon("circle"),
+#'         f7Icon("circle_fill")
+#'        )
 #'       ),
 #'       verbatimTextOutput("test")
 #'      ),
@@ -1103,7 +1108,11 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'
 f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
                      scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
-                     verticalReversed = FALSE, enableLabels = FALSE) {
+                     verticalReversed = FALSE, labels = NULL) {
+
+  if (!is.null(labels)) {
+    if (length(labels) < 2) stop("labels must be a tagList with 2 elements.")
+  }
 
   sliderProps <- dropNulls(
     list(
@@ -1111,7 +1120,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
       id = inputId,
       style = if (vertical) {
         if (scale) {
-          "height: 160px; margin: 10px;"
+          "height: 160px; margin: 20px;"
         } else {
           "height: 160px;"
         }
@@ -1131,12 +1140,28 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
       `data-scale`= tolower(scale),
       `data-scale-steps`= scaleSteps,
       `data-scale-sub-steps` = scaleSubSteps,
-      `data-label` = tolower(enableLabels)
+      `data-label` = if (!is.null(labels) == 2) "true" else "false"
     )
   )
 
   # wrap props
   rangeTag <- do.call(shiny::tags$div, sliderProps)
+
+
+  labels <- if (!is.null(labels)) {
+    lapply(seq_along(labels), function(i) {
+      isF7Icon <- (grep(x = labels[[i]]$attribs$class, pattern = "f7-icons") == 1)
+      if (class(labels[[i]]) != "shiny.tag" | !isF7Icon) {
+        stop("Label must be a f7Icon.")
+      }
+      shiny::tags$div(
+        class = "item-cell width-auto flex-shrink-0",
+        labels[[i]]
+      )
+    })
+  } else {
+    NULL
+  }
 
   # wrapper
   shiny::tags$div(
@@ -1144,7 +1169,20 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
     # HTML skeleton
     shiny::br(),
     shiny::tags$div(class = "block-title", label),
-    shiny::tags$div(class = "block", rangeTag)
+    if (!is.null(labels)) {
+      shiny::tags$div(
+        class = "list simple-list",
+        shiny::tags$ul(
+          shiny::tags$li(
+            labels[[1]],
+            shiny::tags$div(class = "item-cell flex-shrink-3", rangeTag),
+            labels[[2]]
+          )
+        )
+      )
+    } else {
+      shiny::tags$div(class = "block", rangeTag)
+    }
   )
 }
 

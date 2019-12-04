@@ -161,7 +161,7 @@
   <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verticalReversed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>enableLabels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -213,8 +213,9 @@
 FALSE by default.</p></td>
     </tr>
     <tr>
-      <th>enableLabels</th>
-      <td><p>Enables additional label around range slider knob. FALSE by default.</p></td>
+      <th>labels</th>
+      <td><p>Enables additional label around range slider knob. List of 2 <a href='f7Icon.html'>f7Icon</a>
+expected.</p></td>
     </tr>
     </table>
 
@@ -238,7 +239,11 @@ FALSE by default.</p></td>
        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>100</span>,
        <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
        <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle"</span>),
+        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle_fill"</span>)
+       )
       ),
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
      ),
