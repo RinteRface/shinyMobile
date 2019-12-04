@@ -155,7 +155,10 @@
   <span class='kw'>min</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -185,8 +188,23 @@
       <th>scale</th>
       <td><p>Slider scale.</p></td>
     </tr>
+    <tr>
+      <th>scaleSteps</th>
+      <td><p>Number of scale steps.</p></td>
+    </tr>
+    <tr>
+      <th>scaleSubSteps</th>
+      <td><p>Number of scale sub steps (each step will be divided by this value).</p></td>
+    </tr>
+    <tr>
+      <th>step</th>
+      <td><p>Slider increase step size.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Important: you cannot transform a range slider into a simple slider and inversely.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
@@ -194,40 +212,41 @@
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Slider"</span>),
-      <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update slider"</span>),
-        <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
-          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
-          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Range values"</span>,
-          <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-          <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-          <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>),
-          <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-        ),
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
-      )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Slider"</span>),
+       <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+         <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update slider"</span>),
+         <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
+           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
+           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Range values"</span>,
+           <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+           <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+           <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>)
+         ),
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
+       )
+     )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
+     <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
 
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
-      <span class='fu'>updateF7Slider</span>(
-        <span class='no'>session</span>,
-        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
-        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>),
-        <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-        <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-        <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-      )
-    })
-  }
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
+       <span class='fu'>updateF7Slider</span>(
+         <span class='no'>session</span>,
+         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
+         <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>),
+         <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+         <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+         <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+         <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
+         <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span>
+       )
+     })
+   }
  )
 }</div></pre>
   </div>
@@ -235,6 +254,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

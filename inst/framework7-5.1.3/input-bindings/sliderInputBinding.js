@@ -33,7 +33,6 @@ $.extend(f7SliderBinding, {
 
     // feed the create method
     var r = app.range.create(data);
-    console.log(r);
 
   },
 
@@ -57,19 +56,36 @@ $.extend(f7SliderBinding, {
     var r = app.range.get($(el));
     if (data.hasOwnProperty('min')) {
       r.min = data.min;
+      // re render the scale
+      r.updateScale();
     }
     if (data.hasOwnProperty('max')) {
       r.max = data.max;
+      // re render the scale
+      r.updateScale();
     }
+    if (data.hasOwnProperty('step')) {
+      r.step = data.step;
+      // re render the scale
+      r.updateScale();
+    }
+
+    if (data.hasOwnProperty('scaleSteps')) {
+      r.scaleSteps = data.scaleSteps;
+      // re render the scale
+      r.updateScale();
+    }
+
+    if (data.hasOwnProperty('scaleSubSteps')) {
+      r.scaleSubSteps = data.scaleSubSteps;
+      // re render the scale
+      r.updateScale();
+    }
+
+    // need to apply this after rendering the scale
     if (data.hasOwnProperty('scale')) {
-      if (data.scale == "true") {
-        data.scale = true;
-      } else {
-        data.scale = false;
-      }
       r.scale = data.scale;
     }
-    r.updateScale();
 
     // important: need to update the scale before
     // updating the value. Otherwise the value will
