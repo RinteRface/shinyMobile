@@ -19,6 +19,7 @@ on old devices
 - improve `f7TabLayout()` example
 
 ## Bug fix
+- fix #31: `updateF7Gauge()` -> wrong fraction for semi circle gauges. 
 - fix `f7Stepper()`: some options were not properly initialized (max, min, ...)
 - fix `f7Slider()` example 2: wrong argument in help
 - fix `f7Icon()` example: wrong function name

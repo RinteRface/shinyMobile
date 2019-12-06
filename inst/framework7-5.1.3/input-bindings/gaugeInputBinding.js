@@ -56,7 +56,6 @@ $.extend(f7GaugeBinding, {
   // see updateF7Gauge
   receiveMessage: function(el, data) {
     var g = app.gauge.get($(el));
-    console.log(data);
     g.update({
       value: data.value / 100,
       valueText: data.value + '%'
