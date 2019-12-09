@@ -3,6 +3,8 @@
 ## Breaking changes
 
 ## Major changes
+- add `preview_mobile()`: function that previews your app in a seleted range of
+devices (iphone, samsung, htc, ...)
 - redesign the way inputs options are passed from R to Javascript. This does not have impact
 on the user side but improves security and code quality
 
@@ -17,6 +19,7 @@ on old devices
 - improve `f7SingleLayout()` example (replace sliderInput by f7Slider)
 - improve `f7SplitLayout()` example (replace sliderInput by f7Slider)
 - improve `f7TabLayout()` example
+- add more copyrights
 
 ## Bug fix
 - fix #31: `updateF7Gauge()` -> wrong fraction for semi circle gauges. 

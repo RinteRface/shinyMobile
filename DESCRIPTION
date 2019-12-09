@@ -8,7 +8,9 @@ Authors@R: c(
   person("John", "Coene", email = "jcoenep@gmail.com", role = "ctb"),
   person("Isabelle", "Rudolf", email = "", role = "aut"),
   person(family = "Framework7", role = c("ctb", "cph"), 
-  comment = "Full featured HTML framework for building iOS & Android apps"))
+  comment = "Full featured HTML framework for building iOS & Android apps"),
+  person(family = "Marvelapp", role = c("ctb", "cph"), comment = "device.css wrappers"),
+  person("Vladimir", "Kharlampidi", email = "nolimits4web@gmail.com", role = c("ctb", "cph"), comment = "Framework7 HTML template"))
 Maintainer: David Granjon <dgranjon@ymail.com>
 Description: Develop outstanding 'shiny' apps for 'iOS', 'Android', desktop as well as beautiful 'shiny' gadgets.
     'shinyMobile' is built on top of the latest 'Framework7' template <https://framework7.io>.

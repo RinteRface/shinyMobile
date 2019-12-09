@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • shinyMobile</title>
+<title>Allow to preview a given app on different devices. — preview_mobile • shinyMobile</title>
 
 
 <!-- jquery -->
@@ -37,7 +37,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Allow to preview a given app on different devices. — preview_mobile" />
+<meta property="og:description" content="Allow to preview a given app on different devices." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +58,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -138,81 +140,82 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Allow to preview a given app on different devices.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/preview_mobile.R'><code>R/preview_mobile.R</code></a></small>
+    <div class="hidden name"><code>preview_mobile.Rd</code></div>
     </div>
 
-    <div id="shinymobile-0209000" class="section level1">
-<h1 class="page-header">
-<a href="#shinymobile-0209000" class="anchor"></a>shinyMobile 0.2.0.9000<small> Unreleased </small>
-</h1>
-<div id="breaking-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
-</div>
-<div id="major-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
-<ul>
-<li>add <code><a href="../reference/preview_mobile.html">preview_mobile()</a></code>: function that previews your app in a seleted range of devices (iphone, samsung, htc, …)</li>
-<li>redesign the way inputs options are passed from R to Javascript. This does not have impact on the user side but improves security and code quality</li>
-</ul>
-</div>
-<div id="minor-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
-<ul>
-<li>add <code><a href="../reference/f7Slider.html">f7Slider()</a></code> labels (remove enableLabels param)</li>
-<li>add step, scaleSteps and scaleSubSteps to <code><a href="../reference/updateF7Slider.html">updateF7Slider()</a></code>
-</li>
-<li>add scaleSteps, scaleSubSteps and verticalReversed to <code><a href="../reference/f7Slider.html">f7Slider()</a></code>
-</li>
-<li>add decimalPoint to <code><a href="../reference/updateF7Stepper.html">updateF7Stepper()</a></code>
-</li>
-<li>rework <code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: add 2 more parameters (decimalPoint and buttonsEndInputMode)</li>
-<li>hideNavOnPageScroll is set to FALSE by default in <code><a href="../reference/f7Init.html">f7Init()</a></code>. This improves perfomances on old devices</li>
-<li>improve <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> example (replace sliderInput by f7Slider)</li>
-<li>improve <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> example (replace sliderInput by f7Slider)</li>
-<li>improve <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code> example</li>
-<li>add more copyrights</li>
-</ul>
-</div>
-<div id="bug-fix" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bug-fix" class="anchor"></a>Bug fix</h2>
-<ul>
-<li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/31'>#31</a>: <code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code> -&gt; wrong fraction for semi circle gauges.</li>
-<li>fix <code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: some options were not properly initialized (max, min, …)</li>
-<li>fix <code><a href="../reference/f7Slider.html">f7Slider()</a></code> example 2: wrong argument in help</li>
-<li>fix <code><a href="../reference/f7Icon.html">f7Icon()</a></code> example: wrong function name</li>
-<li>fix <code><a href="../reference/f7Row.html">f7Row()</a></code> example</li>
-<li>
-<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
-<li>Do no apply a magin bottom to the toolbar if there is no <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
-</li>
-</ul>
-</div>
-</div>
-    <div id="shinymobile-010" class="section level1">
-<h1 class="page-header">
-<a href="#shinymobile-010" class="anchor"></a>shinyMobile 0.1.0<small> 2019-11-30 </small>
-</h1>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>Allow to preview a given app on different devices.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>preview_mobile</span>(
+  <span class='kw'>appPath</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>url</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>port</span> <span class='kw'>=</span> <span class='fl'>3838</span>,
+  <span class='kw'>device</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"iphoneX"</span>, <span class='st'>"galaxyNote8"</span>, <span class='st'>"iphone8"</span>, <span class='st'>"iphone8+"</span>, <span class='st'>"iphone5s"</span>, <span class='st'>"iphone5c"</span>,
+    <span class='st'>"ipadMini"</span>, <span class='st'>"iphone4s"</span>, <span class='st'>"nexus5"</span>, <span class='st'>"galaxyS5"</span>, <span class='st'>"htcOne"</span>),
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>landscape</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>appPath</th>
+      <td><p>App to preview if local.</p></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><p>App to preview if online.</p></td>
+    </tr>
+    <tr>
+      <th>port</th>
+      <td><p>Default port. Ignored if url is provided.</p></td>
+    </tr>
+    <tr>
+      <th>device</th>
+      <td><p>Wrapper devices.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>Wrapper color. Only with iphone8 (black, silver, gold),
+iphone8+ (black, silver, gold), iphone5s (black, silver, gold),
+iphone5c (white,red , yellow, green, blue), iphone4s (black, silver), ipadMini (black, silver) and
+galaxyS5 (black, white).</p></td>
+    </tr>
+    <tr>
+      <th>landscape</th>
+      <td><p>Whether to put the device wrapper in landscape mode. Default to FALSE.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A shiny app containing an iframe surrounded by the device wrapper.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>choose either url or appPath!</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+ <span class='fu'>preview_mobile</span>(<span class='kw'>appPath</span> <span class='kw'>=</span> <span class='st'>"~/whatever"</span>, <span class='kw'>device</span> <span class='kw'>=</span> <span class='st'>"galaxyNote8"</span>)
+ <span class='fu'>preview_mobile</span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://dgranjon.shinyapps.io/miniUI2DemoMd"</span>, <span class='kw'>device</span> <span class='kw'>=</span> <span class='st'>"ipadMini"</span>)
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#shinymobile-0209000">0.2.0.9000</a></li>
-        <li><a href="#shinymobile-010">0.1.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
 
