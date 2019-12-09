@@ -170,8 +170,11 @@ tabOthers <- f7Tab(
       value = 50,
       scale = TRUE
     ),
+    br(),
     f7Progress(id = "pg2", value = 100, color = "green"),
+    br(),
     f7Progress(id = "pg3", value = 50, color = "deeppurple"),
+    br(),
     f7ProgressInf()
   ),
   br(),
