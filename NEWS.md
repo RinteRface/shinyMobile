@@ -9,6 +9,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add cheatsheet reference in the readme
 - add `f7Slider()` labels (remove enableLabels param)
 - add step, scaleSteps and scaleSubSteps to `updateF7Slider()`
 - add scaleSteps, scaleSubSteps and verticalReversed to `f7Slider()`

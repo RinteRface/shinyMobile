@@ -15,6 +15,9 @@
 devtools::install_github("RinteRface/shinyMobile")
 ```
 
+## Cheatsheet
+<a href="https://github.com/RinteRface/cheatsheets/tree/master/shinyMobile"><img src="https://raw.githubusercontent.com/rinterface/cheatsheets/master/shinyMobile/png/shinyMobile1.png" width="630" height="487" style="max-width:100%;"></a>
+
 ## Demo
 
 A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
