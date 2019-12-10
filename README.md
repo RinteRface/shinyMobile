@@ -11,6 +11,8 @@
 ## Installation
 
 ```r
+# from CRAN
+install.packages("shinyMobile")
 # for the latest version
 devtools::install_github("RinteRface/shinyMobile")
 ```
