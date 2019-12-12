@@ -21,6 +21,7 @@ reference:
   desc: Tools to build a progressive web app
   contents:
   - '`create_manifest`'
+  - '`preview_mobile`'
 
 
 - title: Grid functions
@@ -74,6 +75,7 @@ reference:
   - '`f7NavbarHide`'
   - '`f7NavbarShow`'
   - '`f7RemoveTab`'
+  - '`f7TogglePopup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
   - '`updateF7Card`'

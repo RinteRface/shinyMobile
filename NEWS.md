@@ -1,8 +1,12 @@
 # shinyMobile 0.2.0.9000
 
 ## Breaking changes
+- Rewrite `f7Popup()`. It has now an input associated giving the popup state (opened or closed) as well
+as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. 
+label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` tag in you UI. On the server side call `f7TogglePopup()`. See documentation for a detailed example. Thanks @pasahe
 
 ## Major changes
+- add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe
 - add `preview_mobile()`: function that previews your app in a seleted range of
 devices (iphone, samsung, htc, ...)
 - redesign the way inputs options are passed from R to Javascript. This does not have impact
@@ -23,6 +27,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- fix #41: cannot render shiny outputs in `f7Popup()`. Now `f7Popup()` triggers shiny output rendering. Thanks @pasahe
 - fix #31: `updateF7Gauge()` -> wrong fraction for semi circle gauges. 
 - fix `f7Stepper()`: some options were not properly initialized (max, min, ...)
 - fix `f7Slider()` example 2: wrong argument in help
