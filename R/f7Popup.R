@@ -63,6 +63,7 @@ f7Popup <- function(..., id, title, backdrop = TRUE, closeByBackdropClick = TRUE
     list(
       class = "popup popup-tablet-fullscreen",
       id = id,
+      style = "overflow-y: auto;",
       `data-backdrop` = tolower(backdrop),
       `data-close-by-backdrop-click` = tolower(closeByBackdropClick),
       `data-close-on-escape` = tolower(closeOnEscape),
