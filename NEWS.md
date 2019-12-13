@@ -4,6 +4,8 @@
 - Rewrite `f7Popup()`. It has now an input associated giving the popup state (opened or closed) as well
 as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. 
 label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` tag in you UI. On the server side call `f7TogglePopup()`. See documentation for a detailed example. Thanks @pasahe
+- `f7NavbarHide()` renamed to `f7HideNavbar()` for consistancy
+- `f7NavbarShow()` renamed to `f7ShowNavbar()` for consistancy
 
 ## Major changes
 - add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe
