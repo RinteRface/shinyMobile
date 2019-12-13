@@ -110,6 +110,25 @@ shinyApp(
       session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
     })
 
+
+    # popup
+    output$popupContent <- renderPrint(input$popupText)
+
+    observeEvent(input$togglePopup, {
+      f7TogglePopup(id = "popup1")
+    })
+
+    observeEvent(input$popup1, {
+      if (input$tabset == "Popups") {
+        popupStatus <- if (input$popup1) "opened" else "closed"
+        f7Toast(
+          session,
+          position = "top",
+          text = paste("Popup is", popupStatus)
+        )
+      }
+    })
+
     # sheet plot
     output$sheetPlot <- renderPlot({
       hist(rnorm(input$sheetObs))
