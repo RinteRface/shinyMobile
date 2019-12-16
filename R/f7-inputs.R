@@ -1036,6 +1036,8 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
 #' expected.
 #'
+#' @note labels option only works when vertical is FALSE!
+#'
 #' @export
 #'
 #' @examples
@@ -1139,8 +1141,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
       `data-value-right` = if (length(value) == 2) value[2] else NULL,
       `data-scale`= tolower(scale),
       `data-scale-steps`= scaleSteps,
-      `data-scale-sub-steps` = scaleSubSteps,
-      `data-label` = if (!is.null(labels) == 2) "true" else "false"
+      `data-scale-sub-steps` = scaleSubSteps
     )
   )
 

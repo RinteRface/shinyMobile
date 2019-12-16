@@ -29,6 +29,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- fix #43: slider label not visible on drag. Thanks @pasahe
 - fix #42: add vertical overflow to `f7Popup()`. Thanks @pasahe
 - fix #41: cannot render shiny outputs in `f7Popup()`. Now `f7Popup()` triggers shiny output rendering. Thanks @pasahe
 - fix #31: `updateF7Gauge()` -> wrong fraction for semi circle gauges. 
