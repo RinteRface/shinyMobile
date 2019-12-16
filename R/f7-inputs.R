@@ -1035,6 +1035,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' FALSE by default.
 #' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
 #' expected.
+#' @param color See \link{getF7Colors} for valid colors.
 #'
 #' @note labels option only works when vertical is FALSE!
 #'
@@ -1060,6 +1061,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'        scaleSteps = 5,
 #'        scaleSubSteps = 3,
 #'        scale = TRUE,
+#'        color = "orange",
 #'        labels = tagList(
 #'         f7Icon("circle"),
 #'         f7Icon("circle_fill")
@@ -1110,15 +1112,18 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'
 f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
                      scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
-                     verticalReversed = FALSE, labels = NULL) {
+                     verticalReversed = FALSE, labels = NULL, color = NULL) {
 
   if (!is.null(labels)) {
     if (length(labels) < 2) stop("labels must be a tagList with 2 elements.")
   }
 
+  sliderCl <- "range-slider"
+  if (!is.null(color)) sliderCl <- paste0(sliderCl, " color-", color)
+
   sliderProps <- dropNulls(
     list(
-      class = "range-slider",
+      class = sliderCl,
       id = inputId,
       style = if (vertical) {
         if (scale) {

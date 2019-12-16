@@ -16,7 +16,8 @@ f7Slider(
   scaleSubSteps = 0,
   vertical = FALSE,
   verticalReversed = FALSE,
-  labels = NULL
+  labels = NULL,
+  color = NULL
 )
 }
 \arguments{
@@ -45,9 +46,14 @@ FALSE by default.}
 
 \item{labels}{Enables additional label around range slider knob. List of 2 \link{f7Icon}
 expected.}
+
+\item{color}{See \link{getF7Colors} for valid colors.}
 }
 \description{
 Create a f7 slider
+}
+\note{
+labels option only works when vertical is FALSE!
 }
 \examples{
 if(interactive()){
@@ -69,6 +75,7 @@ if(interactive()){
        scaleSteps = 5,
        scaleSubSteps = 3,
        scale = TRUE,
+       color = "orange",
        labels = tagList(
         f7Icon("circle"),
         f7Icon("circle_fill")

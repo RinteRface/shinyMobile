@@ -161,7 +161,8 @@
   <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>verticalReversed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -217,8 +218,15 @@ FALSE by default.</p></td>
       <td><p>Enables additional label around range slider knob. List of 2 <a href='f7Icon.html'>f7Icon</a>
 expected.</p></td>
     </tr>
+    <tr>
+      <th>color</th>
+      <td><p>See <a href='getF7Colors.html'>getF7Colors</a> for valid colors.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>labels option only works when vertical is FALSE!</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
@@ -240,6 +248,7 @@ expected.</p></td>
        <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
        <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>3</span>,
        <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
        <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
         <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle"</span>),
         <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle_fill"</span>)
@@ -292,6 +301,7 @@ expected.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
