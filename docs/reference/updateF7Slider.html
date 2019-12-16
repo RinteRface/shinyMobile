@@ -158,7 +158,8 @@
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>step</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -200,6 +201,10 @@
       <th>step</th>
       <td><p>Slider increase step size.</p></td>
     </tr>
+    <tr>
+      <th>color</th>
+      <td><p>See <a href='getF7Colors.html'>getF7Colors</a> for valid colors.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
@@ -224,6 +229,7 @@
            <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
            <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
            <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+           <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"deeppurple"</span>,
            <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>)
          ),
          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
@@ -243,7 +249,8 @@
          <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>10</span>,
          <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
          <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-         <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span>
+         <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+         <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"teal"</span>
        )
      })
    }

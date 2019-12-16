@@ -102,6 +102,15 @@ $.extend(f7SliderBinding, {
         this.setValue(el, val);
       }
     }
+
+    // update color
+    if (data.hasOwnProperty('color')) {
+      $(el).removeClass (function (index, className) {
+        return (className.match (/(^|\s)color-\S+/g) || []).join(' ');
+      });
+      $(el).addClass('color-' + data.color);
+    }
+
   },
 
   subscribe: function(el, callback) {

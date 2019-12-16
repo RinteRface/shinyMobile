@@ -283,6 +283,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #' @param scaleSteps Number of scale steps.
 #' @param scaleSubSteps Number of scale sub steps (each step will be divided by this value).
 #' @param step Slider increase step size.
+#' @param color See \link{getF7Colors} for valid colors.
 #'
 #' @export
 #'
@@ -306,6 +307,7 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'            max = 500,
 #'            min = 0,
 #'            step = 1,
+#'            color = "deeppurple",
 #'            value = c(50, 100)
 #'          ),
 #'          verbatimTextOutput("test")
@@ -325,14 +327,16 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'          scaleSteps = 10,
 #'          scaleSubSteps = 5,
 #'          step = 0.1,
-#'          max = 10
+#'          max = 10,
+#'          color = "teal"
 #'        )
 #'      })
 #'    }
 #'  )
 #' }
 updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NULL,
-                           scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL, step = NULL) {
+                           scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL,
+                           step = NULL, color = NULL) {
   message <- dropNulls(list(
     value = value,
     min = min,
@@ -340,7 +344,8 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
     scale = scale,
     step = step,
     scaleSteps = scaleSteps,
-    scaleSubSteps = scaleSubSteps
+    scaleSubSteps = scaleSubSteps,
+    color = color
   ))
   session$sendInputMessage(inputId, message)
 }

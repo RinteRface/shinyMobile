@@ -15,6 +15,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add color to `updateF7Slider()`
 - add color to `f7Slider()`
 - add cheatsheet reference in the readme
 - add `f7Slider()` labels (remove enableLabels param)

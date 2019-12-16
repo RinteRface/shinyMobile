@@ -13,7 +13,8 @@ updateF7Slider(
   scale = FALSE,
   scaleSteps = NULL,
   scaleSubSteps = NULL,
-  step = NULL
+  step = NULL,
+  color = NULL
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ updateF7Slider(
 \item{scaleSubSteps}{Number of scale sub steps (each step will be divided by this value).}
 
 \item{step}{Slider increase step size.}
+
+\item{color}{See \link{getF7Colors} for valid colors.}
 }
 \description{
 Change the value of a slider input on the client
@@ -59,6 +62,7 @@ if(interactive()){
            max = 500,
            min = 0,
            step = 1,
+           color = "deeppurple",
            value = c(50, 100)
          ),
          verbatimTextOutput("test")
@@ -78,7 +82,8 @@ if(interactive()){
          scaleSteps = 10,
          scaleSubSteps = 5,
          step = 0.1,
-         max = 10
+         max = 10,
+         color = "teal"
        )
      })
    }
