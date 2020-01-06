@@ -15,6 +15,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add selected parameter to `f7Select`
 - update framework7 to 5.3.0
 - add color to `updateF7Slider()`
 - add color to `f7Slider()`

@@ -149,7 +149,7 @@
     <p>Create an f7 select input</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Select</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='no'>choices</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Select</span>(<span class='no'>inputId</span>, <span class='no'>label</span>, <span class='no'>choices</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +165,10 @@
     <tr>
       <th>choices</th>
       <td><p>Select input choices.</p></td>
+    </tr>
+    <tr>
+      <th>selected</th>
+      <td><p>Select input default selected value.</p></td>
     </tr>
     </table>
 
@@ -182,7 +186,8 @@
       <span class='fu'>f7Select</span>(
        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"variable"</span>,
        <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose a variable:"</span>,
-       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>mtcars</span>)[-<span class='fl'>1</span>]
+       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>mtcars</span>)[-<span class='fl'>1</span>],
+       <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"hp"</span>
       ),
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)
      )

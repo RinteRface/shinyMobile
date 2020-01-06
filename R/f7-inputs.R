@@ -627,6 +627,7 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #' @param inputId Select input id.
 #' @param label Select input label.
 #' @param choices Select input choices.
+#' @param selected Select input default selected value.
 #'
 #' @export
 #'
@@ -643,7 +644,8 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'       f7Select(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
-#'        choices = colnames(mtcars)[-1]
+#'        choices = colnames(mtcars)[-1],
+#'        selected = "hp"
 #'       ),
 #'       tableOutput("data")
 #'      )
@@ -655,11 +657,17 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'    }
 #'  )
 #' }
-f7Select <- function(inputId, label, choices) {
+f7Select <- function(inputId, label, choices, selected = NULL) {
 
 
   options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(value = choices[[i]], choices[[i]])
+    shiny::tags$option(
+      value = choices[[i]],
+      choices[[i]],
+      selected = if (!is.null(selected)) {
+        if (choices[[i]] %in% selected) NA else NULL
+      }
+    )
   })
 
   shiny::tags$div(
