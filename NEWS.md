@@ -1,6 +1,7 @@
 # shinyMobile 0.2.0.9000
 
 ## Breaking changes
+- remove parameter fill from `f7Icon` (not used)
 - Rewrite `f7Popup()`. It has now an input associated giving the popup state (opened or closed) as well
 as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. 
 label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` tag in you UI. On the server side call `f7TogglePopup()`. See documentation for a detailed example. Thanks @pasahe
@@ -15,6 +16,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add color argument to `f7Icon`
 - add selected parameter to `f7Select`
 - update framework7 to 5.3.0
 - add color to `updateF7Slider()`
