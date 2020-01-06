@@ -55,7 +55,7 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Picker"),
+     navbar = f7Navbar(title = "f7AutoComplete"),
      f7AutoComplete(
       inputId = "myautocomplete1",
       placeholder = "Some text here!",
