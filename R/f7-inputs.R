@@ -7,16 +7,20 @@
 #' @param placeholder Text to write in the container.
 #' @param value Autocomplete initial value, if any.
 #' @param choices Autocomplete choices.
+#' @param openIn Defines how to open Autocomplete,
+#' can be page or popup (for Standalone) or dropdown.
 #' @param typeahead Enables type ahead, will prefill input
-#' value with first item in match.
+#' value with first item in match. Only if openIn is "dropdown".
 #' @param expandInput If TRUE then input which is used as
 #' item-input in List View will be expanded to full
-#' screen wide during dropdown visible.
-#' @param type Defines how to open Autocomplete,
-#' can be page or popup (for Standalone) or dropdown.
+#' screen wide during dropdown visible. Only if openIn is "dropdown".
+#' @param closeOnSelect Set to true and autocomplete will be closed when user picks value.
+#' Not available if multiple is enabled. Only works
+#' when openIn is 'popup' or 'page'.
 #' @param dropdownPlaceholderText Specify dropdown placeholder text.
+#' Only if openIn is "dropdown".
 #' @param multiple Whether to allow multiple value selection. Only works
-#' when type is 'popup' or 'page'.
+#' when openIn is 'popup' or 'page'.
 #'
 #' @examples
 #' if(interactive()){
@@ -33,7 +37,7 @@
 #'       placeholder = "Some text here!",
 #'       dropdownPlaceholderText = "Try to type Apple",
 #'       label = "Type a fruit name",
-#'       type = "dropdown",
+#'       openIn = "dropdown",
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'        'Orange', 'Peach', 'Pear', 'Pineapple')
 #'      ),
@@ -41,7 +45,7 @@
 #'      f7AutoComplete(
 #'       inputId = "myautocomplete2",
 #'       placeholder = "Some text here!",
-#'       type = "popup",
+#'       openIn = "popup",
 #'       multiple = TRUE,
 #'       label = "Type a fruit name",
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
@@ -66,11 +70,72 @@
 #' @export
 f7AutoComplete <- function(inputId, label, placeholder = NULL,
                            value = choices[1], choices,
-                           typeahead = TRUE, expandInput = TRUE,
-                           type = c("popup", "page", "dropdown"),
+                           openIn = c("popup", "page", "dropdown"),
+                           typeahead = TRUE, expandInput = TRUE, closeOnSelect = FALSE,
                            dropdownPlaceholderText = NULL, multiple = FALSE) {
 
-  type <- match.arg(type)
+  type <- match.arg(openIn)
+
+  value <- jsonlite::toJSON(value)
+  choices <- jsonlite::toJSON(choices)
+
+  # autocomplete common props
+  autoCompleteCommon <- list(
+    id = inputId,
+    class = "autocomplete-input",
+    `data-choices` = choices,
+    `data-value` = value,
+    `data-open-in` = type
+  )
+
+  # specific props
+  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
+    list(
+      type = "text",
+      placeholder = placeholder,
+      `data-typeahead` = typeahead,
+      `data-expand-input` = expandInput,
+      `data-dropdown-placeholder-text` = dropdownPlaceholderText
+    )
+  } else {
+    list(
+      class = "item-link item-content",
+      href = "#",
+      `data-multiple` = multiple,
+      `data-close-on-select` = closeOnSelect
+    )
+  }
+
+  # merge props
+  autoCompleteProps <- c(autoCompleteCommon, autoCompleteProps)
+
+  # remove NULL elements
+  autoCompleteProps <- dropNulls(autoCompleteProps)
+
+  # replace TRUE and FALSE by true and false for javascript
+  autoCompleteProps <- lapply(autoCompleteProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
+    do.call(shiny::tags$input, autoCompleteProps)
+  } else {
+    tempTag <- do.call(shiny::tags$a, autoCompleteProps)
+    tempTag <- shiny::tagAppendChildren(
+      tempTag,
+      shiny::tags$input(type = "hidden"),
+      shiny::tags$div(
+        class = "item-inner",
+        # label
+        shiny::tags$div(class = "item-title", label),
+        # input
+        shiny::tags$div(class = "item-after")
+      )
+    )
+  }
 
   # input tag + label wrapper
   mainTag <- if (!(type %in% c("page", "popup"))) {
@@ -86,70 +151,18 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
             # input
             shiny::tags$div(
               class = "item-input-wrap",
-              shiny::tags$input(
-                id = inputId,
-                type = "text",
-                placeholder = placeholder,
-                class = "autocomplete-input"
-              )
+              autoCompleteProps
             )
           )
         )
       )
     )
   } else {
-    shiny::tags$div(
-      class = "list",
-      shiny::tags$ul(
-        shiny::tags$a(
-          class = "item-link item-content",
-          href= "#",
-          id = inputId,
-          class = "autocomplete-input",
-          shiny::tags$input(type = "hidden"),
-          shiny::tags$div(
-            class = "item-inner",
-            # label
-            shiny::tags$div(class = "item-title", label),
-            # input
-            shiny::tags$div(class = "item-after")
-          )
-        )
-      )
-    )
+    shiny::tags$div(class = "list", shiny::tags$ul(autoCompleteProps))
   }
-
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
-  # We define global variables that are
-  # re-used in the pickerInputBinding.js
-
-  otherProps <- if (!(type %in% c("popup", "page"))) {
-    paste0(
-      "var ", inputId, "_typeahead = ", tolower(typeahead), ";
-       var ", inputId, "_expandInput = ", tolower(expandInput), ";
-      "
-    )
-  } else {
-    paste0("var ", inputId, "_multiple = ", tolower(multiple), ";")
-  }
-
-  autoCompleteVals <- shiny::tags$script(
-    paste0(
-      "var ", inputId, "_vals = ", choices, ";
-       var ", inputId, "_val = ", value, ";
-       var ", inputId, "_type = '", type, "';
-       var ", inputId, "_dropdownPlaceholderText = '", dropdownPlaceholderText, "';
-      ", otherProps
-    )
-  )
 
   # final input tag
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::singleton(autoCompleteVals),
-    mainTag
-  )
+  shiny::tagList(f7InputsDeps(), mainTag)
 
 }
 
@@ -482,8 +495,8 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'  )
 #' }
 f7DatePicker <- function(inputId, label, value = NULL,
-                   min = NULL, max = NULL,
-                   format = "yyyy-mm-dd") {
+                         min = NULL, max = NULL,
+                         format = "yyyy-mm-dd") {
 
   # label
   labelTag <- shiny::tags$div(

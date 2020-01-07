@@ -155,9 +155,10 @@
   <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>choices</span>[<span class='fl'>1</span>],
   <span class='no'>choices</span>,
+  <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"popup"</span>, <span class='st'>"page"</span>, <span class='st'>"dropdown"</span>),
   <span class='kw'>typeahead</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>expandInput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"popup"</span>, <span class='st'>"page"</span>, <span class='st'>"dropdown"</span>),
+  <span class='kw'>closeOnSelect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
@@ -186,29 +187,36 @@
       <td><p>Autocomplete choices.</p></td>
     </tr>
     <tr>
+      <th>openIn</th>
+      <td><p>Defines how to open Autocomplete,
+can be page or popup (for Standalone) or dropdown.</p></td>
+    </tr>
+    <tr>
       <th>typeahead</th>
       <td><p>Enables type ahead, will prefill input
-value with first item in match.</p></td>
+value with first item in match. Only if openIn is "dropdown".</p></td>
     </tr>
     <tr>
       <th>expandInput</th>
       <td><p>If TRUE then input which is used as
 item-input in List View will be expanded to full
-screen wide during dropdown visible.</p></td>
+screen wide during dropdown visible. Only if openIn is "dropdown".</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Defines how to open Autocomplete,
-can be page or popup (for Standalone) or dropdown.</p></td>
+      <th>closeOnSelect</th>
+      <td><p>Set to true and autocomplete will be closed when user picks value.
+Not available if multiple is enabled. Only works
+when openIn is 'popup' or 'page'.</p></td>
     </tr>
     <tr>
       <th>dropdownPlaceholderText</th>
-      <td><p>Specify dropdown placeholder text.</p></td>
+      <td><p>Specify dropdown placeholder text.
+Only if openIn is "dropdown".</p></td>
     </tr>
     <tr>
       <th>multiple</th>
       <td><p>Whether to allow multiple value selection. Only works
-when type is 'popup' or 'page'.</p></td>
+when openIn is 'popup' or 'page'.</p></td>
     </tr>
     </table>
 
@@ -228,7 +236,7 @@ when type is 'popup' or 'page'.</p></td>
       <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
       <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='st'>"Try to type Apple"</span>,
       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Type a fruit name"</span>,
-      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dropdown"</span>,
+      <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"dropdown"</span>,
       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
        <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span>)
      ),
@@ -236,7 +244,7 @@ when type is 'popup' or 'page'.</p></td>
      <span class='fu'>f7AutoComplete</span>(
       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myautocomplete2"</span>,
       <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
-      <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"popup"</span>,
+      <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"popup"</span>,
       <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Type a fruit name"</span>,
       <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
