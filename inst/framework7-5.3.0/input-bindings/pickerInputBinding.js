@@ -79,12 +79,35 @@ $.extend(f7PickerBinding, {
   receiveMessage: function(el, data) {
     var p = app.picker.get($(el));
     // update placeholder
+    console.log(p);
     if (data.hasOwnProperty('choices')) {
       p.cols[0].values = data.choices;
     }
     // Update value
     if (data.hasOwnProperty('value')) {
       this.setValue(el, data.value);
+    }
+    // update other properties
+    if (data.hasOwnProperty('rotateEffect')) {
+      p.params.rotateEffect = data.rotateEffect;
+    }
+    if (data.hasOwnProperty('openIn')) {
+      p.params.openIn = data.openIn;
+    }
+    if (data.hasOwnProperty('scrollToInput')) {
+      p.params.scrollToInput = data.scrollToInput;
+    }
+    if (data.hasOwnProperty('closeByOutsideClick')) {
+      p.params.closeByOutsideClick = data.closeByOutsideClick;
+    }
+    if (data.hasOwnProperty('toolbar')) {
+      p.params.toolbar = data.toolbar;
+    }
+    if (data.hasOwnProperty('toolbarCloseText')) {
+      p.params.toolbarCloseText = data.toolbarCloseText;
+    }
+    if (data.hasOwnProperty('sheetSwipeToClose')) {
+      p.params.sheetSwipeToClose = data.sheetSwipeToClose;
     }
   },
 

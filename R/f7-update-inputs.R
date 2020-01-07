@@ -522,6 +522,17 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #' @param inputId The id of the input object.
 #' @param value Picker initial value, if any.
 #' @param choices New picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
 #'
 #' @export
 #'
@@ -542,7 +553,9 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'           label = "Picker Input",
 #'           choices = c('a', 'b', 'c')
 #'         ),
-#'         verbatimTextOutput("pickerval")
+#'         verbatimTextOutput("pickerval"),
+#'         br(),
+#'         f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
 #'       )
 #'     )
 #'   ),
@@ -555,16 +568,41 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'         session,
 #'         inputId = "mypicker",
 #'         value = "b",
-#'         choices = letters
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbarCloseText = "Prout",
+#'         sheetSwipeToClose = TRUE
 #'       )
 #'     })
+#'
+#'     observeEvent(input$removeToolbar, {
+#'       updateF7Picker(
+#'         session,
+#'         inputId = "mypicker",
+#'         value = "b",
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbar = FALSE
+#'       )
+#'     })
+#'
 #'   }
 #'  )
 #' }
-updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
+updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
+                           rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
+                           closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
+                           sheetSwipeToClose = NULL) {
   message <- dropNulls(list(
     value = value,
-    choices = choices
+    choices = choices,
+    rotateEffect = rotateEffect,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByOutsideClick = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    sheetSwipeToClose = sheetSwipeToClose
   ))
   session$sendInputMessage(inputId, message)
 }
