@@ -165,6 +165,17 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @param placeholder Text to write in the container.
 #' @param value Picker initial value, if any.
 #' @param choices Picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
 #'
 #' @examples
 #' if(interactive()){
@@ -194,7 +205,43 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices) {
+f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices,
+                    rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
+                    closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
+                    sheetSwipeToClose = FALSE) {
+
+  # for JS
+  value <- jsonlite::toJSON(value)
+  choices <- jsonlite::toJSON(choices)
+
+  # picker props
+  pickerProps <- dropNulls(
+    list(
+      id = inputId,
+      class = "picker-input",
+      type = "text",
+      placeholder = placeholder,
+      `data-choices` = choices,
+      `data-value` = value,
+      `data-rotate-effect` = rotateEffect,
+      `data-open-in` = openIn,
+      `data-scroll-to-input` = scrollToInput,
+      `data-close-by-outside-click` = closeByOutsideClick,
+      `data-toolbar` = toolbar,
+      `data-toolbar-close-text` = toolbarCloseText,
+      `data-sheet-swipe-to-close` = sheetSwipeToClose
+    )
+  )
+
+  # replace TRUE and FALSE by true and false for javascript
+  pickerProps <- lapply(pickerProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  pickerProps <- do.call(shiny::tags$input, pickerProps)
 
   # input tag
   inputTag <- shiny::tags$div(
@@ -203,28 +250,11 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
       class = "item-inner",
       shiny::tags$div(
         class = "item-input-wrap",
-        shiny::tags$input(
-          type = "text",
-          placeholder = placeholder,
-          id = inputId,
-          class = "picker-input"
-        )
+        pickerProps
       )
     )
   )
 
-  # JS
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
-  # We define global variables that are
-  # re-used in the pickerInputBinding.js
-  pickerVals <- shiny::tags$script(
-    paste0(
-      "var ", inputId, "_vals = ", choices, ";
-       var ", inputId, "_val = ", value, ";
-        "
-    )
-  )
 
   # tag wrapper
   mainTag <- shiny::tagList(
@@ -243,11 +273,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
   )
 
   # final input tag
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::singleton(pickerVals),
-    mainTag
-  )
+  shiny::tagList(f7InputsDeps(), mainTag)
 
 }
 

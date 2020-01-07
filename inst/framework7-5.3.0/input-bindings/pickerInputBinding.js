@@ -7,43 +7,46 @@ $.extend(f7PickerBinding, {
 
     var inputEl = $(el)[0];
 
-    // recover the inputId passed in the R function
-    var id = $(el).attr("id");
-    // function to convert a string to variable
-    function SetTo5(inputId, varString) {
-      var res = eval(inputId + "_" + varString);
-      return res;
-    }
-
-    // vals is a global variable defined in the UI side.
-    // It contains an array of choices to populate
-    // the picker input.
-    var p = app.picker.create({
-      inputEl: inputEl,
-      rotateEffect: true,
-      cols: [
-        {
-          textAlign: 'center',
-          values: SetTo5(id, "vals")
-        }
-      ],
-      value: SetTo5(id, "val"),
-      on: {
-        // need to trigger a click
-        // close the picker to initiate it properly but need Timeout
-        // otherwise the picker cannot open anymore
-        init: function(picker) {
-          picker.open();
-          setTimeout(function() {picker.close();}, 4);
-        },
-        open: function(picker) {
-
-        },
-        close: function(picker) {
-
+    // convert data attributes to camelCase parameters
+    // necessary in the create method
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false only for booleans
+        if (["openIn", "toolbarCloseText", "choices", "value"].indexOf(camelCaseName) == -1) {
+          var isTrueSet = (attr.value == 'true');
+          data[camelCaseName] = isTrueSet;
+        } else {
+          data[camelCaseName] = attr.value;
         }
       }
     });
+
+    // add the id, value and choices
+    data.inputEl = inputEl;
+    data.value = JSON.parse(data.value);
+    data.cols = [
+      {
+        textAlign: 'center',
+        values: JSON.parse(data.choices)
+      }
+    ];
+
+    // need to trigger a click
+    // close the picker to initiate it properly but need Timeout
+    // otherwise the picker cannot open anymore
+    data.on = {
+      init: function(picker) {
+        picker.open();
+        setTimeout(function() {picker.close();}, 4);
+      }
+    };
+
+    // feed the create method
+    var p = app.picker.create(data);
     inputEl.f7Picker = p;
   },
 
