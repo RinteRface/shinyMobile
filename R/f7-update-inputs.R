@@ -635,7 +635,7 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 #'         f7AutoComplete(
 #'          inputId = "myautocomplete",
 #'          placeholder = "Some text here!",
-#'          type = "dropdown",
+#'          openIn = "dropdown",
 #'          label = "Type a fruit name",
 #'          choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'                      'Orange', 'Peach', 'Pear', 'Pineapple')
