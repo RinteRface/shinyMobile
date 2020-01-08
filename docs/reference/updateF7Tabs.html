@@ -216,6 +216,61 @@
      })
    }
  )
+ <span class='co'># with hidden tabs</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+  <span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"shinyMobile"</span>,
+    <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(
+      <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+      <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>,
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>'blue'</span>,
+      <span class='kw'>filled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>hideNavOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+      <span class='kw'>hideTabsOnPageScroll</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+    ),
+    <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Update Tabs with hidden tab"</span>,
+        <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>""</span>,
+        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>bigger</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>transparent</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      ),
+      <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
+        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'tabs'</span>,
+        <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+          <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Main tab'</span>,
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>'document_text'</span>),
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"This is the first tab."</span>),
+          <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span><span class='st'>'goto'</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>'Go to hidden tab'</span>)
+        ),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Second tab'</span>,
+          <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>'bolt_horizontal'</span>),
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>'This is the second tab.'</span>)
+        ),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+          <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Hidden tab'</span>,
+          <span class='kw'>hidden</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>'This is a tab that does not appear in the tab menu.
+          Yet, you can still access it.'</span>)
+        )
+      )
+    )
+  ),
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span>))
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goto</span>,{
+      <span class='fu'>updateF7Tabs</span>(<span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>'tabs'</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>'Hidden tab'</span>)
+    })
+
+  }
+ )
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

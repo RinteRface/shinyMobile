@@ -17,7 +17,9 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
-- add closeOnSelect param to `f7AutoComplete`
+- add hidden argument to `f7Tab()`: allows to navigate through hidden tabs without displaying them
+in the tab menu. Thanks @rodrigoheck
+- add closeOnSelect param to `f7AutoComplete()`
 - add new parameters to `f7Picker()` and `updateF7Picker()`: rotateEffect, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText and sheetSwipeToClose
 - add color argument to `f7Icon()`
 - add selected parameter to `f7Select()`
