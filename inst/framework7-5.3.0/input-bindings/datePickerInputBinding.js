@@ -13,6 +13,7 @@ $.extend(f7DatePickerBinding, {
       //inputReadOnly: false,
       multiple: false,
       dateFormat: 'yyyy-mm-dd',
+      scrollToInput: false,
       inputEl: el,
       value: [date],
       on: {
