@@ -41,10 +41,18 @@ $.extend(f7DatePickerBinding, {
     var value = $(".calendar-day-selected").attr("data-date");
     value = value.split("-");
     n = parseInt(value[1]) + 1;
-    if (value[2] < 10) {
-      value = value[0] + "-0" + n + "-0" + value[2];
+    if (n < 10) {
+      if (value[2] < 10) {
+       value = value[0] + "-0" + n + "-0" + value[2];
+      } else {
+        value = value[0] + "-0" + n + "-" + value[2];
+      }
     } else {
-      value = value[0] + "-0" + n + "-" + value[2];
+      if (value[2] < 10) {
+        value = value[0] + "-" + n + "-0" + value[2];
+      } else {
+        value = value[0] + "-" + n + "-" + value[2];
+      }
     }
     return value;
   },

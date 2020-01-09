@@ -42,6 +42,8 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- fix #39: issue in `f7DatePicker()` format for months. Thanks @kmaheshkulkarni
+- fix issue in `f7DatePicker()`: the viewport does not scroll to input by default
 - fix typo in `f7AutoComplete()` example
 - fix #43: slider label not visible on drag. Thanks @pasahe
 - fix #42: add vertical overflow to `f7Popup()`. Thanks @pasahe
