@@ -18,6 +18,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add noSwipping argument to `f7Slider()` to prevent wrong behaviour when used in `f7TabLayout()`
 - `f7Select()` does not rely anymore on the shiny selectInput binding (does not have impact on user experience)
 - add hidden argument to `f7Tab()`: allows to navigate through hidden tabs without displaying them
 in the tab menu. Thanks @rodrigoheck
@@ -42,6 +43,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- fix issue with `f7Slider()` and `f7TabLayout()`: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7#2603. Thanks @pvictor
 - fix #39: issue in `f7DatePicker()` format for months. Thanks @kmaheshkulkarni
 - fix issue in `f7DatePicker()`: the viewport does not scroll to input by default
 - fix typo in `f7AutoComplete()` example
