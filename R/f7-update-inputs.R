@@ -673,3 +673,58 @@ updateF7AutoComplete <- function(session, inputId, value =  NULL) {
 
 
 
+
+
+
+
+#' Change the value of a select input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param selected New value.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "updateF7Select"),
+#'        f7Card(
+#'          f7Button(inputId = "update", label = "Update select"),
+#'          br(),
+#'          f7Select(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           choices = colnames(mtcars)[-1],
+#'           selected = "hp"
+#'          ),
+#'          verbatimTextOutput("test")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      output$test <- renderPrint(input$variable)
+#'
+#'      observeEvent(input$update, {
+#'        updateF7Select(
+#'          session,
+#'          inputId = "variable",
+#'          selected = "gear"
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Select <- function(session, inputId, selected = NULL) {
+  message <- dropNulls(list(
+    selected = selected
+  ))
+  session$sendInputMessage(inputId, message)
+}

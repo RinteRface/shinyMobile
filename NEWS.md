@@ -10,6 +10,7 @@ label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` 
 - `f7NavbarShow()` renamed to `f7ShowNavbar()` for consistancy
 
 ## Major changes
+- add new `updateF7Select()`: thanks @Seyphaton for the suggestion
 - add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe
 - add `preview_mobile()`: function that previews your app in a seleted range of
 devices (iphone, samsung, htc, ...)
@@ -17,6 +18,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- `f7Select()` does not rely anymore on the shiny selectInput binding (does not have impact on user experience)
 - add hidden argument to `f7Tab()`: allows to navigate through hidden tabs without displaying them
 in the tab menu. Thanks @rodrigoheck
 - add closeOnSelect param to `f7AutoComplete()`

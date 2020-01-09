@@ -725,9 +725,8 @@ f7Select <- function(inputId, label, choices, selected = NULL) {
 
   options <- createSelectOptions(choices, selected)
 
-  shiny::tags$div(
+  selectTag <- shiny::tags$div(
     class = "list",
-    id = inputId,
     shiny::tags$ul(
       shiny::tags$li(
         class = "item-content item-input",
@@ -748,6 +747,9 @@ f7Select <- function(inputId, label, choices, selected = NULL) {
       )
     )
   )
+
+  shiny::tagList(f7InputsDeps(), selectTag)
+
 }
 
 

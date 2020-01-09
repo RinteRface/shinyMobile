@@ -85,6 +85,7 @@ reference:
   - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Progress`'
+  - '`updateF7Select`'
   - '`updateF7Sheet`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
@@ -226,8 +227,9 @@ reference:
   - '`f7Gallery`'
 
 - title: Utils
-  desc: colors, ...
+  desc: colors, tools, ...
   contents:
+  - '`createSelectOptions`'
   - '`getF7Colors`'
 
 

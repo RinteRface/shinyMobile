@@ -109,7 +109,8 @@ f7InputsDeps <- function() {
       "autoCompleteInputBinding.js",
       "actionSheetInputBinding.js",
       "gaugeInputBinding.js",
-      "popupInputBinding.js"
+      "popupInputBinding.js",
+      "selectInputBinding.js"
     )
   )
 }
