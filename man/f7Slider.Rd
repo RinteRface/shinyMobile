@@ -17,7 +17,8 @@ f7Slider(
   vertical = FALSE,
   verticalReversed = FALSE,
   labels = NULL,
-  color = NULL
+  color = NULL,
+  noSwipping = TRUE
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ FALSE by default.}
 expected.}
 
 \item{color}{See \link{getF7Colors} for valid colors.}
+
+\item{noSwipping}{Prevent swiping when slider is manipulated in a \code{\link{f7TabLayout}}.}
 }
 \description{
 Create a f7 slider
