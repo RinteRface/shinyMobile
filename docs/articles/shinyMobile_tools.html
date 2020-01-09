@@ -111,15 +111,14 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; Warning: package 'shiny' was built under R version 3.5.2</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shinyMobile)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shinyMobile)</a></code></pre></div>
 <div id="mobile-preview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mobile-preview" class="anchor"></a>Mobile preview</h2>
 <p>Since V0.2.0, shinyMobile has a function to preview your app in a large range of mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5, Samsung galaxy Note 8, … either locally on online:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="../reference/preview_mobile.html">preview_mobile</a></span>(<span class="dt">appPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"examples/gallery/app.R"</span>, <span class="dt">package =</span> <span class="st">"shinyMobile"</span>), <span class="dt">device =</span> <span class="st">"iphoneX"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="../reference/preview_mobile.html">preview_mobile</a></span>(<span class="dt">url =</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2DemoMd"</span>, <span class="dt">device =</span> <span class="st">"ipadMini"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/preview_mobile.html">preview_mobile</a></span>(<span class="dt">appPath =</span> <span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"examples/gallery/app.R"</span>, <span class="dt">package =</span> <span class="st">"shinyMobile"</span>), <span class="dt">device =</span> <span class="st">"iphoneX"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/preview_mobile.html">preview_mobile</a></span>(<span class="dt">url =</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2DemoMd"</span>, <span class="dt">device =</span> <span class="st">"ipadMini"</span>)</a></code></pre></div>
 <p>The local preview is a 4 steps process:</p>
 <ul>
 <li>run <code>preview_mobile</code> with appPath</li>
@@ -133,25 +132,25 @@
 <h2 class="hasAnchor">
 <a href="#predefined-input-values" class="anchor"></a>Predefined input values</h2>
 <p>shinyMobile contains a set of useful functions to help you setting the layout as best as possible. It contains a predefined input, namely <strong>input$deviceInfo</strong>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="dt">title =</span> <span class="st">"My app"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</span>
-<span id="cb3-5"><a href="#cb3-5"></a>      <span class="dt">navbar =</span> <span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</span>
-<span id="cb3-6"><a href="#cb3-6"></a>        <span class="dt">title =</span> <span class="st">"Access device info"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7"></a>        <span class="dt">hairline =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>        <span class="dt">shadow =</span> <span class="ot">TRUE</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>      ),</span>
-<span id="cb3-10"><a href="#cb3-10"></a>      <span class="co"># main content</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    )</span>
-<span id="cb3-13"><a href="#cb3-13"></a>  ),</span>
-<span id="cb3-14"><a href="#cb3-14"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    output<span class="op">$</span>info &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span>({</span>
-<span id="cb3-16"><a href="#cb3-16"></a>      input<span class="op">$</span>deviceInfo</span>
-<span id="cb3-17"><a href="#cb3-17"></a>    })</span>
-<span id="cb3-18"><a href="#cb3-18"></a>  }</span>
-<span id="cb3-19"><a href="#cb3-19"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">    <span class="dt">title =</span> <span class="st">"My app"</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">    <span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">      <span class="dt">navbar =</span> <span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">        <span class="dt">title =</span> <span class="st">"Access device info"</span>,</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">        <span class="dt">hairline =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">        <span class="dt">shadow =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">      ),</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">      <span class="co"># main content</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    )</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">  ),</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    output<span class="op">$</span>info &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span>({</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">      input<span class="op">$</span>deviceInfo</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    })</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">  }</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">)</a></code></pre></div>
 <p>The following fields are returned:</p>
 <ul>
 <li>
@@ -198,36 +197,36 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Below the example displays a card only when the app is on desktop.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">title =</span> <span class="st">"My app"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</span>
-<span id="cb4-5"><a href="#cb4-5"></a>      <span class="dt">navbar =</span> <span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</span>
-<span id="cb4-6"><a href="#cb4-6"></a>        <span class="dt">title =</span> <span class="st">"Access device info"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>        <span class="dt">hairline =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>        <span class="dt">shadow =</span> <span class="ot">TRUE</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>      ),</span>
-<span id="cb4-10"><a href="#cb4-10"></a>      <span class="co"># main content</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html">uiOutput</a></span>(<span class="st">"card"</span>),</span>
-<span id="cb4-12"><a href="#cb4-12"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">textOutput</a></span>(<span class="st">"userAgent"</span>),</span>
-<span id="cb4-13"><a href="#cb4-13"></a>    )</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  ),</span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb4-16"><a href="#cb4-16"></a>    </span>
-<span id="cb4-17"><a href="#cb4-17"></a>    output<span class="op">$</span>userAgent &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderText.html">renderText</a></span>(input<span class="op">$</span>deviceInfo<span class="op">$</span>desktop)</span>
-<span id="cb4-18"><a href="#cb4-18"></a>    </span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="co"># generate a card inkly for desktop</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>    output<span class="op">$</span>card &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">renderUI</a></span>({</span>
-<span id="cb4-21"><a href="#cb4-21"></a>      <span class="cf">if</span> (input<span class="op">$</span>deviceInfo<span class="op">$</span>desktop) {</span>
-<span id="cb4-22"><a href="#cb4-22"></a>        <span class="kw"><a href="../reference/f7Card.html">f7Card</a></span>(</span>
-<span id="cb4-23"><a href="#cb4-23"></a>          <span class="st">"This is a simple card with plain text,</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="st">          but cards can also contain their own header,</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="st">          footer, list view, image, or any other element."</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a>        )</span>
-<span id="cb4-27"><a href="#cb4-27"></a>      }</span>
-<span id="cb4-28"><a href="#cb4-28"></a>    })</span>
-<span id="cb4-29"><a href="#cb4-29"></a>  }</span>
-<span id="cb4-30"><a href="#cb4-30"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="dt">title =</span> <span class="st">"My app"</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">      <span class="dt">navbar =</span> <span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">        <span class="dt">title =</span> <span class="st">"Access device info"</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">        <span class="dt">hairline =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">        <span class="dt">shadow =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">      ),</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">      <span class="co"># main content</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/htmlOutput.html">uiOutput</a></span>(<span class="st">"card"</span>),</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">textOutput</a></span>(<span class="st">"userAgent"</span>),</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">    )</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">  ),</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">    </a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">    output<span class="op">$</span>userAgent &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderText.html">renderText</a></span>(input<span class="op">$</span>deviceInfo<span class="op">$</span>desktop)</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">    </a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">    <span class="co"># generate a card inkly for desktop</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">    output<span class="op">$</span>card &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">renderUI</a></span>({</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">      <span class="cf">if</span> (input<span class="op">$</span>deviceInfo<span class="op">$</span>desktop) {</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">        <span class="kw"><a href="../reference/f7Card.html">f7Card</a></span>(</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">          <span class="st">"This is a simple card with plain text,</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="st">          but cards can also contain their own header,</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="st">          footer, list view, image, or any other element."</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">        )</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">      }</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">    })</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">  }</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">)</a></code></pre></div>
 </div>
 </div>
   </div>

@@ -661,6 +661,30 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
 
 
+
+#' Create option html tag based on choice input
+#'
+#' Used by \link{f7SmartSelect} and \link{f7Select}
+#'
+#' @param choices Vector of possibilities.
+#' @param selected Default selected value.
+#'
+createSelectOptions <- function(choices, selected) {
+  options <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$option(
+      value = choices[[i]],
+      choices[[i]],
+      selected = if (!is.null(selected)) {
+        if (choices[[i]] %in% selected) NA else NULL
+      }
+    )
+  })
+
+  return(options)
+}
+
+
+
 #' Create an f7 select input
 #'
 #' @param inputId Select input id.
@@ -699,15 +723,7 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 f7Select <- function(inputId, label, choices, selected = NULL) {
 
 
-  options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(
-      value = choices[[i]],
-      choices[[i]],
-      selected = if (!is.null(selected)) {
-        if (choices[[i]] %in% selected) NA else NULL
-      }
-    )
-  })
+  options <- createSelectOptions(choices, selected)
 
   shiny::tags$div(
     class = "list",
@@ -722,6 +738,7 @@ f7Select <- function(inputId, label, choices, selected = NULL) {
           shiny::tags$div(
             class = "item-input-wrap input-dropdown-wrap",
             shiny::tags$select(
+              class = "input-select",
               id = inputId,
               placeholer = "Please choose...",
               options
@@ -781,15 +798,8 @@ f7Select <- function(inputId, label, choices, selected = NULL) {
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           type = c("sheet", "popup", "popover"),
                           smart = TRUE, multiple = FALSE) {
-  options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(
-      value = choices[[i]],
-      choices[[i]],
-      selected = if (!is.null(selected)) {
-        if (choices[[i]] %in% selected) NA else NULL
-      }
-    )
-  })
+
+  options <- createSelectOptions(choices, selected)
 
   type <- match.arg(type)
 
