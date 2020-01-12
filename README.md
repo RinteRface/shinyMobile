@@ -7,7 +7,6 @@
 
 > shiny API for Framework7 (IOS/android)
 
-
 ## Installation
 
 ```r
