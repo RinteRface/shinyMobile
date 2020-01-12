@@ -1,4 +1,4 @@
-# shinyMobile <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
+# shinyMobile <img src="./man/figures/logo.svg" width="200px" align="right"/>
 [![Build Status](https://travis-ci.org/RinteRface/shinyMobile.svg?branch=master)](https://travis-ci.org/RinteRface/shinyMobile)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RinteRface/shinyMobile?branch=master&svg=true)](https://ci.appveyor.com/project/RinteRface/shinyMobile)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
