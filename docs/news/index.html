@@ -8,6 +8,13 @@
 
 <title>Changelog • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,6 +45,8 @@
   
 
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -142,9 +151,9 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-0-2-0-9000" class="section level1">
+    <div id="shinymobile-0209000" class="section level1">
 <h1 class="page-header">
-<a href="#shinymobile-0-2-0-9000" class="anchor"></a>shinyMobile 0.2.0.9000<small> Unreleased </small>
+<a href="#shinymobile-0209000" class="anchor"></a>shinyMobile 0.2.0.9000<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -158,6 +167,7 @@
 <code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7HideNavbar.html">f7HideNavbar()</a></code> for consistancy</li>
 <li>
 <code>f7NavbarShow()</code> renamed to <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> for consistancy</li>
+<li>In <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> valueText was removed. It does not make sense that the value can be accidentally different from the text displayed. valueText is then an internal parameter.</li>
 </ul>
 </div>
 <div id="major-changes" class="section level2">
@@ -174,6 +184,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
+<li>add new parameters to <code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code>. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a> for the suggestion</li>
 <li>add noSwipping argument to <code><a href="../reference/f7Slider.html">f7Slider()</a></code> to prevent wrong behaviour when used in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
 </li>
 <li>
@@ -230,9 +241,9 @@
 </ul>
 </div>
 </div>
-    <div id="shinymobile-0-1-0" class="section level1">
+    <div id="shinymobile-010" class="section level1">
 <h1 class="page-header">
-<a href="#shinymobile-0-1-0" class="anchor"></a>shinyMobile 0.1.0<small> 2019-11-30 </small>
+<a href="#shinymobile-010" class="anchor"></a>shinyMobile 0.1.0<small> 2019-11-30 </small>
 </h1>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
@@ -244,8 +255,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#shinymobile-0-2-0-9000">0.2.0.9000</a></li>
-        <li><a href="#shinymobile-0-1-0">0.1.0</a></li>
+        <li><a href="#shinymobile-0209000">0.2.0.9000</a></li>
+        <li><a href="#shinymobile-010">0.1.0</a></li>
       </ul>
     </div>
   </div>

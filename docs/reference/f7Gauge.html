@@ -8,6 +8,13 @@
 
 <title>Create a Framework7 gauge — f7Gauge • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="Create a Framework7 gauge — f7Gauge" />
 <meta property="og:description" content="Build a Framework7 gauge" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -153,7 +161,6 @@
   <span class='no'>id</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"circle"</span>,
   <span class='no'>value</span>,
-  <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>200</span>,
   <span class='kw'>bgColor</span> <span class='kw'>=</span> <span class='st'>"transparent"</span>,
   <span class='kw'>borderBgColor</span> <span class='kw'>=</span> <span class='st'>"#eeeeee"</span>,
@@ -182,10 +189,6 @@
     <tr>
       <th>value</th>
       <td><p>Gauge value/percentage. Must be a number between 0 and 100.</p></td>
-    </tr>
-    <tr>
-      <th>valueText</th>
-      <td><p>Gauge value text (large text in the center of gauge).</p></td>
     </tr>
     <tr>
       <th>size</th>
@@ -255,7 +258,6 @@
        <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
        <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
        <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-       <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='st'>"50%"</span>,
        <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='fl'>41</span>,
        <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
        <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='st'>"amount of something"</span>

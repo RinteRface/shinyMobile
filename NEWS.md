@@ -8,6 +8,8 @@ as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and sw
 label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` tag in you UI. On the server side call `f7TogglePopup()`. See documentation for a detailed example. Thanks @pasahe
 - `f7NavbarHide()` renamed to `f7HideNavbar()` for consistancy
 - `f7NavbarShow()` renamed to `f7ShowNavbar()` for consistancy
+- In `f7Gauge()` valueText was removed. It does not make sense that the value can be accidentally
+different from the text displayed. valueText is then an internal parameter.
 
 ## Major changes
 - add new `updateF7Select()`: thanks @Seyphaton for the suggestion
@@ -18,6 +20,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add new parameters to `updateF7Gauge()`. Thanks @rodrigoheck for the suggestion
 - add noSwipping argument to `f7Slider()` to prevent wrong behaviour when used in `f7TabLayout()`
 - `f7Select()` does not rely anymore on the shiny selectInput binding (does not have impact on user experience)
 - add hidden argument to `f7Tab()`: allows to navigate through hidden tabs without displaying them

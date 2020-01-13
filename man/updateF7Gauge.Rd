@@ -4,7 +4,23 @@
 \alias{updateF7Gauge}
 \title{update a framework7 gauge from the server side}
 \usage{
-updateF7Gauge(session, id, value)
+updateF7Gauge(
+  session,
+  id,
+  value = NULL,
+  labelText = NULL,
+  size = NULL,
+  bgColor = NULL,
+  borderBgColor = NULL,
+  borderColor = NULL,
+  borderWidth = NULL,
+  valueTextColor = NULL,
+  valueFontSize = NULL,
+  valueFontWeight = NULL,
+  labelTextColor = NULL,
+  labelFontSize = NULL,
+  labelFontWeight = NULL
+)
 }
 \arguments{
 \item{session}{Shiny session object.}
@@ -12,6 +28,30 @@ updateF7Gauge(session, id, value)
 \item{id}{Gauge id.}
 
 \item{value}{New value. Numeric between 0 and 100.}
+
+\item{labelText}{Gauge additional label text.}
+
+\item{size}{Generated SVG image size (in px). Default is 200.}
+
+\item{bgColor}{Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".}
+
+\item{borderBgColor}{Main border/stroke background color.}
+
+\item{borderColor}{Main border/stroke color.}
+
+\item{borderWidth}{Main border/stroke width.}
+
+\item{valueTextColor}{Value text color.}
+
+\item{valueFontSize}{Value text font size.}
+
+\item{valueFontWeight}{Value text font weight.}
+
+\item{labelTextColor}{Label text color.}
+
+\item{labelFontSize}{Label text font size.}
+
+\item{labelFontWeight}{Label text font weight.}
 }
 \description{
 update a framework7 gauge from the server side
@@ -33,7 +73,6 @@ if (interactive()) {
              value = 50,
              borderColor = "#2196f3",
              borderWidth = 10,
-             valueText = "50\%",
              valueFontSize = 41,
              valueTextColor = "#2196f3",
              labelText = "amount of something"
@@ -43,7 +82,7 @@ if (interactive()) {
     ),
     server = function(input, output, session) {
        observeEvent(input$go, {
-          updateF7Gauge(session, id = "mygauge", value = 75)
+          updateF7Gauge(session, id = "mygauge", value = 75, labelText = "New label!")
        })
     }
  )

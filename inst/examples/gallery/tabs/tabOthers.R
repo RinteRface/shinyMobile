@@ -192,7 +192,6 @@ tabOthers <- f7Tab(
           value = 50,
           borderColor = "#2196f3",
           borderWidth = 10,
-          valueText = "50%",
           valueFontSize = 41,
           valueTextColor = "#2196f3",
           labelText = "amount of something"
@@ -205,7 +204,6 @@ tabOthers <- f7Tab(
           value = 30,
           borderColor = "orange",
           borderWidth = 10,
-          valueText = "30%",
           valueFontSize = 41,
           valueTextColor = "orange",
           labelText = "Other thing"
