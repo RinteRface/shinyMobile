@@ -35,16 +35,6 @@ $.extend(f7PickerBinding, {
       }
     ];
 
-    // need to trigger a click
-    // close the picker to initiate it properly but need Timeout
-    // otherwise the picker cannot open anymore
-    data.on = {
-      init: function(picker) {
-        picker.open();
-        setTimeout(function() {picker.close();}, 4);
-      }
-    };
-
     // feed the create method
     var p = app.picker.create(data);
     inputEl.f7Picker = p;
@@ -57,35 +47,28 @@ $.extend(f7PickerBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var p = app.picker.get($(el));
-    return p.cols[0].value;
-    //return app.picker.getValue(el);
+    return p.value;
   },
 
   // see updateF7Picker
   setValue: function(el, value) {
     var p = app.picker.get($(el));
-    // value must of length 1
-    if (value.length == 1) {
-      p.cols[0].value = value;
-      p.cols[0].displayValue = value;
-      p.displayValue[0] = value;
-      p.value[0] = value;
-      p.open();
-      setTimeout(function() {p.close();}, 10);
-    }
+    p.value = value;
+    p.displayValue = value;
+    p.open();
+    setTimeout(function() {p.close();}, 10);
   },
 
   // see updateF7Picker
   receiveMessage: function(el, data) {
     var p = app.picker.get($(el));
-    // update placeholder
-    console.log(p);
-    if (data.hasOwnProperty('choices')) {
-      p.cols[0].values = data.choices;
-    }
     // Update value
     if (data.hasOwnProperty('value')) {
       this.setValue(el, data.value);
+    }
+    // update choices
+    if (data.hasOwnProperty('choices')) {
+      p.cols[0].values = data.choices;
     }
     // update other properties
     if (data.hasOwnProperty('rotateEffect')) {
