@@ -463,10 +463,20 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'
 #' @param inputId Date input id.
 #' @param label Input label.
-#' @param value Start value.
-#' @param min Minimum date.
-#' @param max Maximum date.
-#' @param format Date format: "yyyy-mm-dd", for instance.
+#' @param value Array with initial selected dates. Each array item represents selected date.
+#' @param direction Months layout direction, could be 'horizontal' or 'vertical'.
+#' @param minDate Minimum allowed date.
+#' @param maxDate Maximum allowed date.
+#' @param dateFormat Date format: "yyyy-mm-dd", for instance.
+#' @param openIn Can be auto, popover (to open calendar in popover), sheet
+#' (to open in sheet modal) or customModal (to open in custom Calendar modal overlay).
+#' In case of auto will open in sheet modal on small screens and in popover on large screens.
+#' @param scrollToInput Scroll viewport (page-content) to input when calendar opened.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#' @param toolbar Enables calendar toolbar.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param header Enables calendar header.
+#' @param headerPlaceholder Default calendar header placeholder text.
 #'
 #' @export
 #' @examples
@@ -483,7 +493,9 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'        f7DatePicker(
 #'          inputId = "date",
 #'          label = "Choose a date",
-#'          value = "2019-08-24"
+#'          value = "2019-08-24",
+#'          openIn = "auto",
+#'          direction = "horizontal"
 #'        ),
 #'        "The selected date is",
 #'        textOutput("selectDate")
@@ -494,22 +506,53 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'    }
 #'  )
 #' }
-f7DatePicker <- function(inputId, label, value = NULL,
-                         min = NULL, max = NULL,
-                         format = "yyyy-mm-dd") {
+f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal", "vertical"),
+                         minDate = NULL, maxDate = NULL, dateFormat = "yyyy-mm-dd",
+                         openIn = c("auto", "popover", "sheet", "customModal"),
+                         scrollToInput = FALSE, closeByOutsideClick = TRUE,
+                         toolbar = TRUE, toolbarCloseText = "Done", header = FALSE,
+                         headerPlaceholder = "Select date") {
+
+  direction <- match.arg(direction)
+  openIn <- match.arg(openIn)
+
+  # for JS
+  value <- jsonlite::toJSON(value)
+
+  # date picker props
+  datePickerProps <- dropNulls(
+    list(
+      type = "text",
+      placeholder = value,
+      class = "calendar-input",
+      id = inputId,
+      `data-value` = value,
+      `data-direction` = direction,
+      `data-min-date` = minDate,
+      `date-max-date` = maxDate,
+      `data-date-format` = dateFormat,
+      `data-open-in` = openIn,
+      `data-scroll-to-input` = scrollToInput,
+      `data-close-by-click-outside` = closeByOutsideClick,
+      `data-toolbar` = toolbar,
+      `data-toolbar-close-text` = toolbarCloseText,
+      `data-header` = header,
+      `data-header-placeholder` = headerPlaceholder
+    )
+  )
+
+  # replace TRUE and FALSE by true and false for javascript
+  datePickerProps <- lapply(datePickerProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  datePickerProps <- do.call(shiny::tags$input, datePickerProps)
 
   # label
-  labelTag <- shiny::tags$div(
-    class = "block-title",
-    label
-  )
-
-  inputTag <- shiny::tags$input(
-    type = "text",
-    placeholder = value,
-    class = "calendar-input",
-    id = inputId
-  )
+  labelTag <- shiny::tags$div(class = "block-title", label)
 
   wrapperTag <- shiny::tagList(
     f7InputsDeps(),
@@ -525,7 +568,7 @@ f7DatePicker <- function(inputId, label, value = NULL,
               class = "item-inner",
               shiny::tags$div(
                 class = "item-input-wrap",
-                inputTag
+                datePickerProps
               )
             )
           )

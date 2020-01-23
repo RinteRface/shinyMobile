@@ -4,29 +4,39 @@ var f7DatePickerBinding = new Shiny.InputBinding();
 $.extend(f7DatePickerBinding, {
 
   initialize: function(el) {
-    var date = $(el).attr("placeholder");
-    if (date === undefined) {
-      date = new Date();
-    }
-    app.calendar.create({
-      //containerEl: ".container-calendar",
-      //inputReadOnly: false,
-      multiple: false,
-      dateFormat: 'yyyy-mm-dd',
-      scrollToInput: false,
-      inputEl: el,
-      value: [date],
-      on: {
-        // need to trigger a click
-        // close the picker to initiate it properly but need Timeout
-        // otherwise the date picker cannot open anymore
-        init: function(datePicker) {
-          datePicker.open();
-          // minimum timeout value: 4 ms (HTML5 spec)
-          setTimeout(function() {datePicker.close();}, 4);
+
+    var inputEl = $(el)[0];
+
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false only for booleans
+        if (["openIn", "toolbarCloseText", "dateFormat", "value", "direction", "headerPlaceholder"].indexOf(camelCaseName) == -1) {
+          var isTrueSet = (attr.value == 'true');
+          data[camelCaseName] = isTrueSet;
+        } else {
+          data[camelCaseName] = attr.value;
         }
       }
     });
+
+    if (data.value === undefined) {
+      date = new Date();
+      data.value = date;
+    } else {
+      data.value = JSON.parse(data.value);
+    }
+
+    data.inputEl = inputEl;
+
+    //data.timePicker = true;
+
+    // feed the create method
+    var d = app.calendar.create(data);
+    inputEl.f7DatePicker = d;
   },
 
   find: function(scope) {
@@ -38,7 +48,12 @@ $.extend(f7DatePickerBinding, {
     // below we have an issue with the returned month. Apparently,
     // months start from 0 so when august is selected, it actually
     // returns july. Need to increment by 1.
+    // var d = app.calendar.get($(el));
+    // console.log(d);
     var value = $(".calendar-day-selected").attr("data-date");
+    if (typeof value === "undefined") {
+      return JSON.parse($(el).attr("placeholder"));
+    }
     value = value.split("-");
     n = parseInt(value[1]) + 1;
     if (n < 10) {
@@ -64,7 +79,9 @@ $.extend(f7DatePickerBinding, {
 
   // see updateF7DatePicker
   receiveMessage: function(el, data) {
-
+    //console.log(el);
+    //var d = app.calendar.get(el);
+    //console.log(d);
   },
 
   subscribe: function(el, callback) {

@@ -611,6 +611,100 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 
 
 
+#' Change the value of a date picker input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param value Picker initial value, if any.
+#' @param choices New picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update date picker"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update date picker"),
+#'         f7DatePicker(
+#'           inputId = "mypicker",
+#'           label = "Choose a date",
+#'           value = "2019-08-24",
+#'           openIn = "auto",
+#'           direction = "horizontal"
+#'         ),
+#'         verbatimTextOutput("pickerval"),
+#'         br(),
+#'         f7Button(inputId = "removeToolbar", label = "Remove date picker toolbar", color = "red")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$pickerval <- renderText(input$mypicker)
+#'
+#'     observeEvent(input$update, {
+#'       updateF7DatePicker(
+#'         session,
+#'         inputId = "mypicker",
+#'         value = "2019-08-30",
+#'         openIn = "sheet",
+#'         toolbarCloseText = "Prout",
+#'         sheetSwipeToClose = TRUE
+#'       )
+#'     })
+#'
+#'     observeEvent(input$removeToolbar, {
+#'       updateF7DatePicker(
+#'         session,
+#'         inputId = "mypicker",
+#'         openIn = "sheet",
+#'         toolbar = FALSE
+#'       )
+#'     })
+#'
+#'   }
+#'  )
+#' }
+updateF7DatePicker <- function(session, inputId, value = NULL, choices = NULL,
+                           rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
+                           closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
+                           sheetSwipeToClose = NULL) {
+  message <- dropNulls(list(
+    value = value,
+    choices = choices,
+    rotateEffect = rotateEffect,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByOutsideClick = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    sheetSwipeToClose = sheetSwipeToClose
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+
 #' Change the value of an autocomplete input on the client
 #'
 #' @param session The session object passed to function given to the server.

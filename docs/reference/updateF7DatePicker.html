@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 date input — f7DatePicker • shinyMobile</title>
+<title>Change the value of a date picker input on the client — updateF7DatePicker • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Framework7 date input — f7DatePicker" />
-<meta property="og:description" content="Create a Framework7 date input" />
+<meta property="og:title" content="Change the value of a date picker input on the client — updateF7DatePicker" />
+<meta property="og:description" content="Change the value of a date picker input on the client" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -148,92 +148,79 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 date input</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7-inputs.R'><code>R/f7-inputs.R</code></a></small>
-    <div class="hidden name"><code>f7DatePicker.Rd</code></div>
+    <h1>Change the value of a date picker input on the client</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7-update-inputs.R'><code>R/f7-update-inputs.R</code></a></small>
+    <div class="hidden name"><code>updateF7DatePicker.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a Framework7 date input</p>
+    <p>Change the value of a date picker input on the client</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7DatePicker</span>(
+    <pre class="usage"><span class='fu'>updateF7DatePicker</span>(
+  <span class='no'>session</span>,
   <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"horizontal"</span>, <span class='st'>"vertical"</span>),
-  <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span>,
-  <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"auto"</span>, <span class='st'>"popover"</span>, <span class='st'>"sheet"</span>, <span class='st'>"customModal"</span>),
-  <span class='kw'>scrollToInput</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>closeByOutsideClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>toolbarCloseText</span> <span class='kw'>=</span> <span class='st'>"Done"</span>,
-  <span class='kw'>header</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>headerPlaceholder</span> <span class='kw'>=</span> <span class='st'>"Select date"</span>
+  <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rotateEffect</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>scrollToInput</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>closeByOutsideClick</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>toolbarCloseText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sheetSwipeToClose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>inputId</th>
-      <td><p>Date input id.</p></td>
+      <th>session</th>
+      <td><p>The session object passed to function given to the server.</p></td>
     </tr>
     <tr>
-      <th>label</th>
-      <td><p>Input label.</p></td>
+      <th>inputId</th>
+      <td><p>The id of the input object.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>Array with initial selected dates. Each array item represents selected date.</p></td>
+      <td><p>Picker initial value, if any.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>Months layout direction, could be 'horizontal' or 'vertical'.</p></td>
+      <th>choices</th>
+      <td><p>New picker choices.</p></td>
     </tr>
     <tr>
-      <th>minDate</th>
-      <td><p>Minimum allowed date.</p></td>
-    </tr>
-    <tr>
-      <th>maxDate</th>
-      <td><p>Maximum allowed date.</p></td>
-    </tr>
-    <tr>
-      <th>dateFormat</th>
-      <td><p>Date format: "yyyy-mm-dd", for instance.</p></td>
+      <th>rotateEffect</th>
+      <td><p>Enables 3D rotate effect. Default to TRUE.</p></td>
     </tr>
     <tr>
       <th>openIn</th>
-      <td><p>Can be auto, popover (to open calendar in popover), sheet
-(to open in sheet modal) or customModal (to open in custom Calendar modal overlay).
-In case of auto will open in sheet modal on small screens and in popover on large screens.</p></td>
+      <td><p>Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+to auto.</p></td>
     </tr>
     <tr>
       <th>scrollToInput</th>
-      <td><p>Scroll viewport (page-content) to input when calendar opened.</p></td>
+      <td><p>Scroll viewport (page-content) to input when picker opened. Default
+to FALSE.</p></td>
     </tr>
     <tr>
       <th>closeByOutsideClick</th>
-      <td><p>If enabled, picker will be closed by clicking outside of picker or related input element.</p></td>
+      <td><p>If enabled, picker will be closed by clicking outside of picker or related input element.
+Default to TRUE.</p></td>
     </tr>
     <tr>
       <th>toolbar</th>
-      <td><p>Enables calendar toolbar.</p></td>
+      <td><p>Enables picker toolbar. Default to TRUE.</p></td>
     </tr>
     <tr>
       <th>toolbarCloseText</th>
       <td><p>Text for Done/Close toolbar button.</p></td>
     </tr>
     <tr>
-      <th>header</th>
-      <td><p>Enables calendar header.</p></td>
-    </tr>
-    <tr>
-      <th>headerPlaceholder</th>
-      <td><p>Default calendar header placeholder text.</p></td>
+      <th>sheetSwipeToClose</th>
+      <td><p>Enables ability to close Picker sheet with swipe. Default to FALSE.</p></td>
     </tr>
     </table>
 
@@ -242,27 +229,52 @@ In case of auto will open in sheet modal on small screens and in popover on larg
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+
  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-     <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7DatePicker"</span>),
-       <span class='fu'>f7DatePicker</span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"date"</span>,
-         <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose a date"</span>,
-         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"2019-08-24"</span>,
-         <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
-         <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"horizontal"</span>
-       ),
-       <span class='st'>"The selected date is"</span>,
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"selectDate"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='no'>output</span>$<span class='no'>selectDate</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>date</span>)
-   }
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Update date picker"</span>),
+      <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update date picker"</span>),
+        <span class='fu'><a href='f7DatePicker.html'>f7DatePicker</a></span>(
+          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
+          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose a date"</span>,
+          <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"2019-08-24"</span>,
+          <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+          <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"horizontal"</span>
+        ),
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"pickerval"</span>),
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"removeToolbar"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Remove date picker toolbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
+      )
+    )
+  ),
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+    <span class='no'>output</span>$<span class='no'>pickerval</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>mypicker</span>)
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
+      <span class='fu'>updateF7DatePicker</span>(
+        <span class='no'>session</span>,
+        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"2019-08-30"</span>,
+        <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"sheet"</span>,
+        <span class='kw'>toolbarCloseText</span> <span class='kw'>=</span> <span class='st'>"Prout"</span>,
+        <span class='kw'>sheetSwipeToClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      )
+    })
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>removeToolbar</span>, {
+      <span class='fu'>updateF7DatePicker</span>(
+        <span class='no'>session</span>,
+        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
+        <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"sheet"</span>,
+        <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+      )
+    })
+
+  }
  )
 }</div></pre>
   </div>

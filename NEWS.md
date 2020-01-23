@@ -10,6 +10,7 @@ label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` 
 - `f7NavbarShow()` renamed to `f7ShowNavbar()` for consistancy
 - In `f7Gauge()` valueText was removed. It does not make sense that the value can be accidentally
 different from the text displayed. valueText is then an internal parameter.
+- In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
 
 ## Major changes
 - add new `updateF7Select()`: thanks @Seyphaton for the suggestion
@@ -20,6 +21,9 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add extra parameters to `f7DatePicker()`: direction, openIn,
+scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText,
+header and headerPlaceholder
 - add new parameters to `updateF7Gauge()`. Thanks @rodrigoheck for the suggestion
 - add noSwipping argument to `f7Slider()` to prevent wrong behaviour when used in `f7TabLayout()`
 - `f7Select()` does not rely anymore on the shiny selectInput binding (does not have impact on user experience)
