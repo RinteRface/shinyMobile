@@ -85,7 +85,7 @@ preview_mobile <- function(appPath = NULL, url = NULL, port = 3838,
   # master app
   ui <- shiny::fluidPage(
     shiny::tags$head(
-      shiny::includeCSS(path = system.file("framework7-5.1.3/devices/devices.min.css", package = "shinyMobile"))
+      shiny::includeCSS(path = system.file("framework7-5.3.0/devices/devices.min.css", package = "shinyMobile"))
     ),
     shiny::br(),
     # container for preview app
