@@ -83,24 +83,9 @@ preview_mobile <- function(appPath = NULL, url = NULL, port = 3838,
   )
 
   # master app
-  ui <- shiny::fluidPage(
-    shiny::tags$head(
-      shiny::includeCSS(path = system.file("framework7-5.3.0/devices/devices.min.css", package = "shinyMobile"))
-    ),
-    shiny::br(),
-    # container for preview app
-    shiny::fluidRow(
-      align = "center",
-      create_app_container(
-        iframeApp,
-        skin = device,
-        color = color,
-        landscape = landscape
-      )
-    )
-  )
-
+  ui <- create_app_ui(iframeApp, device, color, landscape)
   server <- function(input, output, session) {}
+
   shiny::runApp(
     list(
       ui = ui,
@@ -109,9 +94,47 @@ preview_mobile <- function(appPath = NULL, url = NULL, port = 3838,
     port = port / 2,
     launch.browser = TRUE
   )
+  invisible(ui)
 }
 
 
+
+#' Create the app UI
+#'
+#' Internal
+#'
+#' @param iframe iframe tag designed by \link{preview_mobile}.
+#' @param device See \link{preview_mobile} input.
+#' @param color See \link{preview_mobile} input.
+#' @param landscape See \link{preview_mobile} input.
+create_app_ui <- function(iframe, device, color, landscape) {
+
+  devices_css_deps <- htmltools::htmlDependency(
+    name = "framework7",
+    version = "5.3.0",
+    src = c(file = system.file("framework7-5.3.0", package = "shinyMobile")),
+    script = NULL,
+    stylesheet = c("devices/devices.min.css")
+  )
+
+  shiny::fluidPage(
+    htmltools::attachDependencies(
+      devices_css_deps,
+      shiny::br()
+    ),
+    # container for preview app
+    shiny::fluidRow(
+      align = "center",
+      create_app_container(
+        iframe,
+        skin = device,
+        color = color,
+        landscape = landscape
+      )
+    )
+  )
+
+}
 
 
 create_app_container <- function(..., skin, color = NULL, landscape) {
