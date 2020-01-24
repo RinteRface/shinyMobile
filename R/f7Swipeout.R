@@ -80,7 +80,7 @@ f7Swipeout <- function(tag, ...,left = NULL, right = NULL, side = c("left", "rig
     )
   }
 
-  tag$attribs$class <- "swipeout"
+  tag$attribs$class <- "swipeout swiper-no-swiping"
   tag$children[[1]] <- shiny::div(class = "swipeout-content", tag$children[[1]])
   shiny::tagAppendChild(tag, swipeoutTag)
 }

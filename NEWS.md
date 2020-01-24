@@ -50,6 +50,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Prevent `f7Swipeout` to make the current tab swipping if in `f7TabLayout()`
 - Fix `f7Fab()` label white background color in dark mode
 - fix #19: letting bigger TRUE in `f7Navbar()` would center the body content on scroll, due to a css conflict
 - fix issue with `f7Slider()` and `f7TabLayout()`: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7#2603. Thanks @pvictor
