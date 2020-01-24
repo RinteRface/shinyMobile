@@ -50,6 +50,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- fix #19: letting bigger TRUE in `f7Navbar()` would center the body content on scroll, due to a css conflict
 - fix issue with `f7Slider()` and `f7TabLayout()`: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7#2603. Thanks @pvictor
 - fix #39: issue in `f7DatePicker()` format for months. Thanks @kmaheshkulkarni
 - fix issue in `f7DatePicker()`: the viewport does not scroll to input by default
