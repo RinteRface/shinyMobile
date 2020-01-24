@@ -38,17 +38,23 @@ tabInputs <- f7Tab(
       value = 10,
       scale = FALSE
     ),
-    verbatimTextOutput("slider"),
-    f7Slider(
-      inputId = "sliderRange",
-      label = "Range values",
-      max = 500,
-      min = 0,
-      value = c(50, 100),
-      scale = TRUE
-    ),
-    verbatimTextOutput("sliderRange")
+    verbatimTextOutput("slider")
   ),
+  br(),
+  f7Slider(
+    inputId = "sliderRange",
+    label = "Range values",
+    max = 500,
+    min = 0,
+    value = c(50, 100),
+    scale = TRUE,
+    labels = tagList(
+      f7Icon("bolt_slash_fill"),
+      f7Icon("bolt_fill")
+    )
+  ),
+  verbatimTextOutput("sliderRange"),
+
   br(),
 
   f7BlockTitle(title = "f7Stepper input") %>% f7Align(side = "center"),
