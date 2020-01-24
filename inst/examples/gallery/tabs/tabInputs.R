@@ -135,7 +135,7 @@ tabInputs <- f7Tab(
   f7AutoComplete(
     inputId = "myautocomplete",
     placeholder = "Select a fruit!",
-    type = "dropdown",
+    openIn = "dropdown",
     label = "Type a fruit name",
     choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
                 'Orange', 'Peach', 'Pear', 'Pineapple')
