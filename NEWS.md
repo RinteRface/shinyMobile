@@ -50,6 +50,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Allow output elements to be displayed in `f7Panel()` (need to provide the `f7Panel()` inputId)
 - Prevent `f7Swipeout` to make the current tab swipping if in `f7TabLayout()`
 - Fix `f7Fab()` label white background color in dark mode
 - fix #19: letting bigger TRUE in `f7Navbar()` would center the body content on scroll, due to a css conflict
