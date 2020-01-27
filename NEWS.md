@@ -13,6 +13,9 @@ different from the text displayed. valueText is then an internal parameter.
 - In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
 
 ## Major changes
+- new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom
+fires input$ptr which becomes TRUE. When the pull to refresh event is finished,
+input$ptr is NULL. Useful to trigger events in an observEvent
 - add new `updateF7Select()`: thanks @Seyphaton for the suggestion
 - add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe
 - add `preview_mobile()`: function that previews your app in a seleted range of
