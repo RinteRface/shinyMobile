@@ -4,7 +4,19 @@
 \alias{updateF7Picker}
 \title{Change the value of a picker input on the client}
 \usage{
-updateF7Picker(session, inputId, value = NULL, choices = NULL)
+updateF7Picker(
+  session,
+  inputId,
+  value = NULL,
+  choices = NULL,
+  rotateEffect = NULL,
+  openIn = NULL,
+  scrollToInput = NULL,
+  closeByOutsideClick = NULL,
+  toolbar = NULL,
+  toolbarCloseText = NULL,
+  sheetSwipeToClose = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}
@@ -14,6 +26,24 @@ updateF7Picker(session, inputId, value = NULL, choices = NULL)
 \item{value}{Picker initial value, if any.}
 
 \item{choices}{New picker choices.}
+
+\item{rotateEffect}{Enables 3D rotate effect. Default to TRUE.}
+
+\item{openIn}{Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+to auto.}
+
+\item{scrollToInput}{Scroll viewport (page-content) to input when picker opened. Default
+to FALSE.}
+
+\item{closeByOutsideClick}{If enabled, picker will be closed by clicking outside of picker or related input element.
+Default to TRUE.}
+
+\item{toolbar}{Enables picker toolbar. Default to TRUE.}
+
+\item{toolbarCloseText}{Text for Done/Close toolbar button.}
+
+\item{sheetSwipeToClose}{Enables ability to close Picker sheet with swipe. Default to FALSE.}
 }
 \description{
 Change the value of a picker input on the client
@@ -35,7 +65,9 @@ if (interactive()) {
           label = "Picker Input",
           choices = c('a', 'b', 'c')
         ),
-        verbatimTextOutput("pickerval")
+        verbatimTextOutput("pickerval"),
+        br(),
+        f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
       )
     )
   ),
@@ -48,9 +80,24 @@ if (interactive()) {
         session,
         inputId = "mypicker",
         value = "b",
-        choices = letters
+        choices = letters,
+        openIn = "sheet",
+        toolbarCloseText = "Prout",
+        sheetSwipeToClose = TRUE
       )
     })
+
+    observeEvent(input$removeToolbar, {
+      updateF7Picker(
+        session,
+        inputId = "mypicker",
+        value = "b",
+        choices = letters,
+        openIn = "sheet",
+        toolbar = FALSE
+      )
+    })
+
   }
  )
 }

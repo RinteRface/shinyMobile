@@ -9,14 +9,22 @@ $.extend(f7TabsBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var activeTab = $(el).find(".tab-active").attr("data-value");
-    return activeTab;
+    var activeTab = $(el).find(".tab-active");
+    // below to handle hidden tabs
+    // the android highlight bar must not be
+    // present since hidden tabs are not part of
+    // the menu.
+    if ($(activeTab).data('hidden')) {
+      $('.tab-link-highlight').hide();
+    } else {
+      $('.tab-link-highlight').show();
+    }
+    return $(activeTab).attr("data-value");
   },
 
   // see updateF7Tabs
   receiveMessage: function(el, data) {
-    // create a variable to update the active tab
-    console.log(data.selected);
+    // update the active tab
     if (data.hasOwnProperty('selected')) {
       app.tab.show('#' + data.selected);
     }

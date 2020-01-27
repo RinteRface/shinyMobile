@@ -25,7 +25,8 @@ shinyApp(
       filled = TRUE,
       hideNavOnPageScroll = FALSE,
       hideTabsOnPageScroll = FALSE,
-      serviceWorker = "service-worker.js"
+      serviceWorker = "service-worker.js",
+      iosTranslucentBars = FALSE
     ),
     f7TabLayout(
       appbar = f7Appbar(
@@ -56,7 +57,8 @@ shinyApp(
         shadow = TRUE,
         left_panel = TRUE,
         right_panel = TRUE,
-        bigger = FALSE
+        bigger = TRUE,
+        transparent = FALSE
       ),
       # recover the color picker input and update the text background
       # color accordingly.
@@ -70,7 +72,8 @@ shinyApp(
       ),
       f7Tabs(
         id = "tabset",
-        animated = TRUE,
+        animated = FALSE,
+        swipeable = TRUE,
         tabInputs,
         tabBtns,
         tabCards,
@@ -108,6 +111,25 @@ shinyApp(
     # send the color picker input to JS
     observe({
       session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
+    })
+
+
+    # popup
+    output$popupContent <- renderPrint(input$popupText)
+
+    observeEvent(input$togglePopup, {
+      f7TogglePopup(id = "popup1")
+    })
+
+    observeEvent(input$popup1, {
+      if (input$tabset == "Popups") {
+        popupStatus <- if (input$popup1) "opened" else "closed"
+        f7Toast(
+          session,
+          position = "top",
+          text = paste("Popup is", popupStatus)
+        )
+      }
     })
 
     # sheet plot

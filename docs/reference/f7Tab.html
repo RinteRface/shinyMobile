@@ -8,6 +8,13 @@
 
 <title>Create a Framework7 tab item — f7Tab • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="Create a Framework7 tab item — f7Tab" />
 <meta property="og:description" content="Build a Framework7 tab item" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +157,7 @@
     <p>Build a Framework7 tab item</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Tab</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Tab</span>(<span class='no'>...</span>, <span class='no'>tabName</span>, <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hidden</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,7 +178,12 @@
     <tr>
       <th>active</th>
       <td><p>Whether the tab is active at start. Do not select multiple tabs, only
-the first one will be set to active</p></td>
+the first one will be set to active.</p></td>
+    </tr>
+    <tr>
+      <th>hidden</th>
+      <td><p>Whether to hide the tab. This is useful when you want to add invisible tabs
+(that do not appear in the tabbar) but you can still navigate with <a href='updateF7Tabs.html'>updateF7Tabs</a>.</p></td>
     </tr>
     </table>
 

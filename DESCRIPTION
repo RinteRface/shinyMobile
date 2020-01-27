@@ -1,25 +1,29 @@
 Package: shinyMobile
 Type: Package
-Title: 'shiny' API for 'Framework7'
-Version: 0.1.0
+Title: Mobile Ready 'shiny' Apps with Standalone Capabilities
+Version: 0.2.0.9000
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person("Victor", "Perrier", email = "info@dreamrs.fr", role = "aut"),
   person("John", "Coene", email = "jcoenep@gmail.com", role = "ctb"),
   person("Isabelle", "Rudolf", email = "", role = "aut"),
-  person(family = "Framework7", role = c("ctb", "cph"), 
-  comment = "Full featured HTML framework for building iOS & Android apps"))
+  person(family = "Marvelapp", role = c("ctb", "cph"), comment = "device.css wrappers"),
+  person("Vladimir", "Kharlampidi", email = "nolimits4web@gmail.com", role = c("ctb", "cph"), comment = "Framework7 HTML template"))
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Make 'shiny' shining for mobiles.
-    IOS and android support.
+Description: Develop outstanding 'shiny' apps for 'iOS', 'Android', desktop as well as beautiful 'shiny' gadgets.
+    'shinyMobile' is built on top of the latest 'Framework7' template <https://framework7.io>.
+    Discover 14 new input widgets (sliders, vertical sliders, stepper, 
+    grouped action buttons, toggles, picker, smart select, ...), 2 themes (light and dark), 
+    12 new widgets (expandable cards, badges, chips, timelines, gauges, progress bars, ...) 
+    combined with the power of server-side notifications such as alerts, modals, toasts,
+    action sheets, sheets (and more) as well as 3 layouts (single, tabs and split).
 Imports: shiny, htmltools, jsonlite, magrittr
-Suggested: shinyWidgets, echarts4r
 License: GPL-2
 Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
 BugReports: https://github.com/RinteRface/shinyMobile/issues
 LazyData: true
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 Suggests: 
     knitr,
     rmarkdown,
@@ -28,5 +32,7 @@ Suggests:
     testthat (>= 2.1.0),
     V8,
     cli,
-    rstudioapi
+    rstudioapi,
+    shinyWidgets, 
+    echarts4r
 VignetteBuilder: knitr

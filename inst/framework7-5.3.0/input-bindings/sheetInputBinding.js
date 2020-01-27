@@ -7,25 +7,31 @@ $.extend(f7SheetBinding, {
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
-    // function to convert a string to variable
-    function SetTo5(inputId, varString) {
-      var res = eval(inputId + "_" + varString);
-      return res;
-    }
 
-    app.sheet.create({
-      el: '#' + id,
-      swipeToClose: SetTo5(id, "swipeToClose"),
-      swipeToStep: SetTo5(id, "swipeToStep"),
-      backdrop: SetTo5(id, "backdrop"),
-      closeByOutsideClick : SetTo5(id, "closeByOutsideClick"),
-      on: {
-        opened: function () {
-          // tells shiny to show the content inside
-          $(el).trigger('shown');
-        }
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false
+        var isTrueSet = (attr.value == "true");
+        data[camelCaseName] = isTrueSet;
       }
     });
+
+    // add the id
+    data.el = '#' + id;
+
+    // this is to show shiny outputs in the sheet
+    data.on = {
+      opened: function () {
+        $(el).trigger('shown');
+      }
+    };
+
+    // feed the create method
+    var s = app.sheet.create(data);
   },
 
   find: function(scope) {

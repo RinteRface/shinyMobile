@@ -8,6 +8,13 @@
 
 <title>Create a f7 popup — f7Popup • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="Create a f7 popup — f7Popup" />
 <meta property="og:description" content="Create a f7 popup" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +157,16 @@
     <p>Create a f7 popup</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Popup</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>, <span class='no'>title</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Popup</span>(
+  <span class='no'>...</span>,
+  <span class='no'>id</span>,
+  <span class='no'>title</span>,
+  <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>closeByBackdropClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>closeOnEscape</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>animate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,12 +180,29 @@
       <td><p>Popup unique id.</p></td>
     </tr>
     <tr>
-      <th>label</th>
-      <td><p>Popup trigger label.</p></td>
-    </tr>
-    <tr>
       <th>title</th>
       <td><p>Title.</p></td>
+    </tr>
+    <tr>
+      <th>backdrop</th>
+      <td><p>Enables Popup backdrop (dark semi transparent layer behind). Default to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>closeByBackdropClick</th>
+      <td><p>When enabled, popup will be closed on backdrop click. Default to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>closeOnEscape</th>
+      <td><p>When enabled, popup will be closed on ESC keyboard key press. Default to FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>animate</th>
+      <td><p>Whether the Popup should be opened/closed with animation or not. Default to TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>swipeToClose</th>
+      <td><p>Whether the Popup can be closed with swipe gesture. Can be true to allow to close popup with swipes to top and to bottom.
+Default to FALSE.</p></td>
     </tr>
     </table>
 
@@ -187,17 +221,34 @@
         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
+      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='st'>"togglePopup"</span>, <span class='st'>"Toggle Popup"</span>),
       <span class='fu'>f7Popup</span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"popup1"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Open"</span>,
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My first popup"</span>,
-       <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-         scelerisque est, at porta justo cursus ac"</span>
+       <span class='fu'><a href='f7Text.html'>f7Text</a></span>(<span class='st'>"text"</span>, <span class='st'>"Popup content"</span>, <span class='st'>"This is my first popup ever, I swear!"</span>),
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"popupContent"</span>)
       )
      )
    ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+    <span class='no'>output</span>$<span class='no'>popupContent</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>text</span>)
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>togglePopup</span>, {
+     <span class='fu'><a href='f7TogglePopup.html'>f7TogglePopup</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"popup1"</span>)
+    })
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>popup1</span>, {
+
+     <span class='no'>popupStatus</span> <span class='kw'>&lt;-</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>popup1</span>) <span class='st'>"opened"</span> <span class='kw'>else</span> <span class='st'>"closed"</span>
+
+     <span class='fu'><a href='f7Toast.html'>f7Toast</a></span>(
+      <span class='no'>session</span>,
+      <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
+      <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Popup is"</span>, <span class='no'>popupStatus</span>)
+     )
+    })
+   }
  )
 }</div></pre>
   </div>

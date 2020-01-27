@@ -21,6 +21,7 @@ reference:
   desc: Tools to build a progressive web app
   contents:
   - '`create_manifest`'
+  - '`preview_mobile`'
 
 
 - title: Grid functions
@@ -71,9 +72,10 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`f7InsertTab`'
-  - '`f7NavbarHide`'
-  - '`f7NavbarShow`'
+  - '`f7HideNavbar`'
+  - '`f7ShowNavbar`'
   - '`f7RemoveTab`'
+  - '`f7TogglePopup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
   - '`updateF7Card`'
@@ -83,6 +85,7 @@ reference:
   - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Progress`'
+  - '`updateF7Select`'
   - '`updateF7Sheet`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
@@ -224,8 +227,9 @@ reference:
   - '`f7Gallery`'
 
 - title: Utils
-  desc: colors, ...
+  desc: colors, tools, ...
   contents:
+  - '`createSelectOptions`'
   - '`getF7Colors`'
 
 
@@ -273,4 +277,5 @@ articles:
 
 news:
  releases:
+ - text: "shinyMobile 0.2.0.9000"
  - text: "shinyMobile 0.1.0"

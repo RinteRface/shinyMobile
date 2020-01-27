@@ -10,9 +10,10 @@ f7AutoComplete(
   placeholder = NULL,
   value = choices[1],
   choices,
+  openIn = c("popup", "page", "dropdown"),
   typeahead = TRUE,
   expandInput = TRUE,
-  type = c("popup", "page", "dropdown"),
+  closeOnSelect = FALSE,
   dropdownPlaceholderText = NULL,
   multiple = FALSE
 )
@@ -28,20 +29,25 @@ f7AutoComplete(
 
 \item{choices}{Autocomplete choices.}
 
+\item{openIn}{Defines how to open Autocomplete,
+can be page or popup (for Standalone) or dropdown.}
+
 \item{typeahead}{Enables type ahead, will prefill input
-value with first item in match.}
+value with first item in match. Only if openIn is "dropdown".}
 
 \item{expandInput}{If TRUE then input which is used as
 item-input in List View will be expanded to full
-screen wide during dropdown visible.}
+screen wide during dropdown visible. Only if openIn is "dropdown".}
 
-\item{type}{Defines how to open Autocomplete,
-can be page or popup (for Standalone) or dropdown.}
+\item{closeOnSelect}{Set to true and autocomplete will be closed when user picks value.
+Not available if multiple is enabled. Only works
+when openIn is 'popup' or 'page'.}
 
-\item{dropdownPlaceholderText}{Specify dropdown placeholder text.}
+\item{dropdownPlaceholderText}{Specify dropdown placeholder text.
+Only if openIn is "dropdown".}
 
 \item{multiple}{Whether to allow multiple value selection. Only works
-when type is 'popup' or 'page'.}
+when openIn is 'popup' or 'page'.}
 }
 \description{
 Build a Framework7 autocomplete input
@@ -55,13 +61,13 @@ if(interactive()){
    ui = f7Page(
     title = "My app",
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Picker"),
+     navbar = f7Navbar(title = "f7AutoComplete"),
      f7AutoComplete(
       inputId = "myautocomplete1",
       placeholder = "Some text here!",
       dropdownPlaceholderText = "Try to type Apple",
       label = "Type a fruit name",
-      type = "dropdown",
+      openIn = "dropdown",
       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
        'Orange', 'Peach', 'Pear', 'Pineapple')
      ),
@@ -69,7 +75,7 @@ if(interactive()){
      f7AutoComplete(
       inputId = "myautocomplete2",
       placeholder = "Some text here!",
-      type = "popup",
+      openIn = "popup",
       multiple = TRUE,
       label = "Type a fruit name",
       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',

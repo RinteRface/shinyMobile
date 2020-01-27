@@ -4,9 +4,16 @@ var f7PanelBinding = new Shiny.InputBinding();
 $.extend(f7PanelBinding, {
 
   initialize: function(el) {
-    app.panel.create({
-      el: '#' + $(el).attr('id')
-    });
+    var data = {};
+    // add id
+    data.el = '#' + $(el).attr('id');
+    // this is to show shiny outputs in the sheet
+    data.on = {
+      opened: function () {
+        $(el).trigger('shown');
+      }
+    };
+    app.panel.create(data);
   },
 
   find: function(scope) {

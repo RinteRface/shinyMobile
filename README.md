@@ -1,4 +1,4 @@
-# shinyMobile <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
+# shinyMobile <img src="./man/figures/logo.png" width="200px" align="right"/>
 [![Build Status](https://travis-ci.org/RinteRface/shinyMobile.svg?branch=master)](https://travis-ci.org/RinteRface/shinyMobile)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RinteRface/shinyMobile?branch=master&svg=true)](https://ci.appveyor.com/project/RinteRface/shinyMobile)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -7,13 +7,17 @@
 
 > shiny API for Framework7 (IOS/android)
 
-
 ## Installation
 
 ```r
+# from CRAN
+install.packages("shinyMobile")
 # for the latest version
 devtools::install_github("RinteRface/shinyMobile")
 ```
+
+## Cheatsheet
+<a href="https://github.com/RinteRface/cheatsheets/tree/master/shinyMobile"><img src="https://raw.githubusercontent.com/rinterface/cheatsheets/master/shinyMobile/png/shinyMobile1.png" width="630" height="487" style="max-width:100%;"></a>
 
 ## Demo
 
@@ -124,10 +128,10 @@ The manifest.json file could be like:
 }
 ```
 
-Be sure to replace the `start_url` with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. 
-
-Later, there will be a dedicated function that will create the manifest.json file as well
-as other necessary assets.
+Be sure to replace the `start_url` with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
+`create_manifest`. However, it does not generate any icon nor splashscreens. Fortunately, there are tools
+such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+those files.
 
 ### Add the PWA to your desktop Apps
 Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. 
@@ -142,5 +146,7 @@ Go to the url of your app. In this example this is: https://dgranjon.shinyapps.i
 </div>
 </div>
 
-
+### Acknowledgement
+A special thanks to [Vladimir Kharlampidi](https://github.com/nolimits4web) for creating this
+amazing framework7 HTML template.
 

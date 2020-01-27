@@ -19,7 +19,26 @@ library(shiny)
 library(shinyMobile)
 ```
 
-## Introduction
+## Mobile preview
+Since V0.2.0, shinyMobile has a function to preview your app in a large range of 
+mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5,
+Samsung galaxy Note 8, ... either locally on online:
+
+```{r, eval = FALSE}
+preview_mobile(appPath = system.file("examples/gallery/app.R", package = "shinyMobile"), device = "iphoneX")
+preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ipadMini")
+```
+
+The local preview is a 4 steps process:
+
+- run `preview_mobile` with appPath
+- Copy the returned code `R -e "shiny::runApp('appPath', port = 3838)"` in a terminal to launch the app
+- Press enter to run the wrapper app
+- Have fun!
+
+`preview_mobile` has other options such as color and landscape (to preview in landscape mode).
+
+## Predefined input values
 shinyMobile contains a set of useful functions to help you setting the layout as best as
 possible. It contains a predefined input, namely **input$deviceInfo**:
 
@@ -70,7 +89,7 @@ There are other fields, with less inportance:
 - `input$deviceInfo$phonegap`, TRUE or FALSE (phonegap)
 
 
-## Example
+### Example
 
 Below the example displays a card only when the app is on desktop.
 

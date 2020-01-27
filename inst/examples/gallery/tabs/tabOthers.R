@@ -67,7 +67,7 @@ tabOthers <- f7Tab(
     f7Chip(label = "Example Chip"),
     f7Chip(label = "Example Chip", outline = TRUE),
     f7Chip(label = "Example Chip", icon = f7Icon("add_round"), icon_status = "pink"),
-    f7Chip(label = "Example Chip", img = "https://lorempixel.com/64/64/people/9/"),
+    f7Chip(label = "Example Chip", img = "https://picsum.photos/200"),
     f7Chip(label = "Example Chip", closable = TRUE),
     f7Chip(label = "Example Chip", status = "green"),
     f7Chip(label = "Example Chip", status = "green", outline = TRUE)
@@ -170,8 +170,11 @@ tabOthers <- f7Tab(
       value = 50,
       scale = TRUE
     ),
+    br(),
     f7Progress(id = "pg2", value = 100, color = "green"),
+    br(),
     f7Progress(id = "pg3", value = 50, color = "deeppurple"),
+    br(),
     f7ProgressInf()
   ),
   br(),
@@ -189,7 +192,6 @@ tabOthers <- f7Tab(
           value = 50,
           borderColor = "#2196f3",
           borderWidth = 10,
-          valueText = "50%",
           valueFontSize = 41,
           valueTextColor = "#2196f3",
           labelText = "amount of something"
@@ -202,7 +204,6 @@ tabOthers <- f7Tab(
           value = 30,
           borderColor = "orange",
           borderWidth = 10,
-          valueText = "30%",
           valueFontSize = 41,
           valueTextColor = "orange",
           labelText = "Other thing"

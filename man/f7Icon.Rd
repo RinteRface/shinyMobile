@@ -4,14 +4,15 @@
 \alias{f7Icon}
 \title{Create a Framework7 icon}
 \usage{
-f7Icon(..., lib = NULL, fill = FALSE)
+f7Icon(..., lib = NULL, color = NULL)
 }
 \arguments{
 \item{...}{Icon name and \link{f7Badge}.}
 
-\item{lib}{Library to use: NULL, "ios" or "md".}
+\item{lib}{Library to use: NULL, "ios" or "md". Leave NULL by default. Specify, md or ios
+if you want to hide/show icons on specific devices.}
 
-\item{fill}{Whether to fill or not. FALSE by default.}
+\item{color}{Icon color, if any.}
 }
 \description{
 Build a Framework7 icon
@@ -24,18 +25,27 @@ if(interactive()){
  shiny::shinyApp(
   ui = f7Page(
     title = "Icons",
-    f7ListCard(
-     f7ListCardItem(
-       title = tagList(
-        f7Icon("email_fill", lib = "ios"),
-        "This does not appear for material design devices."
-       )
-     ),
-     f7ListCardItem(
-       title = f7Icon("home", f7Badge("1", color = "red"))
-     ),
-     f7ListCardItem(
-       title = f7Icon("email", lib = "md")
+    init = f7Init(theme = "light", skin = "ios"),
+    f7SingleLayout(
+     navbar = f7Navbar(title = "icons"),
+     f7List(
+      f7ListItem(
+        title = tagList(
+         f7Icon("email")
+        )
+      ),
+      f7ListItem(
+        title = tagList(
+         f7Icon("email_fill", color = "green")
+        )
+      ),
+      f7ListItem(
+        title = f7Icon("home", f7Badge("1", color = "red"))
+      ),
+      f7ListItem(
+        title = f7Icon("email_fill", lib = "md"),
+        "This will not appear since only for material design"
+      )
      )
     )
   ),

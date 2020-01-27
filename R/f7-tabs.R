@@ -70,6 +70,9 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
       itemClass <- item$attribs$class
       itemId <- item$attribs$id
 
+      # whether the item is hidden
+      itemHidden <- toolbarItems[[i]][[4]]
+
       # make sure that if the user set 2 tabs active at the same time,
       # only the first one is selected
       if (!found_active) {
@@ -80,22 +83,25 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
         active <- FALSE
       }
 
-      # generate the link
-      if (!is.null(itemIcon)) {
-        shiny::a(
-          href = paste0("#", itemId),
-          class = if (active) "tab-link tab-link-active" else "tab-link",
-          itemIcon,
-          shiny::span(class = "tabbar-label", itemName)
-        )
-      } else {
-        shiny::a(
-          href = paste0("#", itemId),
-          class = if (active) "tab-link tab-link-active" else "tab-link",
-          itemName
-        )
+      # generate the link only if the item is visible
+      if (!itemHidden) {
+        if (!is.null(itemIcon)) {
+          shiny::a(
+            href = paste0("#", itemId),
+            class = if (active) "tab-link tab-link-active" else "tab-link",
+            itemIcon,
+            shiny::span(class = "tabbar-label", itemName),
+          )
+        } else {
+          shiny::a(
+            href = paste0("#", itemId),
+            class = if (active) "tab-link tab-link-active" else "tab-link",
+            itemName,
+          )
+        }
       }
     }),
+    # other items here
     .items
   )
 
@@ -139,12 +145,14 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 #' @param icon Item icon. Expect \link{f7Icon} function with the suitable lib argument
 #' (either md or ios or NULL for native f7 icons).
 #' @param active Whether the tab is active at start. Do not select multiple tabs, only
-#' the first one will be set to active
+#' the first one will be set to active.
+#' @param hidden Whether to hide the tab. This is useful when you want to add invisible tabs
+#' (that do not appear in the tabbar) but you can still navigate with \link{updateF7Tabs}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
+f7Tab <- function(..., tabName, icon = NULL, active = FALSE, hidden = FALSE) {
 
   id <- tabName
   # handle punctuation
@@ -157,10 +165,11 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
     `data-active` = tolower(active),
     id = id,
     `data-value` = tabName,
+    `data-hidden` = tolower(hidden),
     style = "background-color: gainsboro;",
     ...
   )
-  return(list(itemTag, icon, tabName))
+  return(list(itemTag, icon, tabName, hidden))
 }
 
 
@@ -222,6 +231,61 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE) {
 #'        updateF7Tabs(session, id = "subtabdemo", selected = selected)
 #'      })
 #'    }
+#'  )
+#'  # with hidden tabs
+#'  shinyApp(
+#'   ui <- f7Page(
+#'     title = "shinyMobile",
+#'     init = f7Init(
+#'       skin = "auto",
+#'       theme = "light",
+#'       color = 'blue',
+#'       filled = TRUE,
+#'       hideNavOnPageScroll = FALSE,
+#'       hideTabsOnPageScroll = FALSE
+#'     ),
+#'     f7TabLayout(
+#'       navbar = f7Navbar(
+#'         title = "Update Tabs with hidden tab",
+#'         subtitle = "",
+#'         hairline = TRUE,
+#'         shadow = TRUE,
+#'         left_panel = TRUE,
+#'         right_panel = FALSE,
+#'         bigger = FALSE,
+#'         transparent = TRUE
+#'       ),
+#'       f7Tabs(
+#'         id = 'tabs',
+#'         animated = TRUE,
+#'         f7Tab(
+#'           active = TRUE,
+#'           tabName = 'Main tab',
+#'           icon = f7Icon('document_text'),
+#'           h1("This is the first tab."),
+#'           f7Button(inputId ='goto', label = 'Go to hidden tab')
+#'         ),
+#'         f7Tab(
+#'           tabName = 'Second tab',
+#'           icon = f7Icon('bolt_horizontal'),
+#'           h1('This is the second tab.')
+#'         ),
+#'         f7Tab(
+#'           tabName = 'Hidden tab',
+#'           hidden = TRUE,
+#'           h1('This is a tab that does not appear in the tab menu.
+#'           Yet, you can still access it.')
+#'         )
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$tabs))
+#'     observeEvent(input$goto,{
+#'       updateF7Tabs(session = session, id = 'tabs', selected = 'Hidden tab')
+#'     })
+#'
+#'   }
 #'  )
 #' }
 updateF7Tabs <- function(session, id, selected = NULL) {

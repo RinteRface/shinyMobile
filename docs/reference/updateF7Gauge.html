@@ -8,6 +8,13 @@
 
 <title>update a framework7 gauge from the server side — updateF7Gauge • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="update a framework7 gauge from the server side — updateF7Gauge" />
 <meta property="og:description" content="update a framework7 gauge from the server side" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -149,7 +157,23 @@
     <p>update a framework7 gauge from the server side</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Gauge</span>(<span class='no'>session</span>, <span class='no'>id</span>, <span class='no'>value</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Gauge</span>(
+  <span class='no'>session</span>,
+  <span class='no'>id</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>bgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderBgColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>valueFontWeight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelTextColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelFontSize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>labelFontWeight</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +189,54 @@
     <tr>
       <th>value</th>
       <td><p>New value. Numeric between 0 and 100.</p></td>
+    </tr>
+    <tr>
+      <th>labelText</th>
+      <td><p>Gauge additional label text.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>Generated SVG image size (in px). Default is 200.</p></td>
+    </tr>
+    <tr>
+      <th>bgColor</th>
+      <td><p>Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".</p></td>
+    </tr>
+    <tr>
+      <th>borderBgColor</th>
+      <td><p>Main border/stroke background color.</p></td>
+    </tr>
+    <tr>
+      <th>borderColor</th>
+      <td><p>Main border/stroke color.</p></td>
+    </tr>
+    <tr>
+      <th>borderWidth</th>
+      <td><p>Main border/stroke width.</p></td>
+    </tr>
+    <tr>
+      <th>valueTextColor</th>
+      <td><p>Value text color.</p></td>
+    </tr>
+    <tr>
+      <th>valueFontSize</th>
+      <td><p>Value text font size.</p></td>
+    </tr>
+    <tr>
+      <th>valueFontWeight</th>
+      <td><p>Value text font weight.</p></td>
+    </tr>
+    <tr>
+      <th>labelTextColor</th>
+      <td><p>Label text color.</p></td>
+    </tr>
+    <tr>
+      <th>labelFontSize</th>
+      <td><p>Label text font size.</p></td>
+    </tr>
+    <tr>
+      <th>labelFontWeight</th>
+      <td><p>Label text font weight.</p></td>
     </tr>
     </table>
 
@@ -186,7 +258,6 @@
              <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>50</span>,
              <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
              <span class='kw'>borderWidth</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-             <span class='kw'>valueText</span> <span class='kw'>=</span> <span class='st'>"50%"</span>,
              <span class='kw'>valueFontSize</span> <span class='kw'>=</span> <span class='fl'>41</span>,
              <span class='kw'>valueTextColor</span> <span class='kw'>=</span> <span class='st'>"#2196f3"</span>,
              <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='st'>"amount of something"</span>
@@ -196,7 +267,7 @@
     ),
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-          <span class='fu'>updateF7Gauge</span>(<span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>75</span>)
+          <span class='fu'>updateF7Gauge</span>(<span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>75</span>, <span class='kw'>labelText</span> <span class='kw'>=</span> <span class='st'>"New label!"</span>)
        })
     }
  )

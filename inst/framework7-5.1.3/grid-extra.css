@@ -1,9 +1,0 @@
-div[class*="col"] {
-  /*background: #fff;*/
-  text-align: center;
-  color: #000;
-  /*border: 1px; solid #ddd;*/
-  padding: 5px;
-  margin-bottom: 15px;
-  font-size: 12px;
-}

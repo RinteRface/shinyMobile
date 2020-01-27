@@ -13,7 +13,7 @@ f7Init(
   iosTouchRipple = FALSE,
   iosCenterTitle = TRUE,
   iosTranslucentBars = FALSE,
-  hideNavOnPageScroll = TRUE,
+  hideNavOnPageScroll = FALSE,
   hideTabsOnPageScroll = FALSE,
   serviceWorker = NULL
 )
@@ -41,7 +41,7 @@ title at the center in iOS theme. Sometime (with some custom design) it may not 
 \item{iosTranslucentBars}{Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
 FALSE by default.}
 
-\item{hideNavOnPageScroll}{Default to TRUE. Will hide Navbars on page scroll.}
+\item{hideNavOnPageScroll}{Default to FALSE. Will hide Navbars on page scroll.}
 
 \item{hideTabsOnPageScroll}{Default to FALSE. Will hide tabs on page scroll.}
 

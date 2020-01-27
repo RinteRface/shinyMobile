@@ -8,9 +8,17 @@ f7DatePicker(
   inputId,
   label,
   value = NULL,
-  min = NULL,
-  max = NULL,
-  format = "yyyy-mm-dd"
+  direction = c("horizontal", "vertical"),
+  minDate = NULL,
+  maxDate = NULL,
+  dateFormat = "yyyy-mm-dd",
+  openIn = c("auto", "popover", "sheet", "customModal"),
+  scrollToInput = FALSE,
+  closeByOutsideClick = TRUE,
+  toolbar = TRUE,
+  toolbarCloseText = "Done",
+  header = FALSE,
+  headerPlaceholder = "Select date"
 )
 }
 \arguments{
@@ -18,13 +26,31 @@ f7DatePicker(
 
 \item{label}{Input label.}
 
-\item{value}{Start value.}
+\item{value}{Array with initial selected dates. Each array item represents selected date.}
 
-\item{min}{Minimum date.}
+\item{direction}{Months layout direction, could be 'horizontal' or 'vertical'.}
 
-\item{max}{Maximum date.}
+\item{minDate}{Minimum allowed date.}
 
-\item{format}{Date format: "yyyy-mm-dd", for instance.}
+\item{maxDate}{Maximum allowed date.}
+
+\item{dateFormat}{Date format: "yyyy-mm-dd", for instance.}
+
+\item{openIn}{Can be auto, popover (to open calendar in popover), sheet
+(to open in sheet modal) or customModal (to open in custom Calendar modal overlay).
+In case of auto will open in sheet modal on small screens and in popover on large screens.}
+
+\item{scrollToInput}{Scroll viewport (page-content) to input when calendar opened.}
+
+\item{closeByOutsideClick}{If enabled, picker will be closed by clicking outside of picker or related input element.}
+
+\item{toolbar}{Enables calendar toolbar.}
+
+\item{toolbarCloseText}{Text for Done/Close toolbar button.}
+
+\item{header}{Enables calendar header.}
+
+\item{headerPlaceholder}{Default calendar header placeholder text.}
 }
 \description{
 Create a Framework7 date input
@@ -43,7 +69,9 @@ if (interactive()) {
        f7DatePicker(
          inputId = "date",
          label = "Choose a date",
-         value = "2019-08-24"
+         value = "2019-08-24",
+         openIn = "auto",
+         direction = "horizontal"
        ),
        "The selected date is",
        textOutput("selectDate")

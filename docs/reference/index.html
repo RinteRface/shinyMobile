@@ -8,6 +8,13 @@
 
 <title>Function reference • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,6 +45,8 @@
   
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -69,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -248,6 +257,12 @@
           <p><code><a href="create_manifest.html">create_manifest()</a></code> </p>
         </td>
         <td><p>Create a manifest for your shiny app</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="preview_mobile.html">preview_mobile()</a></code> </p>
+        </td>
+        <td><p>Allow to preview a given app on different devices.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -429,13 +444,13 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="f7NavbarHide.html">f7NavbarHide()</a></code> </p>
+          <p><code><a href="f7HideNavbar.html">f7HideNavbar()</a></code> </p>
         </td>
         <td><p>Hide a framework7 navbar</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="f7NavbarShow.html">f7NavbarShow()</a></code> </p>
+          <p><code><a href="f7ShowNavbar.html">f7ShowNavbar()</a></code> </p>
         </td>
         <td><p>Show a framework7 navbar</p></td>
       </tr><tr>
@@ -444,6 +459,12 @@
           <p><code><a href="f7RemoveTab.html">f7RemoveTab()</a></code> </p>
         </td>
         <td><p>Remove a f7Tab in a f7Tabs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="f7TogglePopup.html">f7TogglePopup()</a></code> </p>
+        </td>
+        <td><p>Toggle f7Popup.</p></td>
       </tr><tr>
         
         <td>
@@ -498,6 +519,12 @@
           <p><code><a href="updateF7Progress.html">updateF7Progress()</a></code> </p>
         </td>
         <td><p>update a framework7 progress bar from the server side</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="updateF7Select.html">updateF7Select()</a></code> </p>
+        </td>
+        <td><p>Change the value of a select input on the client</p></td>
       </tr><tr>
         
         <td>
@@ -1003,10 +1030,16 @@
       <tr>
         <th colspan="2">
           <h2 id="section-utils" class="hasAnchor"><a href="#section-utils" class="anchor"></a>Utils</h2>
-          <p class="section-desc"><p>colors, …</p></p>
+          <p class="section-desc"><p>colors, tools, …</p></p>
         </th>
       </tr>
       <tr>
+        
+        <td>
+          <p><code><a href="createSelectOptions.html">createSelectOptions()</a></code> </p>
+        </td>
+        <td><p>Create option html tag based on choice input</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="getF7Colors.html">getF7Colors()</a></code> </p>

@@ -99,7 +99,7 @@ shiny::shinyApp(
    server = function(input, output) {}
  )
 
- # Searchbar in \\link{f7Appbar}
+ # Searchbar in \link{f7Appbar}
  shiny::shinyApp(
   ui = f7Page(
     title = "My app",

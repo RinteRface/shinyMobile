@@ -125,8 +125,10 @@ updateF7Progress <- function(session, id, value) {
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7ProgressInf"),
 #'      f7Block(
-#'      f7ProgressInf(),
-#'      f7ProgressInf(color = "yellow")
+#'       f7BlockTitle(size = "large", "Infinite progress"),
+#'       f7ProgressInf(),
+#'       f7BlockTitle(size = "large", "Infinite progress with color"),
+#'       f7ProgressInf(color = "yellow")
 #'     )
 #'     )
 #'    ),

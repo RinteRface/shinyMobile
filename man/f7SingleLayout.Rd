@@ -45,7 +45,7 @@ if(interactive()){
         hover = TRUE,
         f7Card(
           title = "Card header",
-          sliderInput("obs", "Number of observations", 0, 1000, 500),
+          f7Slider("obs", "Number of observations", 0, 1000, 500),
           plotOutput("distPlot"),
           footer = tagList(
             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),

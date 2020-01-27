@@ -9,8 +9,11 @@ $(function () {
   }
 
   // handle toolbar padding for mobiles in standalone mode
+  // only if there is an appbar
   if (Framework7.device.standalone) {
-    $('.toolbar').css('margin-bottom', '20px');
+    if ($('.appbar').length > 0) {
+      $('.toolbar').css('margin-bottom', '20px');
+    }
   }
 
   // Framework7.device is extremely useful to set up custom design
@@ -27,6 +30,8 @@ $(function () {
     $('.demo-facebook-card .card-footer').css('background-color', '#1c1c1d');
     $('.sheet-modal, .swipe-handler').css('background-color', '#1b1b1d');
     $('.popup').css('background-color', '#1b1b1d');
+    $('.fab-label').css('background-color', 'var(--f7-fab-label-text-color)');
+    $('.fab-label').css('color', 'var(--f7-fab-text-color)');
 
     // fix black accordion text in dark mode
     $('.accordion-item .item-content .item-inner').css('color', 'white');
@@ -288,30 +293,6 @@ $(function () {
     });
   });
 
-
-  // updateF7Gauge
-  gaugeIds = [];
-  getAllGaugeIds = function() {
-    $('.gauge').each(function() {
-      gaugeIds.push($(this).attr('id'));
-    });
-  };
-
-  // call the function ...
-  getAllGaugeIds();
-
-  gaugeIds.forEach(function(index) {
-    Shiny.addCustomMessageHandler(index, function(message) {
-      // get the gauge instance
-      var gauge = app.gauge.get('.' + index);
-
-      // update the gauge
-      gauge.update({
-        value: message / 100,
-        valueText: message + '%'
-      });
-    });
-  });
 
   // update f7Progress
   progressIds = [];

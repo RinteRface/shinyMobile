@@ -280,8 +280,14 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #' @param max Slider maximum range
 #' @param value Slider value or a vector containing 2 values (for a range).
 #' @param scale Slider scale.
+#' @param scaleSteps Number of scale steps.
+#' @param scaleSubSteps Number of scale sub steps (each step will be divided by this value).
+#' @param step Slider increase step size.
+#' @param color See \link{getF7Colors} for valid colors.
 #'
 #' @export
+#'
+#' @note Important: you cannot transform a range slider into a simple slider and inversely.
 #'
 #' @examples
 #' if(interactive()){
@@ -289,49 +295,57 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'  library(shinyMobile)
 #'
 #'  shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "updateF7Slider"),
-#'       f7Card(
-#'         f7Button(inputId = "update", label = "Update slider"),
-#'         f7Slider(
-#'           inputId = "obs",
-#'           label = "Range values",
-#'           max = 500,
-#'           min = 0,
-#'           value = c(50, 100),
-#'           scale = TRUE,
-#'           vertical = FALSE
-#'         ),
-#'         verbatimTextOutput("test")
-#'       )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "updateF7Slider"),
+#'        f7Card(
+#'          f7Button(inputId = "update", label = "Update slider"),
+#'          f7Slider(
+#'            inputId = "obs",
+#'            label = "Range values",
+#'            max = 500,
+#'            min = 0,
+#'            step = 1,
+#'            color = "deeppurple",
+#'            value = c(50, 100)
+#'          ),
+#'          verbatimTextOutput("test")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
 #'
-#'     output$test <- renderPrint({input$obs})
+#'      output$test <- renderPrint({input$obs})
 #'
-#'     observeEvent(input$update, {
-#'       updateF7Slider(
-#'         session,
-#'         inputId = "obs",
-#'         value = c(20, 40),
-#'         min = 10,
-#'         max = 50,
-#'         scale = FALSE
-#'       )
-#'     })
-#'   }
+#'      observeEvent(input$update, {
+#'        updateF7Slider(
+#'          session,
+#'          inputId = "obs",
+#'          value = c(1, 5),
+#'          min = 0,
+#'          scaleSteps = 10,
+#'          scaleSubSteps = 5,
+#'          step = 0.1,
+#'          max = 10,
+#'          color = "teal"
+#'        )
+#'      })
+#'    }
 #'  )
 #' }
 updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NULL,
-                           scale = FALSE) {
+                           scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL,
+                           step = NULL, color = NULL) {
   message <- dropNulls(list(
     value = value,
     min = min,
     max = max,
-    scale = scale
+    scale = scale,
+    step = step,
+    scaleSteps = scaleSteps,
+    scaleSubSteps = scaleSubSteps,
+    color = color
   ))
   session$sendInputMessage(inputId, message)
 }
@@ -412,6 +426,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #' @param color Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
 #' @param wraps In wraps mode incrementing beyond maximum value sets value to minimum value,
 #' likewise, decrementing below minimum value sets value to maximum value. FALSE by default.
+#' @param decimalPoint Number of digits after dot, when in manual input mode.
 #' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
 #' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
 #' continues pressing the control. TRUE by default.
@@ -458,16 +473,18 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'       updateF7Stepper(
 #'         session,
 #'         inputId = "stepper",
-#'         value = 10,
+#'         value = 0.1,
+#'         step = 0.01,
 #'         size = "large",
-#'         min = 5,
-#'         max = 20,
+#'         min = 0,
+#'         max = 1,
 #'         wraps = FALSE,
 #'         autorepeat = FALSE,
 #'         rounded = TRUE,
 #'         raised = TRUE,
 #'         color = "pink",
-#'         manual = TRUE
+#'         manual = TRUE,
+#'         decimalPoint = 2
 #'       )
 #'     })
 #'   }
@@ -476,7 +493,7 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
                             value = NULL, step = NULL, fill = NULL,
                             rounded = NULL, raised = NULL, size = NULL,
-                            color = NULL, wraps = NULL,
+                            color = NULL, wraps = NULL, decimalPoint = NULL,
                             autorepeat = NULL, manual = NULL) {
   message <- dropNulls(list(
     min = min,
@@ -489,6 +506,7 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
     size = size,
     color = color,
     wraps = wraps,
+    decimalPoint = decimalPoint,
     autorepeat = autorepeat,
     manual = manual
   ))
@@ -504,6 +522,17 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #' @param inputId The id of the input object.
 #' @param value Picker initial value, if any.
 #' @param choices New picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
 #'
 #' @export
 #'
@@ -524,7 +553,9 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'           label = "Picker Input",
 #'           choices = c('a', 'b', 'c')
 #'         ),
-#'         verbatimTextOutput("pickerval")
+#'         verbatimTextOutput("pickerval"),
+#'         br(),
+#'         f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
 #'       )
 #'     )
 #'   ),
@@ -537,16 +568,135 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'         session,
 #'         inputId = "mypicker",
 #'         value = "b",
-#'         choices = letters
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbarCloseText = "Prout",
+#'         sheetSwipeToClose = TRUE
 #'       )
 #'     })
+#'
+#'     observeEvent(input$removeToolbar, {
+#'       updateF7Picker(
+#'         session,
+#'         inputId = "mypicker",
+#'         value = "b",
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbar = FALSE
+#'       )
+#'     })
+#'
 #'   }
 #'  )
 #' }
-updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
+updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
+                           rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
+                           closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
+                           sheetSwipeToClose = NULL) {
   message <- dropNulls(list(
     value = value,
-    choices = choices
+    choices = choices,
+    rotateEffect = rotateEffect,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByOutsideClick = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    sheetSwipeToClose = sheetSwipeToClose
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+
+#' Change the value of a date picker input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param value Picker initial value, if any.
+#' @param choices New picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update date picker"),
+#'       f7Card(
+#'         f7Button(inputId = "update", label = "Update date picker"),
+#'         f7DatePicker(
+#'           inputId = "mypicker",
+#'           label = "Choose a date",
+#'           value = "2019-08-24",
+#'           openIn = "auto",
+#'           direction = "horizontal"
+#'         ),
+#'         verbatimTextOutput("pickerval"),
+#'         br(),
+#'         f7Button(inputId = "removeToolbar", label = "Remove date picker toolbar", color = "red")
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$pickerval <- renderText(input$mypicker)
+#'
+#'     observeEvent(input$update, {
+#'       updateF7DatePicker(
+#'         session,
+#'         inputId = "mypicker",
+#'         value = "2019-08-30",
+#'         openIn = "sheet",
+#'         toolbarCloseText = "Prout",
+#'         sheetSwipeToClose = TRUE
+#'       )
+#'     })
+#'
+#'     observeEvent(input$removeToolbar, {
+#'       updateF7DatePicker(
+#'         session,
+#'         inputId = "mypicker",
+#'         openIn = "sheet",
+#'         toolbar = FALSE
+#'       )
+#'     })
+#'
+#'   }
+#'  )
+#' }
+updateF7DatePicker <- function(session, inputId, value = NULL, choices = NULL,
+                           rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
+                           closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
+                           sheetSwipeToClose = NULL) {
+  message <- dropNulls(list(
+    value = value,
+    choices = choices,
+    rotateEffect = rotateEffect,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByOutsideClick = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    sheetSwipeToClose = sheetSwipeToClose
   ))
   session$sendInputMessage(inputId, message)
 }
@@ -579,7 +729,7 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 #'         f7AutoComplete(
 #'          inputId = "myautocomplete",
 #'          placeholder = "Some text here!",
-#'          type = "dropdown",
+#'          openIn = "dropdown",
 #'          label = "Type a fruit name",
 #'          choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'                      'Orange', 'Peach', 'Pear', 'Pineapple')
@@ -617,3 +767,58 @@ updateF7AutoComplete <- function(session, inputId, value =  NULL) {
 
 
 
+
+
+
+
+#' Change the value of a select input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param selected New value.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "updateF7Select"),
+#'        f7Card(
+#'          f7Button(inputId = "update", label = "Update select"),
+#'          br(),
+#'          f7Select(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           choices = colnames(mtcars)[-1],
+#'           selected = "hp"
+#'          ),
+#'          verbatimTextOutput("test")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      output$test <- renderPrint(input$variable)
+#'
+#'      observeEvent(input$update, {
+#'        updateF7Select(
+#'          session,
+#'          inputId = "variable",
+#'          selected = "gear"
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Select <- function(session, inputId, selected = NULL) {
+  message <- dropNulls(list(
+    selected = selected
+  ))
+  session$sendInputMessage(inputId, message)
+}

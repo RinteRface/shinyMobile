@@ -4,7 +4,36 @@ var f7SliderBinding = new Shiny.InputBinding();
 $.extend(f7SliderBinding, {
 
   initialize: function(el) {
-    app.range.create({el: el});
+
+    // recover the inputId passed in the R function
+    var id = $(el).attr("id");
+
+    var data = {};
+    [].forEach.call(el.attributes, function(attr) {
+      if (/^data-/.test(attr.name)) {
+        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
+          return $1.toUpperCase();
+        });
+        // convert "true" to true and "false" to false
+        if (["min", "max", "step", "value",
+        "scaleSteps", "scaleSubSteps",
+        "valueLeft", "valueRight"].indexOf(camelCaseName) == -1) {
+          var isTrueSet = (attr.value == "true");
+          data[camelCaseName] = isTrueSet;
+        } else {
+          // convert strings to numeric
+          data[camelCaseName] = parseFloat(attr.value);
+        }
+
+      }
+    });
+
+     // add the id
+    data.el = '#' + id;
+
+    // feed the create method
+    var r = app.range.create(data);
+
   },
 
   find: function(scope) {
@@ -27,19 +56,36 @@ $.extend(f7SliderBinding, {
     var r = app.range.get($(el));
     if (data.hasOwnProperty('min')) {
       r.min = data.min;
+      // re render the scale
+      r.updateScale();
     }
     if (data.hasOwnProperty('max')) {
       r.max = data.max;
+      // re render the scale
+      r.updateScale();
     }
+    if (data.hasOwnProperty('step')) {
+      r.step = data.step;
+      // re render the scale
+      r.updateScale();
+    }
+
+    if (data.hasOwnProperty('scaleSteps')) {
+      r.scaleSteps = data.scaleSteps;
+      // re render the scale
+      r.updateScale();
+    }
+
+    if (data.hasOwnProperty('scaleSubSteps')) {
+      r.scaleSubSteps = data.scaleSubSteps;
+      // re render the scale
+      r.updateScale();
+    }
+
+    // need to apply this after rendering the scale
     if (data.hasOwnProperty('scale')) {
-      if (data.scale == "true") {
-        data.scale = true;
-      } else {
-        data.scale = false;
-      }
       r.scale = data.scale;
     }
-    r.updateScale();
 
     // important: need to update the scale before
     // updating the value. Otherwise the value will
@@ -56,6 +102,15 @@ $.extend(f7SliderBinding, {
         this.setValue(el, val);
       }
     }
+
+    // update color
+    if (data.hasOwnProperty('color')) {
+      $(el).removeClass (function (index, className) {
+        return (className.match (/(^|\s)color-\S+/g) || []).join(' ');
+      });
+      $(el).addClass('color-' + data.color);
+    }
+
   },
 
   subscribe: function(el, callback) {
