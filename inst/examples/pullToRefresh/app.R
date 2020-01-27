@@ -17,21 +17,16 @@ shiny::shinyApp(
         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
       ),
       # main content
-      f7List(
-        lapply(1:3, function(j) {
-          f7ListItem(
-            letters[j],
-            media = f7Icon("alarm_fill"),
-            right = "Right Text",
-            header = "Header",
-            footer = "Footer"
-          )
-        })
-      )
+      uiOutput("growingList")
     )
   ),
   server = function(input, output, session) {
-    observe(print(input$ptr))
+    observe({
+      print(input$ptr)
+      print(counter())
+    })
+
+    counter <- reactiveVal(value = 1)
 
     observeEvent(input$ptr, {
 
@@ -42,6 +37,24 @@ shiny::shinyApp(
         text = paste('ptr is', ptrStatus),
         type = "alert"
       )
+
+      newValue <- counter() + 1
+      counter(newValue)
     })
+
+    output$growingList <- renderUI({
+      f7List(
+        lapply(seq_len(counter()), function(j) {
+          f7ListItem(
+            letters[j],
+            media = f7Icon("alarm_fill"),
+            right = "Right Text",
+            header = "Header",
+            footer = "Footer"
+          )
+        })
+      )
+    })
+
   }
 )
