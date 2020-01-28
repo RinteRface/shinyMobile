@@ -113,7 +113,7 @@ f7Fab <- function(inputId, label, width = NULL, ..., flag = NULL) {
     id = inputId,
     style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
     type = "button",
-    class = if (!is.null(flag)) "fab-label-button action-button" else "action-button",
+    class = if (!is.null(flag)) "fab-label-button f7-action-button" else "f7-action-button",
     `data-val` = value,
     list(...),
     shiny::span(label),
