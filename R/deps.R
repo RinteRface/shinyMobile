@@ -110,7 +110,8 @@ f7InputsDeps <- function() {
       "actionSheetInputBinding.js",
       "gaugeInputBinding.js",
       "popupInputBinding.js",
-      "selectInputBinding.js"
+      "selectInputBinding.js",
+      "buttonInputBinding.js"
     )
   )
 }

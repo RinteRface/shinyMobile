@@ -1,3 +1,45 @@
+#' Change the value of a button input on the client
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @param label The label to set for the input object.
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "Update f7Button",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Icons"),
+#'       f7Button("btn", "Button"),
+#'       f7Toggle("updateBtn", "Update Button")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$btn))
+#'     observeEvent(input$updateBtn, {
+#'       if (input$updateBtn) {
+#'         updateF7Button(
+#'          session = session,
+#'          inputId = "btn",
+#'          label = "Updated"
+#'         )
+#'       }
+#'     })
+#'   }
+#'  )
+#' }
+#' @export
+updateF7Button <- function (session, inputId, label = NULL) {
+  message <- dropNulls(list(label = label))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
 #' Change the value of a checkbox input on the client
 #'
 #' @param session The session object passed to function given to the server.

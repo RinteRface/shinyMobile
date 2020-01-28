@@ -78,6 +78,7 @@ reference:
   - '`f7TogglePopup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
+  - '`updateF7Button`'
   - '`updateF7Card`'
   - '`updateF7Checkbox`'
   - '`updateF7Fab`'
