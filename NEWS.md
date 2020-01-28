@@ -1,4 +1,4 @@
-# shinyMobile 0.2.0.9000
+# shinyMobile 0.5.0.9000
 
 ## Breaking changes
 - `f7AutoComplete()`: type becomes openIn to align with the framework7 documentation
