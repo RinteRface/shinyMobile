@@ -27,6 +27,70 @@ $.extend(f7ButtonInputBinding, {
   receiveMessage: function(el, data) {
     var $el = $(el);
 
+    // update color
+    if (data.hasOwnProperty("color")) {
+      $(el).removeClass (function (index, className) {
+    return (className.match (/(^|\s)color-\S+/g) || []).join(' ');
+});
+      $(el).addClass("color-" + data.color);
+    }
+
+    // update fill
+    if (data.hasOwnProperty("fill")) {
+      var isFilled = $(el).hasClass("button-fill");
+      if (data.fill) {
+        if (!isFilled) $(el).addClass("button-fill");
+      } else {
+        if (isFilled) $(el).removeClass("button-fill");
+      }
+    }
+
+    // update outline
+    if (data.hasOwnProperty("outline")) {
+      var isOutline = $(el).hasClass("button-outline");
+      if (data.outline) {
+        if (!isOutline) $(el).addClass("button-outline");
+      } else {
+        if (isOutline) $(el).removeClass("button-outline");
+      }
+    }
+
+    // update raided
+    if (data.hasOwnProperty("shadow")) {
+      var isRaised = $(el).hasClass("button-raised");
+      if (data.shadow) {
+        if (!isRaised) $(el).addClass("button-raised");
+      } else {
+        if (isRaised) $(el).removeClass("button-raised");
+      }
+    }
+
+    // update rounded
+    if (data.hasOwnProperty("rounded")) {
+      var isRounded = $(el).hasClass("button-round");
+      if (data.rounded) {
+        if (!isRounded) $(el).addClass("button-round");
+      } else {
+        if (isRounded) $(el).removeClass("button-round");
+      }
+    }
+
+    // update size
+    if (data.hasOwnProperty("size")) {
+      var isLarge = $(el).hasClass("button-large");
+      var isSmall = $(el).hasClass("button-small");
+      if (!isLarge & !isSmall) $(el).addClass("button-" + data.size);
+      if (!isLarge & isSmall) {
+        $(el).removeClass("button-small");
+        $(el).addClass("button-" + data.size);
+      }
+      if (isLarge & !isSmall) {
+        $(el).removeClass("button-large");
+        $(el).addClass("button-" + data.size);
+      }
+    }
+
+
     // retrieve current label and icon
     var label = $el.text();
 

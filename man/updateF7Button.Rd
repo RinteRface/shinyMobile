@@ -4,14 +4,38 @@
 \alias{updateF7Button}
 \title{Change the value of a button input on the client}
 \usage{
-updateF7Button(session, inputId, label = NULL)
+updateF7Button(
+  session,
+  inputId,
+  label = NULL,
+  color = NULL,
+  fill = NULL,
+  outline = NULL,
+  shadow = NULL,
+  rounded = NULL,
+  size = NULL
+)
 }
 \arguments{
 \item{session}{The session object passed to function given to the server.}
 
 \item{inputId}{The id of the input object.}
 
-\item{label}{The label to set for the input object.}
+\item{label}{The contents of the button or link–usually a text label,
+but you could also use any other HTML, like an image or \link{f7Icon}.}
+
+\item{color}{Button color. Not compatible with outline.
+See here for valid colors \url{https://framework7.io/docs/badge.html}.}
+
+\item{fill}{Fill style. TRUE by default. Not compatible with outline}
+
+\item{outline}{Outline style. FALSE by default. Not compatible with fill.}
+
+\item{shadow}{Button shadow. FALSE by default. Only for material design.}
+
+\item{rounded}{Round style. FALSE by default.}
+
+\item{size}{Button size. NULL by default but also "large" or "small".}
 }
 \description{
 Change the value of a button input on the client
@@ -24,20 +48,34 @@ if (interactive()) {
  shiny::shinyApp(
   ui = f7Page(
     title = "Update f7Button",
+    init = f7Init(
+      theme = "light", skin = "ios"),
     f7SingleLayout(
       navbar = f7Navbar(title = "Icons"),
-      f7Button("btn", "Button"),
-      f7Toggle("updateBtn", "Update Button")
+      f7Button(
+        "test",
+        "Test",
+        color = "orange",
+        outline = FALSE,
+        fill = TRUE,
+        shadow = FALSE,
+        rounded = FALSE,
+        size = NULL),
+      f7Toggle("prout", "Update Button")
     )
   ),
   server = function(input, output, session) {
-    observe(print(input$btn))
-    observeEvent(input$updateBtn, {
-      if (input$updateBtn) {
+    observe(print(input$test))
+    observeEvent(input$prout, {
+      if (input$prout) {
         updateF7Button(
-         session = session,
-         inputId = "btn",
-         label = "Updated"
+          session = session,
+          inputId = "test",
+          label = "Updated",
+          color = "purple",
+          shadow = TRUE,
+          rounded = TRUE,
+          size = "large"
         )
       }
     })

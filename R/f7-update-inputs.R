@@ -2,7 +2,7 @@
 #'
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
-#' @param label The label to set for the input object.
+#' @inheritParams f7Button
 #'
 #' @examples
 #' if (interactive()) {
@@ -12,20 +12,34 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Update f7Button",
+#'     init = f7Init(
+#'       theme = "light", skin = "ios"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "Icons"),
-#'       f7Button("btn", "Button"),
-#'       f7Toggle("updateBtn", "Update Button")
+#'       f7Button(
+#'         "test",
+#'         "Test",
+#'         color = "orange",
+#'         outline = FALSE,
+#'         fill = TRUE,
+#'         shadow = FALSE,
+#'         rounded = FALSE,
+#'         size = NULL),
+#'       f7Toggle("prout", "Update Button")
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
-#'     observe(print(input$btn))
-#'     observeEvent(input$updateBtn, {
-#'       if (input$updateBtn) {
+#'     observe(print(input$test))
+#'     observeEvent(input$prout, {
+#'       if (input$prout) {
 #'         updateF7Button(
-#'          session = session,
-#'          inputId = "btn",
-#'          label = "Updated"
+#'           session = session,
+#'           inputId = "test",
+#'           label = "Updated",
+#'           color = "purple",
+#'           shadow = TRUE,
+#'           rounded = TRUE,
+#'           size = "large"
 #'         )
 #'       }
 #'     })
@@ -33,8 +47,20 @@
 #'  )
 #' }
 #' @export
-updateF7Button <- function (session, inputId, label = NULL) {
-  message <- dropNulls(list(label = label))
+updateF7Button <- function (session, inputId, label = NULL, color = NULL,
+                            fill = NULL, outline = NULL, shadow = NULL,
+                            rounded = NULL, size = NULL) {
+  message <- dropNulls(
+    list(
+      label = label,
+      color = color,
+      fill = fill,
+      outline = outline,
+      shadow = shadow,
+      rounded = rounded,
+      size = size
+      )
+    )
   session$sendInputMessage(inputId, message)
 }
 
