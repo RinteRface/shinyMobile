@@ -85,34 +85,18 @@ addJSDeps <- function() {
 #' @importFrom utils packageVersion
 #' @importFrom htmltools htmlDependency
 f7InputsDeps <- function() {
+
+  bindings_path <- system.file("framework7-5.3.0/input-bindings", package = "shinyMobile")
+
   htmltools::htmlDependency(
     name = "framework7-bindings",
     version = as.character(packageVersion("shinyMobile")),
     src = c(
-      file = system.file("framework7-5.3.0/input-bindings", package = "shinyMobile"),
+      file = bindings_path,
       href = "framework7-5.3.0/input-bindings"
     ),
     package = "shinyMobile",
-    script = c(
-      "sliderInputBinding.js",
-      "stepperInputBinding.js",
-      "toggleInputBinding.js",
-      "datePickerInputBinding.js",
-      "pickerInputBinding.js",
-      "colorPickerInputBinding.js",
-      "tabsInputBinding.js",
-      "dateInputBinding.js",
-      "panelInputBinding.js",
-      "collapsibleInputBinding.js",
-      "sheetInputBinding.js",
-      "cardInputBinding.js",
-      "autoCompleteInputBinding.js",
-      "actionSheetInputBinding.js",
-      "gaugeInputBinding.js",
-      "popupInputBinding.js",
-      "selectInputBinding.js",
-      "buttonInputBinding.js"
-    )
+    script = list.files(bindings_path)
   )
 }
 
