@@ -12,10 +12,9 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Update f7Button",
-#'     init = f7Init(
-#'       theme = "light", skin = "ios"),
+#'     init = f7Init(theme = "light", skin = "ios"),
 #'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Icons"),
+#'       navbar = f7Navbar(title = "Update f7Button"),
 #'       f7Button(
 #'         "test",
 #'         "Test",
@@ -63,6 +62,52 @@ updateF7Button <- function (session, inputId, label = NULL, color = NULL,
     )
   session$sendInputMessage(inputId, message)
 }
+
+
+
+
+
+#' Toggle \link{f7Fabs} on the server side.
+#'
+#' @param session The session object passed to function given to the server.
+#' @param inputId The id of the input object.
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "Update f7Fabs",
+#'     init = f7Init(theme = "light", skin = "ios"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7Fabs"),
+#'       f7Button("toggleFabs", "Toggle Fabs"),
+#'       f7Fabs(
+#'         position = "center-center",
+#'         id = "fabs",
+#'         lapply(1:3, function(i) f7Fab(inputId = i, label = i))
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$fabs))
+#'     observeEvent(input$toggleFabs, {
+#'       updateF7Fabs(
+#'         session = session,
+#'         inputId = "fabs"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Fabs <- function(session, inputId) {
+  message <- NULL
+  session$sendInputMessage(inputId, message)
+}
+
 
 
 

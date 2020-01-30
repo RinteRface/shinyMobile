@@ -13,7 +13,8 @@ different from the text displayed. valueText is then an internal parameter.
 - In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
 
 ## Major changes
-- add `updateF7Button()`
+- add input binding to `f7Fabs()` to get the status of the container
+- add `updateF7Button()` and `updateF7Fabs()`
 - new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom
 fires input$ptr which becomes TRUE. When the pull to refresh event is finished,
 input$ptr is NULL. Useful to trigger events in an observEvent

@@ -48,10 +48,9 @@ if (interactive()) {
  shiny::shinyApp(
   ui = f7Page(
     title = "Update f7Button",
-    init = f7Init(
-      theme = "light", skin = "ios"),
+    init = f7Init(theme = "light", skin = "ios"),
     f7SingleLayout(
-      navbar = f7Navbar(title = "Icons"),
+      navbar = f7Navbar(title = "Update f7Button"),
       f7Button(
         "test",
         "Test",
