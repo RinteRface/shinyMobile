@@ -32,7 +32,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
   # need to add external to handle external url
   buttonCl <- "button"
   if (!is.null(src)) buttonCl <- paste0(buttonCl, " external")
-  if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " action-button")
+  if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " f7-action-button")
   if (!is.null(color)) buttonCl <- paste0(buttonCl, " color-", color)
   if (fill) buttonCl <- paste0(buttonCl, " button-fill")
   if (outline) buttonCl <- paste0(buttonCl, " button-outline")
@@ -42,7 +42,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  shiny::tags$a(
+  shiny::tags$button(
     id = inputId,
     type = "button",
     class = buttonCl,

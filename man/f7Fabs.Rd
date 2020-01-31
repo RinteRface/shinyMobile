@@ -6,6 +6,7 @@
 \usage{
 f7Fabs(
   ...,
+  id = NULL,
   position = c("right-top", "right-center", "right-bottom", "left-top", "left-center",
     "left-bottom", "center-center", "center-top", "center-bottom"),
   color = NULL,
@@ -18,6 +19,8 @@ f7Fabs(
 }
 \arguments{
 \item{...}{Slot for \link{f7Fab}.}
+
+\item{id}{Optional: access the current state of the \link{f7Fabs} container.}
 
 \item{position}{Container position.}
 

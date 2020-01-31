@@ -3,6 +3,7 @@
 #' Build a Framework7 container for floating action button (FAB)
 #'
 #' @param ... Slot for \link{f7Fab}.
+#' @param id Optional: access the current state of the \link{f7Fabs} container.
 #' @param position Container position.
 #' @param color Container color.
 #' @param extended If TRUE, the FAB will be wider. This allows to use a label (see below).
@@ -63,7 +64,7 @@
 #' }
 #'
 #' @export
-f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom", "left-top",
+f7Fabs <- function(..., id = NULL, position = c("right-top", "right-center", "right-bottom", "left-top",
   "left-center", "left-bottom", "center-center", "center-top", "center-bottom"),
   color = NULL, extended = FALSE, label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center"), morph = FALSE, morphTarget = NULL) {
@@ -75,21 +76,25 @@ f7Fabs <- function(..., position = c("right-top", "right-center", "right-bottom"
 
   sideOpen <- match.arg(sideOpen)
 
-  shiny::tags$div(
-    class = fabCl,
-    `data-morph-to` = if (morph) morphTarget else NULL,
-    shiny::a(
-      href = "#",
-      shiny::tags$i(class="icon f7-icons", "add"),
-      shiny::tags$i(class="icon f7-icons", "close"),
-      if (!is.null(label)) {
-        shiny::tags$div(class = "fab-text", label)
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::tags$div(
+      class = fabCl,
+      id = id,
+      `data-morph-to` = if (morph) morphTarget else NULL,
+      shiny::a(
+        href = "#",
+        shiny::tags$i(class="icon f7-icons", "add"),
+        shiny::tags$i(class="icon f7-icons", "close"),
+        if (!is.null(label)) {
+          shiny::tags$div(class = "fab-text", label)
+        }
+      ),
+      # do not create button wrapper if there are no items inside...
+      if (length(list(...)) > 0) {
+        shiny::tags$div(class = paste0("fab-buttons fab-buttons-", sideOpen), ...)
       }
-    ),
-    # do not create button wrapper if there are no items inside...
-    if (length(list(...)) > 0) {
-      shiny::tags$div(class = paste0("fab-buttons fab-buttons-", sideOpen), ...)
-    }
+    )
   )
 }
 
@@ -113,7 +118,7 @@ f7Fab <- function(inputId, label, width = NULL, ..., flag = NULL) {
     id = inputId,
     style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
     type = "button",
-    class = if (!is.null(flag)) "fab-label-button action-button" else "action-button",
+    class = if (!is.null(flag)) "fab-label-button f7-action-button" else "f7-action-button",
     `data-val` = value,
     list(...),
     shiny::span(label),
