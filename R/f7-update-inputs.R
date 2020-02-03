@@ -729,7 +729,8 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param value The new value for the input.
-#' @param ... Parameters used to update the date picker, use same arguments as in \code{\link{f7DatePicker}}.
+#' @param ... Parameters used to update the date picker,
+#' use same arguments as in \code{\link{f7DatePicker}}.
 #'
 #' @export
 #'

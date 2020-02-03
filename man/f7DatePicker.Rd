@@ -8,6 +8,7 @@ f7DatePicker(
   inputId,
   label,
   value = NULL,
+  multiple = FALSE,
   direction = c("horizontal", "vertical"),
   minDate = NULL,
   maxDate = NULL,
@@ -27,6 +28,8 @@ f7DatePicker(
 \item{label}{Input label.}
 
 \item{value}{Array with initial selected dates. Each array item represents selected date.}
+
+\item{multiple}{If \code{TRUE} allow to select multiple dates.}
 
 \item{direction}{Months layout direction, could be 'horizontal' or 'vertical'.}
 
@@ -52,34 +55,55 @@ In case of auto will open in sheet modal on small screens and in popover on larg
 
 \item{headerPlaceholder}{Default calendar header placeholder text.}
 }
+\value{
+a \code{Date} vector.
+}
 \description{
 Create a Framework7 date input
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     preloader = FALSE,
-     color = "pink",
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7DatePicker"),
-       f7DatePicker(
-         inputId = "date",
-         label = "Choose a date",
-         value = "2019-08-24",
-         openIn = "auto",
-         direction = "horizontal"
-       ),
-       "The selected date is",
-       textOutput("selectDate")
-     )
-   ),
-   server = function(input, output, session) {
-     output$selectDate <- renderText(input$date)
-   }
- )
+  library(shiny)
+  library(shinyMobile)
+
+  shinyApp(
+    ui = f7Page(
+      preloader = FALSE,
+      color = "pink",
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7DatePicker"),
+        f7DatePicker(
+          inputId = "date",
+          label = "Choose a date",
+          value = "2019-08-24"
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectDate"),
+        f7DatePicker(
+          inputId = "multipleDates",
+          label = "Choose multiple dates",
+          value = Sys.Date() + 0:3,
+          multiple = TRUE
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectMultipleDates"),
+        f7DatePicker(
+          inputId = "default",
+          label = "Choose a date",
+          value = NULL
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectDefault")
+      )
+    ),
+    server = function(input, output, session) {
+
+      output$selectDate <- renderPrint(input$date)
+      output$selectMultipleDates <- renderPrint(input$multipleDates)
+      output$selectDefault <- renderPrint(input$default)
+
+    }
+  )
 }
 }

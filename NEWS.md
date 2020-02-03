@@ -13,6 +13,7 @@ different from the text displayed. valueText is then an internal parameter.
 - In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
 
 ## Major changes
+- new `updateF7DatePicker()`: thanks @pvictor
 - add input binding to `f7Fabs()` to get the status of the container
 - add `updateF7Button()` and `updateF7Fabs()`
 - new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom
@@ -56,7 +57,7 @@ on old devices
 
 ## Bug fix
 - Allow output elements to be displayed in `f7Panel()` (need to provide the `f7Panel()` inputId)
-- Prevent `f7Swipeout` to make the current tab swipping if in `f7TabLayout()`
+- Prevent `f7Swipeout()` to make the current tab swipping if in `f7TabLayout()`
 - Fix `f7Fab()` label white background color in dark mode
 - fix #19: letting bigger TRUE in `f7Navbar()` would center the body content on scroll, due to a css conflict
 - fix issue with `f7Slider()` and `f7TabLayout()`: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7#2603. Thanks @pvictor
