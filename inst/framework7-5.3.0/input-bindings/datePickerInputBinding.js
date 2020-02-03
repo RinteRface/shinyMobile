@@ -7,81 +7,58 @@ $.extend(f7DatePickerBinding, {
 
     var inputEl = $(el)[0];
 
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false only for booleans
-        if (["openIn", "toolbarCloseText", "dateFormat", "value", "direction", "headerPlaceholder"].indexOf(camelCaseName) == -1) {
-          var isTrueSet = (attr.value == 'true');
-          data[camelCaseName] = isTrueSet;
-        } else {
-          data[camelCaseName] = attr.value;
-        }
-      }
-    });
+    var config = $(el).parent().find("script[data-for='" + el.id + "']");
+    config = JSON.parse(config.html());
 
-    if (data.value === undefined) {
-      date = new Date();
-      data.value = date;
+    if (!config.hasOwnProperty("value")) {
+      config.value = [new Date()];
     } else {
-      data.value = JSON.parse(data.value);
+      for (var i = 0; i < config.value.length; i++) {
+        config.value[i] = new Date(config.value[i]);
+      }
     }
 
-    data.inputEl = inputEl;
+    config.inputEl = inputEl;
 
     //data.timePicker = true;
 
     // feed the create method
-    var d = app.calendar.create(data);
-    inputEl.f7DatePicker = d;
+    var calendar = app.calendar.create(config);
+    this["calendar-" + el.id] = calendar;
   },
 
   find: function(scope) {
     return $(scope).find(".calendar-input");
   },
 
+  getType: function(el) {
+    return "f7DatePicker.date";
+  },
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    // below we have an issue with the returned month. Apparently,
-    // months start from 0 so when august is selected, it actually
-    // returns july. Need to increment by 1.
-    // var d = app.calendar.get($(el));
-    // console.log(d);
-    var value = $(".calendar-day-selected").attr("data-date");
-    if (typeof value === "undefined") {
-      return JSON.parse($(el).attr("placeholder"));
-    }
-    value = value.split("-");
-    n = parseInt(value[1]) + 1;
-    if (n < 10) {
-      if (value[2] < 10) {
-       value = value[0] + "-0" + n + "-0" + value[2];
-      } else {
-        value = value[0] + "-0" + n + "-" + value[2];
-      }
-    } else {
-      if (value[2] < 10) {
-        value = value[0] + "-" + n + "-0" + value[2];
-      } else {
-        value = value[0] + "-" + n + "-" + value[2];
-      }
-    }
-    return value;
+    return this["calendar-" + el.id].getValue();
   },
 
   // see updateF7DatePicker
   setValue: function(el, value) {
-
+    this["calendar-" + el.id].setValue(value);
   },
 
   // see updateF7DatePicker
   receiveMessage: function(el, data) {
-    //console.log(el);
-    //var d = app.calendar.get(el);
-    //console.log(d);
+    if (data.hasOwnProperty("config")) {
+      this["calendar-" + el.id].destroy();
+      data.config.inputEl = el;
+      this["calendar-" + el.id] = app.calendar.create(data.config);
+    }
+    if (data.hasOwnProperty("value")) {
+      var tmpdate;
+      for (var i = 0; i < data.value.length; i++) {
+        tmpdate = new Date(data.value[i]);
+        data.value[i] = new Date(tmpdate.getFullYear(), tmpdate.getMonth(), tmpdate.getDate());
+      }
+      this.setValue(el, data.value);
+    }
   },
 
   subscribe: function(el, callback) {

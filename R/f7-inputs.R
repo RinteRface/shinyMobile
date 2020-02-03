@@ -464,6 +464,7 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param inputId Date input id.
 #' @param label Input label.
 #' @param value Array with initial selected dates. Each array item represents selected date.
+#' @param multiple If \code{TRUE} allow to select multiple dates.
 #' @param direction Months layout direction, could be 'horizontal' or 'vertical'.
 #' @param minDate Minimum allowed date.
 #' @param maxDate Maximum allowed date.
@@ -478,35 +479,57 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param header Enables calendar header.
 #' @param headerPlaceholder Default calendar header placeholder text.
 #'
+#' @importFrom jsonlite toJSON
+#'
+#' @return a \code{Date} vector.
+#'
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      preloader = FALSE,
-#'      color = "pink",
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7DatePicker"),
-#'        f7DatePicker(
-#'          inputId = "date",
-#'          label = "Choose a date",
-#'          value = "2019-08-24",
-#'          openIn = "auto",
-#'          direction = "horizontal"
-#'        ),
-#'        "The selected date is",
-#'        textOutput("selectDate")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      output$selectDate <- renderText(input$date)
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(shinyMobile)
+#'
+#'   shinyApp(
+#'     ui = f7Page(
+#'       preloader = FALSE,
+#'       color = "pink",
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7DatePicker"),
+#'         f7DatePicker(
+#'           inputId = "date",
+#'           label = "Choose a date",
+#'           value = "2019-08-24"
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDate"),
+#'         f7DatePicker(
+#'           inputId = "multipleDates",
+#'           label = "Choose multiple dates",
+#'           value = Sys.Date() + 0:3,
+#'           multiple = TRUE
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectMultipleDates"),
+#'         f7DatePicker(
+#'           inputId = "default",
+#'           label = "Choose a date",
+#'           value = NULL
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDefault")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'       output$selectDate <- renderPrint(input$date)
+#'       output$selectMultipleDates <- renderPrint(input$multipleDates)
+#'       output$selectDefault <- renderPrint(input$default)
+#'
+#'     }
+#'   )
 #' }
-f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal", "vertical"),
+f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, direction = c("horizontal", "vertical"),
                          minDate = NULL, maxDate = NULL, dateFormat = "yyyy-mm-dd",
                          openIn = c("auto", "popover", "sheet", "customModal"),
                          scrollToInput = FALSE, closeByOutsideClick = TRUE,
@@ -516,47 +539,39 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
-  # for JS
-  value <- jsonlite::toJSON(value)
+  if (!is.null(value) && length(value) == 1) {
+    value <- list(value)
+  }
+
+  config <- dropNulls(list(
+    value = value,
+    multiple = multiple,
+    direction = direction,
+    minDate = minDate,
+    maxDate = maxDate,
+    dateFormat = dateFormat,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByClickOutside = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    header = header,
+    headerPlaceholder = headerPlaceholder
+  ))
 
   # date picker props
-  datePickerProps <- dropNulls(
-    list(
-      type = "text",
-      placeholder = value,
-      class = "calendar-input",
-      id = inputId,
-      `data-value` = value,
-      `data-direction` = direction,
-      `data-min-date` = minDate,
-      `date-max-date` = maxDate,
-      `data-date-format` = dateFormat,
-      `data-open-in` = openIn,
-      `data-scroll-to-input` = scrollToInput,
-      `data-close-by-click-outside` = closeByOutsideClick,
-      `data-toolbar` = toolbar,
-      `data-toolbar-close-text` = toolbarCloseText,
-      `data-header` = header,
-      `data-header-placeholder` = headerPlaceholder
-    )
+  datePickerTag <- shiny::tags$input(
+    type = "text",
+    class = "calendar-input",
+    id = inputId
   )
-
-  # replace TRUE and FALSE by true and false for javascript
-  datePickerProps <- lapply(datePickerProps, function(x) {
-    if (identical(x, TRUE)) "true"
-    else if (identical(x, FALSE)) "false"
-    else x
-  })
-
-  # wrap props
-  datePickerProps <- do.call(shiny::tags$input, datePickerProps)
 
   # label
   labelTag <- shiny::tags$div(class = "block-title", label)
 
-  wrapperTag <- shiny::tagList(
+  shiny::tagList(
     f7InputsDeps(),
-    labelTag,
+    if (!is.null(label)) labelTag,
     # input tag
     shiny::tags$div(
       class = "list no-hairlines-md",
@@ -568,7 +583,16 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
               class = "item-inner",
               shiny::tags$div(
                 class = "item-input-wrap",
-                datePickerProps
+                datePickerTag,
+                shiny::tags$script(
+                  type = "application/json",
+                  `data-for` = inputId,
+                  jsonlite::toJSON(
+                    x = config,
+                    auto_unbox = TRUE,
+                    json_verbatim = TRUE
+                  )
+                )
               )
             )
           )
@@ -576,7 +600,6 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
       )
     )
   )
-  wrapperTag
 }
 
 
