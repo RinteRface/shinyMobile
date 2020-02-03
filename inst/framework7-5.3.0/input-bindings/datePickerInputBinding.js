@@ -7,13 +7,15 @@ $.extend(f7DatePickerBinding, {
 
     var inputEl = $(el)[0];
 
-    var config = $(el).parent().find('script[data-for="' + el.id + '"]');
+    var config = $(el).parent().find("script[data-for='" + el.id + "']");
     config = JSON.parse(config.html());
 
     if (!config.hasOwnProperty("value")) {
-      config.value = new Date();
+      config.value = [new Date()];
     } else {
-      config.value = Date.parse(config.value);
+      for (var i = 0; i < config.value.length; i++) {
+        config.value[i] = new Date(config.value[i]);
+      }
     }
 
     config.inputEl = inputEl;
@@ -22,7 +24,7 @@ $.extend(f7DatePickerBinding, {
 
     // feed the create method
     var calendar = app.calendar.create(config);
-    calendar.setValue([config.value]);
+    calendar.setValue(config.value);
     this["calendar-" + el.id] = calendar;
   },
 
@@ -40,14 +42,17 @@ $.extend(f7DatePickerBinding, {
 
   // see updateF7DatePicker
   setValue: function(el, value) {
-
+    this["calendar-" + el.id].setValue(value);
   },
 
   // see updateF7DatePicker
   receiveMessage: function(el, data) {
-    //console.log(el);
-    //var d = app.calendar.get(el);
-    //console.log(d);
+    if (data.hasOwnProperty("value")) {
+      for (var i = 0; i < data.value.length; i++) {
+        data.value[i] = new Date(data.value[i]);
+      }
+      this.setValue(el, data.value);
+    }
   },
 
   subscribe: function(el, callback) {

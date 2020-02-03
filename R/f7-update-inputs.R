@@ -800,6 +800,9 @@ updateF7DatePicker <- function(session, inputId, value = NULL, choices = NULL,
                            rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
                            closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
                            sheetSwipeToClose = NULL) {
+  if (!is.null(value) && length(value) == 1) {
+    value <- list(value)
+  }
   message <- dropNulls(list(
     value = value,
     choices = choices,

@@ -518,6 +518,10 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
+  if (!is.null(value) && length(value) == 1) {
+    value <- list(value)
+  }
+
   config <- dropNulls(list(
     value = value,
     direction = direction,
