@@ -729,7 +729,6 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 #' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param value Picker initial value, if any.
-#' @param choices New picker choices.
 #' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
 #' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
 #'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
@@ -796,16 +795,14 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 #'   }
 #'  )
 #' }
-updateF7DatePicker <- function(session, inputId, value = NULL, choices = NULL,
+updateF7DatePicker <- function(session, inputId, value = NULL,
                            rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
                            closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
                            sheetSwipeToClose = NULL) {
   if (!is.null(value) && length(value) == 1) {
     value <- list(value)
   }
-  message <- dropNulls(list(
-    value = value,
-    choices = choices,
+  config <- dropNulls(list(
     rotateEffect = rotateEffect,
     openIn = openIn,
     scrollToInput = scrollToInput,
@@ -813,6 +810,12 @@ updateF7DatePicker <- function(session, inputId, value = NULL, choices = NULL,
     toolbar = toolbar,
     toolbarCloseText = toolbarCloseText,
     sheetSwipeToClose = sheetSwipeToClose
+  ))
+  if (length(config) == 0)
+    config <- NULL
+  message <- dropNulls(list(
+    value = value,
+    config = config
   ))
   session$sendInputMessage(inputId, message)
 }

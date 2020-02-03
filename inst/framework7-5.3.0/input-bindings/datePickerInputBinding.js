@@ -47,14 +47,17 @@ $.extend(f7DatePickerBinding, {
 
   // see updateF7DatePicker
   receiveMessage: function(el, data) {
+    if (data.hasOwnProperty("config")) {
+      this["calendar-" + el.id].destroy();
+      data.config.inputEl = el;
+      this["calendar-" + el.id] = app.calendar.create(data.config);
+    }
     if (data.hasOwnProperty("value")) {
       for (var i = 0; i < data.value.length; i++) {
         data.value[i] = new Date(data.value[i]);
       }
       this.setValue(el, data.value);
     }
-    var calendar = app.calendar.create($(el));
-    console.log(calendar);
   },
 
   subscribe: function(el, callback) {
