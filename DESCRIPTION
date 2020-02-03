@@ -34,5 +34,6 @@ Suggests:
     cli,
     rstudioapi,
     shinyWidgets, 
-    echarts4r
+    echarts4r,
+    golem
 VignetteBuilder: knitr
