@@ -792,8 +792,12 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL,
 #'   )
 #' }
 updateF7DatePicker <- function(session, inputId, value = NULL, ...) {
-  if (!is.null(value) && length(value) == 1) {
-    value <- list(value)
+  if (!is.null(value)) {
+    if (length(value) == 1) {
+      value <- list(as.character(value))
+    } else {
+      value <- as.character(value)
+    }
   }
   config <- dropNulls(list(...))
   if (length(config) == 0)

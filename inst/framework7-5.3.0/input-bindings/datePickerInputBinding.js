@@ -52,8 +52,10 @@ $.extend(f7DatePickerBinding, {
       this["calendar-" + el.id] = app.calendar.create(data.config);
     }
     if (data.hasOwnProperty("value")) {
+      var tmpdate;
       for (var i = 0; i < data.value.length; i++) {
-        data.value[i] = new Date(data.value[i]);
+        tmpdate = new Date(data.value[i]);
+        data.value[i] = new Date(tmpdate.getFullYear(), tmpdate.getMonth(), tmpdate.getDate());
       }
       this.setValue(el, data.value);
     }
