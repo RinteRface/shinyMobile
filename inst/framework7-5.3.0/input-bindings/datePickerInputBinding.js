@@ -24,7 +24,6 @@ $.extend(f7DatePickerBinding, {
 
     // feed the create method
     var calendar = app.calendar.create(config);
-    calendar.setValue(config.value);
     this["calendar-" + el.id] = calendar;
   },
 

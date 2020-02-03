@@ -464,6 +464,7 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param inputId Date input id.
 #' @param label Input label.
 #' @param value Array with initial selected dates. Each array item represents selected date.
+#' @param multiple If \code{TRUE} allow to select multiple dates.
 #' @param direction Months layout direction, could be 'horizontal' or 'vertical'.
 #' @param minDate Minimum allowed date.
 #' @param maxDate Maximum allowed date.
@@ -480,35 +481,55 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'
 #' @importFrom jsonlite toJSON
 #'
+#' @return a \code{Date} vector.
+#'
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      preloader = FALSE,
-#'      color = "pink",
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7DatePicker"),
-#'        f7DatePicker(
-#'          inputId = "date",
-#'          label = "Choose a date",
-#'          value = "2019-08-24",
-#'          openIn = "auto",
-#'          direction = "horizontal"
-#'        ),
-#'        "The selected date is",
-#'        verbatimTextOutput("selectDate")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      output$selectDate <- renderPrint(input$date)
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(shinyMobile)
+#'
+#'   shinyApp(
+#'     ui = f7Page(
+#'       preloader = FALSE,
+#'       color = "pink",
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7DatePicker"),
+#'         f7DatePicker(
+#'           inputId = "date",
+#'           label = "Choose a date",
+#'           value = "2019-08-24"
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDate"),
+#'         f7DatePicker(
+#'           inputId = "multipleDates",
+#'           label = "Choose multiple dates",
+#'           value = Sys.Date() + 0:3,
+#'           multiple = TRUE
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectMultipleDates"),
+#'         f7DatePicker(
+#'           inputId = "default",
+#'           label = "Choose a date",
+#'           value = NULL
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDefault")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'       output$selectDate <- renderPrint(input$date)
+#'       output$selectMultipleDates <- renderPrint(input$multipleDates)
+#'       output$selectDefault <- renderPrint(input$default)
+#'
+#'     }
+#'   )
 #' }
-f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal", "vertical"),
+f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, direction = c("horizontal", "vertical"),
                          minDate = NULL, maxDate = NULL, dateFormat = "yyyy-mm-dd",
                          openIn = c("auto", "popover", "sheet", "customModal"),
                          scrollToInput = FALSE, closeByOutsideClick = TRUE,
@@ -524,6 +545,7 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
 
   config <- dropNulls(list(
     value = value,
+    multiple = multiple,
     direction = direction,
     minDate = minDate,
     maxDate = maxDate,
@@ -540,7 +562,6 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
   # date picker props
   datePickerTag <- shiny::tags$input(
     type = "text",
-    placeholder = value,
     class = "calendar-input",
     id = inputId
   )
@@ -548,7 +569,7 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
   # label
   labelTag <- shiny::tags$div(class = "block-title", label)
 
-  wrapperTag <- shiny::tagList(
+  shiny::tagList(
     f7InputsDeps(),
     if (!is.null(label)) labelTag,
     # input tag
@@ -579,7 +600,6 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
       )
     )
   )
-  wrapperTag
 }
 
 
