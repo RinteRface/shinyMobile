@@ -478,6 +478,8 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param header Enables calendar header.
 #' @param headerPlaceholder Default calendar header placeholder text.
 #'
+#' @importFrom jsonlite toJSON
+#'
 #' @export
 #' @examples
 #' if (interactive()) {
@@ -516,47 +518,35 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
-  # for JS
-  value <- jsonlite::toJSON(value)
+  config <- dropNulls(list(
+    value = value,
+    direction = direction,
+    minDate = minDate,
+    maxDate = maxDate,
+    dateFormat = dateFormat,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByClickOutside = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    header = header,
+    headerPlaceholder = headerPlaceholder
+  ))
 
   # date picker props
-  datePickerProps <- dropNulls(
-    list(
-      type = "text",
-      placeholder = value,
-      class = "calendar-input",
-      id = inputId,
-      `data-value` = value,
-      `data-direction` = direction,
-      `data-min-date` = minDate,
-      `date-max-date` = maxDate,
-      `data-date-format` = dateFormat,
-      `data-open-in` = openIn,
-      `data-scroll-to-input` = scrollToInput,
-      `data-close-by-click-outside` = closeByOutsideClick,
-      `data-toolbar` = toolbar,
-      `data-toolbar-close-text` = toolbarCloseText,
-      `data-header` = header,
-      `data-header-placeholder` = headerPlaceholder
-    )
+  datePickerTag <- shiny::tags$input(
+    type = "text",
+    placeholder = value,
+    class = "calendar-input",
+    id = inputId
   )
-
-  # replace TRUE and FALSE by true and false for javascript
-  datePickerProps <- lapply(datePickerProps, function(x) {
-    if (identical(x, TRUE)) "true"
-    else if (identical(x, FALSE)) "false"
-    else x
-  })
-
-  # wrap props
-  datePickerProps <- do.call(shiny::tags$input, datePickerProps)
 
   # label
   labelTag <- shiny::tags$div(class = "block-title", label)
 
   wrapperTag <- shiny::tagList(
     f7InputsDeps(),
-    labelTag,
+    if (!is.null(label)) labelTag,
     # input tag
     shiny::tags$div(
       class = "list no-hairlines-md",
@@ -568,7 +558,16 @@ f7DatePicker <- function(inputId, label, value = NULL, direction = c("horizontal
               class = "item-inner",
               shiny::tags$div(
                 class = "item-input-wrap",
-                datePickerProps
+                datePickerTag,
+                shiny::tags$script(
+                  type = "application/json",
+                  `data-for` = inputId,
+                  jsonlite::toJSON(
+                    x = config,
+                    auto_unbox = TRUE,
+                    json_verbatim = TRUE
+                  )
+                )
               )
             )
           )
