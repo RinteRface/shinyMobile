@@ -1281,8 +1281,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
   shiny::tags$div(
     f7InputsDeps(),
     # HTML skeleton
-    shiny::br(),
-    shiny::tags$div(class = "block-title", label),
+    if (!is.null(label)) shiny::tags$div(class = "block-title", label),
     if (!is.null(labels)) {
       shiny::tags$div(
         class = "list simple-list",
