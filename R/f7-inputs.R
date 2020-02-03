@@ -500,11 +500,11 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'          direction = "horizontal"
 #'        ),
 #'        "The selected date is",
-#'        textOutput("selectDate")
+#'        verbatimTextOutput("selectDate")
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
-#'      output$selectDate <- renderText(input$date)
+#'      output$selectDate <- renderPrint(input$date)
 #'    }
 #'  )
 #' }
