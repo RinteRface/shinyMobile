@@ -53,6 +53,8 @@ $.extend(f7DatePickerBinding, {
       }
       this.setValue(el, data.value);
     }
+    var calendar = app.calendar.create($(el));
+    console.log(calendar);
   },
 
   subscribe: function(el, callback) {
