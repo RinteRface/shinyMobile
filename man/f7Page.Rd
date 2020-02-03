@@ -9,7 +9,8 @@ f7Page(
   init = f7Init(skin = "auto", theme = "light"),
   title = NULL,
   preloader = FALSE,
-  loading_duration = 3
+  loading_duration = 3,
+  manifest = "manifest.json"
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ f7Page(
 FALSE by default.}
 
 \item{loading_duration}{Preloader duration.}
+
+\item{manifest}{Path to manifest.json file.}
 }
 \description{
 Build a Framework7 page

@@ -9,12 +9,13 @@
 #' @param preloader Whether to display a preloader before the app starts.
 #' FALSE by default.
 #' @param loading_duration Preloader duration.
+#' @param manifest Path to manifest.json file.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = NULL, preloader = FALSE,
-                   loading_duration = 3){
+                   loading_duration = 3, manifest = "manifest.json"){
 
   shiny::tags$html(
     # Head
@@ -37,7 +38,7 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = N
       shiny::tags$meta(name = "apple-mobile-web-app-status-bar-style", content = "black-translucent"),
       shiny::tags$link(rel = "apple-touch-icon", href = "icons/apple-touch-icon.png"),
       shiny::tags$link(rel = "icon", href = "icons/favicon.png"),
-      shiny::tags$link(rel = "manifest", href = "manifest.json"),
+      shiny::tags$link(rel = "manifest", href = manifest),
 
       # Splatshscreen for IOS must be in a www folder
       shiny::tags$link(href = "splashscreens/iphone5_splash.png", media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
