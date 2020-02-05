@@ -82,7 +82,7 @@ f7Col <- function(..., width = NULL, resizable = FALSE){
 
   # width
   if(!is.null(width))
-    cl <- paste0(col, width)
+    cl <- paste0(cl, "-", width)
 
   # sizable
   if(resizable) cl <- paste(cl, "resizable")
