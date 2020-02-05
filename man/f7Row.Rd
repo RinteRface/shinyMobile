@@ -4,12 +4,14 @@
 \alias{f7Row}
 \title{Create a Framework7 row container}
 \usage{
-f7Row(..., gap = TRUE)
+f7Row(..., gap = TRUE, resizable = FALSE)
 }
 \arguments{
 \item{...}{Row content.}
 
 \item{gap}{Whether to display gap between columns. TRUE by default.}
+
+\item{resizable}{Whether to create a resizable row.}
 }
 \description{
 Build a Framework7 row container

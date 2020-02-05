@@ -3,6 +3,7 @@
 #' Build a Framework7 row container
 #'
 #' @param ... Row content.
+#' @param resizable Whether to create a resizable row.
 #' @param gap Whether to display gap between columns. TRUE by default.
 #'
 #' @examples
@@ -45,8 +46,17 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Row <- function(..., gap = TRUE) {
- shiny::tags$div(class = if (gap) "row" else "row no-gap", ...)
+f7Row <- function(..., gap = TRUE, resizable = FALSE) {
+  cl <- "row"
+  if(!gap) cl <- paste(cl, "no-gap")
+  if(resizable) cl <- paste(cl, "resizable")
+
+  row <- shiny::tags$div(class = cl, ...)
+
+  if(resizable)
+    row <- shiny::tagAppendChild(row, shiny::span(class = "resize-handler"))
+
+  return(row)
 }
 
 
@@ -54,7 +64,10 @@ f7Row <- function(..., gap = TRUE) {
 #' Create a Framework7 column container
 #'
 #' Build a Framework7 column container
-#'
+#' 
+#' @param width Width of column, an integer ranging from 0 to 100 giving the width
+#' in percentage.
+#' @param resizable Whether to create a resizable column.
 #' @param ... Column content. The width is automatically handled depending
 #' on the number of columns.
 #'
@@ -64,7 +77,23 @@ f7Row <- function(..., gap = TRUE) {
 #' instead.
 #'
 #' @export
-f7Col <- function(...) shiny::tags$div(class = "col", ...)
+f7Col <- function(..., width = NULL, resizable = FALSE){
+  cl <- "col"
+
+  # width
+  if(!is.null(width))
+    cl <- paste0(col, width)
+
+  # sizable
+  if(resizable) cl <- paste(cl, "resizable")
+
+  col <- shiny::tags$div(class = cl, ...)
+
+  if(resizable)
+    col <- shiny::tagAppendChild(col, shiny::span(class = "resize-handler"))
+
+  return(col)
+}
 
 
 

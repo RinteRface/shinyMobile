@@ -4,11 +4,16 @@
 \alias{f7Col}
 \title{Create a Framework7 column container}
 \usage{
-f7Col(...)
+f7Col(..., width = NULL, resizable = FALSE)
 }
 \arguments{
 \item{...}{Column content. The width is automatically handled depending
 on the number of columns.}
+
+\item{width}{Width of column, an integer ranging from 0 to 100 giving the width
+in percentage.}
+
+\item{resizable}{Whether to create a resizable column.}
 }
 \description{
 Build a Framework7 column container
