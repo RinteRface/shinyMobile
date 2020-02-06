@@ -24,3 +24,24 @@ test_that("accordion", {
     "list"
   )
 })
+
+
+test_that("accordion items", {
+  expect_shinytag(f7AccordionItem())
+  expect_equal(f7AccordionItem()$name, "li")
+  expect_equal(f7AccordionItem()$attribs$class, "accordion-item")
+  expect_equal(
+    f7AccordionItem(open = TRUE)$attribs$class,
+    "accordion-item accordion-item-opened"
+  )
+
+  # structure: [[1]] is the link, [[2]] is the content
+  item <- f7AccordionItem(open = TRUE)$children
+  expect_length(item, 2)
+  expect_equal(item[[1]]$name, "a")
+  expect_equal(item[[1]]$children[[1]]$attribs$class, "item-inner")
+  expect_equal(item[[1]]$children[[1]]$children[[1]]$attribs$class, "item-title")
+  expect_equal(item[[2]]$name, "div")
+  expect_equal(item[[2]]$attribs$class, "accordion-item-content")
+
+})
