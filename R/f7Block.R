@@ -124,7 +124,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 #' @export
 f7BlockTitle <- function(title = NULL, size = NULL) {
   titleCl <- "block-title"
-  titleCl <- if (!is.null(size)) {
+  if (!is.null(size)) {
     if (size == "large") {
       titleCl <- paste0(titleCl, " block-title-large")
     } else if (size == "medium") {
