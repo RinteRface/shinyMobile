@@ -26,3 +26,20 @@ test_that("block class", {
     "block no-hairlines block-strong tablet-inset"
   )
 })
+
+
+test_that("blocktitle", {
+  expect_shinytag(f7BlockTitle())
+  expect_equal(
+    f7BlockTitle()$attribs$class,
+    "block-title"
+  )
+  expect_equal(
+    f7BlockTitle(size = "large")$attribs$class,
+    "block-title block-title-large"
+  )
+  expect_equal(
+    f7BlockTitle(size = "medium")$attribs$class,
+    "block-title block-title-medium"
+  )
+})
