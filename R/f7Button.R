@@ -23,11 +23,11 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   if (!is.null(inputId) & !is.null(src)) stop("Cannot set inputId and src at the same time.")
 
-  # outline and fill are incompatible by definition as well as color and outline
-  if (outline) {
-    fill <- FALSE
-    color <- NULL
-  }
+  # outline and fill are incompatible by definition
+  # as well as color and outline
+
+  if (outline & fill) stop("outline and fill cannot be used at the same time")
+  if (outline & !is.null(color)) stop("outline buttons cannot have color!")
 
   # need to add external to handle external url
   buttonCl <- "button"
@@ -42,14 +42,17 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  shiny::tags$button(
-    id = inputId,
-    type = "button",
-    class = buttonCl,
-    href = if (!is.null(src)) src else NULL,
-    `data-val` = if (!is.null(inputId)) value else NULL,
-    target = "_blank",
-    label
+  tagList(
+    f7InputsDeps(),
+    shiny::tags$button(
+      id = inputId,
+      type = "button",
+      class = buttonCl,
+      href = if (!is.null(src)) src else NULL,
+      `data-val` = if (!is.null(inputId)) value else NULL,
+      target = "_blank",
+      label
+    )
   )
 }
 
@@ -95,9 +98,9 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'     f7Segment(
 #'      shadow = TRUE,
 #'      container = "segment",
-#'      f7Button(label = "My button", outline = TRUE),
-#'      f7Button(label = "My button", outline = TRUE),
-#'      f7Button(label = "My button", outline = TRUE)
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE),
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE),
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE)
 #'     ),
 #'     f7BlockTitle(title = "Rounded Buttons in a segment container"),
 #'     f7Segment(
