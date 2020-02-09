@@ -7,34 +7,47 @@
 f7Popup(
   ...,
   id,
-  title,
+  title = NULL,
   backdrop = TRUE,
   closeByBackdropClick = TRUE,
   closeOnEscape = FALSE,
   animate = TRUE,
-  swipeToClose = FALSE
+  swipeToClose = FALSE,
+  fullsize = FALSE,
+  closeButton = TRUE
 )
 }
 \arguments{
-\item{...}{Content.}
+\item{...}{UI elements for the body of the popup window.}
 
 \item{id}{Popup unique id.}
 
-\item{title}{Title.}
+\item{title}{Title for the popup window, use \code{NULL} for no title.}
 
-\item{backdrop}{Enables Popup backdrop (dark semi transparent layer behind). Default to TRUE.}
+\item{backdrop}{Enables Popup backdrop (dark semi transparent layer behind).
+Default to \code{TRUE}.}
 
-\item{closeByBackdropClick}{When enabled, popup will be closed on backdrop click. Default to TRUE.}
+\item{closeByBackdropClick}{When enabled, popup will be closed on backdrop click.
+Default to \code{TRUE}.}
 
-\item{closeOnEscape}{When enabled, popup will be closed on ESC keyboard key press. Default to FALSE.}
+\item{closeOnEscape}{When enabled, popup will be closed on ESC keyboard key press.
+Default to \code{FALSE}.}
 
-\item{animate}{Whether the Popup should be opened/closed with animation or not. Default to TRUE.}
+\item{animate}{Whether the Popup should be opened/closed with animation or not.
+Default to \code{TRUE}.}
 
-\item{swipeToClose}{Whether the Popup can be closed with swipe gesture. Can be true to allow to close popup with swipes to top and to bottom.
-Default to FALSE.}
+\item{swipeToClose}{Whether the Popup can be closed with swipe gesture.
+Can be true to allow to close popup with swipes to top and to bottom.
+Default to \code{FALSE}.}
+
+\item{fullsize}{Open popup in full width or not. Default to \code{FALSE}.}
+
+\item{closeButton}{Add or not a button to easily close the popup.
+Default to \code{TRUE}.}
 }
 \description{
-Create a f7 popup
+Popup is a popup window with any UI content that pops up over App's main content.
+ Popup as all other overlays is part of so called "Temporary Views".
 }
 \examples{
 if (interactive()) {
