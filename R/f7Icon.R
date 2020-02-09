@@ -7,6 +7,8 @@
 #' @param lib Library to use: NULL, "ios" or "md". Leave \code{NULL} by default. Specify, md or ios
 #'  if you want to hide/show icons on specific devices.
 #' @param color Icon color, if any.
+#' @param style CSS styles to be applied on icon, for example
+#'  use \code{font-size: 56px;} to have a bigger icon.
 #' @param old Use \code{TRUE} for old icons, default is \code{TRUE},
 #'  but in a future version of shinyMobile default will be \code{FALSE}.
 #'
@@ -14,6 +16,9 @@
 #'
 #' f7Icon("close", old = TRUE)
 #' f7Icon("multiply", old = FALSE)
+#'
+#' # Icon size
+#' f7Icon("multiply", style = "font-size: 56px;", old = FALSE)
 #'
 #' if(interactive()){
 #'  library(shiny)
@@ -53,7 +58,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Icon <- function(..., lib = NULL, color = NULL, old = TRUE) {
+f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = TRUE) {
   call_ <- as.list(match.call())
   if (is.null(call_$old)) {
     warning(
@@ -80,7 +85,7 @@ f7Icon <- function(..., lib = NULL, color = NULL, old = TRUE) {
   }
 
   iconTag <- htmltools::attachDependencies(
-    x = shiny::tags$i(class = iconCl, ...),
+    x = shiny::tags$i(class = iconCl, style = style, ...),
     value = html_dependencies_f7Icons(old = old)
   )
   htmltools::browsable(iconTag)
