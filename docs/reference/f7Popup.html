@@ -45,7 +45,8 @@
   
 
 <meta property="og:title" content="Create a f7 popup — f7Popup" />
-<meta property="og:description" content="Create a f7 popup" />
+<meta property="og:description" content="Popup is a popup window with any UI content that pops up over App's main content.
+ Popup as all other overlays is part of so called &quot;Temporary Views&quot;." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -154,18 +155,21 @@
     </div>
 
     <div class="ref-description">
-    <p>Create a f7 popup</p>
+    <p>Popup is a popup window with any UI content that pops up over App's main content.
+ Popup as all other overlays is part of so called "Temporary Views".</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Popup</span>(
   <span class='no'>...</span>,
   <span class='no'>id</span>,
-  <span class='no'>title</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>closeByBackdropClick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>closeOnEscape</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>animate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>fullsize</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closeButton</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -173,7 +177,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Content.</p></td>
+      <td><p>UI elements for the body of the popup window.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -181,28 +185,42 @@
     </tr>
     <tr>
       <th>title</th>
-      <td><p>Title.</p></td>
+      <td><p>Title for the popup window, use <code>NULL</code> for no title.</p></td>
     </tr>
     <tr>
       <th>backdrop</th>
-      <td><p>Enables Popup backdrop (dark semi transparent layer behind). Default to TRUE.</p></td>
+      <td><p>Enables Popup backdrop (dark semi transparent layer behind).
+Default to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>closeByBackdropClick</th>
-      <td><p>When enabled, popup will be closed on backdrop click. Default to TRUE.</p></td>
+      <td><p>When enabled, popup will be closed on backdrop click.
+Default to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>closeOnEscape</th>
-      <td><p>When enabled, popup will be closed on ESC keyboard key press. Default to FALSE.</p></td>
+      <td><p>When enabled, popup will be closed on ESC keyboard key press.
+Default to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>animate</th>
-      <td><p>Whether the Popup should be opened/closed with animation or not. Default to TRUE.</p></td>
+      <td><p>Whether the Popup should be opened/closed with animation or not.
+Default to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>swipeToClose</th>
-      <td><p>Whether the Popup can be closed with swipe gesture. Can be true to allow to close popup with swipes to top and to bottom.
-Default to FALSE.</p></td>
+      <td><p>Whether the Popup can be closed with swipe gesture.
+Can be true to allow to close popup with swipes to top and to bottom.
+Default to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>fullsize</th>
+      <td><p>Open popup in full width or not. Default to <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>closeButton</th>
+      <td><p>Add or not a button to easily close the popup.
+Default to <code>TRUE</code>.</p></td>
     </tr>
     </table>
 

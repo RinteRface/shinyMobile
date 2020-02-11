@@ -27,6 +27,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- new fullsize and closeButton parameter to `f7Popup()` + rewrite js binding. Thanks @pvictor
 - add extra parameters to `f7DatePicker()`: direction, openIn,
 scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText,
 header and headerPlaceholder
