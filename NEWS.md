@@ -13,6 +13,7 @@ different from the text displayed. valueText is then an internal parameter.
 - In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
 
 ## Major changes
+- update `f7Icon()` and icons dependencies. thanks @pvictor
 - new `updateF7DatePicker()`: thanks @pvictor
 - add input binding to `f7Fabs()` to get the status of the container
 - add `updateF7Button()` and `updateF7Fabs()`
