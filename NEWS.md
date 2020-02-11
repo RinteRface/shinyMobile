@@ -14,6 +14,7 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- update `f7Icon()` and icons dependencies. thanks @pvictor
 - new `updateF7DatePicker()`: thanks @pvictor
 - add input binding to `f7Fabs()` to get the status of the container
 - add `updateF7Button()` and `updateF7Fabs()`
@@ -28,6 +29,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- new fullsize and closeButton parameter to `f7Popup()` + rewrite js binding. Thanks @pvictor
 - add extra parameters to `f7DatePicker()`: direction, openIn,
 scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText,
 header and headerPlaceholder

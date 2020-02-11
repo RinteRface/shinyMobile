@@ -5,33 +5,19 @@ $.extend(f7PopupBinding, {
 
   initialize: function(el) {
 
-    // recover the inputId passed in the R function
-    var id = $(el).attr("id");
-
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false
-        var isTrueSet = (attr.value == "true");
-        data[camelCaseName] = isTrueSet;
-      }
-    });
-
-    // add the id
-    data.el = '#' + id;
+    var config = $(el).find("script[data-for='" + el.id + "']");
+    config = JSON.parse(config.html());
+    config.el = el;
 
     // this is to show shiny outputs in the popup
-    data.on = {
+    config.on = {
       opened: function () {
         $(el).trigger('shown');
       }
     };
 
     // feed the create method
-    var p = app.popup.create(data);
+    var p = app.popup.create(config);
 
   },
 
