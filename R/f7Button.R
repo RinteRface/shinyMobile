@@ -146,18 +146,16 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, roun
   wrapper <- wrapperBlock()
   wrapper$children[[1]]$attribs$class <- containerCl
 
-  btns <- wrapper$children[[1]]$children
+  btns <- list(...)
   if (container == "row") {
-    lapply(seq_along(btns), function(i) {
-      wrapper$children[[1]]$children[[i]]$attribs$class <- paste(
-        wrapper$children[[1]]$children[[i]]$attribs$class,
+    for (i in seq_along(btns)) {
+      btns[[i]]$attribs$class <- paste(
+        btns[[i]]$attribs$class,
         class = "col"
       )
-    })
+    }
   }
-
-  items <- shiny::tagList(...)
-  wrapper$children[[1]] <- shiny::tagAppendChild(wrapper$children[[1]], items)
+  wrapper$children[[1]] <- shiny::tagAppendChildren(wrapper$children[[1]], btns)
   return(wrapper)
 }
 
