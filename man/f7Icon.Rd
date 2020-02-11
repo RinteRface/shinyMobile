@@ -2,22 +2,36 @@
 % Please edit documentation in R/f7Icon.R
 \name{f7Icon}
 \alias{f7Icon}
-\title{Create a Framework7 icon}
+\title{Framework7 icons}
 \usage{
-f7Icon(..., lib = NULL, color = NULL)
+f7Icon(..., lib = NULL, color = NULL, style = NULL, old = TRUE)
 }
 \arguments{
 \item{...}{Icon name and \link{f7Badge}.}
 
-\item{lib}{Library to use: NULL, "ios" or "md". Leave NULL by default. Specify, md or ios
+\item{lib}{Library to use: NULL, "ios" or "md". Leave \code{NULL} by default. Specify, md or ios
 if you want to hide/show icons on specific devices.}
 
 \item{color}{Icon color, if any.}
+
+\item{style}{CSS styles to be applied on icon, for example
+use \code{font-size: 56px;} to have a bigger icon.}
+
+\item{old}{Use \code{TRUE} for old icons, default is \code{TRUE},
+but in a future version of shinyMobile default will be \code{FALSE}.}
 }
 \description{
-Build a Framework7 icon
+Use Framework7 icons in shiny applications,
+ see complete list of icons here : \url{https://framework7.io/icons/}.
 }
 \examples{
+
+f7Icon("close", old = TRUE)
+f7Icon("multiply", old = FALSE)
+
+# Icon size
+f7Icon("multiply", style = "font-size: 56px;", old = FALSE)
+
 if(interactive()){
  library(shiny)
  library(shinyMobile)
