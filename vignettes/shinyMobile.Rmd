@@ -18,7 +18,7 @@ used for different purposes:
   * develop progressive web shinyapps (PWA, similar to native apps)
   * develop desktop shinyapps
   
-### 3 Custom skins
+## Custom skins
 
 - shinyMobile has 3 skins:
 
@@ -32,7 +32,7 @@ It is possible to apply the iOS skin on android and inversely, even though not r
 - This package also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the "widget level", shinyMobile does not support that feature, to improve the overall consistancy. Only panels can have a color independant of the global theme.
 
 
-### 3 Layouts
+## Layouts
 
 - shinyMobile brings 3 out of the box layouts:
 
@@ -42,60 +42,61 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * Coming soon: a multi-pages layout with animations between pages!
 
 
-### New Inputs
+## New Inputs
 
 - shinyMobile has its own custom input widgets with unique design for each skin (iOS/android/aurora):
 
-  * f7Slider
-  * f7Text
-  * f7checkBox
-  * f7checkBoxGroup
-  * f7Radio
-  * f7Toggle
-  * f7Stepper: equivalent to `numericInput()` from {shiny}
-  * f7Picker
-  * f7DatePicker
-  * f7ColorPicker
-  * f7Password
-  * f7SmartSelect
-  * f7Select
-  * f7AutoComplete
-  * f7Button: similar to `actionButton()` from {shiny}
-  * f7Fab: enhanced `f7Button()` with ability to be gathered in a `f7Fabs()` container
+  * `f7Slider()`
+  * `f7Text()`
+  * `f7checkBox()`
+  * `f7checkBoxGroup()`
+  * `f7Radio()`
+  * `f7Toggle()`
+  * `f7Stepper()`: equivalent to `numericInput()` from {shiny}
+  * `f7Picker()`
+  * `f7DatePicker()`
+  * `f7ColorPicker()`
+  * `f7Password()`
+  * `f7SmartSelect()`
+  * `f7Select()`
+  * `f7AutoComplete()`
+  * `f7Button()`: similar to `actionButton()` from {shiny}
+  * `f7Fab()`: enhanced `f7Button()` with ability to be gathered in a `f7Fabs()` container
   
 - It also has custom update functions to act on the server side:
 
-  * updateF7AutoComplete
-  * updateF7Picker
-  * updateF7Stepper
-  * updateF7Toggle
-  * updateF7Slider
-  * updateF7Fab
-  * updateF7Text
-  * updateF7Checkbox
+  * `updateF7AutoComplete()`
+  * `updateF7Picker()`
+  * `updateF7Stepper()`
+  * `updateF7Toggle()`
+  * `updateF7Slider()`
+  * `updateF7Fab()`
+  * `updateF7Text()`
+  * `updateF7Checkbox()`
   * more to come on a future release
   
 
 - shinyMobile has custom input values tabs as well as dedicated update functions to act on the server side:
 
-  * updateF7Tabs
+  * `updateF7Tabs()`
   
 - shinyMobile has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
 
-  * updateF7Panel
+  * `updateF7Panel()`
   
 Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions and more:
 
-  * updateF7Accordion
-  * updateF7Card
-  * updateF7Gauge
-  * updateF7Progress
-  * updateF7Sheet
+  * `updateF7Accordion()`
+  * `updateF7Card()`
+  * `updateF7Gauge()`
+  * `updateF7Progress()`
+  * `updateF7Sheet()`
   * more to come soon
   
-### Create your first App
+## Create your first App
 
 #### Select a template
+
 This choice is crucial when you are developing an App. It depends on the complexity
 of your visualizations and content. If your plan is to develop a simple graph or table,
 you should go for the `f7SingleLayout()` option. For more complex design, the best is
@@ -237,6 +238,7 @@ f7Toolbar(
 Interestingly, `f7Tabs()` is a custom `f7Toolbar()`!
 
 ##### Panels
+
 Panels are also called sidebars. `f7Panel()` is the corresponding function.
 
 ```r
@@ -288,6 +290,7 @@ f7Appbar(
 ```
 
 #### App Initialization
+
 This is probably the most inportant function of the template: `f7Init()`.
 This functions helps to set up the template as well as properly initializing 
 the main view of your app.

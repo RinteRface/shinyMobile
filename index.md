@@ -30,11 +30,47 @@ devtools::install_github("RinteRface/shinyMobile")
 
 ## Demo
 
-A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. Left side: android demo, right side: iOS demo
+A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
+Left side: android demo, right side: iOS demo
 
+<div class="marvel-device note8" style="margin: 10px;">
+    <div class="inner"></div>
+    <div class="overflow">
+        <div class="shadow"></div>
+    </div>
+    <div class="speaker"></div>
+    <div class="sensors"></div>
+    <div class="more-sensors"></div>
+    <div class="sleep"></div>
+    <div class="volume"></div>
+    <div class="camera"></div>
+    <div class="screen">
+        <!-- Content goes here -->
+        <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2DemoMd" allowfullscreen="" frameborder="0" scrolling="no" height="822px"></iframe>
+    </div>
+</div>
 
-![](man/figures/demo.png)
-
+<div class="marvel-device iphone-x" style="margin: 10px;">
+  <!--<div class="notch">
+    <div class="camera"></div>
+    <div class="speaker"></div> 
+  </div> -->
+  <div class="top-bar"></div>
+  <div class="sleep"></div>
+  <div class="bottom-bar"></div>
+  <div class="volume"></div>
+  <div class="overflow">
+    <div class="shadow shadow--tr"></div>
+    <div class="shadow shadow--tl"></div>
+    <div class="shadow shadow--br"></div>
+    <div class="shadow shadow--bl"></div>
+  </div>
+  <div class="inner-shadow"></div>
+  <div class="screen">
+    <!-- Content goes here -->
+    <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen="" frameborder="0" scrolling="no" height="710px"></iframe>
+  </div>
+</div>
 
 
 ## Progressive Web App (PWA)
