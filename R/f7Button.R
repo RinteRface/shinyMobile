@@ -42,7 +42,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  tagList(
+  shiny::tagList(
     f7InputsDeps(),
     shiny::tags$button(
       id = inputId,
