@@ -128,7 +128,11 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #' @param inputId Accordion instance.
 #' @param selected Index of item to select.
 #' @param session Shiny session object
+#'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -171,7 +175,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #'    }
 #'  )
 #' }
-updateF7Accordion <- function(inputId, selected = NULL, session) {
+updateF7Accordion <- function(inputId, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <-list(selected = selected)
   session$sendInputMessage(inputId, message)
 }

@@ -250,6 +250,9 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #' @param session Shiny session object.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -299,7 +302,7 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #'    }
 #'  )
 #' }
-updateF7Panel <- function(inputId, session) {
+updateF7Panel <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
   message <- NULL
   session$sendInputMessage(inputId, NULL)
 }

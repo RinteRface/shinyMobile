@@ -359,7 +359,10 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'
 #' @param id Card id.
 #' @param session Shiny session object.
+#'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -416,6 +419,6 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'    }
 #'  )
 #' }
-updateF7Card <- function(id, session) {
+updateF7Card <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
 }

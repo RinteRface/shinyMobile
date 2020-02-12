@@ -185,6 +185,8 @@ f7SubNavbar <- function(...) {
 #'
 #' @export
 #'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -232,6 +234,8 @@ f7HideNavbar <- function(session = shiny::getDefaultReactiveDomain(), animate = 
 #' @param animate Whether it should be hidden with animation or not. By default is TRUE.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {

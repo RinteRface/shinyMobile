@@ -127,8 +127,10 @@ f7Popup <- function(..., id, title = NULL,
 #'
 #' @param id Popup id.
 #' @param session Shiny session.
-
+#'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 f7TogglePopup <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, message = NULL)
 }

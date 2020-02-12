@@ -311,6 +311,8 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #'
 #' @export
 #'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
