@@ -11,6 +11,7 @@ label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` 
 - In `f7Gauge()` valueText was removed. It does not make sense that the value can be accidentally
 different from the text displayed. valueText is then an internal parameter.
 - In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
+- remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
 - update `f7Icon()` and icons dependencies. thanks @pvictor
