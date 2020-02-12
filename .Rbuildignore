@@ -6,3 +6,4 @@
 ^docs$
 ^cran-comments\.md$
 ^appveyor\.yml$
+^index\.md$
