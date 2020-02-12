@@ -152,8 +152,8 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, roun
   btns <- list(...)
   if (container == "row") {
     for (i in seq_along(btns)) {
-      btns[[i]]$attribs$class <- paste(
-        btns[[i]]$attribs$class,
+      btns[[i]][[2]]$attribs$class <- paste(
+        btns[[i]][[2]]$attribs$class,
         class = "col"
       )
     }
