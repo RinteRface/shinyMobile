@@ -26,7 +26,8 @@ shinyApp(
       hideNavOnPageScroll = FALSE,
       hideTabsOnPageScroll = FALSE,
       serviceWorker = "service-worker.js",
-      iosTranslucentBars = FALSE
+      iosTranslucentBars = FALSE,
+      pullToRefresh = TRUE
     ),
     f7TabLayout(
       appbar = f7Appbar(
@@ -309,6 +310,18 @@ shinyApp(
           text = c('Notification', 'Dialog'),
           color = c(NA, NA)
         )
+      )
+    })
+
+    # pull to refresh
+    observeEvent(input$ptr, {
+
+      ptrStatus <- if (input$ptr) "on"
+
+      f7Dialog(
+        session = session,
+        text = paste('ptr is', ptrStatus),
+        type = "alert"
       )
     })
 
