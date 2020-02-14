@@ -13,7 +13,8 @@ f7Button(
   outline = FALSE,
   shadow = FALSE,
   rounded = FALSE,
-  size = NULL
+  size = NULL,
+  active = FALSE
 )
 }
 \arguments{
@@ -36,6 +37,9 @@ See here for valid colors \url{https://framework7.io/docs/badge.html}.}
 \item{rounded}{Round style. FALSE by default.}
 
 \item{size}{Button size. NULL by default but also "large" or "small".}
+
+\item{active}{Button active state. Default to FALSE. This is useful when
+used in \link{f7Segment} with the strong parameter set to TRUE.}
 }
 \description{
 Build a Framework7 button

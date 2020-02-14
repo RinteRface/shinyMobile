@@ -65,7 +65,7 @@ if(interactive()){
      container = "segment",
      f7Button(label = "My button", fill = FALSE),
      f7Button(label = "My button", fill = FALSE),
-     f7Button(label = "My button", fill = FALSE)
+     f7Button(label = "My button", fill = FALSE, active = TRUE)
     ),
     f7BlockTitle(title = "Rounded Buttons in a segment container"),
     f7Segment(

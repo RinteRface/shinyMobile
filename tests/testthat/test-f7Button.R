@@ -21,6 +21,7 @@ test_that("button", {
   expect_equal(f7Button(rounded = TRUE)[[2]]$attribs$class, "button button-fill button-round")
   expect_equal(f7Button(size = "small")[[2]]$attribs$class, "button button-fill button-small")
   expect_equal(f7Button(color = "pink")[[2]]$attribs$class, "button color-pink button-fill")
+  expect_equal(f7Button(active = TRUE)[[2]]$attribs$class, "button button-fill button-active")
 
   # input binding class
   expect_equal(f7Button(inputId = "test")[[2]]$attribs$class, "button f7-action-button button-fill")

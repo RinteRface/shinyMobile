@@ -13,13 +13,16 @@
 #' @param shadow Button shadow. FALSE by default. Only for material design.
 #' @param rounded Round style. FALSE by default.
 #' @param size Button size. NULL by default but also "large" or "small".
+#' @param active Button active state. Default to FALSE. This is useful when
+#' used in \link{f7Segment} with the strong parameter set to TRUE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Button <- function(inputId = NULL, label = NULL, src = NULL,
                      color = NULL, fill = TRUE, outline = FALSE,
-                     shadow = FALSE, rounded = FALSE, size = NULL) {
+                     shadow = FALSE, rounded = FALSE, size = NULL,
+                     active = FALSE) {
 
   if (!is.null(inputId) & !is.null(src)) stop("Cannot set inputId and src at the same time.")
 
@@ -39,6 +42,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
   if (shadow) buttonCl <- paste0(buttonCl, " button-raised")
   if (rounded) buttonCl <- paste0(buttonCl, " button-round")
   if (!is.null(size)) buttonCl <- paste0(buttonCl, " button-", size)
+  if (active) buttonCl <- paste0(buttonCl, " button-active")
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
@@ -109,7 +113,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'      container = "segment",
 #'      f7Button(label = "My button", fill = FALSE),
 #'      f7Button(label = "My button", fill = FALSE),
-#'      f7Button(label = "My button", fill = FALSE)
+#'      f7Button(label = "My button", fill = FALSE, active = TRUE)
 #'     ),
 #'     f7BlockTitle(title = "Rounded Buttons in a segment container"),
 #'     f7Segment(
