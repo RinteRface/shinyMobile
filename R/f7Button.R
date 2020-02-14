@@ -142,6 +142,11 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, roun
     "row"
   }
 
+  if (container == "row" & (shadow | rounded)) {
+    stop("shadow and/or rounded only apply when the container
+         is a segment!")
+  }
+
   if (shadow & container == "segment") containerCl <- paste0(containerCl, " segmented-raised")
   if (rounded & container == "segment") containerCl <- paste0(containerCl, " segmented-round")
 
