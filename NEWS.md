@@ -29,6 +29,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add new strong parameter to `f7Segment()`
 - Improve website. Thanks @pvictor
 - new fullsize and closeButton parameter to `f7Popup()` + rewrite js binding. Thanks @pvictor
 - add extra parameters to `f7DatePicker()`: direction, openIn,

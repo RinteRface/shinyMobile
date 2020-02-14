@@ -49,6 +49,11 @@ test_that("f7Segment", {
     "segmented segmented-round"
   )
 
+  expect_equal(
+    f7Segment(container = "segment", strong = TRUE)$children[[1]]$attribs$class,
+    "segmented segmented-strong"
+  )
+
   # structure: check children elements inside
   segmentTag <- f7Segment(container = "row", lapply(1:3, f7Button))
   expect_length(segmentTag$children[[1]]$children[[1]][[1]], 3)

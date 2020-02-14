@@ -174,7 +174,8 @@
   <span class='no'>...</span>,
   <span class='kw'>container</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"segment"</span>, <span class='st'>"row"</span>),
   <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -190,11 +191,15 @@
     </tr>
     <tr>
       <th>shadow</th>
-      <td><p>Button shadow. FALSE by default. Only for material design and if the container is segment.</p></td>
+      <td><p>Button shadow. FALSE by default. Only if the container is segment.</p></td>
     </tr>
     <tr>
       <th>rounded</th>
       <td><p>Round style. FALSE by default. Only if the container is segment.</p></td>
+    </tr>
+    <tr>
+      <th>strong</th>
+      <td><p>Strong style. FALSE by default.</p></td>
     </tr>
     </table>
 
@@ -231,6 +236,14 @@
      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>outline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    ),
+    <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Buttons in a segment/strong container"</span>),
+    <span class='fu'>f7Segment</span>(
+     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+     <span class='kw'>container</span> <span class='kw'>=</span> <span class='st'>"segment"</span>,
+     <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+     <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+     <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
     ),
     <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Rounded Buttons in a segment container"</span>),
     <span class='fu'>f7Segment</span>(
