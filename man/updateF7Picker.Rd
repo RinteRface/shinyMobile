@@ -5,7 +5,6 @@
 \title{Change the value of a picker input on the client}
 \usage{
 updateF7Picker(
-  session,
   inputId,
   value = NULL,
   choices = NULL,
@@ -15,12 +14,11 @@ updateF7Picker(
   closeByOutsideClick = NULL,
   toolbar = NULL,
   toolbarCloseText = NULL,
-  sheetSwipeToClose = NULL
+  sheetSwipeToClose = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{value}{Picker initial value, if any.}
@@ -44,6 +42,8 @@ Default to TRUE.}
 \item{toolbarCloseText}{Text for Done/Close toolbar button.}
 
 \item{sheetSwipeToClose}{Enables ability to close Picker sheet with swipe. Default to FALSE.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a picker input on the client
@@ -77,7 +77,6 @@ if (interactive()) {
 
     observeEvent(input$update, {
       updateF7Picker(
-        session,
         inputId = "mypicker",
         value = "b",
         choices = letters,
@@ -89,7 +88,6 @@ if (interactive()) {
 
     observeEvent(input$removeToolbar, {
       updateF7Picker(
-        session,
         inputId = "mypicker",
         value = "b",
         choices = letters,

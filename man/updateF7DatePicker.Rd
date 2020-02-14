@@ -4,17 +4,22 @@
 \alias{updateF7DatePicker}
 \title{Change the value of a date picker input on the client}
 \usage{
-updateF7DatePicker(session, inputId, value = NULL, ...)
+updateF7DatePicker(
+  inputId,
+  value = NULL,
+  ...,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{value}{The new value for the input.}
 
 \item{...}{Parameters used to update the date picker,
 use same arguments as in \code{\link{f7DatePicker}}.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a date picker input on the client
@@ -50,7 +55,6 @@ if (interactive()) {
 
       observeEvent(input$selectToday, {
         updateF7DatePicker(
-          session,
           inputId = "mypicker",
           value = Sys.Date()
         )
@@ -58,7 +62,6 @@ if (interactive()) {
 
       observeEvent(input$rmToolbar, {
         updateF7DatePicker(
-          session,
           inputId = "mypicker",
           toolbar = FALSE,
           dateFormat = "yyyy-mm-dd" # preserve date format
@@ -67,7 +70,6 @@ if (interactive()) {
 
       observeEvent(input$addToolbar, {
         updateF7DatePicker(
-          session,
           inputId = "mypicker",
           toolbar = TRUE,
           dateFormat = "yyyy-mm-dd" # preserve date format

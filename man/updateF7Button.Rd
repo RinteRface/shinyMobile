@@ -5,7 +5,6 @@
 \title{Change the value of a button input on the client}
 \usage{
 updateF7Button(
-  session,
   inputId,
   label = NULL,
   color = NULL,
@@ -13,12 +12,11 @@ updateF7Button(
   outline = NULL,
   shadow = NULL,
   rounded = NULL,
-  size = NULL
+  size = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{label}{The contents of the button or link–usually a text label,
@@ -36,6 +34,8 @@ See here for valid colors \url{https://framework7.io/docs/badge.html}.}
 \item{rounded}{Round style. FALSE by default.}
 
 \item{size}{Button size. NULL by default but also "large" or "small".}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a button input on the client
@@ -68,7 +68,6 @@ if (interactive()) {
     observeEvent(input$prout, {
       if (input$prout) {
         updateF7Button(
-          session = session,
           inputId = "test",
           label = "Updated",
           color = "purple",

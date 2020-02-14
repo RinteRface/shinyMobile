@@ -10,10 +10,12 @@
 #' FALSE by default.
 #' @param closeOnClick Whether to close the notification on click. TRUE by default.
 #' @param swipeToClose If enabled, notification can be closed by swipe gesture.
-#'
 #' @param session shiny session.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
@@ -43,7 +45,8 @@
 #' }
 f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subtitle = NULL,
                     closeTimeout = 5000, closeButton = FALSE,
-                    closeOnClick = TRUE, swipeToClose = TRUE, session) {
+                    closeOnClick = TRUE, swipeToClose = TRUE,
+                    session = shiny::getDefaultReactiveDomain()) {
 
   message <- dropNulls(
     list(

@@ -5,7 +5,6 @@
 \title{Change the value of a slider input on the client}
 \usage{
 updateF7Slider(
-  session,
   inputId,
   min = NULL,
   max = NULL,
@@ -14,12 +13,11 @@ updateF7Slider(
   scaleSteps = NULL,
   scaleSubSteps = NULL,
   step = NULL,
-  color = NULL
+  color = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{min}{Slider minimum range.}
@@ -37,6 +35,8 @@ updateF7Slider(
 \item{step}{Slider increase step size.}
 
 \item{color}{See \link{getF7Colors} for valid colors.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a slider input on the client
@@ -75,7 +75,6 @@ if(interactive()){
 
      observeEvent(input$update, {
        updateF7Slider(
-         session,
          inputId = "obs",
          value = c(1, 5),
          min = 0,

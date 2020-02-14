@@ -8,6 +8,9 @@
 #' @param session shiny session.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -57,7 +60,7 @@
 #'    }
 #'  )
 #' }
-f7Popover <- function(targetId, content, session) {
+f7Popover <- function(targetId, content, session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
       content = content

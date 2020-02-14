@@ -4,12 +4,12 @@
 \alias{updateF7Fabs}
 \title{Toggle \link{f7Fabs} on the server side.}
 \usage{
-updateF7Fabs(session, inputId)
+updateF7Fabs(inputId, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Toggle \link{f7Fabs} on the server side.
@@ -37,7 +37,6 @@ if (interactive()) {
     observe(print(input$fabs))
     observeEvent(input$toggleFabs, {
       updateF7Fabs(
-        session = session,
         inputId = "fabs"
       )
     })

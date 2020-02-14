@@ -4,16 +4,21 @@
 \alias{updateF7Checkbox}
 \title{Change the value of a checkbox input on the client}
 \usage{
-updateF7Checkbox(session, inputId, label = NULL, value = NULL)
+updateF7Checkbox(
+  inputId,
+  label = NULL,
+  value = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{label}{The label to set for the input object.}
 
 \item{value}{The value to set for the input object.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a checkbox input on the client
@@ -58,7 +63,7 @@ if (interactive()) {
       removeNotification("notif")
      }
 
-     updateF7Checkbox(session, "check", value = x_even)
+     updateF7Checkbox("check", value = x_even)
    })
  }
 

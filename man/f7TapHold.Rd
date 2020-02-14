@@ -4,7 +4,7 @@
 \alias{f7TapHold}
 \title{Create a Framework7 tapHold event}
 \usage{
-f7TapHold(target, callback, session)
+f7TapHold(target, callback, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{target}{Element to apply the tapHold event on. Must be a jQuery selector,

@@ -4,14 +4,18 @@
 \alias{updateF7Select}
 \title{Change the value of a select input on the client}
 \usage{
-updateF7Select(session, inputId, selected = NULL)
+updateF7Select(
+  inputId,
+  selected = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{selected}{New value.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a select input on the client
@@ -45,7 +49,6 @@ if (interactive()) {
 
      observeEvent(input$update, {
        updateF7Select(
-         session,
          inputId = "variable",
          selected = "gear"
        )

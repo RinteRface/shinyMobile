@@ -4,11 +4,15 @@
 \alias{updateF7Text}
 \title{Change the value of a text input on the client}
 \usage{
-updateF7Text(session, inputId, label = NULL, value = NULL, placeholder = NULL)
+updateF7Text(
+  inputId,
+  label = NULL,
+  value = NULL,
+  placeholder = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{label}{The label to set for the input object.}
@@ -16,6 +20,8 @@ updateF7Text(session, inputId, label = NULL, value = NULL, placeholder = NULL)
 \item{value}{The value to set for the input object.}
 
 \item{placeholder}{The placeholder to set for the input object.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a text input on the client
@@ -42,7 +48,7 @@ if (interactive()) {
  server <- function(input, output, session) {
    output$value <- renderPrint(input$text)
    observeEvent(input$trigger, {
-     updateF7Text(session, "text", value = "Updated Text")
+     updateF7Text("text", value = "Updated Text")
    })
  }
 shinyApp(ui, server)
