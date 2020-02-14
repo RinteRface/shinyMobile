@@ -9,7 +9,7 @@ f7Dialog(
   title = NULL,
   text,
   type = c("alert", "confirm", "prompt", "login"),
-  session
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{

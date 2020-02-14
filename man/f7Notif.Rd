@@ -14,7 +14,7 @@ f7Notif(
   closeButton = FALSE,
   closeOnClick = TRUE,
   swipeToClose = TRUE,
-  session
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{

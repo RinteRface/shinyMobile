@@ -4,14 +4,18 @@
 \alias{updateF7AutoComplete}
 \title{Change the value of an autocomplete input on the client}
 \usage{
-updateF7AutoComplete(session, inputId, value = NULL)
+updateF7AutoComplete(
+  inputId,
+  value = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
-\item{value}{Picker initial value, if any.}
+\item{value}{Picker new value.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of an autocomplete input on the client
@@ -52,7 +56,6 @@ if (interactive()) {
 
     observeEvent(input$update, {
       updateF7AutoComplete(
-        session,
         inputId = "myautocomplete",
         value = "Banana"
       )

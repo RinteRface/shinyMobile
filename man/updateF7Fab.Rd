@@ -4,14 +4,14 @@
 \alias{updateF7Fab}
 \title{Change the value of a \link{f7Fab} input on the client}
 \usage{
-updateF7Fab(session, inputId, label = NULL)
+updateF7Fab(inputId, label = NULL, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{label}{The label to set for the input object.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a \link{f7Fab} input on the client
@@ -30,7 +30,7 @@ if (interactive()) {
 
  server <- function(input, output, session) {
    observeEvent(input$trigger, {
-     updateF7Fab(session, "trigger", label = "Don't click me")
+     updateF7Fab("trigger", label = "Don't click me")
    })
  }
 shinyApp(ui, server)

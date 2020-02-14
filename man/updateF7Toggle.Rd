@@ -4,16 +4,21 @@
 \alias{updateF7Toggle}
 \title{Change the value of a toggle input on the client}
 \usage{
-updateF7Toggle(session, inputId, checked = NULL, color = NULL)
+updateF7Toggle(
+  inputId,
+  checked = NULL,
+  color = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{session}{The session object passed to function given to the server.}
-
 \item{inputId}{The id of the input object.}
 
 \item{checked}{Whether the toggle is TRUE or FALSE.}
 
 \item{color}{Toggle color.}
+
+\item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 Change the value of a toggle input on the client
@@ -46,7 +51,6 @@ if (interactive()) {
 
      observeEvent(input$update, {
        updateF7Toggle(
-         session,
          inputId = "toggle",
          checked = TRUE,
          color = "green"

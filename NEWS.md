@@ -1,6 +1,7 @@
 # shinyMobile 0.5.0.9000
 
 ## Breaking changes
+- All update method for inputs : argument `session` is now optional and has been moved to the last position in function call.
 - `f7AutoComplete()`: type becomes openIn to align with the framework7 documentation
 - remove parameter fill from `f7Icon()` (not used)
 - Rewrite `f7Popup()`. It has now an input associated giving the popup state (opened or closed) as well
