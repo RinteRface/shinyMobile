@@ -170,15 +170,16 @@
     <p>Change the value of a date picker input on the client</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7DatePicker</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7DatePicker</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>The session object passed to function given to the server.</p></td>
-    </tr>
     <tr>
       <th>inputId</th>
       <td><p>The id of the input object.</p></td>
@@ -191,6 +192,10 @@
       <th>...</th>
       <td><p>Parameters used to update the date picker,
 use same arguments as in <code><a href='f7DatePicker.html'>f7DatePicker</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The Shiny session object, usually the default value will suffice.</p></td>
     </tr>
     </table>
 
@@ -226,7 +231,6 @@ use same arguments as in <code><a href='f7DatePicker.html'>f7DatePicker</a></cod
 
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>selectToday</span>, {
         <span class='fu'>updateF7DatePicker</span>(
-          <span class='no'>session</span>,
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
           <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>()
         )
@@ -234,7 +238,6 @@ use same arguments as in <code><a href='f7DatePicker.html'>f7DatePicker</a></cod
 
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>rmToolbar</span>, {
         <span class='fu'>updateF7DatePicker</span>(
-          <span class='no'>session</span>,
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
           <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
           <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span> <span class='co'># preserve date format</span>
@@ -243,7 +246,6 @@ use same arguments as in <code><a href='f7DatePicker.html'>f7DatePicker</a></cod
 
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>addToolbar</span>, {
         <span class='fu'>updateF7DatePicker</span>(
-          <span class='no'>session</span>,
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
           <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
           <span class='kw'>dateFormat</span> <span class='kw'>=</span> <span class='st'>"yyyy-mm-dd"</span> <span class='co'># preserve date format</span>

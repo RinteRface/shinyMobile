@@ -171,7 +171,6 @@
     </div>
 
     <pre class="usage"><span class='fu'>updateF7Picker</span>(
-  <span class='no'>session</span>,
   <span class='no'>inputId</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>choices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -181,16 +180,13 @@
   <span class='kw'>closeByOutsideClick</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>toolbarCloseText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sheetSwipeToClose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='kw'>sheetSwipeToClose</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>The session object passed to function given to the server.</p></td>
-    </tr>
     <tr>
       <th>inputId</th>
       <td><p>The id of the input object.</p></td>
@@ -235,6 +231,10 @@ Default to TRUE.</p></td>
       <th>sheetSwipeToClose</th>
       <td><p>Enables ability to close Picker sheet with swipe. Default to FALSE.</p></td>
     </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The Shiny session object, usually the default value will suffice.</p></td>
+    </tr>
     </table>
 
 
@@ -267,7 +267,6 @@ Default to TRUE.</p></td>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>update</span>, {
       <span class='fu'>updateF7Picker</span>(
-        <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
         <span class='kw'>choices</span> <span class='kw'>=</span> <span class='no'>letters</span>,
@@ -279,7 +278,6 @@ Default to TRUE.</p></td>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>removeToolbar</span>, {
       <span class='fu'>updateF7Picker</span>(
-        <span class='no'>session</span>,
         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mypicker"</span>,
         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
         <span class='kw'>choices</span> <span class='kw'>=</span> <span class='no'>letters</span>,

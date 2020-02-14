@@ -53,7 +53,6 @@
 #'                       value = 10,
 #'                       borderColor = "#2196f3",
 #'                       borderWidth = 10,
-#'                       valueText = "50%",
 #'                       valueFontSize = 41,
 #'                       valueTextColor = "#2196f3",
 #'                       labelText = "amount of something"

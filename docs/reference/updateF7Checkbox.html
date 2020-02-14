@@ -170,15 +170,16 @@
     <p>Change the value of a checkbox input on the client</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Checkbox</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Checkbox</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>The session object passed to function given to the server.</p></td>
-    </tr>
     <tr>
       <th>inputId</th>
       <td><p>The id of the input object.</p></td>
@@ -190,6 +191,10 @@
     <tr>
       <th>value</th>
       <td><p>The value to set for the input object.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The Shiny session object, usually the default value will suffice.</p></td>
     </tr>
     </table>
 
@@ -234,7 +239,7 @@
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/showNotification.html'>removeNotification</a></span>(<span class='st'>"notif"</span>)
      }
 
-     <span class='fu'>updateF7Checkbox</span>(<span class='no'>session</span>, <span class='st'>"check"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>x_even</span>)
+     <span class='fu'>updateF7Checkbox</span>(<span class='st'>"check"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>x_even</span>)
    })
  }
 
