@@ -2,13 +2,13 @@
 % Please edit documentation in R/f7Sheet.R
 \name{f7Sheet}
 \alias{f7Sheet}
+\alias{updateF7Sheet}
 \title{Create an f7 sheet modal}
 \usage{
 f7Sheet(
   ...,
   hiddenItems = NULL,
   id,
-  label = "Open",
   orientation = c("top", "bottom"),
   swipeToClose = FALSE,
   swipeToStep = FALSE,
@@ -16,6 +16,8 @@ f7Sheet(
   closeByOutsideClick = TRUE,
   swipeHandler = TRUE
 )
+
+updateF7Sheet(inputId, session)
 }
 \arguments{
 \item{...}{Sheet content. If wipeToStep is TRUE, these items will be visible at start.}
@@ -24,8 +26,6 @@ f7Sheet(
 swipeToStep is TRUE. Default to NULL.}
 
 \item{id}{Sheet unique id.}
-
-\item{label}{Trigger label.}
 
 \item{orientation}{"top" or "bottom".}
 
@@ -43,9 +43,20 @@ when click outside of it.}
 
 \item{swipeHandler}{Whether to display a swipe handler. TRUE by default.
 Need either swipeToClose or swipeToStep set to TRUE to work.}
+
+\item{inputId}{Sheet id.}
+
+\item{session}{Shiny session object}
 }
 \description{
 Create an f7 sheet modal
+
+update a framework 7 sheet modal
+}
+\note{
+The sheet modal has to be used in combination with \link{updateF7Sheet}.
+Yet, if you need a specific trigger, simply add \code{`data-sheet` = paste0("#", id)},
+to the tag of your choice (a button), where id refers to the sheet unique id.
 }
 \examples{
 if (interactive()) {
@@ -53,9 +64,11 @@ if (interactive()) {
  library(shinyMobile)
  shiny::shinyApp(
     ui = f7Page(
+       color = "pink",
        title = "My app",
        f7SingleLayout(
           navbar = f7Navbar(title = "f7Sheet"),
+          f7Button(inputId = "go", label = "Go"),
           f7Sheet(
              id = "sheet1",
              label = "More",
@@ -106,6 +119,9 @@ if (interactive()) {
        })
        observeEvent(input$obs, {
           updateF7Gauge(session, id = "mygauge", value = input$obs)
+       })
+       observeEvent(input$go, {
+          updateF7Sheet(inputId = "sheet1", session = session)
        })
     }
  )

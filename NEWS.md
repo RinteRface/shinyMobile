@@ -1,6 +1,7 @@
 # shinyMobile 0.5.0.9000
 
 ## Breaking changes
+- `f7Sheet()` is still inserted in the UI side but can be triggered either on the server side in combination with `updateF7Sheet()` (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having `data-sheet` pointing to the sheet id may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a `f7TabLink()` that is a special button styled for the tabbar).
 - All update method for inputs : argument `session` is now optional and has been moved to the last position in function call.
 - `f7AutoComplete()`: type becomes openIn to align with the framework7 documentation
 - remove parameter fill from `f7Icon()` (not used)

@@ -4,7 +4,6 @@
 #' @param hiddenItems Put items you want to hide inside. Only works when
 #' swipeToStep is TRUE. Default to NULL.
 #' @param id Sheet unique id.
-#' @param label Trigger label.
 #' @param orientation "top" or "bottom".
 #' @param swipeToClose If TRUE, it can be closed by swiping down.
 #' @param swipeToStep If TRUE then sheet will be opened partially,
@@ -17,72 +16,13 @@
 #' @param swipeHandler Whether to display a swipe handler. TRUE by default.
 #' Need either swipeToClose or swipeToStep set to TRUE to work.
 #'
-#' @export
+#' @note The sheet modal has to be used in combination with \link{updateF7Sheet}.
+#' Yet, if you need a specific trigger, simply add \code{`data-sheet` = paste0("#", id)},
+#' to the tag of your choice (a button), where id refers to the sheet unique id.
 #'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shiny::shinyApp(
-#'     ui = f7Page(
-#'        title = "My app",
-#'        f7SingleLayout(
-#'           navbar = f7Navbar(title = "f7Sheet"),
-#'           f7Sheet(
-#'              id = "sheet1",
-#'              label = "More",
-#'              orientation = "bottom",
-#'              swipeToClose = TRUE,
-#'              swipeToStep = TRUE,
-#'              backdrop = TRUE,
-#'              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#'              Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-#'              scelerisque est, at porta justo cursus ac",
-#'              hiddenItems = tagList(
-#'                 f7Segment(
-#'                    container = "segment",
-#'                    rounded = TRUE,
-#'                    f7Button(color = "blue", label = "My button 1", rounded = TRUE),
-#'                    f7Button(color = "green", label = "My button 2", rounded = TRUE),
-#'                    f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
-#'                 ),
-#'                 f7Flex(
-#'                    f7Gauge(
-#'                       id = "mygauge",
-#'                       type  = "semicircle",
-#'                       value = 10,
-#'                       borderColor = "#2196f3",
-#'                       borderWidth = 10,
-#'                       valueFontSize = 41,
-#'                       valueTextColor = "#2196f3",
-#'                       labelText = "amount of something"
-#'                    )
-#'                 ),
-#'                 f7Slider(
-#'                    inputId = "obs",
-#'                    label = "Number of observations",
-#'                    max = 100,
-#'                    min = 0,
-#'                    value = 10,
-#'                    scale = TRUE
-#'                 ),
-#'                 plotOutput("distPlot")
-#'              )
-#'           )
-#'        )
-#'     ),
-#'     server = function(input, output, session) {
-#'        observe({print(input$sheet1)})
-#'        output$distPlot <- renderPlot({
-#'           hist(rnorm(input$obs))
-#'        })
-#'        observeEvent(input$obs, {
-#'           updateF7Gauge(session, id = "mygauge", value = input$obs)
-#'        })
-#'     }
-#'  )
-#' }
-f7Sheet <- function(..., hiddenItems = NULL, id, label = "Open", orientation = c("top", "bottom"),
+#' @export
+#' @rdname sheet
+f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"),
                     swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
                     closeByOutsideClick = TRUE, swipeHandler = TRUE) {
 
@@ -195,13 +135,6 @@ f7Sheet <- function(..., hiddenItems = NULL, id, label = "Open", orientation = c
    f7InputsDeps(),
    # custom css
    sheetStyle,
-   # sheet trigger
-   shiny::a(
-      class = "button button-fill sheet-open",
-      href = "#",
-      `data-sheet` = paste0("#", id),
-      label
-   ),
    sheetTag
  )
 }
@@ -214,6 +147,7 @@ f7Sheet <- function(..., hiddenItems = NULL, id, label = "Open", orientation = c
 #' @param inputId Sheet id.
 #' @param session Shiny session object
 #' @export
+#' @rdname sheet
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -233,13 +167,49 @@ f7Sheet <- function(..., hiddenItems = NULL, id, label = "Open", orientation = c
 #'              swipeToStep = TRUE,
 #'              backdrop = TRUE,
 #'              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#'          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-#'          scelerisque est, at porta justo cursus ac"
+#'              Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+#'              scelerisque est, at porta justo cursus ac",
+#'              hiddenItems = tagList(
+#'                 f7Segment(
+#'                    container = "segment",
+#'                    rounded = TRUE,
+#'                    f7Button(color = "blue", label = "My button 1", rounded = TRUE),
+#'                    f7Button(color = "green", label = "My button 2", rounded = TRUE),
+#'                    f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
+#'                 ),
+#'                 f7Flex(
+#'                    f7Gauge(
+#'                       id = "mygauge",
+#'                       type  = "semicircle",
+#'                       value = 10,
+#'                       borderColor = "#2196f3",
+#'                       borderWidth = 10,
+#'                       valueFontSize = 41,
+#'                       valueTextColor = "#2196f3",
+#'                       labelText = "amount of something"
+#'                    )
+#'                 ),
+#'                 f7Slider(
+#'                    inputId = "obs",
+#'                    label = "Number of observations",
+#'                    max = 100,
+#'                    min = 0,
+#'                    value = 10,
+#'                    scale = TRUE
+#'                 ),
+#'                 plotOutput("distPlot")
+#'              )
 #'           )
 #'        )
 #'     ),
 #'     server = function(input, output, session) {
 #'        observe({print(input$sheet1)})
+#'        output$distPlot <- renderPlot({
+#'           hist(rnorm(input$obs))
+#'        })
+#'        observeEvent(input$obs, {
+#'           updateF7Gauge(session, id = "mygauge", value = input$obs)
+#'        })
 #'        observeEvent(input$go, {
 #'           updateF7Sheet(inputId = "sheet1", session = session)
 #'        })

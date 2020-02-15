@@ -138,6 +138,10 @@ shinyApp(
       hist(rnorm(input$sheetObs))
     })
 
+    observeEvent(input$toggleSheet, {
+      updateF7Sheet(inputId = "sheet1", session = session)
+    })
+
     # notifications
     lapply(1:3, function(i) {
       observeEvent(input[[paste0("goNotif", i)]],{
