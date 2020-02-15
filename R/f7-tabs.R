@@ -4,7 +4,8 @@
 #'
 #' @param ... Slot for \link{f7Tab}.
 #' @param .items Slot for other items that could be part of the toolbar such as
-#' buttons or \link{f7Sheet}.
+#' buttons or \link{f7TabLink}. This may be useful to open a \link{f7Sheet} from
+#' the tabbar.
 #' @param id Optional to get the id of the currently selected \link{f7Tab}.
 #' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
@@ -29,14 +30,27 @@
 #'         id = "tabdemo",
 #'         swipeable = TRUE,
 #'         animated = FALSE,
-#'         f7Tab(tabName = "Tab 1", "tab 1 text"),
+#'         f7Tab(
+#'          tabName = "Tab 1",
+#'          f7Sheet(
+#'           id = "sheet",
+#'           label = "More",
+#'           orientation = "bottom",
+#'           swipeToClose = TRUE,
+#'           swipeToStep = TRUE,
+#'           backdrop = TRUE,
+#'           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#'           Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+#'           scelerisque est, at porta justo cursus ac"
+#'          )
+#'         ),
 #'         f7Tab(tabName = "Tab 2", "tab 2 text"),
 #'         f7Tab(tabName = "Tab 3", "tab 3 text"),
-#'         .items = shiny::tags$a(
-#'          class = "tab-link",
-#'          href = "#",
-#'          f7Icon("bolt_fill"),
-#'          shiny::span(class = "tabbar-label", "Optional Item")
+#'         .items = f7TabLink(
+#'          icon = f7Icon("bolt_fill"),
+#'          label = "Toggle Sheet",
+#'          `data-sheet` = "#sheet",
+#'          class = "sheet-open"
 #'         )
 #'       )
 #'     )
@@ -170,6 +184,28 @@ f7Tab <- function(..., tabName, icon = NULL, active = FALSE, hidden = FALSE) {
     ...
   )
   return(list(itemTag, icon, tabName, hidden))
+}
+
+
+
+
+#' Special button/link to insert in the tabbar
+#'
+#' Use in the .items slot of \link{f7Tabs}.
+#'
+#' @param ... Any attribute like \code{`data-sheet`}, id, ...
+#' @param icon Expect \link{f7Icon}.
+#' @param label Button label.
+#'
+#' @export
+f7TabLink <- function(..., icon = NULL, label = NULL) {
+  shiny::tags$a(
+    ...,
+    class = "tab-link",
+    href = "#",
+    icon,
+    shiny::span(class = "tabbar-label", label)
+  )
 }
 
 
