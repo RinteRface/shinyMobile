@@ -82,5 +82,21 @@ f7Popover <- function(targetId, content, session = shiny::getDefaultReactiveDoma
 #'
 #' @export
 f7PopoverTarget <- function(tag, targetId) {
-  tag %>% shiny::tagAppendAttributes(`data-popover` = targetId)
+  # handle the case of tagList
+  # We must make sure that the tag is really a tag
+  if (inherits(tag, "shiny.tag.list")) {
+    temp <- NULL
+    for (i in seq_along(tag)) {
+      if (inherits(tag[[i]], "shiny.tag")) {
+        tag[[i]]$attribs$`data-popover` <- targetId
+        temp <- tag[[i]]
+      }
+    }
+    if (is.null(temp)) stop("No valid shiny tag found.")
+    tag
+  } else {
+    if (!inherits(tag, "shiny.tag")) stop("Please provide a tag.")
+    tag$attribs$`data-popover` <- targetId
+    tag
+  }
 }
