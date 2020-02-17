@@ -247,17 +247,18 @@ $(function () {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
-      var tabId = $("#" + message.ns + " #" + message.target);
+      console.log(message);
+      var tabId = $("#" + message.ns + "-" + message.target);
       if (message.position === "after") {
         // insert after the targeted tag in the tab-panel div
         $(message.value).insertAfter($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertAfter($('.toolbar-inner [href ="#' + message.target + '"]'));
+        $(message.link).insertAfter($('.toolbar-inner [href ="#' + message.ns + "-" + message.target + '"]'));
       } else if (message.position === "before") {
         // insert before the targeted tag in the tab-panel div
         $(message.value).insertBefore($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertBefore($('.toolbar-inner [href ="#' + message.target + '"]'));
+        $(message.link).insertBefore($('.toolbar-inner [href ="#' + message.ns + "-" + message.target + '"]'));
       }
 
       // if the newly inserted tab is active, disable other tabs
@@ -273,7 +274,7 @@ $(function () {
     var id = "remove_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
       // show the next tab first
-      var tabToRemove = $('#' + message.ns + " #" + message.target);
+      var tabToRemove = $('#' + message.ns + "-" + message.target);
       var nextTabId = $(tabToRemove).next().attr('id');
       app.tab.show('#' + nextTabId);
 
@@ -282,8 +283,8 @@ $(function () {
       $(".tabs.ios-edges").css('transform', '');
 
       // remove the target
-      $('.toolbar-inner a[href="#' +  message.target +'"]').remove();
-      $('#' + message.ns + " #" + message.target).remove();
+      $('.toolbar-inner a[href="#' + message.ns + "-" + message.target +'"]').remove();
+      $('#' + message.ns + "-" + message.target).remove();
 
       // we programatically remove the old tabbar indicator and rebuild it.
       // The with of the tabbar indicator depends on the number of tab items it contains

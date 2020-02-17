@@ -1,6 +1,8 @@
 #' Create a Framework7 tabs
 #'
-#' Build a Framework7 tabs
+#' By default, \link{f7Tabs} are used within the \link{f7TabLayout}. However, you
+#' may use them as standalone components if you specify a the segmented or strong
+#' styles.
 #'
 #' @param ... Slot for \link{f7Tab}.
 #' @param .items Slot for other items that could be part of the toolbar such as
@@ -11,6 +13,8 @@
 #' Not compatible with animated.
 #' @param animated Whether to show transition between tabs. TRUE by default.
 #' Not compatible with swipeable.
+#' @param style Tabs style: \code{c("toolbar", "segmented", "strong")}. If style
+#' is toolbar, then \link{f7Tab} have a toolbar behavior.
 #'
 #' @note Animated does not work when set to FALSE and swipeable is FALSE.
 #'
@@ -19,6 +23,7 @@
 #' @export
 #' @examples
 #' if (interactive()) {
+#'  # tabs as toolbar
 #'  library(shiny)
 #'  library(shinyMobile)
 #'  shiny::shinyApp(
@@ -59,72 +64,224 @@
 #'     output$selected <- renderText(input$tabdemo)
 #'   }
 #'  )
+#'  # standalone tabs
+#'  library(shiny)
+#'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(
+#'          title = "Standalone tabs",
+#'          hairline = FALSE,
+#'          shadow = TRUE
+#'        ),
+#'        f7Tabs(
+#'          id = "tabs",
+#'          style = "strong", animated = FALSE, swipeable = TRUE,
+#'          f7Tab(
+#'            tabName = "Tab 1",
+#'            icon = f7Icon("email"),
+#'            active = TRUE,
+#'            f7Shadow(
+#'              intensity = 10,
+#'              hover = TRUE,
+#'              f7Card(
+#'                title = "Card header",
+#'                f7Stepper(
+#'                  "obs1",
+#'                  "Number of observations",
+#'                  min = 0,
+#'                  max = 1000,
+#'                  value = 500,
+#'                  step = 100
+#'                ),
+#'                plotOutput("distPlot")
+#'              )
+#'            )
+#'          ),
+#'          f7Tab(
+#'            tabName = "Tab 2",
+#'            icon = f7Icon("today"),
+#'            active = FALSE,
+#'            f7Shadow(
+#'              intensity = 10,
+#'              hover = TRUE,
+#'              f7Card(
+#'                title = "Card header",
+#'                f7Select(
+#'                  inputId = "obs2",
+#'                  label = "Distribution type:",
+#'                  choices = c(
+#'                    "Normal" = "norm",
+#'                    "Uniform" = "unif",
+#'                    "Log-normal" = "lnorm",
+#'                    "Exponential" = "exp"
+#'                  )
+#'                ),
+#'                plotOutput("distPlot2")
+#'              )
+#'            )
+#'          ),
+#'          f7Tab(
+#'            tabName = "Tab 3",
+#'            icon = f7Icon("cloud_upload"),
+#'            active = FALSE,
+#'            f7Shadow(
+#'              intensity = 10,
+#'              hover = TRUE,
+#'              f7Card(
+#'                title = "Card header",
+#'                f7SmartSelect(
+#'                  inputId = "variable",
+#'                  label = "Variables to show:",
+#'                  c("Cylinders" = "cyl",
+#'                    "Transmission" = "am",
+#'                    "Gears" = "gear"),
+#'                  multiple = TRUE,
+#'                  selected = "cyl"
+#'                ),
+#'                tableOutput("data")
+#'              )
+#'            )
+#'          )
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output) {
+#'      output$distPlot <- renderPlot({
+#'        dist <- rnorm(input$obs1)
+#'        hist(dist)
+#'      })
+#'
+#'      output$distPlot2 <- renderPlot({
+#'        dist <- switch(
+#'          input$obs2,
+#'          norm = rnorm,
+#'          unif = runif,
+#'          lnorm = rlnorm,
+#'          exp = rexp,
+#'          rnorm
+#'        )
+#'
+#'        hist(dist(500))
+#'      })
+#'
+#'      output$data <- renderTable({
+#'        mtcars[, c("mpg", input$variable), drop = FALSE]
+#'      }, rownames = TRUE)
+#'    }
+#'  )
 #' }
-f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE) {
+f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE,
+                   style = c("toolbar", "segmented", "strong")) {
 
+  style <- match.arg(style)
   if (swipeable && animated) stop("Cannot use two effects at the same time")
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
+  ns <- shiny::NS(id)
 
-  toolbarItems <- list(...)
-  len <- length(toolbarItems)
+  items <- list(...)
   found_active <- FALSE
 
-  # toolbar items
-  toolbarTag <- f7Toolbar(
-    position = "bottom",
-    hairline = TRUE,
-    shadow = TRUE,
-    icons = TRUE,
-    scrollable = FALSE,
-    lapply(1:len, FUN = function(i) {
+  tabItems <- lapply(seq_along(items), FUN = function(i) {
 
-      item <- toolbarItems[[i]][[1]]
-      itemIcon <- toolbarItems[[i]][[2]]
-      itemName <- toolbarItems[[i]][[3]]
-      itemClass <- item$attribs$class
-      itemId <- item$attribs$id
+    item <- items[[i]][[1]]
+    itemIcon <- items[[i]][[2]]
+    itemName <- items[[i]][[3]]
+    itemClass <- item$attribs$class
+    itemId <- item$attribs$id
 
-      # whether the item is hidden
-      itemHidden <- toolbarItems[[i]][[4]]
+    # whether the item is hidden
+    itemHidden <- items[[i]][[4]]
 
-      # make sure that if the user set 2 tabs active at the same time,
-      # only the first one is selected
-      if (!found_active) {
-        active <- sum(grep(x = itemClass, pattern = "active")) == 1
-        if (active) found_active <<- TRUE
-        # if there is already an active panel, set all other to inactive
-      } else {
-        active <- FALSE
-      }
+    # make sure that if the user set 2 tabs active at the same time,
+    # only the first one is selected
+    if (!found_active) {
+      active <- sum(grep(x = itemClass, pattern = "active")) == 1
+      if (active) found_active <<- TRUE
+      # if there is already an active panel, set all other to inactive
+    } else {
+      active <- FALSE
+    }
 
-      # generate the link only if the item is visible
-      if (!itemHidden) {
-        if (!is.null(itemIcon)) {
+    # generate the link only if the item is visible
+    if (!itemHidden) {
+      if (!is.null(itemIcon)) {
+        if (style %in% c("segmented", "strong")) {
+          shiny::tags$button(
+            class = if (active) "button tab-link tab-link-active" else "button tab-link",
+            href = paste0("#", ns(itemId)),
+            itemIcon,
+            shiny::span(class = "tabbar-label", itemName)
+          )
+        } else if (style == "toolbar") {
           shiny::a(
-            href = paste0("#", itemId),
+            href = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
             itemIcon,
-            shiny::span(class = "tabbar-label", itemName),
+            shiny::span(class = "tabbar-label", itemName)
           )
-        } else {
+        }
+      } else {
+        if (style %in% c("segmented", "strong")) {
+          shiny::tags$button(
+            class = if (active) "button tab-link tab-link-active" else "button tab-link",
+            href = paste0("#", ns(itemId)),
+            itemName
+          )
+        } else if (style == "toolbar"){
           shiny::a(
-            href = paste0("#", itemId),
+            href = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
-            itemName,
+            itemName
           )
         }
       }
-    }),
-    # other items here
-    .items
-  )
+    }
+  })
+
+  # tab links: segmented buttons or toolbar items
+  tabLinksTag <- if (style == "segmented") {
+    shiny::tags$div(
+      class = "block",
+      shiny::tags$div(
+        class = "segmented segmented-raised",
+        tabItems
+      )
+    )
+  } else if (style == "strong") {
+    shiny::tags$div(
+      class = "block",
+      shiny::tags$div(
+        class = "segmented segmented-strong",
+        tabItems
+      )
+    )
+  } else if (style == "toolbar") {
+    f7Toolbar(
+      position = "bottom",
+      hairline = TRUE,
+      shadow = TRUE,
+      icons = TRUE,
+      scrollable = FALSE,
+      tabItems,
+      # other items here
+      .items
+    )
+  }
 
   # related page content
   contentTag <- shiny::tags$div(
     # ios-edges necessary to have
     # the good ios rendering
     class = "tabs ios-edges",
-    lapply(1:len, function(i) { toolbarItems[[i]][[1]]})
+    style = if (style %in% c("segmented", "strong")) "margin-top: -50px",
+    lapply(seq_along(items), function(i) {
+      items[[i]][[1]]$attribs$id <- ns(items[[i]][[1]]$attribs$id)
+      # we don't change data value
+      items[[i]][[1]]
+    })
   )
 
   contentTag$attribs$id <- id
@@ -144,7 +301,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     )
   }
 
-  shiny::tagList(f7InputsDeps(), toolbarTag, contentTag)
+  shiny::tagList(f7InputsDeps(), tabLinksTag, contentTag)
 
 }
 
@@ -329,7 +486,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
   # remove the space in the tab name
   selected <- gsub(x = selected, pattern = " ", replacement = "")
 
-  message <- dropNulls(list(selected = selected))
+  message <- dropNulls(list(selected = selected, ns = id))
   session$sendInputMessage(id, message)
 }
 
@@ -411,26 +568,22 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
   # Below we check if the tag is really a shiny tag...
   if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
 
-  ns <- inputId
-
-  # we need to create a new id not to overlap with the updateF7Tab id
-  # prefix by insert_ makes sense
-  inputId <- paste0("insert_", inputId)
-
+  nsWrapper <- shiny::NS(inputId)
   position <- match.arg(position)
 
   # create the corresponding tablink
-  tabId <- gsub(" ", "", tab[[1]]$attribs$id, fixed = TRUE)
+  tabId <- gsub(" ", "", nsWrapper(tab[[1]]$attribs$id), fixed = TRUE)
 
   tabLink <- shiny::a(
     class = "tab-link",
-    href = paste0("#", tab[[1]]$attribs$id),
+    href = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
     tab[[3]]
   )
   tabLink <- as.character(force(tabLink))
 
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
+  tab[[1]]$attribs$id <- nsWrapper(tab[[1]]$attribs$id)
   tab <- as.character(force(tab[[1]]))
 
   # remove all whitespace from the target name
@@ -444,10 +597,13 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
       target = target,
       position = position,
       select = tolower(select),
-      ns = ns
+      ns = inputId
     )
   )
 
+  # we need to create a new id not to overlap with the updateF7Tab id
+  # prefix by insert_ makes sense
+  inputId <- paste0("insert_", inputId)
   session$sendCustomMessage(type = inputId, message)
 }
 

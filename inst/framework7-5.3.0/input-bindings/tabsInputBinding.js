@@ -26,7 +26,7 @@ $.extend(f7TabsBinding, {
   receiveMessage: function(el, data) {
     // update the active tab
     if (data.hasOwnProperty('selected')) {
-      app.tab.show('#' + data.selected);
+      app.tab.show('#' + data.ns + '-' + data.selected);
     }
   },
 

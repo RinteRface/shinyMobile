@@ -16,6 +16,7 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- `f7Tabs()` may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.
 - update `f7Icon()` and icons dependencies. thanks @pvictor
 - new `updateF7DatePicker()`: thanks @pvictor
 - add input binding to `f7Fabs()` to get the status of the container

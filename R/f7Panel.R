@@ -108,22 +108,19 @@ f7Panel <- function(..., inputId = NULL, title = NULL,
     class = panelCl,
     id = inputId,
     shiny::tags$div(
-      class = "view",
+      class = "page",
+      # Panel Header
       shiny::tags$div(
-        class = "page",
-        # Panel Header
+        class = "navbar",
         shiny::tags$div(
-          class = "navbar",
-          shiny::tags$div(
-            class = "navbar-inner",
-            shiny::tags$div(class = "title", title)
-          )
-        ),
-        # Panel content
-        shiny::tags$div(
-          class = "page-content",
-          items
+          class = "navbar-inner",
+          shiny::tags$div(class = "title", title)
         )
+      ),
+      # Panel content
+      shiny::tags$div(
+        class = "page-content",
+        items
       )
     )
   )
