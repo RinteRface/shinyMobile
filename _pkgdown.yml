@@ -16,6 +16,11 @@ reference:
   - '`f7Tabs`'
   - '`f7Toolbar`'
 
+- title: Authentication
+  desc: UI skeletons for authentication purposes
+  contents:
+  - '`f7Login`'
+
 
 - title: Toward progressive web app
   desc: Tools to build a progressive web app
@@ -85,6 +90,7 @@ reference:
   - '`updateF7Fab`'
   - '`updateF7Fabs`'
   - '`updateF7Gauge`'
+  - '`updateF7Login`'
   - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Progress`'
