@@ -66,6 +66,8 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- trigger shown event for `f7Tabs()` on click. This allows to use `f7Tabs()`
+without swipeable and animated
 - Allow output elements to be displayed in `f7Panel()` (need to provide the `f7Panel()` inputId)
 - Prevent `f7Swipeout()` to make the current tab swipping if in `f7TabLayout()`
 - Fix `f7Fab()` label white background color in dark mode

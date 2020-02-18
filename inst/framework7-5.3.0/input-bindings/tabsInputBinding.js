@@ -32,6 +32,7 @@ $.extend(f7TabsBinding, {
 
   subscribe: function(el, callback) {
     $(el).on("tab:show.f7TabsBinding", function(e) {
+      $(el).trigger('shown');
       callback();
     });
   },
