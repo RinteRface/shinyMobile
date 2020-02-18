@@ -36,9 +36,6 @@ By default, \link{f7Tabs} are used within the \link{f7TabLayout}. However, you
 may use them as standalone components if you specify a the segmented or strong
 styles.
 }
-\note{
-Animated does not work when set to FALSE and swipeable is FALSE.
-}
 \examples{
 if (interactive()) {
  # tabs as toolbar

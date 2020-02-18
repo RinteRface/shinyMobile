@@ -16,8 +16,6 @@
 #' @param style Tabs style: \code{c("toolbar", "segmented", "strong")}. If style
 #' is toolbar, then \link{f7Tab} have a toolbar behavior.
 #'
-#' @note Animated does not work when set to FALSE and swipeable is FALSE.
-#'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -276,9 +274,14 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     # ios-edges necessary to have
     # the good ios rendering
     class = "tabs ios-edges",
-    style = if (style %in% c("segmented", "strong")) "margin-top: -50px",
     lapply(seq_along(items), function(i) {
       items[[i]][[1]]$attribs$id <- ns(items[[i]][[1]]$attribs$id)
+      if (style %in% c("segmented", "strong")) {
+        items[[i]][[1]]$attribs$class <- strsplit(
+          items[[i]][[1]]$attribs$class,
+          "page-content"
+        )[[1]][2]
+      }
       # we don't change data value
       items[[i]][[1]]
     })
@@ -286,10 +289,13 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 
   contentTag$attribs$id <- id
 
+  # remove bottom margin between tabs and other content
+  # only when standalone
   # handle swipeable tabs
   if (swipeable) {
     contentTag <- shiny::tags$div(
       class = "tabs-swipeable-wrap",
+      style = if (style %in% c("segmented", "strong")) "margin-bottom: -500px;",
       contentTag
     )
   }
@@ -297,6 +303,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   if (animated) {
     contentTag <- shiny::tags$div(
       class = "tabs-animated-wrap",
+      style = if (style %in% c("segmented", "strong")) "margin-bottom: -500px;",
       contentTag
     )
   }

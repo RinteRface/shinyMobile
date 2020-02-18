@@ -26,7 +26,7 @@ $(function () {
   var dark_mode = $('html').hasClass('theme-dark');
   if (dark_mode) {
     $('.page-content').css('background-color', '');
-    $('.page-content.tab').css('background-color', '');
+    $('.page-content.tab, .tab').css('background-color', '');
     $('.demo-facebook-card .card-footer').css('background-color', '#1c1c1d');
     $('.sheet-modal, .swipe-handler').css('background-color', '#1b1b1d');
     $('.popup').css('background-color', '#1b1b1d');
