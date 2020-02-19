@@ -58,6 +58,10 @@
 #' }
 f7Login <- function(..., id, title, label = "Sign In", footer = NULL) {
 
+  submitBttn <- f7Button(inputId = "login", label = label)
+  submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
+  submitBttn[[2]]$name <- "a"
+
   shiny::tagList(
     f7InputsDeps(),
     shiny::tags$div(
@@ -90,7 +94,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL) {
               ),
               shiny::tags$div(
                 class = "list",
-                shiny::tags$ul(shiny::tags$li(f7Button(inputId = "login", label = label))),
+                shiny::tags$ul(shiny::tags$li(submitBttn)),
                 if (!is.null(footer)) {
                   shiny::tags$div(class = "block-footer", footer)
                 }
