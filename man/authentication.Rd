@@ -2,24 +2,48 @@
 % Please edit documentation in R/f7Login.R
 \name{f7Login}
 \alias{f7Login}
+\alias{f7LoginServer}
+\alias{updateF7Login}
 \title{Provide a template for authentication}
 \usage{
 f7Login(..., id, title, label = "Sign In", footer = NULL)
+
+f7LoginServer(input, output, session)
+
+updateF7Login(id, user, password, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
 
-\item{id}{Login unique id.}
+\item{id}{\link{f7Login} unique id.}
 
 \item{title}{Login page title.}
 
 \item{label}{Login confirm button label.}
 
 \item{footer}{Optional footer.}
+
+\item{input}{Shiny input object.}
+
+\item{output}{Shiny output object.}
+
+\item{session}{Shiny session object.}
+
+\item{user}{Value of the user input.}
+
+\item{password}{Value of the password input.}
 }
 \description{
 This function does not provide the backend features. You would
 need to store credentials in a database for instance.
+}
+\note{
+There is an input associated with the login status, namely input$login.
+It is linked to an action button, which is 0 when the application starts. As soon
+as the button is pressed, its value is incremented which might fire a
+\link[shiny]{observeEvent} listening to it (See example below). Importantly,
+the login page is closed only if the text and password inputs are filled. The
+\link{f7LoginServer} contains a piece of server logic that does this work for you.
 }
 \examples{
 if (interactive()) {
@@ -39,16 +63,7 @@ if (interactive()) {
          f7Link(label = "Link 1", src = "https://www.google.com"),
          f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
        ),
-       f7Login(
-         id = "loginPage",
-         title = "Welcome",
-         f7Text(
-           inputId = "caption",
-           label = "Caption",
-           value = "Data Summary",
-           placeholder = "Your text here"
-         )
-       ),
+       f7Login(id = "loginPage", title = "Welcome"),
        # main content
        f7BlockTitle(
          title = HTML(paste0("Welcome ", textOutput("userName"))),
@@ -58,13 +73,11 @@ if (interactive()) {
    ),
    server = function(input, output, session) {
 
-     observeEvent(input$login, {
-       updateF7Login(id = "loginPage")
-     })
+     f7LoginServer(input, output, session)
 
      output$userName <- renderText({
        req(input$login > 0)
-       input$caption
+       input$login_user
      })
    }
  )

@@ -7,6 +7,9 @@ $.extend(f7LoginBinding, {
     // feed the create method
     var data = {};
     data.el = '#' + $(el).attr("id");
+    // specify animate false since true involves
+    // a significant delay before the modal shows up
+    data.animate = false;
     data.on = {
       opened: function () {
         $(el).trigger('shown');
@@ -31,7 +34,12 @@ $.extend(f7LoginBinding, {
   receiveMessage: function(el, data) {
     var l = app.loginScreen.get($(el));
     if (l.opened) {
-      l.close();
+      // only close if valid password and user
+      if (data.user.length > 0 && data.password.length > 0) {
+        l.close();
+      } else {
+        app.dialog.alert('Please enter a valid password and user.');
+      }
     } else {
       l.open();
     }
