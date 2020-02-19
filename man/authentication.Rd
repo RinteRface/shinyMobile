@@ -6,11 +6,16 @@
 \alias{updateF7Login}
 \title{Provide a template for authentication}
 \usage{
-f7Login(..., id, title, label = "Sign In", footer = NULL)
+f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
 
-f7LoginServer(input, output, session)
+f7LoginServer(input, output, session, ignoreInit = FALSE)
 
-updateF7Login(id, user, password, session = shiny::getDefaultReactiveDomain())
+updateF7Login(
+  id,
+  user = NULL,
+  password = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
@@ -23,11 +28,19 @@ updateF7Login(id, user, password, session = shiny::getDefaultReactiveDomain())
 
 \item{footer}{Optional footer.}
 
+\item{startOpen}{Whether to open the login page at start. Default to TRUE. There
+are some cases where it is interesting to set up to FALSE, for instance when you want
+to have authentication only in a specific tab of your app (See example 2).}
+
 \item{input}{Shiny input object.}
 
 \item{output}{Shiny output object.}
 
 \item{session}{Shiny session object.}
+
+\item{ignoreInit}{If TRUE, then, when this observeEvent is first
+created/initialized, ignore the handlerExpr (the second argument),
+whether it is otherwise supposed to run or not. The default is FALSE.}
 
 \item{user}{Value of the user input.}
 
@@ -47,6 +60,7 @@ the login page is closed only if the text and password inputs are filled. The
 }
 \examples{
 if (interactive()) {
+ # global authentication
  library(shiny)
  library(shinyMobile)
  shiny::shinyApp(
@@ -74,6 +88,56 @@ if (interactive()) {
    server = function(input, output, session) {
 
      f7LoginServer(input, output, session)
+
+     output$userName <- renderText({
+       req(input$login > 0)
+       input$login_user
+     })
+   }
+ )
+
+ # section specific authentication
+ library(shiny)
+ library(shinyMobile)
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "My app",
+     f7TabLayout(
+       navbar = f7Navbar(
+         title = "Login Example for Specific Section",
+         hairline = FALSE,
+         shadow = TRUE
+       ),
+       f7Tabs(
+         id = "tabs",
+         f7Tab(
+           tabName = "Tab 1",
+           "Without authentication"
+         ),
+         f7Tab(
+           tabName = "Restricted",
+           # main content
+           f7BlockTitle(
+             title = HTML(paste0("Welcome ", textOutput("userName"))),
+             size = "large"
+           ) \%>\% f7Align("center")
+         )
+       ),
+       f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE)
+     )
+   ),
+   server = function(input, output, session) {
+
+     # Authorization on the second tab
+     # only run once to open the login page
+     observeEvent(input$tabs, {
+       if (input$tabs == "Restricted") {
+         updateF7Login(id = "loginPage")
+       }
+     }, once = TRUE)
+
+     # do not run first since the login page is not yet visible
+     f7LoginServer(input, output, session, ignoreInit = TRUE)
 
      output$userName <- renderText({
        req(input$login > 0)

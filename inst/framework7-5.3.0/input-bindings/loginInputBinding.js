@@ -17,7 +17,11 @@ $.extend(f7LoginBinding, {
     };
     var l = app.loginScreen.create(data);
     // the login page should automatically open when inserted
-    l.open();
+    // unless the start-open property is disable. This may happen
+    // for instance when one wants to trigger authentication only
+    // for a specific section of the app.
+    var startOpen = JSON.parse($(el).attr("data-start-open"))[0];
+    if (startOpen) l.open();
   },
 
   find: function(scope) {

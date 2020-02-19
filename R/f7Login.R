@@ -16,11 +16,16 @@
 #' @param title Login page title.
 #' @param label Login confirm button label.
 #' @param footer Optional footer.
+#' @param startOpen Whether to open the login page at start. Default to TRUE. There
+#' are some cases where it is interesting to set up to FALSE, for instance when you want
+#' to have authentication only in a specific tab of your app (See example 2).
 #'
 #' @export
 #' @rdname authentication
+#' @importFrom jsonlite toJSON
 #' @examples
 #' if (interactive()) {
+#'  # global authentication
 #'  library(shiny)
 #'  library(shinyMobile)
 #'  shiny::shinyApp(
@@ -55,8 +60,59 @@
 #'      })
 #'    }
 #'  )
+#'
+#'  # section specific authentication
+#'  library(shiny)
+#'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7TabLayout(
+#'        navbar = f7Navbar(
+#'          title = "Login Example for Specific Section",
+#'          hairline = FALSE,
+#'          shadow = TRUE
+#'        ),
+#'        f7Tabs(
+#'          id = "tabs",
+#'          f7Tab(
+#'            tabName = "Tab 1",
+#'            "Without authentication"
+#'          ),
+#'          f7Tab(
+#'            tabName = "Restricted",
+#'            # main content
+#'            f7BlockTitle(
+#'              title = HTML(paste0("Welcome ", textOutput("userName"))),
+#'              size = "large"
+#'            ) %>% f7Align("center")
+#'          )
+#'        ),
+#'        f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE)
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      # Authorization on the second tab
+#'      # only run once to open the login page
+#'      observeEvent(input$tabs, {
+#'        if (input$tabs == "Restricted") {
+#'          updateF7Login(id = "loginPage")
+#'        }
+#'      }, once = TRUE)
+#'
+#'      # do not run first since the login page is not yet visible
+#'      f7LoginServer(input, output, session, ignoreInit = TRUE)
+#'
+#'      output$userName <- renderText({
+#'        req(input$login > 0)
+#'        input$login_user
+#'      })
+#'    }
+#'  )
 #' }
-f7Login <- function(..., id, title, label = "Sign In", footer = NULL) {
+f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
+                    startOpen = TRUE) {
 
   submitBttn <- f7Button(inputId = "login", label = label)
   submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
@@ -66,6 +122,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL) {
     f7InputsDeps(),
     shiny::tags$div(
       id = id,
+      `data-start-open` = jsonlite::toJSON(startOpen),
       class = "login-screen",
       shiny::tags$div(
         class = "view",
@@ -113,19 +170,30 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL) {
 #' @param input Shiny input object.
 #' @param output Shiny output object.
 #' @param session Shiny session object.
+#' @param ignoreInit If TRUE, then, when this observeEvent is first
+#' created/initialized, ignore the handlerExpr (the second argument),
+#' whether it is otherwise supposed to run or not. The default is FALSE.
 #'
 #' @export
 #' @rdname authentication
-f7LoginServer <- function(input, output, session) {
+f7LoginServer <- function(input, output, session, ignoreInit = FALSE) {
 
-  # toggle the login
+  # this is needed if we have local authentication (not on all pages)
+  # and the login page is not visible at start.
+  # This reactiveVal ensures that we run authentication only once.
+  authenticated <- shiny::reactiveVal(FALSE)
+
+  # toggle the login only if not authenticated
   shiny::observeEvent(input$login, {
-    updateF7Login(
-      id = "loginPage",
-      user = input$login_user,
-      password = input$login_password
-    )
-  })
+    if (!authenticated()) {
+      updateF7Login(
+        id = "loginPage",
+        user = input$login_user,
+        password = input$login_password
+      )
+      authenticated(TRUE)
+    }
+  }, ignoreInit = ignoreInit)
 }
 
 
@@ -137,7 +205,7 @@ f7LoginServer <- function(input, output, session) {
 #' @param session Shiny session object.
 #' @export
 #' @rdname authentication
-updateF7Login <- function(id, user, password, session = shiny::getDefaultReactiveDomain()) {
+updateF7Login <- function(id, user = NULL, password = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
       user = user,
