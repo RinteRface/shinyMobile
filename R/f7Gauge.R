@@ -10,7 +10,6 @@
 #' @param borderBgColor Main border/stroke background color.
 #' @param borderColor Main border/stroke color.
 #' @param borderWidth Main border/stroke width.
-#' @param valueText Gauge value text (large text in the center of gauge).
 #' @param valueTextColor Value text color.
 #' @param valueFontSize Value text font size.
 #' @param valueFontWeight Value text font weight.
@@ -36,7 +35,6 @@
 #'        value = 50,
 #'        borderColor = "#2196f3",
 #'        borderWidth = 10,
-#'        valueText = "50%",
 #'        valueFontSize = 41,
 #'        valueTextColor = "#2196f3",
 #'        labelText = "amount of something"
@@ -51,7 +49,7 @@
 #' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Gauge <- function(id, type = "circle", value, valueText = NULL, size = 200,
+f7Gauge <- function(id, type = "circle", value, size = 200,
                     bgColor = "transparent", borderBgColor = "#eeeeee", borderColor = "#000000",
                     borderWidth = "10", valueTextColor = "#000000", valueFontSize = "31",
                     valueFontWeight = "500", labelText = NULL, labelTextColor = "#888888",
@@ -70,7 +68,6 @@ f7Gauge <- function(id, type = "circle", value, valueText = NULL, size = 200,
       `data-border-bg-color` = borderBgColor,
       `data-border-color` = borderColor,
       `data-border-width` = borderWidth,
-      `data-value-text` = valueText,
       `data-value-text-color` = valueTextColor,
       `data-value-font-size` = valueFontSize,
       `data-value-font-weight` = valueFontWeight,
@@ -92,6 +89,19 @@ f7Gauge <- function(id, type = "circle", value, valueText = NULL, size = 200,
 #' @param session Shiny session object.
 #' @param id Gauge id.
 #' @param value New value. Numeric between 0 and 100.
+#' @param size Generated SVG image size (in px). Default is 200.
+#' @param bgColor Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".
+#' @param borderBgColor Main border/stroke background color.
+#' @param borderColor Main border/stroke color.
+#' @param borderWidth Main border/stroke width.
+#' @param valueTextColor Value text color.
+#' @param valueFontSize Value text font size.
+#' @param valueFontWeight Value text font weight.
+#' @param labelText Gauge additional label text.
+#' @param labelTextColor Label text color.
+#' @param labelFontSize Label text font size.
+#' @param labelFontWeight Label text font weight.
+#'
 #' @export
 #'
 #' @examples
@@ -111,7 +121,6 @@ f7Gauge <- function(id, type = "circle", value, valueText = NULL, size = 200,
 #'              value = 50,
 #'              borderColor = "#2196f3",
 #'              borderWidth = 10,
-#'              valueText = "50%",
 #'              valueFontSize = 41,
 #'              valueTextColor = "#2196f3",
 #'              labelText = "amount of something"
@@ -121,11 +130,35 @@ f7Gauge <- function(id, type = "circle", value, valueText = NULL, size = 200,
 #'     ),
 #'     server = function(input, output, session) {
 #'        observeEvent(input$go, {
-#'           updateF7Gauge(session, id = "mygauge", value = 75)
+#'           updateF7Gauge(session, id = "mygauge", value = 75, labelText = "New label!")
 #'        })
 #'     }
 #'  )
 #' }
-updateF7Gauge <- function(session, id, value) {
-   session$sendInputMessage(inputId = paste0("gauge_", id), message = list(value = value))
+updateF7Gauge <- function(session, id, value = NULL, labelText = NULL, size = NULL,
+                          bgColor = NULL, borderBgColor = NULL,
+                          borderColor = NULL, borderWidth = NULL,
+                          valueTextColor = NULL, valueFontSize = NULL,
+                          valueFontWeight = NULL, labelTextColor = NULL,
+                          labelFontSize = NULL, labelFontWeight = NULL) {
+
+  message <- dropNulls(
+    list(
+      value = value,
+      text = labelText,
+      size = size,
+      bgColor = bgColor,
+      borderBgColor = borderBgColor,
+      borderColor = borderColor,
+      borderWidth = borderWidth,
+      valueTextColor = valueTextColor,
+      valueFontSize = valueFontSize,
+      valueFontWeight = valueFontWeight,
+      labelTextColor = labelTextColor,
+      labelFontSize = labelFontSize,
+      labelFontWeight = labelFontWeight
+      )
+  )
+
+   session$sendInputMessage(inputId = paste0("gauge_", id), message)
 }

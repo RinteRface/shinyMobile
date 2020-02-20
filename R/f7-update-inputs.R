@@ -1,9 +1,131 @@
+#' Change the value of a button input on the client
+#'
+#' @param inputId The id of the input object.
+#' @inheritParams f7Button
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "Update f7Button",
+#'     init = f7Init(theme = "light", skin = "ios"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7Button"),
+#'       f7Button(
+#'         "test",
+#'         "Test",
+#'         color = "orange",
+#'         outline = FALSE,
+#'         fill = TRUE,
+#'         shadow = FALSE,
+#'         rounded = FALSE,
+#'         size = NULL),
+#'       f7Toggle("prout", "Update Button")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$test))
+#'     observeEvent(input$prout, {
+#'       if (input$prout) {
+#'         updateF7Button(
+#'           inputId = "test",
+#'           label = "Updated",
+#'           color = "purple",
+#'           shadow = TRUE,
+#'           rounded = TRUE,
+#'           size = "large"
+#'         )
+#'       }
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Button <- function(inputId, label = NULL, color = NULL,
+                            fill = NULL, outline = NULL, shadow = NULL,
+                            rounded = NULL, size = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
+  message <- dropNulls(
+    list(
+      label = label,
+      color = color,
+      fill = fill,
+      outline = outline,
+      shadow = shadow,
+      rounded = rounded,
+      size = size
+      )
+    )
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+
+#' Toggle \link{f7Fabs} on the server side.
+#'
+#' @param inputId The id of the input object.
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "Update f7Fabs",
+#'     init = f7Init(theme = "light", skin = "ios"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7Fabs"),
+#'       f7Button("toggleFabs", "Toggle Fabs"),
+#'       f7Fabs(
+#'         position = "center-center",
+#'         id = "fabs",
+#'         lapply(1:3, function(i) f7Fab(inputId = i, label = i))
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe(print(input$fabs))
+#'     observeEvent(input$toggleFabs, {
+#'       updateF7Fabs(
+#'         inputId = "fabs"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Fabs <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
+  message <- NULL
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
 #' Change the value of a checkbox input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
-#' @param label	The label to set for the input object.
+#' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -45,14 +167,14 @@
 #'       removeNotification("notif")
 #'      }
 #'
-#'      updateF7Checkbox(session, "check", value = x_even)
+#'      updateF7Checkbox("check", value = x_even)
 #'    })
 #'  }
 #'
 #' shinyApp(ui, server)
 #' }
-#' @export
-updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
+updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
+                             session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label=label, value=value))
   session$sendInputMessage(inputId, message)
 }
@@ -62,13 +184,15 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 
 #' Change the value of a text input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
 #' @param value The value to set for the input object.
 #' @param placeholder The placeholder to set for the input object.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -92,12 +216,12 @@ updateF7Checkbox <- function(session, inputId, label = NULL, value = NULL) {
 #'  server <- function(input, output, session) {
 #'    output$value <- renderPrint(input$text)
 #'    observeEvent(input$trigger, {
-#'      updateF7Text(session, "text", value = "Updated Text")
+#'      updateF7Text("text", value = "Updated Text")
 #'    })
 #'  }
 #' shinyApp(ui, server)
 #' }
-updateF7Text <- function(session, inputId, label = NULL, value = NULL, placeholder = NULL) {
+updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label=label, value=value, placeholder=placeholder))
   session$sendInputMessage(inputId, message)
 }
@@ -138,11 +262,13 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 
 #' Change the value of a \link{f7Fab} input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -158,12 +284,13 @@ updateF7Text <- function(session, inputId, label = NULL, value = NULL, placehold
 #'
 #'  server <- function(input, output, session) {
 #'    observeEvent(input$trigger, {
-#'      updateF7Fab(session, "trigger", label = "Don't click me")
+#'      updateF7Fab("trigger", label = "Don't click me")
 #'    })
 #'  }
 #' shinyApp(ui, server)
 #' }
-updateF7Fab <- function(session, inputId, label = NULL) {
+updateF7Fab <- function(inputId, label = NULL,
+                        session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label=label))
   session$sendInputMessage(inputId, message)
 }
@@ -274,7 +401,6 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 
 #' Change the value of a slider input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param min Slider minimum range.
 #' @param max Slider maximum range
@@ -284,8 +410,11 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #' @param scaleSubSteps Number of scale sub steps (each step will be divided by this value).
 #' @param step Slider increase step size.
 #' @param color See \link{getF7Colors} for valid colors.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @note Important: you cannot transform a range slider into a simple slider and inversely.
 #'
@@ -320,7 +449,6 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'
 #'      observeEvent(input$update, {
 #'        updateF7Slider(
-#'          session,
 #'          inputId = "obs",
 #'          value = c(1, 5),
 #'          min = 0,
@@ -334,9 +462,10 @@ updateF7Fab <- function(session, inputId, label = NULL) {
 #'    }
 #'  )
 #' }
-updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NULL,
+updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
                            scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL,
-                           step = NULL, color = NULL) {
+                           step = NULL, color = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     value = value,
     min = min,
@@ -356,12 +485,14 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 
 #' Change the value of a toggle input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param checked Whether the toggle is TRUE or FALSE.
 #' @param color Toggle color.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -391,7 +522,6 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 #'
 #'      observeEvent(input$update, {
 #'        updateF7Toggle(
-#'          session,
 #'          inputId = "toggle",
 #'          checked = TRUE,
 #'          color = "green"
@@ -400,7 +530,8 @@ updateF7Slider <- function(session, inputId, min = NULL, max = NULL, value = NUL
 #'    }
 #'  )
 #' }
-updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
+updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     checked = checked,
     color = color
@@ -413,7 +544,6 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 
 #' Change the value of a stepper input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param min Stepper minimum value.
 #' @param max Stepper maximum value.
@@ -430,9 +560,15 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
 #' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
 #' continues pressing the control. TRUE by default.
-#' @param manual It is possible to enter value manually from keyboard or mobile keypad. When click on input field, stepper enter into manual input mode, which allow type value from keyboar and check fractional part with defined accurancy. Click outside or enter Return key, ending manual mode. TRUE by default.
+#' @param manual It is possible to enter value manually from keyboard or mobile keypad.
+#'  When click on input field, stepper enter into manual input mode, which allow type value
+#'  from keyboar and check fractional part with defined accurancy. Click outside or enter
+#'  Return key, ending manual mode. TRUE by default.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @note While updating, the autorepeat field does not work correctly.
 #'
@@ -471,7 +607,6 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'
 #'     observeEvent(input$update, {
 #'       updateF7Stepper(
-#'         session,
 #'         inputId = "stepper",
 #'         value = 0.1,
 #'         step = 0.01,
@@ -490,11 +625,12 @@ updateF7Toggle <- function(session, inputId, checked = NULL, color = NULL) {
 #'   }
 #'  )
 #' }
-updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
+updateF7Stepper <- function(inputId, min = NULL, max = NULL,
                             value = NULL, step = NULL, fill = NULL,
                             rounded = NULL, raised = NULL, size = NULL,
                             color = NULL, wraps = NULL, decimalPoint = NULL,
-                            autorepeat = NULL, manual = NULL) {
+                            autorepeat = NULL, manual = NULL,
+                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     min = min,
     max = max,
@@ -518,12 +654,25 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 
 #' Change the value of a picker input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
 #' @param value Picker initial value, if any.
 #' @param choices New picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -542,7 +691,9 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'           label = "Picker Input",
 #'           choices = c('a', 'b', 'c')
 #'         ),
-#'         verbatimTextOutput("pickerval")
+#'         verbatimTextOutput("pickerval"),
+#'         br(),
+#'         f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
 #'       )
 #'     )
 #'   ),
@@ -552,19 +703,133 @@ updateF7Stepper <- function(session, inputId, min = NULL, max = NULL,
 #'
 #'     observeEvent(input$update, {
 #'       updateF7Picker(
-#'         session,
 #'         inputId = "mypicker",
 #'         value = "b",
-#'         choices = letters
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbarCloseText = "Prout",
+#'         sheetSwipeToClose = TRUE
 #'       )
 #'     })
+#'
+#'     observeEvent(input$removeToolbar, {
+#'       updateF7Picker(
+#'         inputId = "mypicker",
+#'         value = "b",
+#'         choices = letters,
+#'         openIn = "sheet",
+#'         toolbar = FALSE
+#'       )
+#'     })
+#'
 #'   }
 #'  )
 #' }
-updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
+updateF7Picker <- function(inputId, value = NULL, choices = NULL,
+                           rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
+                           closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
+                           sheetSwipeToClose = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     value = value,
-    choices = choices
+    choices = choices,
+    rotateEffect = rotateEffect,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByOutsideClick = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    sheetSwipeToClose = sheetSwipeToClose
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+
+#' Change the value of a date picker input on the client
+#'
+#' @param inputId The id of the input object.
+#' @param value The new value for the input.
+#' @param ... Parameters used to update the date picker,
+#'  use same arguments as in \code{\link{f7DatePicker}}.
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
+#' @examples
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
+#'
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update date picker"),
+#'         f7Card(
+#'           f7Button(inputId = "selectToday", label = "Select today"),
+#'           f7Button(inputId = "rmToolbar", label = "Remove toolbar"),
+#'           f7Button(inputId = "addToolbar", label = "Add toolbar"),
+#'           f7DatePicker(
+#'             inputId = "mypicker",
+#'             label = "Choose a date",
+#'             value = Sys.Date() - 7,
+#'             openIn = "auto",
+#'             direction = "horizontal"
+#'           ),
+#'           verbatimTextOutput("pickerval")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'       output$pickerval <- renderPrint(input$mypicker)
+#'
+#'       observeEvent(input$selectToday, {
+#'         updateF7DatePicker(
+#'           inputId = "mypicker",
+#'           value = Sys.Date()
+#'         )
+#'       })
+#'
+#'       observeEvent(input$rmToolbar, {
+#'         updateF7DatePicker(
+#'           inputId = "mypicker",
+#'           toolbar = FALSE,
+#'           dateFormat = "yyyy-mm-dd" # preserve date format
+#'         )
+#'       })
+#'
+#'       observeEvent(input$addToolbar, {
+#'         updateF7DatePicker(
+#'           inputId = "mypicker",
+#'           toolbar = TRUE,
+#'           dateFormat = "yyyy-mm-dd" # preserve date format
+#'         )
+#'       })
+#'
+#'     }
+#'   )
+#' }
+updateF7DatePicker <- function(inputId, value = NULL, ...,
+                               session = shiny::getDefaultReactiveDomain()) {
+  if (!is.null(value)) {
+    if (length(value) == 1) {
+      value <- list(as.character(value))
+    } else {
+      value <- as.character(value)
+    }
+  }
+  config <- dropNulls(list(...))
+  if (length(config) == 0)
+    config <- NULL
+  message <- dropNulls(list(
+    value = value,
+    config = config
   ))
   session$sendInputMessage(inputId, message)
 }
@@ -575,13 +840,15 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 
 #' Change the value of an autocomplete input on the client
 #'
-#' @param session The session object passed to function given to the server.
 #' @param inputId The id of the input object.
-#' @param value Picker initial value, if any.
+#' @param value Picker new value.
+#' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @note You cannot update choices yet.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -597,7 +864,7 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 #'         f7AutoComplete(
 #'          inputId = "myautocomplete",
 #'          placeholder = "Some text here!",
-#'          type = "dropdown",
+#'          openIn = "dropdown",
 #'          label = "Type a fruit name",
 #'          choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'                      'Orange', 'Peach', 'Pear', 'Pineapple')
@@ -616,7 +883,6 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 #'
 #'     observeEvent(input$update, {
 #'       updateF7AutoComplete(
-#'         session,
 #'         inputId = "myautocomplete",
 #'         value = "Banana"
 #'       )
@@ -624,7 +890,8 @@ updateF7Picker <- function(session, inputId, value = NULL, choices = NULL) {
 #'   }
 #'  )
 #' }
-updateF7AutoComplete <- function(session, inputId, value =  NULL) {
+updateF7AutoComplete <- function(inputId, value =  NULL,
+                                 session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
       value = value
@@ -635,3 +902,60 @@ updateF7AutoComplete <- function(session, inputId, value =  NULL) {
 
 
 
+
+
+
+
+#' Change the value of a select input on the client
+#'
+#' @param inputId The id of the input object.
+#' @param selected New value.
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7SingleLayout(
+#'        navbar = f7Navbar(title = "updateF7Select"),
+#'        f7Card(
+#'          f7Button(inputId = "update", label = "Update select"),
+#'          br(),
+#'          f7Select(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           choices = colnames(mtcars)[-1],
+#'           selected = "hp"
+#'          ),
+#'          verbatimTextOutput("test")
+#'        )
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      output$test <- renderPrint(input$variable)
+#'
+#'      observeEvent(input$update, {
+#'        updateF7Select(
+#'          inputId = "variable",
+#'          selected = "gear"
+#'        )
+#'      })
+#'    }
+#'  )
+#' }
+updateF7Select <- function(inputId, selected = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
+  message <- dropNulls(list(
+    selected = selected
+  ))
+  session$sendInputMessage(inputId, message)
+}

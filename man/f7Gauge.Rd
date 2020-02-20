@@ -8,7 +8,6 @@ f7Gauge(
   id,
   type = "circle",
   value,
-  valueText = NULL,
   size = 200,
   bgColor = "transparent",
   borderBgColor = "#eeeeee",
@@ -29,8 +28,6 @@ f7Gauge(
 \item{type}{Gauge type. Can be "circle" or "semicircle". Default is "circle."}
 
 \item{value}{Gauge value/percentage. Must be a number between 0 and 100.}
-
-\item{valueText}{Gauge value text (large text in the center of gauge).}
 
 \item{size}{Generated SVG image size (in px). Default is 200.}
 
@@ -76,7 +73,6 @@ if(interactive()){
        value = 50,
        borderColor = "#2196f3",
        borderWidth = 10,
-       valueText = "50\%",
        valueFontSize = 41,
        valueTextColor = "#2196f3",
        labelText = "amount of something"

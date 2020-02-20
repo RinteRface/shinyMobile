@@ -8,6 +8,13 @@
 
 <title>Change the value of a text input on the client — updateF7Text • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="Change the value of a text input on the client — updateF7Text" />
 <meta property="og:description" content="Change the value of a text input on the client" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -79,9 +87,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -109,21 +120,31 @@
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -149,15 +170,17 @@
     <p>Change the value of a text input on the client</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Text</span>(<span class='no'>session</span>, <span class='no'>inputId</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>updateF7Text</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>The session object passed to function given to the server.</p></td>
-    </tr>
     <tr>
       <th>inputId</th>
       <td><p>The id of the input object.</p></td>
@@ -173,6 +196,10 @@
     <tr>
       <th>placeholder</th>
       <td><p>The placeholder to set for the input object.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The Shiny session object, usually the default value will suffice.</p></td>
     </tr>
     </table>
 
@@ -192,14 +219,14 @@
      <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"Some text"</span>,
      <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Your text here"</span>
     ),
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>)
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>)
    )
  )
 
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
    <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>text</span>)
    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>trigger</span>, {
-     <span class='fu'>updateF7Text</span>(<span class='no'>session</span>, <span class='st'>"text"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"Updated Text"</span>)
+     <span class='fu'>updateF7Text</span>(<span class='st'>"text"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"Updated Text"</span>)
    })
  }
 <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)

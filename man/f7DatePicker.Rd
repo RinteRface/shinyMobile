@@ -8,9 +8,18 @@ f7DatePicker(
   inputId,
   label,
   value = NULL,
-  min = NULL,
-  max = NULL,
-  format = "yyyy-mm-dd"
+  multiple = FALSE,
+  direction = c("horizontal", "vertical"),
+  minDate = NULL,
+  maxDate = NULL,
+  dateFormat = "yyyy-mm-dd",
+  openIn = c("auto", "popover", "sheet", "customModal"),
+  scrollToInput = FALSE,
+  closeByOutsideClick = TRUE,
+  toolbar = TRUE,
+  toolbarCloseText = "Done",
+  header = FALSE,
+  headerPlaceholder = "Select date"
 )
 }
 \arguments{
@@ -18,40 +27,83 @@ f7DatePicker(
 
 \item{label}{Input label.}
 
-\item{value}{Start value.}
+\item{value}{Array with initial selected dates. Each array item represents selected date.}
 
-\item{min}{Minimum date.}
+\item{multiple}{If \code{TRUE} allow to select multiple dates.}
 
-\item{max}{Maximum date.}
+\item{direction}{Months layout direction, could be 'horizontal' or 'vertical'.}
 
-\item{format}{Date format: "yyyy-mm-dd", for instance.}
+\item{minDate}{Minimum allowed date.}
+
+\item{maxDate}{Maximum allowed date.}
+
+\item{dateFormat}{Date format: "yyyy-mm-dd", for instance.}
+
+\item{openIn}{Can be auto, popover (to open calendar in popover), sheet
+(to open in sheet modal) or customModal (to open in custom Calendar modal overlay).
+In case of auto will open in sheet modal on small screens and in popover on large screens.}
+
+\item{scrollToInput}{Scroll viewport (page-content) to input when calendar opened.}
+
+\item{closeByOutsideClick}{If enabled, picker will be closed by clicking outside of picker or related input element.}
+
+\item{toolbar}{Enables calendar toolbar.}
+
+\item{toolbarCloseText}{Text for Done/Close toolbar button.}
+
+\item{header}{Enables calendar header.}
+
+\item{headerPlaceholder}{Default calendar header placeholder text.}
+}
+\value{
+a \code{Date} vector.
 }
 \description{
 Create a Framework7 date input
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     preloader = FALSE,
-     color = "pink",
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7DatePicker"),
-       f7DatePicker(
-         inputId = "date",
-         label = "Choose a date",
-         value = "2019-08-24"
-       ),
-       "The selected date is",
-       textOutput("selectDate")
-     )
-   ),
-   server = function(input, output, session) {
-     output$selectDate <- renderText(input$date)
-   }
- )
+  library(shiny)
+  library(shinyMobile)
+
+  shinyApp(
+    ui = f7Page(
+      preloader = FALSE,
+      color = "pink",
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7DatePicker"),
+        f7DatePicker(
+          inputId = "date",
+          label = "Choose a date",
+          value = "2019-08-24"
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectDate"),
+        f7DatePicker(
+          inputId = "multipleDates",
+          label = "Choose multiple dates",
+          value = Sys.Date() + 0:3,
+          multiple = TRUE
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectMultipleDates"),
+        f7DatePicker(
+          inputId = "default",
+          label = "Choose a date",
+          value = NULL
+        ),
+        "The selected date is",
+        verbatimTextOutput("selectDefault")
+      )
+    ),
+    server = function(input, output, session) {
+
+      output$selectDate <- renderPrint(input$date)
+      output$selectMultipleDates <- renderPrint(input$multipleDates)
+      output$selectDefault <- renderPrint(input$default)
+
+    }
+  )
 }
 }

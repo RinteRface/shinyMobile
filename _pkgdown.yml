@@ -16,6 +16,11 @@ reference:
   - '`f7Tabs`'
   - '`f7Toolbar`'
 
+- title: Authentication
+  desc: UI skeletons for authentication purposes
+  contents:
+  - '`f7Login`'
+
 
 - title: Toward progressive web app
   desc: Tools to build a progressive web app
@@ -78,13 +83,18 @@ reference:
   - '`f7TogglePopup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
+  - '`updateF7Button`'
   - '`updateF7Card`'
   - '`updateF7Checkbox`'
+  - '`updateF7DatePicker`'
   - '`updateF7Fab`'
+  - '`updateF7Fabs`'
   - '`updateF7Gauge`'
+  - '`updateF7Login`'
   - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Progress`'
+  - '`updateF7Select`'
   - '`updateF7Sheet`'
   - '`updateF7Slider`'
   - '`updateF7Stepper`'
@@ -142,6 +152,7 @@ reference:
   - '`f7Fabs`'
   - '`f7Link`'
   - '`f7Segment`'
+  - '`f7TabLink`'
 
 
 
@@ -226,8 +237,9 @@ reference:
   - '`f7Gallery`'
 
 - title: Utils
-  desc: colors, ...
+  desc: colors, tools, ...
   contents:
+  - '`createSelectOptions`'
   - '`getF7Colors`'
 
 
@@ -236,44 +248,8 @@ template:
     bootswatch: journal
 
 
-navbar:
-  structure:
-    left:
-    - home
-    - intro
-    - reference
-    - articles
-    - tutorials
-    - news
-    right: github
-  components:
-    home:
-      icon: fa-home fa-lg
-      href: index.html
-    reference:
-      text: Reference
-      href: reference/index.html
-    news:
-      text: Changelog
-      href: news/index.html
-    github:
-      icon: fa-github fa-lg
-      href: https://github.com/RinteRface/shinyF7
-
-
-articles:
-- title: All vignettes
-  contents:
-  - '`getting-started`'
-  - '`Single-Layout`'
-  - '`Tabs-Layout`'
-  - '`Split-Layout`'
-  - '`Gadgets`'
-  - '`Dark-Theme`'
-  - '`shinyMobile_tools`'
-
 
 news:
  releases:
- - text: "shinyMobile 0.2.0.9000"
+ - text: "shinyMobile 0.5.0.9000"
  - text: "shinyMobile 0.1.0"

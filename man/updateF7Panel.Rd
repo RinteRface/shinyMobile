@@ -4,7 +4,7 @@
 \alias{updateF7Panel}
 \title{Function to programmatically update the state of a \link{f7Panel}}
 \usage{
-updateF7Panel(inputId, session)
+updateF7Panel(inputId, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{inputId}{Panel unique id. This is to access the input$id giving the panel

@@ -7,14 +7,30 @@ tabInfo <- f7Tab(
     h1("miniUI 2.0 brings interesting popups windows")
   ),
 
+  # pull to refresh
+  f7BlockTitle(title = "Pull to refresh") %>% f7Align(side = "center"),
+  f7Block(
+    strong = TRUE,
+    inset = TRUE,
+    "Pull the screen from top to bottom to activate
+    the pull to refresh feature. This will raise a modal dialog but
+    may be combined to generate any other interactions, adding new UI
+    elements dynamically, ... Access the pull to refresh state with
+    input$ptr. input$ptr will only take the TRUE value when activated and NULL
+    when released, so that it is ignored by observeEvent
+    (unless ignoreNULL is FALSE)."
+  ),
+
   # popup
   f7BlockTitle(title = "f7Popup") %>% f7Align(side = "center"),
-  f7Button("togglePopup", "Toggle Popup"),
-  f7Popup(
-    id = "popup1",
-    title = "My first popup",
-    f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
-    verbatimTextOutput("popupContent")
+  f7Block(
+    f7Button("togglePopup", "Toggle Popup"),
+    f7Popup(
+      id = "popup1",
+      title = "My first popup",
+      f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
+      verbatimTextOutput("popupContent")
+    )
   ),
   br(),
 
@@ -22,6 +38,7 @@ tabInfo <- f7Tab(
   # sheet
   f7BlockTitle(title = "f7Sheet") %>% f7Align(side = "center"),
   f7Block(
+    f7Button("toggleSheet", "Toggle Sheet"),
     f7Sheet(
       id = "sheet1",
       label = "More",

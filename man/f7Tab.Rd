@@ -4,7 +4,7 @@
 \alias{f7Tab}
 \title{Create a Framework7 tab item}
 \usage{
-f7Tab(..., tabName, icon = NULL, active = FALSE)
+f7Tab(..., tabName, icon = NULL, active = FALSE, hidden = FALSE)
 }
 \arguments{
 \item{...}{Item content.}
@@ -15,7 +15,10 @@ f7Tab(..., tabName, icon = NULL, active = FALSE)
 (either md or ios or NULL for native f7 icons).}
 
 \item{active}{Whether the tab is active at start. Do not select multiple tabs, only
-the first one will be set to active}
+the first one will be set to active.}
+
+\item{hidden}{Whether to hide the tab. This is useful when you want to add invisible tabs
+(that do not appear in the tabbar) but you can still navigate with \link{updateF7Tabs}.}
 }
 \description{
 Build a Framework7 tab item

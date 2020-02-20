@@ -289,7 +289,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
     href = "#",
     class = paste0("link card-close card-opened-fade-in color-white"),
     style = "position: absolute; right: 15px; top: 15px;",
-    shiny::tags$i(class = "icon f7-icons", "close_round_fill")
+    f7Icon("close_round_fill")
   )
 
 
@@ -359,7 +359,10 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'
 #' @param id Card id.
 #' @param session Shiny session object.
+#'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -416,6 +419,6 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'    }
 #'  )
 #' }
-updateF7Card <- function(id, session) {
+updateF7Card <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
 }

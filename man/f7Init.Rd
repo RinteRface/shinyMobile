@@ -10,6 +10,7 @@ f7Init(
   filled = FALSE,
   color = NULL,
   tapHold = TRUE,
+  pullToRefresh = FALSE,
   iosTouchRipple = FALSE,
   iosCenterTitle = TRUE,
   iosTranslucentBars = FALSE,
@@ -32,6 +33,8 @@ Expect a name like blue or red. If NULL, use the default color.}
 \item{tapHold}{It triggers (if enabled) after a sustained, complete touch event.
 By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 so Fast Clicks should be also enabled.}
+
+\item{pullToRefresh}{Whether to active the pull to refresh feature. Default to FALSE.}
 
 \item{iosTouchRipple}{Default to FALSE. Enables touch ripple effect for iOS theme.}
 

@@ -1,11 +1,16 @@
-# shinyMobile <img src="https://rinterface.com/inst/images/F7.svg" width="200px" align="right"/>
+# shinyMobile <img src="man/figures/logo.png" width="200px" align="right"/>
+
+
+> Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest [Framework7](https://framework7.io) template.
+
+<!-- badges: start -->
 [![Build Status](https://travis-ci.org/RinteRface/shinyMobile.svg?branch=master)](https://travis-ci.org/RinteRface/shinyMobile)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RinteRface/shinyMobile?branch=master&svg=true)](https://ci.appveyor.com/project/RinteRface/shinyMobile)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Project Status](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![CRAN status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-project.org/package=shinyMobile)
+<!-- badges: end -->
 
-> shiny API for Framework7 (IOS/android)
 
 
 ## Installation
@@ -17,52 +22,20 @@ install.packages("shinyMobile")
 devtools::install_github("RinteRface/shinyMobile")
 ```
 
+
 ## Cheatsheet
+
 <a href="https://github.com/RinteRface/cheatsheets/tree/master/shinyMobile"><img src="https://raw.githubusercontent.com/rinterface/cheatsheets/master/shinyMobile/png/shinyMobile1.png" width="630" height="487" style="max-width:100%;"></a>
+
 
 ## Demo
 
-A running demo is on [shinyapps.io](https://dgranjon.shinyapps.io/miniUI2Demo/).
-Left side: android demo, right side: iOS demo
+A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. Left side: android demo, right side: iOS demo
 
-<div class="marvel-device note8" style="margin: 10px;">
-    <div class="inner"></div>
-    <div class="overflow">
-        <div class="shadow"></div>
-    </div>
-    <div class="speaker"></div>
-    <div class="sensors"></div>
-    <div class="more-sensors"></div>
-    <div class="sleep"></div>
-    <div class="volume"></div>
-    <div class="camera"></div>
-    <div class="screen">
-        <!-- Content goes here -->
-        <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2DemoMd" allowfullscreen="" frameborder="0" scrolling="no" height="822px"></iframe>
-    </div>
-</div>
 
-<div class="marvel-device iphone-x" style="margin: 10px;">
-  <!--<div class="notch">
-    <div class="camera"></div>
-    <div class="speaker"></div> 
-  </div> -->
-  <div class="top-bar"></div>
-  <div class="sleep"></div>
-  <div class="bottom-bar"></div>
-  <div class="volume"></div>
-  <div class="overflow">
-    <div class="shadow shadow--tr"></div>
-    <div class="shadow shadow--tl"></div>
-    <div class="shadow shadow--br"></div>
-    <div class="shadow shadow--bl"></div>
-  </div>
-  <div class="inner-shadow"></div>
-  <div class="screen">
-    <!-- Content goes here -->
-    <iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen="" frameborder="0" scrolling="no" height="710px"></iframe>
-  </div>
-</div>
+![](man/figures/demo.png)
+
+
 
 ## Progressive Web App (PWA)
 
@@ -134,7 +107,9 @@ Be sure to replace the `start_url` with your own url. Add also a custom name, ev
 such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those files.
 
+
 ### Add the PWA to your desktop Apps
+
 Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. 
 - Select the share button located in the bottom bar of your Iphone/Ipad. 
 - Click on "Add to Home Screen"
@@ -147,7 +122,9 @@ Go to the url of your app. In this example this is: https://dgranjon.shinyapps.i
 </div>
 </div>
 
+
 ### Acknowledgement
+
 A special thanks to [Vladimir Kharlampidi](https://github.com/nolimits4web) for creating this
 amazing framework7 HTML template.
 

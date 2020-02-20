@@ -108,22 +108,19 @@ f7Panel <- function(..., inputId = NULL, title = NULL,
     class = panelCl,
     id = inputId,
     shiny::tags$div(
-      class = "view",
+      class = "page",
+      # Panel Header
       shiny::tags$div(
-        class = "page",
-        # Panel Header
+        class = "navbar",
         shiny::tags$div(
-          class = "navbar",
-          shiny::tags$div(
-            class = "navbar-inner",
-            shiny::tags$div(class = "title", title)
-          )
-        ),
-        # Panel content
-        shiny::tags$div(
-          class = "page-content",
-          items
+          class = "navbar-inner",
+          shiny::tags$div(class = "title", title)
         )
+      ),
+      # Panel content
+      shiny::tags$div(
+        class = "page-content",
+        items
       )
     )
   )
@@ -250,6 +247,9 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #' @param session Shiny session object.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -299,7 +299,7 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #'    }
 #'  )
 #' }
-updateF7Panel <- function(inputId, session) {
+updateF7Panel <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
   message <- NULL
   session$sendInputMessage(inputId, NULL)
 }

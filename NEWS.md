@@ -1,13 +1,32 @@
-# shinyMobile 0.2.0.9000
+# shinyMobile 0.5.0.9000
 
 ## Breaking changes
+- `f7Sheet()` is still inserted in the UI side but can be triggered either on the server side in combination with `updateF7Sheet()` (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having `data-sheet` pointing to the sheet id as well as the "sheet-open" css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a `f7TabLink()` that is a special button styled for the tabbar).
+- All update method for inputs : argument `session` is now optional and has been moved to the last position in function call.
+- `f7AutoComplete()`: type becomes openIn to align with the framework7 documentation
+- remove parameter fill from `f7Icon()` (not used)
 - Rewrite `f7Popup()`. It has now an input associated giving the popup state (opened or closed) as well
 as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. 
 label parameters has been removed. To create an `f7Popup()` put the `f7Popup()` tag in you UI. On the server side call `f7TogglePopup()`. See documentation for a detailed example. Thanks @pasahe
 - `f7NavbarHide()` renamed to `f7HideNavbar()` for consistancy
 - `f7NavbarShow()` renamed to `f7ShowNavbar()` for consistancy
+- In `f7Gauge()` valueText was removed. It does not make sense that the value can be accidentally
+different from the text displayed. valueText is then an internal parameter.
+- In `f7DatePicker()`: min becomes minDate, max becomes maxDate and format becomes dateFormat
+- remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- new `f7Login()` and `updateF7Login()` feature to provide UI boilerplates
+for authentication
+- `f7Tabs()` may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.
+- update `f7Icon()` and icons dependencies. thanks @pvictor
+- new `updateF7DatePicker()`: thanks @pvictor
+- add input binding to `f7Fabs()` to get the status of the container
+- add `updateF7Button()` and `updateF7Fabs()`
+- new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom
+fires input$ptr which becomes TRUE. When the pull to refresh event is finished,
+input$ptr is NULL. Useful to trigger events in an observEvent
+- add new `updateF7Select()`: thanks @Seyphaton for the suggestion
 - add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe
 - add `preview_mobile()`: function that previews your app in a seleted range of
 devices (iphone, samsung, htc, ...)
@@ -15,6 +34,24 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add new `f7TabLink()` (special link to insert in `f7Tabs()` that may open a `f7Sheet()`)
+- add new active parameter to `f7Button()`
+- add new strong parameter to `f7Segment()`
+- Improve website. Thanks @pvictor
+- new fullsize and closeButton parameter to `f7Popup()` + rewrite js binding. Thanks @pvictor
+- add extra parameters to `f7DatePicker()`: direction, openIn,
+scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText,
+header and headerPlaceholder
+- add new parameters to `updateF7Gauge()`. Thanks @rodrigoheck for the suggestion
+- add noSwipping argument to `f7Slider()` to prevent wrong behaviour when used in `f7TabLayout()`
+- `f7Select()` does not rely anymore on the shiny selectInput binding (does not have impact on user experience)
+- add hidden argument to `f7Tab()`: allows to navigate through hidden tabs without displaying them
+in the tab menu. Thanks @rodrigoheck
+- add closeOnSelect param to `f7AutoComplete()`
+- add new parameters to `f7Picker()` and `updateF7Picker()`: rotateEffect, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText and sheetSwipeToClose
+- add color argument to `f7Icon()`
+- add selected parameter to `f7Select()`
+- update framework7 to 5.3.0
 - add color to `updateF7Slider()`
 - add color to `f7Slider()`
 - add cheatsheet reference in the readme
@@ -31,6 +68,16 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- trigger shown event for `f7Tabs()` on click. This allows to use `f7Tabs()`
+without swipeable and animated
+- Allow output elements to be displayed in `f7Panel()` (need to provide the `f7Panel()` inputId)
+- Prevent `f7Swipeout()` to make the current tab swipping if in `f7TabLayout()`
+- Fix `f7Fab()` label white background color in dark mode
+- fix #19: letting bigger TRUE in `f7Navbar()` would center the body content on scroll, due to a css conflict
+- fix issue with `f7Slider()` and `f7TabLayout()`: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7#2603. Thanks @pvictor
+- fix #39: issue in `f7DatePicker()` format for months. Thanks @kmaheshkulkarni
+- fix issue in `f7DatePicker()`: the viewport does not scroll to input by default
+- fix typo in `f7AutoComplete()` example
 - fix #43: slider label not visible on drag. Thanks @pasahe
 - fix #42: add vertical overflow to `f7Popup()`. Thanks @pasahe
 - fix #41: cannot render shiny outputs in `f7Popup()`. Now `f7Popup()` triggers shiny output rendering. Thanks @pasahe

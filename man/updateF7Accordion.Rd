@@ -4,7 +4,11 @@
 \alias{updateF7Accordion}
 \title{Update a Framework 7 accordion}
 \usage{
-updateF7Accordion(inputId, selected = NULL, session)
+updateF7Accordion(
+  inputId,
+  selected = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{inputId}{Accordion instance.}

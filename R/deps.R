@@ -14,15 +14,12 @@ addCSSDeps <- function(x) {
 
   # CSS
   framework7_css <- "framework7.bundle.min.css"
-  framework7_icons_css <- "framework7-icons.css"
   custom_css <- "my-app.css"
   # card extra elements
   social_cards_css <- "social-cards.css"
   card_img_css <- "card-img.css"
   # swiper css
   swiper_css <- "swiper.css"
-  # grid extra css
-  grid_css <- "grid-extra.css"
   # material icons
   material_icons_css <- "material-icons.css"
 
@@ -30,17 +27,15 @@ addCSSDeps <- function(x) {
     # deps
     htmltools::htmlDependency(
       name = "framework7",
-      version = "5.1.3",
-      src = c(file = system.file("framework7-5.1.3", package = "shinyMobile")),
+      version = "5.3.0",
+      src = c(file = system.file("framework7-5.3.0", package = "shinyMobile")),
       script = NULL,
       stylesheet = c(
         framework7_css,
         material_icons_css,
         custom_css,
-        framework7_icons_css,
         social_cards_css,
         card_img_css,
-        grid_css,
         swiper_css
       )
     )
@@ -61,12 +56,11 @@ addCSSDeps <- function(x) {
 # located at the end of the body.
 addJSDeps <- function() {
 
-  depsPath <- "framework7-5.1.3/"
+  depsPath <- "framework7-5.3.0/"
 
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
   custom_js <- paste0(depsPath, "my-app.js")
-  fullScreen_js <- paste0(depsPath, "fullscreen.js")
 
   shiny::tagList(
     shiny::singleton(
@@ -74,9 +68,6 @@ addJSDeps <- function() {
     ),
     shiny::singleton(
       shiny::tags$script(src = custom_js)
-    ),
-    shiny::singleton(
-      shiny::tags$script(src = fullScreen_js)
     )
   )
 }
@@ -85,32 +76,47 @@ addJSDeps <- function() {
 #' @importFrom utils packageVersion
 #' @importFrom htmltools htmlDependency
 f7InputsDeps <- function() {
+
+  bindings_path <- system.file("framework7-5.3.0/input-bindings", package = "shinyMobile")
+
   htmltools::htmlDependency(
     name = "framework7-bindings",
     version = as.character(packageVersion("shinyMobile")),
     src = c(
-      file = system.file("framework7-5.1.3/input-bindings", package = "shinyMobile"),
-      href = "framework7-5.1.3/input-bindings"
+      file = bindings_path,
+      href = "framework7-5.3.0/input-bindings"
     ),
     package = "shinyMobile",
-    script = c(
-      "sliderInputBinding.js",
-      "stepperInputBinding.js",
-      "toggleInputBinding.js",
-      "datePickerInputBinding.js",
-      "pickerInputBinding.js",
-      "colorPickerInputBinding.js",
-      "tabsInputBinding.js",
-      "dateInputBinding.js",
-      "panelInputBinding.js",
-      "collapsibleInputBinding.js",
-      "sheetInputBinding.js",
-      "cardInputBinding.js",
-      "autoCompleteInputBinding.js",
-      "actionSheetInputBinding.js",
-      "gaugeInputBinding.js",
-      "popupInputBinding.js"
-    )
+    script = list.files(bindings_path)
   )
 }
+
+
+html_dependencies_f7Icons <- function(old = TRUE) {
+  path <- "framework7-5.3.0/f7-icons"
+  name <- "f7-icons"
+  if (isTRUE(old)) {
+    path <- paste0(path, "-old")
+    name <- paste0(name, "-old")
+  }
+  htmlDependency(
+    name = name,
+    version = "3.0.0",
+    src = list(
+      href = path,
+      file = path
+    ),
+    package = "shinyMobile",
+    stylesheet = "css/framework7-icons.css",
+    all_files = TRUE
+  )
+}
+
+
+
+
+
+
+
+
 

@@ -7,16 +7,20 @@
 #' @param placeholder Text to write in the container.
 #' @param value Autocomplete initial value, if any.
 #' @param choices Autocomplete choices.
+#' @param openIn Defines how to open Autocomplete,
+#' can be page or popup (for Standalone) or dropdown.
 #' @param typeahead Enables type ahead, will prefill input
-#' value with first item in match.
+#' value with first item in match. Only if openIn is "dropdown".
 #' @param expandInput If TRUE then input which is used as
 #' item-input in List View will be expanded to full
-#' screen wide during dropdown visible.
-#' @param type Defines how to open Autocomplete,
-#' can be page or popup (for Standalone) or dropdown.
+#' screen wide during dropdown visible. Only if openIn is "dropdown".
+#' @param closeOnSelect Set to true and autocomplete will be closed when user picks value.
+#' Not available if multiple is enabled. Only works
+#' when openIn is 'popup' or 'page'.
 #' @param dropdownPlaceholderText Specify dropdown placeholder text.
+#' Only if openIn is "dropdown".
 #' @param multiple Whether to allow multiple value selection. Only works
-#' when type is 'popup' or 'page'.
+#' when openIn is 'popup' or 'page'.
 #'
 #' @examples
 #' if(interactive()){
@@ -27,13 +31,13 @@
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Picker"),
+#'      navbar = f7Navbar(title = "f7AutoComplete"),
 #'      f7AutoComplete(
 #'       inputId = "myautocomplete1",
 #'       placeholder = "Some text here!",
 #'       dropdownPlaceholderText = "Try to type Apple",
 #'       label = "Type a fruit name",
-#'       type = "dropdown",
+#'       openIn = "dropdown",
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
 #'        'Orange', 'Peach', 'Pear', 'Pineapple')
 #'      ),
@@ -41,7 +45,7 @@
 #'      f7AutoComplete(
 #'       inputId = "myautocomplete2",
 #'       placeholder = "Some text here!",
-#'       type = "popup",
+#'       openIn = "popup",
 #'       multiple = TRUE,
 #'       label = "Type a fruit name",
 #'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
@@ -66,11 +70,72 @@
 #' @export
 f7AutoComplete <- function(inputId, label, placeholder = NULL,
                            value = choices[1], choices,
-                           typeahead = TRUE, expandInput = TRUE,
-                           type = c("popup", "page", "dropdown"),
+                           openIn = c("popup", "page", "dropdown"),
+                           typeahead = TRUE, expandInput = TRUE, closeOnSelect = FALSE,
                            dropdownPlaceholderText = NULL, multiple = FALSE) {
 
-  type <- match.arg(type)
+  type <- match.arg(openIn)
+
+  value <- jsonlite::toJSON(value)
+  choices <- jsonlite::toJSON(choices)
+
+  # autocomplete common props
+  autoCompleteCommon <- list(
+    id = inputId,
+    class = "autocomplete-input",
+    `data-choices` = choices,
+    `data-value` = value,
+    `data-open-in` = type
+  )
+
+  # specific props
+  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
+    list(
+      type = "text",
+      placeholder = placeholder,
+      `data-typeahead` = typeahead,
+      `data-expand-input` = expandInput,
+      `data-dropdown-placeholder-text` = dropdownPlaceholderText
+    )
+  } else {
+    list(
+      class = "item-link item-content",
+      href = "#",
+      `data-multiple` = multiple,
+      `data-close-on-select` = closeOnSelect
+    )
+  }
+
+  # merge props
+  autoCompleteProps <- c(autoCompleteCommon, autoCompleteProps)
+
+  # remove NULL elements
+  autoCompleteProps <- dropNulls(autoCompleteProps)
+
+  # replace TRUE and FALSE by true and false for javascript
+  autoCompleteProps <- lapply(autoCompleteProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
+    do.call(shiny::tags$input, autoCompleteProps)
+  } else {
+    tempTag <- do.call(shiny::tags$a, autoCompleteProps)
+    tempTag <- shiny::tagAppendChildren(
+      tempTag,
+      shiny::tags$input(type = "hidden"),
+      shiny::tags$div(
+        class = "item-inner",
+        # label
+        shiny::tags$div(class = "item-title", label),
+        # input
+        shiny::tags$div(class = "item-after")
+      )
+    )
+  }
 
   # input tag + label wrapper
   mainTag <- if (!(type %in% c("page", "popup"))) {
@@ -86,70 +151,18 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
             # input
             shiny::tags$div(
               class = "item-input-wrap",
-              shiny::tags$input(
-                id = inputId,
-                type = "text",
-                placeholder = placeholder,
-                class = "autocomplete-input"
-              )
+              autoCompleteProps
             )
           )
         )
       )
     )
   } else {
-    shiny::tags$div(
-      class = "list",
-      shiny::tags$ul(
-        shiny::tags$a(
-          class = "item-link item-content",
-          href= "#",
-          id = inputId,
-          class = "autocomplete-input",
-          shiny::tags$input(type = "hidden"),
-          shiny::tags$div(
-            class = "item-inner",
-            # label
-            shiny::tags$div(class = "item-title", label),
-            # input
-            shiny::tags$div(class = "item-after")
-          )
-        )
-      )
-    )
+    shiny::tags$div(class = "list", shiny::tags$ul(autoCompleteProps))
   }
-
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
-  # We define global variables that are
-  # re-used in the pickerInputBinding.js
-
-  otherProps <- if (!(type %in% c("popup", "page"))) {
-    paste0(
-      "var ", inputId, "_typeahead = ", tolower(typeahead), ";
-       var ", inputId, "_expandInput = ", tolower(expandInput), ";
-      "
-    )
-  } else {
-    paste0("var ", inputId, "_multiple = ", tolower(multiple), ";")
-  }
-
-  autoCompleteVals <- shiny::tags$script(
-    paste0(
-      "var ", inputId, "_vals = ", choices, ";
-       var ", inputId, "_val = ", value, ";
-       var ", inputId, "_type = '", type, "';
-       var ", inputId, "_dropdownPlaceholderText = '", dropdownPlaceholderText, "';
-      ", otherProps
-    )
-  )
 
   # final input tag
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::singleton(autoCompleteVals),
-    mainTag
-  )
+  shiny::tagList(f7InputsDeps(), mainTag)
 
 }
 
@@ -165,6 +178,17 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @param placeholder Text to write in the container.
 #' @param value Picker initial value, if any.
 #' @param choices Picker choices.
+#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
+#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
+#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
+#'  to auto.
+#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
+#'  to FALSE.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#'  Default to TRUE.
+#' @param toolbar Enables picker toolbar. Default to TRUE.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
 #'
 #' @examples
 #' if(interactive()){
@@ -194,7 +218,43 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices) {
+f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices,
+                    rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
+                    closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
+                    sheetSwipeToClose = FALSE) {
+
+  # for JS
+  value <- jsonlite::toJSON(value)
+  choices <- jsonlite::toJSON(choices)
+
+  # picker props
+  pickerProps <- dropNulls(
+    list(
+      id = inputId,
+      class = "picker-input",
+      type = "text",
+      placeholder = placeholder,
+      `data-choices` = choices,
+      `data-value` = value,
+      `data-rotate-effect` = rotateEffect,
+      `data-open-in` = openIn,
+      `data-scroll-to-input` = scrollToInput,
+      `data-close-by-outside-click` = closeByOutsideClick,
+      `data-toolbar` = toolbar,
+      `data-toolbar-close-text` = toolbarCloseText,
+      `data-sheet-swipe-to-close` = sheetSwipeToClose
+    )
+  )
+
+  # replace TRUE and FALSE by true and false for javascript
+  pickerProps <- lapply(pickerProps, function(x) {
+    if (identical(x, TRUE)) "true"
+    else if (identical(x, FALSE)) "false"
+    else x
+  })
+
+  # wrap props
+  pickerProps <- do.call(shiny::tags$input, pickerProps)
 
   # input tag
   inputTag <- shiny::tags$div(
@@ -203,28 +263,11 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
       class = "item-inner",
       shiny::tags$div(
         class = "item-input-wrap",
-        shiny::tags$input(
-          type = "text",
-          placeholder = placeholder,
-          id = inputId,
-          class = "picker-input"
-        )
+        pickerProps
       )
     )
   )
 
-  # JS
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
-  # We define global variables that are
-  # re-used in the pickerInputBinding.js
-  pickerVals <- shiny::tags$script(
-    paste0(
-      "var ", inputId, "_vals = ", choices, ";
-       var ", inputId, "_val = ", value, ";
-        "
-    )
-  )
 
   # tag wrapper
   mainTag <- shiny::tagList(
@@ -243,11 +286,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
   )
 
   # final input tag
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::singleton(pickerVals),
-    mainTag
-  )
+  shiny::tagList(f7InputsDeps(), mainTag)
 
 }
 
@@ -424,57 +463,115 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'
 #' @param inputId Date input id.
 #' @param label Input label.
-#' @param value Start value.
-#' @param min Minimum date.
-#' @param max Maximum date.
-#' @param format Date format: "yyyy-mm-dd", for instance.
+#' @param value Array with initial selected dates. Each array item represents selected date.
+#' @param multiple If \code{TRUE} allow to select multiple dates.
+#' @param direction Months layout direction, could be 'horizontal' or 'vertical'.
+#' @param minDate Minimum allowed date.
+#' @param maxDate Maximum allowed date.
+#' @param dateFormat Date format: "yyyy-mm-dd", for instance.
+#' @param openIn Can be auto, popover (to open calendar in popover), sheet
+#' (to open in sheet modal) or customModal (to open in custom Calendar modal overlay).
+#' In case of auto will open in sheet modal on small screens and in popover on large screens.
+#' @param scrollToInput Scroll viewport (page-content) to input when calendar opened.
+#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
+#' @param toolbar Enables calendar toolbar.
+#' @param toolbarCloseText Text for Done/Close toolbar button.
+#' @param header Enables calendar header.
+#' @param headerPlaceholder Default calendar header placeholder text.
+#'
+#' @importFrom jsonlite toJSON
+#'
+#' @return a \code{Date} vector.
 #'
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      preloader = FALSE,
-#'      color = "pink",
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7DatePicker"),
-#'        f7DatePicker(
-#'          inputId = "date",
-#'          label = "Choose a date",
-#'          value = "2019-08-24"
-#'        ),
-#'        "The selected date is",
-#'        textOutput("selectDate")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      output$selectDate <- renderText(input$date)
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(shinyMobile)
+#'
+#'   shinyApp(
+#'     ui = f7Page(
+#'       preloader = FALSE,
+#'       color = "pink",
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7DatePicker"),
+#'         f7DatePicker(
+#'           inputId = "date",
+#'           label = "Choose a date",
+#'           value = "2019-08-24"
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDate"),
+#'         f7DatePicker(
+#'           inputId = "multipleDates",
+#'           label = "Choose multiple dates",
+#'           value = Sys.Date() + 0:3,
+#'           multiple = TRUE
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectMultipleDates"),
+#'         f7DatePicker(
+#'           inputId = "default",
+#'           label = "Choose a date",
+#'           value = NULL
+#'         ),
+#'         "The selected date is",
+#'         verbatimTextOutput("selectDefault")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'
+#'       output$selectDate <- renderPrint(input$date)
+#'       output$selectMultipleDates <- renderPrint(input$multipleDates)
+#'       output$selectDefault <- renderPrint(input$default)
+#'
+#'     }
+#'   )
 #' }
-f7DatePicker <- function(inputId, label, value = NULL,
-                   min = NULL, max = NULL,
-                   format = "yyyy-mm-dd") {
+f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, direction = c("horizontal", "vertical"),
+                         minDate = NULL, maxDate = NULL, dateFormat = "yyyy-mm-dd",
+                         openIn = c("auto", "popover", "sheet", "customModal"),
+                         scrollToInput = FALSE, closeByOutsideClick = TRUE,
+                         toolbar = TRUE, toolbarCloseText = "Done", header = FALSE,
+                         headerPlaceholder = "Select date") {
 
-  # label
-  labelTag <- shiny::tags$div(
-    class = "block-title",
-    label
-  )
+  direction <- match.arg(direction)
+  openIn <- match.arg(openIn)
 
-  inputTag <- shiny::tags$input(
+  if (!is.null(value) && length(value) == 1) {
+    value <- list(value)
+  }
+
+  config <- dropNulls(list(
+    value = value,
+    multiple = multiple,
+    direction = direction,
+    minDate = minDate,
+    maxDate = maxDate,
+    dateFormat = dateFormat,
+    openIn = openIn,
+    scrollToInput = scrollToInput,
+    closeByClickOutside = closeByOutsideClick,
+    toolbar = toolbar,
+    toolbarCloseText = toolbarCloseText,
+    header = header,
+    headerPlaceholder = headerPlaceholder
+  ))
+
+  # date picker props
+  datePickerTag <- shiny::tags$input(
     type = "text",
-    placeholder = value,
     class = "calendar-input",
     id = inputId
   )
 
-  wrapperTag <- shiny::tagList(
+  # label
+  labelTag <- shiny::tags$div(class = "block-title", label)
+
+  shiny::tagList(
     f7InputsDeps(),
-    labelTag,
+    if (!is.null(label)) labelTag,
     # input tag
     shiny::tags$div(
       class = "list no-hairlines-md",
@@ -486,7 +583,16 @@ f7DatePicker <- function(inputId, label, value = NULL,
               class = "item-inner",
               shiny::tags$div(
                 class = "item-input-wrap",
-                inputTag
+                datePickerTag,
+                shiny::tags$script(
+                  type = "application/json",
+                  `data-for` = inputId,
+                  jsonlite::toJSON(
+                    x = config,
+                    auto_unbox = TRUE,
+                    json_verbatim = TRUE
+                  )
+                )
               )
             )
           )
@@ -494,7 +600,6 @@ f7DatePicker <- function(inputId, label, value = NULL,
       )
     )
   )
-  wrapperTag
 }
 
 
@@ -622,11 +727,36 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
 
 
+
+#' Create option html tag based on choice input
+#'
+#' Used by \link{f7SmartSelect} and \link{f7Select}
+#'
+#' @param choices Vector of possibilities.
+#' @param selected Default selected value.
+#'
+createSelectOptions <- function(choices, selected) {
+  options <- lapply(X = seq_along(choices), function(i) {
+    shiny::tags$option(
+      value = choices[[i]],
+      choices[[i]],
+      selected = if (!is.null(selected)) {
+        if (choices[[i]] %in% selected) NA else NULL
+      }
+    )
+  })
+
+  return(options)
+}
+
+
+
 #' Create an f7 select input
 #'
 #' @param inputId Select input id.
 #' @param label Select input label.
 #' @param choices Select input choices.
+#' @param selected Select input default selected value.
 #'
 #' @export
 #'
@@ -643,7 +773,8 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'       f7Select(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
-#'        choices = colnames(mtcars)[-1]
+#'        choices = colnames(mtcars)[-1],
+#'        selected = "hp"
 #'       ),
 #'       tableOutput("data")
 #'      )
@@ -655,16 +786,13 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #'    }
 #'  )
 #' }
-f7Select <- function(inputId, label, choices) {
+f7Select <- function(inputId, label, choices, selected = NULL) {
 
 
-  options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(value = choices[[i]], choices[[i]])
-  })
+  options <- createSelectOptions(choices, selected)
 
-  shiny::tags$div(
+  selectTag <- shiny::tags$div(
     class = "list",
-    id = inputId,
     shiny::tags$ul(
       shiny::tags$li(
         class = "item-content item-input",
@@ -675,6 +803,7 @@ f7Select <- function(inputId, label, choices) {
           shiny::tags$div(
             class = "item-input-wrap input-dropdown-wrap",
             shiny::tags$select(
+              class = "input-select",
               id = inputId,
               placeholer = "Please choose...",
               options
@@ -684,6 +813,9 @@ f7Select <- function(inputId, label, choices) {
       )
     )
   )
+
+  shiny::tagList(f7InputsDeps(), selectTag)
+
 }
 
 
@@ -734,15 +866,8 @@ f7Select <- function(inputId, label, choices) {
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           type = c("sheet", "popup", "popover"),
                           smart = TRUE, multiple = FALSE) {
-  options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(
-      value = choices[[i]],
-      choices[[i]],
-      selected = if (!is.null(selected)) {
-        if (choices[[i]] %in% selected) NA else NULL
-      }
-    )
-  })
+
+  options <- createSelectOptions(choices, selected)
 
   type <- match.arg(type)
 
@@ -1036,6 +1161,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
 #' expected.
 #' @param color See \link{getF7Colors} for valid colors.
+#' @param noSwipping Prevent swiping when slider is manipulated in a \code{\link{f7TabLayout}}.
 #'
 #' @note labels option only works when vertical is FALSE!
 #'
@@ -1112,7 +1238,8 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'
 f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
                      scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
-                     verticalReversed = FALSE, labels = NULL, color = NULL) {
+                     verticalReversed = FALSE, labels = NULL, color = NULL,
+                     noSwipping = TRUE) {
 
   if (!is.null(labels)) {
     if (length(labels) < 2) stop("labels must be a tagList with 2 elements.")
@@ -1120,6 +1247,10 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
   sliderCl <- "range-slider"
   if (!is.null(color)) sliderCl <- paste0(sliderCl, " color-", color)
+
+  if (isTRUE(noSwipping)) {
+    sliderCl <- paste(sliderCl, "swiper-no-swiping")
+  }
 
   sliderProps <- dropNulls(
     list(
@@ -1173,8 +1304,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
   shiny::tags$div(
     f7InputsDeps(),
     # HTML skeleton
-    shiny::br(),
-    shiny::tags$div(class = "block-title", label),
+    if (!is.null(label)) shiny::tags$div(class = "block-title", label),
     if (!is.null(labels)) {
       shiny::tags$div(
         class = "list simple-list",

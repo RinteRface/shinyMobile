@@ -8,6 +8,13 @@
 
 <title>Create a Framework 7 appbar — f7Appbar • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 <meta property="og:title" content="Create a Framework 7 appbar — f7Appbar" />
 <meta property="og:description" content="Displayed on top of f7Navbar. Interestingly, f7Appbar can also
 trigger f7Panel." />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -72,7 +80,7 @@ trigger f7Panel." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -80,9 +88,12 @@ trigger f7Panel." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -110,21 +121,31 @@ trigger f7Panel." />
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -151,7 +172,7 @@ trigger f7Panel." />
 trigger <a href='f7Panel.html'>f7Panel</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Appbar</span>(<span class='no'>...</span>, <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>maximizable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Appbar</span>(<span class='no'>...</span>, <span class='kw'>left_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>right_panel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,11 +190,6 @@ trigger <a href='f7Panel.html'>f7Panel</a>.</p>
     <tr>
       <th>right_panel</th>
       <td><p>Whether to enable the right panel. FALSE by default.</p></td>
-    </tr>
-    <tr>
-      <th>maximizable</th>
-      <td><p>Whether to allow fullscreen. FALSE by default. This should only
-be used when the app runs on a desktop.</p></td>
     </tr>
     </table>
 

@@ -63,5 +63,60 @@ if (interactive()) {
      })
    }
  )
+ # with hidden tabs
+ shinyApp(
+  ui <- f7Page(
+    title = "shinyMobile",
+    init = f7Init(
+      skin = "auto",
+      theme = "light",
+      color = 'blue',
+      filled = TRUE,
+      hideNavOnPageScroll = FALSE,
+      hideTabsOnPageScroll = FALSE
+    ),
+    f7TabLayout(
+      navbar = f7Navbar(
+        title = "Update Tabs with hidden tab",
+        subtitle = "",
+        hairline = TRUE,
+        shadow = TRUE,
+        left_panel = TRUE,
+        right_panel = FALSE,
+        bigger = FALSE,
+        transparent = TRUE
+      ),
+      f7Tabs(
+        id = 'tabs',
+        animated = TRUE,
+        f7Tab(
+          active = TRUE,
+          tabName = 'Main tab',
+          icon = f7Icon('document_text'),
+          h1("This is the first tab."),
+          f7Button(inputId ='goto', label = 'Go to hidden tab')
+        ),
+        f7Tab(
+          tabName = 'Second tab',
+          icon = f7Icon('bolt_horizontal'),
+          h1('This is the second tab.')
+        ),
+        f7Tab(
+          tabName = 'Hidden tab',
+          hidden = TRUE,
+          h1('This is a tab that does not appear in the tab menu.
+          Yet, you can still access it.')
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observe(print(input$tabs))
+    observeEvent(input$goto,{
+      updateF7Tabs(session = session, id = 'tabs', selected = 'Hidden tab')
+    })
+
+  }
+ )
 }
 }

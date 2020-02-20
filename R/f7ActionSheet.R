@@ -14,7 +14,10 @@
 #' }
 #' @param icons A list of icons for buttons. Expect \link{f7Icon}.
 #' @param session Shiny session object.
+#'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {

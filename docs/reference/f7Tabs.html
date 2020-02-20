@@ -8,6 +8,13 @@
 
 <title>Create a Framework7 tabs — f7Tabs • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,7 +45,10 @@
   
 
 <meta property="og:title" content="Create a Framework7 tabs — f7Tabs" />
-<meta property="og:description" content="Build a Framework7 tabs" />
+<meta property="og:description" content="By default, f7Tabs are used within the f7TabLayout. However, you
+may use them as standalone components if you specify a the segmented or strong
+styles." />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -79,9 +89,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -109,21 +122,31 @@
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -146,10 +169,19 @@
     </div>
 
     <div class="ref-description">
-    <p>Build a Framework7 tabs</p>
+    <p>By default, f7Tabs are used within the <a href='f7TabLayout.html'>f7TabLayout</a>. However, you
+may use them as standalone components if you specify a the segmented or strong
+styles.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Tabs</span>(<span class='no'>...</span>, <span class='kw'>.items</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Tabs</span>(
+  <span class='no'>...</span>,
+  <span class='kw'>.items</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>style</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"toolbar"</span>, <span class='st'>"segmented"</span>, <span class='st'>"strong"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,7 +193,8 @@
     <tr>
       <th>.items</th>
       <td><p>Slot for other items that could be part of the toolbar such as
-buttons or <a href='f7Sheet.html'>f7Sheet</a>.</p></td>
+buttons or <a href='f7TabLink.html'>f7TabLink</a>. This may be useful to open a <a href='sheet.html'>f7Sheet</a> from
+the tabbar.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -177,14 +210,17 @@ Not compatible with animated.</p></td>
       <td><p>Whether to show transition between tabs. TRUE by default.
 Not compatible with swipeable.</p></td>
     </tr>
+    <tr>
+      <th>style</th>
+      <td><p>Tabs style: <code><a href='https://rdrr.io/r/base/c.html'>c("toolbar", "segmented", "strong")</a></code>. If style
+is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td>
+    </tr>
     </table>
 
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Animated does not work when set to FALSE and swipeable is FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+ <span class='co'># tabs as toolbar</span>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
@@ -196,14 +232,27 @@ Not compatible with swipeable.</p></td>
         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabdemo"</span>,
         <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
         <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>, <span class='st'>"tab 1 text"</span>),
+        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+         <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+         <span class='fu'><a href='sheet.html'>f7Sheet</a></span>(
+          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet"</span>,
+          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"More"</span>,
+          <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
+          <span class='kw'>swipeToClose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>swipeToStep</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>backdrop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+          scelerisque est, at porta justo cursus ac"</span>
+         )
+        ),
         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>, <span class='st'>"tab 2 text"</span>),
         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>, <span class='st'>"tab 3 text"</span>),
-        <span class='kw'>.items</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>tags</a></span>$<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>a</a></span>(
-         <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"tab-link"</span>,
-         <span class='kw'>href</span> <span class='kw'>=</span> <span class='st'>"#"</span>,
-         <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
-         <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>span</a></span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"tabbar-label"</span>, <span class='st'>"Optional Item"</span>)
+        <span class='kw'>.items</span> <span class='kw'>=</span> <span class='fu'><a href='f7TabLink.html'>f7TabLink</a></span>(
+         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
+         <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Toggle Sheet"</span>,
+         <span class='kw'>`data-sheet`</span> <span class='kw'>=</span> <span class='st'>"#sheet"</span>,
+         <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"sheet-open"</span>
         )
       )
     )
@@ -212,13 +261,120 @@ Not compatible with swipeable.</p></td>
     <span class='no'>output</span>$<span class='no'>selected</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>tabdemo</span>)
   }
  )
+ <span class='co'># standalone tabs</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Standalone tabs"</span>,
+         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       ),
+       <span class='fu'>f7Tabs</span>(
+         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
+         <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"strong"</span>, <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>swipeable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"email"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span>(
+                 <span class='st'>"obs1"</span>,
+                 <span class='st'>"Number of observations"</span>,
+                 <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+                 <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+                 <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+                 <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>100</span>
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+             )
+           )
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 2"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"today"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7Select.html'>f7Select</a></span>(
+                 <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs2"</span>,
+                 <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Distribution type:"</span>,
+                 <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+                   <span class='st'>"Normal"</span> <span class='kw'>=</span> <span class='st'>"norm"</span>,
+                   <span class='st'>"Uniform"</span> <span class='kw'>=</span> <span class='st'>"unif"</span>,
+                   <span class='st'>"Log-normal"</span> <span class='kw'>=</span> <span class='st'>"lnorm"</span>,
+                   <span class='st'>"Exponential"</span> <span class='kw'>=</span> <span class='st'>"exp"</span>
+                 )
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>)
+             )
+           )
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 3"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"cloud_upload"</span>),
+           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+           <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+             <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+             <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+             <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+               <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+               <span class='fu'><a href='f7SmartSelect.html'>f7SmartSelect</a></span>(
+                 <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"variable"</span>,
+                 <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Variables to show:"</span>,
+                 <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Cylinders"</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>,
+                   <span class='st'>"Transmission"</span> <span class='kw'>=</span> <span class='st'>"am"</span>,
+                   <span class='st'>"Gears"</span> <span class='kw'>=</span> <span class='st'>"gear"</span>),
+                 <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                 <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>
+               ),
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>)
+             )
+           )
+         )
+       )
+     )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
+     <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+       <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs1</span>)
+       <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
+     })
+
+     <span class='no'>output</span>$<span class='no'>distPlot2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+       <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span>(
+         <span class='no'>input</span>$<span class='no'>obs2</span>,
+         <span class='kw'>norm</span> <span class='kw'>=</span> <span class='no'>rnorm</span>,
+         <span class='kw'>unif</span> <span class='kw'>=</span> <span class='no'>runif</span>,
+         <span class='kw'>lnorm</span> <span class='kw'>=</span> <span class='no'>rlnorm</span>,
+         <span class='kw'>exp</span> <span class='kw'>=</span> <span class='no'>rexp</span>,
+         <span class='no'>rnorm</span>
+       )
+
+       <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span>(<span class='fl'>500</span>))
+     })
+
+     <span class='no'>output</span>$<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span>({
+       <span class='no'>mtcars</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mpg"</span>, <span class='no'>input</span>$<span class='no'>variable</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]
+     }, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+   }
+ )
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

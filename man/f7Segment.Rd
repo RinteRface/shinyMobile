@@ -8,7 +8,8 @@ f7Segment(
   ...,
   container = c("segment", "row"),
   shadow = FALSE,
-  rounded = FALSE
+  rounded = FALSE,
+  strong = FALSE
 )
 }
 \arguments{
@@ -16,9 +17,11 @@ f7Segment(
 
 \item{container}{Either "row" or "segment".}
 
-\item{shadow}{Button shadow. FALSE by default. Only for material design and if the container is segment.}
+\item{shadow}{Button shadow. FALSE by default. Only if the container is segment.}
 
 \item{rounded}{Round style. FALSE by default. Only if the container is segment.}
+
+\item{strong}{Strong style. FALSE by default.}
 }
 \description{
 Build a Framework7 segmented button container
@@ -52,9 +55,17 @@ if(interactive()){
     f7Segment(
      shadow = TRUE,
      container = "segment",
-     f7Button(label = "My button", outline = TRUE),
-     f7Button(label = "My button", outline = TRUE),
-     f7Button(label = "My button", outline = TRUE)
+     f7Button(label = "My button", outline = TRUE, fill = FALSE),
+     f7Button(label = "My button", outline = TRUE, fill = FALSE),
+     f7Button(label = "My button", outline = TRUE, fill = FALSE)
+    ),
+    f7BlockTitle(title = "Buttons in a segment/strong container"),
+    f7Segment(
+     strong = TRUE,
+     container = "segment",
+     f7Button(label = "My button", fill = FALSE),
+     f7Button(label = "My button", fill = FALSE),
+     f7Button(label = "My button", fill = FALSE, active = TRUE)
     ),
     f7BlockTitle(title = "Rounded Buttons in a segment container"),
     f7Segment(

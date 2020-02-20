@@ -13,43 +13,50 @@
 #' @param shadow Button shadow. FALSE by default. Only for material design.
 #' @param rounded Round style. FALSE by default.
 #' @param size Button size. NULL by default but also "large" or "small".
+#' @param active Button active state. Default to FALSE. This is useful when
+#' used in \link{f7Segment} with the strong parameter set to TRUE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Button <- function(inputId = NULL, label = NULL, src = NULL,
                      color = NULL, fill = TRUE, outline = FALSE,
-                     shadow = FALSE, rounded = FALSE, size = NULL) {
+                     shadow = FALSE, rounded = FALSE, size = NULL,
+                     active = FALSE) {
 
   if (!is.null(inputId) & !is.null(src)) stop("Cannot set inputId and src at the same time.")
 
-  # outline and fill are incompatible by definition as well as color and outline
-  if (outline) {
-    fill <- FALSE
-    color <- NULL
-  }
+  # outline and fill are incompatible by definition
+  # as well as color and outline
+
+  if (outline & fill) stop("outline and fill cannot be used at the same time")
+  if (outline & !is.null(color)) stop("outline buttons cannot have color!")
 
   # need to add external to handle external url
   buttonCl <- "button"
   if (!is.null(src)) buttonCl <- paste0(buttonCl, " external")
-  if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " action-button")
+  if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " f7-action-button")
   if (!is.null(color)) buttonCl <- paste0(buttonCl, " color-", color)
   if (fill) buttonCl <- paste0(buttonCl, " button-fill")
   if (outline) buttonCl <- paste0(buttonCl, " button-outline")
   if (shadow) buttonCl <- paste0(buttonCl, " button-raised")
   if (rounded) buttonCl <- paste0(buttonCl, " button-round")
   if (!is.null(size)) buttonCl <- paste0(buttonCl, " button-", size)
+  if (active) buttonCl <- paste0(buttonCl, " button-active")
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  shiny::tags$a(
-    id = inputId,
-    type = "button",
-    class = buttonCl,
-    href = if (!is.null(src)) src else NULL,
-    `data-val` = if (!is.null(inputId)) value else NULL,
-    target = "_blank",
-    label
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::tags$button(
+      id = inputId,
+      type = "button",
+      class = buttonCl,
+      href = if (!is.null(src)) src else NULL,
+      `data-val` = if (!is.null(inputId)) value else NULL,
+      target = "_blank",
+      label
+    )
   )
 }
 
@@ -63,8 +70,9 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'
 #' @param ... Slot for \link{f7Button}.
 #' @param container Either "row" or "segment".
-#' @param shadow Button shadow. FALSE by default. Only for material design and if the container is segment.
+#' @param shadow Button shadow. FALSE by default. Only if the container is segment.
 #' @param rounded Round style. FALSE by default. Only if the container is segment.
+#' @param strong Strong style. FALSE by default.
 #'
 #' @examples
 #' if(interactive()){
@@ -95,9 +103,17 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'     f7Segment(
 #'      shadow = TRUE,
 #'      container = "segment",
-#'      f7Button(label = "My button", outline = TRUE),
-#'      f7Button(label = "My button", outline = TRUE),
-#'      f7Button(label = "My button", outline = TRUE)
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE),
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE),
+#'      f7Button(label = "My button", outline = TRUE, fill = FALSE)
+#'     ),
+#'     f7BlockTitle(title = "Buttons in a segment/strong container"),
+#'     f7Segment(
+#'      strong = TRUE,
+#'      container = "segment",
+#'      f7Button(label = "My button", fill = FALSE),
+#'      f7Button(label = "My button", fill = FALSE),
+#'      f7Button(label = "My button", fill = FALSE, active = TRUE)
 #'     ),
 #'     f7BlockTitle(title = "Rounded Buttons in a segment container"),
 #'     f7Segment(
@@ -128,7 +144,8 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, rounded = FALSE) {
+f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE,
+                      rounded = FALSE, strong = FALSE) {
 
   container <- match.arg(container)
 
@@ -139,25 +156,29 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE, roun
     "row"
   }
 
-  if (shadow & container == "segment") containerCl <- paste0(containerCl, " segmented-raised")
-  if (rounded & container == "segment") containerCl <- paste0(containerCl, " segmented-round")
+  if (container == "row" & (shadow | rounded | strong)) {
+    stop("shadow and/or rounded only apply when the container
+         is a segment!")
+  }
+
+  if (shadow) containerCl <- paste0(containerCl, " segmented-raised")
+  if (rounded) containerCl <- paste0(containerCl, " segmented-round")
+  if (strong) containerCl <- paste0(containerCl, " segmented-strong")
 
   wrapperBlock <- function(...) shiny::tags$div(class = "block", shiny::tags$p(...))
   wrapper <- wrapperBlock()
   wrapper$children[[1]]$attribs$class <- containerCl
 
-  btns <- wrapper$children[[1]]$children
+  btns <- list(...)
   if (container == "row") {
-    lapply(seq_along(btns), function(i) {
-      wrapper$children[[1]]$children[[i]]$attribs$class <- paste(
-        wrapper$children[[1]]$children[[i]]$attribs$class,
+    for (i in seq_along(btns)) {
+      btns[[i]][[2]]$attribs$class <- paste(
+        btns[[i]][[2]]$attribs$class,
         class = "col"
       )
-    })
+    }
   }
-
-  items <- shiny::tagList(...)
-  wrapper$children[[1]] <- shiny::tagAppendChild(wrapper$children[[1]], items)
+  wrapper$children[[1]] <- shiny::tagAppendChildren(wrapper$children[[1]], btns)
   return(wrapper)
 }
 

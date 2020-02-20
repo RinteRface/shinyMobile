@@ -9,6 +9,8 @@
 #'
 #' @export
 #'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
@@ -33,7 +35,7 @@
 #'    }
 #'  )
 #' }
-f7TapHold <- function(target, callback, session) {
+f7TapHold <- function(target, callback, session = shiny::getDefaultReactiveDomain()) {
 
   message <- dropNulls(
     list(

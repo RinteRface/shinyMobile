@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 icon — f7Icon • shinyMobile</title>
+<title>Framework7 icons — f7Icon • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -37,8 +44,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Framework7 icon — f7Icon" />
-<meta property="og:description" content="Build a Framework7 icon" />
+<meta property="og:title" content="Framework7 icons — f7Icon" />
+<meta property="og:description" content="Use Framework7 icons in shiny applications,
+ see complete list of icons here : https://framework7.io/icons/." />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -79,9 +88,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -109,21 +121,31 @@
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,16 +162,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 icon</h1>
+    <h1>Framework7 icons</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Icon.R'><code>R/f7Icon.R</code></a></small>
     <div class="hidden name"><code>f7Icon.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Build a Framework7 icon</p>
+    <p>Use Framework7 icons in shiny applications,
+ see complete list of icons here : <a href='https://framework7.io/icons/'>https://framework7.io/icons/</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Icon</span>(<span class='no'>...</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fill</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Icon</span>(<span class='no'>...</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,35 +183,62 @@
     </tr>
     <tr>
       <th>lib</th>
-      <td><p>Library to use: NULL, "ios" or "md".</p></td>
+      <td><p>Library to use: NULL, "ios" or "md". Leave <code>NULL</code> by default. Specify, md or ios
+if you want to hide/show icons on specific devices.</p></td>
     </tr>
     <tr>
-      <th>fill</th>
-      <td><p>Whether to fill or not. FALSE by default.</p></td>
+      <th>color</th>
+      <td><p>Icon color, if any.</p></td>
+    </tr>
+    <tr>
+      <th>style</th>
+      <td><p>CSS styles to be applied on icon, for example
+use <code>font-size: 56px;</code> to have a bigger icon.</p></td>
+    </tr>
+    <tr>
+      <th>old</th>
+      <td><p>Use <code>TRUE</code> for old icons, default is <code>TRUE</code>,
+but in a future version of shinyMobile default will be <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+    <pre class="examples"><div class='input'>
+<span class='fu'>f7Icon</span>(<span class='st'>"close"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># Icon size</span>
+<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"font-size: 56px;"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
 
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Icons"</span>,
-    <span class='fu'><a href='f7List.html'>f7List</a></span>(
-     <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-        <span class='fu'>f7Icon</span>(<span class='st'>"email_fill"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"ios"</span>),
-        <span class='st'>"This does not appear for material design devices."</span>
-       )
-     ),
-     <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>f7Icon</span>(<span class='st'>"home"</span>, <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"1"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>))
-     ),
-     <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>f7Icon</span>(<span class='st'>"email"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"md"</span>)
+    <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"ios"</span>),
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"icons"</span>),
+     <span class='fu'><a href='f7List.html'>f7List</a></span>(
+      <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+         <span class='fu'>f7Icon</span>(<span class='st'>"email"</span>)
+        )
+      ),
+      <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+         <span class='fu'>f7Icon</span>(<span class='st'>"email_fill"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
+        )
+      ),
+      <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>f7Icon</span>(<span class='st'>"home"</span>, <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"1"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>))
+      ),
+      <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'>f7Icon</span>(<span class='st'>"email_fill"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"md"</span>),
+        <span class='st'>"This will not appear since only for material design"</span>
+      )
      )
     )
   ),

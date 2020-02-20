@@ -4,7 +4,7 @@
 \alias{f7Popover}
 \title{Create a framework 7 popover}
 \usage{
-f7Popover(targetId, content, session)
+f7Popover(targetId, content, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{targetId}{Target to put the popover on.}

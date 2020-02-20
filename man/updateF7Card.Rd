@@ -4,7 +4,7 @@
 \alias{updateF7Card}
 \title{Update a framework 7 expandable card}
 \usage{
-updateF7Card(id, session)
+updateF7Card(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{id}{Card id.}

@@ -4,13 +4,21 @@
 \alias{f7Tabs}
 \title{Create a Framework7 tabs}
 \usage{
-f7Tabs(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE)
+f7Tabs(
+  ...,
+  .items = NULL,
+  id = NULL,
+  swipeable = FALSE,
+  animated = TRUE,
+  style = c("toolbar", "segmented", "strong")
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tab}.}
 
 \item{.items}{Slot for other items that could be part of the toolbar such as
-buttons or \link{f7Sheet}.}
+buttons or \link{f7TabLink}. This may be useful to open a \link{f7Sheet} from
+the tabbar.}
 
 \item{id}{Optional to get the id of the currently selected \link{f7Tab}.}
 
@@ -19,15 +27,18 @@ Not compatible with animated.}
 
 \item{animated}{Whether to show transition between tabs. TRUE by default.
 Not compatible with swipeable.}
+
+\item{style}{Tabs style: \code{c("toolbar", "segmented", "strong")}. If style
+is toolbar, then \link{f7Tab} have a toolbar behavior.}
 }
 \description{
-Build a Framework7 tabs
-}
-\note{
-Animated does not work when set to FALSE and swipeable is FALSE.
+By default, \link{f7Tabs} are used within the \link{f7TabLayout}. However, you
+may use them as standalone components if you specify a the segmented or strong
+styles.
 }
 \examples{
 if (interactive()) {
+ # tabs as toolbar
  library(shiny)
  library(shinyMobile)
  shiny::shinyApp(
@@ -39,14 +50,27 @@ if (interactive()) {
         id = "tabdemo",
         swipeable = TRUE,
         animated = FALSE,
-        f7Tab(tabName = "Tab 1", "tab 1 text"),
+        f7Tab(
+         tabName = "Tab 1",
+         f7Sheet(
+          id = "sheet",
+          label = "More",
+          orientation = "bottom",
+          swipeToClose = TRUE,
+          swipeToStep = TRUE,
+          backdrop = TRUE,
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+          scelerisque est, at porta justo cursus ac"
+         )
+        ),
         f7Tab(tabName = "Tab 2", "tab 2 text"),
         f7Tab(tabName = "Tab 3", "tab 3 text"),
-        .items = shiny::tags$a(
-         class = "tab-link",
-         href = "#",
-         f7Icon("bolt_fill"),
-         shiny::span(class = "tabbar-label", "Optional Item")
+        .items = f7TabLink(
+         icon = f7Icon("bolt_fill"),
+         label = "Toggle Sheet",
+         `data-sheet` = "#sheet",
+         class = "sheet-open"
         )
       )
     )
@@ -54,6 +78,114 @@ if (interactive()) {
   server = function(input, output) {
     output$selected <- renderText(input$tabdemo)
   }
+ )
+ # standalone tabs
+ library(shiny)
+ library(shinyMobile)
+ shiny::shinyApp(
+   ui = f7Page(
+     title = "My app",
+     f7SingleLayout(
+       navbar = f7Navbar(
+         title = "Standalone tabs",
+         hairline = FALSE,
+         shadow = TRUE
+       ),
+       f7Tabs(
+         id = "tabs",
+         style = "strong", animated = FALSE, swipeable = TRUE,
+         f7Tab(
+           tabName = "Tab 1",
+           icon = f7Icon("email"),
+           active = TRUE,
+           f7Shadow(
+             intensity = 10,
+             hover = TRUE,
+             f7Card(
+               title = "Card header",
+               f7Stepper(
+                 "obs1",
+                 "Number of observations",
+                 min = 0,
+                 max = 1000,
+                 value = 500,
+                 step = 100
+               ),
+               plotOutput("distPlot")
+             )
+           )
+         ),
+         f7Tab(
+           tabName = "Tab 2",
+           icon = f7Icon("today"),
+           active = FALSE,
+           f7Shadow(
+             intensity = 10,
+             hover = TRUE,
+             f7Card(
+               title = "Card header",
+               f7Select(
+                 inputId = "obs2",
+                 label = "Distribution type:",
+                 choices = c(
+                   "Normal" = "norm",
+                   "Uniform" = "unif",
+                   "Log-normal" = "lnorm",
+                   "Exponential" = "exp"
+                 )
+               ),
+               plotOutput("distPlot2")
+             )
+           )
+         ),
+         f7Tab(
+           tabName = "Tab 3",
+           icon = f7Icon("cloud_upload"),
+           active = FALSE,
+           f7Shadow(
+             intensity = 10,
+             hover = TRUE,
+             f7Card(
+               title = "Card header",
+               f7SmartSelect(
+                 inputId = "variable",
+                 label = "Variables to show:",
+                 c("Cylinders" = "cyl",
+                   "Transmission" = "am",
+                   "Gears" = "gear"),
+                 multiple = TRUE,
+                 selected = "cyl"
+               ),
+               tableOutput("data")
+             )
+           )
+         )
+       )
+     )
+   ),
+   server = function(input, output) {
+     output$distPlot <- renderPlot({
+       dist <- rnorm(input$obs1)
+       hist(dist)
+     })
+
+     output$distPlot2 <- renderPlot({
+       dist <- switch(
+         input$obs2,
+         norm = rnorm,
+         unif = runif,
+         lnorm = rlnorm,
+         exp = rexp,
+         rnorm
+       )
+
+       hist(dist(500))
+     })
+
+     output$data <- renderTable({
+       mtcars[, c("mpg", input$variable), drop = FALSE]
+     }, rownames = TRUE)
+   }
  )
 }
 }

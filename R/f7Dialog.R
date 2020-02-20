@@ -8,6 +8,9 @@
 #' @param session shiny session.
 #'
 #' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
 #' @examples
 #' # simple alert
 #' if (interactive()) {
@@ -134,7 +137,8 @@
 #'  )
 #' }
 f7Dialog <- function(inputId = NULL, title = NULL, text,
-                     type = c("alert", "confirm", "prompt", "login"), session) {
+                     type = c("alert", "confirm", "prompt", "login"),
+                     session = shiny::getDefaultReactiveDomain()) {
 
   type <- match.arg(type)
 

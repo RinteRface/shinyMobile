@@ -8,6 +8,13 @@
 
 <title>Create a Framework7 container for floating action button (FAB) — f7Fabs • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -39,6 +46,7 @@
 
 <meta property="og:title" content="Create a Framework7 container for floating action button (FAB) — f7Fabs" />
 <meta property="og:description" content="Build a Framework7 container for floating action button (FAB)" />
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -79,9 +87,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -109,21 +120,31 @@
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -151,6 +172,7 @@
 
     <pre class="usage"><span class='fu'>f7Fabs</span>(
   <span class='no'>...</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"right-top"</span>, <span class='st'>"right-center"</span>, <span class='st'>"right-bottom"</span>, <span class='st'>"left-top"</span>, <span class='st'>"left-center"</span>,
     <span class='st'>"left-bottom"</span>, <span class='st'>"center-center"</span>, <span class='st'>"center-top"</span>, <span class='st'>"center-bottom"</span>),
   <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -167,6 +189,10 @@
     <tr>
       <th>...</th>
       <td><p>Slot for <a href='f7Fab.html'>f7Fab</a>.</p></td>
+    </tr>
+    <tr>
+      <th>id</th>
+      <td><p>Optional: access the current state of the f7Fabs container.</p></td>
     </tr>
     <tr>
       <th>position</th>
@@ -222,7 +248,7 @@ it experimental.</p>
       <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
       <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='f7Fab.html'>f7Fab</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>), <span class='no'>i</span>))
     ),
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
 
     <span class='fu'>f7Fabs</span>(
       <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"center-center"</span>,
@@ -230,7 +256,7 @@ it experimental.</p>
       <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='st'>"center"</span>,
       <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>5</span>:<span class='fl'>8</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='f7Fab.html'>f7Fab</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>), <span class='no'>i</span>))
     ),
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>5</span>:<span class='fl'>8</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>5</span>:<span class='fl'>8</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
 
     <span class='fu'>f7Fabs</span>(
       <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"left-bottom"</span>,

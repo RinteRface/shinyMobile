@@ -8,6 +8,13 @@
 
 <title>Changelog • shinyMobile</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -38,6 +45,8 @@
   
 
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="/logo.png" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -69,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -77,9 +86,12 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/shinyMobile.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -107,21 +119,31 @@
       <a href="../articles/Tabs-Layout.html">Tabs-Layout</a>
     </li>
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
-    </li>
-    <li>
       <a href="../articles/shinyMobile_tools.html">shinyMobile Tools</a>
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.1.0</li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/RinteRface/shinyF7">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/RinteRface/shinyMobile">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -142,25 +164,45 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-0-2-0-9000" class="section level1">
+    <div id="shinymobile-0509000" class="section level1">
 <h1 class="page-header">
-<a href="#shinymobile-0-2-0-9000" class="anchor"></a>shinyMobile 0.2.0.9000<small> Unreleased </small>
+<a href="#shinymobile-0509000" class="anchor"></a>shinyMobile 0.5.0.9000<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
+<li>
+<code><a href="../reference/sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar).</li>
+<li>All update method for inputs : argument <code>session</code> is now optional and has been moved to the last position in function call.</li>
+<li>
+<code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>: type becomes openIn to align with the framework7 documentation</li>
+<li>remove parameter fill from <code><a href="../reference/f7Icon.html">f7Icon()</a></code> (not used)</li>
 <li>Rewrite <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. It has now an input associated giving the popup state (opened or closed) as well as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. label parameters has been removed. To create an <code><a href="../reference/f7Popup.html">f7Popup()</a></code> put the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> tag in you UI. On the server side call <code><a href="../reference/f7TogglePopup.html">f7TogglePopup()</a></code>. See documentation for a detailed example. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>
 <code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7HideNavbar.html">f7HideNavbar()</a></code> for consistancy</li>
 <li>
 <code>f7NavbarShow()</code> renamed to <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> for consistancy</li>
+<li>In <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> valueText was removed. It does not make sense that the value can be accidentally different from the text displayed. valueText is then an internal parameter.</li>
+<li>In <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code>: min becomes minDate, max becomes maxDate and format becomes dateFormat</li>
+<li>remove maximizable parameter from <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
+</li>
 </ul>
 </div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
+<li>new <code><a href="../reference/authentication.html">f7Login()</a></code> and <code><a href="../reference/authentication.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
+<li>
+<code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.</li>
+<li>update <code><a href="../reference/f7Icon.html">f7Icon()</a></code> and icons dependencies. thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>new <code><a href="../reference/updateF7DatePicker.html">updateF7DatePicker()</a></code>: thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>add input binding to <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> to get the status of the container</li>
+<li>add <code><a href="../reference/updateF7Button.html">updateF7Button()</a></code> and <code><a href="../reference/updateF7Fabs.html">updateF7Fabs()</a></code>
+</li>
+<li>new pullToRefresh parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code>. Pull the screen from top to bottom fires input$ptr which becomes TRUE. When the pull to refresh event is finished, input$ptr is NULL. Useful to trigger events in an observEvent</li>
+<li>add new <code><a href="../reference/updateF7Select.html">updateF7Select()</a></code>: thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a> for the suggestion</li>
 <li>add <code><a href="../reference/f7TogglePopup.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>add <code><a href="../reference/preview_mobile.html">preview_mobile()</a></code>: function that previews your app in a seleted range of devices (iphone, samsung, htc, …)</li>
 <li>redesign the way inputs options are passed from R to Javascript. This does not have impact on the user side but improves security and code quality</li>
@@ -170,6 +212,28 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
+<li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/sheet.html">f7Sheet()</a></code>)</li>
+<li>add new active parameter to <code><a href="../reference/f7Button.html">f7Button()</a></code>
+</li>
+<li>add new strong parameter to <code><a href="../reference/f7Segment.html">f7Segment()</a></code>
+</li>
+<li>Improve website. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>new fullsize and closeButton parameter to <code><a href="../reference/f7Popup.html">f7Popup()</a></code> + rewrite js binding. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>add extra parameters to <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code>: direction, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText, header and headerPlaceholder</li>
+<li>add new parameters to <code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code>. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a> for the suggestion</li>
+<li>add noSwipping argument to <code><a href="../reference/f7Slider.html">f7Slider()</a></code> to prevent wrong behaviour when used in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7Select.html">f7Select()</a></code> does not rely anymore on the shiny selectInput binding (does not have impact on user experience)</li>
+<li>add hidden argument to <code><a href="../reference/f7Tab.html">f7Tab()</a></code>: allows to navigate through hidden tabs without displaying them in the tab menu. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a></li>
+<li>add closeOnSelect param to <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>
+</li>
+<li>add new parameters to <code><a href="../reference/f7Picker.html">f7Picker()</a></code> and <code><a href="../reference/updateF7Picker.html">updateF7Picker()</a></code>: rotateEffect, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText and sheetSwipeToClose</li>
+<li>add color argument to <code><a href="../reference/f7Icon.html">f7Icon()</a></code>
+</li>
+<li>add selected parameter to <code><a href="../reference/f7Select.html">f7Select()</a></code>
+</li>
+<li>update framework7 to 5.3.0</li>
 <li>add color to <code><a href="../reference/updateF7Slider.html">updateF7Slider()</a></code>
 </li>
 <li>add color to <code><a href="../reference/f7Slider.html">f7Slider()</a></code>
@@ -194,6 +258,16 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug fix</h2>
 <ul>
+<li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
+<li>Allow output elements to be displayed in <code><a href="../reference/f7Panel.html">f7Panel()</a></code> (need to provide the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> inputId)</li>
+<li>Prevent <code><a href="../reference/f7Swipeout.html">f7Swipeout()</a></code> to make the current tab swipping if in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
+</li>
+<li>Fix <code><a href="../reference/f7Fab.html">f7Fab()</a></code> label white background color in dark mode</li>
+<li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/19'>#19</a>: letting bigger TRUE in <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> would center the body content on scroll, due to a css conflict</li>
+<li>fix issue with <code><a href="../reference/f7Slider.html">f7Slider()</a></code> and <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>: When setting value of a slider in a swipeable f7TabLayout it cause the tab to be swip. This describe here : framework7io/framework7<a href='https://github.com/RinteRface/shinyMobile/issues/2603'>#2603</a>. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/39'>#39</a>: issue in <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code> format for months. Thanks <a href='https://github.com/kmaheshkulkarni'>@kmaheshkulkarni</a></li>
+<li>fix issue in <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code>: the viewport does not scroll to input by default</li>
+<li>fix typo in <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code> example</li>
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/43'>#43</a>: slider label not visible on drag. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/42'>#42</a>: add vertical overflow to <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/41'>#41</a>: cannot render shiny outputs in <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Now <code><a href="../reference/f7Popup.html">f7Popup()</a></code> triggers shiny output rendering. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
@@ -203,15 +277,15 @@
 <li>fix <code><a href="../reference/f7Icon.html">f7Icon()</a></code> example: wrong function name</li>
 <li>fix <code><a href="../reference/f7Row.html">f7Row()</a></code> example</li>
 <li>
-<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
+<code><a href="../reference/sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
 <li>Do no apply a magin bottom to the toolbar if there is no <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
 </li>
 </ul>
 </div>
 </div>
-    <div id="shinymobile-0-1-0" class="section level1">
+    <div id="shinymobile-010" class="section level1">
 <h1 class="page-header">
-<a href="#shinymobile-0-1-0" class="anchor"></a>shinyMobile 0.1.0<small> 2019-11-30 </small>
+<a href="#shinymobile-010" class="anchor"></a>shinyMobile 0.1.0<small> 2019-11-30 </small>
 </h1>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
@@ -223,8 +297,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#shinymobile-0-2-0-9000">0.2.0.9000</a></li>
-        <li><a href="#shinymobile-0-1-0">0.1.0</a></li>
+        <li><a href="#shinymobile-0509000">0.5.0.9000</a></li>
+        <li><a href="#shinymobile-010">0.1.0</a></li>
       </ul>
     </div>
   </div>

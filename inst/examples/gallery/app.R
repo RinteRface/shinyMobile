@@ -25,7 +25,9 @@ shinyApp(
       filled = TRUE,
       hideNavOnPageScroll = FALSE,
       hideTabsOnPageScroll = FALSE,
-      serviceWorker = "service-worker.js"
+      serviceWorker = "service-worker.js",
+      iosTranslucentBars = FALSE,
+      pullToRefresh = TRUE
     ),
     f7TabLayout(
       appbar = f7Appbar(
@@ -56,7 +58,8 @@ shinyApp(
         shadow = TRUE,
         left_panel = TRUE,
         right_panel = TRUE,
-        bigger = FALSE
+        bigger = TRUE,
+        transparent = FALSE
       ),
       # recover the color picker input and update the text background
       # color accordingly.
@@ -70,7 +73,8 @@ shinyApp(
       ),
       f7Tabs(
         id = "tabset",
-        animated = TRUE,
+        animated = FALSE,
+        swipeable = TRUE,
         tabInputs,
         tabBtns,
         tabCards,
@@ -132,6 +136,10 @@ shinyApp(
     # sheet plot
     output$sheetPlot <- renderPlot({
       hist(rnorm(input$sheetObs))
+    })
+
+    observeEvent(input$toggleSheet, {
+      updateF7Sheet(inputId = "sheet1", session = session)
     })
 
     # notifications
@@ -306,6 +314,18 @@ shinyApp(
           text = c('Notification', 'Dialog'),
           color = c(NA, NA)
         )
+      )
+    })
+
+    # pull to refresh
+    observeEvent(input$ptr, {
+
+      ptrStatus <- if (input$ptr) "on"
+
+      f7Dialog(
+        session = session,
+        text = paste('ptr is', ptrStatus),
+        type = "alert"
       )
     })
 

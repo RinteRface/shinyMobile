@@ -1,6 +1,7 @@
 tabBtns <- f7Tab(
   tabName = "FABs",
   icon = f7Icon("keyboard_fill"),
+  active = FALSE,
 
   # FABS
   f7Align(
@@ -60,9 +61,9 @@ tabBtns <- f7Tab(
   f7Segment(
     shadow = TRUE,
     container = "segment",
-    f7Button(label = "My button", outline = TRUE),
-    f7Button(label = "My button", outline = TRUE),
-    f7Button(label = "My button", outline = TRUE)
+    f7Button(label = "My button", outline = TRUE, fill = FALSE),
+    f7Button(label = "My button", outline = TRUE, fill = FALSE),
+    f7Button(label = "My button", outline = TRUE, fill = FALSE)
   ),
   f7BlockTitle(title = "Rounded Buttons in a segment container"),
   f7Segment(

@@ -1,8 +1,9 @@
 library(testthat)
+library(golem)
 library(shinyMobile)
-library(V8)
-library(rstudioapi)
-library(cli)
+#library(V8)
+#library(rstudioapi)
+#library(cli)
 
 
 # # These helpers are from Victor Perrier, \email{info@@dreamrs.fr}
@@ -64,4 +65,4 @@ library(cli)
 #   jshint_file(input = context$path)
 # }
 #
-# test_check("shinyMobile")
+test_check("shinyMobile")
