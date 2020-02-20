@@ -174,7 +174,7 @@ need to store credentials in a database for instance.</p>
 
     <pre class="usage"><span class='fu'>f7Login</span>(<span class='no'>...</span>, <span class='no'>id</span>, <span class='no'>title</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Sign In"</span>, <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>startOpen</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>f7LoginServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>f7LoginServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='fu'>updateF7Login</span>(
   <span class='no'>id</span>,
@@ -231,6 +231,11 @@ created/initialized, ignore the handlerExpr (the second argument),
 whether it is otherwise supposed to run or not. The default is FALSE.</p></td>
     </tr>
     <tr>
+      <th>trigger</th>
+      <td><p>Reactive trigger to toggle the login page state. Useful, when
+one wants to set up local authentication (for a specific section). See example 2.</p></td>
+    </tr>
+    <tr>
       <th>user</th>
       <td><p>Value of the user input.</p></td>
     </tr>
@@ -271,18 +276,18 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
        <span class='fu'>f7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Welcome"</span>),
        <span class='co'># main content</span>
        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"Welcome "</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"userName"</span>))),
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
          <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
        ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='fu'>f7LoginServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>)
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>f7LoginServer</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
 
-     <span class='no'>output</span>$<span class='no'>userName</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>login</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>)
-       <span class='no'>input</span>$<span class='no'>login_user</span>
+     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
+      <span class='no'>loginData</span>$<span class='fu'>user</span>()
      })
    }
  )
@@ -309,7 +314,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Restricted"</span>,
            <span class='co'># main content</span>
            <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"Welcome "</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"userName"</span>))),
+             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
              <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
            ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
          )
@@ -319,21 +324,91 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='co'># Authorization on the second tab</span>
-     <span class='co'># only run once to open the login page</span>
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span>, {
-       <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted"</span>) {
-         <span class='fu'>updateF7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
-       }
-     }, <span class='kw'>once</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+     <span class='co'># trigger</span>
+     <span class='no'>trigger</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span>)
+     })
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='fu'>f7LoginServer</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>, <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+      <span class='no'>f7LoginServer</span>,
+      <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
+      <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+      <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger</span>
+     )
 
-     <span class='no'>output</span>$<span class='no'>userName</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>login</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>)
-       <span class='no'>input</span>$<span class='no'>login_user</span>
+     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
+      <span class='no'>loginData</span>$<span class='fu'>user</span>()
      })
+
+   }
+ )
+
+ <span class='co'># with 2 different protected sections</span>
+ <span class='fu'>ibrary</span>(<span class='no'>shiny</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+     <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
+       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Login Example for 2 Specific Section"</span>,
+         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+       ),
+       <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
+         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabs"</span>,
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Tab 1"</span>,
+           <span class='st'>"Without authentication"</span>
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Restricted"</span>,
+           <span class='co'># main content</span>
+           <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
+             <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"1st restricted area"</span>,
+             <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
+           ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
+         ),
+         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
+           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Restricted 2"</span>,
+           <span class='co'># main content</span>
+           <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
+             <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"2nd restricted area"</span>,
+             <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
+           ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
+         )
+       ),
+       <span class='fu'>f7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Welcome"</span>, <span class='kw'>startOpen</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
+       <span class='fu'>f7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage2"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Welcome"</span>, <span class='kw'>startOpen</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+     )
+   ),
+   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+
+     <span class='no'>trigger1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted"</span>)
+     })
+
+     <span class='no'>trigger2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted 2"</span>)
+     })
+
+     <span class='co'># do not run first since the login page is not yet visible</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+       <span class='no'>f7LoginServer</span>,
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
+       <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger1</span>
+     )
+
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+       <span class='no'>f7LoginServer</span>,
+       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage2"</span>,
+       <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger2</span>
+     )
+
    }
  )
 }</div></pre>

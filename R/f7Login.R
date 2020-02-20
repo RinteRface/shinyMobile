@@ -45,18 +45,18 @@
 #'        f7Login(id = "loginPage", title = "Welcome"),
 #'        # main content
 #'        f7BlockTitle(
-#'          title = HTML(paste0("Welcome ", textOutput("userName"))),
+#'          title = HTML(paste("Welcome", textOutput("user"))),
 #'          size = "large"
 #'        ) %>% f7Align("center")
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
 #'
-#'      f7LoginServer(input, output, session)
+#'      loginData <- callModule(f7LoginServer, id = "loginPage")
 #'
-#'      output$userName <- renderText({
-#'        req(input$login > 0)
-#'        input$login_user
+#'      output$user <- renderText({
+#'       req(loginData$user)
+#'       loginData$user()
 #'      })
 #'    }
 #'  )
@@ -83,7 +83,7 @@
 #'            tabName = "Restricted",
 #'            # main content
 #'            f7BlockTitle(
-#'              title = HTML(paste0("Welcome ", textOutput("userName"))),
+#'              title = HTML(paste("Welcome", textOutput("user"))),
 #'              size = "large"
 #'            ) %>% f7Align("center")
 #'          )
@@ -93,35 +93,107 @@
 #'    ),
 #'    server = function(input, output, session) {
 #'
-#'      # Authorization on the second tab
-#'      # only run once to open the login page
-#'      observeEvent(input$tabs, {
-#'        if (input$tabs == "Restricted") {
-#'          updateF7Login(id = "loginPage")
-#'        }
-#'      }, once = TRUE)
+#'      # trigger
+#'      trigger <- reactive({
+#'       req(input$tabs)
+#'      })
 #'
 #'      # do not run first since the login page is not yet visible
-#'      f7LoginServer(input, output, session, ignoreInit = TRUE)
+#'      loginData <- callModule(
+#'       f7LoginServer,
+#'       id = "loginPage",
+#'       ignoreInit = TRUE,
+#'       trigger = trigger
+#'      )
 #'
-#'      output$userName <- renderText({
-#'        req(input$login > 0)
-#'        input$login_user
+#'      output$user <- renderText({
+#'       req(loginData$user)
+#'       loginData$user()
 #'      })
+#'
+#'    }
+#'  )
+#'
+#'  # with 2 different protected sections
+#'  ibrary(shiny)
+#'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7TabLayout(
+#'        navbar = f7Navbar(
+#'          title = "Login Example for 2 Specific Section",
+#'          hairline = FALSE,
+#'          shadow = TRUE
+#'        ),
+#'        f7Tabs(
+#'          id = "tabs",
+#'          f7Tab(
+#'            tabName = "Tab 1",
+#'            "Without authentication"
+#'          ),
+#'          f7Tab(
+#'            tabName = "Restricted",
+#'            # main content
+#'            f7BlockTitle(
+#'              title = "1st restricted area",
+#'              size = "large"
+#'            ) %>% f7Align("center")
+#'          ),
+#'          f7Tab(
+#'            tabName = "Restricted 2",
+#'            # main content
+#'            f7BlockTitle(
+#'              title = "2nd restricted area",
+#'              size = "large"
+#'            ) %>% f7Align("center")
+#'          )
+#'        ),
+#'        f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE),
+#'        f7Login(id = "loginPage2", title = "Welcome", startOpen = FALSE)
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'
+#'      trigger1 <- reactive({
+#'        req(input$tabs == "Restricted")
+#'      })
+#'
+#'      trigger2 <- reactive({
+#'        req(input$tabs == "Restricted 2")
+#'      })
+#'
+#'      # do not run first since the login page is not yet visible
+#'      callModule(
+#'        f7LoginServer,
+#'        id = "loginPage",
+#'        ignoreInit = TRUE,
+#'        trigger = trigger1
+#'      )
+#'
+#'      callModule(
+#'        f7LoginServer,
+#'        id = "loginPage2",
+#'        ignoreInit = TRUE,
+#'        trigger = trigger2
+#'      )
+#'
 #'    }
 #'  )
 #' }
 f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
                     startOpen = TRUE) {
 
-  submitBttn <- f7Button(inputId = "login", label = label)
+  ns <- shiny::NS(id)
+
+  submitBttn <- f7Button(inputId = ns("login"), label = label)
   submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
   submitBttn[[2]]$name <- "a"
 
   shiny::tagList(
     f7InputsDeps(),
     shiny::tags$div(
-      id = id,
+      id = ns(id),
       `data-start-open` = jsonlite::toJSON(startOpen),
       class = "login-screen",
       shiny::tags$div(
@@ -137,12 +209,12 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
               shiny::tags$div(
                 class = "list", shiny::tags$ul(
                   f7Text(
-                    inputId = "login_user",
+                    inputId = ns("login_user"),
                     label = "",
                     placeholder = "Your name here"
                   ),
                   f7Password(
-                    inputId = "login_password",
+                    inputId = ns("login_password"),
                     label = "",
                     placeholder = "Your password here"
                   ),
@@ -173,27 +245,52 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 #' @param ignoreInit If TRUE, then, when this observeEvent is first
 #' created/initialized, ignore the handlerExpr (the second argument),
 #' whether it is otherwise supposed to run or not. The default is FALSE.
+#' @param trigger Reactive trigger to toggle the login page state. Useful, when
+#' one wants to set up local authentication (for a specific section). See example 2.
 #'
 #' @export
 #' @rdname authentication
-f7LoginServer <- function(input, output, session, ignoreInit = FALSE) {
+f7LoginServer <- function(input, output, session, ignoreInit = FALSE,
+                          trigger = NULL) {
+
+  ns <- session$ns
+  # module id
+  modId <- strsplit(ns(""), "-")[[1]][1]
 
   # this is needed if we have local authentication (not on all pages)
   # and the login page is not visible at start.
   # This reactiveVal ensures that we run authentication only once.
   authenticated <- shiny::reactiveVal(FALSE)
+  # open the page if not already (in case of local authentication)
+  shiny::observeEvent({
+    shiny::req(!is.null(trigger))
+    trigger()
+  }, {
+    if (!authenticated()) {
+      if (!input[[modId]]) updateF7Login(id = modId)
+    }
+  }, once = TRUE)
 
   # toggle the login only if not authenticated
   shiny::observeEvent(input$login, {
     if (!authenticated()) {
       updateF7Login(
-        id = "loginPage",
+        id = modId,
         user = input$login_user,
         password = input$login_password
       )
       authenticated(TRUE)
     }
   }, ignoreInit = ignoreInit)
+
+  # useful to export the user name outside the module
+  return(
+    list(
+      user = shiny::reactive(input$login_user),
+      passowrd = shiny::reactive(input$login_password)
+    )
+  )
+
 }
 
 

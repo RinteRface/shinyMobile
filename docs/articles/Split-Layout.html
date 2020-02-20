@@ -124,7 +124,7 @@
       <h1>Split-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-02-19</h4>
+            <h4 class="date">2020-02-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Split-Layout.Rmd"><code>vignettes/Split-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Split-Layout.Rmd</code></div>
@@ -244,17 +244,17 @@
 <span id="cb2-84"><a href="#cb2-84"></a>                <span class="dt">label =</span> <span class="st">"Sankey Name"</span>,</span>
 <span id="cb2-85"><a href="#cb2-85"></a>                <span class="dt">placeholder =</span> <span class="st">"Plot Name"</span></span>
 <span id="cb2-86"><a href="#cb2-86"></a>              ),</span>
-<span id="cb2-87"><a href="#cb2-87"></a>              <span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"sankey_plot"</span>)</span>
+<span id="cb2-87"><a href="#cb2-87"></a>              <span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"sankey_plot"</span>)</span>
 <span id="cb2-88"><a href="#cb2-88"></a></span>
 <span id="cb2-89"><a href="#cb2-89"></a>            ),</span>
 <span id="cb2-90"><a href="#cb2-90"></a>            <span class="kw"><a href="../reference/f7Slide.html">f7Slide</a></span>(</span>
 <span id="cb2-91"><a href="#cb2-91"></a>              df <span class="op">%&gt;%</span></span>
-<span id="cb2-92"><a href="#cb2-92"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span></span>
-<span id="cb2-93"><a href="#cb2-93"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb2-94"><a href="#cb2-94"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/angle_axis.html">e_angle_axis</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># angle = x</span></span>
-<span id="cb2-95"><a href="#cb2-95"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/radius_axis.html">e_radius_axis</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb2-96"><a href="#cb2-96"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_bar.html">e_bar</a></span>(y, <span class="dt">coord_system =</span> <span class="st">"polar"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb2-97"><a href="#cb2-97"></a><span class="st">                </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/scatter.html">e_scatter</a></span>(z, <span class="dt">coord_system =</span> <span class="st">"polar"</span>)</span>
+<span id="cb2-92"><a href="#cb2-92"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span></span>
+<span id="cb2-93"><a href="#cb2-93"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_polar.html">e_polar</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-94"><a href="#cb2-94"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/angle_axis.html">e_angle_axis</a></span>(x) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># angle = x</span></span>
+<span id="cb2-95"><a href="#cb2-95"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/radius_axis.html">e_radius_axis</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-96"><a href="#cb2-96"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_bar.html">e_bar</a></span>(y, <span class="dt">coord_system =</span> <span class="st">"polar"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-97"><a href="#cb2-97"></a><span class="st">                </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/scatter.html">e_scatter</a></span>(z, <span class="dt">coord_system =</span> <span class="st">"polar"</span>)</span>
 <span id="cb2-98"><a href="#cb2-98"></a>            )</span>
 <span id="cb2-99"><a href="#cb2-99"></a>          )</span>
 <span id="cb2-100"><a href="#cb2-100"></a>        ),</span>
@@ -265,7 +265,7 @@
 <span id="cb2-105"><a href="#cb2-105"></a>            <span class="dt">label =</span> <span class="st">"Show Plot?"</span>,</span>
 <span id="cb2-106"><a href="#cb2-106"></a>            <span class="dt">checked =</span> <span class="ot">TRUE</span></span>
 <span id="cb2-107"><a href="#cb2-107"></a>          ),</span>
-<span id="cb2-108"><a href="#cb2-108"></a>          <span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"flow_plot"</span>)</span>
+<span id="cb2-108"><a href="#cb2-108"></a>          <span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"flow_plot"</span>)</span>
 <span id="cb2-109"><a href="#cb2-109"></a>        )</span>
 <span id="cb2-110"><a href="#cb2-110"></a>      )</span>
 <span id="cb2-111"><a href="#cb2-111"></a>    )</span>
@@ -285,11 +285,11 @@
 <span id="cb2-125"><a href="#cb2-125"></a>      }</span>
 <span id="cb2-126"><a href="#cb2-126"></a>    })</span>
 <span id="cb2-127"><a href="#cb2-127"></a></span>
-<span id="cb2-128"><a href="#cb2-128"></a>    output<span class="op">$</span>sankey_plot &lt;-<span class="st"> </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb2-128"><a href="#cb2-128"></a>    output<span class="op">$</span>sankey_plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
 <span id="cb2-129"><a href="#cb2-129"></a>      sankey <span class="op">%&gt;%</span></span>
-<span id="cb2-130"><a href="#cb2-130"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb2-131"><a href="#cb2-131"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_sankey.html">e_sankey</a></span>(source, target, value) <span class="op">%&gt;%</span></span>
-<span id="cb2-132"><a href="#cb2-132"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span>(input<span class="op">$</span>sankey_name)</span>
+<span id="cb2-130"><a href="#cb2-130"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-131"><a href="#cb2-131"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_sankey.html">e_sankey</a></span>(source, target, value) <span class="op">%&gt;%</span></span>
+<span id="cb2-132"><a href="#cb2-132"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_title.html">e_title</a></span>(input<span class="op">$</span>sankey_name)</span>
 <span id="cb2-133"><a href="#cb2-133"></a>    })</span>
 <span id="cb2-134"><a href="#cb2-134"></a></span>
 <span id="cb2-135"><a href="#cb2-135"></a>    output<span class="op">$</span>selected_tab &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">renderUI</a></span>({</span>
@@ -301,12 +301,12 @@
 <span id="cb2-141"><a href="#cb2-141"></a>      <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(dist)</span>
 <span id="cb2-142"><a href="#cb2-142"></a>    })</span>
 <span id="cb2-143"><a href="#cb2-143"></a></span>
-<span id="cb2-144"><a href="#cb2-144"></a>    output<span class="op">$</span>flow_plot &lt;-<span class="st"> </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb2-144"><a href="#cb2-144"></a>    output<span class="op">$</span>flow_plot &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
 <span id="cb2-145"><a href="#cb2-145"></a>      <span class="cf">if</span> (input<span class="op">$</span>plot_show) {</span>
 <span id="cb2-146"><a href="#cb2-146"></a>        vectors <span class="op">%&gt;%</span></span>
-<span id="cb2-147"><a href="#cb2-147"></a><span class="st">          </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span></span>
-<span id="cb2-148"><a href="#cb2-148"></a><span class="st">          </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_flow_gl.html">e_flow_gl</a></span>(y, sx, sy, color) <span class="op">%&gt;%</span></span>
-<span id="cb2-149"><a href="#cb2-149"></a><span class="st">          </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_visual_map.html">e_visual_map</a></span>(</span>
+<span id="cb2-147"><a href="#cb2-147"></a><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>(x) <span class="op">%&gt;%</span></span>
+<span id="cb2-148"><a href="#cb2-148"></a><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_flow_gl.html">e_flow_gl</a></span>(y, sx, sy, color) <span class="op">%&gt;%</span></span>
+<span id="cb2-149"><a href="#cb2-149"></a><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_visual_map.html">e_visual_map</a></span>(</span>
 <span id="cb2-150"><a href="#cb2-150"></a>            <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">1</span>, <span class="co"># log 10</span></span>
 <span id="cb2-151"><a href="#cb2-151"></a>            <span class="dt">dimension =</span> <span class="dv">4</span>, <span class="co"># x = 0, y = 1, sx = 3, sy = 4</span></span>
 <span id="cb2-152"><a href="#cb2-152"></a>            <span class="dt">show =</span> <span class="ot">FALSE</span>, <span class="co"># hide</span></span>
@@ -315,10 +315,10 @@
 <span id="cb2-155"><a href="#cb2-155"></a>                        <span class="st">'#ffffbf'</span>, <span class="st">'#fee090'</span>, <span class="st">'#fdae61'</span>, <span class="st">'#f46d43'</span>, <span class="st">'#d73027'</span>, <span class="st">'#a50026'</span>)</span>
 <span id="cb2-156"><a href="#cb2-156"></a>            )</span>
 <span id="cb2-157"><a href="#cb2-157"></a>          ) <span class="op">%&gt;%</span></span>
-<span id="cb2-158"><a href="#cb2-158"></a><span class="st">          </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/axis.html">e_x_axis</a></span>(</span>
+<span id="cb2-158"><a href="#cb2-158"></a><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/axis.html">e_x_axis</a></span>(</span>
 <span id="cb2-159"><a href="#cb2-159"></a>            <span class="dt">splitLine =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb2-160"><a href="#cb2-160"></a>          ) <span class="op">%&gt;%</span></span>
-<span id="cb2-161"><a href="#cb2-161"></a><span class="st">          </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/axis.html">e_y_axis</a></span>(</span>
+<span id="cb2-161"><a href="#cb2-161"></a><span class="st">          </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/axis.html">e_y_axis</a></span>(</span>
 <span id="cb2-162"><a href="#cb2-162"></a>            <span class="dt">splitLine =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">show =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb2-163"><a href="#cb2-163"></a>          )</span>
 <span id="cb2-164"><a href="#cb2-164"></a>      }</span>
