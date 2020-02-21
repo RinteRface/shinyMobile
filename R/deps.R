@@ -69,7 +69,7 @@ addJSDeps <- function() {
       shiny::tags$script(src = framework7_js)
     ),
     shiny::singleton(
-      shiny::tags$script(src = custom_js)
+      shiny::tags$script(async = NA, src = custom_js)
     ),
     shiny::singleton(
       shiny::tags$script(async = NA, src = pwa_compat)
