@@ -62,6 +62,7 @@ addJSDeps <- function() {
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
   custom_js <- paste0(depsPath, "my-app.js")
+  pwa_compat <- paste0(depsPath, "pwacompat/pwacompat.min.js")
 
   shiny::tagList(
     shiny::singleton(
@@ -69,6 +70,9 @@ addJSDeps <- function() {
     ),
     shiny::singleton(
       shiny::tags$script(src = custom_js)
+    ),
+    shiny::singleton(
+      shiny::tags$script(async = NA, src = pwa_compat)
     )
   )
 }
@@ -112,9 +116,47 @@ html_dependencies_f7Icons <- function(old = TRUE) {
 }
 
 
-
-
-
+# deps for pwa compat
+addPWADeps <- function(icon, favicon, manifest) {
+  depsPath <- "framework7-5.3.0/pwacompat/"
+  shiny::tagList(
+    # icon 128x128
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "icon",
+        type = "image/png",
+        href = if (!is.null(icon)) {
+          icon
+        } else {
+          paste0(depsPath, "icons/128x128.png")
+        },
+        sizes = "128x128"
+      )
+    ),
+    #favicon
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "icon",
+        href = if(!is.null(favicon)) {
+          icon
+        } else {
+          paste0(depsPath, "icons/favicon.png")
+        }
+      )
+    ),
+    # manifest
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "manifest",
+        href = if(!is.null(manifest)) {
+          manifest
+        } else {
+          paste0(depsPath, "manifest.json")
+        }
+      )
+    )
+  )
+}
 
 
 

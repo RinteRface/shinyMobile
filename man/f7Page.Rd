@@ -9,7 +9,10 @@ f7Page(
   init = f7Init(skin = "auto", theme = "light"),
   title = NULL,
   preloader = FALSE,
-  loading_duration = 3
+  loading_duration = 3,
+  icon = NULL,
+  favicon = NULL,
+  manifest = NULL
 )
 }
 \arguments{
@@ -24,6 +27,14 @@ f7Page(
 FALSE by default.}
 
 \item{loading_duration}{Preloader duration.}
+
+\item{icon}{Link to 128x128 icon (PWA compatibility). If NULL, taken from
+shinyMobile ressources.}
+
+\item{favicon}{App favicon. If NULL, taken from shinyMobile ressources.}
+
+\item{manifest}{Path to web manifest (PWA compatibility). If NULL, taken from
+shinyMobile ressources.}
 }
 \description{
 Build a Framework7 page
