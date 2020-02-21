@@ -5,8 +5,8 @@
   "lang": "en-US",
   "start_url": "https://dgranjon.shinyapps.io/miniUI2Demo/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#0000ffff",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "icons/128x128.png",

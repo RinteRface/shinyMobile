@@ -8,14 +8,6 @@ $(function () {
     window.history.replaceState( {} , 'newpath', newpath);
   }
 
-  // handle toolbar padding for mobiles in standalone mode
-  // only if there is an appbar
-  if (Framework7.device.standalone) {
-    if ($('.appbar').length > 0) {
-      $('.toolbar').css('margin-bottom', '20px');
-    }
-  }
-
   // Framework7.device is extremely useful to set up custom design
   $(document).on('shiny:connected', function(event) {
     Shiny.setInputValue('deviceInfo', Framework7.device);
