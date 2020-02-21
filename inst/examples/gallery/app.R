@@ -27,7 +27,7 @@ shinyApp(
       hideTabsOnPageScroll = FALSE,
       serviceWorker = "service-worker.js",
       iosTranslucentBars = FALSE,
-      pullToRefresh = FALSE
+      pullToRefresh = TRUE
     ),
     f7TabLayout(
       appbar = f7Appbar(
