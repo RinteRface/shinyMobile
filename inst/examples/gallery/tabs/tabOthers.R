@@ -2,9 +2,40 @@ tabOthers <- f7Tab(
   tabName = "Others",
   icon = f7Icon("more_round"),
 
-  f7Align(
-    side = "center",
-    h1("miniUI 2.0 brings other elements")
+  # standalone tabs
+  f7BlockTitle(title = "f7Tabs") %>% f7Align(side = "center"),
+  f7Tabs(
+    style = "strong",
+    animated = TRUE,
+    swipeable = FALSE,
+    f7Tab(
+      tabName = "Tab 1",
+      active = TRUE,
+      f7Block(
+        strong = TRUE,
+        f7BlockHeader(text = "Header"),
+        "Here comes Tab 1.",
+        f7BlockFooter(text = "Footer")
+      )
+    ),
+    f7Tab(
+      tabName = "Tab 2",
+      f7Block(
+        strong = TRUE,
+        f7BlockHeader(text = "Header"),
+        "Here comes Tab 2.",
+        f7BlockFooter(text = "Footer")
+      )
+    ),
+    f7Tab(
+      tabName = "Tab 3",
+      f7Block(
+        strong = TRUE,
+        f7BlockHeader(text = "Header"),
+        "Here comes Tab 3.",
+        f7BlockFooter(text = "Footer")
+      )
+    )
   ),
 
   # skeletons

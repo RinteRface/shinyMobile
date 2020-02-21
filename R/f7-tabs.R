@@ -269,6 +269,11 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     )
   }
 
+  # this is for the f7InsertTab and f7RemoveTab functions
+  # since the menu container is not the same, we need a common
+  # css class.
+  tabLinksTag <- tagAppendAttributes(tabLinksTag, class = "tabLinks")
+
   # related page content
   contentTag <- shiny::tags$div(
     # ios-edges necessary to have

@@ -247,24 +247,61 @@ $(function () {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
-      console.log(message);
       var tabId = $("#" + message.ns + "-" + message.target);
+
+      // for swipeable tabs
+      var newTab;
+      if ($(tabId).hasClass('swiper-slide')) {
+        // prepare the new slide
+        newTab = $(message.value).addClass('swiper-slide');
+        // remove page content class for standalone tabs
+        if ($('.tabLinks').children(1).hasClass('segmented')) {
+          $(newTab).removeClass('page-content');
+        }
+        // add active if necessary
+        if (message.select === "true") {
+          $(newTab).addClass('swiper-slide-active');
+        }
+        if (dark_mode) $(newTab).css('background-color', '');
+      } else {
+        // remove white background for tab in dark mode
+        newTab = $(message.value);
+        if (dark_mode) $(newTab).css('background-color', '');
+      }
+
       if (message.position === "after") {
         // insert after the targeted tag in the tab-panel div
-        $(message.value).insertAfter($(tabId));
+        $(newTab).insertAfter($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertAfter($('.toolbar-inner [href ="#' + message.ns + "-" + message.target + '"]'));
+        $(message.link).insertAfter($('.tabLinks [href ="#' + message.ns + "-" + message.target + '"]'));
       } else if (message.position === "before") {
         // insert before the targeted tag in the tab-panel div
-        $(message.value).insertBefore($(tabId));
+        $(newTab).insertBefore($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertBefore($('.toolbar-inner [href ="#' + message.ns + "-" + message.target + '"]'));
+        $(message.link).insertBefore($('.tabLinks [href ="#' + message.ns + "-" + message.target + '"]'));
+      }
+
+      // we need to transform a in button in case
+      // the container has segmented class (for standalone tabs).
+      // This is ignored for toolbar tabs
+      if ($('.tabLinks').children(1).hasClass('segmented')) {
+        var newLink;
+        var oldLink = $('.tabLinks [href ="#' + message.id + '"]');
+        newLink = $(oldLink)
+          .replaceWith('<button class="button tab-link" href="#' + message.id + '">' + $(oldLink).html() + '</button>');
+      }
+
+      // update the swiper if needed
+      if ($(tabId).hasClass('swiper-slide')) {
+        // access the swiper container
+        var swiper = document.querySelector('.swiper-container').swiper;
+        swiper.update();
       }
 
       // if the newly inserted tab is active, disable other tabs
       if (message.select === "true") {
         // trigger a click on corresponding the new tab button.
-        app.tab.show('#' + message.id);
+        app.tab.show('#' + message.id, true);
       }
     });
   });
@@ -275,22 +312,51 @@ $(function () {
     Shiny.addCustomMessageHandler(id, function(message) {
       // show the next tab first
       var tabToRemove = $('#' + message.ns + "-" + message.target);
-      var nextTabId = $(tabToRemove).next().attr('id');
-      app.tab.show('#' + nextTabId);
 
       // important: prevent tab from translating which would lead to a
       // white screen
       $(".tabs.ios-edges").css('transform', '');
 
-      // remove the target
-      $('.toolbar-inner a[href="#' + message.ns + "-" + message.target +'"]').remove();
+      // remove the tab link: if condition to handle the case
+      // of standalone tabs vs toolbar tabs
+      if (!$('.tabLinks').children(1).hasClass('segmented')) {
+        $('.toolbar-inner a[href="#' + message.ns + "-" + message.target +'"]').remove();
+      } else {
+        var linkToRemove = $('.tabLinks button[href="#' + message.ns + "-" + message.target +'"]');
+        var otherLinks = $('.tabLinks button').not('[href="#' + message.ns + "-" + message.target +'"]');
+        if ($(linkToRemove).next().length === 0) {
+          if (!$(otherLinks).hasClass('tab-link-active')) {
+            $(linkToRemove).prev().addClass('tab-link-active');
+          }
+        } else {
+          if (!$(otherLinks).hasClass('tab-link-active')) {
+            $(linkToRemove).next().addClass('tab-link-active');
+          }
+        }
+        $(linkToRemove).remove();
+      }
+
+      // remove the tab body content
       $('#' + message.ns + "-" + message.target).remove();
 
-      // we programatically remove the old tabbar indicator and rebuild it.
+      // update the swiper if needed
+      if ($(tabToRemove).hasClass('swiper-slide')) {
+        // access the swiper container
+        var swiper = document.querySelector('.swiper-container').swiper;
+        swiper.update();
+      }
+
+      // show the next element. Need to be after the swiper update.
+      var nextTabId = $(tabToRemove).next().attr('id');
+      app.tab.show('#' + nextTabId);
+
+      // we programmatically remove the old tabbar indicator and rebuild it.
       // The with of the tabbar indicator depends on the number of tab items it contains
-      segment_width = 100 / $('.toolbar-inner > a').length;
-      $('.tab-link-highlight').remove();
-      $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
+      if (!$('.tabLinks').children(1).hasClass('segmented')) {
+        $('.tab-link-highlight').remove();
+        segment_width = 100 / $('.toolbar-inner > a').length;
+        $('.toolbar-inner').append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
+      }
     });
   });
 
