@@ -178,7 +178,9 @@
   <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en-US"</span>,
   <span class='no'>startUrl</span>,
   <span class='kw'>display</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"minimal-ui"</span>, <span class='st'>"standalone"</span>, <span class='st'>"fullscreen"</span>, <span class='st'>"browser"</span>),
-  <span class='no'>icons</span>
+  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>,
+  <span class='kw'>theme_color</span> <span class='kw'>=</span> <span class='st'>"#0000ffff"</span>,
+  <span class='no'>icon</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -214,18 +216,24 @@
 In practice, you want the standalone mode so that the app looks like a native app.</p></td>
     </tr>
     <tr>
-      <th>icons</th>
-      <td><p>Dataframe containing icons specs for instance <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame(src = rep("icons/128x128.png", 10), sizes = rep("128x128", 10), types = rep("image/png", 10))</a></code>.
-src gives the icon path (in the www folder for instance), sizes gives the size and types the type.</p></td>
+      <th>background_color</th>
+      <td><p>The background_color property is used on the splash screen when the application is first launched.</p></td>
+    </tr>
+    <tr>
+      <th>theme_color</th>
+      <td><p>The theme_color sets the color of the tool bar, and may be reflected in the app's preview in task switchers.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>Dataframe containing icon specs. src gives the icon path
+(in the www folder for instance), sizes gives the size and types the type.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>This function creates a www folder for your shiny app. Must specify the path.
-It also creates 2 additional folders to contain icons and splashscreen (splashscreen creation
-is not automatic for iOS). It also creates the manifest.json file in this www folder.
-You still have to create your own icons and splashscreen!</p>
+It creates 1 folders to contain icons and the manifest.json file.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>See <a href='https://developer.mozilla.org/en-US/docs/Web/Manifest'>https://developer.mozilla.org/en-US/docs/Web/Manifest</a> for more informations.</p>
@@ -239,10 +247,12 @@ You still have to create your own icons and splashscreen!</p>
   <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en-US"</span>,
   <span class='kw'>startUrl</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com/"</span>,
   <span class='kw'>display</span> <span class='kw'>=</span> <span class='st'>"standalone"</span>,
-  <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-    <span class='kw'>src</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"icons/128x128.png"</span>, <span class='fl'>10</span>),
-    <span class='kw'>sizes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"128x128"</span>, <span class='fl'>10</span>),
-    <span class='kw'>types</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"image/png"</span>, <span class='fl'>10</span>)
+  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#3367D6"</span>,
+  <span class='kw'>theme_color</span> <span class='kw'>=</span> <span class='st'>"#3367D6"</span>,
+  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+    <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"icons/128x128.png"</span>,
+    <span class='kw'>sizes</span> <span class='kw'>=</span> <span class='st'>"128x128"</span>, <span class='fl'>10</span>,
+    <span class='kw'>types</span> <span class='kw'>=</span> <span class='st'>"image/png"</span>
   )
 )</div><div class='output co'>#&gt; {
 #&gt;   "name": "My App",
@@ -251,55 +261,13 @@ You still have to create your own icons and splashscreen!</p>
 #&gt;   "lang": "en-US",
 #&gt;   "start_url": "https://www.google.com/",
 #&gt;   "display": "standalone",
-#&gt;   "icons": [
+#&gt;   "background_color": "#3367D6",
+#&gt;   "theme_color": "#3367D6",
+#&gt;   "icon": [
 #&gt;     {
 #&gt;       "src": "icons/128x128.png",
 #&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
-#&gt;       "types": "image/png"
-#&gt;     },
-#&gt;     {
-#&gt;       "src": "icons/128x128.png",
-#&gt;       "sizes": "128x128",
+#&gt;       "X10": 10,
 #&gt;       "types": "image/png"
 #&gt;     }
 #&gt;   ]

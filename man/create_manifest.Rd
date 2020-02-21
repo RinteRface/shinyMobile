@@ -12,8 +12,8 @@ create_manifest(
   lang = "en-US",
   startUrl,
   display = c("minimal-ui", "standalone", "fullscreen", "browser"),
-  background_color = "#3367D6",
-  theme_color = "#3367D6",
+  background_color = "#000000",
+  theme_color = "#0000ffff",
   icon
 )
 }

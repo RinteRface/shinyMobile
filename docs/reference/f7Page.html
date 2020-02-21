@@ -175,7 +175,10 @@
   <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
   <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>preloader</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>3</span>
+  <span class='kw'>loading_duration</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>favicon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>manifest</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -202,6 +205,20 @@ FALSE by default.</p></td>
     <tr>
       <th>loading_duration</th>
       <td><p>Preloader duration.</p></td>
+    </tr>
+    <tr>
+      <th>icon</th>
+      <td><p>Link to 128x128 icon (PWA compatibility). If NULL, taken from
+shinyMobile ressources.</p></td>
+    </tr>
+    <tr>
+      <th>favicon</th>
+      <td><p>App favicon. If NULL, taken from shinyMobile ressources.</p></td>
+    </tr>
+    <tr>
+      <th>manifest</th>
+      <td><p>Path to web manifest (PWA compatibility). If NULL, taken from
+shinyMobile ressources.</p></td>
     </tr>
     </table>
 
