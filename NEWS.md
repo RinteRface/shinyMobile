@@ -68,6 +68,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Fix issue with `f7InsertTab()` and `f7RemoveTab()` when swipeable is TRUE
 - trigger shown event for `f7Tabs()` on click. This allows to use `f7Tabs()`
 without swipeable and animated
 - Allow output elements to be displayed in `f7Panel()` (need to provide the `f7Panel()` inputId)

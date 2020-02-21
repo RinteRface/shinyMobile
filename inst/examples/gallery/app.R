@@ -21,13 +21,13 @@ shinyApp(
     title = "shinyMobile",
     init = f7Init(
       skin = "ios",
-      theme = "light",
+      theme = "dark",
       filled = TRUE,
       hideNavOnPageScroll = FALSE,
       hideTabsOnPageScroll = FALSE,
       serviceWorker = "service-worker.js",
       iosTranslucentBars = FALSE,
-      pullToRefresh = TRUE
+      pullToRefresh = FALSE
     ),
     f7TabLayout(
       appbar = f7Appbar(
@@ -61,6 +61,14 @@ shinyApp(
         bigger = TRUE,
         transparent = FALSE
       ),
+      f7Login(
+        id = "loginPage",
+        title = "You really think you can go here?",
+        footer = "This section simulates an authentication process. There
+        is actually no user and password database. Put whatever you want but
+        don't leave blank!",
+        startOpen = FALSE,
+      ),
       # recover the color picker input and update the text background
       # color accordingly.
       shiny::tags$script(
@@ -86,6 +94,19 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
+
+    # trigger for login
+    trigger <- reactive({
+      req(input$tabset == "Text")
+    })
+    # login server module
+    callModule(
+      f7LoginServer,
+      id = "loginPage",
+      ignoreInit = TRUE,
+      trigger = trigger
+    )
+
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$slider <- renderPrint(input$slider)
