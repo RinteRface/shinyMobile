@@ -120,30 +120,6 @@ html_dependencies_f7Icons <- function(old = TRUE) {
 addPWADeps <- function(icon, favicon, manifest) {
   depsPath <- "framework7-5.3.0/pwacompat/"
   shiny::tagList(
-    # icon 128x128
-    shiny::singleton(
-      shiny::tags$link(
-        rel = "icon",
-        type = "image/png",
-        href = if (!is.null(icon)) {
-          icon
-        } else {
-          paste0(depsPath, "icons/128x128.png")
-        },
-        sizes = "128x128"
-      )
-    ),
-    #favicon
-    shiny::singleton(
-      shiny::tags$link(
-        rel = "icon",
-        href = if(!is.null(favicon)) {
-          icon
-        } else {
-          paste0(depsPath, "icons/favicon.png")
-        }
-      )
-    ),
     # manifest
     shiny::singleton(
       shiny::tags$link(
@@ -152,6 +128,28 @@ addPWADeps <- function(icon, favicon, manifest) {
           manifest
         } else {
           paste0(depsPath, "manifest.json")
+        }
+      )
+    ),
+    # apple touch icon (not created by pwacompat)
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "apple-touch-icon",
+        href = if (!is.null(icon)) {
+          icon
+        } else {
+          paste0(depsPath, "icons/apple-touch-icon.png")
+        }
+      )
+    ),
+    #favicon
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "icon",
+        href = if(!is.null(favicon)) {
+          favicon
+        } else {
+          paste0(depsPath, "icons/favicon.png")
         }
       )
     )
