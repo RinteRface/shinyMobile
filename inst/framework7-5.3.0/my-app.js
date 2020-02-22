@@ -13,6 +13,7 @@ $(function () {
   if (Framework7.device.standalone) {
     if ($('.appbar').length > 0) {
       $('.toolbar').css('margin-bottom', '20px');
+      $('html, body').css({'height':'100vh', 'width':'100vw'});
     }
   }
 
