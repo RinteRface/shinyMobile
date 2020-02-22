@@ -11,9 +11,9 @@ $(function () {
   // handle toolbar padding for mobiles in standalone mode
   // only if there is an appbar
   if (Framework7.device.standalone) {
+    $('html, body').css({'height':'100vh', 'width':'100vw'});
     if ($('.appbar').length > 0) {
       $('.toolbar').css('margin-bottom', '20px');
-      $('html, body').css({'height':'100vh', 'width':'100vw'});
     }
   }
 
