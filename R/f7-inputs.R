@@ -714,13 +714,20 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
   if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
 
-  shiny::tags$div(
-    class = "list shiny-input-checkboxgroup",
-    id = inputId,
-    shiny::tags$ul(
-      choicesTag
+  shiny::tagList(
+    shiny::tags$div(
+      class = "block-title",
+      label
+    ),
+    shiny::tags$div(
+      class = "list shiny-input-checkboxgroup",
+      id = inputId,
+      shiny::tags$ul(
+        choicesTag
+      )
     )
   )
+
 }
 
 
@@ -1592,11 +1599,18 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
 
   if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
 
-  shiny::tags$div(
-    class = "list shiny-input-radiogroup",
-    id = inputId,
-    shiny::tags$ul(
-      choicesTag
+  shiny::tagList(
+    shiny::tags$div(
+      class = "block-title",
+      label
+    ),
+    shiny::tags$div(
+      class = "list shiny-input-radiogroup",
+      id = inputId,
+      shiny::tags$ul(
+        choicesTag
+      )
     )
   )
+
 }
