@@ -21,6 +21,9 @@ $(function () {
     Shiny.setInputValue('deviceInfo', Framework7.device);
   });
 
+  // fix standalone tabs height issue
+  $('.tabs-standalone').css('height', 'auto');
+
   // handle background for dark mode
   // need to remove the custom gainsboro color background
   var dark_mode = $('html').hasClass('theme-dark');

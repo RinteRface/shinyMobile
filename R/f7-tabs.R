@@ -250,7 +250,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     )
   } else if (style == "strong") {
     shiny::tags$div(
-      class = "block",
+      class = "block-header",
       shiny::tags$div(
         class = "segmented segmented-strong",
         tabItems
@@ -299,16 +299,22 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   # handle swipeable tabs
   if (swipeable) {
     contentTag <- shiny::tags$div(
-      class = "tabs-swipeable-wrap",
-      style = if (style %in% c("segmented", "strong")) "margin-bottom: -500px;",
+      class = if (style %in% c("segmented", "strong")) {
+        "tabs-standalone tabs-swipeable-wrap"
+      } else {
+        "tabs-swipeable-wrap"
+      },
       contentTag
     )
   }
 
   if (animated) {
     contentTag <- shiny::tags$div(
-      class = "tabs-animated-wrap",
-      style = if (style %in% c("segmented", "strong")) "margin-bottom: -500px;",
+      class = if (style %in% c("segmented", "strong")) {
+        "tabs-standalone tabs-animated-wrap"
+      } else {
+        "tabs-animated-wrap"
+      },
       contentTag
     )
   }
