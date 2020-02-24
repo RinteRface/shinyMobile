@@ -16,6 +16,8 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- new `f7ValidateInput()` function to validate input from the server side (similar to
+shinyFeedback but internal to shinyMobile and without dependencies)
 - new `f7Login()` and `updateF7Login()` feature to provide UI boilerplates
 for authentication
 - `f7Tabs()` may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.

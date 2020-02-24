@@ -34,7 +34,7 @@ if (interactive()) {
  ui <- f7Page(
    f7SingleLayout(
     navbar = f7Navbar(title = "updateF7Text"),
-    f7Fab("trigger", "Click me"),
+    f7Block(f7Button("trigger", "Click me")),
     f7Text(
      inputId = "text",
      label = "Caption",

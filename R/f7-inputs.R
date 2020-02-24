@@ -941,26 +941,45 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'    }
 #'  )
 #' }
-f7Text <- function(inputId, label, value = "", placeholder = NULL) {
+f7Text <- function(inputId, label, value = "", placeholder = NULL#,
+                   #style = NULL, inset = FALSE, icon = NULL
+                   ) {
+
+  # possible styles c("inline", "floating", "outline")
+
+  wrapperCl <- "list"
+  #if (inset) wrapperCl <- paste0(wrapperCl, " inset")
+
+  itemCl <- "item-content item-input"
+  itemLabelCl <- "item-title"
+
+  #if (!is.null(style)) {
+  #  if (style == "inline") wrapperCl <- paste0(wrapperCl, " inline-labels")
+  #  if (style == "outline") itemCl <- paste0(itemCl, " item-input-outline")
+  #  if (style == "floating") itemLabelCl <- paste0(itemLabelCl, " item-floating-label")
+  #}
+
+  inputTag <- shiny::tags$input(
+    id = inputId,
+    value = value,
+    type = "text",
+    placeholder = placeholder
+  )
+
 
   shiny::tags$div(
-    class = "list",
-    id = inputId,
+    class = wrapperCl,
+    #id = inputId,
     shiny::tags$ul(
       shiny::tags$li(
-        class = "item-content item-input",
+        class = itemCl,
+        #if (!is.null(icon)) shiny::tags$div(class = "item-media", icon),
         shiny::tags$div(
           class = "item-inner",
-          shiny::tags$div(class = "item-title item-label", label),
+          shiny::tags$div(class = itemLabelCl, label),
           shiny::tags$div(
             class = "item-input-wrap",
-            shiny::tags$input(
-              id = inputId,
-              value = value,
-              type = "text",
-              placeholder = placeholder,
-              class = ""
-            ),
+            inputTag,
             shiny::span(class="input-clear-button")
           )
         )
@@ -1125,7 +1144,6 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
 f7Password <- function(inputId, label, value = "", placeholder = NULL) {
   shiny::tags$div(
     class = "list",
-    id = inputId,
     shiny::tags$ul(
       shiny::tags$li(
         class = "item-content item-input",
