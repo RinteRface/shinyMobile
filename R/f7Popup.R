@@ -97,7 +97,7 @@ f7Popup <- function(..., id, title = NULL,
         class = "link popup-close",
         style = "position: absolute; top: -15px; right: 10px;",
         href = "#",
-        f7Icon("close")
+        f7Icon("multiply", old = FALSE)
       )
     )
   }
