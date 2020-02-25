@@ -69,7 +69,11 @@ f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = TRUE) {
   }
   if (!is.null(lib)) {
     if (identical(lib, "ios")) {
-      iconCl <- "icon f7-icons ios-only"
+      if (isTRUE(old)) {
+        iconCl <- "icon f7-icons-old ios-only"
+      } else {
+        iconCl <- "icon f7-icons ios-only"
+      }
     }
     if (identical(lib, "md")) {
       iconCl <- "icon material-icons md-only"
@@ -77,7 +81,11 @@ f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = TRUE) {
   } else {
     # class icon is necessary so that icons with labels render well,
     # for instance
-    iconCl <- "icon f7-icons"
+    if (isTRUE(old)) {
+      iconCl <- "icon f7-icons-old"
+    } else {
+      iconCl <- "icon f7-icons"
+    }
   }
 
   if (!is.null(color)) {
