@@ -6,7 +6,7 @@
 #' @param error Error text.
 #' @param session Shiny session object.
 #'
-#' @note Only works for \link{f7Text}, \link{f7Password}, \link{f7Select}.
+#' @note Only works for \link{f7Text}, \link{f7Password}, \link{f7TextArea} and \link{f7Select}.
 #' See more at \url{https://framework7.io/docs/inputs.html}
 #'
 #' @export
