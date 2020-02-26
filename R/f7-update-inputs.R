@@ -227,6 +227,40 @@ updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL
 }
 
 
+#' @rdname updateF7Text
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  ui <- f7Page(
+#'    f7SingleLayout(
+#'     navbar = f7Navbar(title = "updateF7TextArea"),
+#'     f7Block(f7Button("trigger", "Click me")),
+#'     f7TextArea(
+#'      inputId = "textarea",
+#'      label = "Text Area",
+#'      value = "Lorem ipsum dolor sit amet, consectetur
+#'               adipiscing elit, sed do eiusmod tempor incididunt ut
+#'               labore et dolore magna aliqua",
+#'      placeholder = "Your text here",
+#'      resize = TRUE
+#'      ),
+#'     verbatimTextOutput("value")
+#'    )
+#'  )
+#'
+#'  server <- function(input, output, session) {
+#'    output$value <- renderPrint(input$textarea)
+#'    observeEvent(input$trigger, {
+#'      updateF7Text("textarea", value = "Updated Text")
+#'    })
+#'  }
+#' shinyApp(ui, server)
+#' }
+updateF7TextArea <- updateF7Text
+
 
 
 # #' Change the value of a date input on the client

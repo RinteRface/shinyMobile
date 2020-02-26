@@ -19,7 +19,7 @@
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Text"),
+#'        navbar = f7Navbar(title = "f7ValidateInput"),
 #'        f7Text(
 #'          inputId = "caption",
 #'          label = "Caption",

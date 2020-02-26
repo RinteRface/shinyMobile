@@ -106,6 +106,7 @@ reference:
   - '`updateF7Stepper`'
   - '`updateF7Tabs`'
   - '`updateF7Text`'
+  - '`updateF7TextArea`'
   - '`updateF7Toggle`'
 
 

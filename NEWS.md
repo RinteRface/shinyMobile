@@ -36,7 +36,7 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
-- new `f7TextArea()` input
+- new `f7TextArea()` input and `updateF7TextArea()` on the server side
 - add block title for `f7checkBoxGroup()` and `f7Radio()`
 - add new `f7TabLink()` (special link to insert in `f7Tabs()` that may open a `f7Sheet()`)
 - add new active parameter to `f7Button()`
