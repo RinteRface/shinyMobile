@@ -74,6 +74,7 @@ reference:
   - '`f7Stepper`'
   - '`f7SmartSelect`'
   - '`f7Text`'
+  - '`f7TextArea`'
   - '`f7Toggle`'
 
 

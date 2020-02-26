@@ -1052,61 +1052,65 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 
 
 
-# #' Create an f7 text area input
-# #'
-# #' @inheritParams f7Text
-# #'
-# #' @export
-# #'
-# #' @examples
-# #' if(interactive()){
-# #'  library(shiny)
-# #'  library(shinyMobile)
-# #'
-# #'  shiny::shinyApp(
-# #'    ui = f7Page(
-# #'      title = "My app",
-# #'      f7TextArea(
-# #'       inputId = "textarea",
-# #'       label = "Text Area",
-# #'       value = "Lorem ipsum dolor sit amet, consectetur
-# #'        adipiscing elit, sed do eiusmod tempor incididunt ut
-# #'        labore et dolore magna aliqua",
-# #'       placeholder = "Your text here"
-# #'      ),
-# #'      verbatimTextOutput("value")
-# #'    ),
-# #'    server = function(input, output) {
-# #'      output$value <- renderPrint({ input$textarea })
-# #'    }
-# #'  )
-# #' }
-# f7TextArea <- function(inputId, label, value = "", placeholder = NULL) {
-#   shiny::tags$div(
-#     class = "list",
-#     id = inputId,
-#     shiny::tags$ul(
-#       shiny::tags$li(
-#         class = "item-content item-input",
-#         shiny::tags$div(
-#           class = "item-inner",
-#           shiny::tags$div(class = "item-title item-label", label),
-#           shiny::tags$div(
-#             class = "item-input-wrap",
-#             shiny::tags$textarea(
-#               id = inputId,
-#               value,
-#               placeholder = placeholder,
-#               class = NA,
-#               rows = 4,
-#               cols = 4
-#             )
-#           )
-#         )
-#       )
-#     )
-#   )
-# }
+#' Create an f7 text area input
+#'
+#' @inheritParams f7Text
+#' @param resize Whether to box can be resized. Default to FALSE.
+#'
+#' @export
+#'
+#' @examples
+#' if(interactive()){
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shiny::shinyApp(
+#'    ui = f7Page(
+#'      title = "My app",
+#'      f7TextArea(
+#'       inputId = "textarea",
+#'       label = "Text Area",
+#'       value = "Lorem ipsum dolor sit amet, consectetur
+#'        adipiscing elit, sed do eiusmod tempor incididunt ut
+#'        labore et dolore magna aliqua",
+#'       placeholder = "Your text here",
+#'       resize = TRUE
+#'      ),
+#'      textOutput("value")
+#'    ),
+#'    server = function(input, output) {
+#'      output$value <- renderText({ input$textarea })
+#'    }
+#'  )
+#' }
+f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
+                       resize = FALSE) {
+
+  areaCl <- if (resize) "resizable" else NULL
+
+  shiny::tags$div(
+    class = "list",
+    shiny::tags$ul(
+      shiny::tags$li(
+        class = "item-content item-input",
+        shiny::tags$div(
+          class = "item-inner",
+          shiny::tags$div(class = "item-title item-label", label),
+          shiny::tags$div(
+            class = "item-input-wrap",
+            shiny::tags$textarea(
+              id = inputId,
+              value,
+              placeholder = placeholder,
+              class = areaCl
+            ),
+            shiny::span(class = "input-clear-button")
+          )
+        )
+      )
+    )
+  )
+}
 
 
 
@@ -1159,7 +1163,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
               placeholder = placeholder,
               class = ""
             ),
-            shiny::span(class="input-clear-button")
+            shiny::span(class = "input-clear-button")
           )
         )
       )
