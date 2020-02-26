@@ -26,6 +26,10 @@ f7ValidateInput(
 \description{
 Util function to validate a given shinyMobile Input
 }
+\note{
+Only works for \link{f7Text}, \link{f7Password}, \link{f7Select}.
+See more at \url{https://framework7.io/docs/inputs.html}
+}
 \examples{
 if (interactive()) {
  library(shiny)

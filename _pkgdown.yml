@@ -28,6 +28,11 @@ reference:
   - '`create_manifest`'
   - '`preview_mobile`'
 
+- title: Inputs validation
+  desc: Provide feedback when an input is missing, ...
+  contents:
+  - '`f7ValidateInput`'
+
 
 - title: Grid functions
   desc: Rows, columns, flex, ...
