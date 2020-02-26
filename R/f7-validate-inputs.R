@@ -57,7 +57,7 @@ f7ValidateInput <- function(inputId, info = NULL, pattern = NULL, error = NULL,
       error = error
     )
   )
-  session$sendCustomMessage(type = "validate", message)
+  session$sendCustomMessage(type = "validate-input", message)
 }
 
 

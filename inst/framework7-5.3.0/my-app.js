@@ -488,7 +488,7 @@ $(function () {
   }
 
   // validate inputs (see f7ValidateInput)
-  Shiny.addCustomMessageHandler('validate', function(message) {
+  Shiny.addCustomMessageHandler('validate-input', function(message) {
     $('#' + message.target)
       .attr('required','')
       .attr('validate', '')
