@@ -8,8 +8,7 @@ f7ActionSheet(
   id,
   session = shiny::getDefaultReactiveDomain(),
   grid = FALSE,
-  buttons,
-  icons = NULL
+  buttons
 )
 }
 \arguments{
@@ -21,16 +20,23 @@ input$id is NULL.}
 
 \item{grid}{Whether to display buttons on a grid. Default to FALSE.}
 
-\item{buttons}{dataframe of buttons such as
-\code{buttons <- data.frame(
-  text = c('Button 1', 'Button 2'),
-  color = c(NA, NA)
- ). The currently selection button can be accessed via input$<sheet_id>_button. The value is
- numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
- when you want to trigger events after a specific button click.
-}}
-
-\item{icons}{A list of icons for buttons. Expect \link{f7Icon}.}
+\item{buttons}{list of buttons such as
+\preformatted{buttons <- list(
+  list(
+    text = "Notification",
+    icon = f7Icon("info"),
+    color = NULL
+  ),
+  list(
+    text = "Dialog",
+    icon = f7Icon("lightbulb_fill"),
+    color = NULL
+  )
+ )
+}
+The currently selected button may be accessed via input$<sheet_id>_button. The value is
+numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
+when you want to trigger events after a specific button click.}
 }
 \description{
 Create a framework7 action sheet
@@ -67,7 +73,7 @@ if (interactive()) {
            titleRightText = "now",
            session = session
          )
-       } else if (input$actions1_button == 2) {
+       } else if (input$action1_button == 2) {
          f7Dialog(
            inputId = "test",
            title = "Click me to launch a Toast!",
@@ -86,10 +92,17 @@ if (interactive()) {
        f7ActionSheet(
          grid = TRUE,
          id = "action1",
-         icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
-         buttons = data.frame(
-           text = c('Notification', 'Dialog'),
-           color = c(NA, NA)
+         buttons = list(
+          list(
+            text = "Notification",
+            icon = f7Icon("info"),
+            color = NULL
+          ),
+          list(
+            text = "Dialog",
+            icon = f7Icon("lightbulb_fill"),
+            color = NULL
+          )
          )
        )
      })
@@ -143,10 +156,17 @@ if (interactive()) {
      f7ActionSheet(
        grid = TRUE,
        id = ns("action1"),
-       icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
-       buttons = data.frame(
-         text = c('Notification', 'Dialog'),
-         color = c(NA, NA)
+       buttons = list(
+         list(
+           text = "Notification",
+           icon = f7Icon("info"),
+           color = NULL
+         ),
+         list(
+           text = "Dialog",
+           icon = f7Icon("lightbulb_fill"),
+           color = NULL
+         )
        )
      )
    })

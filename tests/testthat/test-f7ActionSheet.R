@@ -12,23 +12,26 @@ test_that("send custom message", {
     id = "action",
     session = session,
     grid = FALSE,
-    buttons = data.frame(
-      text = c('Notification', 'Dialog'),
-      color = c(NA, NA)
-    ),
-    icons = list(
-      f7Icon("info"),
-      f7Icon("lightbulb_fill")
+    buttons = list(
+      list(
+        text = "Notification",
+        icon = f7Icon("info"),
+        color = NULL
+      ),
+      list(
+        text = "Dialog",
+        icon = f7Icon("lightbulb_fill"),
+        color = NULL
+      )
     )
   )
 
   res <- session$lastCustomMessage
   expect_length(res, 2)
   expect_equal(res$type, "action-sheet")
-  expect_length(res$message, 4)
+  expect_length(res$message, 3)
   expect_is(res$message$buttons, "json")
   expect_equal(res$message$grid, "false")
-  expect_length(res$message$icons, 2)
   expect_equal(res$message$id, "action")
 })
 

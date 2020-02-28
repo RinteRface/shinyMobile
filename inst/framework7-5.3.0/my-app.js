@@ -421,11 +421,6 @@ $(function () {
 
     message.buttons.forEach(setOnClick);
 
-    // add icons
-    for (i = 0; i < message.buttons.length; i++) {
-      message.buttons[i].icon = message.icons[i];
-    }
-
     // create the sheet
     var actionSheet = app.actions.create({
       //el: message.id,

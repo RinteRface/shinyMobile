@@ -174,8 +174,7 @@
   <span class='no'>id</span>,
   <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>(),
   <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>buttons</span>,
-  <span class='kw'>icons</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+  <span class='no'>buttons</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -197,18 +196,21 @@ input$id is NULL.</p></td>
     </tr>
     <tr>
       <th>buttons</th>
-      <td><p>dataframe of buttons such as
-<code>buttons &lt;- data.frame(
-  text = c('Button 1', 'Button 2'),
-  color = c(NA, NA)
- ). The currently selection button can be accessed via input$&lt;sheet_id&gt;_button. The value is
- numeric. When the action sheet is closed, input$&lt;sheet_id&gt;_button is NULL. This is useful
- when you want to trigger events after a specific button click.
-</code></p></td>
-    </tr>
-    <tr>
-      <th>icons</th>
-      <td><p>A list of icons for buttons. Expect <a href='f7Icon.html'>f7Icon</a>.</p></td>
+      <td><p>list of buttons such as</p><pre>buttons &lt;- list(
+  list(
+    text = "Notification",
+    icon = f7Icon("info"),
+    color = NULL
+  ),
+  list(
+    text = "Dialog",
+    icon = f7Icon("lightbulb_fill"),
+    color = NULL
+  )
+ )
+</pre><p>The currently selected button may be accessed via input$&lt;sheet_id&gt;_button. The value is
+numeric. When the action sheet is closed, input$&lt;sheet_id&gt;_button is NULL. This is useful
+when you want to trigger events after a specific button click.</p></td>
     </tr>
     </table>
 
@@ -245,7 +247,7 @@ input$id is NULL.</p></td>
            <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,
            <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
          )
-       } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>actions1_button</span> <span class='kw'>==</span> <span class='fl'>2</span>) {
+       } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>action1_button</span> <span class='kw'>==</span> <span class='fl'>2</span>) {
          <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span>(
            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
@@ -264,10 +266,17 @@ input$id is NULL.</p></td>
        <span class='fu'>f7ActionSheet</span>(
          <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"action1"</span>,
-         <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>), <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>)),
-         <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Notification'</span>, <span class='st'>'Dialog'</span>),
-           <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>)
+         <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
+            <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>),
+            <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+          ),
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Dialog"</span>,
+            <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>),
+            <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+          )
          )
        )
      })
@@ -321,10 +330,17 @@ input$id is NULL.</p></td>
      <span class='fu'>f7ActionSheet</span>(
        <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"action1"</span>),
-       <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>), <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>)),
-       <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Notification'</span>, <span class='st'>'Dialog'</span>),
-         <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>)
+       <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>),
+           <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+         ),
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Dialog"</span>,
+           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>),
+           <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+         )
        )
      )
    })

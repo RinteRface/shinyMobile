@@ -4,15 +4,23 @@
 #' when opened and inversely. Importantly, if the action sheet has never been opened,
 #' input$id is NULL.
 #' @param grid Whether to display buttons on a grid. Default to FALSE.
-#' @param buttons dataframe of buttons such as
-#' \code{buttons <- data.frame(
-#'   text = c('Button 1', 'Button 2'),
-#'   color = c(NA, NA)
-#'  ). The currently selection button can be accessed via input$<sheet_id>_button. The value is
-#'  numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
-#'  when you want to trigger events after a specific button click.
+#' @param buttons list of buttons such as
+#' \preformatted{buttons <- list(
+#'   list(
+#'     text = "Notification",
+#'     icon = f7Icon("info"),
+#'     color = NULL
+#'   ),
+#'   list(
+#'     text = "Dialog",
+#'     icon = f7Icon("lightbulb_fill"),
+#'     color = NULL
+#'   )
+#'  )
 #' }
-#' @param icons A list of icons for buttons. Expect \link{f7Icon}.
+#' The currently selected button may be accessed via input$<sheet_id>_button. The value is
+#' numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
+#' when you want to trigger events after a specific button click.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -51,7 +59,7 @@
 #'            titleRightText = "now",
 #'            session = session
 #'          )
-#'        } else if (input$actions1_button == 2) {
+#'        } else if (input$action1_button == 2) {
 #'          f7Dialog(
 #'            inputId = "test",
 #'            title = "Click me to launch a Toast!",
@@ -70,10 +78,17 @@
 #'        f7ActionSheet(
 #'          grid = TRUE,
 #'          id = "action1",
-#'          icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
-#'          buttons = data.frame(
-#'            text = c('Notification', 'Dialog'),
-#'            color = c(NA, NA)
+#'          buttons = list(
+#'           list(
+#'             text = "Notification",
+#'             icon = f7Icon("info"),
+#'             color = NULL
+#'           ),
+#'           list(
+#'             text = "Dialog",
+#'             icon = f7Icon("lightbulb_fill"),
+#'             color = NULL
+#'           )
 #'          )
 #'        )
 #'      })
@@ -127,10 +142,17 @@
 #'      f7ActionSheet(
 #'        grid = TRUE,
 #'        id = ns("action1"),
-#'        icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
-#'        buttons = data.frame(
-#'          text = c('Notification', 'Dialog'),
-#'          color = c(NA, NA)
+#'        buttons = list(
+#'          list(
+#'            text = "Notification",
+#'            icon = f7Icon("info"),
+#'            color = NULL
+#'          ),
+#'          list(
+#'            text = "Dialog",
+#'            icon = f7Icon("lightbulb_fill"),
+#'            color = NULL
+#'          )
 #'        )
 #'      )
 #'    })
@@ -151,15 +173,20 @@
 #'  )
 #' }
 f7ActionSheet <- function(id, session = shiny::getDefaultReactiveDomain(),
-                          grid = FALSE, buttons, icons = NULL) {
+                          grid = FALSE, buttons) {
 
-  icons <- if (!is.null(icons)) vapply(icons, as.character, character(1))
+  buttons <- lapply(buttons, dropNulls)
+
+  for(i in seq_along(buttons)) {
+    temp <- as.character(buttons[[i]]$icon)
+    buttons[[i]]$icon <- temp
+  }
 
   message <- list(
-    buttons = jsonlite::toJSON(buttons, pretty = TRUE),
+    buttons = jsonlite::toJSON(buttons, pretty = TRUE, auto_unbox = TRUE),
     grid = tolower(grid),
-    icons = icons,
     id = id
   )
+
   session$sendCustomMessage(type = "action-sheet", message)
 }

@@ -180,7 +180,7 @@
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>
-<code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules</li>
+<code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
 <li>
 <code><a href="../reference/sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar)</li>
 <li>All update method for inputs : argument <code>session</code> is now optional and has been moved to the last position in function call</li>
