@@ -92,21 +92,19 @@ f7InputsDeps <- function() {
 
 
 html_dependencies_f7Icons <- function(old = TRUE) {
-  path <- "framework7-5.3.0/f7-icons"
   name <- "f7-icons"
   if (isTRUE(old)) {
-    path <- paste0(path, "-old")
     name <- paste0(name, "-old")
   }
   htmlDependency(
     name = name,
     version = "3.0.0",
     src = list(
-      href = path,
-      file = path
+      href = "framework7-5.3.0",
+      file = "framework7-5.3.0"
     ),
     package = "shinyMobile",
-    stylesheet = "css/framework7-icons.css",
+    stylesheet = file.path(name, "css/framework7-icons.css"),
     all_files = TRUE
   )
 }
