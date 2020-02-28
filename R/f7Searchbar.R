@@ -149,6 +149,7 @@ f7Searchbar <- function(id = NULL, placeholder = "Search", expandable = FALSE, i
               el: '#", id, "',
               searchContainer: '.list',
               searchIn: '.item-title',
+              backdrop: false,
               on: {
                 search(sb, query, previousQuery) {
                   console.log(query, previousQuery);
