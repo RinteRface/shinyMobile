@@ -330,7 +330,6 @@ shinyApp(
       f7ActionSheet(
         grid = TRUE,
         id = "swipeAction",
-        icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
         buttons = list(
           list(
             text = "Notification",
