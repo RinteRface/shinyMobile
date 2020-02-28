@@ -5,6 +5,7 @@
 not have any impact on user experience. In a future release of shinyMobile, `f7Searchbar()` will have input binding associated as well as more parameters for configuration
 
 ## Breaking changes
+- `f7ActionSheet()`: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules
 - `f7Sheet()` is still inserted in the UI side but can be triggered either on the server side in combination with `updateF7Sheet()` (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having `data-sheet` pointing to the sheet id as well as the "sheet-open" css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a `f7TabLink()` that is a special button styled for the tabbar)
 - All update method for inputs : argument `session` is now optional and has been moved to the last position in function call
 - `f7AutoComplete()`: type becomes openIn to align with the framework7 documentation

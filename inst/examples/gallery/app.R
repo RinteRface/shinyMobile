@@ -253,8 +253,8 @@ shinyApp(
       )
     })
 
-    observeEvent(input$button, {
-      if (input$button == 1) {
+    observeEvent(input$action1_button, {
+      if (input$action1_button == 1) {
         f7Notif(
           text = "You clicked on the first button",
           icon = f7Icon("bolt_fill"),
@@ -262,7 +262,7 @@ shinyApp(
           titleRightText = "now",
           session = session
         )
-      } else if (input$button == 2) {
+      } else if (input$action1_button == 2) {
         f7Dialog(
           inputId = "actionSheetDialog",
           title = "Click me to launch a Toast!",

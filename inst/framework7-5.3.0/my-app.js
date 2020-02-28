@@ -404,11 +404,12 @@ $(function () {
   // handle action sheet
   Shiny.addCustomMessageHandler('action-sheet', function(message) {
     var grid;
+    var buttonsId = message.id + '_button';
     if (message.grid == "true") grid = true; else grid = false;
 
     // define function that set an inputvalue those name depends on an index
     // parameter
-    function setButtonInput(index) { Shiny.setInputValue('button', index) }
+    function setButtonInput(index) { Shiny.setInputValue(buttonsId, index) }
 
     // add those functions to the message.button array
     function setOnClick(element, index) {
@@ -438,7 +439,7 @@ $(function () {
         closed: function () {
           Shiny.setInputValue(message.id, false);
           // input$button is null when the action is closed
-          Shiny.setInputValue('button', null);
+          Shiny.setInputValue(buttonsId, null);
         }
       }
     });
