@@ -287,7 +287,7 @@ f7LoginServer <- function(input, output, session, ignoreInit = FALSE,
   return(
     list(
       user = shiny::reactive(input$login_user),
-      passowrd = shiny::reactive(input$login_password)
+      password = shiny::reactive(input$login_password)
     )
   )
 
