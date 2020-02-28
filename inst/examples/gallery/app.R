@@ -245,10 +245,17 @@ shinyApp(
       f7ActionSheet(
         grid = TRUE,
         id = "action1",
-        icons = list(f7Icon("info"), f7Icon("lightbulb_fill")),
-        buttons = data.frame(
-          text = c('Notification', 'Dialog'),
-          color = c(NA, NA)
+        buttons = list(
+          list(
+            text = "Notification",
+            icon = f7Icon("info"),
+            color = NULL
+          ),
+          list(
+            text = "Dialog",
+            icon = f7Icon("lightbulb_fill"),
+            color = NULL
+          )
         )
       )
     })
