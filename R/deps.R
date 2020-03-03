@@ -62,13 +62,17 @@ addJSDeps <- function() {
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
   custom_js <- paste0(depsPath, "my-app.js")
+  pwa_compat <- paste0(depsPath, "pwacompat/pwacompat.min.js")
 
   shiny::tagList(
     shiny::singleton(
       shiny::tags$script(src = framework7_js)
     ),
     shiny::singleton(
-      shiny::tags$script(src = custom_js)
+      shiny::tags$script(async = NA, src = custom_js)
+    ),
+    shiny::singleton(
+      shiny::tags$script(async = NA, src = pwa_compat)
     )
   )
 }
@@ -110,9 +114,45 @@ html_dependencies_f7Icons <- function(old = TRUE) {
 }
 
 
-
-
-
+# deps for pwa compat
+addPWADeps <- function(icon, favicon, manifest) {
+  depsPath <- "framework7-5.3.0/pwacompat/"
+  shiny::tagList(
+    # manifest
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "manifest",
+        href = if(!is.null(manifest)) {
+          manifest
+        } else {
+          paste0(depsPath, "manifest.json")
+        }
+      )
+    ),
+    # apple touch icon (not created by pwacompat)
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "apple-touch-icon",
+        href = if (!is.null(icon)) {
+          icon
+        } else {
+          paste0(depsPath, "icons/apple-touch-icon.png")
+        }
+      )
+    ),
+    #favicon
+    shiny::singleton(
+      shiny::tags$link(
+        rel = "icon",
+        href = if(!is.null(favicon)) {
+          favicon
+        } else {
+          paste0(depsPath, "icons/favicon.png")
+        }
+      )
+    )
+  )
+}
 
 
 

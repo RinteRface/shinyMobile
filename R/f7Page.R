@@ -9,12 +9,18 @@
 #' @param preloader Whether to display a preloader before the app starts.
 #' FALSE by default.
 #' @param loading_duration Preloader duration.
+#' @param icon Link to 128x128 icon (PWA compatibility). If NULL, taken from
+#' shinyMobile ressources.
+#' @param favicon App favicon. If NULL, taken from shinyMobile ressources.
+#' @param manifest Path to web manifest (PWA compatibility). If NULL, taken from
+#' shinyMobile ressources.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = NULL, preloader = FALSE,
-                   loading_duration = 3){
+f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
+                   title = NULL, preloader = FALSE, loading_duration = 3,
+                   icon = NULL, favicon = NULL, manifest = NULL){
 
   shiny::tags$html(
     # Head
@@ -31,25 +37,8 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"), title = N
           viewport-fit=cover"
       ),
 
-      # PAW properties
-      shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
-      shiny::tags$meta(name = "apple-mobile-web-app-title", content = title),
-      shiny::tags$meta(name = "apple-mobile-web-app-status-bar-style", content = "black-translucent"),
-      shiny::tags$link(rel = "apple-touch-icon", href = "icons/apple-touch-icon.png"),
-      shiny::tags$link(rel = "icon", href = "icons/favicon.png"),
-      shiny::tags$link(rel = "manifest", href = "manifest.json"),
-
-      # Splatshscreen for IOS must be in a www folder
-      shiny::tags$link(href = "splashscreens/iphone5_splash.png", media = "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/iphone6_splash.png", media = "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/iphoneplus_splash.png", media = "(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/iphonex_splash.png", media = "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/iphonexr_splash.png", media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/iphonexsmax_splash.png", media = "(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/ipad_splash.png", media = "(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/ipadpro1_splash.png", media = "(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/ipadpro3_splash.png", media = "(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
-      shiny::tags$link(href = "splashscreens/ipadpro2_splash.png", media = "(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)", rel = "apple-touch-startup-image"),
+      # PAW properties (include https://github.com/GoogleChromeLabs/pwacompat)
+      addPWADeps(icon, favicon, manifest),
 
       shiny::tags$title(title)
     ),

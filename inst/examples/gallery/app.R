@@ -27,7 +27,7 @@ shinyApp(
       hideTabsOnPageScroll = FALSE,
       serviceWorker = "service-worker.js",
       iosTranslucentBars = FALSE,
-      pullToRefresh = TRUE
+      pullToRefresh = FALSE
     ),
     f7TabLayout(
       appbar = f7Appbar(
@@ -353,16 +353,16 @@ shinyApp(
     })
 
     # pull to refresh
-    observeEvent(input$ptr, {
-
-      ptrStatus <- if (input$ptr) "on"
-
-      f7Dialog(
-        session = session,
-        text = paste('ptr is', ptrStatus),
-        type = "alert"
-      )
-    })
+    # observeEvent(input$ptr, {
+    #
+    #   ptrStatus <- if (input$ptr) "on"
+    #
+    #   f7Dialog(
+    #     session = session,
+    #     text = paste('ptr is', ptrStatus),
+    #     type = "alert"
+    #   )
+    # })
 
   }
 )

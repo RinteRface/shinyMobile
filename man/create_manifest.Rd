@@ -12,7 +12,9 @@ create_manifest(
   lang = "en-US",
   startUrl,
   display = c("minimal-ui", "standalone", "fullscreen", "browser"),
-  icons
+  background_color = "#000000",
+  theme_color = "#0000ffff",
+  icon
 )
 }
 \arguments{
@@ -31,14 +33,16 @@ create_manifest(
 \item{display}{Display mode. Choose among \code{c("minimal-ui", "standalone", "fullscreen", "browser")}.
 In practice, you want the standalone mode so that the app looks like a native app.}
 
-\item{icons}{Dataframe containing icons specs for instance \code{data.frame(src = rep("icons/128x128.png", 10), sizes = rep("128x128", 10), types = rep("image/png", 10))}.
-src gives the icon path (in the www folder for instance), sizes gives the size and types the type.}
+\item{background_color}{The background_color property is used on the splash screen when the application is first launched.}
+
+\item{theme_color}{The theme_color sets the color of the tool bar, and may be reflected in the app's preview in task switchers.}
+
+\item{icon}{Dataframe containing icon specs. src gives the icon path
+(in the www folder for instance), sizes gives the size and types the type.}
 }
 \value{
 This function creates a www folder for your shiny app. Must specify the path.
-It also creates 2 additional folders to contain icons and splashscreen (splashscreen creation
-is not automatic for iOS). It also creates the manifest.json file in this www folder.
-You still have to create your own icons and splashscreen!
+It creates 1 folders to contain icons and the manifest.json file.
 }
 \description{
 This is a central piece if you want to have your app standalone for instance
@@ -55,10 +59,12 @@ create_manifest(
   lang = "en-US",
   startUrl = "https://www.google.com/",
   display = "standalone",
-  icons = data.frame(
-    src = rep("icons/128x128.png", 10),
-    sizes = rep("128x128", 10),
-    types = rep("image/png", 10)
+  background_color = "#3367D6",
+  theme_color = "#3367D6",
+  icon = data.frame(
+    src = "icons/128x128.png",
+    sizes = "128x128", 10,
+    types = "image/png"
   )
 )
 }
