@@ -196,66 +196,59 @@
 <div id="configuration" class="section level3">
 <h3 class="hasAnchor">
 <a href="#configuration" class="anchor"></a>Configuration</h3>
-<p>shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">meta</span>(<span class="dt">name =</span> <span class="st">"apple-mobile-web-app-capable"</span>, <span class="dt">content =</span> <span class="st">"yes"</span>),</span>
-<span id="cb2-2"><a href="#cb2-2"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">meta</span>(<span class="dt">name =</span> <span class="st">"theme-color"</span>, <span class="dt">content =</span> <span class="st">"#2196f3"</span>),</span>
-<span id="cb2-3"><a href="#cb2-3"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">meta</span>(<span class="dt">name =</span> <span class="st">"apple-mobile-web-app-status-bar-style"</span>, <span class="dt">content=</span><span class="st">"black-translucent"</span>),</span>
-<span id="cb2-4"><a href="#cb2-4"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">link</span>(<span class="dt">rel =</span> <span class="st">"apple-touch-icon"</span>, <span class="dt">href =</span> <span class="st">"icons/apple-touch-icon.png"</span>),</span>
-<span id="cb2-5"><a href="#cb2-5"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">link</span>(<span class="dt">rel =</span> <span class="st">"icon"</span>, <span class="dt">href =</span> <span class="st">"icons/favicon.png"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6"></a>shiny<span class="op">::</span>tags<span class="op">$</span><span class="kw">link</span>(<span class="dt">rel =</span> <span class="st">"manifest"</span>, <span class="dt">href =</span> <span class="st">"manifest.json"</span>),</span></code></pre></div>
-<p>However to access launch icons and splatch screens, you must create a manifest.json file and an icon asset folder in the www folder of your app: more <a href="https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery">here</a>.</p>
-<p>The manifest.json file could be like:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">"short_name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="st">"description"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en-US"</span><span class="op">,</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="st">"start_url"</span><span class="op">:</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2Demo/"</span><span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="st">"display"</span><span class="op">:</span> <span class="st">"standalone"</span><span class="op">,</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="st">"icons"</span><span class="op">:</span> [</span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="op">{</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/128x128.png"</span><span class="op">,</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"128x128"</span><span class="op">,</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="op">},</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="op">{</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/144x144.png"</span><span class="op">,</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"144x144"</span><span class="op">,</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a>    <span class="op">},</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>    <span class="op">{</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/152x152.png"</span><span class="op">,</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"152x152"</span><span class="op">,</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a>    <span class="op">},</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>    <span class="op">{</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/192x192.png"</span><span class="op">,</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"192x192"</span><span class="op">,</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a>    <span class="op">},</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a>    <span class="op">{</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/256x256.png"</span><span class="op">,</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"256x256"</span><span class="op">,</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-33"><a href="#cb3-33"></a>    <span class="op">},</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a>    <span class="op">{</span></span>
-<span id="cb3-35"><a href="#cb3-35"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/512x512.png"</span><span class="op">,</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"512x512"</span><span class="op">,</span></span>
-<span id="cb3-37"><a href="#cb3-37"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb3-38"><a href="#cb3-38"></a>    <span class="op">}</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a>  ]</span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="op">}</span></span></code></pre></div>
-<p>Be sure to replace the <code>start_url</code> with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. However, it does not generate any icon nor splashscreens. Fortunately, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those files.</p>
+<p>shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> and the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat">script</a>. The last 3 parameters of <code><a href="reference/f7Page.html">f7Page()</a></code> are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.</p>
+<p>Below is an example showing the manifest.json file:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="st">"short_name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">"description"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en-US"</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="st">"start_url"</span><span class="op">:</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2Demo/"</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="st">"display"</span><span class="op">:</span> <span class="st">"standalone"</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="st">"icons"</span><span class="op">:</span> [</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="op">{</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/128x128.png"</span><span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"128x128"</span><span class="op">,</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="op">},</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/144x144.png"</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"144x144"</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="op">},</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/152x152.png"</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"152x152"</span><span class="op">,</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="op">},</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="op">{</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/192x192.png"</span><span class="op">,</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"192x192"</span><span class="op">,</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="op">},</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>    <span class="op">{</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/256x256.png"</span><span class="op">,</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"256x256"</span><span class="op">,</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>    <span class="op">},</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="op">{</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/512x512.png"</span><span class="op">,</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"512x512"</span><span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="op">}</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>  ]</span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="op">}</span></span></code></pre></div>
+<p>Be sure to replace the <code>start_url</code> with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. FInally, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</p>
 </div>
 <div id="add-the-pwa-to-your-desktop-apps" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-the-pwa-to-your-desktop-apps" class="anchor"></a>Add the PWA to your desktop Apps</h3>
-<p>Go to the url of your app. In this example this is: <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="uri">https://dgranjon.shinyapps.io/miniUI2Demo/</a>. It opens like a classic web app.</p>
+<p>Copy the url of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="uri">https://dgranjon.shinyapps.io/miniUI2Demo/</a>. It opens like a classic web app, with top and bottom ugly navigation bars.</p>
 <ul>
-<li>Select the share button located in the bottom bar of your Iphone/Ipad.</li>
+<li>Select the share button located in the bottom bar of your Iphone/Ipad. For Android, you may do something similar. Importantly, Chrome for iOS does not support this feature, that’s why I recommend using Safari.</li>
 <li>Click on “Add to Home Screen”</li>
 <li>Choose a relevant name and click on OK.</li>
-<li>The app will be added to your IOS Apps. In case you want custom icons, replace the content of the www folder with your own.</li>
+<li>The app will be added to your IOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.</li>
 </ul>
 <div class="row">
 <div class="card">
@@ -263,11 +256,16 @@
 </div>
 </div>
 </div>
-<div id="acknowledgement" class="section level3">
+<div id="limitations" class="section level3">
 <h3 class="hasAnchor">
-<a href="#acknowledgement" class="anchor"></a>Acknowledgement</h3>
-<p>A special thanks to <a href="https://github.com/nolimits4web">Vladimir Kharlampidi</a> for creating this amazing framework7 HTML template.</p>
+<a href="#limitations" class="anchor"></a>Limitations</h3>
+<p>It is actually quite complex to guarantee that all mobile platforms are supported. The PWA compatibility script will work in most of the case. If not, please open an issue <a href="https://github.com/GoogleChromeLabs/pwacompat/issues">here</a>, to help improving it!</p>
 </div>
+</div>
+<div id="acknowledgement" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgement" class="anchor"></a>Acknowledgement</h2>
+<p>A special thanks to <a href="https://github.com/nolimits4web">Vladimir Kharlampidi</a> for creating this amazing framework7 HTML template.</p>
 </div>
 </div>
   </div>

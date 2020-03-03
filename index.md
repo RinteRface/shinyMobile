@@ -78,22 +78,12 @@ Left side: android demo, right side: iOS demo
 ### Configuration
 
 shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile
-devices. This feature is automatically handled by `f7Page()`: 
-
-```r
-shiny::tags$meta(name = "apple-mobile-web-app-capable", content = "yes"),
-shiny::tags$meta(name = "theme-color", content = "#2196f3"),
-shiny::tags$meta(name = "apple-mobile-web-app-status-bar-style", content="black-translucent"),
-shiny::tags$link(rel = "apple-touch-icon", href = "icons/apple-touch-icon.png"),
-shiny::tags$link(rel = "icon", href = "icons/favicon.png"),
-shiny::tags$link(rel = "manifest", href = "manifest.json"),
-```
+devices. This feature is automatically handled by `f7Page()` and the Google PWA compatibility
+[script](https://github.com/GoogleChromeLabs/pwacompat). The last 3 parameters of `f7Page()`
+are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.
 
 
-However to access launch
-icons and splatch screens, you must create a manifest.json file and an icon asset folder in the www folder of your app: more [here](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery).
-
-The manifest.json file could be like:
+Below is an example showing the manifest.json file:
 
 ```javascript
 {
@@ -138,19 +128,20 @@ The manifest.json file could be like:
 }
 ```
 
-Be sure to replace the `start_url` with your own url. Add also a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
-`create_manifest`. However, it does not generate any icon nor splashscreens. Fortunately, there are tools
-such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
-those files.
+Be sure to replace the `start_url` with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
+`create_manifest`. FInally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+those custom icons and splash screens, if you need to.
 
 
 ### Add the PWA to your desktop Apps
 
-Go to the url of your app. In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app. 
-- Select the share button located in the bottom bar of your Iphone/Ipad. 
+Copy the url of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app, with top and bottom ugly navigation bars.
+
+- Select the share button located in the bottom bar of your Iphone/Ipad. For Android,
+you may do something similar. Importantly, Chrome for iOS does not support this feature, that's why I recommend using Safari.
 - Click on "Add to Home Screen"
 - Choose a relevant name and click on OK. 
-- The app will be added to your IOS Apps. In case you want custom icons, replace the content of the www folder with your own.
+- The app will be added to your IOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.
 
 <div class="row">
 <div class="card">
@@ -158,8 +149,12 @@ Go to the url of your app. In this example this is: https://dgranjon.shinyapps.i
 </div>
 </div>
 
+### Limitations
+It is actually quite complex to guarantee that all mobile platforms are supported.
+The PWA compatibility script will work in most of the case. If not, please open an issue [here](https://github.com/GoogleChromeLabs/pwacompat/issues), to help improving it!
 
-### Acknowledgement
+
+## Acknowledgement
 
 A special thanks to [Vladimir Kharlampidi](https://github.com/nolimits4web) for creating this
 amazing framework7 HTML template.
