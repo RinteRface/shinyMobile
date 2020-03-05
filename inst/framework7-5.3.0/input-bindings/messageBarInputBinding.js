@@ -32,6 +32,11 @@ $.extend(f7MessageBarBinding, {
     $(el).on("change.f7MessageBarBinding focus.f7MessageBarBinding blur.f7MessageBarBinding", function(e) {
       callback();
     });
+
+    var sendLink = $(el).find('#' + el.id + '-send-link');
+    $(sendLink).on('click', function() {
+      app.messagebar.get($(el)).setValue('');
+    });
   },
 
   unsubscribe: function(el) {

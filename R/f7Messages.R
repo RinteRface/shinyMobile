@@ -94,7 +94,7 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
 #' @export
 f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
 
-  ns <- shiny::NS(id)
+  ns <- shiny::NS(inputId)
 
   shiny::tagList(
     f7InputsDeps(),
