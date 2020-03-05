@@ -23,9 +23,19 @@ $.extend(f7MessageBarBinding, {
     app.messagebar.get($(el)).setValue(value);
   },
 
+  setPlaceholder: function(el, value) {
+    app.messagebar.get($(el)).setPlaceholder(value);
+  },
+
   // see updatef7MessageBar
   receiveMessage: function(el, data) {
-    this.setValue(el, data);
+    if (data.hasOwnProperty('value')) {
+      this.setValue(el, data.value);
+    }
+
+    if (data.hasOwnProperty('placeholder')) {
+      this.setPlaceholder(el, data.placeholder);
+    }
   },
 
   subscribe: function(el, callback) {
@@ -33,9 +43,10 @@ $.extend(f7MessageBarBinding, {
       callback();
     });
 
+    // reset message bar textarea content when click on it
     var sendLink = $(el).find('#' + el.id + '-send-link');
     $(sendLink).on('click', function() {
-      app.messagebar.get($(el)).setValue('');
+      app.messagebar.get($(el)).clear();
     });
   },
 

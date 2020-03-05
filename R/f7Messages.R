@@ -126,6 +126,83 @@ f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
 
 
 
+#' Update message bar on the server side
+#'
+#' @param inputId \link{f7MessageBar} unique id.
+#' @param value New value.
+#' @param placeholder New placeholder value.
+#' @param session Shiny session object.
+#'
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(
+#'         title = "Message bar",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       toolbar = f7Toolbar(
+#'         position = "bottom",
+#'         f7Link(label = "Link 1", src = "https://www.google.com"),
+#'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'       ),
+#'       # main content
+#'       f7Segment(
+#'         container = "segment",
+#'         f7Button("updateMessageBar", "Update value"),
+#'         f7Button("updateMessageBarPlaceholder", "Update placeholder")
+#'       ),
+#'       f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+#'       uiOutput("messageContent")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$messageContent <- renderUI({
+#'       req(input$mymessagebar)
+#'       tagList(
+#'         f7BlockTitle("Message Content", size = "large"),
+#'         f7Block(strong = TRUE, inset = TRUE, input$mymessagebar)
+#'       )
+#'     })
+#'
+#'     observeEvent(input$updateMessageBar, {
+#'       updateF7MessageBar(
+#'         inputId = "mymessagebar",
+#'         value = "sjsjsj"
+#'       )
+#'     })
+#'
+#'     observeEvent(input$updateMessageBarPlaceholder, {
+#'       updateF7MessageBar(
+#'         inputId = "mymessagebar",
+#'         placeholder = "Enter your message"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
+                               session = shiny::getDefaultReactiveDomain()) {
+  message <- dropNulls(
+    list(
+      value = value,
+      placeholder = placeholder
+    )
+  )
+
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
 
 #' Create a f7Message
 #'
