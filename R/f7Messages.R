@@ -93,6 +93,9 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
 #'
 #' @export
 f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
+
+  ns <- shiny::NS(id)
+
   shiny::tagList(
     f7InputsDeps(),
     shiny::tags$div(
@@ -109,7 +112,12 @@ f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
             placeholder = placeholder
           )
         ),
-        tags$a(href = "#", class = "link", label)
+        shiny::tags$a(
+          id = ns("send-link"),
+          href = "#",
+          class = "link",
+          label
+        )
       )
     )
   )

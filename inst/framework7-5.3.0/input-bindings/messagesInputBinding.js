@@ -5,14 +5,13 @@ $.extend(f7MessagesBinding, {
 
   initialize: function(el) {
     // for a proper layout!
-      $('.page-content').addClass('messages-content');
+    $('.page-content').addClass('messages-content');
 
     var id = $(el).attr('id');
     var config = $(el).find("script[data-for='" + id + "']");
     config = JSON.parse(config.html());
 
     config.el = '#' + id;
-    console.log(config);
     // feed the create method
     var messages = app.messages.create(config);
     console.log(messages);
