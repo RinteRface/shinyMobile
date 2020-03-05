@@ -46,7 +46,11 @@ $.extend(f7MessageBarBinding, {
     // reset message bar textarea content when click on it
     var sendLink = $(el).find('#' + el.id + '-send-link');
     $(sendLink).on('click', function() {
-      app.messagebar.get($(el)).clear();
+      var messagebar = app.messagebar.get($(el));
+      var val = messagebar.getValue();
+      // stop if no value in message bar
+      if (!val.length) return;
+      messagebar.clear().focus();
     });
   },
 
