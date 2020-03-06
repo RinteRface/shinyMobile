@@ -44,13 +44,18 @@ $.extend(f7MessageBarBinding, {
     });
 
     // reset message bar textarea content when click on it
-    var sendLink = $(el).find('#' + el.id + '-send-link');
+    var sendLink = $(el).find('#' + el.id + '-send');
     $(sendLink).on('click', function() {
       var messagebar = app.messagebar.get($(el));
       var val = messagebar.getValue();
       // stop if no value in message bar
       if (!val.length) return;
-      messagebar.clear().focus();
+      // add delay between link click and textarea reset in f7MessageBar.
+      // Needed to give time so that f7Messages receives
+      // the textarea input value before it is cleared.
+      setTimeout(function() {
+        messagebar.clear().focus();
+      }, 10);
     });
   },
 
