@@ -18,6 +18,7 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
+#'     init = f7Init(skin = "ios", theme = "light"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Messages",
@@ -26,19 +27,40 @@
 #'       ),
 #'       toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
 #'       # main content
-#'       f7Messages(id = "mymessages")
+#'       f7Messages(id = "mymessages", title = "My message")
 #'
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
-#'     observe(print(input[["mymessagebar-send"]]))
+#'     observe({
+#'       #print(input[["mymessagebar-send"]])
+#'       print(input$mymessages)
+#'     })
 #'     observeEvent(input[["mymessagebar-send"]], {
 #'       f7AddMessage(
 #'         id = "mymessages",
 #'         text = input$mymessagebar,
 #'         name = "David",
 #'         type = "sent",
+#'         header = "Message Header",
+#'         footer = "Message Footer",
+#'         textHeader = "Text Header",
+#'         textFooter = "text Footer",
 #'         avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+#'       )
+#'     })
+#'
+#'     observe({
+#'       invalidateLater(5000)
+#'       names <- c("Victor", "John")
+#'       name <- sample(names, 1)
+#'
+#'       f7AddMessage(
+#'         id = "mymessages",
+#'         text = "Some shit",
+#'         name = name,
+#'         type = "received",
+#'         avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
 #'       )
 #'     })
 #'
@@ -98,7 +120,7 @@ f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
     shiny::tags$div(
       id = inputId,
       # add this to be able to see the message bar in a f7TabLayout...
-      style = "margin-bottom: 100px;",
+      #style = "margin-bottom: 100px;",
       class = "toolbar messagebar",
       shiny::tags$div(
         class = "toolbar-inner",
