@@ -12,31 +12,7 @@ $.extend(f7MessagesBinding, {
     config = JSON.parse(config.html());
 
     config.el = '#' + id;
-    // feed the create method
-    var messages = app.messages.create(config);
-  },
 
-  find: function(scope) {
-    return $(scope).find(".messages");
-  },
-
-  // Given the DOM element for the input, return the value
-  getValue: function(el) {
-    return app.messages.get($(el)).messages;
-  },
-
-  // see updatef7Messages
-  setValue: function(el, value) {
-
-  },
-
-  // see updatef7Messages
-  receiveMessage: function(el, data) {
-
-    var messages = app.messages.get($(el));
-    var id = $(el).attr('id');
-    var config = {};
-    config.el = '#' + id;
     // First message rule
   config.firstMessageRule = function (message, previousMessage, nextMessage) {
     // Skip if title
@@ -76,11 +52,28 @@ $.extend(f7MessagesBinding, {
     return false;
   };
 
-    // we need to destroy and recreate a message instance so that
-    // message can be send.
-    messages.destroy();
-    var messages2 = app.messages.create(config);
-    messages2.addMessages(data);
+    // feed the create method
+    var messages = app.messages.create(config);
+  },
+
+  find: function(scope) {
+    return $(scope).find(".messages");
+  },
+
+  // Given the DOM element for the input, return the value
+  getValue: function(el) {
+    return app.messages.get($(el)).messages;
+  },
+
+  // see updatef7Messages
+  setValue: function(el, value) {
+
+  },
+
+  // see updatef7Messages
+  receiveMessage: function(el, data) {
+    var messages = app.messages.get($(el));
+    messages.addMessages(data);
   },
 
   subscribe: function(el, callback) {
