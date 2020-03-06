@@ -16,7 +16,8 @@ f7AddMessage(
   textFooter = NULL,
   image = NULL,
   imageSrc = NULL,
-  cssClass = NULL
+  cssClass = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ f7AddMessage(
 \item{imageSrc}{Message image URL string. Can be used instead of image parameter.}
 
 \item{cssClass}{Additional CSS class to set on message HTML element.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Create a f7Message

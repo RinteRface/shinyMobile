@@ -55,26 +55,7 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
       class = "messages",
       if (!is.null(title)) {
         shiny::tags$div(class = "messages-title", title)
-      },
-      HTML(
-        '<div class="message">
-  <div class="message-avatar" style="background-image:url(path/to/avatar)"></div>
-  <div class="message-content">
-    <div class="message-name">John Doe</div>
-    <div class="message-header">Message header</div>
-    <div class="message-bubble">
-      <div class="message-text-header">Text header</div>
-      <div class="message-image">
-        <img src="path/to/image">
-      </div>
-      <div class="message-text">Hello world!</div>
-      <div class="message-text-footer">Text footer</div>
-    </div>
-    <div class="message-footer">Message footer</div>
-  </div>
-</div>
-        '
-      )
+      }
     )
   )
 
@@ -113,9 +94,9 @@ f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
           )
         ),
         shiny::tags$a(
-          id = ns("send-link"),
+          id = ns("send"),
           href = "#",
-          class = "link",
+          class = "link f7-action-button",
           label
         )
       )
@@ -209,21 +190,23 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 #' @param id Reference to link{f7Messages} container.
 #' @param text Message text.
 #' @param name Sender name.
+#' @param type Message type - sent or received.
 #' @param header Single message header.
 #' @param footer Single message footer.
 #' @param avatar Sender avatar URL string.
-#' @param type Message type - sent or received.
 #' @param textHeader Message text header.
 #' @param textFooter Message text footer.
 #' @param image Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.
 #' @param imageSrc Message image URL string. Can be used instead of image parameter.
 #' @param cssClass Additional CSS class to set on message HTML element.
+#' @param session Shiny session object.
 
 #' @export
-f7AddMessage <- function(id, text, name, header = NULL, footer = NULL,
-                         avatar = NULL, type = c("sent", "received"),
+f7AddMessage <- function(id, text, name, type = c("sent", "received"),
+                         header = NULL, footer = NULL, avatar = NULL,
                          textHeader = NULL, textFooter = NULL, image = NULL,
-                         imageSrc = NULL, cssClass = NULL) {
+                         imageSrc = NULL, cssClass = NULL,
+                         session = shiny::getDefaultReactiveDomain()) {
 
   type <- match.arg(type)
   message <- dropNulls(
@@ -244,11 +227,9 @@ f7AddMessage <- function(id, text, name, header = NULL, footer = NULL,
   message <- jsonlite::toJSON(
     message,
     auto_unbox = TRUE,
-    pretty = TRUE
+    pretty = TRUE,
+    json_verbatim = TRUE
   )
 
-  session$sendInputvalue(id, message)
-
-  #
-
+  session$sendInputMessage(id, message)
 }
