@@ -4,12 +4,10 @@
 \alias{f7MessageBar}
 \title{Create a f7MessageBar to add new messages}
 \usage{
-f7MessageBar(inputId, label = "Send", placeholder = "Message")
+f7MessageBar(inputId, placeholder = "Message")
 }
 \arguments{
 \item{inputId}{Unique id.}
-
-\item{label}{Submit button label.}
 
 \item{placeholder}{Textarea placeholder.}
 }

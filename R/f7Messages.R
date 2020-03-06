@@ -115,11 +115,10 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
 #' Insert before \link{f7Messages}. See examples.
 #'
 #' @param inputId Unique id.
-#' @param label Submit button label.
 #' @param placeholder Textarea placeholder.
 #'
 #' @export
-f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
+f7MessageBar <- function(inputId, placeholder = "Message") {
 
   ns <- shiny::NS(inputId)
 
@@ -142,8 +141,9 @@ f7MessageBar <- function(inputId, label = "Send", placeholder = "Message") {
         shiny::tags$a(
           id = ns("send"),
           href = "#",
-          class = "link f7-action-button",
-          label
+          class = "link icon-only demo-send-message-link f7-action-button",
+          f7Icon("arrow_up_circle_fill", old = FALSE, lib = "ios"),
+          f7Icon("send", lib = "md")
         )
       )
     )
