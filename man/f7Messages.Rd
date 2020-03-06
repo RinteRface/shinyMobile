@@ -54,20 +54,24 @@ if (interactive()) {
   ),
   server = function(input, output, session) {
     observe({
-      #print(input[["mymessagebar-send"]])
+      print(input[["mymessagebar-send"]])
       print(input$mymessages)
     })
     observeEvent(input[["mymessagebar-send"]], {
-      f7AddMessage(
+      f7AddMessages(
         id = "mymessages",
-        text = input$mymessagebar,
-        name = "David",
-        type = "sent",
-        header = "Message Header",
-        footer = "Message Footer",
-        textHeader = "Text Header",
-        textFooter = "text Footer",
-        avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+        list(
+         f7Message(
+          text = input$mymessagebar,
+          name = "David",
+          type = "sent",
+          header = "Message Header",
+          footer = "Message Footer",
+          textHeader = "Text Header",
+          textFooter = "text Footer",
+          avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+         )
+        )
       )
     })
 
@@ -76,12 +80,16 @@ if (interactive()) {
       names <- c("Victor", "John")
       name <- sample(names, 1)
 
-      f7AddMessage(
+      f7AddMessages(
         id = "mymessages",
-        text = "Some shit",
-        name = name,
-        type = "received",
-        avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+        list(
+         f7Message(
+          text = "Some shit",
+          name = name,
+          type = "received",
+          avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+         )
+        )
       )
     })
 

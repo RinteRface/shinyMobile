@@ -75,19 +75,12 @@ $.extend(f7MessagesBinding, {
     if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
     return false;
   };
+
+    // we need to destroy and recreate a message instance so that
+    // message can be send.
     messages.destroy();
     var messages2 = app.messages.create(config);
-
-    if (!data.text || !data.name || !data.type) return;
-
-    messages2.showTyping({
-      header: data.name + ' is typing',
-      avatar: data.avatar
-    });
-    setTimeout(function() {
-      messages2.addMessage(data);
-      messages2.hideTyping();
-    }, 1000);
+    messages2.addMessages(data);
   },
 
   subscribe: function(el, callback) {

@@ -9,13 +9,28 @@ $.extend(f7MessageBarBinding, {
     });
   },
 
+  // method to insert in the getValue method.
+  // This will automatically enable/disable the
+  // send button based on the current value.
+  // It also returns the text area value
+  setState: function(el) {
+    var val = app.messagebar.get($(el)).getValue();
+    var sendLink = $(el).find('#' + el.id + '-send');
+    if (!val.length) {
+      $(sendLink).addClass('disabled');
+    } else {
+      $(sendLink).removeClass('disabled');
+    }
+    return val;
+  },
+
   find: function(scope) {
     return $(scope).find(".messagebar");
   },
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.messagebar.get($(el)).getValue();
+    return this.setState(el);
   },
 
   // see updatef7MessageBar
@@ -39,24 +54,25 @@ $.extend(f7MessageBarBinding, {
   },
 
   subscribe: function(el, callback) {
-    $(el).on("change.f7MessageBarBinding focus.f7MessageBarBinding blur.f7MessageBarBinding", function(e) {
-      callback();
+    $(el).on("input.f7MessageBarBinding change.f7MessageBarBinding focus.f7MessageBarBinding blur.f7MessageBarBinding", function(e) {
+      // reset message bar textarea content when click on it
+      $(el).find('#' + el.id + '-send').on('click', function() {
+        // add delay between link click and textarea reset in f7MessageBar.
+        // Needed to give time so that f7Messages receives
+        // the textarea input value before it is cleared.
+        setTimeout(function() {
+          messagebar.clear().focus();
+        }, 10);
+      });
+      callback(true);
     });
+  },
 
-    // reset message bar textarea content when click on it
-    var sendLink = $(el).find('#' + el.id + '-send');
-    $(sendLink).on('click', function() {
-      var messagebar = app.messagebar.get($(el));
-      var val = messagebar.getValue();
-      // stop if no value in message bar
-      if (!val.length) return;
-      // add delay between link click and textarea reset in f7MessageBar.
-      // Needed to give time so that f7Messages receives
-      // the textarea input value before it is cleared.
-      setTimeout(function() {
-        messagebar.clear().focus();
-      }, 10);
-    });
+  getRatePolicy: function() {
+    return {
+      policy: 'debounce',
+      delay: 250
+    };
   },
 
   unsubscribe: function(el) {

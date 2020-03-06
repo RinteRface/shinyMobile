@@ -33,20 +33,24 @@
 #'   ),
 #'   server = function(input, output, session) {
 #'     observe({
-#'       #print(input[["mymessagebar-send"]])
+#'       print(input[["mymessagebar-send"]])
 #'       print(input$mymessages)
 #'     })
 #'     observeEvent(input[["mymessagebar-send"]], {
-#'       f7AddMessage(
+#'       f7AddMessages(
 #'         id = "mymessages",
-#'         text = input$mymessagebar,
-#'         name = "David",
-#'         type = "sent",
-#'         header = "Message Header",
-#'         footer = "Message Footer",
-#'         textHeader = "Text Header",
-#'         textFooter = "text Footer",
-#'         avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+#'         list(
+#'          f7Message(
+#'           text = input$mymessagebar,
+#'           name = "David",
+#'           type = "sent",
+#'           header = "Message Header",
+#'           footer = "Message Footer",
+#'           textHeader = "Text Header",
+#'           textFooter = "text Footer",
+#'           avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+#'          )
+#'         )
 #'       )
 #'     })
 #'
@@ -55,12 +59,16 @@
 #'       names <- c("Victor", "John")
 #'       name <- sample(names, 1)
 #'
-#'       f7AddMessage(
+#'       f7AddMessages(
 #'         id = "mymessages",
-#'         text = "Some shit",
-#'         name = name,
-#'         type = "received",
-#'         avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+#'         list(
+#'          f7Message(
+#'           text = "Some shit",
+#'           name = name,
+#'           type = "received",
+#'           avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+#'          )
+#'         )
 #'       )
 #'     })
 #'
@@ -225,7 +233,6 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 
 #' Create a f7Message
 #'
-#' @param id Reference to link{f7Messages} container.
 #' @param text Message text.
 #' @param name Sender name.
 #' @param type Message type - sent or received.
@@ -237,17 +244,15 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 #' @param image Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.
 #' @param imageSrc Message image URL string. Can be used instead of image parameter.
 #' @param cssClass Additional CSS class to set on message HTML element.
-#' @param session Shiny session object.
 
 #' @export
-f7AddMessage <- function(id, text, name, type = c("sent", "received"),
-                         header = NULL, footer = NULL, avatar = NULL,
-                         textHeader = NULL, textFooter = NULL, image = NULL,
-                         imageSrc = NULL, cssClass = NULL,
-                         session = shiny::getDefaultReactiveDomain()) {
+f7Message <- function(text, name, type = c("sent", "received"),
+                      header = NULL, footer = NULL, avatar = NULL,
+                      textHeader = NULL, textFooter = NULL, image = NULL,
+                      imageSrc = NULL, cssClass = NULL) {
 
   type <- match.arg(type)
-  message <- dropNulls(
+  dropNulls(
     list(
       text = text,
       header = header,
@@ -261,9 +266,23 @@ f7AddMessage <- function(id, text, name, type = c("sent", "received"),
       imageSrc = imageSrc
     )
   )
+}
+
+
+
+#' Update \link{f7Messages} on the server side.
+#'
+#' @param id Reference to link{f7Messages} container.
+#' @param messages List of \link{f7Messages}.
+#' @param session SHiny session object
+#'
+#' @export
+f7AddMessages <- function(id, messages, session = shiny::getDefaultReactiveDomain()) {
+
+  stopifnot(is.list(messages))
 
   message <- jsonlite::toJSON(
-    message,
+    messages,
     auto_unbox = TRUE,
     pretty = TRUE,
     json_verbatim = TRUE
