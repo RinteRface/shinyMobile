@@ -36,17 +36,34 @@ Create a Framework7 messages container
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     preloader = FALSE,
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Messages"),
-       f7Messages(id = "messagelist")
-     )
-   ),
-   server = function(input, output, session) {
-   }
+ shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Messages",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      # main content
+      f7Messages(id = "mymessages")
+
+    )
+  ),
+  server = function(input, output, session) {
+    observe(print(input[["mymessagebar-send"]]))
+    observeEvent(input[["mymessagebar-send"]], {
+      f7AddMessage(
+        id = "mymessages",
+        text = input$mymessagebar,
+        name = "David",
+        type = "sent",
+        avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+      )
+    })
+
+  }
  )
 }
 }

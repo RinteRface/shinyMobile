@@ -73,16 +73,17 @@ $.extend(f7MessagesBinding, {
 
   // see updatef7Messages
   receiveMessage: function(el, data) {
-    console.log(data);
     var messages = app.messages.get($(el));
+    if (!data.text || !data.name || !data.type) return;
+
+    messages.showTyping({
+      header: data.name + ' is typing',
+      avatar: data.avatar
+    });
     setTimeout(function() {
-      messages.showTyping({
-        header: data.name + ' is typing',
-        avatar: data.avatar
-      });
+      messages.addMessage(data);
+      messages.hideTyping();
     }, 1000);
-    messages.addMessage(data);
-    messages.hideTyping();
   },
 
   subscribe: function(el, callback) {

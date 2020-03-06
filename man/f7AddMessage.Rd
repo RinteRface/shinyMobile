@@ -8,10 +8,10 @@ f7AddMessage(
   id,
   text,
   name,
+  type = c("sent", "received"),
   header = NULL,
   footer = NULL,
   avatar = NULL,
-  type = c("sent", "received"),
   textHeader = NULL,
   textFooter = NULL,
   image = NULL,
@@ -27,13 +27,13 @@ f7AddMessage(
 
 \item{name}{Sender name.}
 
+\item{type}{Message type - sent or received.}
+
 \item{header}{Single message header.}
 
 \item{footer}{Single message footer.}
 
 \item{avatar}{Sender avatar URL string.}
-
-\item{type}{Message type - sent or received.}
 
 \item{textHeader}{Message text header.}
 
