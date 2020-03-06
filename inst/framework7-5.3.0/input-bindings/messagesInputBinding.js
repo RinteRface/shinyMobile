@@ -12,9 +12,32 @@ $.extend(f7MessagesBinding, {
     config = JSON.parse(config.html());
 
     config.el = '#' + id;
+    // feed the create method
+    var messages = app.messages.create(config);
+  },
 
-    // add other methods
-// First message rule
+  find: function(scope) {
+    return $(scope).find(".messages");
+  },
+
+  // Given the DOM element for the input, return the value
+  getValue: function(el) {
+    return app.messages.get($(el)).messages;
+  },
+
+  // see updatef7Messages
+  setValue: function(el, value) {
+
+  },
+
+  // see updatef7Messages
+  receiveMessage: function(el, data) {
+
+    var messages = app.messages.get($(el));
+    var id = $(el).attr('id');
+    var config = {};
+    config.el = '#' + id;
+    // First message rule
   config.firstMessageRule = function (message, previousMessage, nextMessage) {
     // Skip if title
     if (message.isTitle) return false;
@@ -52,42 +75,23 @@ $.extend(f7MessagesBinding, {
     if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
     return false;
   };
+    messages.destroy();
+    var messages2 = app.messages.create(config);
 
-    // feed the create method
-    var messages = app.messages.create(config);
-  },
-
-  find: function(scope) {
-    return $(scope).find(".messages");
-  },
-
-  // Given the DOM element for the input, return the value
-  getValue: function(el) {
-    return app.messages.get($(el)).messages;
-  },
-
-  // see updatef7Messages
-  setValue: function(el, value) {
-
-  },
-
-  // see updatef7Messages
-  receiveMessage: function(el, data) {
-    var messages = app.messages.get($(el));
     if (!data.text || !data.name || !data.type) return;
 
-    messages.showTyping({
+    messages2.showTyping({
       header: data.name + ' is typing',
       avatar: data.avatar
     });
     setTimeout(function() {
-      messages.addMessage(data);
-      messages.hideTyping();
+      messages2.addMessage(data);
+      messages2.hideTyping();
     }, 1000);
   },
 
   subscribe: function(el, callback) {
-    $(el).on("change.f7MessagesBinding", function(e) {
+    $(el).on("beforeDestroy.f7MessagesBinding", function(e) {
       callback();
     });
   },
