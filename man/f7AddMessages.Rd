@@ -4,12 +4,19 @@
 \alias{f7AddMessages}
 \title{Update \link{f7Messages} on the server side.}
 \usage{
-f7AddMessages(id, messages, session = shiny::getDefaultReactiveDomain())
+f7AddMessages(
+  id,
+  messages,
+  showTyping = FALSE,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{id}{Reference to link{f7Messages} container.}
 
 \item{messages}{List of \link{f7Messages}.}
+
+\item{showTyping}{Show typing when a new message comes. Default to FALSE.}
 
 \item{session}{SHiny session object}
 }

@@ -273,19 +273,22 @@ f7Message <- function(text, name, type = c("sent", "received"),
 #' Update \link{f7Messages} on the server side.
 #'
 #' @param id Reference to link{f7Messages} container.
+#' @param showTyping Show typing when a new message comes. Default to FALSE.
 #' @param messages List of \link{f7Messages}.
 #' @param session SHiny session object
 #'
 #' @export
-f7AddMessages <- function(id, messages, session = shiny::getDefaultReactiveDomain()) {
+f7AddMessages <- function(id, messages, showTyping = FALSE,
+                          session = shiny::getDefaultReactiveDomain()) {
 
-  stopifnot(is.list(messages))
-
-  message <- jsonlite::toJSON(
-    messages,
-    auto_unbox = TRUE,
-    pretty = TRUE,
-    json_verbatim = TRUE
+  message <- list(
+    value = jsonlite::toJSON(
+      messages,
+      auto_unbox = TRUE,
+      pretty = TRUE,
+      json_verbatim = TRUE
+    ),
+    showTyping = showTyping
   )
 
   session$sendInputMessage(id, message)

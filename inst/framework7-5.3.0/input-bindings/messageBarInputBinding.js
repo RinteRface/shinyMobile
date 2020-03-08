@@ -62,7 +62,7 @@ $.extend(f7MessageBarBinding, {
         // the textarea input value before it is cleared.
         setTimeout(function() {
           app.messagebar.get($(el)).clear().focus();
-        }, 10);
+        }, 1000);
       });
       callback(true);
     });

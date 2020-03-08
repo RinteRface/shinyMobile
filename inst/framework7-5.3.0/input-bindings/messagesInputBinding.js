@@ -53,7 +53,7 @@ $.extend(f7MessagesBinding, {
   };
 
     // feed the create method
-    var messages = app.messages.create(config);
+    app.messages.create(config);
   },
 
   find: function(scope) {
@@ -67,17 +67,39 @@ $.extend(f7MessagesBinding, {
 
   // see updatef7Messages
   setValue: function(el, value) {
+    responseInProgress = true;
+    var messages = app.messages.get($(el));
 
+    if (value.showTyping) {
+      // Show typing indicator
+      var who = value.value.pop().name;
+      setTimeout(function () {
+        messages.showTyping({
+          header: who + ' is typing'
+        });
+
+        setTimeout(function () {
+          messages.addMessages(value.value);
+          // Hide typing indicator
+          messages.hideTyping();
+          responseInProgress = false;
+        }, 1000);
+      }, 500);
+    } else {
+      messages.addMessages(value.value);
+    }
   },
 
   // see updatef7Messages
   receiveMessage: function(el, data) {
-    var messages = app.messages.get($(el));
-    messages.addMessages(data);
+    var responseInProgress = false;
+    if (responseInProgress) return;
+    this.setValue(el, data);
+    $(el).trigger('change');
   },
 
   subscribe: function(el, callback) {
-    $(el).on("beforeDestroy.f7MessagesBinding", function(e) {
+    $(el).on("change.f7MessagesBinding", function(e) {
       callback();
     });
   },
