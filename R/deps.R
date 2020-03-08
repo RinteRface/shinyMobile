@@ -27,8 +27,8 @@ addCSSDeps <- function(x) {
     # deps
     htmltools::htmlDependency(
       name = "framework7",
-      version = "5.3.0",
-      src = c(file = "framework7-5.3.0"),
+      version = "5.5.0",
+      src = c(file = "framework7-5.5.0"),
       package = "shinyMobile",
       script = NULL,
       stylesheet = c(
@@ -57,7 +57,7 @@ addCSSDeps <- function(x) {
 # located at the end of the body.
 addJSDeps <- function() {
 
-  depsPath <- "framework7-5.3.0/"
+  depsPath <- "framework7-5.5.0/"
 
   # JS
   framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
@@ -86,8 +86,8 @@ f7InputsDeps <- function() {
     name = "framework7-bindings",
     version = as.character(packageVersion("shinyMobile")),
     src = c(
-      file = "framework7-5.3.0",
-      href = "framework7-5.3.0"
+      file = "framework7-5.5.0",
+      href = "framework7-5.5.0"
     ),
     package = "shinyMobile",
     script = "framework7.bindings.min.js"
@@ -104,8 +104,8 @@ html_dependencies_f7Icons <- function(old = TRUE) {
     name = name,
     version = "3.0.0",
     src = list(
-      href = "framework7-5.3.0",
-      file = "framework7-5.3.0"
+      href = "framework7-5.5.0",
+      file = "framework7-5.5.0"
     ),
     package = "shinyMobile",
     stylesheet = file.path(name, "css/framework7-icons.css"),
