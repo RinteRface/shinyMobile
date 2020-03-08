@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Util function to validate a given shinyMobile Input — f7ValidateInput • shinyMobile</title>
+<title>Show preloader — f7ShowPreloader • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Util function to validate a given shinyMobile Input — f7ValidateInput" />
-<meta property="og:description" content="Util function to validate a given shinyMobile Input" />
+<meta property="og:title" content="Show preloader — f7ShowPreloader" />
+<meta property="og:description" content="Show preloader
+Hide preloader" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -161,41 +162,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Util function to validate a given shinyMobile Input</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7-validate-inputs.R'><code>R/f7-validate-inputs.R</code></a></small>
-    <div class="hidden name"><code>f7ValidateInput.Rd</code></div>
+    <h1>Show preloader</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Preloader.R'><code>R/f7Preloader.R</code></a></small>
+    <div class="hidden name"><code>preloader.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Util function to validate a given shinyMobile Input</p>
+    <p>Show preloader</p>
+<p>Hide preloader</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ValidateInput</span>(
-  <span class='no'>inputId</span>,
-  <span class='kw'>info</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>error</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>f7ShowPreloader</span>(
+  <span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
-)</pre>
+)
+
+<span class='fu'>f7HidePreloader</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>inputId</th>
-      <td><p>Input to validate.</p></td>
+      <th>target</th>
+      <td><p>Element where preloader overlay will be added.</p></td>
     </tr>
     <tr>
-      <th>info</th>
-      <td><p>Additional text to display below the input field.</p></td>
-    </tr>
-    <tr>
-      <th>pattern</th>
-      <td><p>Pattern for validation. Regex.</p></td>
-    </tr>
-    <tr>
-      <th>error</th>
-      <td><p>Error text.</p></td>
+      <th>color</th>
+      <td><p>Preloader color.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -203,46 +197,86 @@
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Only works for <a href='f7Text.html'>f7Text</a>, <a href='f7Password.html'>f7Password</a>, <a href='f7TextArea.html'>f7TextArea</a> and <a href='f7Select.html'>f7Select</a>.
-See more at <a href='https://framework7.io/docs/inputs.html'>https://framework7.io/docs/inputs.html</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
 
+ <span class='co'># basic preloader with red color</span>
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7ValidateInput"</span>),
-       <span class='fu'><a href='f7Text.html'>f7Text</a></span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"caption"</span>,
-         <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Caption"</span>,
-         <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"Data Summary"</span>
-       ),
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"value"</span>),
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>hr</a></span>(),
-       <span class='fu'><a href='f7Text.html'>f7Text</a></span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"caption2"</span>,
-         <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Enter a number"</span>,
-         <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>1</span>
-       )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
-       <span class='fu'>f7ValidateInput</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"caption"</span>, <span class='kw'>info</span> <span class='kw'>=</span> <span class='st'>"Whatever"</span>)
-       <span class='fu'>f7ValidateInput</span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"caption2"</span>,
-         <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"[0-9]*"</span>,
-         <span class='kw'>error</span> <span class='kw'>=</span> <span class='st'>"Only numbers please!"</span>
-       )
-     })
-     <span class='no'>output</span>$<span class='no'>value</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>({ <span class='no'>input</span>$<span class='no'>caption</span> })
-   }
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Preloader"</span>,
+        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      ),
+      <span class='co'># main content</span>
+      <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='st'>"showLoader"</span>, <span class='st'>"Show loader"</span>),
+      <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+        <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+        <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+          <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+        )
+      )
+    )
+  ),
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>)
+      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
+    })
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>showLoader</span>, {
+      <span class='fu'>f7ShowPreloader</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
+      <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>2</span>)
+      <span class='fu'>f7HidePreloader</span>()
+    })
+  }
+ )
+
+ <span class='co'># preloader in container</span>
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
+      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Preloader in container"</span>,
+        <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+        <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+      ),
+      <span class='co'># main content</span>
+      <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span>(
+        <span class='kw'>intensity</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+        <span class='kw'>hover</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+        <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
+          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+          <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(<span class='st'>"obs"</span>, <span class='st'>"Number of observations"</span>, <span class='fl'>0</span>, <span class='fl'>1000</span>, <span class='fl'>500</span>),
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+        )
+      ),
+      <span class='fu'><a href='f7Card.html'>f7Card</a></span>(<span class='st'>"This is a simple card with plain text,
+       but cards can also contain their own header,
+       footer, list view, image, or any other element."</span>)
+    )
+  ),
+  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+      <span class='no'>dist</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>)
+      <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>dist</span>)
+    })
+
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>, {
+      <span class='fu'>f7ShowPreloader</span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"#distPlot"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
+      <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span>(<span class='fl'>2</span>)
+      <span class='fu'>f7HidePreloader</span>()
+    })
+  }
  )
 }</div></pre>
   </div>
@@ -250,7 +284,6 @@ See more at <a href='https://framework7.io/docs/inputs.html'>https://framework7.
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

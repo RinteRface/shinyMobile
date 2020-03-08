@@ -499,4 +499,22 @@ $(function () {
     }
     $('#' + message.target).parent().append(infoTag);
   });
+
+
+  // preloader
+  Shiny.addCustomMessageHandler('show-preloader', function(message) {
+    if (typeof message.el !== 'undefined') {
+      app.preloader.showIn(message.el, message.color);
+    } else {
+      app.preloader.show(message.color);
+    }
+  });
+
+   Shiny.addCustomMessageHandler('hide-preloader', function(message) {
+    if (typeof message.el !== 'undefined') {
+      app.preloader.hideIn(message.el);
+    } else {
+      app.preloader.hide();
+    }
+  });
 });
