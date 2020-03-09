@@ -39,7 +39,7 @@ $.extend(f7GaugeBinding, {
 
     // valueText should not be let as a free parameter since it does not make sense
     // that the value is different from the displayed text.
-    data.valueText = 100 * data.value + '%';
+    // data.valueText = 100 * data.value + '%';
     // add the id
     data.el = '#' + id;
 
@@ -61,7 +61,7 @@ $.extend(f7GaugeBinding, {
     var g = app.gauge.get($(el));
     g.update({
       value: data.value / 100,
-      valueText: data.value + '%',
+      valueText: data.valueText,
       labelText: data.text,
       size: data.size,
       bgColor: data.bgColor,
