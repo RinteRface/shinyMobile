@@ -49,7 +49,7 @@
 #' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Gauge <- function(id, type = "circle", value, size = 200,
+f7Gauge <- function(id, type = "circle", value, size = 200, valueText = NULL, 
                     bgColor = "transparent", borderBgColor = "#eeeeee", borderColor = "#000000",
                     borderWidth = "10", valueTextColor = "#000000", valueFontSize = "31",
                     valueFontWeight = "500", labelText = NULL, labelTextColor = "#888888",
@@ -68,6 +68,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
       `data-border-bg-color` = borderBgColor,
       `data-border-color` = borderColor,
       `data-border-width` = borderWidth,
+      `data-value-text` = valueText,
       `data-value-text-color` = valueTextColor,
       `data-value-font-size` = valueFontSize,
       `data-value-font-weight` = valueFontWeight,
@@ -135,7 +136,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 #'     }
 #'  )
 #' }
-updateF7Gauge <- function(session, id, value = NULL, labelText = NULL, size = NULL,
+updateF7Gauge <- function(session, id, value = NULL, valueText = NULL, labelText = NULL, size = NULL,
                           bgColor = NULL, borderBgColor = NULL,
                           borderColor = NULL, borderWidth = NULL,
                           valueTextColor = NULL, valueFontSize = NULL,
@@ -151,6 +152,7 @@ updateF7Gauge <- function(session, id, value = NULL, labelText = NULL, size = NU
       borderBgColor = borderBgColor,
       borderColor = borderColor,
       borderWidth = borderWidth,
+      valueText = valueText,
       valueTextColor = valueTextColor,
       valueFontSize = valueFontSize,
       valueFontWeight = valueFontWeight,
