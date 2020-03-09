@@ -61,7 +61,7 @@ $.extend(f7GaugeBinding, {
     var g = app.gauge.get($(el));
     g.update({
       value: data.value / 100,
-      valueText: data.value + '%',
+      valueText: data.valueText,
       labelText: data.text,
       size: data.size,
       bgColor: data.bgColor,
