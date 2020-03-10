@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 messages container — f7Messages • shinyMobile</title>
+<title>Update message bar on the server side — updateF7MessageBar • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Framework7 messages container — f7Messages" />
-<meta property="og:description" content="Create a Framework7 messages container" />
+<meta property="og:title" content="Update message bar on the server side — updateF7MessageBar" />
+<meta property="og:description" content="Update message bar on the server side" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -161,53 +161,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 messages container</h1>
+    <h1>Update message bar on the server side</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Messages.R'><code>R/f7Messages.R</code></a></small>
-    <div class="hidden name"><code>f7Messages.Rd</code></div>
+    <div class="hidden name"><code>updateF7MessageBar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a Framework7 messages container</p>
+    <p>Update message bar on the server side</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Messages</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>autoLayout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>newMessagesFirst</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>scrollMessages</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>scrollMessagesOnEdge</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+    <pre class="usage"><span class='fu'>updateF7MessageBar</span>(
+  <span class='no'>inputId</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>Container id.</p></td>
+      <th>inputId</th>
+      <td><p><a href='f7MessageBar.html'>f7MessageBar</a> unique id.</p></td>
     </tr>
     <tr>
-      <th>title</th>
-      <td><p>Optional messages title.</p></td>
+      <th>value</th>
+      <td><p>New value.</p></td>
     </tr>
     <tr>
-      <th>autoLayout</th>
-      <td><p>Enable Auto Layout to add all required additional classes
-automatically based on passed conditions.</p></td>
+      <th>placeholder</th>
+      <td><p>New placeholder value.</p></td>
     </tr>
     <tr>
-      <th>newMessagesFirst</th>
-      <td><p>Enable if you want to use new messages on top,
-instead of having them on bottom.</p></td>
-    </tr>
-    <tr>
-      <th>scrollMessages</th>
-      <td><p>Enable/disable messages autoscrolling when adding new message.</p></td>
-    </tr>
-    <tr>
-      <th>scrollMessagesOnEdge</th>
-      <td><p>If enabled then messages autoscrolling will happen only
-when user is on top/bottom of the messages view.</p></td>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
 
@@ -219,60 +206,50 @@ when user is on top/bottom of the messages view.</p></td>
  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"ios"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Messages"</span>,
+        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Message bar"</span>,
         <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
         <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
-      <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7MessageBar.html'>f7MessageBar</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mymessagebar"</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Message"</span>),
+      <span class='kw'>toolbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span>(
+        <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 1"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Link 2"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>, <span class='kw'>external</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+      ),
       <span class='co'># main content</span>
-      <span class='fu'>f7Messages</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mymessages"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My message"</span>)
-
+      <span class='fu'><a href='f7Segment.html'>f7Segment</a></span>(
+        <span class='kw'>container</span> <span class='kw'>=</span> <span class='st'>"segment"</span>,
+        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='st'>"updateMessageBar"</span>, <span class='st'>"Update value"</span>),
+        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='st'>"updateMessageBarPlaceholder"</span>, <span class='st'>"Update placeholder"</span>)
+      ),
+      <span class='fu'><a href='f7MessageBar.html'>f7MessageBar</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mymessagebar"</span>, <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Message"</span>),
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"messageContent"</span>)
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
-      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='st'>"mymessagebar-send"</span>]])
-      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>mymessages</span>)
-    })
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='st'>"mymessagebar-send"</span>]], {
-      <span class='fu'><a href='f7AddMessages.html'>f7AddMessages</a></span>(
-        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mymessages"</span>,
-        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-         <span class='fu'><a href='f7Message.html'>f7Message</a></span>(
-          <span class='kw'>text</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>mymessagebar</span>,
-          <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"David"</span>,
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"sent"</span>,
-          <span class='kw'>header</span> <span class='kw'>=</span> <span class='st'>"Message Header"</span>,
-          <span class='kw'>footer</span> <span class='kw'>=</span> <span class='st'>"Message Footer"</span>,
-          <span class='kw'>textHeader</span> <span class='kw'>=</span> <span class='st'>"Text Header"</span>,
-          <span class='kw'>textFooter</span> <span class='kw'>=</span> <span class='st'>"text Footer"</span>,
-          <span class='kw'>avatar</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/people-100x100-7.jpg"</span>
-         )
-        )
+
+    <span class='no'>output</span>$<span class='no'>messageContent</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>mymessagebar</span>)
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='st'>"Message Content"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>),
+        <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>input</span>$<span class='no'>mymessagebar</span>)
       )
     })
 
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/invalidateLater.html'>invalidateLater</a></span>(<span class='fl'>5000</span>)
-      <span class='no'>names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Victor"</span>, <span class='st'>"John"</span>)
-      <span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>names</span>, <span class='fl'>1</span>)
-
-      <span class='fu'><a href='f7AddMessages.html'>f7AddMessages</a></span>(
-        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mymessages"</span>,
-        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-         <span class='fu'><a href='f7Message.html'>f7Message</a></span>(
-          <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Some shit"</span>,
-          <span class='kw'>name</span> <span class='kw'>=</span> <span class='no'>name</span>,
-          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"received"</span>,
-          <span class='kw'>avatar</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/people-100x100-9.jpg"</span>
-         )
-        )
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>updateMessageBar</span>, {
+      <span class='fu'>updateF7MessageBar</span>(
+        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mymessagebar"</span>,
+        <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"sjsjsj"</span>
       )
     })
 
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>updateMessageBarPlaceholder</span>, {
+      <span class='fu'>updateF7MessageBar</span>(
+        <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"mymessagebar"</span>,
+        <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Enter your message"</span>
+      )
+    })
   }
  )
 }</div></pre>
