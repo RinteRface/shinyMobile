@@ -2,31 +2,45 @@
 % Please edit documentation in R/f7Messages.R
 \name{f7Message}
 \alias{f7Message}
-\title{Create a framework7 message}
+\title{Create a f7Message}
 \usage{
 f7Message(
-  content,
-  src = NULL,
-  author = NULL,
-  date = NULL,
-  state = c("sent", "received"),
-  type = c("text", "img")
+  text,
+  name,
+  type = c("sent", "received"),
+  header = NULL,
+  footer = NULL,
+  avatar = NULL,
+  textHeader = NULL,
+  textFooter = NULL,
+  image = NULL,
+  imageSrc = NULL,
+  cssClass = NULL
 )
 }
 \arguments{
-\item{content}{Message content. If type is ing, content must
-be an url or path.}
+\item{text}{Message text.}
 
-\item{src}{Message author avatar}
+\item{name}{Sender name.}
 
-\item{author}{Message author}
+\item{type}{Message type - sent or received.}
 
-\item{date}{Message date}
+\item{header}{Single message header.}
 
-\item{state}{Whether it is a received or sent message.}
+\item{footer}{Single message footer.}
 
-\item{type}{Whether it is a text or image.}
+\item{avatar}{Sender avatar URL string.}
+
+\item{textHeader}{Message text header.}
+
+\item{textFooter}{Message text footer.}
+
+\item{image}{Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.}
+
+\item{imageSrc}{Message image URL string. Can be used instead of image parameter.}
+
+\item{cssClass}{Additional CSS class to set on message HTML element.}
 }
 \description{
-Create a framework7 message
+Create a f7Message
 }
