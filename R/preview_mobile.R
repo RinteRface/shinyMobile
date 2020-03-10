@@ -123,6 +123,7 @@ create_app_ui <- function(iframe, device, color, landscape) {
       shiny::br()
     ),
     # container for preview app
+    shiny::br(),
     shiny::fluidRow(
       align = "center",
       create_app_container(
