@@ -289,7 +289,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
     href = "#",
     class = paste0("link card-close card-opened-fade-in color-white"),
     style = "position: absolute; right: 15px; top: 15px;",
-    f7Icon("close_round_fill")
+    f7Icon("xmark_circle_fill", old = FALSE)
   )
 
 
