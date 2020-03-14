@@ -25,7 +25,7 @@
 #'  )
 #' }
 #' 
-#' @keywords internal
+#' @export
 f7Table <- function(data, colnames = NULL, card = FALSE){
   classes <- lapply(data, class2f7)
 
