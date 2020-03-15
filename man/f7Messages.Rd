@@ -4,12 +4,30 @@
 \alias{f7Messages}
 \title{Create a Framework7 messages container}
 \usage{
-f7Messages(..., id)
+f7Messages(
+  id,
+  title = NULL,
+  autoLayout = TRUE,
+  newMessagesFirst = FALSE,
+  scrollMessages = TRUE,
+  scrollMessagesOnEdge = TRUE
+)
 }
 \arguments{
-\item{...}{Slot for \link{f7Message}.}
-
 \item{id}{Container id.}
+
+\item{title}{Optional messages title.}
+
+\item{autoLayout}{Enable Auto Layout to add all required additional classes
+automatically based on passed conditions.}
+
+\item{newMessagesFirst}{Enable if you want to use new messages on top,
+instead of having them on bottom.}
+
+\item{scrollMessages}{Enable/disable messages autoscrolling when adding new message.}
+
+\item{scrollMessagesOnEdge}{If enabled then messages autoscrolling will happen only
+when user is on top/bottom of the messages view.}
 }
 \description{
 Create a Framework7 messages container
@@ -18,45 +36,64 @@ Create a Framework7 messages container
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     preloader = FALSE,
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Messages"),
-       f7Messages(
-         id = "messagelist",
+ shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    init = f7Init(skin = "ios", theme = "light"),
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Messages",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      # main content
+      f7Messages(id = "mymessages", title = "My message")
+
+    )
+  ),
+  server = function(input, output, session) {
+    observe({
+      print(input[["mymessagebar-send"]])
+      print(input$mymessages)
+    })
+    observeEvent(input[["mymessagebar-send"]], {
+      f7AddMessages(
+        id = "mymessages",
+        list(
          f7Message(
-           "Lorem ipsum dolor sit amet,
-           consectetur adipiscing elit.
-           Duo Reges: constructio interrete",
-           src = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg",
-           author = "David",
-           date = "2019-09-12",
-           state = "received",
-           type = "text"
-         ),
-         f7Message(
-           "https://cdn.framework7.io/placeholder/cats-200x260-4.jpg",
-           src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-           author = "Lia",
-           date = NULL,
-           state = "sent",
-           type = "img"
-         ),
-         f7Message(
-           "Hi Bro",
-           src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-           author = NULL,
-           date = "2019-08-15",
-           state = "sent",
-           type = "text"
+          text = input$mymessagebar,
+          name = "David",
+          type = "sent",
+          header = "Message Header",
+          footer = "Message Footer",
+          textHeader = "Text Header",
+          textFooter = "text Footer",
+          avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
          )
-       )
-     )
-   ),
-   server = function(input, output, session) {
-   }
+        )
+      )
+    })
+
+    observe({
+      invalidateLater(5000)
+      names <- c("Victor", "John")
+      name <- sample(names, 1)
+
+      f7AddMessages(
+        id = "mymessages",
+        list(
+         f7Message(
+          text = "Some shit",
+          name = name,
+          type = "received",
+          avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+         )
+        )
+      )
+    })
+
+  }
  )
 }
 }

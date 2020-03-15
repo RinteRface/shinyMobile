@@ -97,6 +97,7 @@ reference:
   - '`updateF7Fabs`'
   - '`updateF7Gauge`'
   - '`updateF7Login`'
+  - '`updateF7MessageBar`'
   - '`updateF7Panel`'
   - '`updateF7Picker`'
   - '`updateF7Progress`'
@@ -195,10 +196,12 @@ reference:
   contents:
   - '`f7Accordion`'
   - '`f7AccordionItem`'
+  - '`f7AddMessages`'
   - '`f7Badge`'
   - '`f7Chip`'
   - '`f7Message`'
   - '`f7Messages`'
+  - '`f7MessageBar`'
   - '`f7PhotoBrowser`'
   - '`f7Slide`'
   - '`f7Swiper`'
@@ -229,6 +232,12 @@ reference:
   desc: icon wrapper function
   contents:
   - '`f7Icon`'
+
+
+- title: Loaders
+  desc: Loading screens
+  contents:
+  - '`f7ShowPreloader`'
 
 
 - title: CSS effects

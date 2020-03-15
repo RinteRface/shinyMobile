@@ -1,135 +1,295 @@
 #' Create a Framework7 messages container
 #'
-#' @param ... Slot for \link{f7Message}.
 #' @param id Container id.
+#' @param title Optional messages title.
+#' @param autoLayout Enable Auto Layout to add all required additional classes
+#' automatically based on passed conditions.
+#' @param newMessagesFirst Enable if you want to use new messages on top,
+#' instead of having them on bottom.
+#' @param scrollMessages Enable/disable messages autoscrolling when adding new message.
+#' @param scrollMessagesOnEdge If enabled then messages autoscrolling will happen only
+#' when user is on top/bottom of the messages view.
 #'
 #' @export
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      preloader = FALSE,
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Messages"),
-#'        f7Messages(
-#'          id = "messagelist",
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     init = f7Init(skin = "ios", theme = "light"),
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(
+#'         title = "Messages",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+#'       # main content
+#'       f7Messages(id = "mymessages", title = "My message")
+#'
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observe({
+#'       print(input[["mymessagebar-send"]])
+#'       print(input$mymessages)
+#'     })
+#'     observeEvent(input[["mymessagebar-send"]], {
+#'       f7AddMessages(
+#'         id = "mymessages",
+#'         list(
 #'          f7Message(
-#'            "Lorem ipsum dolor sit amet,
-#'            consectetur adipiscing elit.
-#'            Duo Reges: constructio interrete",
-#'            src = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg",
-#'            author = "David",
-#'            date = "2019-09-12",
-#'            state = "received",
-#'            type = "text"
-#'          ),
-#'          f7Message(
-#'            "https://cdn.framework7.io/placeholder/cats-200x260-4.jpg",
-#'            src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-#'            author = "Lia",
-#'            date = NULL,
-#'            state = "sent",
-#'            type = "img"
-#'          ),
-#'          f7Message(
-#'            "Hi Bro",
-#'            src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-#'            author = NULL,
-#'            date = "2019-08-15",
-#'            state = "sent",
-#'            type = "text"
+#'           text = input$mymessagebar,
+#'           name = "David",
+#'           type = "sent",
+#'           header = "Message Header",
+#'           footer = "Message Footer",
+#'           textHeader = "Text Header",
+#'           textFooter = "text Footer",
+#'           avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
 #'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'    }
+#'         )
+#'       )
+#'     })
+#'
+#'     observe({
+#'       invalidateLater(5000)
+#'       names <- c("Victor", "John")
+#'       name <- sample(names, 1)
+#'
+#'       f7AddMessages(
+#'         id = "mymessages",
+#'         list(
+#'          f7Message(
+#'           text = "Some shit",
+#'           name = name,
+#'           type = "received",
+#'           avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+#'          )
+#'         )
+#'       )
+#'     })
+#'
+#'   }
 #'  )
 #' }
-f7Messages <- function(..., id) {
-  messagesJS <- shiny::singleton(
-    shiny::tags$script(
-      paste0(
-        "$(function() {
-          var messages = app.messages.create({
-            el: '#", id, "',
-         });
-         $('.page-content').addClass('messages-content');
-        });
-        "
-      )
+f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = FALSE,
+                       scrollMessages = TRUE, scrollMessagesOnEdge = TRUE) {
+
+  config <- dropNulls(list(
+    autoLayout = autoLayout,
+    newMessagesFirst = newMessagesFirst,
+    scrollMessages = scrollMessages,
+    scrollMessagesOnEdge = scrollMessagesOnEdge
+  ))
+
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::tags$div(
+      id = id,
+      shiny::tags$script(
+        type = "application/json",
+        `data-for` = id,
+        jsonlite::toJSON(
+          x = config,
+          auto_unbox = TRUE,
+          json_verbatim = TRUE
+        )
+      ),
+      class = "messages",
+      if (!is.null(title)) {
+        shiny::tags$div(class = "messages-title", title)
+      }
     )
   )
 
-  messages <- list(...)
-  for (i in seq_along(messages)) {
-    messages[[i]][[2]]$attribs$class <- paste0(
-      messages[[i]][[2]]$attribs$class,
-      " message-first message-last message-tail"
-    )
-  }
-
-  messagesTag <- shiny::tags$div(class = "messages",  messages)
-  shiny::tagList(messagesJS, messagesTag)
 }
 
 
 
 
-#' Create a framework7 message
+#' Create a f7MessageBar to add new messages
 #'
-#' @param content Message content. If type is ing, content must
-#' be an url or path.
-#' @param src Message author avatar
-#' @param author Message author
-#' @param date Message date
-#' @param state Whether it is a received or sent message.
-#' @param type Whether it is a text or image.
+#' Insert before \link{f7Messages}. See examples.
+#'
+#' @param inputId Unique id.
+#' @param placeholder Textarea placeholder.
 #'
 #' @export
-f7Message <- function(content, src = NULL, author = NULL,
-                      date = NULL, state = c("sent", "received"),
-                      type = c("text", "img")) {
+f7MessageBar <- function(inputId, placeholder = "Message") {
 
-  state <- match.arg(state)
-  type <- match.arg(type)
+  ns <- shiny::NS(inputId)
 
   shiny::tagList(
-    if (!is.null(date)) {
-      shiny::tags$div(class = "messages-title", shiny::tags$b(date))
-    },
+    f7InputsDeps(),
     shiny::tags$div(
-      class = paste0("message message-", state),
-      if (!is.null(src)) {
-        shiny::tags$div(
-          class = "message-avatar",
-          style = paste0("background-image:url(", src, ");")
-        )
-      },
+      id = inputId,
+      # add this to be able to see the message bar in a f7TabLayout...
+      #style = "margin-bottom: 100px;",
+      class = "toolbar messagebar",
       shiny::tags$div(
-        class = "message-content",
-        if (!is.null(author)) {
-          shiny::tags$div(class = "message-name", author)
-        },
+        class = "toolbar-inner",
         shiny::tags$div(
-          class = "message-bubble",
-          if (type == "text") {
-            shiny::tags$div(class = "message-text", content)
-          } else {
-            shiny::tags$div(
-              class = "message-image",
-              shiny::img(
-                src = content,
-                style = "width:200px; height: 260px;"
-              )
-            )
-          }
+          class = "messagebar-area",
+          shiny::tags$textarea(
+            class = "resizable",
+            placeholder = placeholder
+          )
+        ),
+        shiny::tags$a(
+          id = ns("send"),
+          href = "#",
+          class = "link icon-only demo-send-message-link f7-action-button",
+          f7Icon("arrow_up_circle_fill", old = FALSE, lib = "ios"),
+          f7Icon("send", lib = "md")
         )
       )
     )
   )
+}
+
+
+
+
+#' Update message bar on the server side
+#'
+#' @param inputId \link{f7MessageBar} unique id.
+#' @param value New value.
+#' @param placeholder New placeholder value.
+#' @param session Shiny session object.
+#'
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(
+#'         title = "Message bar",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       toolbar = f7Toolbar(
+#'         position = "bottom",
+#'         f7Link(label = "Link 1", src = "https://www.google.com"),
+#'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'       ),
+#'       # main content
+#'       f7Segment(
+#'         container = "segment",
+#'         f7Button("updateMessageBar", "Update value"),
+#'         f7Button("updateMessageBarPlaceholder", "Update placeholder")
+#'       ),
+#'       f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+#'       uiOutput("messageContent")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'
+#'     output$messageContent <- renderUI({
+#'       req(input$mymessagebar)
+#'       tagList(
+#'         f7BlockTitle("Message Content", size = "large"),
+#'         f7Block(strong = TRUE, inset = TRUE, input$mymessagebar)
+#'       )
+#'     })
+#'
+#'     observeEvent(input$updateMessageBar, {
+#'       updateF7MessageBar(
+#'         inputId = "mymessagebar",
+#'         value = "sjsjsj"
+#'       )
+#'     })
+#'
+#'     observeEvent(input$updateMessageBarPlaceholder, {
+#'       updateF7MessageBar(
+#'         inputId = "mymessagebar",
+#'         placeholder = "Enter your message"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
+                               session = shiny::getDefaultReactiveDomain()) {
+  message <- dropNulls(
+    list(
+      value = value,
+      placeholder = placeholder
+    )
+  )
+
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+
+
+#' Create a f7Message
+#'
+#' @param text Message text.
+#' @param name Sender name.
+#' @param type Message type - sent or received.
+#' @param header Single message header.
+#' @param footer Single message footer.
+#' @param avatar Sender avatar URL string.
+#' @param textHeader Message text header.
+#' @param textFooter Message text footer.
+#' @param image Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.
+#' @param imageSrc Message image URL string. Can be used instead of image parameter.
+#' @param cssClass Additional CSS class to set on message HTML element.
+
+#' @export
+f7Message <- function(text, name, type = c("sent", "received"),
+                      header = NULL, footer = NULL, avatar = NULL,
+                      textHeader = NULL, textFooter = NULL, image = NULL,
+                      imageSrc = NULL, cssClass = NULL) {
+
+  type <- match.arg(type)
+  dropNulls(
+    list(
+      text = text,
+      header = header,
+      footer = footer,
+      name = name,
+      avatar = avatar,
+      type = type,
+      textHeader = textHeader,
+      textFooter = textFooter,
+      image	= image,
+      imageSrc = imageSrc
+    )
+  )
+}
+
+
+
+#' Update \link{f7Messages} on the server side.
+#'
+#' @param id Reference to link{f7Messages} container.
+#' @param showTyping Show typing when a new message comes. Default to FALSE.
+#' @param messages List of \link{f7Messages}.
+#' @param session SHiny session object
+#'
+#' @export
+f7AddMessages <- function(id, messages, showTyping = FALSE,
+                          session = shiny::getDefaultReactiveDomain()) {
+
+  message <- list(
+    value = jsonlite::toJSON(
+      messages,
+      auto_unbox = TRUE,
+      pretty = TRUE,
+      json_verbatim = TRUE
+    ),
+    showTyping = showTyping
+  )
+
+  session$sendInputMessage(id, message)
 }

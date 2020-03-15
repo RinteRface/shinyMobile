@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a f7Message — f7Message • shinyMobile</title>
+<title>Update <a href='f7Messages.html'>f7Messages</a> on the server side. — f7AddMessages • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a f7Message — f7Message" />
-<meta property="og:description" content="Create a f7Message" />
+<meta property="og:title" content="Update <a href='f7Messages.html'>f7Messages</a> on the server side. — f7AddMessages" />
+<meta property="og:description" content="Update f7Messages on the server side." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -161,75 +161,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a f7Message</h1>
+    <h1>Update <a href='f7Messages.html'>f7Messages</a> on the server side.</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Messages.R'><code>R/f7Messages.R</code></a></small>
-    <div class="hidden name"><code>f7Message.Rd</code></div>
+    <div class="hidden name"><code>f7AddMessages.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a f7Message</p>
+    <p>Update <a href='f7Messages.html'>f7Messages</a> on the server side.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Message</span>(
-  <span class='no'>text</span>,
-  <span class='no'>name</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sent"</span>, <span class='st'>"received"</span>),
-  <span class='kw'>header</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>footer</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>avatar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>textHeader</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>textFooter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>image</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>imageSrc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cssClass</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+    <pre class="usage"><span class='fu'>f7AddMessages</span>(
+  <span class='no'>id</span>,
+  <span class='no'>messages</span>,
+  <span class='kw'>showTyping</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>text</th>
-      <td><p>Message text.</p></td>
+      <th>id</th>
+      <td><p>Reference to linkf7Messages container.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>Sender name.</p></td>
+      <th>messages</th>
+      <td><p>List of <a href='f7Messages.html'>f7Messages</a>.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Message type - sent or received.</p></td>
+      <th>showTyping</th>
+      <td><p>Show typing when a new message comes. Default to FALSE.</p></td>
     </tr>
     <tr>
-      <th>header</th>
-      <td><p>Single message header.</p></td>
-    </tr>
-    <tr>
-      <th>footer</th>
-      <td><p>Single message footer.</p></td>
-    </tr>
-    <tr>
-      <th>avatar</th>
-      <td><p>Sender avatar URL string.</p></td>
-    </tr>
-    <tr>
-      <th>textHeader</th>
-      <td><p>Message text header.</p></td>
-    </tr>
-    <tr>
-      <th>textFooter</th>
-      <td><p>Message text footer.</p></td>
-    </tr>
-    <tr>
-      <th>image</th>
-      <td><p>Message image HTML string, e.g. &lt;img src="path/to/image"&gt;. Can be used instead of imageSrc parameter.</p></td>
-    </tr>
-    <tr>
-      <th>imageSrc</th>
-      <td><p>Message image URL string. Can be used instead of image parameter.</p></td>
-    </tr>
-    <tr>
-      <th>cssClass</th>
-      <td><p>Additional CSS class to set on message HTML element.</p></td>
+      <th>session</th>
+      <td><p>SHiny session object</p></td>
     </tr>
     </table>
 
