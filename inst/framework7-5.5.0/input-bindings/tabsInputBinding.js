@@ -9,7 +9,12 @@ $.extend(f7TabsBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var activeTab = $(el).find(".tab-active");
+    var activeTab;
+    if ($(el).hasClass('standalone')) {
+      activeTab = $(el).find(".tab-active");
+    } else {
+      activeTab = $(el).find(".page-content.tab-active");
+    }
     // below to handle hidden tabs
     // the android highlight bar must not be
     // present since hidden tabs are not part of

@@ -19,6 +19,6 @@ test_that("dependencies", {
 
   expect_length(deps, 2)
   expect_equal(deps[[1]]$name, "framework7")
-  expect_equal(deps[[1]]$version, "5.3.0")
+  expect_equal(deps[[1]]$version, "5.5.0")
   expect_equal(deps[[1]]$stylesheet, "devices/devices.min.css")
 })
