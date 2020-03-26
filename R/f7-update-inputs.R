@@ -928,7 +928,7 @@ updateF7AutoComplete <- function(inputId, value =  NULL,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
-      value = value
+      value = I(value)
     )
   )
   session$sendInputMessage(inputId, message)
