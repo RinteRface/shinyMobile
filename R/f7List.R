@@ -351,3 +351,62 @@ f7ListIndex <- function(..., id) {
 #'
 #' @export
 f7ListIndexItem <- htmltools::tags$li
+
+
+
+
+#' High performance list component
+#'
+#' Use if many components in \link{f7List}
+#'
+#' @param id Virtual list unique id.
+#' @param items List items.
+#' @param rowsBefore Amount of rows (items) to be rendered before current
+#' screen scroll position. By default it is equal to double amount of
+#' rows (items) that fit to screen.
+#' @param rowsAfter Amount of rows (items) to be rendered after current
+#' screen scroll position. By default it is equal to the amount of rows
+#' (items) that fit to screen.
+#' @param itemTemplate Template7 string template or Template7 compiled
+#' template that used to render single item. Template should contain full HTML
+#' layout for single item, including wrapping <li></li> tags
+#' @param cache Disable or enable DOM cache for already rendered list items.
+#' In this case each item will be rendered only once and all futher
+#' manipulations will be with DOM element. It is useful if your list
+#' items have some user interaction elements (like form elements or swipe outs)
+#' or could be modified.
+#'
+#' @export
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#' }
+f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
+                          itemTemplate, cache = TRUE) {
+
+  config <- dropNulls(list(
+    items = items,
+    rowsBefore = rowsBefore,
+    rowsAfter = rowsAfter,
+    cache = cache
+  ))
+
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::tags$div(
+      id = id,
+      shiny::tags$script(
+        type = "application/json",
+        `data-for` = id,
+        jsonlite::toJSON(
+          x = config,
+          auto_unbox = TRUE,
+          json_verbatim = TRUE
+        )
+      ),
+      class = "list virtual-list media-list searchbar-found"
+    )
+  )
+}
