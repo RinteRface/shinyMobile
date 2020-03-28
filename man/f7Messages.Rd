@@ -84,7 +84,7 @@ if (interactive()) {
         id = "mymessages",
         list(
          f7Message(
-          text = "Some shit",
+          text = "Some message",
           name = name,
           type = "received",
           avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
