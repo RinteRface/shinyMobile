@@ -58,7 +58,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = TRUE) {
+f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = FALSE) {
   call_ <- as.list(match.call())
   if (is.null(call_$old)) {
     warning(
