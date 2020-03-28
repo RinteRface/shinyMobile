@@ -3,11 +3,6 @@ tabCards <- f7Tab(
   icon = f7Icon("card", f7Badge(8, color = "green")),
   active = FALSE,
 
-  f7Align(
-    side = "center",
-    h1("New text containers and card components")
-  ),
-
   f7BlockTitle(title = "f7Block") %>% f7Align(side = "center"),
   f7Block(
     f7BlockHeader(text = "Header"),

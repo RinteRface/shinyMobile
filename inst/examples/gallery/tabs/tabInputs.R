@@ -3,11 +3,6 @@ tabInputs <- f7Tab(
   icon = f7Icon("rocket_fill"),
   active = TRUE,
 
-  f7Align(
-    side = "center",
-    h1("miniUI 2.0 brings new inputs for iOs and android")
-  ),
-
   f7BlockTitle(title = "f7Text input with validation") %>% f7Align(side = "center"),
   f7Text(
     inputId = "text",

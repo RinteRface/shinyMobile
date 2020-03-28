@@ -2,11 +2,6 @@ tabInfo <- f7Tab(
   tabName = "Popups",
   icon = f7Icon("info_round_fill"),
 
-  f7Align(
-    side = "center",
-    h1("miniUI 2.0 brings interesting popups windows")
-  ),
-
   # # pull to refresh
   # f7BlockTitle(title = "Pull to refresh") %>% f7Align(side = "center"),
   # f7Block(

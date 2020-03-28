@@ -4,11 +4,6 @@ tabBtns <- f7Tab(
   active = FALSE,
 
   # FABS
-  f7Align(
-    side = "center",
-    h1("miniUI 2.0 brings brand new containers for actionButtons: f7Fabs")
-  ),
-
   f7Fabs(
     position = "right-top",
     color = "yellow",
@@ -38,11 +33,6 @@ tabBtns <- f7Tab(
 
 
   # segments
-  f7Align(
-    side = "center",
-    h1("miniUI 2.0 brings new buttons containers")
-  ),
-
   f7Segment(
     container = "row",
     f7Button(color = "blue", label = "My button", fill = FALSE),
