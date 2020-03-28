@@ -418,6 +418,16 @@ shinyApp(
       )
     })
 
+    # preloaders
+    observeEvent(input$showLoader, {
+      f7ShowPreloader(target = "#preloaderPlot", color = "blue")
+      Sys.sleep(2)
+      f7HidePreloader(target = "#preloaderPlot")
+    })
+    output$preloaderPlot <- renderPlot({
+      hist(rnorm(100))
+    })
+
     # pull to refresh
     # observeEvent(input$ptr, {
     #

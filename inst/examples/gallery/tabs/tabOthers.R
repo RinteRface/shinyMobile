@@ -226,7 +226,12 @@ tabOthers <- f7Tab(
       inputId = "goPanel",
       label = "Toggle left panel"
     )
-  )
+  ),
+  br(),
+
+  # preloaders
+  f7BlockTitle(title = "f7ShowPreloader/f7HidePreloader") %>% f7Align(side = "center"),
+  f7Card(plotOutput("preloaderPlot"), f7Button("showLoader", "Show loader"))
 
 )
 
