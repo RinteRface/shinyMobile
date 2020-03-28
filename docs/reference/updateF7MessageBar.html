@@ -231,7 +231,7 @@
 
     <span class='no'>output</span>$<span class='no'>messageContent</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>mymessagebar</span>)
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
         <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='st'>"Message Content"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>),
         <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>input</span>$<span class='no'>mymessagebar</span>)
       )

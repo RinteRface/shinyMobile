@@ -170,7 +170,7 @@
     <p>Build a Framework7 page with tab layout</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7TabLayout</span>(<span class='no'>...</span>, <span class='no'>navbar</span>, <span class='kw'>panels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>appbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>f7TabLayout</span>(<span class='no'>...</span>, <span class='no'>navbar</span>, <span class='kw'>messagebar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>panels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>appbar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,9 +184,13 @@
       <td><p>Slot for <a href='f7Navbar.html'>f7Navbar</a>.</p></td>
     </tr>
     <tr>
+      <th>messagebar</th>
+      <td><p>Slot for <a href='f7MessageBar.html'>f7MessageBar</a>.</p></td>
+    </tr>
+    <tr>
       <th>panels</th>
       <td><p>Slot for <a href='f7Panel.html'>f7Panel</a>.
-Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple panels.</p></td>
+Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if multiple panels.</p></td>
     </tr>
     <tr>
       <th>appbar</th>
@@ -216,7 +220,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple
              "</span>
          )
        ),
-       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
          <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
          <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
        ),
@@ -248,7 +252,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple
                  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>100</span>
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot1"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tapHold"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
                )
@@ -275,7 +279,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple
                  )
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"orange"</span>)
                )
@@ -301,7 +305,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple
                  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
                )

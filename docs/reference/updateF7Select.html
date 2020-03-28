@@ -206,14 +206,14 @@
        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"updateF7Select"</span>),
        <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
          <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"update"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update select"</span>),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
          <span class='fu'><a href='f7Select.html'>f7Select</a></span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"variable"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose a variable:"</span>,
           <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>mtcars</span>)[-<span class='fl'>1</span>],
           <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"hp"</span>
          ),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
        )
      )
    ),

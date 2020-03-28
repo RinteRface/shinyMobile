@@ -277,7 +277,7 @@ In case of auto will open in sheet modal on small screens and in popover on larg
           <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"2019-08-24"</span>
         ),
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectDate"</span>),
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectDate"</span>),
         <span class='fu'>f7DatePicker</span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"multipleDates"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose multiple dates"</span>,
@@ -285,14 +285,14 @@ In case of auto will open in sheet modal on small screens and in popover on larg
           <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
         ),
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectMultipleDates"</span>),
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectMultipleDates"</span>),
         <span class='fu'>f7DatePicker</span>(
           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
           <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Choose a date"</span>,
           <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
         ),
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectDefault"</span>)
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"selectDefault"</span>)
       )
     ),
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {

@@ -198,12 +198,12 @@
  <span class='no'>subtabs_ui</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>id</span>) {
    <span class='no'>ns</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/NS.html'>NS</a></span>(<span class='no'>id</span>)
 
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
      <span class='fu'><a href='f7Toggle.html'>f7Toggle</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"updateSubTab"</span>), <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Update SubTab"</span>, <span class='kw'>checked</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>),
      <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"subtabdemo"</span>),
        <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"strong"</span>,
-       <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+       <span class='kw'>animated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"SubTab 1"</span>, <span class='st'>"SubTab 1"</span>),
        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"SubTab 2"</span>, <span class='st'>"SubTab 2"</span>, <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
        <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(<span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"SubTab 3"</span>, <span class='st'>"SubTab 3"</span>)
@@ -226,8 +226,8 @@
        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(
          <span class='kw'>title</span> <span class='kw'>=</span>
            <span class='fu'><a href='f7Flex.html'>f7Flex</a></span>(
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Selected Tab:"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"selectedTab"</span>))),
-             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Selected Subtab:"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"selectedSubTab"</span>)))
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Selected Tab:"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"selectedTab"</span>))),
+             <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Selected Subtab:"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"selectedSubTab"</span>)))
            )
          ,
          <span class='kw'>subNavbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7SubNavbar.html'>f7SubNavbar</a></span>(
@@ -256,7 +256,7 @@
        <span class='no'>selected</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='no'>input</span>$<span class='no'>updateTab</span>, <span class='st'>"Tab 1"</span>, <span class='st'>"Tab 2"</span>)
        <span class='fu'>updateF7Tabs</span>(<span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"tabdemo"</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='no'>selected</span>)
      })
-     <span class='no'>subtab</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>subtabs</span>, <span class='st'>"subtabs1"</span>)
+     <span class='no'>subtab</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(<span class='no'>subtabs</span>, <span class='st'>"subtabs1"</span>)
      <span class='no'>output</span>$<span class='no'>selectedSubTab</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>(<span class='fu'>subtab</span>())
    }
  )
@@ -290,18 +290,18 @@
           <span class='kw'>active</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Main tab'</span>,
           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>'document_text'</span>),
-          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>"This is the first tab."</span>),
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>h1</a></span>(<span class='st'>"This is the first tab."</span>),
           <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span><span class='st'>'goto'</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>'Go to hidden tab'</span>)
         ),
         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Second tab'</span>,
           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>'bolt_horizontal'</span>),
-          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>'This is the second tab.'</span>)
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>h1</a></span>(<span class='st'>'This is the second tab.'</span>)
         ),
         <span class='fu'><a href='f7Tab.html'>f7Tab</a></span>(
           <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>'Hidden tab'</span>,
           <span class='kw'>hidden</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>h1</a></span>(<span class='st'>'This is a tab that does not appear in the tab menu.
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>h1</a></span>(<span class='st'>'This is a tab that does not appear in the tab menu.
           Yet, you can still access it.'</span>)
         )
       )
