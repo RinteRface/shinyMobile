@@ -80,6 +80,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Fix issue in `f7Tabs()`: if one put `f7Tabs()` inside a `f7Tab()` in a parent `f7Tabs()`, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset). 
 - Fix issue with `f7InsertTab()` and `f7RemoveTab()` when swipeable is TRUE
 - trigger shown event for `f7Tabs()` on click. This allows to use `f7Tabs()`
 without swipeable and animated

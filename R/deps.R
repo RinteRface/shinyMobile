@@ -116,7 +116,7 @@ html_dependencies_f7Icons <- function(old = TRUE) {
 
 # deps for pwa compat
 addPWADeps <- function(icon, favicon, manifest) {
-  depsPath <- "framework7-5.3.0/pwacompat/"
+  depsPath <- "framework7-5.5.0/pwacompat/"
   shiny::tagList(
     # manifest
     shiny::singleton(
