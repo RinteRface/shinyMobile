@@ -47,39 +47,6 @@ tabOthers <- f7Tab(
 
   br(),
 
-  # Messages
-  f7BlockTitle(title = "f7Messages") %>% f7Align(side = "center"),
-  f7Messages(
-    id = "messagelist",
-    f7Message(
-      "Lorem ipsum dolor sit amet,
-           consectetur adipiscing elit.
-           Duo Reges: constructio interrete",
-      src = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg",
-      author = "David",
-      date = "2019-09-12",
-      state = "received",
-      type = "text"
-    ),
-    f7Message(
-      "https://cdn.framework7.io/placeholder/cats-200x260-4.jpg",
-      src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-      author = "Lia",
-      date = NULL,
-      state = "sent",
-      type = "img"
-    ),
-    f7Message(
-      "Hi Bro",
-      src = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
-      author = NULL,
-      date = "2019-08-15",
-      state = "sent",
-      type = "text"
-    )
-  ),
-  br(),
-
   # Badges
   f7BlockTitle(title = "f7Badge") %>% f7Align(side = "center"),
   f7Block(

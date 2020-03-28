@@ -34,6 +34,7 @@ shinyApp(
         f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
         f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
       ),
+      messagebar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
       panels = tagList(
         f7Panel(
           inputId = "panelLeft",
@@ -76,6 +77,17 @@ shinyApp(
           Shiny.addCustomMessageHandler('text-color', function(message) {
             $('#colorPickerVal').css('background-color', message);
           });
+
+          // toggle message bar based on the currently selected tab
+          Shiny.addCustomMessageHandler('toggleMessagebar', function(message) {
+            if (message === 'chat') {
+              $('#mymessagebar').show();
+              $('.toolbar.tabLinks').hide();
+            } else {
+              $('#mymessagebar').hide();
+              $('.toolbar.tabLinks').show();
+            }
+          });
         });
         "
       ),
@@ -94,6 +106,49 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
+
+    # toggle message bar: should only be dislayed when on the messages tab
+    observeEvent(input$tabset, {
+      session$sendCustomMessage(type = "toggleMessagebar", input$tabset)
+    })
+
+    # user send new message
+    observeEvent(input[["mymessagebar-send"]], {
+      f7AddMessages(
+        id = "mymessages",
+        list(
+          f7Message(
+            text = input$mymessagebar,
+            name = "David",
+            type = "sent",
+            header = "Message Header",
+            footer = "Message Footer",
+            textHeader = "Text Header",
+            textFooter = "text Footer",
+            avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          )
+        )
+      )
+    })
+
+    # fake to receive random messages
+    observe({
+      invalidateLater(5000)
+      names <- c("Victor", "John")
+      name <- sample(names, 1)
+
+      f7AddMessages(
+        id = "mymessages",
+        list(
+          f7Message(
+            text = "Message",
+            name = name,
+            type = "received",
+            avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+          )
+        )
+      )
+    })
 
     # trigger for login
     trigger <- reactive({

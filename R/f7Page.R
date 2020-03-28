@@ -168,6 +168,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'
 #' @param ... Slot for \link{f7Tabs}.
 #' @param navbar Slot for \link{f7Navbar}.
+#' @param messagebar Slot for \link{f7MessageBar}.
 #' @param panels Slot for \link{f7Panel}.
 #' Wrap in \link[shiny]{tagList} if multiple panels.
 #' @param appbar Slot for \link{f7Appbar}.
@@ -317,7 +318,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
+f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL) {
 
   shiny::tagList(
     # appbar goes here
@@ -330,6 +331,7 @@ f7TabLayout <- function(..., navbar, panels = NULL, appbar = NULL) {
       # to swipe properly. It is not mentionned
       # in the doc. Also necessary to adequately
       # apply the dark mode
+      messagebar,
       shiny::tags$div(
         class = "page",
         # top navbar goes here

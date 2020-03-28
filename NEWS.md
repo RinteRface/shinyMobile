@@ -23,6 +23,7 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- new messagebar parameter to `f7TabLayout()`. This allows to use the `f7Messagebar()` in a tabs layout configuration. 
 - new `f7ValidateInput()` function to validate input from the server side (similar to
 shinyFeedback but internal to shinyMobile and without dependencies)
 - new `f7Login()` and `updateF7Login()` feature to provide UI boilerplates
