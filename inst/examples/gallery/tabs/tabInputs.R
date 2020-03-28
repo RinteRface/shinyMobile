@@ -8,21 +8,33 @@ tabInputs <- f7Tab(
     h1("miniUI 2.0 brings new inputs for iOs and android")
   ),
 
-  f7BlockTitle(title = "f7Text input") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7Text input with validation") %>% f7Align(side = "center"),
   f7Text(
     inputId = "text",
     label = "Your text",
     value = "some text",
-    placeholder = "Your text here"
+    placeholder = "Don't leave me empty!"
   ),
   verbatimTextOutput("text"),
   br(),
 
-  f7BlockTitle(title = "f7Password input") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7TextArea input") %>% f7Align(side = "center"),
+  f7TextArea(
+    inputId = "textarea",
+    label = "Text Area",
+    value = "Lorem ipsum dolor sit amet, consectetur
+       adipiscing elit, sed do eiusmod tempor incididunt ut
+       labore et dolore magna aliqua",
+    placeholder = "Your text here",
+    resize = TRUE
+  ),
+  textOutput("textarea"),
+
+  f7BlockTitle(title = "f7Password input with validation") %>% f7Align(side = "center"),
   f7Password(
     inputId = "password",
     label = "Password:",
-    placeholder = "Your password here"
+    placeholder = "Expect a number"
   ),
   verbatimTextOutput("password"),
   br(),

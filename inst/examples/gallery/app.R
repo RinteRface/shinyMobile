@@ -107,6 +107,16 @@ shinyApp(
   ),
   server = function(input, output, session) {
 
+    # input validation
+    observe({
+      f7ValidateInput(inputId = "text", info = "Whatever")
+      f7ValidateInput(
+        inputId = "password",
+        pattern = "[0-9]*",
+        error = "Only numbers please!"
+      )
+    })
+
     # toggle message bar: should only be dislayed when on the messages tab
     observeEvent(input$tabset, {
       session$sendCustomMessage(type = "toggleMessagebar", input$tabset)
@@ -164,6 +174,7 @@ shinyApp(
 
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
+    output$textarea <- renderPrint(input$textarea)
     output$slider <- renderPrint(input$slider)
     output$sliderRange <- renderPrint(input$sliderRange)
     output$stepper <- renderPrint(input$stepper)
