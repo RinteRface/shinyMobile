@@ -38,7 +38,7 @@ $.extend(f7VirtualListBinding, {
       } else {
         template = '<li>' +
   '<a class="item-link item-content external" href="url" target="_blank">' +
-    '<div class="item-media"><img src={{media}}></div>' +
+    media +
     '<div class="item-inner">' +
       '<div class="item-title-row">' +
         '<div class="item-title">' +
