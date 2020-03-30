@@ -497,3 +497,57 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
     )
   )
 }
+
+
+
+
+#' Update a \link{f7VirtualList} on the server side
+#'
+#' This function wraps all methods from \url{https://framework7.io/docs/virtual-list.html}
+#'
+#' @param id \link{f7VirtualList} to update.
+#' @param action Action to perform. See \url{https://framework7.io/docs/virtual-list.html}.
+#' @param item If action is one of appendItem, prependItem, replaceItem, insertItemBefore.
+#' @param items If action is one of appendItems, prependItems, replaceAllItems.
+#' @param index If action is one of replaceItem, insertItemBefore, deleteItem.
+#' @param indexes If action if one of filterItems, deleteItems.
+#' @param old_index If action is moveItem.
+#' @param new_index If action is moveItem.
+#' @param session Shiny session.
+#'
+#' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#' }
+updateF7VirtualList <- function(id, action = c("appendItem", "appendItems", "prependItem",
+                                         "prependItems", "replaceItem", "replaceAllItems",
+                                         "moveItem", "insertItemBefore", "filterItems",
+                                         "deleteItem", "deleteAllItems", "scrollToItem"),
+                                item = NULL, items = NULL, index = NULL, indexes = NULL,
+                                old_index = NULL, new_index = NULL,
+                              session = shiny::getDefaultReactiveDomain()) {
+
+  # JavaScript starts from 0!
+  index <- index - 1
+  indexes <- indexes - 1
+  oldIndex <- old_index - 1
+  newIndex <- new_index - 1
+
+  message <- dropNulls(
+    list(
+      action = action,
+      item = item,
+      items = items,
+      index = index,
+      indexes = indexes,
+      oldIndex = oldIndex,
+      newIndex =newIndex
+    )
+  )
+
+  session$sendInputMessage(inputId = id, message)
+}

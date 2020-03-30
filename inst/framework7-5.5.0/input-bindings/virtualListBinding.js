@@ -78,21 +78,73 @@ $.extend(f7VirtualListBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    //return app.virtualList.get($(el)).items;
+    var vl = app.virtualList.get($(el));
+    return {
+      length: vl.items.length,
+      current_from: vl.currentFromIndex,
+      current_to: vl.currentToIndex,
+      reach_end: vl.reachEnd
+    };
   },
 
-  // see updatef7Messages
+  // see updateF7VirtualList
   setValue: function(el, value) {
-
+    var vl = app.virtualList.get($(el));
+    switch (value.action) {
+      case 'appendItem':
+        vl.appendItem(value.item);
+        break;
+      case 'prependItem':
+        vl.prependItem(value.item);
+        break;
+      case 'appendItems':
+        vl.appendItems(value.items);
+        break;
+      case 'prependItems':
+        vl.prependItems(value.items);
+        break;
+      case 'replaceItem':
+        vl.replaceItem(value.index, value.item);
+        break;
+      case 'replaceAllItems':
+        vl.replaceAllItems(value.items);
+        break;
+      case 'moveItem':
+        vl.moveItem(value.oldIndex, value.newIndex);
+        break;
+      case 'insertItemBefore':
+        vl.insertItemBefore(value.index, value.item);
+        break;
+      case 'filterItems':
+        if (value.indexes === undefined) {
+          vl.resetFilter();
+        } else {
+         vl.filterItems(value.indexes);
+        }
+        break;
+      case 'deleteItem':
+        vl.deleteItem(value.index);
+        break;
+      case 'deleteAllItems':
+        vl.deleteAllItems(value.indexes);
+        break;
+      case 'scrollToItem':
+        vl.scrollToItem(value.index);
+        break;
+      default:
+        //console.log('');
+    }
+    vl.update();
   },
 
-  // see updatef7Messages
+  // see updateF7VirtualList
   receiveMessage: function(el, data) {
-
+    this.setValue(el, data);
   },
 
   subscribe: function(el, callback) {
-    $(el).on("change.f7VirtualListBinding", function(e) {
+    $(el).on("itemsAfterInsert.f7VirtualListBinding", function(e) {
+      console.log('Callback!');
       callback();
     });
   },
