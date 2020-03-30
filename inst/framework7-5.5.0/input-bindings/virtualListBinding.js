@@ -81,8 +81,8 @@ $.extend(f7VirtualListBinding, {
     var vl = app.virtualList.get($(el));
     return {
       length: vl.items.length,
-      current_from: vl.currentFromIndex,
-      current_to: vl.currentToIndex,
+      current_from: vl.currentFromIndex + 1,
+      current_to: vl.currentToIndex + 1,
       reach_end: vl.reachEnd
     };
   },
@@ -90,6 +90,7 @@ $.extend(f7VirtualListBinding, {
   // see updateF7VirtualList
   setValue: function(el, value) {
     var vl = app.virtualList.get($(el));
+    vl.resetFilter();
     switch (value.action) {
       case 'appendItem':
         vl.appendItem(value.item);
@@ -116,11 +117,7 @@ $.extend(f7VirtualListBinding, {
         vl.insertItemBefore(value.index, value.item);
         break;
       case 'filterItems':
-        if (value.indexes === undefined) {
-          vl.resetFilter();
-        } else {
          vl.filterItems(value.indexes);
-        }
         break;
       case 'deleteItem':
         vl.deleteItem(value.index);
