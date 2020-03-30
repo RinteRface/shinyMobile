@@ -4,7 +4,7 @@
 \alias{f7Select}
 \title{Create an f7 select input}
 \usage{
-f7Select(inputId, label, choices, selected = NULL)
+f7Select(inputId, label, choices, selected = NULL, width = NULL)
 }
 \arguments{
 \item{inputId}{Select input id.}
