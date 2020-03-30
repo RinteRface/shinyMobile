@@ -4,19 +4,12 @@
 \alias{f7VirtualList}
 \title{High performance list component}
 \usage{
-f7VirtualList(
-  id,
-  items,
-  rowsBefore = NULL,
-  rowsAfter = NULL,
-  itemTemplate,
-  cache = TRUE
-)
+f7VirtualList(id, items, rowsBefore = NULL, rowsAfter = NULL, cache = TRUE)
 }
 \arguments{
 \item{id}{Virtual list unique id.}
 
-\item{items}{List items.}
+\item{items}{List items. Slot for \link{f7VirtualListItem}.}
 
 \item{rowsBefore}{Amount of rows (items) to be rendered before current
 screen scroll position. By default it is equal to double amount of
@@ -25,10 +18,6 @@ rows (items) that fit to screen.}
 \item{rowsAfter}{Amount of rows (items) to be rendered after current
 screen scroll position. By default it is equal to the amount of rows
 (items) that fit to screen.}
-
-\item{itemTemplate}{Template7 string template or Template7 compiled
-template that used to render single item. Template should contain full HTML
-layout for single item, including wrapping <li></li> tags}
 
 \item{cache}{Disable or enable DOM cache for already rendered list items.
 In this case each item will be rendered only once and all futher
@@ -43,6 +32,38 @@ Use if many components in \link{f7List}
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
+ shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Virtual Lists",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      # main content
+      f7VirtualList(
+        id = "vlist",
+        rowsBefore = 2,
+        rowsAfter = 2,
+        items = lapply(1:20000, function(i) {
+          f7VirtualListItem(
+            title = paste("Title", i),
+            subtitle = paste("Subtitle", i),
+            header = paste("Header", i),
+            footer = paste("Footer", i),
+            right = paste("Right", i),
+            content = i,
+            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg",
+            url = NULL
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
 
+  }
+ )
 }
 }

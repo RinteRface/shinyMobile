@@ -10,6 +10,52 @@ $.extend(f7VirtualListBinding, {
 
     config.el = '#' + id;
 
+    var template;
+    var media;
+    if (config.items[0].media.length > 0) {
+      media = `<div class="item-media"><img src='${config.items[0].media}'></div>`;
+    } else {
+      media = '';
+    }
+    if (config.items[0].url === undefined) {
+        template = '<li>' +
+  '<div class="item-content">' +
+    media +
+    '<div class="item-inner">' +
+      '<div class="item-title-row">' +
+        '<div class="item-title">' +
+          '<div class="item-header">{{header}}</div>' +
+          '{{title}}' +
+          '<div class="item-footer">{{footer}}</div>' +
+        '</div>' +
+        '<div class="item-after">{{right}}</div>' +
+      '</div>' +
+      '<div class="item-subtitle">{{subtitle}}</div>' +
+      '<div class="item-text">{{content}}</div>' +
+    '</div>' +
+  '</div>' +
+'</li>';
+      } else {
+        template = '<li>' +
+  '<a class="item-link item-content external" href="url" target="_blank">' +
+    '<div class="item-media"><img src={{media}}></div>' +
+    '<div class="item-inner">' +
+      '<div class="item-title-row">' +
+        '<div class="item-title">' +
+          '<div class="item-header">{{header}}</div>' +
+          '{{title}}' +
+          '<div class="item-footer">{{footer}}</div>' +
+        '</div>' +
+        '<div class="item-after">{{right}}</div>' +
+      '</div>' +
+      '<div class="item-subtitle">{{subtitle}}</div>' +
+      '<div class="item-text">{{content}}</div>' +
+    '</div>' +
+  '</a>' +
+'</li>';
+      }
+    config.itemTemplate = template;
+
     // Custom search function for searchbar
     config.searchAll = function (query, items) {
       var found = [];
@@ -18,6 +64,9 @@ $.extend(f7VirtualListBinding, {
       }
       return found; //return array with mathced indexes
     };
+
+    // Item height
+  config.height = app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46);
 
     // feed the create method
     app.virtualList.create(config);
@@ -29,7 +78,7 @@ $.extend(f7VirtualListBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.virtualList.get($(el));
+    //return app.virtualList.get($(el)).items;
   },
 
   // see updatef7Messages

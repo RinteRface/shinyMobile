@@ -360,16 +360,13 @@ f7ListIndexItem <- htmltools::tags$li
 #' Use if many components in \link{f7List}
 #'
 #' @param id Virtual list unique id.
-#' @param items List items.
+#' @param items List items. Slot for \link{f7VirtualListItem}.
 #' @param rowsBefore Amount of rows (items) to be rendered before current
 #' screen scroll position. By default it is equal to double amount of
 #' rows (items) that fit to screen.
 #' @param rowsAfter Amount of rows (items) to be rendered after current
 #' screen scroll position. By default it is equal to the amount of rows
 #' (items) that fit to screen.
-#' @param itemTemplate Template7 string template or Template7 compiled
-#' template that used to render single item. Template should contain full HTML
-#' layout for single item, including wrapping <li></li> tags
 #' @param cache Disable or enable DOM cache for already rendered list items.
 #' In this case each item will be rendered only once and all futher
 #' manipulations will be with DOM element. It is useful if your list
@@ -381,10 +378,42 @@ f7ListIndexItem <- htmltools::tags$li
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(
+#'         title = "Virtual Lists",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       # main content
+#'       f7VirtualList(
+#'         id = "vlist",
+#'         rowsBefore = 2,
+#'         rowsAfter = 2,
+#'         items = lapply(1:20000, function(i) {
+#'           f7VirtualListItem(
+#'             title = paste("Title", i),
+#'             subtitle = paste("Subtitle", i),
+#'             header = paste("Header", i),
+#'             footer = paste("Footer", i),
+#'             right = paste("Right", i),
+#'             content = i,
+#'             media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg",
+#'             url = NULL
+#'           )
+#'         })
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output) {
 #'
+#'   }
+#'  )
 #' }
 f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
-                          itemTemplate, cache = TRUE) {
+                          cache = TRUE) {
 
   config <- dropNulls(list(
     items = items,
@@ -407,6 +436,32 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
         )
       ),
       class = "list virtual-list media-list searchbar-found"
+    )
+  )
+}
+
+
+#' Virtual List item
+#'
+#' Item component for \link{f7VirtualList}
+#'
+#' @inheritParams f7ListItem
+#' @note For now, media must be only the url to a given image. Does not accept,
+#' anything else.
+#' @export
+f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
+                              url = NULL, media = NULL, right = NULL) {
+
+  dropNulls(
+    list(
+      content = ...,
+      title = title,
+      subtitle = subtitle,
+      header = header,
+      footer = footer,
+      url = url,
+      media = as.character(media), # avoid issue on JS side
+      right = right
     )
   )
 }
