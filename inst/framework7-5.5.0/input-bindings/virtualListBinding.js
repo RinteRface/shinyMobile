@@ -3,6 +3,13 @@ var f7VirtualListBinding = new Shiny.InputBinding();
 
 $.extend(f7VirtualListBinding, {
 
+  // decode html so that images tag are converted to strings
+  decodeHTML: function (html) {
+    var txt = document.createElement('textarea');
+	  txt.innerHTML = html;
+	  return txt.value;
+  },
+
   initialize: function(el) {
     var id = $(el).attr('id');
     var config = $(el).find("script[data-for='" + id + "']");
@@ -10,17 +17,18 @@ $.extend(f7VirtualListBinding, {
 
     config.el = '#' + id;
 
-    var template;
-    var media;
-    if (config.items[0].media.length > 0) {
-      media = `<div class="item-media"><img src='${config.items[0].media}'></div>`;
-    } else {
-      media = '';
+    // treat all item images
+    for (var item of config.items) {
+      if (item.media.length > 0) {
+        item.media = '<div class="item-media">' + this.decodeHTML(item.media) + '</div>';
+      }
     }
+
+    var template;
     if (config.items[0].url === undefined) {
         template = '<li>' +
   '<div class="item-content">' +
-    media +
+    '{{media}}' +
     '<div class="item-inner">' +
       '<div class="item-title-row">' +
         '<div class="item-title">' +
@@ -38,7 +46,7 @@ $.extend(f7VirtualListBinding, {
       } else {
         template = '<li>' +
   '<a class="item-link item-content external" href="url" target="_blank">' +
-    '<div class="item-media"><img src={{media}}></div>' +
+    '{{media}}' +
     '<div class="item-inner">' +
       '<div class="item-title-row">' +
         '<div class="item-title">' +
@@ -91,8 +99,12 @@ $.extend(f7VirtualListBinding, {
   setValue: function(el, value) {
     var vl = app.virtualList.get($(el));
     vl.resetFilter();
+
     switch (value.action) {
       case 'appendItem':
+        var temp = `<div class="item-media">${value.item.media}</div>`;
+        value.item.media = $(temp);
+        console.log(value.item);
         vl.appendItem(value.item);
         break;
       case 'prependItem':
@@ -131,6 +143,7 @@ $.extend(f7VirtualListBinding, {
       default:
         //console.log('');
     }
+
     vl.update();
     $(el).trigger('change');
   },

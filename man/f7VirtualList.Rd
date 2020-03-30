@@ -54,7 +54,7 @@ if (interactive()) {
             footer = paste("Footer", i),
             right = paste("Right", i),
             content = i,
-            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg",
+            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"),
             url = NULL
           )
         })

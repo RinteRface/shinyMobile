@@ -83,7 +83,7 @@ if (interactive()) {
              footer = paste("Footer", i),
              right = paste("Right", i),
              content = i,
-             media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
            )
          })
        )
@@ -142,7 +142,7 @@ if (interactive()) {
            title = "New Item Title",
            right = "New Item Right",
            content = "New Item Content",
-           media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
          )
        )
      })
@@ -156,7 +156,7 @@ if (interactive()) {
              title = paste("Title", i),
              right = paste("Right", i),
              content = i,
-             media = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg"
+             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
            )
          })
        )
@@ -170,7 +170,7 @@ if (interactive()) {
          item = f7VirtualListItem(
            title = "New Item Title",
            content = "New Item Content",
-           media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
          )
        )
      })
@@ -183,7 +183,7 @@ if (interactive()) {
          item = f7VirtualListItem(
            title = "Replacement",
            content = "Replacement Content",
-           media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
          )
        )
      })

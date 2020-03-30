@@ -400,7 +400,7 @@ f7ListIndexItem <- htmltools::tags$li
 #'             footer = paste("Footer", i),
 #'             right = paste("Right", i),
 #'             content = i,
-#'             media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg",
+#'             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"),
 #'             url = NULL
 #'           )
 #'         })
@@ -478,8 +478,6 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 #' Item component for \link{f7VirtualList}
 #'
 #' @inheritParams f7ListItem
-#' @note For now, media must be only the url to a given image. Does not accept,
-#' anything else.
 #' @export
 f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                               url = NULL, media = NULL, right = NULL) {
@@ -560,7 +558,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'              footer = paste("Footer", i),
 #'              right = paste("Right", i),
 #'              content = i,
-#'              media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+#'              media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
 #'            )
 #'          })
 #'        )
@@ -619,7 +617,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'            title = "New Item Title",
 #'            right = "New Item Right",
 #'            content = "New Item Content",
-#'            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
 #'          )
 #'        )
 #'      })
@@ -633,7 +631,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'              title = paste("Title", i),
 #'              right = paste("Right", i),
 #'              content = i,
-#'              media = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg"
+#'              media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
 #'            )
 #'          })
 #'        )
@@ -647,7 +645,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'          item = f7VirtualListItem(
 #'            title = "New Item Title",
 #'            content = "New Item Content",
-#'            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
 #'          )
 #'        )
 #'      })
@@ -660,7 +658,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'          item = f7VirtualListItem(
 #'            title = "Replacement",
 #'            content = "Replacement Content",
-#'            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
 #'          )
 #'        )
 #'      })
