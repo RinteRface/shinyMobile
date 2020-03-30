@@ -135,6 +135,7 @@ $.extend(f7VirtualListBinding, {
         //console.log('');
     }
     vl.update();
+    $(el).trigger('change');
   },
 
   // see updateF7VirtualList
@@ -143,8 +144,7 @@ $.extend(f7VirtualListBinding, {
   },
 
   subscribe: function(el, callback) {
-    $(el).on("itemsAfterInsert.f7VirtualListBinding", function(e) {
-      console.log('Callback!');
+    $(el).on("change.f7VirtualListBinding", function(e) {
       callback();
     });
   },
