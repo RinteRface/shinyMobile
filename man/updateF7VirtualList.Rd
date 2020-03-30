@@ -8,7 +8,7 @@ updateF7VirtualList(
   id,
   action = c("appendItem", "appendItems", "prependItem", "prependItems", "replaceItem",
     "replaceAllItems", "moveItem", "insertItemBefore", "filterItems", "deleteItem",
-    "deleteItems", "deleteAllItems", "scrollToItem", "clearCache"),
+    "deleteAllItems", "scrollToItem"),
   item = NULL,
   items = NULL,
   index = NULL,
@@ -44,6 +44,167 @@ This function wraps all methods from \url{https://framework7.io/docs/virtual-lis
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
+ shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Update Virtual Lists",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      # main content
+      f7Segment(
+        container = "segment",
 
+        f7Button(inputId = "appendItem", "Append Item"),
+        f7Button(inputId = "prependItems", "Prepend Items"),
+        f7Button(inputId = "insertBefore", "Insert before"),
+        f7Button(inputId = "replaceItem", "Replace Items")
+      ),
+      f7Segment(
+        container = "segment",
+        f7Button(inputId = "deleteAllItems", "Remove All"),
+        f7Button(inputId = "moveItem", "Move Item"),
+        f7Button(inputId = "filterItems", "Filter Items")
+      ),
+      f7Flex(
+        uiOutput("itemIndexUI"),
+        uiOutput("itemNewIndexUI"),
+        uiOutput("itemsFilterUI")
+      ),
+      f7VirtualList(
+        id = "vlist",
+        items = lapply(1:5, function(i) {
+          f7VirtualListItem(
+            title = paste("Title", i),
+            subtitle = paste("Subtitle", i),
+            header = paste("Header", i),
+            footer = paste("Footer", i),
+            right = paste("Right", i),
+            content = i,
+            media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output, session) {
+
+    output$itemIndexUI <- renderUI({
+      req(input$vlist$length > 2)
+      f7Stepper(
+        inputId = "itemIndex",
+        label = "Index",
+        min = 1,
+        value = 2,
+        max = input$vlist$length
+      )
+    })
+
+    output$itemNewIndexUI <- renderUI({
+      req(input$vlist$length > 2)
+      f7Stepper(
+        inputId = "itemNewIndex",
+        label = "New Index",
+        min = 1,
+        value = 1,
+        max = input$vlist$length
+      )
+    })
+
+    output$itemsFilterUI <- renderUI({
+      req(input$vlist$length > 2)
+      f7Slider(
+        inputId = "itemsFilter",
+        label = "Items to Filter",
+        min = 1,
+        max = input$vlist$length,
+        value = c(1, input$vlist$length)
+      )
+    })
+
+    observe(print(input$vlist))
+
+    observeEvent(input$appendItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "appendItem",
+        item = f7VirtualListItem(
+          title = "New Item Title",
+          right = "New Item Right",
+          content = "New Item Content",
+          media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+        )
+      )
+    })
+
+    observeEvent(input$prependItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "prependItems",
+        items = lapply(1:5, function(i) {
+          f7VirtualListItem(
+            title = paste("Title", i),
+            right = paste("Right", i),
+            content = i,
+            media = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg"
+          )
+        })
+      )
+    })
+
+    observeEvent(input$insertBefore, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "insertItemBefore",
+        index = input$itemIndex,
+        item = f7VirtualListItem(
+          title = "New Item Title",
+          content = "New Item Content",
+          media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+        )
+      )
+    })
+
+    observeEvent(input$replaceItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "replaceItem",
+        index = input$itemIndex,
+        item = f7VirtualListItem(
+          title = "Replacement",
+          content = "Replacement Content",
+          media = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"
+        )
+      )
+    })
+
+    observeEvent(input$deleteAllItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "deleteAllItems"
+      )
+    })
+
+    observeEvent(input$moveItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "moveItem",
+        old_index = input$itemIndex,
+        new_index = input$itemNewIndex
+      )
+    })
+
+    observeEvent(input$filterItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "filterItems",
+        indexes = input$itemsFilter[1]:input$itemsFilter[2]
+      )
+    })
+
+  }
+ )
 }
 }
