@@ -1037,7 +1037,8 @@ updateF7Select <- function(inputId, selected = NULL,
 #'     observeEvent(input$updateSmartSelect, {
 #'       updateF7SmartSelect(
 #'         inputId = "variable",
-#'         openIn = "sheet"
+#'         openIn = "sheet",
+#'         selected = "cyl"
 #'       )
 #'     })
 #'   }

@@ -53,7 +53,8 @@ if (interactive()) {
     observeEvent(input$updateSmartSelect, {
       updateF7SmartSelect(
         inputId = "variable",
-        openIn = "sheet"
+        openIn = "sheet",
+        selected = "cyl"
       )
     })
   }
