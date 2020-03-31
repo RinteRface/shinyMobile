@@ -1041,7 +1041,8 @@ updateF7Select <- function(inputId, selected = NULL,
 #'         inputId = "variable",
 #'         openIn = "sheet",
 #'         selected = "cyl",
-#'         multiple = TRUE
+#'         multiple = TRUE,
+#'         maxLength = 3
 #'       )
 #'     })
 #'   }

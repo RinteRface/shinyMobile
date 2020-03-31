@@ -61,7 +61,8 @@ if (interactive()) {
         inputId = "variable",
         openIn = "sheet",
         selected = "cyl",
-        multiple = TRUE
+        multiple = TRUE,
+        maxLength = 3
       )
     })
   }
