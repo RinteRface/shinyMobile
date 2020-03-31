@@ -51,6 +51,14 @@ $.extend(f7SmartSelectBinding, {
         this["smart-select-" + el.id] = app.smartSelect.create(data.config);
       }
     }
+
+    // max length
+    if (data.hasOwnProperty("maxLength")) {
+      this["smart-select-" + el.id].destroy();
+      $(el).find('select').attr('maxLength', data.maxLength);
+      data.config.el = '#' + $(el).children().eq(0).attr('id');
+      this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+    }
   },
 
   subscribe: function(el, callback) {

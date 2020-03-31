@@ -1003,6 +1003,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param ... Parameters used to update the smart select,
 #'  use same arguments as in \code{\link{f7SmartSelect}}.
 #' @param multiple Whether to allow multiple values.
+#' @param maxLength Maximum items to select when multiple is TRUE.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
@@ -1047,6 +1048,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #'  )
 #' }
 updateF7SmartSelect <- function(inputId, selected = NULL, ..., multiple = NULL,
+                                maxLength = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
 
   if (!is.null(selected)) {
@@ -1062,6 +1064,7 @@ updateF7SmartSelect <- function(inputId, selected = NULL, ..., multiple = NULL,
   message <- dropNulls(list(
     selected = selected,
     multiple = multiple,
+    maxLength = maxLength,
     config = config
   ))
   session$sendInputMessage(inputId, message)

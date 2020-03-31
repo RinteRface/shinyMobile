@@ -9,6 +9,7 @@ updateF7SmartSelect(
   selected = NULL,
   ...,
   multiple = NULL,
+  maxLength = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -21,6 +22,8 @@ updateF7SmartSelect(
 use same arguments as in \code{\link{f7SmartSelect}}.}
 
 \item{multiple}{Whether to allow multiple values.}
+
+\item{maxLength}{Maximum items to select when multiple is TRUE.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
