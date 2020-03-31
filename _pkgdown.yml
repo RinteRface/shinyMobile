@@ -109,6 +109,7 @@ reference:
   - '`updateF7Text`'
   - '`updateF7TextArea`'
   - '`updateF7Toggle`'
+  - '`updateF7VirtualList`'
 
 
 - title: Search
@@ -139,6 +140,8 @@ reference:
   - '`f7ListItem`'
   - '`f7ListIndex`'
   - '`f7ListIndexItem`'
+  - '`f7VirtualList`'
+  - '`f7VirtualListItem`'
 
 
 

@@ -35,7 +35,3 @@ f7VirtualListItem(
 \description{
 Item component for \link{f7VirtualList}
 }
-\note{
-For now, media must be only the url to a given image. Does not accept,
-anything else.
-}
