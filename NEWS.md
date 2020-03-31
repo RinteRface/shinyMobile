@@ -23,6 +23,8 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
+- new `f7VirtualList()`, `f7VirtualListItem()`, `updateF7VirtualList()`: high performance list with caching system -> faster rendering (up to 10x faster than `f7List()`). Ability to add item(s),
+remove item(s), move item, filter items, ...
 - new messagebar parameter to `f7TabLayout()`. This allows to use the `f7Messagebar()` in a tabs layout configuration. 
 - new `f7ValidateInput()` function to validate input from the server side (similar to
 shinyFeedback but internal to shinyMobile and without dependencies)
