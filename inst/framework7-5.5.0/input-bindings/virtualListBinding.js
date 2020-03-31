@@ -117,8 +117,6 @@ $.extend(f7VirtualListBinding, {
 
     switch (value.action) {
       case 'appendItem':
-        //var temp = `<div class="item-media">${value.item.media}</div>`;
-        //value.item.media = temp;
         vl.appendItem(addImageWrapper(value.item));
         break;
       case 'prependItem':
