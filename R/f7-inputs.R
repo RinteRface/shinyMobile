@@ -797,7 +797,7 @@ choicesWithNames <- function(choices) {
 #' @param label Select input label.
 #' @param choices Select input choices.
 #' @param selected Select input default selected value.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100%%}.
+#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @export
 #'
@@ -870,7 +870,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #' @param label Select input label.
 #' @param choices Select input choices.
 #' @param selected Default selected item.
-#' @param type Smart select type: either \code{c("sheet", "popup", "popover")}.
+#' @param openIn Smart select type: either \code{c("sheet", "popup", "popover")}.
 #' Note that the search bar is only available when the type is popup.
 #' @param searchbar Whether to enable the search bar. TRUE by default.
 #' @param multiple Whether to allow multiple values. FALSE by default.
@@ -895,7 +895,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #'          label = "Choose a variable:",
 #'          selected = "drat",
 #'          choices = colnames(mtcars)[-1],
-#'          type = "popup"
+#'          openIn = "popup"
 #'        ),
 #'        tableOutput("data")
 #'      )
@@ -908,15 +908,15 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #'  )
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
-                          type = c("page", "sheet", "popup", "popover"),
+                          openIn = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxlength = NULL,
                           virtualList = FALSE) {
 
   options <- createSelectOptions(choices, selected)
-  type <- match.arg(type)
+  type <- match.arg(openIn)
 
   config <- dropNulls(list(
-    openIn = type,
+    openIn = openIn,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
     virtualList = virtualList

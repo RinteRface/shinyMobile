@@ -49,8 +49,8 @@
 #'  )
 #' }
 updateF7Button <- function(inputId, label = NULL, color = NULL,
-                            fill = NULL, outline = NULL, shadow = NULL,
-                            rounded = NULL, size = NULL,
+                           fill = NULL, outline = NULL, shadow = NULL,
+                           rounded = NULL, size = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
@@ -61,8 +61,8 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
       shadow = shadow,
       rounded = rounded,
       size = size
-      )
     )
+  )
   session$sendInputMessage(inputId, message)
 }
 
@@ -990,6 +990,75 @@ updateF7Select <- function(inputId, selected = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     selected = selected
+  ))
+  session$sendInputMessage(inputId, message)
+}
+
+
+
+#' Change the value of a smart select input on the client
+#'
+#' @param inputId The id of the input object.
+#' @param selected The new value for the input.
+#' @param ... Parameters used to update the smart select,
+#'  use same arguments as in \code{\link{f7SmartSelect}}.
+#' @param session The Shiny session object, usually the default value will suffice.
+#'
+#' @export
+#'
+#' @importFrom shiny getDefaultReactiveDomain
+#'
+#' @examples
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7SmartSelect"),
+#'       f7Button("updateSmartSelect", "Update Smart Select"),
+#'       f7SmartSelect(
+#'         inputId = "variable",
+#'         label = "Choose a variable:",
+#'         selected = "drat",
+#'         choices = colnames(mtcars)[-1],
+#'         openIn = "popup"
+#'       ),
+#'       tableOutput("data")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     output$data <- renderTable({
+#'       mtcars[, c("mpg", input$variable), drop = FALSE]
+#'     }, rownames = TRUE)
+#'
+#'     observeEvent(input$updateSmartSelect, {
+#'       updateF7SmartSelect(
+#'         inputId = "variable",
+#'         openIn = "sheet"
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7SmartSelect <- function(inputId, selected = NULL, ...,
+                                session = shiny::getDefaultReactiveDomain()) {
+
+  if (!is.null(selected)) {
+    if (length(selected) == 1) {
+      selected <- list(as.character(selected))
+    } else {
+      selected <- as.character(selected)
+    }
+  }
+  config <- dropNulls(list(...))
+  if (length(config) == 0)
+    config <- NULL
+  message <- dropNulls(list(
+    selected = selected,
+    config = config
   ))
   session$sendInputMessage(inputId, message)
 }

@@ -9,7 +9,7 @@ f7SmartSelect(
   label,
   choices,
   selected = NULL,
-  type = c("page", "sheet", "popup", "popover"),
+  openIn = c("page", "sheet", "popup", "popover"),
   searchbar = TRUE,
   multiple = FALSE,
   maxlength = NULL,
@@ -25,7 +25,7 @@ f7SmartSelect(
 
 \item{selected}{Default selected item.}
 
-\item{type}{Smart select type: either \code{c("sheet", "popup", "popover")}.
+\item{openIn}{Smart select type: either \code{c("sheet", "popup", "popover")}.
 Note that the search bar is only available when the type is popup.}
 
 \item{searchbar}{Whether to enable the search bar. TRUE by default.}
@@ -55,7 +55,7 @@ library(shinyMobile)
          label = "Choose a variable:",
          selected = "drat",
          choices = colnames(mtcars)[-1],
-         type = "popup"
+         openIn = "popup"
        ),
        tableOutput("data")
      )

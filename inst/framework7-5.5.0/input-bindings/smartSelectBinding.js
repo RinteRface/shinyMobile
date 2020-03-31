@@ -29,10 +29,16 @@ $.extend(f7SmartSelectBinding, {
 
   // see updateF7SmartSelect
   receiveMessage: function(el, data) {
+    // update config
     if (data.hasOwnProperty("config")) {
       this["smart-select-" + el.id].destroy();
-      data.config.inputEl = el;
+      data.config.el = '#' + $(el).children().eq(0).attr('id');
       this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+    }
+
+    // update selected
+    if (data.hasOwnProperty("selected")) {
+      this.setValue(el, data.selected);
     }
   },
 
