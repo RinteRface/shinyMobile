@@ -9,7 +9,7 @@ f7SmartSelect(
   label,
   choices,
   selected = NULL,
-  type = c("sheet", "popup", "popover"),
+  type = c("page", "sheet", "popup", "popover"),
   searchbar = TRUE,
   multiple = FALSE,
   maxlength = NULL,

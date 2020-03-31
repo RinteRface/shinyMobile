@@ -908,7 +908,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #'  )
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
-                          type = c("sheet", "popup", "popover"),
+                          type = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxlength = NULL,
                           virtualList = FALSE) {
 
@@ -930,21 +930,12 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
         shiny::tags$li(
           shiny::tags$a(
             class = "item-link smart-select",
+            id = inputId,
             shiny::tags$select(
               id = inputId,
               multiple = if (multiple) NA else NULL,
               maxlength = if (!is.null(maxlength)) maxlength else NULL,
-              options,
-              class = "smart-select-input",
-              shiny::tags$script(
-                type = "application/json",
-                `data-for` = inputId,
-                jsonlite::toJSON(
-                  x = config,
-                  auto_unbox = TRUE,
-                  json_verbatim = TRUE
-                )
-              )
+              options
             ),
             shiny::tags$div(
               class = "item-content",
@@ -953,6 +944,15 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                 shiny::tags$div(
                   class = "item-title", label
                 )
+              )
+            ),
+            shiny::tags$script(
+              type = "application/json",
+              `data-for` = inputId,
+              jsonlite::toJSON(
+                x = config,
+                auto_unbox = TRUE,
+                json_verbatim = TRUE
               )
             )
           )
