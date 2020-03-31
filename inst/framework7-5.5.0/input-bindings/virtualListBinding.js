@@ -100,20 +100,35 @@ $.extend(f7VirtualListBinding, {
     var vl = app.virtualList.get($(el));
     vl.resetFilter();
 
+    var addImageWrapper = function(items) {
+      var temp;
+      // handle single item
+      if (items.length === undefined) {
+        temp = `<div class="item-media">${items.media}</div>`;
+        items.media = temp;
+      } else {
+        for (var i = 0; i < items.length; i++) {
+          temp = `<div class="item-media">${items[i].media}</div>`;
+          items[i].media = temp;
+        }
+      }
+      return(items);
+    };
+
     switch (value.action) {
       case 'appendItem':
-        var temp = `<div class="item-media">${value.item.media}</div>`;
-        value.item.media = temp;
-        vl.appendItem(value.item);
+        //var temp = `<div class="item-media">${value.item.media}</div>`;
+        //value.item.media = temp;
+        vl.appendItem(addImageWrapper(value.item));
         break;
       case 'prependItem':
-        vl.prependItem(value.item);
+        vl.prependItem(addImageWrapper(value.item));
         break;
       case 'appendItems':
-        vl.appendItems(value.items);
+        vl.appendItems(addImageWrapper(value.items));
         break;
       case 'prependItems':
-        vl.prependItems(value.items);
+        vl.prependItems(addImageWrapper(value.items));
         break;
       case 'replaceItem':
         vl.replaceItem(value.index, value.item);
@@ -125,7 +140,7 @@ $.extend(f7VirtualListBinding, {
         vl.moveItem(value.oldIndex, value.newIndex);
         break;
       case 'insertItemBefore':
-        vl.insertItemBefore(value.index, value.item);
+        vl.insertItemBefore(value.index, addImageWrapper(value.item));
         break;
       case 'filterItems':
          vl.filterItems(value.indexes);
