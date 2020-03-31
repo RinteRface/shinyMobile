@@ -1002,6 +1002,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param selected The new value for the input.
 #' @param ... Parameters used to update the smart select,
 #'  use same arguments as in \code{\link{f7SmartSelect}}.
+#' @param multiple Whether to allow multiple values.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
@@ -1038,13 +1039,14 @@ updateF7Select <- function(inputId, selected = NULL,
 #'       updateF7SmartSelect(
 #'         inputId = "variable",
 #'         openIn = "sheet",
-#'         selected = "cyl"
+#'         selected = "cyl",
+#'         multiple = TRUE
 #'       )
 #'     })
 #'   }
 #'  )
 #' }
-updateF7SmartSelect <- function(inputId, selected = NULL, ...,
+updateF7SmartSelect <- function(inputId, selected = NULL, ..., multiple = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
 
   if (!is.null(selected)) {
@@ -1059,6 +1061,7 @@ updateF7SmartSelect <- function(inputId, selected = NULL, ...,
     config <- NULL
   message <- dropNulls(list(
     selected = selected,
+    multiple = multiple,
     config = config
   ))
   session$sendInputMessage(inputId, message)

@@ -8,6 +8,7 @@ updateF7SmartSelect(
   inputId,
   selected = NULL,
   ...,
+  multiple = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -18,6 +19,8 @@ updateF7SmartSelect(
 
 \item{...}{Parameters used to update the smart select,
 use same arguments as in \code{\link{f7SmartSelect}}.}
+
+\item{multiple}{Whether to allow multiple values.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -54,7 +57,8 @@ if (interactive()) {
       updateF7SmartSelect(
         inputId = "variable",
         openIn = "sheet",
-        selected = "cyl"
+        selected = "cyl",
+        multiple = TRUE
       )
     })
   }

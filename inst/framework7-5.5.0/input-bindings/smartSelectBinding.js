@@ -40,6 +40,17 @@ $.extend(f7SmartSelectBinding, {
     if (data.hasOwnProperty("selected")) {
       this.setValue(el, data.selected);
     }
+
+    // ad multiple property
+    if (data.hasOwnProperty("multiple")) {
+      // we need to destroy the input, modify the tag and create the instance
+      if (data.multiple) {
+        this["smart-select-" + el.id].destroy();
+        $(el).find('select').attr('multiple', '');
+        data.config.el = '#' + $(el).children().eq(0).attr('id');
+        this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+      }
+    }
   },
 
   subscribe: function(el, callback) {
