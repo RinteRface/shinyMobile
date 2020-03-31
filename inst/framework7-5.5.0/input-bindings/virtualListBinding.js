@@ -74,7 +74,7 @@ $.extend(f7VirtualListBinding, {
     };
 
     // Item height
-    config.height = app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46);
+    config.height = config.items[0].media !== undefined ? app.theme === 'ios' ? 112 : (app.theme === 'md' ? 132 : 78) : (app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46));
 
     // feed the create method
     app.virtualList.create(config);
