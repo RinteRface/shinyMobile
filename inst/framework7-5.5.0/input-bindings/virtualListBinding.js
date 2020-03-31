@@ -74,7 +74,7 @@ $.extend(f7VirtualListBinding, {
     };
 
     // Item height
-  config.height = app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46);
+    config.height = app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46);
 
     // feed the create method
     app.virtualList.create(config);
@@ -103,8 +103,7 @@ $.extend(f7VirtualListBinding, {
     switch (value.action) {
       case 'appendItem':
         var temp = `<div class="item-media">${value.item.media}</div>`;
-        value.item.media = $(temp);
-        console.log(value.item);
+        value.item.media = temp;
         vl.appendItem(value.item);
         break;
       case 'prependItem':
@@ -144,7 +143,6 @@ $.extend(f7VirtualListBinding, {
         //console.log('');
     }
 
-    vl.update();
     $(el).trigger('change');
   },
 
