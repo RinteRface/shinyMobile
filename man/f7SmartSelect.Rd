@@ -9,9 +9,11 @@ f7SmartSelect(
   label,
   choices,
   selected = NULL,
-  type = c("sheet", "popup", "popover"),
-  smart = TRUE,
-  multiple = FALSE
+  openIn = c("page", "sheet", "popup", "popover"),
+  searchbar = TRUE,
+  multiple = FALSE,
+  maxlength = NULL,
+  virtualList = FALSE
 )
 }
 \arguments{
@@ -23,16 +25,20 @@ f7SmartSelect(
 
 \item{selected}{Default selected item.}
 
-\item{type}{Smart select type: either \code{c("sheet", "popup", "popover")}.
+\item{openIn}{Smart select type: either \code{c("sheet", "popup", "popover")}.
 Note that the search bar is only available when the type is popup.}
 
-\item{smart}{Whether to enable the search bar. TRUE by default.}
+\item{searchbar}{Whether to enable the search bar. TRUE by default.}
 
 \item{multiple}{Whether to allow multiple values. FALSE by default.}
+
+\item{maxlength}{Maximum items to select when multiple is TRUE.}
+
+\item{virtualList}{Enable Virtual List for smart select if your select has a lot
+of options. Default to FALSE.}
 }
 \description{
-It is nicer than the classic \link{f7Select}
-and allows for search.
+It is smarter than the classic \link{f7Select}
 }
 \examples{
 if (interactive()) {
@@ -49,7 +55,7 @@ library(shinyMobile)
          label = "Choose a variable:",
          selected = "drat",
          choices = colnames(mtcars)[-1],
-         type = "popup"
+         openIn = "popup"
        ),
        tableOutput("data")
      )

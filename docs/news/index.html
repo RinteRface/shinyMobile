@@ -179,6 +179,8 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
+<li>
+<code>f7SmartSelect</code>: type param becomes openIn to align with other inputs</li>
 <li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7AddMessages.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
 <li>
 <code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
@@ -203,6 +205,9 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
+<li>
+<code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code> has input binding as well as an update function <code><a href="../reference/updateF7SmartSelect.html">updateF7SmartSelect()</a></code>
+</li>
 <li>new <code><a href="../reference/f7VirtualList.html">f7VirtualList()</a></code>, <code><a href="../reference/f7VirtualListItem.html">f7VirtualListItem()</a></code>, <code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: high performance list with caching system -&gt; faster rendering (up to 10x faster than <code><a href="../reference/f7List.html">f7List()</a></code>). Ability to add item(s), remove item(s), move item, filter items, …</li>
 <li>new messagebar parameter to <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. This allows to use the <code>f7Messagebar()</code> in a tabs layout configuration.</li>
 <li>new <code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> function to validate input from the server side (similar to shinyFeedback but internal to shinyMobile and without dependencies)</li>

@@ -14,6 +14,8 @@ f7Select(inputId, label, choices, selected = NULL, width = NULL)
 \item{choices}{Select input choices.}
 
 \item{selected}{Select input default selected value.}
+
+\item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 }
 \description{
 Create an f7 select input

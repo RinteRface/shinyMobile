@@ -124,7 +124,7 @@
       <h1>Dark-Theme</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-03-31</h4>
+            <h4 class="date">2020-04-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Dark-Theme.Rmd"><code>vignettes/Dark-Theme.Rmd</code></a></small>
       <div class="hidden name"><code>Dark-Theme.Rmd</code></div>
@@ -260,7 +260,7 @@
 <span id="cb1-89"><a href="#cb1-89"></a>                <span class="dt">selected =</span> <span class="st">"day"</span></span>
 <span id="cb1-90"><a href="#cb1-90"></a>              ),</span>
 <span id="cb1-91"><a href="#cb1-91"></a>              <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">br</a></span>(),</span>
-<span id="cb1-92"><a href="#cb1-92"></a>              <span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"river"</span>),</span>
+<span id="cb1-92"><a href="#cb1-92"></a>              <span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"river"</span>),</span>
 <span id="cb1-93"><a href="#cb1-93"></a>              <span class="dt">footer =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(</span>
 <span id="cb1-94"><a href="#cb1-94"></a>                <span class="kw"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="dt">color =</span> <span class="st">"blue"</span>, <span class="dt">label =</span> <span class="st">"My button"</span>, <span class="dt">src =</span> <span class="st">"https://www.google.com"</span>),</span>
 <span id="cb1-95"><a href="#cb1-95"></a>                <span class="kw"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="dt">color =</span> <span class="st">"green"</span>)</span>
@@ -282,7 +282,7 @@
 <span id="cb1-111"><a href="#cb1-111"></a>                <span class="dt">label =</span> <span class="st">"Show Plot"</span>,</span>
 <span id="cb1-112"><a href="#cb1-112"></a>                <span class="dt">status =</span> <span class="st">"danger"</span></span>
 <span id="cb1-113"><a href="#cb1-113"></a>              ),</span>
-<span id="cb1-114"><a href="#cb1-114"></a>              <span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"network"</span>),</span>
+<span id="cb1-114"><a href="#cb1-114"></a>              <span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"network"</span>),</span>
 <span id="cb1-115"><a href="#cb1-115"></a>              <span class="dt">footer =</span> <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(</span>
 <span id="cb1-116"><a href="#cb1-116"></a>                <span class="kw"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="dt">color =</span> <span class="st">"blue"</span>, <span class="dt">label =</span> <span class="st">"My button"</span>, <span class="dt">src =</span> <span class="st">"https://www.google.com"</span>),</span>
 <span id="cb1-117"><a href="#cb1-117"></a>                <span class="kw"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="dt">color =</span> <span class="st">"green"</span>)</span>
@@ -325,7 +325,7 @@
 <span id="cb1-154"><a href="#cb1-154"></a>    <span class="co"># river plot</span></span>
 <span id="cb1-155"><a href="#cb1-155"></a>    dates &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/reactive.html">reactive</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>() <span class="op">-</span><span class="st"> </span><span class="dv">30</span>, <span class="kw"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>(), <span class="dt">by =</span> input<span class="op">$</span>by))</span>
 <span id="cb1-156"><a href="#cb1-156"></a></span>
-<span id="cb1-157"><a href="#cb1-157"></a>    output<span class="op">$</span>river &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb1-157"><a href="#cb1-157"></a>    output<span class="op">$</span>river &lt;-<span class="st"> </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
 <span id="cb1-158"><a href="#cb1-158"></a>      df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
 <span id="cb1-159"><a href="#cb1-159"></a>        <span class="dt">dates =</span> <span class="kw">dates</span>(),</span>
 <span id="cb1-160"><a href="#cb1-160"></a>        <span class="dt">apples =</span> <span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">dates</span>())),</span>
@@ -334,13 +334,13 @@
 <span id="cb1-163"><a href="#cb1-163"></a>      )</span>
 <span id="cb1-164"><a href="#cb1-164"></a></span>
 <span id="cb1-165"><a href="#cb1-165"></a>      df <span class="op">%&gt;%</span></span>
-<span id="cb1-166"><a href="#cb1-166"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>(dates) <span class="op">%&gt;%</span></span>
-<span id="cb1-167"><a href="#cb1-167"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_river.html">e_river</a></span>(apples) <span class="op">%&gt;%</span></span>
-<span id="cb1-168"><a href="#cb1-168"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_river.html">e_river</a></span>(bananas) <span class="op">%&gt;%</span></span>
-<span id="cb1-169"><a href="#cb1-169"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_river.html">e_river</a></span>(pears) <span class="op">%&gt;%</span></span>
-<span id="cb1-170"><a href="#cb1-170"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e-tooltip.html">e_tooltip</a></span>(<span class="dt">trigger =</span> <span class="st">"axis"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1-171"><a href="#cb1-171"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_title.html">e_title</a></span>(<span class="st">"River charts"</span>, <span class="st">"(Streamgraphs)"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1-172"><a href="#cb1-172"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/theme.html">e_theme</a></span>(<span class="st">"dark"</span>)</span>
+<span id="cb1-166"><a href="#cb1-166"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>(dates) <span class="op">%&gt;%</span></span>
+<span id="cb1-167"><a href="#cb1-167"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_river.html">e_river</a></span>(apples) <span class="op">%&gt;%</span></span>
+<span id="cb1-168"><a href="#cb1-168"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_river.html">e_river</a></span>(bananas) <span class="op">%&gt;%</span></span>
+<span id="cb1-169"><a href="#cb1-169"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_river.html">e_river</a></span>(pears) <span class="op">%&gt;%</span></span>
+<span id="cb1-170"><a href="#cb1-170"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e-tooltip.html">e_tooltip</a></span>(<span class="dt">trigger =</span> <span class="st">"axis"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-171"><a href="#cb1-171"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span>(<span class="st">"River charts"</span>, <span class="st">"(Streamgraphs)"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-172"><a href="#cb1-172"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/theme.html">e_theme</a></span>(<span class="st">"dark"</span>)</span>
 <span id="cb1-173"><a href="#cb1-173"></a>    })</span>
 <span id="cb1-174"><a href="#cb1-174"></a></span>
 <span id="cb1-175"><a href="#cb1-175"></a>    <span class="co"># network</span></span>
@@ -362,13 +362,13 @@
 <span id="cb1-191"><a href="#cb1-191"></a>      )</span>
 <span id="cb1-192"><a href="#cb1-192"></a>    })</span>
 <span id="cb1-193"><a href="#cb1-193"></a></span>
-<span id="cb1-194"><a href="#cb1-194"></a>    output<span class="op">$</span>network &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
+<span id="cb1-194"><a href="#cb1-194"></a>    output<span class="op">$</span>network &lt;-<span class="st"> </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">renderEcharts4r</a></span>({</span>
 <span id="cb1-195"><a href="#cb1-195"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/req.html">req</a></span>(input<span class="op">$</span>show)</span>
-<span id="cb1-196"><a href="#cb1-196"></a>      <span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb1-197"><a href="#cb1-197"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/graph.html">e_graph_gl</a></span>() <span class="op">%&gt;%</span></span>
-<span id="cb1-198"><a href="#cb1-198"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/graph.html">e_graph_nodes</a></span>(<span class="kw">nodes</span>(), name, value, size, grp) <span class="op">%&gt;%</span></span>
-<span id="cb1-199"><a href="#cb1-199"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/graph.html">e_graph_edges</a></span>(<span class="kw">edges</span>(), source, target) <span class="op">%&gt;%</span></span>
-<span id="cb1-200"><a href="#cb1-200"></a><span class="st">        </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/theme.html">e_theme</a></span>(<span class="st">"dark"</span>)</span>
+<span id="cb1-196"><a href="#cb1-196"></a>      <span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-197"><a href="#cb1-197"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/graph.html">e_graph_gl</a></span>() <span class="op">%&gt;%</span></span>
+<span id="cb1-198"><a href="#cb1-198"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/graph.html">e_graph_nodes</a></span>(<span class="kw">nodes</span>(), name, value, size, grp) <span class="op">%&gt;%</span></span>
+<span id="cb1-199"><a href="#cb1-199"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/graph.html">e_graph_edges</a></span>(<span class="kw">edges</span>(), source, target) <span class="op">%&gt;%</span></span>
+<span id="cb1-200"><a href="#cb1-200"></a><span class="st">        </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/theme.html">e_theme</a></span>(<span class="st">"dark"</span>)</span>
 <span id="cb1-201"><a href="#cb1-201"></a>    })</span>
 <span id="cb1-202"><a href="#cb1-202"></a></span>
 <span id="cb1-203"><a href="#cb1-203"></a></span>

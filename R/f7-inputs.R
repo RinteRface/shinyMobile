@@ -797,7 +797,7 @@ choicesWithNames <- function(choices) {
 #' @param label Select input label.
 #' @param choices Select input choices.
 #' @param selected Select input default selected value.
-#' @param width The width of the input, e.g. \code{400px}, or \code{100%%}.
+#' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
 #'
 #' @export
 #'
@@ -864,17 +864,19 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 
 #' Create a Framework7 smart select
 #'
-#' It is nicer than the classic \link{f7Select}
-#' and allows for search.
+#' It is smarter than the classic \link{f7Select}
 #'
 #' @param inputId Select input id.
 #' @param label Select input label.
 #' @param choices Select input choices.
 #' @param selected Default selected item.
-#' @param type Smart select type: either \code{c("sheet", "popup", "popover")}.
+#' @param openIn Smart select type: either \code{c("sheet", "popup", "popover")}.
 #' Note that the search bar is only available when the type is popup.
-#' @param smart Whether to enable the search bar. TRUE by default.
+#' @param searchbar Whether to enable the search bar. TRUE by default.
 #' @param multiple Whether to allow multiple values. FALSE by default.
+#' @param maxlength Maximum items to select when multiple is TRUE.
+#' @param virtualList Enable Virtual List for smart select if your select has a lot
+#' of options. Default to FALSE.
 #'
 #' @export
 #'
@@ -893,7 +895,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #'          label = "Choose a variable:",
 #'          selected = "drat",
 #'          choices = colnames(mtcars)[-1],
-#'          type = "popup"
+#'          openIn = "popup"
 #'        ),
 #'        tableOutput("data")
 #'      )
@@ -906,33 +908,51 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #'  )
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
-                          type = c("sheet", "popup", "popover"),
-                          smart = TRUE, multiple = FALSE) {
+                          openIn = c("page", "sheet", "popup", "popover"),
+                          searchbar = TRUE, multiple = FALSE, maxlength = NULL,
+                          virtualList = FALSE) {
 
   options <- createSelectOptions(choices, selected)
+  type <- match.arg(openIn)
 
-  type <- match.arg(type)
+  config <- dropNulls(list(
+    openIn = openIn,
+    searchbar = searchbar,
+    searchbarPlaceholder = "Search",
+    virtualList = virtualList
+  ))
 
-  shiny::tags$div(
-    class = "list",
-    shiny::tags$ul(
-      shiny::tags$li(
-        shiny::tags$a(
-          class = "item-link smart-select smart-select-init",
-          `data-open-in` = type,
-          `data-searchbar` = if (smart & type == "popup") "true" else NULL,
-          `data-searchbar-placeholder` = if (smart & type == "popup") "Search" else NULL,
-          shiny::tags$select(
+  shiny::tagList(
+    f7InputsDeps(),
+    shiny::tags$div(
+      class = "list",
+      shiny::tags$ul(
+        shiny::tags$li(
+          shiny::tags$a(
+            class = "item-link smart-select",
             id = inputId,
-            multiple = if (multiple) NA else NULL,
-            options
-          ),
-          shiny::tags$div(
-            class = "item-content",
+            shiny::tags$select(
+              id = inputId,
+              multiple = if (multiple) NA else NULL,
+              maxlength = if (!is.null(maxlength)) maxlength else NULL,
+              options
+            ),
             shiny::tags$div(
-              class = "item-inner",
+              class = "item-content",
               shiny::tags$div(
-                class = "item-title", label
+                class = "item-inner",
+                shiny::tags$div(
+                  class = "item-title", label
+                )
+              )
+            ),
+            shiny::tags$script(
+              type = "application/json",
+              `data-for` = inputId,
+              jsonlite::toJSON(
+                x = config,
+                auto_unbox = TRUE,
+                json_verbatim = TRUE
               )
             )
           )
