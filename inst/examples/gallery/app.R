@@ -162,7 +162,7 @@ shinyApp(
 
     # trigger for login
     trigger <- reactive({
-      req(input$tabset == "Text")
+      req(input$tabset == "chat")
     })
     # login server module
     callModule(
