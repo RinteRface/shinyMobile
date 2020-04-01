@@ -5,6 +5,7 @@
 not have any impact on user experience. In a future release of shinyMobile, `f7Searchbar()` will have input binding associated as well as more parameters for configuration
 
 ## Breaking changes
+- `f7SmartSelect`: type param becomes openIn to align with other inputs
 - rework `f7Messages()`: messages are updated on the server side with `f7AddMessages()`. New `f7MessageBar()` to send messages from the server side.
 - `f7ActionSheet()`: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided
 must be included in a list (not in a dataframe)
@@ -23,8 +24,8 @@ different from the text displayed. valueText is then an internal parameter.
 - remove maximizable parameter from `f7Appbar()`
 
 ## Major changes
-- new `f7VirtualList()`, `f7VirtualListItem()`, `updateF7VirtualList()`: high performance list with caching system -> faster rendering (up to 10x faster than `f7List()`). Ability to add item(s),
-remove item(s), move item, filter items, ...
+- `f7SmartSelect()` has input binding as well as an update function `updateF7SmartSelect()`
+- new `f7VirtualList()`, `f7VirtualListItem()`, `updateF7VirtualList()`: high performance list with caching system -> faster rendering (up to 10x faster than `f7List()`). Ability to add item(s), remove item(s), move item, filter items, ...
 - new messagebar parameter to `f7TabLayout()`. This allows to use the `f7Messagebar()` in a tabs layout configuration. 
 - new `f7ValidateInput()` function to validate input from the server side (similar to
 shinyFeedback but internal to shinyMobile and without dependencies)

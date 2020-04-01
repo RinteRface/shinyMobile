@@ -124,7 +124,7 @@
       <h1>Single-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-03-31</h4>
+            <h4 class="date">2020-04-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Single-Layout.Rmd"><code>vignettes/Single-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Single-Layout.Rmd</code></div>
@@ -178,11 +178,11 @@
 <span id="cb1-7"><a href="#cb1-7"></a>    <span class="dt">State =</span> <span class="kw"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(.),</span>
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="dt">Rape =</span> <span class="op">-</span>Rape</span>
 <span id="cb1-9"><a href="#cb1-9"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/init.html">e_charts</a></span>(State) <span class="op">%&gt;%</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_line.html">e_line</a></span>(Murder) <span class="op">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_area.html">e_area</a></span>(Rape, <span class="dt">name =</span> <span class="st">"Sick basterd"</span>, <span class="dt">x_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># second y axis</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/e_title.html">e_title</a></span>(<span class="st">"Your plot"</span>, <span class="st">"Subtext"</span>, <span class="dt">sublink =</span> <span class="st">"https://john-coene.com"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/echarts4r/man/axis.html">e_x_axis</a></span>(<span class="dv">1</span>, <span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide scond X Axis</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>(State) <span class="op">%&gt;%</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="st">  </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_line.html">e_line</a></span>(Murder) <span class="op">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="st">  </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_area.html">e_area</a></span>(Rape, <span class="dt">name =</span> <span class="st">"Sick basterd"</span>, <span class="dt">x_index =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># second y axis</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="st">  </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span>(<span class="st">"Your plot"</span>, <span class="st">"Subtext"</span>, <span class="dt">sublink =</span> <span class="st">"https://john-coene.com"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="st">  </span><span class="kw"><a href="http://echarts4r.john-coene.com/reference/axis.html">e_x_axis</a></span>(<span class="dv">1</span>, <span class="dt">show =</span> <span class="ot">FALSE</span>) <span class="co"># hide scond X Axis</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a></span>
 <span id="cb1-16"><a href="#cb1-16"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
 <span id="cb1-17"><a href="#cb1-17"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>

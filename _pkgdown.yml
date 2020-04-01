@@ -104,6 +104,7 @@ reference:
   - '`updateF7Select`'
   - '`updateF7Sheet`'
   - '`updateF7Slider`'
+  - '`updateF7SmartSelect`'
   - '`updateF7Stepper`'
   - '`updateF7Tabs`'
   - '`updateF7Text`'
