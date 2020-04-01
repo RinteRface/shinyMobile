@@ -139,7 +139,7 @@ tabInputs <- f7Tab(
     label = "Choose a variable:",
     selected = "drat",
     choices = colnames(mtcars)[-1],
-    type = "popup"
+    openIn = "popup"
   ),
   tableOutput("smartdata"),
   br(),
