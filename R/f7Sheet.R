@@ -31,12 +31,20 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
   sheetCl <- "sheet-modal"
   if (orientation == "top") sheetCl <- paste0(sheetCl, " sheet-modal-top")
 
+  sheetCSS <- "overflow: hidden;"
+  sheetCSS <- if (orientation == "bottom") {
+    paste0(sheetCSS, " border-radius: 15px 15px 0 0;")
+  } else {
+    paste0(sheetCSS, "border-radius: 0 0 15px 15px;")
+  }
+
  # props
  sheetProps <- dropNulls(
     list(
        class = sheetCl,
        id = id,
        style = if (swipeToStep | swipeToClose) "height: auto; --f7-sheet-bg-color: #fff;",
+       style = sheetCSS,
        `data-swipe-to-close` = tolower(swipeToClose),
        `data-swipe-to-step` = tolower(swipeToStep),
        `data-close-by-outside-click` = tolower(closeByOutsideClick),
@@ -45,6 +53,19 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
  )
 
  sheetTag <- do.call(shiny::tags$div, sheetProps)
+
+ swiperHandlerCSS <- "height: 16px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    cursor: pointer;
+    z-index: 10;"
+ swiperHandlerCSS <- if (orientation == "bottom") {
+   paste0(swiperHandlerCSS, " top: 0;")
+ } else {
+   paste0(swiperHandlerCSS, " bottom: 0;")
+ }
 
  # inner sheet elements
  sheetTag <- shiny::tagAppendChildren(
@@ -66,7 +87,7 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
        class = "sheet-modal-inner",
        if (swipeToStep | swipeToClose) {
           if (swipeHandler) {
-             shiny::tags$div(class = "swipe-handler")
+             shiny::tags$div(class = "swipe-handler", style = swiperHandlerCSS)
           }
        },
        # item shown
@@ -83,58 +104,9 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
     )
  )
 
- # custom css for sheet
- sheetStyle <- shiny::tags$style(
-    if (orientation == "bottom") {
-       paste0(
-          "
-            /* sheet-modal will have top rounded corners */
-            .sheet-modal {
-               border-radius: 15px 15px 0 0;
-               overflow: hidden;
-            }
-
-            .swipe-handler {
-               height: 16px;
-               position: absolute;
-               left: 0;
-               width: 100%;
-               top: 0;
-               background: #fff;
-               cursor: pointer;
-               z-index: 10;
-            }
-            "
-       )
-    } else {
-       paste0(
-          "
-            /* sheet-modal will have bottom rounded corners */
-            .sheet-modal {
-               border-radius: 0 0 15px 15px;
-               overflow: hidden;
-            }
-
-            .swipe-handler {
-               height: 16px;
-               position: absolute;
-               left: 0;
-               width: 100%;
-               bottom: 0;
-               background: #fff;
-               cursor: pointer;
-               z-index: 10;
-            }
-            "
-       )
-    }
- )
-
  shiny::tagList(
    # javascript initialization
    f7InputsDeps(),
-   # custom css
-   sheetStyle,
    sheetTag
  )
 }
