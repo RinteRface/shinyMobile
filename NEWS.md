@@ -5,7 +5,7 @@
 not have any impact on user experience. In a future release of shinyMobile, `f7Searchbar()` will have input binding associated as well as more parameters for configuration
 
 ## Breaking changes
-- `f7SmartSelect`: type param becomes openIn to align with other inputs
+- `f7SmartSelect()`: type param becomes openIn to align with other inputs
 - rework `f7Messages()`: messages are updated on the server side with `f7AddMessages()`. New `f7MessageBar()` to send messages from the server side.
 - `f7ActionSheet()`: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided
 must be included in a list (not in a dataframe)
@@ -84,6 +84,8 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Remove duplicated html tag in `f7Page()`. Thanks @ pvictor
+- Fix issue in `f7Sheet()` wrong css style applied when multiple sheets are in the same app
 - Fix issue in `f7Tabs()`: if one put `f7Tabs()` inside a `f7Tab()` in a parent `f7Tabs()`, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset). 
 - Fix issue with `f7InsertTab()` and `f7RemoveTab()` when swipeable is TRUE
 - trigger shown event for `f7Tabs()` on click. This allows to use `f7Tabs()`

@@ -22,7 +22,7 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
                    title = NULL, preloader = FALSE, loading_duration = 3,
                    icon = NULL, favicon = NULL, manifest = NULL){
 
-  shiny::tags$html(
+  shiny::tagList(
     # Head
     shiny::tags$head(
       shiny::tags$meta(charset = "utf-8"),

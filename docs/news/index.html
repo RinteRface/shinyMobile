@@ -180,7 +180,7 @@
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>
-<code>f7SmartSelect</code>: type param becomes openIn to align with other inputs</li>
+<code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code>: type param becomes openIn to align with other inputs</li>
 <li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7AddMessages.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
 <li>
 <code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
@@ -281,6 +281,8 @@
 <h2 class="hasAnchor">
 <a href="#bug-fix" class="anchor"></a>Bug fix</h2>
 <ul>
+<li>Remove duplicated html tag in <code><a href="../reference/f7Page.html">f7Page()</a></code>. Thanks @ pvictor</li>
+<li>Fix issue in <code><a href="../reference/sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
 <li>Fix issue in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>: if one put <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> inside a <code><a href="../reference/f7Tab.html">f7Tab()</a></code> in a parent <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset).</li>
 <li>Fix issue with <code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
 <li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
