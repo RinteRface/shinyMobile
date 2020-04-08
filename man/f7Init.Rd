@@ -10,6 +10,7 @@ f7Init(
   filled = FALSE,
   color = NULL,
   tapHold = TRUE,
+  tapHoldDelay = 750,
   pullToRefresh = FALSE,
   iosTouchRipple = FALSE,
   iosCenterTitle = TRUE,
@@ -33,6 +34,9 @@ Expect a name like blue or red. If NULL, use the default color.}
 \item{tapHold}{It triggers (if enabled) after a sustained, complete touch event.
 By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 so Fast Clicks should be also enabled.}
+
+\item{tapHoldDelay}{Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+Default to 750 ms.}
 
 \item{pullToRefresh}{Whether to active the pull to refresh feature. Default to FALSE.}
 

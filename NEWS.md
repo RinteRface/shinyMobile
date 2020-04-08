@@ -48,6 +48,8 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
+- add new tapHoldDelay parameter to `f7Init()` to control the delay necessary to trigger
+a long press (default to 750 ms)
 - new `f7ShowPreloader()` and `f7HidePreloader()`
 - new `f7TextArea()` input and `updateF7TextArea()` on the server side
 - add block title for `f7checkBoxGroup()` and `f7Radio()`

@@ -11,6 +11,8 @@
 #' @param tapHold  It triggers (if enabled) after a sustained, complete touch event.
 #' By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
 #' so Fast Clicks should be also enabled.
+#' @param tapHoldDelay Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+#' Default to 750 ms.
 #' @param pullToRefresh Whether to active the pull to refresh feature. Default to FALSE.
 #' @param iosTouchRipple Default to FALSE. Enables touch ripple effect for iOS theme.
 #' @param iosCenterTitle Default to TRUE. When enabled then it will try to position
@@ -25,7 +27,7 @@
 #'
 #' @export
 f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "light"),
-                   filled = FALSE, color = NULL, tapHold = TRUE, pullToRefresh = FALSE,
+                   filled = FALSE, color = NULL, tapHold = TRUE, tapHoldDelay = 750, pullToRefresh = FALSE,
                    iosTouchRipple = FALSE, iosCenterTitle = TRUE, iosTranslucentBars = FALSE,
                    hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE,
                    serviceWorker = NULL) {
@@ -110,7 +112,8 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
             theme: '", skin, "',
             swipeNoFollow: true,
             touch: {
-              tapHold: ", tolower(tapHold), " //enable tap hold events
+              tapHold: ", tolower(tapHold), " // enable tap hold events,
+              tapHoldDelay: ", tapHoldDelay, ",
             },
             iosTouchRipple: ", tolower(iosTouchRipple), ",
             // App id
