@@ -7,10 +7,6 @@ $.extend(f7CardBinding, {
     return $(scope).find(".card-expandable");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var open = $(el).hasClass('card-opened');

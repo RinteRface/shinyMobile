@@ -51,10 +51,6 @@ $.extend(f7GaugeBinding, {
     return $(scope).find(".gauge");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   getValue: function(el) {
 
   },

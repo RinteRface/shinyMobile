@@ -31,10 +31,6 @@ $.extend(f7DatePickerBinding, {
     return $(scope).find(".calendar-input");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   getType: function(el) {
     return "f7DatePicker.date";
   },

@@ -44,10 +44,6 @@ $.extend(f7PickerBinding, {
     return $(scope).find(".picker-input");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var p = app.picker.get($(el));

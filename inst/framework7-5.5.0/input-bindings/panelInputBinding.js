@@ -20,10 +20,6 @@ $.extend(f7PanelBinding, {
     return $(scope).find(".panel");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var p = app.panel.get($(el));

@@ -17,10 +17,6 @@ $.extend(f7SmartSelectBinding, {
     return $(scope).find(".smart-select");
   },
 
-  getId: function(el) {
-    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
-  },
-
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return this["smart-select-" + el.id].getValue();
