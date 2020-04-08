@@ -8,6 +8,22 @@ $(function () {
     window.history.replaceState( {} , 'newpath', newpath);
   }
 
+  // From this we can recover the workerId and the sessionId. sessionId
+  // is the same recovered on the server side with session$token.
+  $(document).on('shiny:sessioninitialized', function(event) {
+    Shiny.setInputValue('shinyInfo', Shiny.shinyapp.config);
+  });
+
+  // Returns the last input changed (name, value, type, ...)
+  $(document).on('shiny:inputchanged', function(event) {
+    Shiny.setInputValue('lastInputChanged', {name: event.name, value: event.value, type: event.binding.name.split('.')[1]});
+  });
+
+  // Framework7.device is extremely useful to set up custom design
+  $(document).on('shiny:connected', function(event) {
+    Shiny.setInputValue('deviceInfo', Framework7.device);
+  });
+
   // handle toolbar padding for mobiles in standalone mode
   // only if there is an appbar
   if (Framework7.device.standalone) {
@@ -16,11 +32,6 @@ $(function () {
       $('.toolbar').css('margin-bottom', '20px');
     }
   }
-
-  // Framework7.device is extremely useful to set up custom design
-  $(document).on('shiny:connected', function(event) {
-    Shiny.setInputValue('deviceInfo', Framework7.device);
-  });
 
   // fix standalone tabs height issue
   $('.tabs-standalone').css('height', 'auto');
