@@ -92,7 +92,12 @@ shiny::shinyApp(
 
 ## Predefined input values
 shinyMobile contains a set of useful functions to help you setting the layout as best as
-possible. It contains a predefined input, namely **input$deviceInfo**:
+possible. 
+
+### Informations about your current device
+
+#### Description
+shinyMobile has a predefined input, namely **input$deviceInfo**:
 
 ```{r, eval = FALSE}
 shiny::shinyApp(
@@ -141,7 +146,7 @@ There are other fields, with less inportance:
 - `input$deviceInfo$phonegap`, TRUE or FALSE (phonegap)
 
 
-### Example
+#### Usecase
 
 Below the example displays a card only when the app is on desktop.
 
@@ -179,7 +184,54 @@ shiny::shinyApp(
 ```
 
 
+### Informations about Shiny inputs
 
+shinyMobile has `input$lastInputChanged` which returns the name, value and type of the
+last changed input, see below:
+
+```{r, eval = FALSE}
+library(shiny)
+library(shinyMobile)
+shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Single Layout",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        f7Link(label = "Link 1", src = "https://www.google.com"),
+        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+      ),
+      # main content
+      f7Card(verbatimTextOutput("infos")),
+      f7Card(
+        f7Text(inputId = "text", label = "Text"),
+        f7Slider(inputId = "range1", label = "Range", min = 0, max = 2, value = 1, step = 0.1),
+        f7Stepper(inputId = "stepper1", label = "Stepper", min = 0, max = 10, value = 5),
+        verbatimTextOutput("lastChanged")
+      )
+    )
+  ),
+  server = function(input, output) {
+    output$infos <- renderPrint(input$shinyInfo)
+    output$lastChanged <- renderPrint(input$lastInputChanged)
+  }
+)
+```
+
+This is convenient since usually, there is no shortcut to get the last changed value and this
+needs to be done server side in shiny.
+
+Soon there will be a way to compare initial input values (frozen) to current input values
+and get a diff.
+
+### Other informations
+
+`input$shinyInfo` gives the current workerId (for shinyapps.io, shiny server pro, rstudio connect), the unique sessionId (equal to session$token on the server side).
 
 
 

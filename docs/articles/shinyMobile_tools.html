@@ -201,7 +201,14 @@
 <div id="predefined-input-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#predefined-input-values" class="anchor"></a>Predefined input values</h2>
-<p>shinyMobile contains a set of useful functions to help you setting the layout as best as possible. It contains a predefined input, namely <strong>input$deviceInfo</strong>:</p>
+<p>shinyMobile contains a set of useful functions to help you setting the layout as best as possible.</p>
+<div id="informations-about-your-current-device" class="section level3">
+<h3 class="hasAnchor">
+<a href="#informations-about-your-current-device" class="anchor"></a>Informations about your current device</h3>
+<div id="description" class="section level4">
+<h4 class="hasAnchor">
+<a href="#description" class="anchor"></a>Description</h4>
+<p>shinyMobile has a predefined input, namely <strong>input$deviceInfo</strong>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">title =</span> <span class="st">"My app"</span>,</span>
@@ -212,7 +219,7 @@
 <span id="cb4-8"><a href="#cb4-8"></a>        <span class="dt">shadow =</span> <span class="ot">TRUE</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>      ),</span>
 <span id="cb4-10"><a href="#cb4-10"></a>      <span class="co"># main content</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>      <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)</span>
 <span id="cb4-12"><a href="#cb4-12"></a>    )</span>
 <span id="cb4-13"><a href="#cb4-13"></a>  ),</span>
 <span id="cb4-14"><a href="#cb4-14"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</span>
@@ -263,9 +270,10 @@
 <li>
 <code>input$deviceInfo$phonegap</code>, TRUE or FALSE (phonegap)</li>
 </ul>
-<div id="example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h3>
+</div>
+<div id="usecase" class="section level4">
+<h4 class="hasAnchor">
+<a href="#usecase" class="anchor"></a>Usecase</h4>
 <p>Below the example displays a card only when the app is on desktop.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>
@@ -297,6 +305,50 @@
 <span id="cb5-28"><a href="#cb5-28"></a>    })</span>
 <span id="cb5-29"><a href="#cb5-29"></a>  }</span>
 <span id="cb5-30"><a href="#cb5-30"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="informations-about-shiny-inputs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#informations-about-shiny-inputs" class="anchor"></a>Informations about Shiny inputs</h3>
+<p>shinyMobile has <code>input$lastInputChanged</code> which returns the name, value and type of the last changed input, see below:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shiny)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(shinyMobile)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>shiny<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="dt">ui =</span> <span class="kw"><a href="../reference/f7Page.html">f7Page</a></span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="dt">title =</span> <span class="st">"My app"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="kw"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(</span>
+<span id="cb6-7"><a href="#cb6-7"></a>      <span class="dt">navbar =</span> <span class="kw"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        <span class="dt">title =</span> <span class="st">"Single Layout"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        <span class="dt">hairline =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        <span class="dt">shadow =</span> <span class="ot">TRUE</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>      ),</span>
+<span id="cb6-12"><a href="#cb6-12"></a>      <span class="dt">toolbar =</span> <span class="kw"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span>(</span>
+<span id="cb6-13"><a href="#cb6-13"></a>        <span class="dt">position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>        <span class="kw"><a href="../reference/f7Link.html">f7Link</a></span>(<span class="dt">label =</span> <span class="st">"Link 1"</span>, <span class="dt">src =</span> <span class="st">"https://www.google.com"</span>),</span>
+<span id="cb6-15"><a href="#cb6-15"></a>        <span class="kw"><a href="../reference/f7Link.html">f7Link</a></span>(<span class="dt">label =</span> <span class="st">"Link 2"</span>, <span class="dt">src =</span> <span class="st">"https://www.google.com"</span>, <span class="dt">external =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>      ),</span>
+<span id="cb6-17"><a href="#cb6-17"></a>      <span class="co"># main content</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>      <span class="kw"><a href="../reference/f7Card.html">f7Card</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"infos"</span>)),</span>
+<span id="cb6-19"><a href="#cb6-19"></a>      <span class="kw"><a href="../reference/f7Card.html">f7Card</a></span>(</span>
+<span id="cb6-20"><a href="#cb6-20"></a>        <span class="kw"><a href="../reference/f7Text.html">f7Text</a></span>(<span class="dt">inputId =</span> <span class="st">"text"</span>, <span class="dt">label =</span> <span class="st">"Text"</span>),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>        <span class="kw"><a href="../reference/f7Slider.html">f7Slider</a></span>(<span class="dt">inputId =</span> <span class="st">"range1"</span>, <span class="dt">label =</span> <span class="st">"Range"</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">2</span>, <span class="dt">value =</span> <span class="dv">1</span>, <span class="dt">step =</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-22"><a href="#cb6-22"></a>        <span class="kw"><a href="../reference/f7Stepper.html">f7Stepper</a></span>(<span class="dt">inputId =</span> <span class="st">"stepper1"</span>, <span class="dt">label =</span> <span class="st">"Stepper"</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">max =</span> <span class="dv">10</span>, <span class="dt">value =</span> <span class="dv">5</span>),</span>
+<span id="cb6-23"><a href="#cb6-23"></a>        <span class="kw"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"lastChanged"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24"></a>      )</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    )</span>
+<span id="cb6-26"><a href="#cb6-26"></a>  ),</span>
+<span id="cb6-27"><a href="#cb6-27"></a>  <span class="dt">server =</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb6-28"><a href="#cb6-28"></a>    output<span class="op">$</span>infos &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span>(input<span class="op">$</span>shinyInfo)</span>
+<span id="cb6-29"><a href="#cb6-29"></a>    output<span class="op">$</span>lastChanged &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html">renderPrint</a></span>(input<span class="op">$</span>lastInputChanged)</span>
+<span id="cb6-30"><a href="#cb6-30"></a>  }</span>
+<span id="cb6-31"><a href="#cb6-31"></a>)</span></code></pre></div>
+<p>This is convenient since usually, there is no shortcut to get the last changed value and this needs to be done server side in shiny.</p>
+<p>Soon there will be a way to compare initial input values (frozen) to current input values and get a diff.</p>
+</div>
+<div id="other-informations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#other-informations" class="anchor"></a>Other informations</h3>
+<p><code>input$shinyInfo</code> gives the current workerId (for shinyapps.io, shiny server pro, rstudio connect), the unique sessionId (equal to session$token on the server side).</p>
 </div>
 </div>
   </div>
