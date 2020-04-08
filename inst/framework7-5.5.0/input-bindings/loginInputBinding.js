@@ -28,6 +28,10 @@ $.extend(f7LoginBinding, {
     return $(scope).find(".login-screen");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var l = app.loginScreen.get($(el));
@@ -60,4 +64,4 @@ $.extend(f7LoginBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7LoginBinding);
+Shiny.inputBindings.register(f7LoginBinding, 'f7.login');

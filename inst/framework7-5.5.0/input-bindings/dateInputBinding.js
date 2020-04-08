@@ -6,6 +6,10 @@ $.extend(f7DateBinding, {
     return $(scope).find(".date-input");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     console.log($(el).attr("value"));
@@ -44,4 +48,4 @@ $.extend(f7DateBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7DateBinding);
+Shiny.inputBindings.register(f7DateBinding, 'f7.date');

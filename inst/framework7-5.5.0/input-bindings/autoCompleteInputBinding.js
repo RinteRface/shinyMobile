@@ -72,6 +72,10 @@ $.extend(f7AutoCompleteBinding, {
     return $(scope).find(".autocomplete-input");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var a = app.autocomplete.get($(el));
@@ -113,4 +117,4 @@ $.extend(f7AutoCompleteBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7AutoCompleteBinding);
+Shiny.inputBindings.register(f7AutoCompleteBinding, 'f7.autocomplete');

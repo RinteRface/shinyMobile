@@ -40,6 +40,10 @@ $.extend(f7SliderBinding, {
     return $(scope).find(".range-slider");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return app.range.get($(el)).value;
@@ -133,4 +137,4 @@ $.extend(f7SliderBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7SliderBinding);
+Shiny.inputBindings.register(f7SliderBinding, 'f7.range');

@@ -7,6 +7,10 @@ $.extend(f7FabsBinding, {
     return $(scope).find(".fab");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var open = $(el).hasClass('fab-opened');
@@ -30,7 +34,7 @@ $.extend(f7FabsBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7FabsBinding);
+Shiny.inputBindings.register(f7FabsBinding, 'f7.fabs');
 
 //$(document).on('click', 'a.f7-action-button', function(event) {
 //  event.stopPropagation();

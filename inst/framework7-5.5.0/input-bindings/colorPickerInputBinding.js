@@ -35,6 +35,10 @@ $.extend(f7ColorPickerBinding, {
     return $(scope).find(".color-picker-input");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var ID = $(el).attr("id");
@@ -64,4 +68,4 @@ $.extend(f7ColorPickerBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7ColorPickerBinding);
+Shiny.inputBindings.register(f7ColorPickerBinding, 'f7.colorpicker');

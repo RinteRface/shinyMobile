@@ -38,6 +38,10 @@ $.extend(f7SheetBinding, {
     return $(scope).find(".sheet-modal");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var s = app.sheet.get($(el));
@@ -67,5 +71,5 @@ $.extend(f7SheetBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7SheetBinding);
+Shiny.inputBindings.register(f7SheetBinding, 'f7.sheet');
 

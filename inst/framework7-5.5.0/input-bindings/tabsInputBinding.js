@@ -7,6 +7,10 @@ $.extend(f7TabsBinding, {
     return $(scope).find(".tabs");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var activeTab;
@@ -47,4 +51,4 @@ $.extend(f7TabsBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7TabsBinding);
+Shiny.inputBindings.register(f7TabsBinding, 'f7.tabs');

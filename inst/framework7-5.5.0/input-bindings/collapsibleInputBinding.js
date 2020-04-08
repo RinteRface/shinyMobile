@@ -7,6 +7,10 @@ $.extend(f7CollapsibleBinding, {
     return $(scope).find(".collapsible");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var accordionId = $($(el)[0]).attr('id');
@@ -52,4 +56,4 @@ $.extend(f7CollapsibleBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7CollapsibleBinding);
+Shiny.inputBindings.register(f7CollapsibleBinding, 'f7.collapsible');

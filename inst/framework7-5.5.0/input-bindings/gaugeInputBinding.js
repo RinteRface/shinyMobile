@@ -51,6 +51,9 @@ $.extend(f7GaugeBinding, {
     return $(scope).find(".gauge");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
 
   getValue: function(el) {
 
@@ -78,5 +81,5 @@ $.extend(f7GaugeBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7GaugeBinding);
+Shiny.inputBindings.register(f7GaugeBinding, 'f7.gauge');
 

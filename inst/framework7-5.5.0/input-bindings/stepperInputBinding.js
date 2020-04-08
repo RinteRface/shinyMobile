@@ -44,6 +44,10 @@ $.extend(f7StepperBinding, {
     return $(scope).find(".stepper");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return app.stepper.get($(el)).value;
@@ -191,4 +195,4 @@ $.extend(f7StepperBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7StepperBinding);
+Shiny.inputBindings.register(f7StepperBinding, 'f7.stepper');

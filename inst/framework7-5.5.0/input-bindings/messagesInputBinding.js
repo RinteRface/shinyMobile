@@ -60,6 +60,10 @@ $.extend(f7MessagesBinding, {
     return $(scope).find(".messages");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return app.messages.get($(el)).messages;
@@ -109,4 +113,4 @@ $.extend(f7MessagesBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7MessagesBinding);
+Shiny.inputBindings.register(f7MessagesBinding, 'f7.messages');

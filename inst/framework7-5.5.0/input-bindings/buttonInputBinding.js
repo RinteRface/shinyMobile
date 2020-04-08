@@ -9,8 +9,8 @@ $.extend(f7ButtonInputBinding, {
   setValue: function(el, value) {
     $(el).data('val', value);
   },
-  getType: function(el) {
-    return 'shiny.action';
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
   },
   subscribe: function(el, callback) {
     $(el).on("click.f7ButtonInputBinding", function(e) {
@@ -103,7 +103,7 @@ $.extend(f7ButtonInputBinding, {
     $(el).off(".f7ButtonInputBinding");
   }
 });
-Shiny.inputBindings.register(f7ButtonInputBinding);
+Shiny.inputBindings.register(f7ButtonInputBinding, 'f7.button');
 
 
 $(document).on('click', 'a.f7-action-button', function(e) {

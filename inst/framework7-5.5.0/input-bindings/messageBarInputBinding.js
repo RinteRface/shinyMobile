@@ -28,6 +28,10 @@ $.extend(f7MessageBarBinding, {
     return $(scope).find(".messagebar");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return this.setState(el);
@@ -80,4 +84,4 @@ $.extend(f7MessageBarBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7MessageBarBinding);
+Shiny.inputBindings.register(f7MessageBarBinding, 'f7.messagebar');

@@ -7,6 +7,10 @@ $.extend(f7SelectBinding, {
     return $(scope).find(".input-select");
   },
 
+  getId: function(el) {
+    return Shiny.InputBinding.prototype.getId.call(this, el) || el.name;
+  },
+
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     return $(el).val();
@@ -38,4 +42,4 @@ $.extend(f7SelectBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7SelectBinding);
+Shiny.inputBindings.register(f7SelectBinding, 'f7.select');
