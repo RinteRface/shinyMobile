@@ -112,7 +112,7 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
             theme: '", skin, "',
             swipeNoFollow: true,
             touch: {
-              tapHold: ", tolower(tapHold), " // enable tap hold events,
+              tapHold: ", tolower(tapHold), ", // enable tap hold events
               tapHoldDelay: ", tapHoldDelay, ",
             },
             iosTouchRipple: ", tolower(iosTouchRipple), ",
