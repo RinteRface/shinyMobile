@@ -84,8 +84,8 @@ f7Fabs <- function(..., id = NULL, position = c("right-top", "right-center", "ri
       `data-morph-to` = if (morph) morphTarget else NULL,
       shiny::a(
         href = "#",
-        f7Icon("add"),
-        f7Icon("close"),
+        f7Icon("plus", old = FALSE),
+        f7Icon("multiply", old = FALSE),
         if (!is.null(label)) {
           shiny::tags$div(class = "fab-text", label)
         }
