@@ -6,3 +6,4 @@ inst/doc
 inst/examples/**/rsconnect
 inst/examples/chat_widget
 .DS_Store
+.vscode
