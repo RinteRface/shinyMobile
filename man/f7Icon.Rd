@@ -45,12 +45,12 @@ if(interactive()){
      f7List(
       f7ListItem(
         title = tagList(
-         f7Icon("email")
+         f7Icon("envelope", old = FALSE)
         )
       ),
       f7ListItem(
         title = tagList(
-         f7Icon("email_fill", color = "green")
+         f7Icon("envelope_fill", color = "green", old = FALSE)
         )
       ),
       f7ListItem(

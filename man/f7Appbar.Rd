@@ -45,19 +45,19 @@ if (interactive()) {
          id = "tabset",
          f7Tab(
            tabName = "Tab 1",
-           icon = f7Icon("email"),
+           icon = f7Icon("envelope", old = FALSE),
            active = TRUE,
            "Text 1"
          ),
          f7Tab(
            tabName = "Tab 2",
-           icon = f7Icon("today"),
+           icon = f7Icon("today", old = FALSE),
            active = FALSE,
            "Text 2"
          ),
          f7Tab(
            tabName = "Tab 3",
-           icon = f7Icon("cloud_upload"),
+           icon = f7Icon("cloud_upload", old = FALSE),
            active = FALSE,
            "Text 3"
          )

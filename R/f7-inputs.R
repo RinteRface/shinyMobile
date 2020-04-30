@@ -1273,8 +1273,8 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'        scale = TRUE,
 #'        color = "orange",
 #'        labels = tagList(
-#'         f7Icon("circle"),
-#'         f7Icon("circle_fill")
+#'         f7Icon("circle", old = FALSE),
+#'         f7Icon("circle_fill", old = FALSE)
 #'        )
 #'       ),
 #'       verbatimTextOutput("test")
