@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
     <li>
@@ -193,7 +193,7 @@
     <tr>
       <th>panels</th>
       <td><p>Slot for <a href='f7Panel.html'>f7Panel</a>.
-Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if multiple panels.</p></td>
+Wrap in <a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a> if multiple panels.</p></td>
     </tr>
     <tr>
       <th>appbar</th>
@@ -223,7 +223,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if mu
              "</span>
          )
        ),
-       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
+       <span class='kw'>panels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
          <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Left Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>),
          <span class='fu'><a href='f7Panel.html'>f7Panel</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Right Panel"</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"dark"</span>, <span class='st'>"Blabla"</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"cover"</span>)
        ),
@@ -255,7 +255,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if mu
                  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>100</span>
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot1"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"tapHold"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
                )
@@ -282,7 +282,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if mu
                  )
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot2"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"orange"</span>)
                )
@@ -308,7 +308,7 @@ Wrap in <a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a> if mu
                  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='st'>"cyl"</span>
                ),
                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span>(<span class='st'>"data"</span>),
-               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>tagList</a></span>(
+               <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
                  <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
                  <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
                )

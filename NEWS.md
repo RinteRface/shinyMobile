@@ -1,4 +1,4 @@
-# shinyMobile 0.5.0.9000
+# shinyMobile 0.7.0
 
 ## Notes
 - disable backdrop in `f7Searchbar()` since it messes up with tabbar navigation. This does 

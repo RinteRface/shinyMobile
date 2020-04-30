@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
     <li>
@@ -230,7 +230,7 @@
               <span class="kw">value</span> <span class="kw">=</span> <span class="fl">500</span>
             )
           ),
-          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">br</a></span>(),
+          <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(),
           <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span>(<span class="st">"distPlot"</span>)
         ),
         <span class="fu"><a href="../reference/f7Item.html">f7Item</a></span>(
@@ -293,7 +293,7 @@
     })
 
     <span class="no">output</span>$<span class="no">selected_tab</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html">renderUI</a></span>({
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">HTML</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"Access the currently selected tab: "</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">strong</a></span>(<span class="no">input</span>$<span class="no">menu</span>)))
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/HTML.html">HTML</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"Access the currently selected tab: "</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">strong</a></span>(<span class="no">input</span>$<span class="no">menu</span>)))
     })
 
     <span class="no">output</span>$<span class="no">distPlot</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({

@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
     <li>
@@ -179,7 +179,7 @@
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My app"</span>,
     <span class="kw">init</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="kw">theme</span> <span class="kw">=</span> <span class="st">"dark"</span>),
     <span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span>(
-      <span class="kw">panels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(
+      <span class="kw">panels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tag.html">tagList</a></span>(
        <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Left Panel"</span>, <span class="kw">side</span> <span class="kw">=</span> <span class="st">"left"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"light"</span>, <span class="st">"Blabla"</span>, <span class="kw">effect</span> <span class="kw">=</span> <span class="st">"cover"</span>),
        <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Right Panel"</span>, <span class="kw">side</span> <span class="kw">=</span> <span class="st">"right"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"dark"</span>, <span class="st">"Blabla"</span>, <span class="kw">effect</span> <span class="kw">=</span> <span class="st">"cover"</span>)
       ),
@@ -222,8 +222,8 @@
             )
           ),
 
-          <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tags</a></span>$<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(
-            <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tags</a></span>$<span class="fu">script</span>(
+          <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/shiny/man/builder.html">tags</a></span>$<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(
+            <span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/shiny/man/builder.html">tags</a></span>$<span class="fu">script</span>(
               <span class="st">'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
                 var os = message.os;
                 var skin = message.skin;
@@ -259,9 +259,9 @@
                 <span class="kw">choices</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"day"</span>, <span class="st">"week"</span>, <span class="st">"month"</span>),
                 <span class="kw">selected</span> <span class="kw">=</span> <span class="st">"day"</span>
               ),
-              <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">br</a></span>(),
+              <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/builder.html">br</a></span>(),
               <span class="fu"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"river"</span>),
-              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(
+              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tag.html">tagList</a></span>(
                 <span class="fu"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"My button"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>),
                 <span class="fu"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"green"</span>)
               )
@@ -283,7 +283,7 @@
                 <span class="kw">status</span> <span class="kw">=</span> <span class="st">"danger"</span>
               ),
               <span class="fu"><a href="http://echarts4r.john-coene.com/reference/echarts4r-shiny.html">echarts4rOutput</a></span>(<span class="st">"network"</span>),
-              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(
+              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tag.html">tagList</a></span>(
                 <span class="fu"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"My button"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>),
                 <span class="fu"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"green"</span>)
               )
@@ -310,7 +310,7 @@
                 <span class="kw">animation</span> <span class="kw">=</span> <span class="st">"pulse"</span>
               ),
               <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tableOutput.html">tableOutput</a></span>(<span class="st">"data"</span>),
-              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/reexports.html">tagList</a></span>(
+              <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tag.html">tagList</a></span>(
                 <span class="fu"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"My button"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>),
                 <span class="fu"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"green"</span>)
               )

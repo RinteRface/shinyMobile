@@ -83,7 +83,7 @@ need to store credentials in a database for instance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@ need to store credentials in a database for instance." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
     <li>
@@ -279,14 +279,14 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
        <span class='fu'>f7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Welcome"</span>),
        <span class='co'># main content</span>
        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
          <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
        ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(<span class='no'>f7LoginServer</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>f7LoginServer</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
 
      <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
@@ -317,7 +317,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Restricted"</span>,
            <span class='co'># main content</span>
            <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
+             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
              <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
            ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
          )
@@ -333,7 +333,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
      })
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
       <span class='no'>f7LoginServer</span>,
       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
       <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -398,14 +398,14 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
      })
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
        <span class='no'>f7LoginServer</span>,
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
        <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger1</span>
      )
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
        <span class='no'>f7LoginServer</span>,
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage2"</span>,
        <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

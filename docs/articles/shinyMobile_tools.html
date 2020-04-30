@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
     <li>
@@ -219,7 +219,7 @@
         <span class="kw">shadow</span> <span class="kw">=</span> <span class="fl">TRUE</span>
       ),
       <span class="co"># main content</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"info"</span>)
     )
   ),
   <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {
@@ -328,12 +328,12 @@
         <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"Link 2"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>, <span class="kw">external</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
       ),
       <span class="co"># main content</span>
-      <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"infos"</span>)),
+      <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"infos"</span>)),
       <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
         <span class="fu"><a href="../reference/f7Text.html">f7Text</a></span>(<span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"text"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Text"</span>),
         <span class="fu"><a href="../reference/f7Slider.html">f7Slider</a></span>(<span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"range1"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Range"</span>, <span class="kw">min</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">max</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">step</span> <span class="kw">=</span> <span class="fl">0.1</span>),
         <span class="fu"><a href="../reference/f7Stepper.html">f7Stepper</a></span>(<span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"stepper1"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Stepper"</span>, <span class="kw">min</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">max</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">5</span>),
-        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html">verbatimTextOutput</a></span>(<span class="st">"lastChanged"</span>)
+        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html">verbatimTextOutput</a></span>(<span class="st">"lastChanged"</span>)
       )
     )
   ),

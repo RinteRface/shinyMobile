@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.5.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
     <li>
@@ -227,7 +227,7 @@ when you want to trigger events after a specific button click.</p></td>
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Action sheet"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Show action sheet"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
      )
    ),
@@ -353,12 +353,12 @@ when you want to trigger events after a specific button click.</p></td>
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Action sheet"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reexports.html'>br</a></span>(),
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
        <span class='fu'>sheetModuleUI</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>callModule</a></span>(<span class='no'>sheetModule</span>, <span class='st'>"sheet1"</span>)
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>sheetModule</span>, <span class='st'>"sheet1"</span>)
    }
  )
 }</div></pre>
