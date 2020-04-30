@@ -8,3 +8,4 @@
 ^appveyor\.yml$
 ^index\.md$
 ^\.vscode$
+^revdep$
