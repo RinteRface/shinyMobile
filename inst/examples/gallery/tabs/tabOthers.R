@@ -1,6 +1,6 @@
 tabOthers <- f7Tab(
   tabName = "Others",
-  icon = f7Icon("more_round"),
+  icon = f7Icon("plus_circle"),
 
   # standalone tabs
   f7BlockTitle(title = "f7Tabs") %>% f7Align(side = "center"),

@@ -1,6 +1,6 @@
 tabCards <- f7Tab(
   tabName = "Cards",
-  icon = f7Icon("card", f7Badge(8, color = "green")),
+  icon = f7Icon("rectangle_stack", f7Badge(8, color = "green")),
   active = FALSE,
 
   f7BlockTitle(title = "f7Block") %>% f7Align(side = "center"),

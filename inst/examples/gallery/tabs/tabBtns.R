@@ -1,6 +1,6 @@
 tabBtns <- f7Tab(
   tabName = "FABs",
-  icon = f7Icon("keyboard_fill"),
+  icon = f7Icon("circle_grid_hex"),
   active = FALSE,
 
   # FABS
