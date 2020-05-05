@@ -263,17 +263,7 @@ Note that for the moment, there is no option to control the width of each panel.
   
 As stated previously for the `f7SplitLayout`, the `f7Panel()` may also be considered
 as a sidebar. In that case, we may include `f7PanelMenu()`.
-Finally do not forget to set up the `f7Navbar` so that panels are allowed!
-
-<div class="row">
-<div class="col-sm-4" align="center">
-<img src="./figures/f7Panel_right_demo.png">
-</div>
-<div class="col-sm-4" align="center">
-<img src="./figures/f7Panel_left_demo.png">
-</div>
-</div>
-
+Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
 
 ##### The appbar
 
