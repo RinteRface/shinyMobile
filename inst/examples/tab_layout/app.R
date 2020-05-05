@@ -33,7 +33,7 @@ shiny::shinyApp(
         swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
-          icon = f7Icon("email"),
+          icon = f7Icon("equal_circle"),
           active = TRUE,
           f7Shadow(
             intensity = 10,

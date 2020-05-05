@@ -24,7 +24,7 @@ shiny::shinyApp(
         #swipeable = TRUE,
         f7Tab(
           tabName = "Tab 1",
-          icon = f7Icon("email"),
+          icon = f7Icon("dog"),
           active = TRUE,
 
           f7Flex(

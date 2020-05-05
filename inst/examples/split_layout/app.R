@@ -36,9 +36,9 @@ shiny::shinyApp(
         theme = "light",
         f7PanelMenu(
           id = "menu",
-          f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
-          f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home")),
-          f7PanelItem(tabName = "tab3", title = "Tab 3", icon = f7Icon("home"))
+          f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("equal_circle"), active = TRUE),
+          f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("equal_circle")),
+          f7PanelItem(tabName = "tab3", title = "Tab 3", icon = f7Icon("equal_circle"))
         ),
         uiOutput("selected_tab"),
         effect = "reveal"
