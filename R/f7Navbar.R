@@ -44,7 +44,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
             `data-panel` = "left",
             # shiny::tags$i(class = "f7-icons ios-only", "bars"),
             # shiny::tags$i(class = "icon material-icons md-only", "menu")
-            f7Icon("bars", old = FALSE)
+            f7Icon("bars")
          )
       )
    }
@@ -57,7 +57,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
             `data-panel` = "right",
             # shiny::tags$i(class = "f7-icons ios-only", "bars"),
             # shiny::tags$i(class = "icon material-icons md-only", "menu")
-            f7Icon("bars", old = FALSE)
+            f7Icon("bars")
          )
       )
    }

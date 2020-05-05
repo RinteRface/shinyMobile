@@ -4,7 +4,7 @@
 \alias{f7Icon}
 \title{Framework7 icons}
 \usage{
-f7Icon(..., lib = NULL, color = NULL, style = NULL, old = TRUE)
+f7Icon(..., lib = NULL, color = NULL, style = NULL, old = NULL)
 }
 \arguments{
 \item{...}{Icon name and \link{f7Badge}.}
@@ -17,8 +17,8 @@ if you want to hide/show icons on specific devices.}
 \item{style}{CSS styles to be applied on icon, for example
 use \code{font-size: 56px;} to have a bigger icon.}
 
-\item{old}{Use \code{TRUE} for old icons, default is \code{TRUE},
-but in a future version of shinyMobile default will be \code{FALSE}.}
+\item{old}{Deprecated. This was to handle old and new icons but shinyMobile only uses
+new icons from now. This parameter will be removed in a future release.}
 }
 \description{
 Use Framework7 icons in shiny applications,
@@ -26,11 +26,10 @@ Use Framework7 icons in shiny applications,
 }
 \examples{
 
-f7Icon("close", old = TRUE)
-f7Icon("multiply", old = FALSE)
+f7Icon("multiply")
 
 # Icon size
-f7Icon("multiply", style = "font-size: 56px;", old = FALSE)
+f7Icon("multiply", style = "font-size: 56px;")
 
 if(interactive()){
  library(shiny)
@@ -45,12 +44,12 @@ if(interactive()){
      f7List(
       f7ListItem(
         title = tagList(
-         f7Icon("envelope", old = FALSE)
+         f7Icon("envelope")
         )
       ),
       f7ListItem(
         title = tagList(
-         f7Icon("envelope_fill", color = "green", old = FALSE)
+         f7Icon("envelope_fill", color = "green")
         )
       ),
       f7ListItem(

@@ -80,8 +80,8 @@ if(interactive()){
        scale = TRUE,
        color = "orange",
        labels = tagList(
-        f7Icon("circle", old = FALSE),
-        f7Icon("circle_fill", old = FALSE)
+        f7Icon("circle"),
+        f7Icon("circle_fill")
        )
       ),
       verbatimTextOutput("test")

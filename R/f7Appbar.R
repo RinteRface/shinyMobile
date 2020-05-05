@@ -36,19 +36,19 @@
 #'          id = "tabset",
 #'          f7Tab(
 #'            tabName = "Tab 1",
-#'            icon = f7Icon("envelope", old = FALSE),
+#'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            "Text 1"
 #'          ),
 #'          f7Tab(
 #'            tabName = "Tab 2",
-#'            icon = f7Icon("today", old = FALSE),
+#'            icon = f7Icon("today"),
 #'            active = FALSE,
 #'            "Text 2"
 #'          ),
 #'          f7Tab(
 #'            tabName = "Tab 3",
-#'            icon = f7Icon("cloud_upload", old = FALSE),
+#'            icon = f7Icon("cloud_upload"),
 #'            active = FALSE,
 #'            "Text 3"
 #'          )
@@ -65,7 +65,7 @@ f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
       href = "#",
       class = "button button-small panel-toggle display-flex",
       `data-panel` = NA,
-      f7Icon("bars", old = FALSE)
+      f7Icon("bars")
     )
   }
 
@@ -143,7 +143,7 @@ f7Back <- function(targetId) {
     href = "#",
     id = paste0("back_", targetId),
     class = "button button-small display-flex margin-left-half",
-    f7Icon("arrowshape_turn_up_left_fill", old = FALSE)
+    f7Icon("arrowshape_turn_up_left_fill")
   )
 
   shiny::tagList(backJS, backTag)
@@ -198,7 +198,7 @@ f7Next <- function(targetId) {
     href = "#",
     id = paste0("next_", targetId),
     class = "button button-small display-flex margin-left-half",
-    f7Icon("arrowshape_turn_up_right_fill", old = FALSE)
+    f7Icon("arrowshape_turn_up_right_fill")
   )
 
   shiny::tagList(nextJS, nextTag)

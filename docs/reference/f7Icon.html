@@ -175,7 +175,7 @@
  see complete list of icons here : <a href='https://framework7.io/icons/'>https://framework7.io/icons/</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Icon</span>(<span class='no'>...</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Icon</span>(<span class='no'>...</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,19 +200,18 @@ use <code>font-size: 56px;</code> to have a bigger icon.</p></td>
     </tr>
     <tr>
       <th>old</th>
-      <td><p>Use <code>TRUE</code> for old icons, default is <code>TRUE</code>,
-but in a future version of shinyMobile default will be <code>FALSE</code>.</p></td>
+      <td><p>Deprecated. This was to handle old and new icons but shinyMobile only uses
+new icons from now. This parameter will be removed in a future release.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>f7Icon</span>(<span class='st'>"close"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>)
 
 <span class='co'># Icon size</span>
-<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"font-size: 56px;"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>f7Icon</span>(<span class='st'>"multiply"</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"font-size: 56px;"</span>)
 
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
@@ -227,12 +226,12 @@ but in a future version of shinyMobile default will be <code>FALSE</code>.</p></
      <span class='fu'><a href='f7List.html'>f7List</a></span>(
       <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-         <span class='fu'>f7Icon</span>(<span class='st'>"envelope"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+         <span class='fu'>f7Icon</span>(<span class='st'>"envelope"</span>)
         )
       ),
       <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
-         <span class='fu'>f7Icon</span>(<span class='st'>"envelope_fill"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='kw'>old</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+         <span class='fu'>f7Icon</span>(<span class='st'>"envelope_fill"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
         )
       ),
       <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(

@@ -142,7 +142,7 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
           id = ns("send"),
           href = "#",
           class = "link icon-only demo-send-message-link f7-action-button",
-          f7Icon("arrow_up_circle_fill", old = FALSE)
+          f7Icon("arrow_up_circle_fill")
         )
       )
     )

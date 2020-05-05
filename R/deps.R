@@ -95,11 +95,8 @@ f7InputsDeps <- function() {
 }
 
 
-html_dependencies_f7Icons <- function(old = TRUE) {
+html_dependencies_f7Icons <- function() {
   name <- "f7-icons"
-  if (isTRUE(old)) {
-    name <- paste0(name, "-old")
-  }
   htmlDependency(
     name = name,
     version = "3.0.0",
