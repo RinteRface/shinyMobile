@@ -85,6 +85,7 @@ on old devices
 - add more copyrights
 
 ## Bug fix
+- Fix issue in `updateF7AutoComplete`: text input was not updated. Thanks @sanchez5674 for the report
 - Remove duplicated html tag in `f7Page()`. Thanks @ pvictor
 - Fix issue in `f7Sheet()` wrong css style applied when multiple sheets are in the same app
 - Fix issue in `f7Tabs()`: if one put `f7Tabs()` inside a `f7Tab()` in a parent `f7Tabs()`, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset). 
