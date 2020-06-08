@@ -1,34 +1,31 @@
 library(shiny)
+library(ggplot2)
 library(shinyMobile)
-library(echarts4r)
+library(apexcharter)
 
-# polar diagram
-df <- data.frame(
-  x = seq(50),
-  y = rnorm(50, 10, 3),
-  z = rnorm(50, 11, 2),
-  w = rnorm(50, 9, 2)
+fruits <- data.frame(
+  name = c('Apples', 'Oranges', 'Bananas', 'Berries'),
+  value = c(44, 55, 67, 83)
 )
 
-# sankey plot
-sankey <- data.frame(
-  source = c("a", "b", "c", "d", "c"),
-  target = c("b", "c", "d", "e", "e"),
-  value = ceiling(rnorm(5, 10, 1)),
-  stringsAsFactors = FALSE
+new_mtcars <- reshape(
+  data = head(mtcars),
+  idvar = "model",
+  varying = list(c("drat", "wt")),
+  times = c("drat", "wt"),
+  direction = "long",
+  v.names = "value",
+  drop = c("mpg", "cyl", "hp", "dist", "qsec", "vs", "am", "gear", "carb")
 )
 
-# webgl plot
-vectors <- expand.grid(x = -3:3, y = -3:3)
-mu <- 1
-vectors$sx <- vectors$y
-vectors$sy <- mu * (1 - vectors$x^2) * vectors$y - vectors$x
-vectors$color <- log10(runif(nrow(vectors), 1, 10))
-
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(hideNavOnPageScroll = FALSE, hideTabsOnPageScroll = FALSE, theme = "light"),
+    init = f7Init(
+      hideNavOnPageScroll = FALSE,
+      hideTabsOnPageScroll = FALSE,
+      theme = "light"
+    ),
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",
@@ -36,9 +33,22 @@ shiny::shinyApp(
         theme = "light",
         f7PanelMenu(
           id = "menu",
-          f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("equal_circle"), active = TRUE),
-          f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("equal_circle")),
-          f7PanelItem(tabName = "tab3", title = "Tab 3", icon = f7Icon("equal_circle"))
+          f7PanelItem(
+            tabName = "tab1",
+            title = "Tab 1",
+            icon = f7Icon("equal_circle"),
+            active = TRUE
+          ),
+          f7PanelItem(
+            tabName = "tab2",
+            title = "Tab 2",
+            icon = f7Icon("equal_circle")
+          ),
+          f7PanelItem(
+            tabName = "tab3",
+            title = "Tab 3",
+            icon = f7Icon("equal_circle")
+          )
         ),
         uiOutput("selected_tab"),
         effect = "reveal"
@@ -75,28 +85,7 @@ shiny::shinyApp(
         ),
         f7Item(
           tabName = "tab2",
-          f7Swiper(
-            id = "swiper",
-            spaceBetween = 100,
-            f7Slide(
-              f7Text(
-                inputId = "sankey_name",
-                label = "Sankey Name",
-                placeholder = "Plot Name"
-              ),
-              echarts4rOutput("sankey_plot")
-
-            ),
-            f7Slide(
-              df %>%
-                e_charts(x) %>%
-                e_polar() %>%
-                e_angle_axis(x) %>% # angle = x
-                e_radius_axis() %>%
-                e_bar(y, coord_system = "polar") %>%
-                e_scatter(z, coord_system = "polar")
-            )
-          )
+          apexchartOutput("radar")
         ),
         f7Item(
           tabName = "tab3",
@@ -105,7 +94,7 @@ shiny::shinyApp(
             label = "Show Plot?",
             checked = TRUE
           ),
-          echarts4rOutput("flow_plot")
+          apexchartOutput("multi_radial")
         )
       )
     )
@@ -125,11 +114,16 @@ shiny::shinyApp(
       }
     })
 
-    output$sankey_plot <- renderEcharts4r({
-      sankey %>%
-        e_charts() %>%
-        e_sankey(source, target, value) %>%
-        e_title(input$sankey_name)
+
+    output$radar <- renderApexchart({
+      apex(
+        data = new_mtcars,
+        type = "radar",
+        mapping = aes(
+          x = model,
+          y = value,
+          group = time)
+      )
     })
 
     output$selected_tab <- renderUI({
@@ -141,26 +135,9 @@ shiny::shinyApp(
       hist(dist)
     })
 
-    output$flow_plot <- renderEcharts4r({
+    output$multi_radial <- renderApexchart({
       if (input$plot_show) {
-        vectors %>%
-          e_charts(x) %>%
-          e_flow_gl(y, sx, sy, color) %>%
-          e_visual_map(
-            min = 0, max = 1, # log 10
-            dimension = 4, # x = 0, y = 1, sx = 3, sy = 4
-            show = FALSE, # hide
-            inRange = list(
-              color = c('#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
-                        '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026')
-            )
-          ) %>%
-          e_x_axis(
-            splitLine = list(show = FALSE)
-          ) %>%
-          e_y_axis(
-            splitLine = list(show = FALSE)
-          )
+        apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
       }
     })
 

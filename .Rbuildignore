@@ -9,3 +9,4 @@
 ^index\.md$
 ^\.vscode$
 ^revdep$
+^CRAN-RELEASE$

@@ -37,8 +37,7 @@ for authentication
 - new `updateF7DatePicker()`: thanks @pvictor
 - add input binding to `f7Fabs()` to get the status of the container
 - add `updateF7Button()` and `updateF7Fabs()`
-- new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom
-fires input$ptr which becomes TRUE. When the pull to refresh event is finished,
+- new pullToRefresh parameter to `f7Init()`. Pull the screen from top to bottom fires input$ptr which becomes TRUE. When the pull to refresh event is finished,
 input$ptr is NULL. Useful to trigger events in an observEvent
 - add new `updateF7Select()`: thanks @Seyphaton for the suggestion
 - add `f7TogglePopup()` to close/open a `f7Popup()`. Thanks @pasahe

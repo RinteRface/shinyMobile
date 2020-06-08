@@ -1,19 +1,16 @@
 library(shiny)
 library(shinyMobile)
-library(echarts4r)
+library(apexcharter)
+library(dplyr)
+library(ggplot2)
 
-plot <- USArrests %>%
-  dplyr::mutate(
-    State = row.names(.),
-    Rape = -Rape
-  ) %>%
-  e_charts(State) %>%
-  e_line(Murder) %>%
-  e_area(Rape, name = "Sick basterd", x_index = 1) %>%  # second y axis
-  e_title("Your plot", "Subtext", sublink = "https://john-coene.com") %>%
-  e_x_axis(1, show = FALSE) # hide scond X Axis
+data("economics_long")
+economics_long <- economics_long %>%
+  group_by(variable) %>%
+  slice((n()-100):n())
 
-shiny::shinyApp(
+
+shinyApp(
   ui = f7Page(
     title = "My app",
     dark_mode = FALSE,
@@ -35,19 +32,25 @@ shiny::shinyApp(
         hover = TRUE,
         f7Card(
           title = "Card header",
-          plot,
-          footer = tagList(
-            f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
-            f7Badge("Badge", color = "green")
-          )
+          apexchartOutput("areaChart")
         )
       )
     )
   ),
   server = function(input, output) {
-    output$distPlot <- renderPlot({
-      dist <- rnorm(input$obs)
-      hist(dist)
+    output$areaChart <- renderApexchart({
+      apex(
+        data = economics_long,
+        type = "area",
+        mapping = aes(
+          x = date,
+          y = value01,
+          fill = variable
+        )
+      ) %>%
+        ax_yaxis(decimalsInFloat = 2) %>% # number of decimals to keep
+        ax_chart(stacked = TRUE) %>%
+        ax_yaxis(max = 4, tickAmount = 4)
     })
   }
 )

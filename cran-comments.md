@@ -4,4 +4,4 @@
 * win-builder (devel and release)
 
 ## R CMD check results
-Regarding the [NOTE](https://www.r-project.org/nosvn/R.check/r-patched-solaris-x86/shinyMobile-00check.html), the pkg size has been reduced (remove png from documentation as well as icons in the inst/ folder). This should fix the NOTE
+Regarding the [NOTE](https://www.r-project.org/nosvn/R.check/r-patched-solaris-x86/shinyMobile-00check.html), the pkg size has been reduced (remove png from documentation as well as icons in the inst/ folder). This should fix the NOTE.

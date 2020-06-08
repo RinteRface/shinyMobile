@@ -71,9 +71,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/Dark-Theme.html">Dark-Theme</a>
-    </li>
-    <li>
       <a href="articles/Gadgets.html">Gadgets</a>
     </li>
     <li>
@@ -126,9 +123,9 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="shinymobile" class="section level1">
+<div id="shinymobile-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#shinymobile" class="anchor"></a>shinyMobile <img src="reference/figures/logo.png" width="200px" align="right">
+<a href="#shinymobile-" class="anchor"></a>shinyMobile <img src="reference/figures/logo.png" width="200px" align="right">
 </h1></div>
 <blockquote>
 <p>Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest <a href="https://framework7.io">Framework7</a> template.</p>
@@ -217,46 +214,46 @@
 <a href="#configuration" class="anchor"></a>Configuration</h3>
 <p>shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> and the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat">script</a>. The last 3 parameters of <code><a href="reference/f7Page.html">f7Page()</a></code> are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.</p>
 <p>Below is an example showing the manifest.json file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="op">{</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="st">"short_name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="st">"description"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en-US"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="st">"start_url"</span><span class="op">:</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2Demo/"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">  <span class="st">"display"</span><span class="op">:</span> <span class="st">"standalone"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="st">"icons"</span><span class="op">:</span> [</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/128x128.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"128x128"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">    <span class="op">},</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/144x144.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"144x144"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18">    <span class="op">},</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/152x152.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"152x152"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23">    <span class="op">},</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/192x192.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"192x192"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-28" data-line-number="28">    <span class="op">},</span></a>
-<a class="sourceLine" id="cb2-29" data-line-number="29">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-30" data-line-number="30">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/256x256.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-31" data-line-number="31">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"256x256"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-32" data-line-number="32">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-33" data-line-number="33">    <span class="op">},</span></a>
-<a class="sourceLine" id="cb2-34" data-line-number="34">    <span class="op">{</span></a>
-<a class="sourceLine" id="cb2-35" data-line-number="35">      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/512x512.png"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-36" data-line-number="36">      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"512x512"</span><span class="op">,</span></a>
-<a class="sourceLine" id="cb2-37" data-line-number="37">      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></a>
-<a class="sourceLine" id="cb2-38" data-line-number="38">    <span class="op">}</span></a>
-<a class="sourceLine" id="cb2-39" data-line-number="39">  ]</a>
-<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="op">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="st">"short_name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">"description"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en-US"</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="st">"start_url"</span><span class="op">:</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2Demo/"</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="st">"display"</span><span class="op">:</span> <span class="st">"standalone"</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="st">"icons"</span><span class="op">:</span> [</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="op">{</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/128x128.png"</span><span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"128x128"</span><span class="op">,</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="op">},</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    <span class="op">{</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/144x144.png"</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"144x144"</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="op">},</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>    <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/152x152.png"</span><span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"152x152"</span><span class="op">,</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="op">},</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="op">{</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/192x192.png"</span><span class="op">,</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"192x192"</span><span class="op">,</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="op">},</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>    <span class="op">{</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/256x256.png"</span><span class="op">,</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"256x256"</span><span class="op">,</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>    <span class="op">},</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>    <span class="op">{</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/512x512.png"</span><span class="op">,</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"512x512"</span><span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="op">}</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>  ]</span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="op">}</span></span></code></pre></div>
 <p>Be sure to replace the <code>start_url</code> with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. FInally, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</p>
 </div>
 <div id="add-the-pwa-to-your-desktop-apps" class="section level3">

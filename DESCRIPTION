@@ -33,7 +33,9 @@ Suggests:
     V8,
     cli,
     rstudioapi,
-    shinyWidgets, 
-    echarts4r,
-    golem
+    shinyWidgets,
+    apexcharter,
+    golem,
+    ggplot2,
+    dplyr
 VignetteBuilder: knitr

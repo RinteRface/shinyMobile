@@ -65,9 +65,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Dark-Theme.html">Dark-Theme</a>
-    </li>
-    <li>
       <a href="../articles/Gadgets.html">Gadgets</a>
     </li>
     <li>
@@ -124,7 +121,7 @@
       <h1 data-toc-skip>Single-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-05-05</h4>
+            <h4 class="date">2020-06-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Single-Layout.Rmd"><code>vignettes/Single-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Single-Layout.Rmd</code></div>
@@ -171,22 +168,21 @@
 </div>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shinyMobile</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">echarts4r</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">apexcharter</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
 
-<span class="no">plot</span> <span class="kw">&lt;-</span> <span class="no">USArrests</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-    <span class="kw">State</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(<span class="no">.</span>),
-    <span class="kw">Rape</span> <span class="kw">=</span> -<span class="no">Rape</span>
-  ) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="http://echarts4r.john-coene.com/reference/init.html">e_charts</a></span>(<span class="no">State</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_line.html">e_line</a></span>(<span class="no">Murder</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_area.html">e_area</a></span>(<span class="no">Rape</span>, <span class="kw">name</span> <span class="kw">=</span> <span class="st">"Sick basterd"</span>, <span class="kw">x_index</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="kw">%&gt;%</span>  <span class="co"># second y axis</span>
-  <span class="fu"><a href="http://echarts4r.john-coene.com/reference/e_title.html">e_title</a></span>(<span class="st">"Your plot"</span>, <span class="st">"Subtext"</span>, <span class="kw">sublink</span> <span class="kw">=</span> <span class="st">"https://john-coene.com"</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="http://echarts4r.john-coene.com/reference/axis.html">e_x_axis</a></span>(<span class="fl">1</span>, <span class="kw">show</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="co"># hide scond X Axis</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"economics_long"</span>)
+<span class="no">economics_long</span> <span class="kw">&lt;-</span> <span class="no">economics_long</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">variable</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>((<span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>()-<span class="fl">100</span>):<span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())
 
-<span class="kw pkg">shiny</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(
+
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span>(
   <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span>(
     <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My app"</span>,
+    <span class="kw">dark_mode</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
+    <span class="kw">init</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="kw">skin</span> <span class="kw">=</span> <span class="st">"ios"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"light"</span>),
     <span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(
       <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(
         <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Single Layout"</span>,
@@ -204,19 +200,25 @@
         <span class="kw">hover</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
         <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
           <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Card header"</span>,
-          <span class="no">plot</span>,
-          <span class="kw">footer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/tag.html">tagList</a></span>(
-            <span class="fu"><a href="../reference/f7Button.html">f7Button</a></span>(<span class="kw">color</span> <span class="kw">=</span> <span class="st">"blue"</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"My button"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>),
-            <span class="fu"><a href="../reference/f7Badge.html">f7Badge</a></span>(<span class="st">"Badge"</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"green"</span>)
-          )
+          <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">apexchartOutput</a></span>(<span class="st">"areaChart"</span>)
         )
       )
     )
   ),
   <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {
-    <span class="no">output</span>$<span class="no">distPlot</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span>({
-      <span class="no">dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">input</span>$<span class="no">obs</span>)
-      <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">dist</span>)
+    <span class="no">output</span>$<span class="no">areaChart</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">renderApexchart</a></span>({
+      <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apex.html">apex</a></span>(
+        <span class="kw">data</span> <span class="kw">=</span> <span class="no">economics_long</span>,
+        <span class="kw">type</span> <span class="kw">=</span> <span class="st">"area"</span>,
+        <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-exports.html">aes</a></span>(
+          <span class="kw">x</span> <span class="kw">=</span> <span class="no">date</span>,
+          <span class="kw">y</span> <span class="kw">=</span> <span class="no">value01</span>,
+          <span class="kw">fill</span> <span class="kw">=</span> <span class="no">variable</span>
+        )
+      ) <span class="kw">%&gt;%</span>
+        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_yaxis.html">ax_yaxis</a></span>(<span class="kw">decimalsInFloat</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="kw">%&gt;%</span> <span class="co"># number of decimals to keep</span>
+        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_chart.html">ax_chart</a></span>(<span class="kw">stacked</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
+        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_yaxis.html">ax_yaxis</a></span>(<span class="kw">max</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">tickAmount</span> <span class="kw">=</span> <span class="fl">4</span>)
     })
   }
 )</pre></body></html></div>

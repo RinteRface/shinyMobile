@@ -16,8 +16,9 @@ attributes, use a named argument with a \code{NA} value. (see example)}
 
 \item{.noWS}{A character vector used to omit some of the whitespace that
 would normally be written around this tag. Valid options include
-\code{before}, \code{after}, \code{outside}, \code{after-begin}, and
-\code{before-end}. Any number of these options can be specified.}
+\code{before}, \code{after}, \code{outside}, \code{after-begin},
+\code{before-end}, and \code{inside}. Any number of these options can be
+specified.}
 }
 \description{
 Create a Framework 7 list index item
