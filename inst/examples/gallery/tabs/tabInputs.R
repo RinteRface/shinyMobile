@@ -163,7 +163,7 @@ tabInputs <- f7Tab(
     value = "2019-08-24"
   ),
   "The selected date is",
-  textOutput("selectDate"),
+  verbatimTextOutput("selectDate"),
   br(),
 
   f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),

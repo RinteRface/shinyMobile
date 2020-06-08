@@ -187,7 +187,7 @@ shinyApp(
     output$smartdata <- renderTable({
       head(mtcars[, c("mpg", input$smartsel), drop = FALSE])
     }, rownames = TRUE)
-    output$selectDate <- renderText(input$date)
+    output$selectDate <- renderPrint(input$date)
     output$autocompleteval <- renderPrint(input$myautocomplete)
 
     lapply(1:12, function(i) {
