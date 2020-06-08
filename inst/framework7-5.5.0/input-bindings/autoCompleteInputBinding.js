@@ -80,8 +80,10 @@ $.extend(f7AutoCompleteBinding, {
 
   // see updateF7AutoComplete
   setValue: function(el, value) {
-    var a= app.autocomplete.get($(el));
+    var a = app.autocomplete.get($(el));
     a.value = value;
+    // needed to update the text input
+    a.$inputEl[0].value = value;
     $(el).trigger('change');
   },
 
