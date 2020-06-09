@@ -46,7 +46,8 @@ devices (iphone, samsung, htc, ...)
 on the user side but improves security and code quality
 
 ## Minor changes
-- add new `f7DownloadButton` to work properly with the shiny `downloadHandler` function. Thanks @bwganblack for the report
+- add new `f7File()` for file upload. See shiny `fileInput`
+- add new `f7DownloadButton()` to work properly with the shiny `downloadHandler` function. Thanks @bwganblack for the report
 - add new tapHoldDelay parameter to `f7Init()` to control the delay necessary to trigger
 a long press (default to 750 ms)
 - new `f7ShowPreloader()` and `f7HidePreloader()`

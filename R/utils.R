@@ -73,3 +73,10 @@ tagAppendAttributes <- function (tag, ...)
   tag$attribs <- c(tag$attribs, dropNulls(list(...)))
   tag
 }
+
+
+shinyInputLabel <- function(inputId, label = NULL) {
+  shiny::tags$label(label, class = "control-label", class = if (is.null(label)) {
+    "shiny-label-null"
+  }, `for` = inputId)
+}
