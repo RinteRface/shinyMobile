@@ -57,6 +57,12 @@ reference:
   - '`f7TabLayout`'
 
 
+- title: Download/Upload
+  desc: ~
+  contents:
+  - '`f7DownloadButton`'
+
+
 
 - title: Inputs
   desc: slider, radio, checkboxes, ...
