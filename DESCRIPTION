@@ -30,7 +30,6 @@ Suggests:
     plotly,
     stats,
     testthat (>= 2.1.0),
-    V8,
     cli,
     rstudioapi,
     shinyWidgets,
