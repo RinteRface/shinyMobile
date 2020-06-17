@@ -7,11 +7,6 @@ dropNulls <- function (x)
 }
 
 
-#' @importFrom magrittr %>%
-#' @export
-magrittr::`%>%`
-
-
 
 # function needed to set up the color theme
 # of the app. Generate the hex corresponding to the
