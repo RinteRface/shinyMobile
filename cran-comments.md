@@ -5,4 +5,6 @@
 * win-builder (devel and release)
 
 ## R CMD check results
-Remove V8 from package suggest to fix the Fedora issue (mail received from Prof Brian Ripley). The note raised [here](https://win-builder.r-project.org/incoming_pretest/shinyMobile_0.7.0_20200609_085042/Debian/00check.log) is a FALSE positive since no folder framework7-5.1.3 exists in the current version of the package. It is currently framework7-5.5.0
+This version 0.7.0 fixes:
+  - 1 ERROR from CRAN check: Remove V8 from package suggest to fix the Fedora issue (mail received from Prof Brian Ripley).  
+  - 1 NOTE from the previous version 0.1.0: installed package size.
