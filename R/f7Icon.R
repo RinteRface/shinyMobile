@@ -13,12 +13,6 @@
 #' new icons from now. This parameter will be removed in a future release.
 #'
 #' @examples
-#'
-#' f7Icon("multiply")
-#'
-#' # Icon size
-#' f7Icon("multiply", style = "font-size: 56px;")
-#'
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
