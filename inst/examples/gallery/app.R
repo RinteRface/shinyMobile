@@ -1,6 +1,5 @@
 library(shiny)
 library(shinyMobile)
-library(plotly)
 
 # source modules
 e <- environment()

@@ -97,10 +97,10 @@ tabOthers <- f7Tab(
   f7Swiper(
     id = "my-swiper",
     f7Slide(
-      plot_ly(z = ~volcano, type = "contour")
+      plot(sin, -pi, 2*pi)
     ),
     f7Slide(
-      plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length)
+      plot(cos, -pi, 2*pi)
     )
   ),
 
