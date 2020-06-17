@@ -28,7 +28,7 @@ f7ListItem(
 
 \item{url}{Item url.}
 
-\item{media}{Expect \link{f7Icon} or \link[shiny]{img}.}
+\item{media}{Expect \link{f7Icon} or \code{img}.}
 
 \item{right}{Right content if any.}
 }

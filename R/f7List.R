@@ -109,7 +109,7 @@ f7List <- function(..., mode = NULL, inset = FALSE) {
 #' @param header Item header. Do not use when \link{f7List} mode is not NULL.
 #' @param footer Item footer. Do not use when \link{f7List} mode is not NULL.
 #' @param url Item url.
-#' @param media Expect \link{f7Icon} or \link[shiny]{img}.
+#' @param media Expect \link{f7Icon} or \code{img}.
 #' @param right Right content if any.
 #' @export
 f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,

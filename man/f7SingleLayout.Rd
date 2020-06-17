@@ -14,7 +14,7 @@ f7SingleLayout(..., navbar, toolbar = NULL, panels = NULL, appbar = NULL)
 \item{toolbar}{Slot for \link{f7Toolbar}.}
 
 \item{panels}{Slot for \link{f7Panel}.
-Wrap in \link[shiny]{tagList} if multiple panels.}
+Wrap in \code{tagList} if multiple panels.}
 
 \item{appbar}{Slot for \link{f7Appbar}.}
 }

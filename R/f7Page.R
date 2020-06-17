@@ -83,7 +83,7 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
 #' @param navbar Slot for \link{f7Navbar}.
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panels Slot for \link{f7Panel}.
-#' Wrap in \link[shiny]{tagList} if multiple panels.
+#' Wrap in \code{tagList} if multiple panels.
 #' @param appbar Slot for \link{f7Appbar}.
 #'
 #' @examples
@@ -170,7 +170,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @param navbar Slot for \link{f7Navbar}.
 #' @param messagebar Slot for \link{f7MessageBar}.
 #' @param panels Slot for \link{f7Panel}.
-#' Wrap in \link[shiny]{tagList} if multiple panels.
+#' Wrap in \code{tagList} if multiple panels.
 #' @param appbar Slot for \link{f7Appbar}.
 #'
 #' @examples

@@ -6,7 +6,7 @@
 #' @note There is an input associated with the login status, namely input$login.
 #' It is linked to an action button, which is 0 when the application starts. As soon
 #' as the button is pressed, its value is incremented which might fire a
-#' \link[shiny]{observeEvent} listening to it (See example below). Importantly,
+#' \code{observeEvent} listening to it (See example below). Importantly,
 #' the login page is closed only if the text and password inputs are filled. The
 #' \link{f7LoginServer} contains a piece of server logic that does this work for you.
 #'
