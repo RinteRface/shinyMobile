@@ -2,7 +2,7 @@ context("f7Badge")
 
 test_that("basic test", {
   badge <- f7Badge("mybadge")
-  expect_shinytag(badge)
+  expect_true(inherits(badge, "shiny.tag"))
   expect_equal(badge$name, "span")
   expect_equal(badge$attribs$class, "badge")
 

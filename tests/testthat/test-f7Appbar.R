@@ -9,7 +9,7 @@ getInnerChildren <- function(tag) {
 }
 
 test_that("appbar", {
-  expect_shinytag(f7Appbar())
+  expect_true(inherits(f7Appbar(), "shiny.tag"))
   expect_equal(f7Appbar()$attribs$class, "appbar")
   expect_equal(f7Appbar()$children[[1]]$attribs$class, "appbar-inner")
 

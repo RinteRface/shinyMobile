@@ -1,7 +1,7 @@
 context("f7Button")
 
 test_that("button", {
-  expect_shinytaglist(f7Button())
+  expect_true(inherits(f7Button(), "shiny.tag.list"))
   # deps
   expect_is(f7Button()[[1]], "html_dependency")
 
@@ -31,7 +31,7 @@ test_that("button", {
 context("f7Segment")
 
 test_that("f7Segment", {
-  expect_shinytag(f7Segment(container = "segment"))
+  expect_true(inherits(f7Segment(container = "segment"), "shiny.tag"))
 
   # error
   expect_error(f7Segment(container = "row", rounded = TRUE))

@@ -1,7 +1,7 @@
 context("f7Accordion")
 
 test_that("accordion", {
-  expect_shinytaglist(f7Accordion())
+  expect_true(inherits(f7Accordion(), "shiny.tag.list"))
   # [[1]] is the f7InputDeps() slot
   # [[2]] is the accordion wrapper slot
   expect_equal(
@@ -27,7 +27,7 @@ test_that("accordion", {
 
 
 test_that("accordion items", {
-  expect_shinytag(f7AccordionItem())
+  expect_true(inherits(f7AccordionItem(), "shiny.tag"))
   expect_equal(f7AccordionItem()$name, "li")
   expect_equal(f7AccordionItem()$attribs$class, "accordion-item")
   expect_equal(
