@@ -97,10 +97,10 @@ tabOthers <- f7Tab(
   f7Swiper(
     id = "my-swiper",
     f7Slide(
-      plot(sin, -pi, 2*pi)
+      plotOutput("sin")
     ),
     f7Slide(
-      plot(cos, -pi, 2*pi)
+      plotOutput("cos")
     )
   ),
 

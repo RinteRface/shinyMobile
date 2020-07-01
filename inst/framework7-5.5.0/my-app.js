@@ -36,6 +36,17 @@ $(function () {
   // fix standalone tabs height issue
   $('.tabs-standalone').css('height', 'auto');
 
+  // Fix messagebar send icon issue when filled is TRUE. It is not
+  // visible because it takes the same color has the messagebar background ...
+  // To detect is the layout is filled, we search in the body class since the
+  // global color is hosted here.
+  if ($('body').attr('class') !== undefined) {
+    console.log("hello");
+    $('.demo-send-message-link')
+      .find('i')
+      .addClass('color-white');
+  }
+
   // handle background for dark mode
   // need to remove the custom gainsboro color background
   var dark_mode = $('html').hasClass('theme-dark');
