@@ -111,8 +111,8 @@ create_app_ui <- function(iframe, device, color, landscape) {
 
   devices_css_deps <- htmltools::htmlDependency(
     name = "framework7",
-    version = "5.5.0",
-    src = c(file = system.file("framework7-5.5.0", package = "shinyMobile")),
+    version = "5.7.8",
+    src = c(file = system.file("framework7-5.7.8", package = "shinyMobile")),
     script = NULL,
     stylesheet = c("devices/devices.min.css")
   )

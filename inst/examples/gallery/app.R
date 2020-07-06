@@ -171,6 +171,9 @@ shinyApp(
       trigger = trigger
     )
 
+    output$sin <- renderPlot(plot(sin, -pi, 2*pi))
+    output$cos <- renderPlot(plot(cos, -pi, 2*pi))
+
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$textarea <- renderPrint(input$textarea)

@@ -253,7 +253,8 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
       class = "block-header",
       shiny::tags$div(
         class = "segmented segmented-strong",
-        tabItems
+        tabItems,
+        shiny::span(class = "segmented-highlight")
       )
     )
   } else if (style == "toolbar") {

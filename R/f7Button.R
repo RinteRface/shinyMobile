@@ -178,7 +178,11 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE,
       )
     }
   }
-  wrapper$children[[1]] <- shiny::tagAppendChildren(wrapper$children[[1]], btns)
+  wrapper$children[[1]] <- shiny::tagAppendChildren(
+    wrapper$children[[1]],
+    btns,
+    if (strong) shiny::span(class = "segmented-highlight")
+  )
   return(wrapper)
 }
 
