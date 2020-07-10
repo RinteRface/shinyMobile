@@ -36,11 +36,6 @@ $.extend(f7SmartSelectBinding, {
       this["smart-select-" + el.id] = app.smartSelect.create(data.config);
     }
 
-    // update selected
-    if (data.hasOwnProperty("selected")) {
-      this.setValue(el, data.selected);
-    }
-
     // ad multiple property
     if (data.hasOwnProperty("multiple")) {
       // we need to destroy the input, modify the tag and create the instance
@@ -58,6 +53,26 @@ $.extend(f7SmartSelectBinding, {
       $(el).find('select').attr('maxLength', data.maxLength);
       data.config.el = '#' + $(el).children().eq(0).attr('id');
       this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+    }
+
+    // update choices
+    var setOption = function(value) {
+      return "<option value = '" + value + "'>" + value + "</option>";
+    };
+
+    if (data.hasOwnProperty("choices")) {
+      // clear all previous options
+      $(el).find("select").empty();
+      // add new choices
+      $.each(data.choices, function (index) {
+        var temp = data.choices[index];
+        $(el).find("select").append(setOption(temp));
+      });
+    }
+
+    // update selected
+    if (data.hasOwnProperty("selected")) {
+      this.setValue(el, data.selected);
     }
   },
 

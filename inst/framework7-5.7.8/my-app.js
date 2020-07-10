@@ -41,7 +41,6 @@ $(function () {
   // To detect is the layout is filled, we search in the body class since the
   // global color is hosted here.
   if ($('body').attr('class') !== undefined) {
-    console.log("hello");
     $('.demo-send-message-link')
       .find('i')
       .addClass('color-white');
