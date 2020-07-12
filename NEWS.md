@@ -6,6 +6,7 @@
 - update framework7 from 5.5.0 to 5.7.8
 
 ## Minor changes
+- Add choices to `updateF7SmartSelect()`: thanks @Edireito
 
 ## Bug fixes
 

@@ -7,6 +7,7 @@
 updateF7SmartSelect(
   inputId,
   selected = NULL,
+  choices = NULL,
   ...,
   multiple = NULL,
   maxLength = NULL,
@@ -17,6 +18,8 @@ updateF7SmartSelect(
 \item{inputId}{The id of the input object.}
 
 \item{selected}{The new value for the input.}
+
+\item{choices}{The new choices.}
 
 \item{...}{Parameters used to update the smart select,
 use same arguments as in \code{\link{f7SmartSelect}}.}
@@ -60,7 +63,8 @@ if (interactive()) {
       updateF7SmartSelect(
         inputId = "variable",
         openIn = "sheet",
-        selected = "cyl",
+        selected = "hp",
+        choices = c("hp", "gear"),
         multiple = TRUE,
         maxLength = 3
       )
