@@ -7,7 +7,7 @@
 f7Menu(...)
 }
 \arguments{
-\item{...}{Slot for \link{f7MenuItem} or \link{f7MenuDropown}.}
+\item{...}{Slot for \link{f7MenuItem} or \link{f7MenuDropdown}.}
 }
 \description{
 Create a framework7 menu

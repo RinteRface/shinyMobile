@@ -1,6 +1,6 @@
 #' Create a framework7 menu
 #'
-#' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropown}.
+#' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropdown}.
 #' @export
 #'
 #' @examples
