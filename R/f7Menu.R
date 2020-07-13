@@ -1,21 +1,53 @@
 #' Create a framework7 menu
 #'
 #' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropown}.
-#' @param id Menu id. This is required when once wants to programmatically toggle
-#' the menu on the server side with \link{f7ToggleMenu}.
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
+#'  shiny::shinyApp(
+#'   ui = f7Page(
+#'     title = "My app",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(
+#'         title = "f7Menu",
+#'         hairline = FALSE,
+#'         shadow = TRUE
+#'       ),
+#'       f7Button("toggle", "Toggle menu"),
+#'       f7Menu(
+#'         f7MenuDropdown(
+#'           id = "menu1",
+#'           label = "Menu 1",
+#'           f7MenuItem(inputId = "item1", "Item 1"),
+#'           f7MenuItem(inputId = "item2", "Item 2"),
+#'           f7MenuDropdownDivider(),
+#'           f7MenuItem(inputId = "item3", "Item 3")
+#'         )
+#'       )
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     observeEvent(input$toggle, {
+#'       f7OpenMenuDropdown("menu1")
+#'     })
 #'
+#'     observeEvent(input$item1, {
+#'       f7Notif(text = "Well done!")
+#'     })
 #'
+#'     observe({
+#'       print(input$item1)
+#'       print(input$menu1)
+#'     })
+#'   }
+#'  )
 #' }
-f7Menu <- function(..., id = NULL) {
+f7Menu <- function(...) {
   menuTag <- shiny::tags$div(
     class = "menu",
-    id = id,
     shiny::tags$div(
       class = "menu-inner",
       ...
@@ -50,10 +82,12 @@ f7MenuItem <- function(inputId, label) {
 #' Create dropdown menu for \link{f7Menu}.
 #'
 #' @param ... Slot for \link{f7MenuItem} and \link{f7MenuDropdownDivider}.
+#' @param id Dropdown menu id. This is required when once wants to programmatically toggle
+#' the dropdown on the server side with \link{f7OpenMenuDropdown}.
 #' @param label Button label.
 #' @param side Dropdown opening side. Choose among \code{c("left", "center", "right")}.
 #' @export
-f7MenuDropdown <- function(..., label, side = c("left", "center", "right")) {
+f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "right")) {
 
   side <- match.arg(side)
 
@@ -69,6 +103,7 @@ f7MenuDropdown <- function(..., label, side = c("left", "center", "right")) {
 
   shiny::tags$div(
     class = "menu-item menu-item-dropdown",
+    id = id,
     shiny::tags$div(class = "menu-item-content", label),
     shiny::tags$div(
       class = sprintf("menu-dropdown menu-dropdown-%s", side),
@@ -91,11 +126,11 @@ f7MenuDropdownDivider <- function() {
 
 
 
-#' Toggle \link{f7Menu} on the server side
+#' Toggle \link{f7MenuDropdown} on the server side
 #'
 #' @param id Menu to target.
 #' @param session Shiny session object.
 #' @export
-f7ToggleMenu <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  session$sendInputMessage(inputId = id, message)
+f7OpenMenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(inputId = id, message = NULL)
 }

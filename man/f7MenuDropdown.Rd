@@ -4,10 +4,13 @@
 \alias{f7MenuDropdown}
 \title{Create dropdown menu for \link{f7Menu}.}
 \usage{
-f7MenuDropdown(..., label, side = c("left", "center", "right"))
+f7MenuDropdown(..., id = NULL, label, side = c("left", "center", "right"))
 }
 \arguments{
 \item{...}{Slot for \link{f7MenuItem} and \link{f7MenuDropdownDivider}.}
+
+\item{id}{Dropdown menu id. This is required when once wants to programmatically toggle
+the dropdown on the server side with \link{f7OpenMenuDropdown}.}
 
 \item{label}{Button label.}
 

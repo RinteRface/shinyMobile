@@ -4,13 +4,10 @@
 \alias{f7Menu}
 \title{Create a framework7 menu}
 \usage{
-f7Menu(..., id = NULL)
+f7Menu(...)
 }
 \arguments{
 \item{...}{Slot for \link{f7MenuItem} or \link{f7MenuDropown}.}
-
-\item{id}{Menu id. This is required when once wants to programmatically toggle
-the menu on the server side with \link{f7ToggleMenu}.}
 }
 \description{
 Create a framework7 menu
@@ -19,7 +16,42 @@ Create a framework7 menu
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
+ shiny::shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "f7Menu",
+        hairline = FALSE,
+        shadow = TRUE
+      ),
+      f7Button("toggle", "Toggle menu"),
+      f7Menu(
+        f7MenuDropdown(
+          id = "menu1",
+          label = "Menu 1",
+          f7MenuItem(inputId = "item1", "Item 1"),
+          f7MenuItem(inputId = "item2", "Item 2"),
+          f7MenuDropdownDivider(),
+          f7MenuItem(inputId = "item3", "Item 3")
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$toggle, {
+      f7OpenMenuDropdown("menu1")
+    })
 
+    observeEvent(input$item1, {
+      f7Notif(text = "Well done!")
+    })
 
+    observe({
+      print(input$item1)
+      print(input$menu1)
+    })
+  }
+ )
 }
 }
