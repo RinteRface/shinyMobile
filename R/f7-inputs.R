@@ -224,6 +224,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
                     sheetSwipeToClose = FALSE) {
 
   # for JS
+  if (is.null(value)) stop("value cannot be NULL.")
   value <- jsonlite::toJSON(value)
   choices <- jsonlite::toJSON(choices)
 

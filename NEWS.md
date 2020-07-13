@@ -10,6 +10,7 @@
 - Add choices to `updateF7SmartSelect()`: thanks @Edireito
 
 ## Bug fixes
+- Fix #104: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks @Seyphaton
 
 
 # shinyMobile 0.7.0
