@@ -4,6 +4,7 @@
 
 ## Major changes
 - update framework7 from 5.5.0 to 5.7.8
+- add `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `f7OpenMenuDropdown()`: special buttons and dropdown elements, behaving like action buttons
 
 ## Minor changes
 - Add choices to `updateF7SmartSelect()`: thanks @Edireito
