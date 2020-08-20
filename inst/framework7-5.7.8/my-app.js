@@ -3,8 +3,10 @@ $(function () {
   var workerId = $('base').attr('href');
   // ensure that this code does not locally
   if (typeof workerId != "undefined") {
+    var hash = window.location.hash;
+    var search = window.location.search;
     var pathname = window.location.pathname;
-    var newpath = pathname + workerId;
+    var newpath = pathname + workerId + search + hash;
     window.history.replaceState( {} , 'newpath', newpath);
   }
 
@@ -38,9 +40,9 @@ $(function () {
 
   // Fix messagebar send icon issue when filled is TRUE. It is not
   // visible because it takes the same color has the messagebar background ...
-  // To detect is the layout is filled, we search in the body class since the
+  // To detect if the layout is filled, we search in the body class since the
   // global color is hosted here.
-  if ($('body').attr('class') !== undefined) {
+  if ($('body').attr('filled') === 'true' && !$('html').hasClass('theme-light') && $('body').attr('class') !== '#ffffff'){
     $('.demo-send-message-link')
       .find('i')
       .addClass('color-white');

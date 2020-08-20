@@ -36,6 +36,10 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
   theme <- match.arg(theme)
   skin <- match.arg(skin)
 
+  if (theme == "dark" && filled == TRUE && color == "white") {
+    stop("Wrong theme combination: navbar color cannot be white in a dark theme!")
+  }
+
   shiny::tagList(
     # use global framework7 variable to set the color
     shiny::singleton(
@@ -147,7 +151,8 @@ f7Init <- function(skin = c("ios", "md", "auto", "aurora"), theme = c("dark", "l
           // trick to fix the photo browser link issue
           // we set the body class that will contain the color.
           // We then recover this class in a variable in the my-app.js code
-          $('body').addClass('", color, "')
+          $('body').addClass('", color, "');
+          $('body').attr('filled', ", tolower(filled),");
         "
         )
       )
