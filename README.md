@@ -3,13 +3,9 @@
 
 > Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest [Framework7](https://framework7.io) template.
 
-<!-- badges: start -->
-[![Build Status](https://travis-ci.org/RinteRface/shinyMobile.svg?branch=master)](https://travis-ci.org/RinteRface/shinyMobile)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/RinteRface/shinyMobile?branch=master&svg=true)](https://ci.appveyor.com/project/RinteRface/shinyMobile)
+[![R build status](https://github.com/RinteRface/shinyMobile/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/shinyMobile/actions)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Project Status](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![CRAN status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-project.org/package=shinyMobile)
-<!-- badges: end -->
 
 
 
