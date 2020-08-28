@@ -171,7 +171,7 @@
     <p>Triggered after long press on an element.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7TapHold</span>(<span class='no'>target</span>, <span class='no'>callback</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
+    <pre class="usage"><span class='fu'>f7TapHold</span>(<span class='no'>target</span>, <span class='no'>callback</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,7 +197,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
 
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
@@ -206,7 +206,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
       <span class='fu'>f7TapHold</span>(
        <span class='kw'>target</span> <span class='kw'>=</span> <span class='st'>"#pressme"</span>,
        <span class='kw'>callback</span> <span class='kw'>=</span> <span class='st'>"app.dialog.alert('Tap hold fired!');"</span>,

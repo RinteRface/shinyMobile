@@ -118,3 +118,8 @@ The PWA compatibility script will work in most of the case. If not, please open 
 
 A special thanks to [Vladimir Kharlampidi](https://github.com/nolimits4web) for creating this
 amazing framework7 HTML template.
+
+
+## Code of Conduct
+  
+  Please note that the shinyMobile project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.

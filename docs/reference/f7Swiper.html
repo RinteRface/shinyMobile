@@ -244,7 +244,7 @@
   )
  )
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
@@ -261,13 +261,13 @@
        <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
        <span class='kw'>checked</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
       ),
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/verbatimTextOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
      )
     )
     )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>toggle</span>)
+    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>toggle</span>)
    }
  )
 }</div></pre>

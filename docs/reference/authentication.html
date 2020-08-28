@@ -181,7 +181,7 @@ need to store credentials in a database for instance.</p>
   <span class='no'>id</span>,
   <span class='kw'>user</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>password</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -260,7 +260,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
  <span class='co'># global authentication</span>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
@@ -277,17 +277,17 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
        <span class='fu'>f7Login</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Welcome"</span>),
        <span class='co'># main content</span>
        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
+         <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
          <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
        ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
      )
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(<span class='no'>f7LoginServer</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(<span class='no'>f7LoginServer</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>)
 
-     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
+     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>({
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
       <span class='no'>loginData</span>$<span class='fu'>user</span>()
      })
    }
@@ -296,7 +296,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
  <span class='co'># section specific authentication</span>
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
@@ -315,7 +315,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
            <span class='kw'>tabName</span> <span class='kw'>=</span> <span class='st'>"Restricted"</span>,
            <span class='co'># main content</span>
            <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(
-             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/HTML.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
+             <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>HTML</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Welcome"</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"user"</span>))),
              <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>
            ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='st'>"center"</span>)
          )
@@ -326,20 +326,20 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
      <span class='co'># trigger</span>
-     <span class='no'>trigger</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span>)
+     <span class='no'>trigger</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span>({
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span>)
      })
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+     <span class='no'>loginData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(
       <span class='no'>f7LoginServer</span>,
       <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
       <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
       <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger</span>
      )
 
-     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderText.html'>renderText</a></span>({
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
+     <span class='no'>output</span>$<span class='no'>user</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>({
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>loginData</span>$<span class='no'>user</span>)
       <span class='no'>loginData</span>$<span class='fu'>user</span>()
      })
 
@@ -349,7 +349,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
  <span class='co'># with 2 different protected sections</span>
  <span class='fu'>ibrary</span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span>(
@@ -387,23 +387,23 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='no'>trigger1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted"</span>)
+     <span class='no'>trigger1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span>({
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted"</span>)
      })
 
-     <span class='no'>trigger2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted 2"</span>)
+     <span class='no'>trigger2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span>({
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>tabs</span> <span class='kw'>==</span> <span class='st'>"Restricted 2"</span>)
      })
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(
        <span class='no'>f7LoginServer</span>,
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage"</span>,
        <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
        <span class='kw'>trigger</span> <span class='kw'>=</span> <span class='no'>trigger1</span>
      )
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span>(
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(
        <span class='no'>f7LoginServer</span>,
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"loginPage2"</span>,
        <span class='kw'>ignoreInit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,

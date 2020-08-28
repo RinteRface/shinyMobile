@@ -171,7 +171,7 @@
     <p>Update a framework 7 expandable card</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Card</span>(<span class='no'>id</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
+    <pre class="usage"><span class='fu'>updateF7Card</span>(<span class='no'>id</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,7 +192,7 @@
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Cards"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
@@ -211,10 +211,10 @@
          to show working app prototype as soon as possible in case you need to."</span>
        ),
 
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>hr</a></span>(),
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>hr</a></span>(),
        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click below to expand the card!"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span>(<span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Go"</span>),
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>br</a></span>(),
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
        <span class='fu'><a href='f7ExpandableCard.html'>f7ExpandableCard</a></span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card2"</span>,
          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Expandable Card 2"</span>,
@@ -229,11 +229,11 @@
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
        <span class='fu'>updateF7Card</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"card2"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
          <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>card1</span>),
          <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>card2</span>)

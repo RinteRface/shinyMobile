@@ -252,7 +252,7 @@ to the tag of your choice (a button), where id refers to the sheet unique id.</p
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
     <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
        <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
@@ -269,7 +269,7 @@ to the tag of your choice (a button), where id refers to the sheet unique id.</p
              <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
              Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
              scelerisque est, at porta justo cursus ac"</span>,
-             <span class='kw'>hiddenItems</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tag.html'>tagList</a></span>(
+             <span class='kw'>hiddenItems</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>tagList</a></span>(
                 <span class='fu'><a href='f7Segment.html'>f7Segment</a></span>(
                    <span class='kw'>container</span> <span class='kw'>=</span> <span class='st'>"segment"</span>,
                    <span class='kw'>rounded</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -297,20 +297,20 @@ to the tag of your choice (a button), where id refers to the sheet unique id.</p
                    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
                    <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
                 ),
-                <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
+                <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
              )
           )
        )
     ),
     <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sheet1</span>)})
-       <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span>({
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>sheet1</span>)})
+       <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
           <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
        })
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>, {
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>, {
           <span class='fu'><a href='updateF7Gauge.html'>updateF7Gauge</a></span>(<span class='no'>session</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mygauge"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>obs</span>)
        })
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
           <span class='fu'>updateF7Sheet</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
        })
     }

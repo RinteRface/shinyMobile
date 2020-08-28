@@ -217,7 +217,7 @@ when user is on top/bottom of the messages view.</p></td>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
     <span class='kw'>init</span> <span class='kw'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span>(<span class='kw'>skin</span> <span class='kw'>=</span> <span class='st'>"ios"</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"light"</span>),
@@ -234,11 +234,11 @@ when user is on top/bottom of the messages view.</p></td>
     )
   ),
   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='st'>"mymessagebar-send"</span>]])
       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>mymessages</span>)
     })
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='st'>"mymessagebar-send"</span>]], {
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='st'>"mymessagebar-send"</span>]], {
       <span class='fu'><a href='f7AddMessages.html'>f7AddMessages</a></span>(
         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"mymessages"</span>,
         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
@@ -256,8 +256,8 @@ when user is on top/bottom of the messages view.</p></td>
       )
     })
 
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/invalidateLater.html'>invalidateLater</a></span>(<span class='fl'>5000</span>)
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/invalidateLater.html'>invalidateLater</a></span>(<span class='fl'>5000</span>)
       <span class='no'>names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Victor"</span>, <span class='st'>"John"</span>)
       <span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='no'>names</span>, <span class='fl'>1</span>)
 

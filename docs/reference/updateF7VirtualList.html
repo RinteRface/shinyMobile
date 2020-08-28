@@ -182,7 +182,7 @@
   <span class='kw'>indexes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>old_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>new_index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -231,7 +231,7 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(
+ <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
@@ -256,9 +256,9 @@
          <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"filterItems"</span>, <span class='st'>"Filter Items"</span>)
        ),
        <span class='fu'><a href='f7Flex.html'>f7Flex</a></span>(
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemIndexUI"</span>),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemNewIndexUI"</span>),
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemsFilterUI"</span>)
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemIndexUI"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemNewIndexUI"</span>),
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"itemsFilterUI"</span>)
        ),
        <span class='fu'><a href='f7VirtualList.html'>f7VirtualList</a></span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
@@ -270,7 +270,7 @@
              <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Footer"</span>, <span class='no'>i</span>),
              <span class='kw'>right</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Right"</span>, <span class='no'>i</span>),
              <span class='kw'>content</span> <span class='kw'>=</span> <span class='no'>i</span>,
-             <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg"</span>)
+             <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg"</span>)
            )
          })
        )
@@ -278,8 +278,8 @@
    ),
    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 
-     <span class='no'>output</span>$<span class='no'>itemIndexUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
+     <span class='no'>output</span>$<span class='no'>itemIndexUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span>({
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
        <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"itemIndex"</span>,
          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Index"</span>,
@@ -289,8 +289,8 @@
        )
      })
 
-     <span class='no'>output</span>$<span class='no'>itemNewIndexUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
+     <span class='no'>output</span>$<span class='no'>itemNewIndexUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span>({
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
        <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span>(
          <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"itemNewIndex"</span>,
          <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"New Index"</span>,
@@ -300,15 +300,15 @@
        )
      })
 
-     <span class='no'>output</span>$<span class='no'>itemsFilterUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span>({
+     <span class='no'>output</span>$<span class='no'>itemsFilterUI</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span>({
        <span class='no'>input</span>$<span class='no'>appendItem</span>
        <span class='no'>input</span>$<span class='no'>prependItems</span>
        <span class='no'>input</span>$<span class='no'>insertBefore</span>
        <span class='no'>input</span>$<span class='no'>replaceItem</span>
        <span class='no'>input</span>$<span class='no'>deleteAllItems</span>
        <span class='no'>input</span>$<span class='no'>moveItem</span>
-       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/isolate.html'>isolate</a></span>({
-         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/isolate.html'>isolate</a></span>({
+         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>$<span class='no'>length</span> <span class='kw'>&gt;</span> <span class='fl'>2</span>)
          <span class='fu'><a href='f7Slider.html'>f7Slider</a></span>(
            <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"itemsFilter"</span>,
            <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Items to Filter"</span>,
@@ -319,9 +319,9 @@
        })
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>))
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>vlist</span>))
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>appendItem</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>appendItem</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"appendItem"</span>,
@@ -329,12 +329,12 @@
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"New Item Title"</span>,
            <span class='kw'>right</span> <span class='kw'>=</span> <span class='st'>"New Item Right"</span>,
            <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"New Item Content"</span>,
-           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
+           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
          )
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>prependItems</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>prependItems</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"prependItems"</span>,
@@ -343,13 +343,13 @@
              <span class='kw'>title</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Title"</span>, <span class='no'>i</span>),
              <span class='kw'>right</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Right"</span>, <span class='no'>i</span>),
              <span class='kw'>content</span> <span class='kw'>=</span> <span class='no'>i</span>,
-             <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
+             <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
            )
          })
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>insertBefore</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>insertBefore</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"insertItemBefore"</span>,
@@ -357,12 +357,12 @@
          <span class='kw'>item</span> <span class='kw'>=</span> <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span>(
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"New Item Title"</span>,
            <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"New Item Content"</span>,
-           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
+           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
          )
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>replaceItem</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>replaceItem</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"replaceItem"</span>,
@@ -370,19 +370,19 @@
          <span class='kw'>item</span> <span class='kw'>=</span> <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span>(
            <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Replacement"</span>,
            <span class='kw'>content</span> <span class='kw'>=</span> <span class='st'>"Replacement Content"</span>,
-           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/builder.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
+           <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span>)
          )
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>deleteAllItems</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>deleteAllItems</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"deleteAllItems"</span>
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>moveItem</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>moveItem</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"moveItem"</span>,
@@ -391,7 +391,7 @@
        )
      })
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>filterItems</span>, {
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>filterItems</span>, {
        <span class='fu'>updateF7VirtualList</span>(
          <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"vlist"</span>,
          <span class='kw'>action</span> <span class='kw'>=</span> <span class='st'>"filterItems"</span>,

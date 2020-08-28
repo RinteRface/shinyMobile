@@ -175,7 +175,7 @@
   <span class='no'>inputId</span>,
   <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span>()
+  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -225,26 +225,26 @@
  )
 
  <span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span>({
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
      <span class='co'># TRUE if input$controller is odd, FALSE if even.</span>
      <span class='no'>x_even</span> <span class='kw'>&lt;-</span> <span class='no'>input</span>$<span class='no'>controller</span> <span class='kw'>%%</span> <span class='fl'>2</span> <span class='kw'>==</span> <span class='fl'>1</span>
 
      <span class='kw'>if</span> (<span class='no'>x_even</span>) {
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/showNotification.html'>showNotification</a></span>(
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/showNotification.html'>showNotification</a></span>(
        <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"notif"</span>,
        <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"The slider is "</span>, <span class='no'>input</span>$<span class='no'>controller</span>, <span class='st'>"and the checkbox is"</span>, <span class='no'>input</span>$<span class='no'>check</span>),
        <span class='kw'>duration</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
        <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"warning"</span>
       )
      } <span class='kw'>else</span> {
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/showNotification.html'>removeNotification</a></span>(<span class='st'>"notif"</span>)
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/showNotification.html'>removeNotification</a></span>(<span class='st'>"notif"</span>)
      }
 
      <span class='fu'>updateF7Checkbox</span>(<span class='st'>"check"</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>x_even</span>)
    })
  }
 
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
