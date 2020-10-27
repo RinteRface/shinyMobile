@@ -4,6 +4,7 @@
 .Ruserdata
 inst/doc
 inst/examples/**/rsconnect
+inst/tests/**/rsconnect
 inst/examples/chat_widget
 .DS_Store
 .vscode
