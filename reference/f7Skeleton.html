@@ -171,7 +171,7 @@
     <p>Create a Framework 7 skeleton loading overlay</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Skeleton</span>(<span class='no'>tag</span>, <span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"fade"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Skeleton</span><span class='op'>(</span><span class='va'>tag</span>, effect <span class='op'>=</span> <span class='st'>"fade"</span>, duration <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,41 +192,42 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Cards"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Card"</span>),
-       <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Card header"</span>,
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Cards"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Card"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Card.html'>f7Card</a></span><span class='op'>(</span>
+         title <span class='op'>=</span> <span class='st'>"Card header"</span>,
          <span class='st'>"This is a simple card with plain text,
       but cards can also contain their own header,
       footer, list view, image, or any other element."</span>,
-         <span class='kw'>footer</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>tagList</a></span>(
-           <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"My button"</span>, <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>),
-           <span class='fu'><a href='f7Badge.html'>f7Badge</a></span>(<span class='st'>"Badge"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
-         )
-       ) <span class='kw'>%&gt;%</span> <span class='fu'>f7Skeleton</span>(),
+         footer <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+           <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, src <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
+           <span class='fu'><a href='f7Badge.html'>f7Badge</a></span><span class='op'>(</span><span class='st'>"Badge"</span>, color <span class='op'>=</span> <span class='st'>"green"</span><span class='op'>)</span>
+         <span class='op'>)</span>
+       <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>f7Skeleton</span><span class='op'>(</span><span class='op'>)</span>,
 
-        <span class='fu'><a href='f7List.html'>f7List</a></span>(
-         <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-           <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>,
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>
-         ) <span class='kw'>%&gt;%</span> <span class='fu'>f7Skeleton</span>(<span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"pulse"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>5</span>) ,
-         <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-           <span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com"</span>,
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 2"</span>
-         ) <span class='kw'>%&gt;%</span> <span class='fu'>f7Skeleton</span>(<span class='kw'>effect</span> <span class='kw'>=</span> <span class='st'>"pulse"</span>, <span class='kw'>duration</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-        )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+        <span class='fu'><a href='f7List.html'>f7List</a></span><span class='op'>(</span>
+         <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span>
+           url <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>,
+           title <span class='op'>=</span> <span class='st'>"Item 1"</span>
+         <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>f7Skeleton</span><span class='op'>(</span>effect <span class='op'>=</span> <span class='st'>"pulse"</span>, duration <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> ,
+         <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span>
+           url <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>,
+           title <span class='op'>=</span> <span class='st'>"Item 2"</span>
+         <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>f7Skeleton</span><span class='op'>(</span>effect <span class='op'>=</span> <span class='st'>"pulse"</span>, duration <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+        <span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -242,7 +243,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

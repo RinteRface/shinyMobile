@@ -173,15 +173,15 @@ to upload one or more files." />
 to upload one or more files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7File</span>(
-  <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
-  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>accept</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>buttonLabel</span> <span class='kw'>=</span> <span class='st'>"Browse..."</span>,
-  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"No file selected"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7File</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  <span class='va'>label</span>,
+  multiple <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  accept <span class='op'>=</span> <span class='cn'>NULL</span>,
+  width <span class='op'>=</span> <span class='cn'>NULL</span>,
+  buttonLabel <span class='op'>=</span> <span class='st'>"Browse..."</span>,
+  placeholder <span class='op'>=</span> <span class='st'>"No file selected"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,24 +219,25 @@ upload multiple files at once. Does not work on older browsers, including Intern
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='no'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-   <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"File handling"</span>),
-     <span class='fu'>f7File</span>(<span class='st'>"up"</span>, <span class='st'>"Upload!"</span>)
-   )
- )
+ <span class='va'>ui</span> <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+   <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"File handling"</span><span class='op'>)</span>,
+     <span class='fu'>f7File</span><span class='op'>(</span><span class='st'>"up"</span>, <span class='st'>"Upload!"</span><span class='op'>)</span>
+   <span class='op'>)</span>
+ <span class='op'>)</span>
 
- <span class='no'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-   <span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span>(<span class='no'>input</span>$<span class='no'>up</span>)
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>()))
- }
+ <span class='va'>server</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+   <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>up</span><span class='op'>)</span>
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='op'>}</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(<span class='no'>ui</span>, <span class='no'>server</span>)
-}</div></pre>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span><span class='va'>ui</span>, <span class='va'>server</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,7 +253,7 @@ upload multiple files at once. Does not work on older browsers, including Intern
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

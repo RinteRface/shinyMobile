@@ -171,18 +171,18 @@
     <p>Build a Framework7 container for floating action button (FAB)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Fabs</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"right-top"</span>, <span class='st'>"right-center"</span>, <span class='st'>"right-bottom"</span>, <span class='st'>"left-top"</span>, <span class='st'>"left-center"</span>,
-    <span class='st'>"left-bottom"</span>, <span class='st'>"center-center"</span>, <span class='st'>"center-top"</span>, <span class='st'>"center-bottom"</span>),
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>extended</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"top"</span>, <span class='st'>"bottom"</span>, <span class='st'>"center"</span>),
-  <span class='kw'>morph</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>morphTarget</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7Fabs</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right-top"</span>, <span class='st'>"right-center"</span>, <span class='st'>"right-bottom"</span>, <span class='st'>"left-top"</span>, <span class='st'>"left-center"</span>,
+    <span class='st'>"left-bottom"</span>, <span class='st'>"center-center"</span>, <span class='st'>"center-top"</span>, <span class='st'>"center-bottom"</span><span class='op'>)</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  extended <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sideOpen <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"top"</span>, <span class='st'>"bottom"</span>, <span class='st'>"center"</span><span class='op'>)</span>,
+  morph <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  morphTarget <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,52 +229,57 @@
 
     <p>The background color might be an issue depending on the parent container. Consider
 it experimental.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Floating action buttons"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Fabs"</span>),
-     <span class='fu'>f7Fabs</span>(
-      <span class='kw'>extended</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Menu"</span>,
-      <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"center-top"</span>,
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"yellow"</span>,
-      <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='st'>"right"</span>,
-      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='f7Fab.html'>f7Fab</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>), <span class='no'>i</span>))
-    ),
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    color <span class='op'>=</span> <span class='st'>"pink"</span>,
+    title <span class='op'>=</span> <span class='st'>"Floating action buttons"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Fabs"</span><span class='op'>)</span>,
+     <span class='fu'>f7Fabs</span><span class='op'>(</span>
+      extended <span class='op'>=</span> <span class='cn'>TRUE</span>,
+      label <span class='op'>=</span> <span class='st'>"Menu"</span>,
+      position <span class='op'>=</span> <span class='st'>"center-top"</span>,
+      color <span class='op'>=</span> <span class='st'>"yellow"</span>,
+      sideOpen <span class='op'>=</span> <span class='st'>"right"</span>,
+      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='f7Fab.html'>f7Fab</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"btn"</span>, <span class='va'>i</span><span class='op'>)</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"res"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
 
-    <span class='fu'>f7Fabs</span>(
-      <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"center-center"</span>,
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"purple"</span>,
-      <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='st'>"center"</span>,
-      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>5</span>:<span class='fl'>8</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='f7Fab.html'>f7Fab</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>), <span class='no'>i</span>))
-    ),
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>5</span>:<span class='fl'>8</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>))),
+    <span class='fu'>f7Fabs</span><span class='op'>(</span>
+      position <span class='op'>=</span> <span class='st'>"center-center"</span>,
+      color <span class='op'>=</span> <span class='st'>"purple"</span>,
+      sideOpen <span class='op'>=</span> <span class='st'>"center"</span>,
+      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>8</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='f7Fab.html'>f7Fab</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"btn"</span>, <span class='va'>i</span><span class='op'>)</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>8</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"res"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
 
-    <span class='fu'>f7Fabs</span>(
-      <span class='kw'>position</span> <span class='kw'>=</span> <span class='st'>"left-bottom"</span>,
-      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
-      <span class='kw'>sideOpen</span> <span class='kw'>=</span> <span class='st'>"top"</span>,
-      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>9</span>:<span class='fl'>12</span>, <span class='kw'>function</span>(<span class='no'>i</span>) <span class='fu'><a href='f7Fab.html'>f7Fab</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>), <span class='no'>i</span>))
-    )
-    )
+    <span class='fu'>f7Fabs</span><span class='op'>(</span>
+      position <span class='op'>=</span> <span class='st'>"left-bottom"</span>,
+      color <span class='op'>=</span> <span class='st'>"pink"</span>,
+      sideOpen <span class='op'>=</span> <span class='st'>"top"</span>,
+      <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>9</span><span class='op'>:</span><span class='fl'>12</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='f7Fab.html'>f7Fab</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"btn"</span>, <span class='va'>i</span><span class='op'>)</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>)</span>
+    <span class='op'>)</span>
 
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>12</span>, <span class='kw'>function</span>(<span class='no'>i</span>) {
-      <span class='no'>output</span><span class='kw'>[[</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"res"</span>, <span class='no'>i</span>)]] <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span><span class='kw'>[[</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"btn"</span>, <span class='no'>i</span>)]])
-    })
-  }
- )
-}</div></pre>
+  <span class='op'>)</span>,
+  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='va'>output</span><span class='op'>[[</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"res"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>[[</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"btn"</span>, <span class='va'>i</span><span class='op'>)</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+  <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -290,7 +295,7 @@ it experimental.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -171,7 +171,7 @@
     <p>Build a Framework7 block</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Block</span>(<span class='no'>...</span>, <span class='kw'>hairlines</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>tablet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7Block</span><span class='op'>(</span><span class='va'>...</span>, hairlines <span class='op'>=</span> <span class='cn'>TRUE</span>, strong <span class='op'>=</span> <span class='cn'>FALSE</span>, inset <span class='op'>=</span> <span class='cn'>FALSE</span>, tablet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -198,85 +198,90 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Blocks"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Block"</span>),
-     <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A large title"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>),
-    <span class='fu'>f7Block</span>(
-     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Header"</span>),
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Blocks"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Block"</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A large title"</span>, size <span class='op'>=</span> <span class='st'>"large"</span><span class='op'>)</span>,
+    <span class='fu'>f7Block</span><span class='op'>(</span>
+     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Header"</span><span class='op'>)</span>,
      <span class='st'>"Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis."</span>,
-     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>)
-    ),
+     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Footer"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
 
-    <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A medium title"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"medium"</span>),
-    <span class='fu'>f7Block</span>(
-     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Header"</span>),
+    <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A medium title"</span>, size <span class='op'>=</span> <span class='st'>"medium"</span><span class='op'>)</span>,
+    <span class='fu'>f7Block</span><span class='op'>(</span>
+     strong <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Header"</span><span class='op'>)</span>,
      <span class='st'>"Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis."</span>,
-     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>)
-    ),
+     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Footer"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
 
-    <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A normal title"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>),
-    <span class='fu'>f7Block</span>(
-     <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Header"</span>),
+    <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"A normal title"</span>, size <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>,
+    <span class='fu'>f7Block</span><span class='op'>(</span>
+     inset <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     strong <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Header"</span><span class='op'>)</span>,
      <span class='st'>"Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis."</span>,
-     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>)
-    ),
-    <span class='fu'>f7Block</span>(
-     <span class='kw'>tablet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Header"</span>),
+     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Footer"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'>f7Block</span><span class='op'>(</span>
+     tablet <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     strong <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Header"</span><span class='op'>)</span>,
      <span class='st'>"Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis."</span>,
-     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>)
-    ),
-    <span class='fu'>f7Block</span>(
-     <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>strong</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-     <span class='kw'>hairlines</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Header"</span>),
+     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Footer"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'>f7Block</span><span class='op'>(</span>
+     inset <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     strong <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     hairlines <span class='op'>=</span> <span class='cn'>FALSE</span>,
+     <span class='fu'><a href='f7BlockHeader.html'>f7BlockHeader</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Header"</span><span class='op'>)</span>,
      <span class='st'>"Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis."</span>,
-     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span>(<span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>)
-    )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+     <span class='fu'><a href='f7BlockFooter.html'>f7BlockFooter</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='st'>"Footer"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -292,7 +297,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

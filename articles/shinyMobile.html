@@ -116,13 +116,14 @@
 
       
 
-      </header><script src="shinyMobile_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="shinyMobile_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="shinyMobile_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="shinyMobile_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-08-28</h4>
+            <h4 class="date">2020-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/shinyMobile.Rmd"><code>vignettes/shinyMobile.Rmd</code></a></small>
       <div class="hidden name"><code>shinyMobile.Rmd</code></div>
@@ -195,7 +196,7 @@
 <li><code><a href="../reference/f7Radio.html">f7Radio()</a></code></li>
 <li><code><a href="../reference/f7Toggle.html">f7Toggle()</a></code></li>
 <li>
-<code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: equivalent to <code>numericInput()</code> from {shiny}</li>
+<code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: equivalent to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/numericInput.html">numericInput()</a></code> from {shiny}</li>
 <li><code><a href="../reference/f7Picker.html">f7Picker()</a></code></li>
 <li><code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code></li>
 <li><code><a href="../reference/f7ColorPicker.html">f7ColorPicker()</a></code></li>
@@ -204,7 +205,7 @@
 <li><code><a href="../reference/f7Select.html">f7Select()</a></code></li>
 <li><code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code></li>
 <li>
-<code><a href="../reference/f7Button.html">f7Button()</a></code>: similar to <code>actionButton()</code> from {shiny}</li>
+<code><a href="../reference/f7Button.html">f7Button()</a></code>: similar to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html">actionButton()</a></code> from {shiny}</li>
 <li>
 <code><a href="../reference/f7Fab.html">f7Fab()</a></code>: enhanced <code><a href="../reference/f7Button.html">f7Button()</a></code> with ability to be gathered in a <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> container</li>
 </ul>
@@ -242,7 +243,7 @@
 <li><code><a href="../reference/updateF7Card.html">updateF7Card()</a></code></li>
 <li><code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code></li>
 <li><code><a href="../reference/updateF7Progress.html">updateF7Progress()</a></code></li>
-<li><code><a href="../reference/sheet.html">updateF7Sheet()</a></code></li>
+<li><code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code></li>
 <li>more to come soon</li>
 </ul>
 </div>
@@ -257,52 +258,55 @@
 <div id="simple-layout" class="section level4">
 <h4 class="hasAnchor">
 <a href="#simple-layout" class="anchor"></a>Simple Layout</h4>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(
-  <span class="no">...</span>,
-  <span class="no">navbar</span>,
-  <span class="kw">toolbar</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">panels</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">appbar</span> <span class="kw">=</span> <span class="kw">NULL</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  <span class="va">navbar</span>, 
+  toolbar <span class="op">=</span> <span class="cn">NULL</span>, 
+  panels <span class="op">=</span> <span class="cn">NULL</span>,
+  appbar <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></pre></div>
 <p>While only the navbar is mandatory, other components such as the toolbar are optionnal for the <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code>.</p>
 </div>
 <div id="tabs-layout" class="section level4">
 <h4 class="hasAnchor">
 <a href="#tabs-layout" class="anchor"></a>Tabs Layout</h4>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span>(
-  <span class="no">...</span>,
-  <span class="no">navbar</span>,
-  <span class="kw">panels</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">appbar</span> <span class="kw">=</span> <span class="kw">NULL</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  <span class="va">navbar</span>, 
+  panels <span class="op">=</span> <span class="cn">NULL</span>, 
+  appbar <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></pre></div>
 <p>The … argument requires <code><a href="../reference/f7Tabs.html">f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)</a></code>. The id argument is mandatory if you want to exploit the <code><a href="../reference/updateF7Tabs.html">updateF7Tabs()</a></code> function. <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> expect to have <code><a href="../reference/f7Tab.html">f7Tab(..., tabName, icon = NULL, active = FALSE)</a></code> passed inside.</p>
 </div>
 <div id="split-layout-similar-to-sidebarlayout-in-shiny" class="section level4">
 <h4 class="hasAnchor">
 <a href="#split-layout-similar-to-sidebarlayout-in-shiny" class="anchor"></a>Split Layout (similar to sidebarLayout in {shiny})</h4>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">f7SplitLayout(.
-  ..., 
-  navbar, 
-  sidebar, 
-  toolbar = NULL, 
-  panels = NULL,
-  appbar = NULL
-)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">f7SplitLayout</span>(.</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  ..., </span>
+<span id="cb3-3"><a href="#cb3-3"></a>  navbar, </span>
+<span id="cb3-4"><a href="#cb3-4"></a>  sidebar, </span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">toolbar =</span> <span class="ot">NULL</span>, </span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="dt">panels =</span> <span class="ot">NULL</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">appbar =</span> <span class="ot">NULL</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>)</span></code></pre></div>
 <p>The main content goes in the … parameter. Navigation items are gathered in the sidebar slot. The sidebar expect a <code>f7Panel</code>. Importantly, the side parameter must be set to “left” and the style to “reveal”. The navigation menu is organized as follows:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelMenu</a></span>(
-  <span class="kw">id</span> <span class="kw">=</span> <span class="st">"menu"</span>,
-  <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span>(
-    <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"tab1"</span>,
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Tab 1"</span>,
-    <span class="kw">icon</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"email"</span>),
-    <span class="kw">active</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-  ),
-  <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span>(
-    <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"tab2"</span>,
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Tab 2"</span>,
-    <span class="kw">icon</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"home"</span>)
-  )
-)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelMenu</a></span><span class="op">(</span>
+  id <span class="op">=</span> <span class="st">"menu"</span>,
+  <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>
+    tabName <span class="op">=</span> <span class="st">"tab1"</span>, 
+    title <span class="op">=</span> <span class="st">"Tab 1"</span>, 
+    icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"email"</span><span class="op">)</span>, 
+    active <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span>,
+  <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>
+    tabName <span class="op">=</span> <span class="st">"tab2"</span>, 
+    title <span class="op">=</span> <span class="st">"Tab 2"</span>, 
+    icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">)</span></pre></div>
 <p>The id argument is important if you want to get the currently selected item or update the select tab. Each <code>f7PanelItem</code> has a mandatory tabName. The associated input will be <code>input$menu</code> in that example, with “tab1” for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in <code><a href="../reference/f7Items.html">f7Items()</a></code> containing as many <code><a href="../reference/f7Item.html">f7Item()</a></code> as sidebar items. The tabName must correspond!</p>
 </div>
 <div id="core-layout-components" class="section level4">
@@ -313,57 +317,61 @@
 <h4 class="hasAnchor">
 <a href="#page" class="anchor"></a>Page</h4>
 <p>It is the main skeleton of the template.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Page.html">f7Page</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">init</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="kw">skin</span> <span class="kw">=</span> <span class="st">"auto"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"light"</span>),
-  <span class="kw">title</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">preloader</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">loading_duration</span> <span class="kw">=</span> <span class="fl">3</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  init <span class="op">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span><span class="op">(</span>skin <span class="op">=</span> <span class="st">"auto"</span>, theme <span class="op">=</span> <span class="st">"light"</span><span class="op">)</span>,
+  title <span class="op">=</span> <span class="cn">NULL</span>, 
+  preloader <span class="op">=</span> <span class="cn">FALSE</span>, 
+  loading_duration <span class="op">=</span> <span class="fl">3</span>
+<span class="op">)</span></pre></div>
 <p><code><a href="../reference/f7Init.html">f7Init()</a></code> is mandatory (see below) since it sets up the app. preloader is useful in case you want to display a loading screen. <code><a href="../reference/f7Page.html">f7Page()</a></code> accepts any shinyMobile layout.</p>
 <div id="navbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#navbar" class="anchor"></a>Navbar</h5>
 <p>The navbar is one of the most important element of any shinyMobile layout. It contains a title, a subtitle, triggers for both right and left panels (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a subnavbar (<code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>).</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">subNavbar</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">subtitle</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">hairline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">shadow</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">bigger</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">left_panel</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">right_panel</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  subNavbar <span class="op">=</span> <span class="cn">NULL</span>, 
+  title <span class="op">=</span> <span class="cn">NULL</span>, 
+  subtitle <span class="op">=</span> <span class="cn">NULL</span>,
+  hairline <span class="op">=</span> <span class="cn">TRUE</span>, 
+  shadow <span class="op">=</span> <span class="cn">TRUE</span>, 
+  bigger <span class="op">=</span> <span class="cn">FALSE</span>,
+  left_panel <span class="op">=</span> <span class="cn">FALSE</span>, 
+  right_panel <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline. Disclaimer: the bigger parameters does not work well yet… and I suggest to ignore it for the moment.</p>
 </div>
 <div id="the-toolbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#the-toolbar" class="anchor"></a>The Toolbar</h5>
 <p>This is an option if you decide not to embed a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>. The toolbar is the rigth place to add <code><a href="../reference/f7Button.html">f7Button()</a></code>, <code><a href="../reference/f7Link.html">f7Link()</a></code>, <code><a href="../reference/f7Badge.html">f7Badge()</a></code>… Its position is controlled with the position parameter (either top or bottom).</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">position</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"top"</span>, <span class="st">"bottom"</span>),
-  <span class="kw">hairline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">shadow</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">icons</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">scrollable</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"top"</span>, <span class="st">"bottom"</span><span class="op">)</span>, 
+  hairline <span class="op">=</span> <span class="cn">TRUE</span>,
+  shadow <span class="op">=</span> <span class="cn">TRUE</span>, 
+  icons <span class="op">=</span> <span class="cn">FALSE</span>, 
+  scrollable <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p>Interestingly, <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> is a custom <code><a href="../reference/f7Toolbar.html">f7Toolbar()</a></code>!</p>
 </div>
 <div id="panels" class="section level5">
 <h5 class="hasAnchor">
 <a href="#panels" class="anchor"></a>Panels</h5>
 <p>Panels are also called sidebars. <code><a href="../reference/f7Panel.html">f7Panel()</a></code> is the corresponding function.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">title</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">side</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"left"</span>, <span class="st">"right"</span>),
-  <span class="kw">theme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark"</span>, <span class="st">"light"</span>),
-  <span class="kw">effect</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"reveal"</span>, <span class="st">"cover"</span>),
-  <span class="kw">resizable</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  title <span class="op">=</span> <span class="cn">NULL</span>, 
+  side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,
+  theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dark"</span>, <span class="st">"light"</span><span class="op">)</span>, 
+  effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"reveal"</span>, <span class="st">"cover"</span><span class="op">)</span>,
+  resizable <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p>Although the App has a theme parameter, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independant theme option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
 <p>Note that for the moment, there is no option to control the width of each panel.</p>
 <p>As stated previously for the <code>f7SplitLayout</code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>. Finally do not forget to set up the <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> so that panels are allowed!</p>
@@ -372,29 +380,31 @@
 <h5 class="hasAnchor">
 <a href="#the-appbar" class="anchor"></a>The appbar</h5>
 <p><code><a href="../reference/f7Appbar.html">f7Appbar()</a></code> is displayed on top of the <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code>. It is a best choice to embed <code><a href="../reference/f7Searchbar.html">f7Searchbar()</a></code>. <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code> may also trigger <code><a href="../reference/f7Panel.html">f7Panel()</a></code>.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Appbar.html">f7Appbar</a></span>(
-  <span class="no">...</span>,
-  <span class="kw">left_panel</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">right_panel</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">maximizable</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Appbar.html">f7Appbar</a></span><span class="op">(</span>
+  <span class="va">...</span>, 
+  left_panel <span class="op">=</span> <span class="cn">FALSE</span>, 
+  right_panel <span class="op">=</span> <span class="cn">FALSE</span>,
+  maximizable <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 </div>
 </div>
 <div id="app-initialization" class="section level4">
 <h4 class="hasAnchor">
 <a href="#app-initialization" class="anchor"></a>App Initialization</h4>
 <p>This is probably the most inportant function of the template: <code><a href="../reference/f7Init.html">f7Init()</a></code>. This functions helps to set up the template as well as properly initializing the main view of your app.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(
-  <span class="kw">skin</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span>),
-  <span class="kw">theme</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dark"</span>, <span class="st">"light"</span>),
-  <span class="kw">filled</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">color</span> <span class="kw">=</span> <span class="kw">NULL</span>,
-  <span class="kw">tapHold</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">iosTouchRipple</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">iosCenterTitle</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">hideNavOnPageScroll</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">hideTabsOnPageScroll</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/f7Init.html">f7Init</a></span><span class="op">(</span>
+  skin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span><span class="op">)</span>, 
+  theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dark"</span>, <span class="st">"light"</span><span class="op">)</span>, 
+  filled <span class="op">=</span> <span class="cn">FALSE</span>, 
+  color <span class="op">=</span> <span class="cn">NULL</span>, 
+  tapHold <span class="op">=</span> <span class="cn">TRUE</span>,
+  iosTouchRipple <span class="op">=</span> <span class="cn">FALSE</span>, 
+  iosCenterTitle <span class="op">=</span> <span class="cn">TRUE</span>, 
+  hideNavOnPageScroll <span class="op">=</span> <span class="cn">TRUE</span>,
+  hideTabsOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
 <p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. The tapHold parameter ensure that the “long-press” feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.</p>
 </div>
 </div>
@@ -415,7 +425,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

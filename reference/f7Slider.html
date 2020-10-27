@@ -171,22 +171,22 @@
     <p>Create a f7 slider</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Slider</span>(
-  <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
-  <span class='no'>min</span>,
-  <span class='no'>max</span>,
-  <span class='no'>value</span>,
-  <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verticalReversed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>noSwipping</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7Slider</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  <span class='va'>label</span>,
+  <span class='va'>min</span>,
+  <span class='va'>max</span>,
+  <span class='va'>value</span>,
+  step <span class='op'>=</span> <span class='fl'>1</span>,
+  scale <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  scaleSteps <span class='op'>=</span> <span class='fl'>5</span>,
+  scaleSubSteps <span class='op'>=</span> <span class='fl'>0</span>,
+  vertical <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verticalReversed <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  labels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  noSwipping <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -256,73 +256,75 @@ expected.</p></td>
     <p>labels option only works when vertical is FALSE!</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Slider"</span>),
-     <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-      <span class='fu'>f7Slider</span>(
-       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Number of observations"</span>,
-       <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-       <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-       <span class='kw'>scaleSteps</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-       <span class='kw'>scaleSubSteps</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"orange"</span>,
-       <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>tagList</a></span>(
-        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle"</span>),
-        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"circle_fill"</span>)
-       )
-      ),
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span>(<span class='st'>"distPlot"</span>)
-    )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
-    <span class='no'>output</span>$<span class='no'>distPlot</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span>({
-     <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>input</span>$<span class='no'>obs</span>))
-    })
-   }
- )
-}
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Slider"</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Card.html'>f7Card</a></span><span class='op'>(</span>
+      <span class='fu'>f7Slider</span><span class='op'>(</span>
+       inputId <span class='op'>=</span> <span class='st'>"obs"</span>,
+       label <span class='op'>=</span> <span class='st'>"Number of observations"</span>,
+       max <span class='op'>=</span> <span class='fl'>1000</span>,
+       min <span class='op'>=</span> <span class='fl'>0</span>,
+       value <span class='op'>=</span> <span class='fl'>100</span>,
+       scaleSteps <span class='op'>=</span> <span class='fl'>5</span>,
+       scaleSubSteps <span class='op'>=</span> <span class='fl'>3</span>,
+       scale <span class='op'>=</span> <span class='cn'>TRUE</span>,
+       color <span class='op'>=</span> <span class='st'>"orange"</span>,
+       labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"circle"</span><span class='op'>)</span>,
+        <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"circle_fill"</span><span class='op'>)</span>
+       <span class='op'>)</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>
+     <span class='op'>)</span>,
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"distPlot"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='op'>{</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>}</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'># Create a range</span>
-<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+<span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Slider Range"</span>),
-     <span class='fu'><a href='f7Card.html'>f7Card</a></span>(
-      <span class='fu'>f7Slider</span>(
-       <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"obs"</span>,
-       <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Range values"</span>,
-       <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-       <span class='kw'>min</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>50</span>, <span class='fl'>100</span>),
-       <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-      ),
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"test"</span>)
-     )
-    )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='no'>output</span>$<span class='no'>test</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span>({<span class='no'>input</span>$<span class='no'>obs</span>})
-   }
- )
-}</div></pre>
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Slider Range"</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Card.html'>f7Card</a></span><span class='op'>(</span>
+      <span class='fu'>f7Slider</span><span class='op'>(</span>
+       inputId <span class='op'>=</span> <span class='st'>"obs"</span>,
+       label <span class='op'>=</span> <span class='st'>"Range values"</span>,
+       max <span class='op'>=</span> <span class='fl'>500</span>,
+       min <span class='op'>=</span> <span class='fl'>0</span>,
+       value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span>,
+       scale <span class='op'>=</span> <span class='cn'>FALSE</span>
+      <span class='op'>)</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+    <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='op'>{</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -338,7 +340,7 @@ expected.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

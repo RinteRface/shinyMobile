@@ -171,12 +171,12 @@
     <p>Create a framework7 action sheet</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ActionSheet</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>(),
-  <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>buttons</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7ActionSheet</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
+  grid <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>buttons</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -197,18 +197,19 @@ input$id is NULL.</p></td>
     </tr>
     <tr>
       <th>buttons</th>
-      <td><p>list of buttons such as</p><pre><span class='no'>buttons</span> <span class='kw'>&amp;</span><span class='no'>lt</span>;- <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-    <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>),
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-  ),
-  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Dialog"</span>,
-    <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>),
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-  )
- )</pre><p>The currently selected button may be accessed via input$&lt;sheet_id&gt;_button. The value is
+      <td><p>list of buttons such as</p><pre><span class='va'>buttons</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    text <span class='op'>=</span> <span class='st'>"Notification"</span>,
+    icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"info"</span><span class='op'>)</span>,
+    color <span class='op'>=</span> <span class='cn'>NULL</span>
+  <span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    text <span class='op'>=</span> <span class='st'>"Dialog"</span>,
+    icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"lightbulb_fill"</span><span class='op'>)</span>,
+    color <span class='op'>=</span> <span class='cn'>NULL</span>
+  <span class='op'>)</span>
+ <span class='op'>)</span>
+</pre><p>The currently selected button may be accessed via input$&lt;sheet_id&gt;_button. The value is
 numeric. When the action sheet is closed, input$&lt;sheet_id&gt;_button is NULL. This is useful
 when you want to trigger events after a specific button click.</p></td>
     </tr>
@@ -216,150 +217,151 @@ when you want to trigger events after a specific button click.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Action sheet"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
-       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Show action sheet"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Action sheet"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span><span class='st'>"Action sheet"</span><span class='op'>)</span>,
+       <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>br</a></span><span class='op'>(</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"go"</span>, <span class='st'>"Show action sheet"</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-         <span class='kw'>sheetOpen</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>action1</span>,
-         <span class='kw'>button</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>action1_button</span>
-       ))
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+         sheetOpen <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>action1</span>,
+         button <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span>
+       <span class='op'>)</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>action1_button</span>, {
-       <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>action1_button</span> <span class='kw'>==</span> <span class='fl'>1</span>) {
-         <span class='fu'><a href='f7Notif.html'>f7Notif</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"You clicked on the first button"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-           <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,
-           <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-         )
-       } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>action1_button</span> <span class='kw'>==</span> <span class='fl'>2</span>) {
-         <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span>(
-           <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
-           <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"confirm"</span>,
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"You clicked on the second button"</span>,
-           <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-         )
-       }
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span>, <span class='op'>{</span>
+       <span class='kw'>if</span> <span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
+         <span class='fu'><a href='f7Notif.html'>f7Notif</a></span><span class='op'>(</span>
+           text <span class='op'>=</span> <span class='st'>"You clicked on the first button"</span>,
+           icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"bolt_fill"</span><span class='op'>)</span>,
+           title <span class='op'>=</span> <span class='st'>"Notification"</span>,
+           titleRightText <span class='op'>=</span> <span class='st'>"now"</span>,
+           session <span class='op'>=</span> <span class='va'>session</span>
+         <span class='op'>)</span>
+       <span class='op'>}</span> <span class='kw'>else</span> <span class='kw'>if</span> <span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>{</span>
+         <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span><span class='op'>(</span>
+           inputId <span class='op'>=</span> <span class='st'>"test"</span>,
+           title <span class='op'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
+           type <span class='op'>=</span> <span class='st'>"confirm"</span>,
+           text <span class='op'>=</span> <span class='st'>"You clicked on the second button"</span>,
+           session <span class='op'>=</span> <span class='va'>session</span>
+         <span class='op'>)</span>
+       <span class='op'>}</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-       <span class='fu'><a href='f7Toast.html'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>test</span>, <span class='op'>{</span>
+       <span class='fu'><a href='f7Toast.html'>f7Toast</a></span><span class='op'>(</span><span class='va'>session</span>, text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Alert input is:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>test</span><span class='op'>)</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-       <span class='fu'>f7ActionSheet</span>(
-         <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-         <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"action1"</span>,
-         <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-            <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>),
-            <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-          ),
-          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-            <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Dialog"</span>,
-            <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>),
-            <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-          )
-         )
-       )
-     })
-   }
- )
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+       <span class='fu'>f7ActionSheet</span><span class='op'>(</span>
+         grid <span class='op'>=</span> <span class='cn'>TRUE</span>,
+         id <span class='op'>=</span> <span class='st'>"action1"</span>,
+         buttons <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+            text <span class='op'>=</span> <span class='st'>"Notification"</span>,
+            icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"info"</span><span class='op'>)</span>,
+            color <span class='op'>=</span> <span class='cn'>NULL</span>
+          <span class='op'>)</span>,
+          <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+            text <span class='op'>=</span> <span class='st'>"Dialog"</span>,
+            icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"lightbulb_fill"</span><span class='op'>)</span>,
+            color <span class='op'>=</span> <span class='cn'>NULL</span>
+          <span class='op'>)</span>
+         <span class='op'>)</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
 
  <span class='co'>### in shiny module</span>
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='no'>sheetModuleUI</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>id</span>) {
-   <span class='no'>ns</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/NS.html'>NS</a></span>(<span class='no'>id</span>)
-   <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"go"</span>), <span class='st'>"Show action sheet"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>)
- }
+ <span class='va'>sheetModuleUI</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span> <span class='op'>{</span>
+   <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+   <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"go"</span><span class='op'>)</span>, <span class='st'>"Show action sheet"</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+ <span class='op'>}</span>
 
- <span class='no'>sheetModule</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+ <span class='va'>sheetModule</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-   <span class='no'>ns</span> <span class='kw'>&lt;-</span> <span class='no'>session</span>$<span class='no'>ns</span>
+   <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='va'>session</span><span class='op'>$</span><span class='va'>ns</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-       <span class='kw'>sheetOpen</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>action1</span>,
-       <span class='kw'>button</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>action1_button</span>
-     ))
-   })
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+       sheetOpen <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>action1</span>,
+       button <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span>
+     <span class='op'>)</span><span class='op'>)</span>
+   <span class='op'>}</span><span class='op'>)</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>action1_button</span>, {
-     <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>action1_button</span> <span class='kw'>==</span> <span class='fl'>1</span>) {
-       <span class='fu'><a href='f7Notif.html'>f7Notif</a></span>(
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"You clicked on the first button"</span>,
-         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-         <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     } <span class='kw'>else</span> <span class='kw'>if</span> (<span class='no'>input</span>$<span class='no'>action1_button</span> <span class='kw'>==</span> <span class='fl'>2</span>) {
-       <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"test"</span>),
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
-         <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"confirm"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"You clicked on the second button"</span>,
-       )
-     }
-   })
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span>, <span class='op'>{</span>
+     <span class='kw'>if</span> <span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
+       <span class='fu'><a href='f7Notif.html'>f7Notif</a></span><span class='op'>(</span>
+         text <span class='op'>=</span> <span class='st'>"You clicked on the first button"</span>,
+         icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"bolt_fill"</span><span class='op'>)</span>,
+         title <span class='op'>=</span> <span class='st'>"Notification"</span>,
+         titleRightText <span class='op'>=</span> <span class='st'>"now"</span>,
+         session <span class='op'>=</span> <span class='va'>session</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span> <span class='kw'>else</span> <span class='kw'>if</span> <span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>action1_button</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>{</span>
+       <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span><span class='op'>(</span>
+         inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>,
+         title <span class='op'>=</span> <span class='st'>"Click me to launch a Toast!"</span>,
+         type <span class='op'>=</span> <span class='st'>"confirm"</span>,
+         text <span class='op'>=</span> <span class='st'>"You clicked on the second button"</span>,
+       <span class='op'>)</span>
+     <span class='op'>}</span>
+   <span class='op'>}</span><span class='op'>)</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-     <span class='fu'><a href='f7Toast.html'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
-   })
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>test</span>, <span class='op'>{</span>
+     <span class='fu'><a href='f7Toast.html'>f7Toast</a></span><span class='op'>(</span><span class='va'>session</span>, text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Alert input is:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>test</span><span class='op'>)</span><span class='op'>)</span>
+   <span class='op'>}</span><span class='op'>)</span>
 
-   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-     <span class='fu'>f7ActionSheet</span>(
-       <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-       <span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'>ns</span>(<span class='st'>"action1"</span>),
-       <span class='kw'>buttons</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"info"</span>),
-           <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-         ),
-         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-           <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"Dialog"</span>,
-           <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"lightbulb_fill"</span>),
-           <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-         )
-       )
-     )
-   })
- }
+   <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+     <span class='fu'>f7ActionSheet</span><span class='op'>(</span>
+       grid <span class='op'>=</span> <span class='cn'>TRUE</span>,
+       id <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"action1"</span><span class='op'>)</span>,
+       buttons <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+           text <span class='op'>=</span> <span class='st'>"Notification"</span>,
+           icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"info"</span><span class='op'>)</span>,
+           color <span class='op'>=</span> <span class='cn'>NULL</span>
+         <span class='op'>)</span>,
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+           text <span class='op'>=</span> <span class='st'>"Dialog"</span>,
+           icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"lightbulb_fill"</span><span class='op'>)</span>,
+           color <span class='op'>=</span> <span class='cn'>NULL</span>
+         <span class='op'>)</span>
+       <span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>}</span><span class='op'>)</span>
+ <span class='op'>}</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Action sheet"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Action sheet"</span>),
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>br</a></span>(),
-       <span class='fu'>sheetModuleUI</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"sheet1"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span>(<span class='no'>sheetModule</span>, <span class='st'>"sheet1"</span>)
-   }
- )
-}</div></pre>
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Action sheet"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span><span class='st'>"Action sheet"</span><span class='op'>)</span>,
+       <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>br</a></span><span class='op'>(</span><span class='op'>)</span>,
+       <span class='fu'>sheetModuleUI</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"sheet1"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span><span class='va'>sheetModule</span>, <span class='st'>"sheet1"</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -375,7 +377,7 @@ when you want to trigger events after a specific button click.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

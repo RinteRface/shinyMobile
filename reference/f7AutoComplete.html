@@ -171,19 +171,19 @@
     <p>Build a Framework7 autocomplete input</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7AutoComplete</span>(
-  <span class='no'>inputId</span>,
-  <span class='no'>label</span>,
-  <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>choices</span>[<span class='fl'>1</span>],
-  <span class='no'>choices</span>,
-  <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"popup"</span>, <span class='st'>"page"</span>, <span class='st'>"dropdown"</span>),
-  <span class='kw'>typeahead</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>expandInput</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>closeOnSelect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7AutoComplete</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  <span class='va'>label</span>,
+  placeholder <span class='op'>=</span> <span class='cn'>NULL</span>,
+  value <span class='op'>=</span> <span class='va'>choices</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
+  <span class='va'>choices</span>,
+  openIn <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"popup"</span>, <span class='st'>"page"</span>, <span class='st'>"dropdown"</span><span class='op'>)</span>,
+  typeahead <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  expandInput <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  closeOnSelect <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  dropdownPlaceholderText <span class='op'>=</span> <span class='cn'>NULL</span>,
+  multiple <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -242,49 +242,54 @@ when openIn is 'popup' or 'page'.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-     <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7AutoComplete"</span>),
-     <span class='fu'>f7AutoComplete</span>(
-      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myautocomplete1"</span>,
-      <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
-      <span class='kw'>dropdownPlaceholderText</span> <span class='kw'>=</span> <span class='st'>"Try to type Apple"</span>,
-      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Type a fruit name"</span>,
-      <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"dropdown"</span>,
-      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
-       <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span>(<span class='st'>"autocompleteval1"</span>),
-     <span class='fu'>f7AutoComplete</span>(
-      <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myautocomplete2"</span>,
-      <span class='kw'>placeholder</span> <span class='kw'>=</span> <span class='st'>"Some text here!"</span>,
-      <span class='kw'>openIn</span> <span class='kw'>=</span> <span class='st'>"popup"</span>,
-      <span class='kw'>multiple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-      <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"Type a fruit name"</span>,
-      <span class='kw'>choices</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
-                  <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span>)
-     ),
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span>(<span class='st'>"autocompleteval2"</span>)
-    )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete1</span>)
-     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete2</span>)
-    })
-    <span class='no'>output</span>$<span class='no'>autocompleteval1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete1</span>)
-    <span class='no'>output</span>$<span class='no'>autocompleteval2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span>(<span class='no'>input</span>$<span class='no'>myautocomplete2</span>)
-   }
- )
-}</div></pre>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7AutoComplete"</span><span class='op'>)</span>,
+     <span class='fu'>f7AutoComplete</span><span class='op'>(</span>
+      inputId <span class='op'>=</span> <span class='st'>"myautocomplete1"</span>,
+      placeholder <span class='op'>=</span> <span class='st'>"Some text here!"</span>,
+      dropdownPlaceholderText <span class='op'>=</span> <span class='st'>"Try to type Apple"</span>,
+      label <span class='op'>=</span> <span class='st'>"Type a fruit name"</span>,
+      openIn <span class='op'>=</span> <span class='st'>"dropdown"</span>,
+      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
+       <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span><span class='op'>)</span>
+     <span class='op'>)</span>,
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"autocompleteval1"</span><span class='op'>)</span>,
+     <span class='fu'>f7AutoComplete</span><span class='op'>(</span>
+      inputId <span class='op'>=</span> <span class='st'>"myautocomplete2"</span>,
+      placeholder <span class='op'>=</span> <span class='st'>"Some text here!"</span>,
+      openIn <span class='op'>=</span> <span class='st'>"popup"</span>,
+      multiple <span class='op'>=</span> <span class='cn'>TRUE</span>,
+      label <span class='op'>=</span> <span class='st'>"Type a fruit name"</span>,
+      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Apple'</span>, <span class='st'>'Apricot'</span>, <span class='st'>'Avocado'</span>, <span class='st'>'Banana'</span>, <span class='st'>'Melon'</span>,
+                  <span class='st'>'Orange'</span>, <span class='st'>'Peach'</span>, <span class='st'>'Pear'</span>, <span class='st'>'Pineapple'</span><span class='op'>)</span>
+     <span class='op'>)</span>,
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"autocompleteval2"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>myautocomplete1</span><span class='op'>)</span>
+     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>myautocomplete2</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>autocompleteval1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>myautocomplete1</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>autocompleteval2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>myautocomplete2</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -300,7 +305,7 @@ when openIn is 'popup' or 'page'.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

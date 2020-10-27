@@ -171,13 +171,13 @@
     <p>To be used in combination with <a href='f7ListItem.html'>f7ListItem</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Swipeout</span>(
-  <span class='no'>tag</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>side</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"both"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>f7Swipeout</span><span class='op'>(</span>
+  <span class='va'>tag</span>,
+  <span class='va'>...</span>,
+  left <span class='op'>=</span> <span class='cn'>NULL</span>,
+  right <span class='op'>=</span> <span class='cn'>NULL</span>,
+  side <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"left"</span>, <span class='st'>"right"</span>, <span class='st'>"both"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,60 +207,61 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7List"</span>),
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"My app"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7List"</span><span class='op'>)</span>,
        <span class='co'># simple list</span>
-       <span class='fu'><a href='f7List.html'>f7List</a></span>(
-         <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-           <span class='kw'>if</span> (<span class='no'>j</span> <span class='kw'>==</span> <span class='fl'>1</span>) {
-             <span class='fu'>f7Swipeout</span>(
-               <span class='kw'>tag</span> <span class='kw'>=</span> <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]),
-               <span class='kw'>side</span> <span class='kw'>=</span> <span class='st'>"left"</span>,
-               <span class='fu'><a href='f7SwipeoutItem.html'>f7SwipeoutItem</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"alert"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"pink"</span>, <span class='st'>"Alert"</span>),
-               <span class='fu'><a href='f7SwipeoutItem.html'>f7SwipeoutItem</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"notification"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>, <span class='st'>"Notif"</span>)
-             )
-           } <span class='kw'>else</span> {
-             <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>])
-           }
-         })
-       )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>alert</span>)
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>notification</span>)
-     })
+       <span class='fu'><a href='f7List.html'>f7List</a></span><span class='op'>(</span>
+         <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
+           <span class='kw'>if</span> <span class='op'>(</span><span class='va'>j</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
+             <span class='fu'>f7Swipeout</span><span class='op'>(</span>
+               tag <span class='op'>=</span> <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>,
+               side <span class='op'>=</span> <span class='st'>"left"</span>,
+               <span class='fu'><a href='f7SwipeoutItem.html'>f7SwipeoutItem</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"alert"</span>, color <span class='op'>=</span> <span class='st'>"pink"</span>, <span class='st'>"Alert"</span><span class='op'>)</span>,
+               <span class='fu'><a href='f7SwipeoutItem.html'>f7SwipeoutItem</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"notification"</span>, color <span class='op'>=</span> <span class='st'>"green"</span>, <span class='st'>"Notif"</span><span class='op'>)</span>
+             <span class='op'>)</span>
+           <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+             <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>
+           <span class='op'>}</span>
+         <span class='op'>}</span><span class='op'>)</span>
+       <span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>alert</span><span class='op'>)</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>notification</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>notification</span>, {
-       <span class='fu'><a href='f7Notif.html'>f7Notif</a></span>(
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-         <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"bolt_fill"</span>),
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Notification"</span>,
-         <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"A subtitle"</span>,
-         <span class='kw'>titleRightText</span> <span class='kw'>=</span> <span class='st'>"now"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>notification</span>, <span class='op'>{</span>
+       <span class='fu'><a href='f7Notif.html'>f7Notif</a></span><span class='op'>(</span>
+         text <span class='op'>=</span> <span class='st'>"test"</span>,
+         icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"bolt_fill"</span><span class='op'>)</span>,
+         title <span class='op'>=</span> <span class='st'>"Notification"</span>,
+         subtitle <span class='op'>=</span> <span class='st'>"A subtitle"</span>,
+         titleRightText <span class='op'>=</span> <span class='st'>"now"</span>,
+         session <span class='op'>=</span> <span class='va'>session</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>alert</span>, {
-       <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is an alert dialog"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>alert</span>, <span class='op'>{</span>
+       <span class='fu'><a href='f7Dialog.html'>f7Dialog</a></span><span class='op'>(</span>
+         title <span class='op'>=</span> <span class='st'>"Dialog title"</span>,
+         text <span class='op'>=</span> <span class='st'>"This is an alert dialog"</span>,
+         session <span class='op'>=</span> <span class='va'>session</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-   }
- )
-}</div></pre>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -276,7 +277,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

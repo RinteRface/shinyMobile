@@ -171,11 +171,11 @@
     <p>Update a Framework 7 accordion</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Accordion</span>(
-  <span class='no'>inputId</span>,
-  <span class='kw'>selected</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>updateF7Accordion</span><span class='op'>(</span>
+  <span class='va'>inputId</span>,
+  selected <span class='op'>=</span> <span class='cn'>NULL</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,47 +196,48 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Accordions"</span>),
-       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='st'>"Go"</span>),
-       <span class='fu'><a href='f7Accordion.html'>f7Accordion</a></span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>,
-         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 1"</span>,
-           <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 1 content"</span>),
-           <span class='kw'>open</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-         ),
-         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span>(
-           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Item 2"</span>,
-           <span class='fu'><a href='f7Block.html'>f7Block</a></span>(<span class='st'>"Item 2 content"</span>)
-         )
-       )
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Accordions"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span><span class='st'>"Accordions"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"go"</span>, <span class='st'>"Go"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Accordion.html'>f7Accordion</a></span><span class='op'>(</span>
+         inputId <span class='op'>=</span> <span class='st'>"myaccordion1"</span>,
+         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span><span class='op'>(</span>
+           title <span class='op'>=</span> <span class='st'>"Item 1"</span>,
+           <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span><span class='st'>"Item 1 content"</span><span class='op'>)</span>,
+           open <span class='op'>=</span> <span class='cn'>TRUE</span>
+         <span class='op'>)</span>,
+         <span class='fu'><a href='f7AccordionItem.html'>f7AccordionItem</a></span><span class='op'>(</span>
+           title <span class='op'>=</span> <span class='st'>"Item 2"</span>,
+           <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span><span class='st'>"Item 2 content"</span><span class='op'>)</span>
+         <span class='op'>)</span>
+       <span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>go</span>, {
-       <span class='fu'>updateF7Accordion</span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"myaccordion1"</span>, <span class='kw'>selected</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>)
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+       <span class='fu'>updateF7Accordion</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"myaccordion1"</span>, selected <span class='op'>=</span> <span class='fl'>2</span>, session <span class='op'>=</span> <span class='va'>session</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(
-         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-           <span class='kw'>accordion1_state</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>myaccordion1</span>$<span class='no'>state</span>,
-           <span class='kw'>accordion1_values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='no'>input</span>$<span class='no'>myaccordion1</span>$<span class='no'>value</span>)
-         )
-       )
-     })
-   }
- )
-}</div></pre>
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span>
+         <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+           accordion1_state <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>myaccordion1</span><span class='op'>$</span><span class='va'>state</span>,
+           accordion1_values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>myaccordion1</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span>
+         <span class='op'>)</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -252,7 +253,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

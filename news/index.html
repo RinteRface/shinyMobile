@@ -217,7 +217,7 @@
 <li>
 <code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
 <li>
-<code><a href="../reference/sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar)</li>
+<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar)</li>
 <li>All update method for inputs : argument <code>session</code> is now optional and has been moved to the last position in function call</li>
 <li>
 <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>: type becomes openIn to align with the framework7 documentation</li>
@@ -244,7 +244,7 @@
 <li>new <code><a href="../reference/f7VirtualList.html">f7VirtualList()</a></code>, <code><a href="../reference/f7VirtualListItem.html">f7VirtualListItem()</a></code>, <code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: high performance list with caching system -&gt; faster rendering (up to 10x faster than <code><a href="../reference/f7List.html">f7List()</a></code>). Ability to add item(s), remove item(s), move item, filter items, …</li>
 <li>new messagebar parameter to <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. This allows to use the <code>f7Messagebar()</code> in a tabs layout configuration.</li>
 <li>new <code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> function to validate input from the server side (similar to shinyFeedback but internal to shinyMobile and without dependencies)</li>
-<li>new <code><a href="../reference/authentication.html">f7Login()</a></code> and <code><a href="../reference/authentication.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
+<li>new <code><a href="../reference/f7Login.html">f7Login()</a></code> and <code><a href="../reference/f7Login.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
 <li>
 <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.</li>
 <li>update <code><a href="../reference/f7Icon.html">f7Icon()</a></code> and icons dependencies. thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
@@ -267,12 +267,12 @@
 </li>
 <li>add new <code><a href="../reference/f7DownloadButton.html">f7DownloadButton()</a></code> to work properly with the shiny <code>downloadHandler</code> function. Thanks <a href='https://github.com/bwganblack'>@bwganblack</a> for the report</li>
 <li>add new tapHoldDelay parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
-<li>new <code><a href="../reference/preloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/preloader.html">f7HidePreloader()</a></code>
+<li>new <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code>
 </li>
 <li>new <code><a href="../reference/f7TextArea.html">f7TextArea()</a></code> input and <code><a href="../reference/updateF7Text.html">updateF7TextArea()</a></code> on the server side</li>
 <li>add block title for <code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code> and <code><a href="../reference/f7Radio.html">f7Radio()</a></code>
 </li>
-<li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/sheet.html">f7Sheet()</a></code>)</li>
+<li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>)</li>
 <li>add new active parameter to <code><a href="../reference/f7Button.html">f7Button()</a></code>
 </li>
 <li>add new strong parameter to <code><a href="../reference/f7Segment.html">f7Segment()</a></code>
@@ -320,7 +320,7 @@
 <ul>
 <li>Fix issue in <code>updateF7AutoComplete</code>: text input was not updated. Thanks <a href='https://github.com/sanchez5674'>@sanchez5674</a> for the report</li>
 <li>Remove duplicated html tag in <code><a href="../reference/f7Page.html">f7Page()</a></code>. Thanks @ pvictor</li>
-<li>Fix issue in <code><a href="../reference/sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
+<li>Fix issue in <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
 <li>Fix issue in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>: if one put <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> inside a <code><a href="../reference/f7Tab.html">f7Tab()</a></code> in a parent <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset).</li>
 <li>Fix issue with <code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
 <li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
@@ -342,7 +342,7 @@
 <li>fix <code><a href="../reference/f7Icon.html">f7Icon()</a></code> example: wrong function name</li>
 <li>fix <code><a href="../reference/f7Row.html">f7Row()</a></code> example</li>
 <li>
-<code><a href="../reference/sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
+<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
 <li>Do no apply a magin bottom to the toolbar if there is no <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
 </li>
 </ul>
@@ -373,7 +373,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
