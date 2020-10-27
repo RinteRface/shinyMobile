@@ -14,6 +14,18 @@ shiny::shinyApp(
             $('#btn1').on('click', function(event) {
               Shiny.shinyapp.$sendMsg('plop');
             });
+
+            var workerId = $('base').attr('href');
+            // ensure that this code does not locally
+            if (typeof workerId != 'undefined') {
+              $(document).on('shiny:disconnected', function(event) {
+                // remove shiny server stuff
+                $('#ss-connect-dialog').hide();
+                $('#ss-overlay').hide();
+                // use Shiny internal tools
+                Shiny.showReconnectDialog();
+              });
+            }
           });
         "
         )
