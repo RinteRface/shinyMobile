@@ -10,15 +10,15 @@ $(function() {
     $('#ss-connect-dialog').hide();
     $('#ss-overlay').hide();
     // use Framework7 internal tools
-    app.notification.create({
+    var reconnectToast = app.toast.create({
       icon: '<i class="icon f7-icons">bolt_fill</i>',
-      title: 'Disconnected',
-      text: '<button onclick="Shiny.shinyapp.reconnect();" class="button">Reconnect <i class="icon f7-icons">arrow_2_circlepath</i></button>',
-      on: {
-        click: function (notification) {
-          notification.close();
-        },
-      }
+      position: 'center',
+      text: 'Oups... disconnected </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>',
     }).open();
+
+    // close toast whenever a choice is made ...
+    $('.toast-button').on('click', function() {
+      reconnectToast.close();
+    });
   });
 });
