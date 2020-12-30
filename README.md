@@ -40,7 +40,7 @@ A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. L
 shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile
 devices. This feature is automatically handled by `f7Page()` and the Google PWA compatibility
 [script](https://github.com/GoogleChromeLabs/pwacompat). The last 3 parameters of `f7Page()`
-are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.
+are not mandatory. If not provided, the app will use shinyMobile default resources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.
 
 
 Below is an example showing the manifest.json file:
@@ -88,8 +88,8 @@ Below is an example showing the manifest.json file:
 }
 ```
 
-Be sure to replace the `start_url` with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
-`create_manifest`. FInally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+Be sure to replace the `start_url` with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has a helper to create the manifest, that is
+`create_manifest`. Finally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
 
 
