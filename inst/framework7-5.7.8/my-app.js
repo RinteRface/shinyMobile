@@ -318,12 +318,12 @@ $(function () {
         // insert after the targeted tag in the tab-panel div
         $(newTab).insertAfter($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertAfter($('.tabLinks [href ="#' + message.ns + "-" + message.target + '"]'));
+        $(message.link).insertAfter($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
       } else if (message.position === "before") {
         // insert before the targeted tag in the tab-panel div
         $(newTab).insertBefore($(tabId));
         // we also need to insert an item in the navigation
-        $(message.link).insertBefore($('.tabLinks [href ="#' + message.ns + "-" + message.target + '"]'));
+        $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
       }
 
       // we need to transform a in button in case
@@ -331,9 +331,9 @@ $(function () {
       // This is ignored for toolbar tabs
       if ($('.tabLinks').children(1).hasClass('segmented')) {
         var newLink;
-        var oldLink = $('.tabLinks [href ="#' + message.id + '"]');
+        var oldLink = $('.tabLinks [data-tab ="#' + message.id + '"]');
         newLink = $(oldLink)
-          .replaceWith('<button class="button tab-link" href="#' + message.id + '">' + $(oldLink).html() + '</button>');
+          .replaceWith('<button class="button tab-link" data-tab="#' + message.id + '">' + $(oldLink).html() + '</button>');
       }
 
       // update the swiper if needed
@@ -365,10 +365,10 @@ $(function () {
       // remove the tab link: if condition to handle the case
       // of standalone tabs vs toolbar tabs
       if (!$('.tabLinks').children(1).hasClass('segmented')) {
-        $('.toolbar-inner a[href="#' + message.ns + "-" + message.target +'"]').remove();
+        $('.toolbar-inner a[data-tab="#' + message.ns + "-" + message.target +'"]').remove();
       } else {
-        var linkToRemove = $('.tabLinks button[href="#' + message.ns + "-" + message.target +'"]');
-        var otherLinks = $('.tabLinks button').not('[href="#' + message.ns + "-" + message.target +'"]');
+        var linkToRemove = $('.tabLinks button[data-tab="#' + message.ns + "-" + message.target +'"]');
+        var otherLinks = $('.tabLinks button').not('[data-tab="#' + message.ns + "-" + message.target +'"]');
         if ($(linkToRemove).next().length === 0) {
           if (!$(otherLinks).hasClass('tab-link-active')) {
             $(linkToRemove).prev().addClass('tab-link-active');

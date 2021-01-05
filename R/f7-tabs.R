@@ -209,13 +209,13 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
         if (style %in% c("segmented", "strong")) {
           shiny::tags$button(
             class = if (active) "button tab-link tab-link-active" else "button tab-link",
-            href = paste0("#", ns(itemId)),
+            `data-tab` = paste0("#", ns(itemId)),
             itemIcon,
             shiny::span(class = "tabbar-label", itemName)
           )
         } else if (style == "toolbar") {
           shiny::a(
-            href = paste0("#", ns(itemId)),
+            `data-tab` = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
             itemIcon,
             shiny::span(class = "tabbar-label", itemName)
@@ -225,12 +225,12 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
         if (style %in% c("segmented", "strong")) {
           shiny::tags$button(
             class = if (active) "button tab-link tab-link-active" else "button tab-link",
-            href = paste0("#", ns(itemId)),
+            `data-tab` = paste0("#", ns(itemId)),
             itemName
           )
         } else if (style == "toolbar"){
           shiny::a(
-            href = paste0("#", ns(itemId)),
+            `data-tab` = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
             itemName
           )
@@ -621,7 +621,7 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
 
   tabLink <- shiny::a(
     class = "tab-link",
-    href = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
+    `data-tab` = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
     tab[[3]]
   )
   tabLink <- as.character(force(tabLink))
