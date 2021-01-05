@@ -1,14 +1,14 @@
 $(function () {
   // handles shinyapps.io
-  var workerId = $('base').attr('href');
-  // ensure that this code does not locally
-  if (typeof workerId != "undefined") {
-    var hash = window.location.hash;
-    var search = window.location.search;
-    var pathname = window.location.pathname;
-    var newpath = pathname + workerId + search + hash;
-    window.history.replaceState( {} , 'newpath', newpath);
-  }
+  //var workerId = $('base').attr('href');
+  //// ensure that this code does not locally
+  //if (typeof workerId != "undefined") {
+  //  var hash = window.location.hash;
+  //  var search = window.location.search;
+  //  var pathname = window.location.pathname;
+  //  var newpath = pathname + workerId + search + hash;
+  //  window.history.replaceState( {} , 'newpath', newpath);
+  //}
 
   // show reconnect notification
   $(document).on('shiny:disconnected', function(event) {
