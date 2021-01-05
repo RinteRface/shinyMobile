@@ -11,6 +11,7 @@
 - Add disconnect toast if `shiny:disconnect` occurs. Gives ability to reload or reconnect
 
 ## Bug fixes
+- Fix #128 and #140: workerId issue in url. Thanks @Tixierae and @ppagnone.
 - Fix #104: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks @Seyphaton
 
 
