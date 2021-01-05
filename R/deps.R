@@ -1,16 +1,5 @@
-# Add an html dependency, without overwriting existing ones
-appendDependencies <- function(x, value) {
-  if (inherits(value, "html_dependency"))
-    value <- list(value)
-
-  old <- attr(x, "html_dependencies", TRUE)
-
-  htmltools::htmlDependencies(x) <- c(old, value)
-  x
-}
-
 # Add CSS dependencies to a tag object
-addCSSDeps <- function(x) {
+add_shinyMobile_deps <- function(tag) {
 
   # CSS
   framework7_css <- "framework7.bundle.min.css"
@@ -23,14 +12,18 @@ addCSSDeps <- function(x) {
   # material icons
   material_icons_css <- "material-icons.css"
 
-  f7Deps <- list(
-    # deps
+  shiny::tagList(
+    tag,
     htmltools::htmlDependency(
       name = "framework7",
       version = "5.7.8",
       src = c(file = "framework7-5.7.8"),
       package = "shinyMobile",
-      script = NULL,
+      script = c(
+        "framework7.bundle.min.js",
+        "my-app.js",
+        "pwacompat/pwacompat.min.js"
+      ),
       stylesheet = c(
         framework7_css,
         material_icons_css,
@@ -41,41 +34,9 @@ addCSSDeps <- function(x) {
       )
     )
   )
-  # currently, this piece is a bit useless since
-  # there is only 1 dependency. However, we never
-  # what will happen later!
-  appendDependencies(x, f7Deps)
 }
 
 
-
-# Add JS dependencies to a tag object
-# for framework 7 htmldependency is not
-# what we want in order to include js files
-# we need the crapy tags$script function.
-# Indeed, framework7 js deps MUUUUUUST be
-# located at the end of the body.
-addJSDeps <- function() {
-
-  depsPath <- "framework7-5.7.8/"
-
-  # JS
-  framework7_js <- paste0(depsPath, "framework7.bundle.min.js")
-  custom_js <- paste0(depsPath, "my-app.js")
-  pwa_compat <- paste0(depsPath, "pwacompat/pwacompat.min.js")
-
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$script(src = framework7_js)
-    ),
-    shiny::singleton(
-      shiny::tags$script(async = NA, src = custom_js)
-    ),
-    shiny::singleton(
-      shiny::tags$script(async = NA, src = pwa_compat)
-    )
-  )
-}
 
 
 #' @importFrom utils packageVersion

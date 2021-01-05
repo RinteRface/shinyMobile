@@ -43,7 +43,7 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
       shiny::tags$title(title)
     ),
     # Body
-    addCSSDeps(
+    add_shinyMobile_deps(
       shiny::tags$body(
         # preloader
         onLoad = if (preloader) {
@@ -65,10 +65,6 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
         )
       )
     ),
-    # A bits strange but framework7.js codes do not
-    # work when placed in the head, as we traditionally do
-    # with shinydashboard or bs4Dash. We put them here so.
-    addJSDeps(),
     init
   )
 }

@@ -8,6 +8,7 @@
 
 ## Minor changes
 - Add choices to `updateF7SmartSelect()`: thanks @Edireito
+- Add disconnect toast if `shiny:disconnect` occurs. Gives ability to reload or reconnect
 
 ## Bug fixes
 - Fix #104: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks @Seyphaton
