@@ -135,7 +135,7 @@
 <div id="mobile-preview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mobile-preview" class="anchor"></a>Mobile preview</h2>
-<p>Since V0.2.0, shinyMobile has a function to preview your app in a large range of mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5, Samsung galaxy Note 8, … either locally on online:</p>
+<p>Since V0.2.0, <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> has a function to preview your app in a large range of mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5, Samsung galaxy Note 8, … either locally on online:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/preview_mobile.html">preview_mobile</a></span><span class="op">(</span>appPath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"examples/gallery/app.R"</span>, package <span class="op">=</span> <span class="st">"shinyMobile"</span><span class="op">)</span>, device <span class="op">=</span> <span class="st">"iphoneX"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/preview_mobile.html">preview_mobile</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2DemoMd"</span>, device <span class="op">=</span> <span class="st">"ipadMini"</span><span class="op">)</span></code></pre></div>
@@ -151,7 +151,7 @@
 <div id="pull-to-refresh" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pull-to-refresh" class="anchor"></a>Pull to Refresh</h2>
-<p>shinyMobile introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disable by default but passing <code>pullToRefresh = TRUE</code> in <code><a href="../reference/f7Init.html">f7Init()</a></code> will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation. This allows to trigger updates/computations on the server side, for instance:</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing <code>pullToRefresh = TRUE</code> in <code>f7Page</code> options will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation. This allows to trigger updates/computations on the server side, for instance:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a></span><span class="op">)</span>
@@ -159,7 +159,7 @@
 <span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"My app"</span>,
-    init <span class="op">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span><span class="op">(</span>pullToRefresh <span class="op">=</span> <span class="cn">TRUE</span>, theme <span class="op">=</span> <span class="st">"light"</span><span class="op">)</span>,
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>pullToRefresh <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     <span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span><span class="op">(</span>
       navbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span><span class="op">(</span>
         title <span class="op">=</span> <span class="st">"Single Layout"</span>,
@@ -169,7 +169,7 @@
       toolbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span><span class="op">(</span>
         position <span class="op">=</span> <span class="st">"bottom"</span>,
         <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 1"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>,
-        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span>, external <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>
       <span class="op">)</span>,
       <span class="co"># main content</span>
       <span class="fu"><a href="../reference/f7List.html">f7List</a></span><span class="op">(</span>
@@ -202,14 +202,14 @@
 <div id="predefined-input-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#predefined-input-values" class="anchor"></a>Predefined input values</h2>
-<p>shinyMobile contains a set of useful functions to help you setting the layout as best as possible.</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> contains a set of useful functions to help you setting the layout as best as possible.</p>
 <div id="informations-about-your-current-device" class="section level3">
 <h3 class="hasAnchor">
 <a href="#informations-about-your-current-device" class="anchor"></a>Informations about your current device</h3>
 <div id="description" class="section level4">
 <h4 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h4>
-<p>shinyMobile has a predefined input, namely <strong>input$deviceInfo</strong>:</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> has a predefined input, namely <strong>input$deviceInfo</strong>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
@@ -296,7 +296,7 @@
     
     <span class="va">output</span><span class="op">$</span><span class="va">userAgent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderText.html">renderText</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">deviceInfo</span><span class="op">$</span><span class="va">desktop</span><span class="op">)</span>
     
-    <span class="co"># generate a card inkly for desktop</span>
+    <span class="co"># generate a card only for desktop</span>
     <span class="va">output</span><span class="op">$</span><span class="va">card</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderUI.html">renderUI</a></span><span class="op">(</span><span class="op">{</span>
       <span class="kw">if</span> <span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">deviceInfo</span><span class="op">$</span><span class="va">desktop</span><span class="op">)</span> <span class="op">{</span>
         <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span>
@@ -313,7 +313,7 @@
 <div id="informations-about-shiny-inputs" class="section level3">
 <h3 class="hasAnchor">
 <a href="#informations-about-shiny-inputs" class="anchor"></a>Informations about Shiny inputs</h3>
-<p>shinyMobile has <code>input$lastInputChanged</code> which returns the name, value and type of the last changed input, see below:</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> has <code>input$lastInputChanged</code> which returns the name, value and type of the last changed input, see below:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a></span><span class="op">)</span>
@@ -329,7 +329,7 @@
       toolbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span><span class="op">(</span>
         position <span class="op">=</span> <span class="st">"bottom"</span>,
         <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 1"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>,
-        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span>, external <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>
       <span class="op">)</span>,
       <span class="co"># main content</span>
       <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/textOutput.html">verbatimTextOutput</a></span><span class="op">(</span><span class="st">"infos"</span><span class="op">)</span><span class="op">)</span>,
@@ -349,9 +349,9 @@
 <p>This is convenient since usually, there is no shortcut to get the last changed value and this needs to be done server side in shiny.</p>
 <p>Soon there will be a way to compare initial input values (frozen) to current input values and get a diff.</p>
 </div>
-<div id="other-informations" class="section level3">
+<div id="other-information" class="section level3">
 <h3 class="hasAnchor">
-<a href="#other-informations" class="anchor"></a>Other informations</h3>
+<a href="#other-information" class="anchor"></a>Other information</h3>
 <p><code>input$shinyInfo</code> gives the current workerId (for shinyapps.io, shiny server pro, rstudio connect), the unique sessionId (equal to session$token on the server side).</p>
 </div>
 </div>

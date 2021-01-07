@@ -171,7 +171,7 @@
     <p>Build a Framework7 link</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='cn'>NULL</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span>, src <span class='op'>=</span> <span class='cn'>NULL</span>, external <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='cn'>NULL</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span>, src <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,10 +187,6 @@
     <tr>
       <th>src</th>
       <td><p>Link source, url.</p></td>
-    </tr>
-    <tr>
-      <th>external</th>
-      <td><p>Whether switch to an external link. FALSE by default.</p></td>
     </tr>
     </table>
 
@@ -209,7 +205,7 @@
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Link"</span><span class='op'>)</span>,
      <span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Google"</span>, src <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
-     <span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Google"</span>, src <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+     <span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Twitter"</span>, src <span class='op'>=</span> <span class='st'>"https://www.twitter.com"</span><span class='op'>)</span>
     <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>

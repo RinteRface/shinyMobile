@@ -171,7 +171,7 @@
     <p>Build a Framework7 progress bar</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Progress</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>value</span>, <span class='va'>color</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7Progress</span><span class='op'>(</span><span class='va'>id</span>, value <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>color</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,7 +182,7 @@
     </tr>
     <tr>
       <th>value</th>
-      <td><p>Progress value. Between 0 and 100.</p></td>
+      <td><p>Progress value. Between 0 and 100. If NULL the progress bar is infinite.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -204,11 +204,9 @@
     title <span class='op'>=</span> <span class='st'>"Progress"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Progress"</span><span class='op'>)</span>,
-     <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span>
-     <span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg1"</span>, value <span class='op'>=</span> <span class='fl'>10</span>, color <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>,
-     <span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg2"</span>, value <span class='op'>=</span> <span class='fl'>100</span>, color <span class='op'>=</span> <span class='st'>"green"</span><span class='op'>)</span>,
-     <span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg3"</span>, value <span class='op'>=</span> <span class='fl'>50</span>, color <span class='op'>=</span> <span class='st'>"orange"</span><span class='op'>)</span>
-    <span class='op'>)</span>
+     <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span><span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg1"</span>, value <span class='op'>=</span> <span class='fl'>10</span>, color <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span><span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg2"</span>, value <span class='op'>=</span> <span class='fl'>100</span>, color <span class='op'>=</span> <span class='st'>"green"</span><span class='op'>)</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span><span class='fu'>f7Progress</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"pg3"</span>, value <span class='op'>=</span> <span class='fl'>50</span>, color <span class='op'>=</span> <span class='st'>"orange"</span><span class='op'>)</span><span class='op'>)</span>
     <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>

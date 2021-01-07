@@ -172,24 +172,16 @@
     </div>
 
     <pre class="usage"><span class='fu'>f7PhotoBrowser</span><span class='op'>(</span>
-  <span class='va'>id</span>,
-  <span class='va'>label</span>,
   <span class='va'>photos</span>,
   theme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"light"</span>, <span class='st'>"dark"</span><span class='op'>)</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"popup"</span>, <span class='st'>"standalone"</span>, <span class='st'>"page"</span><span class='op'>)</span>
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"popup"</span>, <span class='st'>"standalone"</span>, <span class='st'>"page"</span><span class='op'>)</span>,
+  <span class='va'>...</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>id</th>
-      <td><p>Unique id.</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>Trigger label</p></td>
-    </tr>
     <tr>
       <th>photos</th>
       <td><p>List of photos</p></td>
@@ -201,6 +193,14 @@
     <tr>
       <th>type</th>
       <td><p>Browser type: choose among <code><a href='https://rdrr.io/r/base/c.html'>c("popup", "standalone", "page")</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other options.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
 
@@ -215,7 +215,12 @@
      title <span class='op'>=</span> <span class='st'>"f7PhotoBrowser"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
        navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7PhotoBrowser"</span><span class='op'>)</span>,
-       <span class='fu'>f7PhotoBrowser</span><span class='op'>(</span>
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"togglePhoto"</span>, <span class='st'>"Open photo"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>togglePhoto</span>, <span class='op'>{</span>
+     <span class='fu'>f7PhotoBrowser</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"photobrowser1"</span>,
          label <span class='op'>=</span> <span class='st'>"Open"</span>,
          theme <span class='op'>=</span> <span class='st'>"light"</span>,
@@ -226,9 +231,9 @@
            <span class='st'>"https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"</span>
          <span class='op'>)</span>
        <span class='op'>)</span>
-     <span class='op'>)</span>
-   <span class='op'>)</span>,
-   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+    <span class='op'>}</span><span class='op'>)</span>
+
+   <span class='op'>}</span>
  <span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>

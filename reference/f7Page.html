@@ -173,13 +173,15 @@
 
     <pre class="usage"><span class='fu'>f7Page</span><span class='op'>(</span>
   <span class='va'>...</span>,
-  init <span class='op'>=</span> <span class='fu'><a href='f7Init.html'>f7Init</a></span><span class='op'>(</span>skin <span class='op'>=</span> <span class='st'>"auto"</span>, theme <span class='op'>=</span> <span class='st'>"light"</span><span class='op'>)</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   preloader <span class='op'>=</span> <span class='cn'>FALSE</span>,
   loading_duration <span class='op'>=</span> <span class='fl'>3</span>,
-  icon <span class='op'>=</span> <span class='cn'>NULL</span>,
-  favicon <span class='op'>=</span> <span class='cn'>NULL</span>,
-  manifest <span class='op'>=</span> <span class='cn'>NULL</span>
+  options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>theme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ios"</span>, <span class='st'>"md"</span>, <span class='st'>"auto"</span>, <span class='st'>"aurora"</span><span class='op'>)</span>, dark <span class='op'>=</span> <span class='cn'>TRUE</span>, filled <span class='op'>=</span> <span class='cn'>FALSE</span>,
+    color <span class='op'>=</span> <span class='st'>"#007aff"</span>, touch <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>tapHold <span class='op'>=</span> <span class='cn'>TRUE</span>, tapHoldDelay <span class='op'>=</span> <span class='fl'>750</span>, iosTouchRipple <span class='op'>=</span>
+    <span class='cn'>FALSE</span><span class='op'>)</span>, iosTranslucentBars <span class='op'>=</span> <span class='cn'>FALSE</span>, navbar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>iosCenterTitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    hideNavOnPageScroll <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>, toolbar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>hideNavOnPageScroll <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
+    pullToRefresh <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
+  allowPWA <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -189,10 +191,6 @@
       <th>...</th>
       <td><p>Slot for shinyMobile skeleton elements: <a href='f7Appbar.html'>f7Appbar</a>, <a href='f7SingleLayout.html'>f7SingleLayout</a>,
 <a href='f7TabLayout.html'>f7TabLayout</a>, <a href='f7SplitLayout.html'>f7SplitLayout</a>.</p></td>
-    </tr>
-    <tr>
-      <th>init</th>
-      <td><p>App configuration. See <a href='f7Init.html'>f7Init</a>.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -208,18 +206,39 @@ FALSE by default.</p></td>
       <td><p>Preloader duration.</p></td>
     </tr>
     <tr>
-      <th>icon</th>
-      <td><p>Link to 128x128 icon (PWA compatibility). If NULL, taken from
-shinyMobile ressources.</p></td>
+      <th>options</th>
+      <td><p>shinyMobile configuration. See <a href='https://framework7.io/docs/app.html'>https://framework7.io/docs/app.html</a>. Below are the most
+notable options. General options:</p><ul>
+<li><p><code>theme</code>: App skin: "ios", "md", "auto" or "aurora".</p></li>
+<li><p><code>dark</code>: Dark layout. TRUE or FALSE.</p></li>
+<li><p><code>filled</code>: Whether to fill the <a href='f7Navbar.html'>f7Navbar</a> and <a href='f7Toolbar.html'>f7Toolbar</a> with
+ the current selected color. FALSE by default.</p></li>
+<li><p><code>color</code>: Color theme: See <a href='http://framework7.io/docs/color-themes.html'>http://framework7.io/docs/color-themes.html</a>.
+ Expect a name like blue or red. If NULL, use the default color.</p></li>
+<li><p><code>pullToRefresh</code>: Whether to active the pull to refresh feature. Default to FALSE.
+ See <a href='https://v5.framework7.io/docs/pull-to-refresh.html#examples'>https://v5.framework7.io/docs/pull-to-refresh.html#examples</a>.</p></li>
+<li><p><code>iosTranslucentBars</code>: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+ FALSE by default.</p></li>
+</ul><p>Touch module options <a href='https://v5.framework7.io/docs/app.html#app-parameters'>https://v5.framework7.io/docs/app.html#app-parameters</a>:</p><ul>
+<li><p><code>tapHold</code>:  It triggers (if enabled) after a sustained, complete touch event.
+ By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
+ so Fast Clicks should be also enabled.</p></li>
+<li><p><code>tapHoldDelay</code>: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+ Default to 750 ms.</p></li>
+<li><p><code>iosTouchRipple</code>: Default to FALSE. Enables touch ripple effect for iOS theme.</p></li>
+</ul><p>Navbar options <a href='https://v5.framework7.io/docs/navbar.html#navbar-app-parameters'>https://v5.framework7.io/docs/navbar.html#navbar-app-parameters</a>:</p><ul>
+<li><p><code>iosCenterTitle</code>: Default to TRUE. When enabled then it will try to position
+ title at the center in iOS theme. Sometime (with some custom design) it may not needed.</p></li>
+<li><p><code>hideOnPageScroll</code>: Default to FALSE. Will hide Navbars on page scroll.</p></li>
+</ul><p>Toolbar options <a href='https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters'>https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters</a>:</p><ul>
+<li><p><code>hideOnPageScroll</code>: Default to FALSE. Will hide tabs on page scroll.</p></li>
+</ul>
+
+<p>In any case, you must follow the same structure as provided in the function arguments.</p></td>
     </tr>
     <tr>
-      <th>favicon</th>
-      <td><p>App favicon. If NULL, taken from shinyMobile ressources.</p></td>
-    </tr>
-    <tr>
-      <th>manifest</th>
-      <td><p>Path to web manifest (PWA compatibility). If NULL, taken from
-shinyMobile ressources.</p></td>
+      <th>allowPWA</th>
+      <td><p>Whether to include PWA dependencies. Default to FALSE.</p></td>
     </tr>
     </table>
 

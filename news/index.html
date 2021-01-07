@@ -172,12 +172,31 @@
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>
+<strong>external</strong> has been removed from <code><a href="../reference/f7Link.html">f7Link()</a></code> (much simpler)</li>
+<li>
+<code>f7Init()</code> removed. Now pass it through the <code><a href="../reference/f7Page.html">f7Page()</a></code> <strong>options</strong>
+</li>
+<li>Remove <code>f7ProgressInf()</code> (useless)</li>
+<li>Change <code><a href="../reference/f7Swiper.html">f7Swiper()</a></code> API. New <strong>options</strong> parameter</li>
+<li>
+<code><a href="../reference/f7PhotoBrowser.html">f7PhotoBrowser()</a></code> is now called from the shiny server function. See help, <strong>id</strong> and <strong>label</strong> have been removed</li>
+<li>
+<strong>id</strong> mandatory for <code><a href="../reference/f7Searchbar.html">f7Searchbar()</a></code>
+</li>
+<li>
+<strong>session</strong> not mandatory in <code><a href="../reference/f7Toast.html">f7Toast()</a></code>, <code><a href="../reference/updateF7Progress.html">updateF7Progress()</a></code>, … and has been swapped at the end of the parameters for more convenience</li>
+</ul>
 </div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
-<li>update framework7 from 5.5.0 to 5.7.8</li>
+<li>New <strong>allowPWA</strong> parameter in <code><a href="../reference/f7Page.html">f7Page()</a></code> so that we doesn’t oblige users to create a PWA</li>
+<li>
+<code><a href="../reference/f7Page.html">f7Page()</a></code> has a new <strong>options</strong> parameter as replacement of <code>f7Init()</code>. Much simpler to handle</li>
+<li>update framework7 from 5.5.0 to 5.7.14</li>
 <li>add <code><a href="../reference/f7Menu.html">f7Menu()</a></code>, <code><a href="../reference/f7MenuItem.html">f7MenuItem()</a></code>, <code><a href="../reference/f7MenuDropdown.html">f7MenuDropdown()</a></code>, <code><a href="../reference/f7MenuDropdownDivider.html">f7MenuDropdownDivider()</a></code> and <code><a href="../reference/f7OpenMenuDropdown.html">f7OpenMenuDropdown()</a></code>: special buttons and dropdown elements, behaving like action buttons</li>
 </ul>
 </div>
@@ -185,6 +204,9 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
+<li>app instance accessible from anywhere is JS code</li>
+<li>New <strong>…</strong> parameter for <code><a href="../reference/f7PhotoBrowser.html">f7PhotoBrowser()</a></code>
+</li>
 <li>Add choices to <code><a href="../reference/updateF7SmartSelect.html">updateF7SmartSelect()</a></code>: thanks <a href='https://github.com/Edireito'>@Edireito</a></li>
 <li>Add disconnect toast if <code>shiny:disconnect</code> occurs. Gives ability to reload or reconnect</li>
 </ul>
@@ -254,7 +276,7 @@
 <li>add input binding to <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> to get the status of the container</li>
 <li>add <code><a href="../reference/updateF7Button.html">updateF7Button()</a></code> and <code><a href="../reference/updateF7Fabs.html">updateF7Fabs()</a></code>
 </li>
-<li>new pullToRefresh parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code>. Pull the screen from top to bottom fires <code>input$ptr</code> which becomes TRUE. When the pull to refresh event is finished, <code>input$ptr</code> is NULL. Useful to trigger events in an observeEvent</li>
+<li>new pullToRefresh parameter to <code>f7Init()</code>. Pull the screen from top to bottom fires <code>input$ptr</code> which becomes TRUE. When the pull to refresh event is finished, <code>input$ptr</code> is NULL. Useful to trigger events in an observeEvent</li>
 <li>add new <code><a href="../reference/updateF7Select.html">updateF7Select()</a></code>: thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a> for the suggestion</li>
 <li>add <code><a href="../reference/f7TogglePopup.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>add <code><a href="../reference/preview_mobile.html">preview_mobile()</a></code>: function that previews your app in a seleted range of devices (iphone, samsung, htc, …)</li>
@@ -268,7 +290,7 @@
 <li>add new <code><a href="../reference/f7File.html">f7File()</a></code> for file upload. See shiny <code>fileInput</code>
 </li>
 <li>add new <code><a href="../reference/f7DownloadButton.html">f7DownloadButton()</a></code> to work properly with the shiny <code>downloadHandler</code> function. Thanks <a href='https://github.com/bwganblack'>@bwganblack</a> for the report</li>
-<li>add new tapHoldDelay parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
+<li>add new tapHoldDelay parameter to <code>f7Init()</code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
 <li>new <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code>
 </li>
 <li>new <code><a href="../reference/f7TextArea.html">f7TextArea()</a></code> input and <code><a href="../reference/updateF7Text.html">updateF7TextArea()</a></code> on the server side</li>
@@ -309,7 +331,7 @@
 <li>add decimalPoint to <code><a href="../reference/updateF7Stepper.html">updateF7Stepper()</a></code>
 </li>
 <li>rework <code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: add 2 more parameters (decimalPoint and buttonsEndInputMode)</li>
-<li>hideNavOnPageScroll is set to FALSE by default in <code><a href="../reference/f7Init.html">f7Init()</a></code>. This improves perfomances on old devices</li>
+<li>hideNavOnPageScroll is set to FALSE by default in <code>f7Init()</code>. This improves perfomances on old devices</li>
 <li>improve <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> example (replace sliderInput by f7Slider)</li>
 <li>improve <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> example (replace sliderInput by f7Slider)</li>
 <li>improve <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code> example</li>

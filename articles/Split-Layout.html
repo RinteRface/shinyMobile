@@ -122,7 +122,7 @@
       <h1 data-toc-skip>Split-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-01-05</h4>
+            <h4 class="date">2021-01-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Split-Layout.Rmd"><code>vignettes/Split-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Split-Layout.Rmd</code></div>
@@ -131,7 +131,7 @@
 
     
     
-<p><code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is the third layout introduced with shinyMobile. This template is focused for tablet use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to <code><a href="../reference/f7Panel.html">f7Panel()</a></code>. While <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be embedded in both <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> and <code>f7TabsLayout</code>, it accepts extra arguments like <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code> and <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code>, which are very similar to sidebar items of shinydashboard:</p>
+<p><code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is the third layout introduced with <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a>. This template is focused for tablet/desktop use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to <code><a href="../reference/f7Panel.html">f7Panel()</a></code>. While <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be embedded in both <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> and <code>f7TabsLayout</code>, it accepts extra arguments like <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code> and <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code>, which are very similar to sidebar items of <code>{shinydashboard}</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>
   title <span class="op">=</span> <span class="st">"Sidebar"</span>,
@@ -144,7 +144,7 @@
   <span class="op">)</span>,
   style <span class="op">=</span> <span class="st">"reveal"</span>
 <span class="op">)</span></code></pre></div>
-<p>The content must be passed in <code>...</code> If you have a menu in the sidebar, you must use the corresponding body function, namely <code><a href="../reference/f7Items.html">f7Items()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code>. Particularly, the <em>tabName</em> argument provided in <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code> must exactly match (like in shinydashboard, again). If you don’t have any <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>, you can pass tags in the <code>...</code> directly. However, this prevents you from having a tabbed navigation.</p>
+<p>The content must be passed in <code>...</code> If you have a menu in the sidebar, you must use the corresponding body function, namely <code><a href="../reference/f7Items.html">f7Items()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code>. Particularly, the <em>tabName</em> argument provided in <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code> must exactly match (like in <code>{shinydashboard}</code>, again). If you don’t have any <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>, you can pass tags in the <code>...</code> directly. However, this prevents you from having a tabbed navigation.</p>
 <div class="marvel-device ipad black">
 <div class="camera">
 
@@ -180,11 +180,26 @@
 <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
   ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"My app"</span>,
-    init <span class="op">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span><span class="op">(</span>
-      hideNavOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>,
-      hideTabsOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>,
-      theme <span class="op">=</span> <span class="st">"light"</span>
+    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    theme <span class="op">=</span> <span class="st">"aurora"</span>,
+    dark <span class="op">=</span> <span class="cn">TRUE</span>,
+    filled <span class="op">=</span> <span class="cn">FALSE</span>,
+    color <span class="op">=</span> <span class="st">"#007aff"</span>,
+    touch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      tapHold <span class="op">=</span> <span class="cn">TRUE</span>,
+      tapHoldDelay <span class="op">=</span> <span class="fl">750</span>,
+      iosTouchRipple <span class="op">=</span> <span class="cn">FALSE</span>
     <span class="op">)</span>,
+    iosTranslucentBars <span class="op">=</span> <span class="cn">FALSE</span>,
+    navbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      iosCenterTitle <span class="op">=</span> <span class="cn">TRUE</span>,
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">TRUE</span>
+    <span class="op">)</span>,
+    toolbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+    pullToRefresh <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span>,
     <span class="fu"><a href="../reference/f7SplitLayout.html">f7SplitLayout</a></span><span class="op">(</span>
       sidebar <span class="op">=</span> <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>
         title <span class="op">=</span> <span class="st">"Sidebar"</span>,
@@ -220,7 +235,7 @@
       toolbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span><span class="op">(</span>
         position <span class="op">=</span> <span class="st">"bottom"</span>,
         <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 1"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>,
-        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span>, external <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, src <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>
       <span class="op">)</span>,
       <span class="co"># main content</span>
       <span class="fu"><a href="../reference/f7Items.html">f7Items</a></span><span class="op">(</span>
