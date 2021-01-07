@@ -190,44 +190,41 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
   submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
   submitBttn[[2]]$name <- "a"
 
-  shiny::tagList(
-    f7InputsDeps(),
+  shiny::tags$div(
+    id = ns(id),
+    `data-start-open` = jsonlite::toJSON(startOpen),
+    class = "login-screen",
     shiny::tags$div(
-      id = ns(id),
-      `data-start-open` = jsonlite::toJSON(startOpen),
-      class = "login-screen",
+      class = "view",
       shiny::tags$div(
-        class = "view",
+        class = "page",
         shiny::tags$div(
-          class = "page",
-          shiny::tags$div(
-            class = "page-content login-screen-content",
-            shiny::tags$div(class = "login-screen-title", title),
+          class = "page-content login-screen-content",
+          shiny::tags$div(class = "login-screen-title", title),
 
-            # inputs
-            shiny::tags$form(
-              shiny::tags$div(
-                class = "list", shiny::tags$ul(
-                  f7Text(
-                    inputId = ns("login_user"),
-                    label = "",
-                    placeholder = "Your name here"
-                  ),
-                  f7Password(
-                    inputId = ns("login_password"),
-                    label = "",
-                    placeholder = "Your password here"
-                  ),
-                  ...
-                )
-              ),
-              shiny::tags$div(
-                class = "list",
-                shiny::tags$ul(shiny::tags$li(submitBttn)),
-                if (!is.null(footer)) {
-                  shiny::tags$div(class = "block-footer", footer)
-                }
+          # inputs
+          shiny::tags$form(
+            shiny::tags$div(
+              class = "list", shiny::tags$ul(
+                f7Text(
+                  inputId = ns("login_user"),
+                  label = "",
+                  placeholder = "Your name here"
+                ),
+                f7Password(
+                  inputId = ns("login_password"),
+                  label = "",
+                  placeholder = "Your password here"
+                ),
+                ...
               )
+            ),
+            shiny::tags$div(
+              class = "list",
+              shiny::tags$ul(shiny::tags$li(submitBttn)),
+              if (!is.null(footer)) {
+                shiny::tags$div(class = "block-footer", footer)
+              }
             )
           )
         )

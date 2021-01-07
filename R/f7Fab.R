@@ -76,25 +76,22 @@ f7Fabs <- function(..., id = NULL, position = c("right-top", "right-center", "ri
 
   sideOpen <- match.arg(sideOpen)
 
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::tags$div(
-      class = fabCl,
-      id = id,
-      `data-morph-to` = if (morph) morphTarget else NULL,
-      shiny::a(
-        href = "#",
-        f7Icon("plus"),
-        f7Icon("multiply"),
-        if (!is.null(label)) {
-          shiny::tags$div(class = "fab-text", label)
-        }
-      ),
-      # do not create button wrapper if there are no items inside...
-      if (length(list(...)) > 0) {
-        shiny::tags$div(class = paste0("fab-buttons fab-buttons-", sideOpen), ...)
+  shiny::tags$div(
+    class = fabCl,
+    id = id,
+    `data-morph-to` = if (morph) morphTarget else NULL,
+    shiny::a(
+      href = "#",
+      f7Icon("plus"),
+      f7Icon("multiply"),
+      if (!is.null(label)) {
+        shiny::tags$div(class = "fab-text", label)
       }
-    )
+    ),
+    # do not create button wrapper if there are no items inside...
+    if (length(list(...)) > 0) {
+      shiny::tags$div(class = paste0("fab-buttons fab-buttons-", sideOpen), ...)
+    }
   )
 }
 

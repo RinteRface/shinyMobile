@@ -105,12 +105,12 @@
 #'   server = function(input, output) {}
 #'  )
 #' }
-f7Searchbar <- function(id = NULL, placeholder = "Search", expandable = FALSE, inline = FALSE) {
+f7Searchbar <- function(id, placeholder = "Search", expandable = FALSE, inline = FALSE) {
 
   searchBarCl <- "searchbar"
   if (expandable) searchBarCl <- paste0(searchBarCl, " searchbar-expandable")
 
-  searchBarTag <- if (inline) {
+  if (inline) {
     shiny::tags$div(
       class = "searchbar searchbar-inline",
       id = id,
@@ -137,33 +137,6 @@ f7Searchbar <- function(id = NULL, placeholder = "Search", expandable = FALSE, i
       )
     )
   }
-
-
-  searchBarJS <- shiny::singleton(
-    shiny::tags$script(
-      shiny::HTML(
-        paste0(
-          "$(function() {
-            // create searchbar
-            app.searchbar.create({
-              el: '#", id, "',
-              searchContainer: '.list',
-              searchIn: '.item-title',
-              backdrop: false,
-              on: {
-                search(sb, query, previousQuery) {
-                  console.log(query, previousQuery);
-                }
-              }
-            });
-          });
-          "
-        )
-      )
-    )
-  )
-
-  shiny::tagList(searchBarJS, searchBarTag)
 
 }
 

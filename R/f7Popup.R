@@ -107,7 +107,6 @@ f7Popup <- function(..., id, title = NULL,
     class = "popup",
     class = if (isTRUE(fullsize)) "popup-tablet-fullscreen",
     style = "overflow-y: auto;",
-    f7InputsDeps(),
     content,
     shiny::tags$script(
       type = "application/json",

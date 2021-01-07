@@ -17,17 +17,7 @@ sapply(
 # shiny app
 shinyApp(
   ui = f7Page(
-    title = "shinyMobile",
-    init = f7Init(
-      skin = "ios",
-      theme = "dark",
-      filled = TRUE,
-      hideNavOnPageScroll = FALSE,
-      hideTabsOnPageScroll = FALSE,
-      serviceWorker = "service-worker.js",
-      iosTranslucentBars = FALSE,
-      pullToRefresh = FALSE
-    ),
+    allowPWA = TRUE,
     f7TabLayout(
       appbar = f7Appbar(
         f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
@@ -102,7 +92,8 @@ shinyApp(
         tabInfo,
         tabOthers
       )
-    )
+    ),
+    title = "shinyMobile"
   ),
   server = function(input, output, session) {
 
@@ -215,7 +206,6 @@ shinyApp(
       if (input$tabset == "Popups") {
         popupStatus <- if (input$popup1) "opened" else "closed"
         f7Toast(
-          session,
           position = "top",
           text = paste("Popup is", popupStatus)
         )
@@ -228,7 +218,7 @@ shinyApp(
     })
 
     observeEvent(input$toggleSheet, {
-      updateF7Sheet(inputId = "sheet1", session = session)
+      updateF7Sheet(inputId = "sheet1")
     })
 
     # notifications
@@ -242,8 +232,7 @@ shinyApp(
           icon = icon,
           title = paste("Notification", i),
           subtitle = "A subtitle",
-          titleRightText = i,
-          session = session
+          titleRightText = i
         )
       })
     })
@@ -256,31 +245,28 @@ shinyApp(
         if (i == 1) {
           f7Dialog(
             title = "Dialog title",
-            text = "This is an alert dialog",
-            session = session
+            text = "This is an alert dialog"
           )
         } else if (i == 2) {
           f7Dialog(
             inputId = "confirmDialog",
             title = "Dialog title",
             type = "confirm",
-            text = "This is an confirm dialog",
-            session = session
+            text = "This is an confirm dialog"
           )
         } else if (i == 3) {
           f7Dialog(
             inputId = "promptDialog",
             title = "Dialog title",
             type = "prompt",
-            text = "This is a prompt dialog",
-            session = session
+            text = "This is a prompt dialog"
           )
         }
       })
     })
 
     observeEvent(input$confirmDialog, {
-      f7Toast(session, text = paste("Alert input is:", input$confirmDialog))
+      f7Toast(text = paste("Alert input is:", input$confirmDialog))
     })
 
     output$promptres <- renderUI({
@@ -294,15 +280,13 @@ shinyApp(
     observe({
       f7Popover(
         targetId = "popoverTrigger",
-        content = "This is a f7Button",
-        session
+        content = "This is a f7Button"
       )
     })
 
     # toasts
     observeEvent(input$toast, {
       f7Toast(
-        session,
         position = "bottom",
         text = "I am a toast. Eat me!"
       )
@@ -334,16 +318,14 @@ shinyApp(
           text = "You clicked on the first button",
           icon = f7Icon("bolt_fill"),
           title = "Notification",
-          titleRightText = "now",
-          session = session
+          titleRightText = "now"
         )
       } else if (input$action1_button == 2) {
         f7Dialog(
           inputId = "actionSheetDialog",
           title = "Click me to launch a Toast!",
           type = "confirm",
-          text = "You clicked on the second button",
-          session = session
+          text = "You clicked on the second button"
         )
       }
     })
@@ -354,27 +336,25 @@ shinyApp(
           text = "You clicked on the first button",
           icon = f7Icon("bolt_fill"),
           title = "Notification",
-          titleRightText = "now",
-          session = session
+          titleRightText = "now"
         )
       } else if (input$swipeAction_button == 2) {
         f7Dialog(
           inputId = "actionSheetDialog",
           title = "Click me to launch a Toast!",
           type = "confirm",
-          text = "You clicked on the second button",
-          session = session
+          text = "You clicked on the second button"
         )
       }
     })
 
     observeEvent(input$actionSheetDialog, {
-      f7Toast(session, text = paste("Alert input is:", input$actionSheetDialog))
+      f7Toast(text = paste("Alert input is:", input$actionSheetDialog))
     })
 
     # update progress bar
     observeEvent(input$updatepg1, {
-      updateF7Progress(session, id = "pg1", value = input$updatepg1)
+      updateF7Progress(id = "pg1", value = input$updatepg1)
     })
 
     # update gauge
@@ -408,16 +388,14 @@ shinyApp(
         icon = f7Icon("bolt_fill"),
         title = "Notification",
         subtitle = "A subtitle",
-        titleRightText = "now",
-        session = session
+        titleRightText = "now"
       )
     })
 
     observeEvent(input$swipeAlert, {
       f7Dialog(
         title = "Dialog title",
-        text = "This is an alert dialog",
-        session = session
+        text = "This is an alert dialog"
       )
     })
 
@@ -448,6 +426,19 @@ shinyApp(
     })
     output$preloaderPlot <- renderPlot({
       hist(rnorm(100))
+    })
+
+    # photo browser
+    observeEvent(input$togglePhoto, {
+      f7PhotoBrowser(
+        theme = "light",
+        type = "standalone",
+        photos = c(
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+        )
+      )
     })
 
     # pull to refresh

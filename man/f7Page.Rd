@@ -6,20 +6,20 @@
 \usage{
 f7Page(
   ...,
-  init = f7Init(skin = "auto", theme = "light"),
   title = NULL,
   preloader = FALSE,
   loading_duration = 3,
-  icon = NULL,
-  favicon = NULL,
-  manifest = NULL
+  options = list(theme = c("ios", "md", "auto", "aurora"), dark = TRUE, filled = FALSE,
+    color = "#007aff", touch = list(tapHold = TRUE, tapHoldDelay = 750, iosTouchRipple =
+    FALSE), iosTranslucentBars = FALSE, navbar = list(iosCenterTitle = TRUE,
+    hideNavOnPageScroll = TRUE), toolbar = list(hideNavOnPageScroll = FALSE),
+    pullToRefresh = FALSE),
+  allowPWA = FALSE
 )
 }
 \arguments{
 \item{...}{Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 \link{f7TabLayout}, \link{f7SplitLayout}.}
-
-\item{init}{App configuration. See \link{f7Init}.}
 
 \item{title}{Page title.}
 
@@ -28,13 +28,43 @@ FALSE by default.}
 
 \item{loading_duration}{Preloader duration.}
 
-\item{icon}{Link to 128x128 icon (PWA compatibility). If NULL, taken from
-shinyMobile ressources.}
+\item{options}{shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
+notable options. General options:
+\itemize{
+ \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
+ \item \code{dark}: Dark layout. TRUE or FALSE.
+ \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
+ the current selected color. FALSE by default.
+ \item \code{color}: Color theme: See \url{http://framework7.io/docs/color-themes.html}.
+ Expect a name like blue or red. If NULL, use the default color.
+ \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
+ See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
+ \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+ FALSE by default.
+}
+Touch module options \url{https://v5.framework7.io/docs/app.html#app-parameters}:
+\itemize{
+ \item \code{tapHold}:  It triggers (if enabled) after a sustained, complete touch event.
+ By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
+ so Fast Clicks should be also enabled.
+ \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+ Default to 750 ms.
+ \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+}
+Navbar options \url{https://v5.framework7.io/docs/navbar.html#navbar-app-parameters}:
+\itemize{
+ \item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
+ title at the center in iOS theme. Sometime (with some custom design) it may not needed.
+ \item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
+}
+Toolbar options \url{https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters}:
+\itemize{
+ \item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
+}
 
-\item{favicon}{App favicon. If NULL, taken from shinyMobile ressources.}
+In any case, you must follow the same structure as provided in the function arguments.}
 
-\item{manifest}{Path to web manifest (PWA compatibility). If NULL, taken from
-shinyMobile ressources.}
+\item{allowPWA}{Whether to include PWA dependencies. Default to FALSE.}
 }
 \description{
 Build a Framework7 page

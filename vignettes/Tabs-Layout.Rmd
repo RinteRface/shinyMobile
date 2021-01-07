@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-shinyMobile comes with 2 predefined layouts. The second layout is the `f7TabLayout()`, very similar to that of [miniUI](https://github.com/rstudio/miniUI). By default, shinyMobile opens in light mode. However, specifying the `f7Init()` theme option to "dark" will enable this mode.
+The second layout is the `f7TabLayout()`, very similar to that of [miniUI](https://github.com/rstudio/miniUI).
 
 <div class="marvel-device iphone-x">
 <div class="top-bar"></div>
@@ -28,8 +28,6 @@ shinyMobile comes with 2 predefined layouts. The second layout is the `f7TabLayo
 </div>
 </div>
 
-Additionally, the `f7Init()` function allows to change theme from material design to iOS.
-
 ```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
@@ -44,7 +42,6 @@ poll <- data.frame(
 shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(theme = "dark"),
     f7TabLayout(
       panels = tagList(
        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),

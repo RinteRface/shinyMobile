@@ -138,7 +138,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   }
 
   # input tag + label wrapper
-  mainTag <- if (!(type %in% c("page", "popup"))) {
+  if (!(type %in% c("page", "popup"))) {
     shiny::tags$div(
       class = "list no-hairlines-md",
       shiny::tags$ul(
@@ -160,10 +160,6 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   } else {
     shiny::tags$div(class = "list", shiny::tags$ul(autoCompleteProps))
   }
-
-  # final input tag
-  shiny::tagList(f7InputsDeps(), mainTag)
-
 }
 
 
@@ -271,7 +267,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
 
 
   # tag wrapper
-  mainTag <- shiny::tagList(
+  shiny::tagList(
     shiny::tags$div(
       class = "block-title",
       label
@@ -285,10 +281,6 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
       )
     )
   )
-
-  # final input tag
-  shiny::tagList(f7InputsDeps(), mainTag)
-
 }
 
 
@@ -448,7 +440,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 
   labelTag <- shiny::tags$div(class = "block-title", label)
   shiny::tagList(
-    f7InputsDeps(),
     shiny::singleton(pickerProps),
     labelTag,
     wrapperTag
@@ -571,7 +562,6 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
   labelTag <- shiny::tags$div(class = "block-title", label)
 
   shiny::tagList(
-    f7InputsDeps(),
     if (!is.null(label)) labelTag,
     # input tag
     shiny::tags$div(
@@ -833,7 +823,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 
   options <- createSelectOptions(choices, selected)
 
-  selectTag <- shiny::tags$div(
+  shiny::tags$div(
     class = "list",
     style = if (!is.null(width)) paste0("width:", htmltools::validateCssUnit(width), ";"),
     shiny::tags$ul(
@@ -856,9 +846,6 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
       )
     )
   )
-
-  shiny::tagList(f7InputsDeps(), selectTag)
-
 }
 
 
@@ -923,38 +910,35 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
     virtualList = virtualList
   ))
 
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::tags$div(
-      class = "list",
-      shiny::tags$ul(
-        shiny::tags$li(
-          shiny::tags$a(
-            class = "item-link smart-select",
+  shiny::tags$div(
+    class = "list",
+    shiny::tags$ul(
+      shiny::tags$li(
+        shiny::tags$a(
+          class = "item-link smart-select",
+          id = inputId,
+          shiny::tags$select(
             id = inputId,
-            shiny::tags$select(
-              id = inputId,
-              multiple = if (multiple) NA else NULL,
-              maxlength = if (!is.null(maxlength)) maxlength else NULL,
-              options
-            ),
+            multiple = if (multiple) NA else NULL,
+            maxlength = if (!is.null(maxlength)) maxlength else NULL,
+            options
+          ),
+          shiny::tags$div(
+            class = "item-content",
             shiny::tags$div(
-              class = "item-content",
+              class = "item-inner",
               shiny::tags$div(
-                class = "item-inner",
-                shiny::tags$div(
-                  class = "item-title", label
-                )
+                class = "item-title", label
               )
-            ),
-            shiny::tags$script(
-              type = "application/json",
-              `data-for` = inputId,
-              jsonlite::toJSON(
-                x = config,
-                auto_unbox = TRUE,
-                json_verbatim = TRUE
-              )
+            )
+          ),
+          shiny::tags$script(
+            type = "application/json",
+            `data-for` = inputId,
+            jsonlite::toJSON(
+              x = config,
+              auto_unbox = TRUE,
+              json_verbatim = TRUE
             )
           )
         )
@@ -1078,7 +1062,7 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 # #' }
 # f7Date <- function(inputId, label, value = "", placeholder = NULL) {
 #
-#   dateTag <- shiny::tags$div(
+#   shiny::tags$div(
 #     class = "list",
 #     shiny::tags$ul(
 #       shiny::tags$li(
@@ -1100,9 +1084,6 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 #       )
 #     )
 #   )
-#
-#   shiny::tagList(f7InputsDeps(), dateTag)
-#
 # }
 
 
@@ -1372,8 +1353,8 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
   labels <- if (!is.null(labels)) {
     lapply(seq_along(labels), function(i) {
-      isF7Icon <- (grep(x = labels[[i]]$attribs$class, pattern = "f7-icons") == 1)
-      if (class(labels[[i]]) != "shiny.tag" | !isF7Icon) {
+      isF7Icon <- (grep(x = labels[[i]][[1]]$attribs$class, pattern = "f7-icons") == 1)
+      if (class(labels[[i]][[1]]) != "shiny.tag" || !isF7Icon) {
         stop("Label must be a f7Icon.")
       }
       shiny::tags$div(
@@ -1387,7 +1368,6 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
   # wrapper
   shiny::tags$div(
-    f7InputsDeps(),
     # HTML skeleton
     if (!is.null(label)) shiny::tags$div(class = "block-title", label),
     if (!is.null(labels)) {
@@ -1539,7 +1519,6 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
   # main wrapper
   shiny::tagList(
-    f7InputsDeps(),
     # stepper tag
     shiny::tags$small(label),
     stepperTag
@@ -1597,9 +1576,6 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   if (!is.null(color)) toggleCl <- paste0(toggleCl, " color-", color)
 
   shiny::tagList(
-
-    # input binding
-    f7InputsDeps(),
     # toggle tag
     shiny::tags$span(label),
     shiny::tags$label(

@@ -122,13 +122,10 @@ f7Back <- function(targetId) {
             $('#back_", targetId, "').on('click', function(e) {
               currentTab = $('#", targetId, "').find('.tab-active');
               currentTabId = $(currentTab).attr('id');
-              //console.log(currentTabId);
               // if the first tab is already active, we cannot go back
               if (currentTabId !== firstTabId) {
                 var backTab = $(currentTab).prev();
                 var backTabId = $(backTab).attr('id');
-                console.log(backTab);
-                console.log(backTabId);
                 app.tab.show('#' + backTabId);
               }
             });
@@ -182,8 +179,6 @@ f7Next <- function(targetId) {
               if (currentTabId !== lastTabId) {
                 var backTab = $(currentTab).next();
                 var backTabId = $(backTab).attr('id');
-                console.log(backTab);
-                console.log(backTabId);
                 app.tab.show('#' + backTabId);
               }
             });

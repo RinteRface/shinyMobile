@@ -117,7 +117,9 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
 
   # avoid to have crazy large images
   if (!is.null(media)) {
-    if (media$name == "img") media$attribs$width <- "50"
+    if (!is.null(media$name)) {
+      if (media$name == "img") media$attribs$width <- "50"
+    }
   }
 
   itemContent <- shiny::tagList(
@@ -447,28 +449,27 @@ f7ListIndexItem <- htmltools::tags$li
 f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
                           cache = TRUE) {
 
-  config <- dropNulls(list(
-    items = items,
-    rowsBefore = rowsBefore,
-    rowsAfter = rowsAfter,
-    cache = cache
-  ))
-
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::tags$div(
-      id = id,
-      shiny::tags$script(
-        type = "application/json",
-        `data-for` = id,
-        jsonlite::toJSON(
-          x = config,
-          auto_unbox = TRUE,
-          json_verbatim = TRUE
-        )
-      ),
-      class = "list virtual-list media-list searchbar-found"
+  config <- dropNulls(
+    list(
+      items = items,
+      rowsBefore = rowsBefore,
+      rowsAfter = rowsAfter,
+      cache = cache
     )
+  )
+
+  shiny::tags$div(
+    id = id,
+    shiny::tags$script(
+      type = "application/json",
+      `data-for` = id,
+      jsonlite::toJSON(
+        x = config,
+        auto_unbox = TRUE,
+        json_verbatim = TRUE
+      )
+    ),
+    class = "list virtual-list media-list searchbar-found"
   )
 }
 
@@ -691,12 +692,12 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'  )
 #' }
 updateF7VirtualList <- function(id, action = c("appendItem", "appendItems", "prependItem",
-                                         "prependItems", "replaceItem", "replaceAllItems",
-                                         "moveItem", "insertItemBefore", "filterItems",
-                                         "deleteItem", "deleteAllItems", "scrollToItem"),
+                                               "prependItems", "replaceItem", "replaceAllItems",
+                                               "moveItem", "insertItemBefore", "filterItems",
+                                               "deleteItem", "deleteAllItems", "scrollToItem"),
                                 item = NULL, items = NULL, index = NULL, indexes = NULL,
                                 old_index = NULL, new_index = NULL,
-                              session = shiny::getDefaultReactiveDomain()) {
+                                session = shiny::getDefaultReactiveDomain()) {
 
   # JavaScript starts from 0!
   index <- index - 1

@@ -1,12 +1,25 @@
 # shinyMobile 0.8.0.9000
 
 ## Breaking changes
+- __external__ has been removed from `f7Link()` (much simpler)
+- `f7Init()` removed. Now pass it through the `f7Page()` __options__
+- Remove `f7ProgressInf()` (useless)
+- Change `f7Swiper()` API. New __options__ parameter
+- `f7PhotoBrowser()` is now called from the shiny server function. See help, __id__ and 
+__label__ have been removed
+- __id__ mandatory for `f7Searchbar()`
+- __session__ not mandatory in `f7Toast()`, `updateF7Progress()`, ... and has been
+swapped at the end of the parameters for more convenience
 
 ## Major changes
-- update framework7 from 5.5.0 to 5.7.8
+- New __allowPWA__ parameter in `f7Page()` so that we doesn't oblige users to create a PWA
+- `f7Page()` has a new __options__ parameter as replacement of `f7Init()`. Much simpler to handle
+- update framework7 from 5.5.0 to 5.7.14
 - add `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `f7OpenMenuDropdown()`: special buttons and dropdown elements, behaving like action buttons
 
 ## Minor changes
+- app instance accessible from anywhere is JS code
+- New __...__ parameter for `f7PhotoBrowser()`
 - Add choices to `updateF7SmartSelect()`: thanks @Edireito
 - Add disconnect toast if `shiny:disconnect` occurs. Gives ability to reload or reconnect
 

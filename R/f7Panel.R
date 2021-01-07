@@ -125,7 +125,7 @@ f7Panel <- function(..., inputId = NULL, title = NULL,
     )
   )
 
-  shiny::tagList(f7InputsDeps(), f7Shadow(panelTag, intensity = 24))
+  f7Shadow(panelTag, intensity = 24)
 
 }
 

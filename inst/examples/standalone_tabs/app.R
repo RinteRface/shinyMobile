@@ -3,7 +3,26 @@ library(shinyMobile)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(theme = "dark", pullToRefresh = TRUE),
+    options = list(
+      theme = "auto",
+      dark = TRUE,
+      filled = FALSE,
+      color = "#007aff",
+      touch = list(
+        tapHold = TRUE,
+        tapHoldDelay = 750,
+        iosTouchRipple = FALSE
+      ),
+      iosTranslucentBars = FALSE,
+      navbar = list(
+        iosCenterTitle = TRUE,
+        hideNavOnPageScroll = TRUE
+      ),
+      toolbar = list(
+        hideNavOnPageScroll = FALSE
+      ),
+      pullToRefresh = TRUE
+    ),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Standalone tabs",

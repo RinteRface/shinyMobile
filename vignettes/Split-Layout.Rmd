@@ -16,10 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-`f7SplitLayout()` is the third layout introduced with shinyMobile. This template is focused for 
-tablet use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to `f7Panel()`. While `f7Panel()` may also be embedded
-in both `f7SingleLayout()` and `f7TabsLayout`, it accepts extra arguments like `f7PanelMenu()` and
-`f7PanelItem()`, which are very similar to sidebar items of shinydashboard:
+`f7SplitLayout()` is the third layout introduced with `{shinyMobile}`. This template is focused for 
+tablet/desktop use. It is composed of a sidebar, and a main panel. 
+The sidebar goes in its dedicated slot, corresponding to `f7Panel()`. While `f7Panel()` may also be embedded in both `f7SingleLayout()` and `f7TabsLayout`, it accepts extra arguments like `f7PanelMenu()` and
+`f7PanelItem()`, which are very similar to sidebar items of `{shinydashboard}`:
 
 ```r
 f7Panel(
@@ -37,7 +37,7 @@ f7Panel(
 
 The content must be passed in `...` If you have a menu in the sidebar, you must use the
 corresponding body function, namely `f7Items()` and `f7Item()`. Particularly, the *tabName*
-argument provided in `f7PanelItem()` and `f7Item()` must exactly match (like in shinydashboard, again).
+argument provided in `f7PanelItem()` and `f7Item()` must exactly match (like in `{shinydashboard}`, again).
 If you don't have any `f7PanelMenu()`, you can pass tags in the `...` directly. However, 
 this prevents you from having a tabbed navigation. 
 
@@ -74,11 +74,26 @@ new_mtcars <- reshape(
 shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(
-      hideNavOnPageScroll = FALSE,
-      hideTabsOnPageScroll = FALSE,
-      theme = "light"
+    options = list(
+    theme = "aurora",
+    dark = TRUE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      iosTouchRipple = FALSE
     ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideNavOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideNavOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  ),
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",
@@ -114,7 +129,7 @@ shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       f7Items(

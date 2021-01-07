@@ -1,10 +1,10 @@
 #' Create a fremework7 photo browser
 #'
-#' @param id Unique id.
-#' @param label Trigger label
 #' @param photos List of photos
 #' @param theme Browser theme: choose either light or dark.
 #' @param type Browser type: choose among \code{c("popup", "standalone", "page")}.
+#' @param ... Other options.
+#' @param session Shiny session object.
 #'
 #' @export
 #'
@@ -18,7 +18,12 @@
 #'      title = "f7PhotoBrowser",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7PhotoBrowser"),
-#'        f7PhotoBrowser(
+#'        f7Button(inputId = "togglePhoto", "Open photo")
+#'      )
+#'    ),
+#'    server = function(input, output, session) {
+#'     observeEvent(input$togglePhoto, {
+#'      f7PhotoBrowser(
 #'          id = "photobrowser1",
 #'          label = "Open",
 #'          theme = "light",
@@ -29,45 +34,36 @@
 #'            "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
 #'          )
 #'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {}
+#'     })
+#'
+#'    }
 #'  )
 #' }
-f7PhotoBrowser <- function(id, label, photos, theme = c("light", "dark"),
-                           type = c("popup", "standalone", "page")) {
+f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
+                           type = c("popup", "standalone", "page"), ..., session = shiny::getDefaultReactiveDomain()) {
 
   theme <- match.arg(theme)
   type <- match.arg(type)
-
-  photoBrowserTrigger <- f7Button(inputId = id, label = label)
-
-  photos <- jsonlite::toJSON(photos)
   pageBackLinkText <- if (type == "page") "back" else NULL
 
-  photoBrowserJS <-shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$script(
-        paste0(
-          "$(function() {
-            var photoBrowser = app.photoBrowser.create({
-              photos: ", photos, ",
-              theme: '", theme, "',
-              type: '", type, "',
-              pageBackLinkText: '", pageBackLinkText, "'
-            });
 
-            // open the photo browser
-            $('#", id,"').on('click', function() {
-              photoBrowser.open();
-            });
-          });
-          "
-        )
-      )
+  options <- dropNulls(
+    list(
+      theme = theme,
+      photos = photos,
+      pageBackLinkText = pageBackLinkText,
+      type = type,
+      ...
     )
   )
 
-  shiny::tagList(photoBrowserJS, photoBrowserTrigger)
+  session$sendCustomMessage(
+    "open-photo-browser",
+    message = jsonlite::toJSON(
+      x = options,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
 
 }

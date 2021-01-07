@@ -4,14 +4,14 @@
 \alias{updateF7Progress}
 \title{update a framework7 progress bar from the server side}
 \usage{
-updateF7Progress(session, id, value)
+updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{Shiny session object.}
-
 \item{id}{Unique progress bar id.}
 
 \item{value}{New value.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 update a framework7 progress bar from the server side
@@ -41,7 +41,7 @@ if (interactive()) {
    ),
    server = function(input, output, session) {
      observeEvent(input$obs, {
-       updateF7Progress(session, id = "pg1", value = input$obs)
+       updateF7Progress(id = "pg1", value = input$obs)
      })
    }
  )

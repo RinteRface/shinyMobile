@@ -7,10 +7,8 @@
 f7Swiper(
   ...,
   id,
-  spaceBetween = 50,
-  slidePerView = "auto",
-  centered = TRUE,
-  speed = 400
+  options = list(speed = 400, spaceBetween = 50, slidesPerView = "auto", centeredSlides
+    = TRUE, pagination = TRUE)
 )
 }
 \arguments{
@@ -18,13 +16,7 @@ f7Swiper(
 
 \item{id}{Swiper unique id.}
 
-\item{spaceBetween}{Space between slides. 50 by default. Only if pagination is TRUE.}
-
-\item{slidePerView}{Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.}
-
-\item{centered}{Whether to center slides. Only if pagination is TRUE.}
-
-\item{speed}{Slides speed. Numeric.}
+\item{options}{Other options. Expect a list.}
 }
 \description{
 Build a Framework7 swiper (like carousel)

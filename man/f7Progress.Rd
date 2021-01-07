@@ -4,12 +4,12 @@
 \alias{f7Progress}
 \title{Create a Framework7 progress bar}
 \usage{
-f7Progress(id, value, color)
+f7Progress(id, value = NULL, color)
 }
 \arguments{
 \item{id}{Progress id. Must be unique.}
 
-\item{value}{Progress value. Between 0 and 100.}
+\item{value}{Progress value. Between 0 and 100. If NULL the progress bar is infinite.}
 
 \item{color}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
 }
@@ -26,11 +26,9 @@ if(interactive()){
     title = "Progress",
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Progress"),
-     f7Block(
-     f7Progress(id = "pg1", value = 10, color = "pink"),
-     f7Progress(id = "pg2", value = 100, color = "green"),
-     f7Progress(id = "pg3", value = 50, color = "orange")
-    )
+     f7Block(f7Progress(id = "pg1", value = 10, color = "pink")),
+     f7Block(f7Progress(id = "pg2", value = 100, color = "green")),
+     f7Block(f7Progress(id = "pg3", value = 50, color = "orange"))
     )
    ),
    server = function(input, output) {}

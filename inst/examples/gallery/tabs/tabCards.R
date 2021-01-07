@@ -68,7 +68,7 @@ tabCards <- f7Tab(
      footer, list view, image, or any other element.",
     footer = tagList(
       f7Link(label = "Google", src = "https://www.google.com"),
-      f7Link(label = "Google", src = "https://www.google.com", external = TRUE)
+      f7Link(label = "Twitter", src = "https://www.twitter.com")
     )
   ),
   br(),

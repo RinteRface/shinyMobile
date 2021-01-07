@@ -4,10 +4,7 @@
 #'
 #' @param ... Slot for \link{f7Slide}.
 #' @param id Swiper unique id.
-#' @param spaceBetween Space between slides. 50 by default. Only if pagination is TRUE.
-#' @param slidePerView Number of slides at a time. Only if pagination is TRUE. Set to "auto" by default.
-#' @param centered Whether to center slides. Only if pagination is TRUE.
-#' @param speed Slides speed. Numeric.
+#' @param options Other options. Expect a list.
 #'
 #' @examples
 #' if(interactive()){
@@ -74,48 +71,44 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Swiper <- function(..., id, spaceBetween = 50, slidePerView = "auto",
-                     centered = TRUE, speed = 400) {
+f7Swiper <- function(
+  ...,
+  id,
+  options = list(
+    speed = 400,
+    spaceBetween = 50,
+    slidesPerView = "auto",
+    centeredSlides = TRUE,
+    pagination = TRUE
+  )
+) {
+  # swiper class
+  swiperCl <- "swiper-container demo-swiper"
+  if (!is.null(options$slidePerView)) {
+    if (options$slidePerView == "auto") swiperCl <- paste0(swiperCl, " demo-swiper-auto")
+  }
 
-
-  # javascript init + options
-  swiperJS <- shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$script(
-        paste0(
-          "$(function() {
-            app.swiper.create('#", id, "', {
-              speed: ", speed, ",
-              spaceBetween: ", spaceBetween,",
-              slidesPerView: '", slidePerView,"',
-              centeredSlides: ",  tolower(centered),",
-              pagination: {'el': '.swiper-pagination'}
-            });
-          });
-        "
-        )
-      )
+  swiper_config <- shiny::tags$script(
+    type = "application/json",
+    `data-for` = id,
+    jsonlite::toJSON(
+      x = options,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
     )
   )
 
-  # swiper class
-  swiperCl <- "swiper-container demo-swiper"
-  if (slidePerView == "auto") swiperCl <- paste0(swiperCl, " demo-swiper-auto")
-
   # swiper tag
-  swiperTag <- shiny::tags$div(
+  shiny::tags$div(
     class = swiperCl,
     id = id,
     shiny::tags$div(class = paste0("swiper-pagination")),
     shiny::tags$div(
       class = "swiper-wrapper",
       ...
-    )
+    ),
+    swiper_config
   )
-
-
-  shiny::tagList(swiperJS, swiperTag)
-
 }
 
 

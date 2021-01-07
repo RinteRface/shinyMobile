@@ -4,7 +4,7 @@ library(shinyMobile)
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(pullToRefresh = TRUE, theme = "light"),
+    options = list(pullToRefresh = TRUE),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -14,7 +14,7 @@ shiny::shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       uiOutput("growingList")

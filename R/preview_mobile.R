@@ -109,16 +109,16 @@ preview_mobile <- function(appPath = NULL, url = NULL, port = 3838,
 #' @param landscape See \link{preview_mobile} input.
 create_app_ui <- function(iframe, device, color, landscape) {
 
+  # should never change!
   devices_css_deps <- htmltools::htmlDependency(
-    name = "framework7",
-    version = "5.7.8",
-    src = c(file = system.file("framework7-5.7.8", package = "shinyMobile")),
-    script = NULL,
-    stylesheet = c("devices/devices.min.css")
+    name = "marvel-devices-css",
+    version = "1.0.0",
+    src = c(file = system.file("marvel-devices-css-1.0.0", package = "shinyMobile")),
+    stylesheet = "devices.min.css"
   )
 
   shiny::fluidPage(
-    htmltools::attachDependencies(
+    shiny::tagList(
       devices_css_deps,
       shiny::br()
     ),

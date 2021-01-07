@@ -68,7 +68,7 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
  }
 
  # inner sheet elements
- sheetTag <- shiny::tagAppendChildren(
+ shiny::tagAppendChildren(
     sheetTag,
     if (!(swipeToStep | swipeToClose)) {
        shiny::tags$div(
@@ -102,12 +102,6 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
        # hidden items
        hiddenItems
     )
- )
-
- shiny::tagList(
-   # javascript initialization
-   f7InputsDeps(),
-   sheetTag
  )
 }
 
@@ -188,7 +182,7 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
 #'     }
 #'  )
 #' }
-updateF7Sheet <- function(inputId, session) {
+updateF7Sheet <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
    message <- NULL
    session$sendInputMessage(inputId, NULL)
 }

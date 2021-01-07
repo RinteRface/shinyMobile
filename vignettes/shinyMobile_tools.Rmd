@@ -20,7 +20,7 @@ library(shinyMobile)
 ```
 
 ## Mobile preview
-Since V0.2.0, shinyMobile has a function to preview your app in a large range of 
+Since V0.2.0, `{shinyMobile}` has a function to preview your app in a large range of 
 mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5,
 Samsung galaxy Note 8, ... either locally on online:
 
@@ -39,16 +39,16 @@ The local preview is a 4 steps process:
 `preview_mobile` has other options such as color and landscape (to preview in landscape mode).
 
 ## Pull to Refresh
-shinyMobile introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disable by default but passing `pullToRefresh = TRUE` in `f7Init()` will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation. This allows to trigger updates/computations on the server side, for instance:
+`{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page` options will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation. This allows to trigger updates/computations on the server side, for instance:
 
-```r
+```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
 
 shiny::shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(pullToRefresh = TRUE, theme = "light"),
+    options = list(pullToRefresh = TRUE),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -58,7 +58,7 @@ shiny::shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       f7List(
@@ -91,13 +91,13 @@ shiny::shinyApp(
 ```
 
 ## Predefined input values
-shinyMobile contains a set of useful functions to help you setting the layout as best as
+`{shinyMobile}` contains a set of useful functions to help you setting the layout as best as
 possible. 
 
 ### Informations about your current device
 
 #### Description
-shinyMobile has a predefined input, namely **input$deviceInfo**:
+`{shinyMobile}` has a predefined input, namely **input$deviceInfo**:
 
 ```{r, eval = FALSE}
 shiny::shinyApp(
@@ -169,7 +169,7 @@ shiny::shinyApp(
     
     output$userAgent <- renderText(input$deviceInfo$desktop)
     
-    # generate a card inkly for desktop
+    # generate a card only for desktop
     output$card <- renderUI({
       if (input$deviceInfo$desktop) {
         f7Card(
@@ -186,7 +186,7 @@ shiny::shinyApp(
 
 ### Informations about Shiny inputs
 
-shinyMobile has `input$lastInputChanged` which returns the name, value and type of the
+`{shinyMobile}` has `input$lastInputChanged` which returns the name, value and type of the
 last changed input, see below:
 
 ```{r, eval = FALSE}
@@ -204,7 +204,7 @@ shiny::shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       f7Card(verbatimTextOutput("infos")),
@@ -229,7 +229,7 @@ needs to be done server side in shiny.
 Soon there will be a way to compare initial input values (frozen) to current input values
 and get a diff.
 
-### Other informations
+### Other information
 
 `input$shinyInfo` gives the current workerId (for shinyapps.io, shiny server pro, rstudio connect), the unique sessionId (equal to session$token on the server side).
 

@@ -5,19 +5,17 @@
 \title{Create a Framework7 toast}
 \usage{
 f7Toast(
-  session,
   text,
   position = c("bottom", "top", "center"),
   closeButton = TRUE,
   closeButtonText = "close",
   closeButtonColor = "red",
   closeTimeout = 3000,
-  icon = NULL
+  icon = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{Shiny session.}
-
 \item{text}{Toast content.}
 
 \item{position}{Toast position \code{c("bottom", "top", "center")}.}
@@ -33,6 +31,8 @@ TRUE by default.}
 
 \item{icon}{Optional. Expect \link{f7Icon}. Warning:
 Adding icon will hide the close button.}
+
+\item{session}{Shiny session.}
 }
 \description{
 Create a Framework7 toast

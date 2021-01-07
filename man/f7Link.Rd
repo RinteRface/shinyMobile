@@ -4,7 +4,7 @@
 \alias{f7Link}
 \title{Create a Framework7 link}
 \usage{
-f7Link(label = NULL, icon = NULL, src = NULL, external = FALSE)
+f7Link(label = NULL, icon = NULL, src = NULL)
 }
 \arguments{
 \item{label}{Link text.}
@@ -12,8 +12,6 @@ f7Link(label = NULL, icon = NULL, src = NULL, external = FALSE)
 \item{icon}{Link icon, if any.}
 
 \item{src}{Link source, url.}
-
-\item{external}{Whether switch to an external link. FALSE by default.}
 }
 \description{
 Build a Framework7 link
@@ -29,7 +27,7 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Link"),
      f7Link(label = "Google", src = "https://www.google.com"),
-     f7Link(label = "Google", src = "https://www.google.com", external = TRUE)
+     f7Link(label = "Twitter", src = "https://www.twitter.com")
     )
    ),
    server = function(input, output) {}

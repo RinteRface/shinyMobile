@@ -1,26 +1,24 @@
 context("f7Accordion")
 
 test_that("accordion", {
-  expect_true(inherits(f7Accordion(), "shiny.tag.list"))
-  # [[1]] is the f7InputDeps() slot
-  # [[2]] is the accordion wrapper slot
+  expect_true(inherits(f7Accordion(), "shiny.tag"))
   expect_equal(
-    f7Accordion()[[2]]$attribs$class,
+    f7Accordion()$attribs$class,
     "list accordion-list"
   )
 
   # id
   expect_equal(
-    f7Accordion(inputId = "test")[[2]]$attribs$id,
+    f7Accordion(inputId = "test")$attribs$id,
     "test"
   )
 
   # check that children are wrapped by an <ul></ul>
-  expect_equal(f7Accordion()[[2]]$children[[1]]$name, "ul")
+  expect_equal(f7Accordion()$children[[1]]$name, "ul")
 
   # multicollapse
   expect_equal(
-    f7Accordion(multiCollapse = TRUE)[[2]]$attribs$class,
+    f7Accordion(multiCollapse = TRUE)$attribs$class,
     "list"
   )
 })

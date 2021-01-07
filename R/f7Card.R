@@ -321,34 +321,31 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
   cardContent <- shiny::tags$div(class = "card-content-padding", shiny::p(...))
 
   # main wrapper
-  shiny::tagList(
-    f7InputsDeps(),
+  shiny::tags$div(
+    class = "card card-expandable",
+    `data-card` = paste0("#", id),
+    id = id,
     shiny::tags$div(
-      class = "card card-expandable",
-      `data-card` = paste0("#", id),
-      id = id,
-      shiny::tags$div(
-        class = "card-content",
-        if (!is.null(img)) {
-          if (!fullBackground) {
-            shiny::tagList(
-              backgroundImg,
-              closeCard,
-              cardHeader
-            )
-          } else {
-            backgroundImg
-          }
-        } else {
-          shiny::tags$div(
-            class = cardColorCl,
-            style = "height: 300px;",
-            cardHeader,
-            closeCard
+      class = "card-content",
+      if (!is.null(img)) {
+        if (!fullBackground) {
+          shiny::tagList(
+            backgroundImg,
+            closeCard,
+            cardHeader
           )
-        },
-        cardContent
-      )
+        } else {
+          backgroundImg
+        }
+      } else {
+        shiny::tags$div(
+          class = cardColorCl,
+          style = "height: 300px;",
+          cardHeader,
+          closeCard
+        )
+      },
+      cardContent
     )
   )
 }

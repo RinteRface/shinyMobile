@@ -324,7 +324,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     )
   }
 
-  shiny::tagList(f7InputsDeps(), tabLinksTag, contentTag)
+  shiny::tagList(tabLinksTag, contentTag)
 
 }
 

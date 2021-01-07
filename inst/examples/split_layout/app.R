@@ -21,10 +21,25 @@ new_mtcars <- reshape(
 shinyApp(
   ui = f7Page(
     title = "My app",
-    init = f7Init(
-      hideNavOnPageScroll = FALSE,
-      hideTabsOnPageScroll = FALSE,
-      theme = "light"
+    options = list(
+      theme = "aurora",
+      dark = TRUE,
+      filled = FALSE,
+      color = "#007aff",
+      touch = list(
+        tapHold = TRUE,
+        tapHoldDelay = 750,
+        iosTouchRipple = FALSE
+      ),
+      iosTranslucentBars = FALSE,
+      navbar = list(
+        iosCenterTitle = TRUE,
+        hideNavOnPageScroll = TRUE
+      ),
+      toolbar = list(
+        hideNavOnPageScroll = FALSE
+      ),
+      pullToRefresh = FALSE
     ),
     f7SplitLayout(
       sidebar = f7Panel(
@@ -61,7 +76,7 @@ shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       f7Items(

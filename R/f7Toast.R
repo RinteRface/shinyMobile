@@ -36,9 +36,10 @@
 #'   }
 #'  )
 #' }
-f7Toast <- function(session, text, position = c("bottom", "top", "center"),
+f7Toast <- function(text, position = c("bottom", "top", "center"),
                     closeButton = TRUE, closeButtonText = "close",
-                    closeButtonColor = "red", closeTimeout = 3000, icon = NULL) {
+                    closeButtonColor = "red", closeTimeout = 3000, icon = NULL,
+                    session = shiny::getDefaultReactiveDomain()) {
 
   icon <- if(!is.null(icon)) as.character(icon)
 

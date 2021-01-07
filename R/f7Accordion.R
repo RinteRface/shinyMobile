@@ -73,14 +73,11 @@ f7Accordion <- function(..., inputId = NULL, multiCollapse = FALSE) {
     )
   }
 
- accordionTag <- tagAppendAttributes(
+ tagAppendAttributes(
    accordionTag,
    id = inputId,
    class = "collapsible"
  )
-
- shiny::tagList(f7InputsDeps(), accordionTag)
-
 }
 
 

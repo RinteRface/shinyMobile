@@ -4,23 +4,135 @@
 #'
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
-#' @param init App configuration. See \link{f7Init}.
 #' @param title Page title.
 #' @param preloader Whether to display a preloader before the app starts.
 #' FALSE by default.
 #' @param loading_duration Preloader duration.
-#' @param icon Link to 128x128 icon (PWA compatibility). If NULL, taken from
-#' shinyMobile ressources.
-#' @param favicon App favicon. If NULL, taken from shinyMobile ressources.
-#' @param manifest Path to web manifest (PWA compatibility). If NULL, taken from
-#' shinyMobile ressources.
+#' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
+#' notable options. General options:
+#' \itemize{
+#'  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
+#'  \item \code{dark}: Dark layout. TRUE or FALSE.
+#'  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
+#'  the current selected color. FALSE by default.
+#'  \item \code{color}: Color theme: See \url{http://framework7.io/docs/color-themes.html}.
+#'  Expect a name like blue or red. If NULL, use the default color.
+#'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
+#'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
+#'  \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+#'  FALSE by default.
+#' }
+#' Touch module options \url{https://v5.framework7.io/docs/app.html#app-parameters}:
+#' \itemize{
+#'  \item \code{tapHold}:  It triggers (if enabled) after a sustained, complete touch event.
+#'  By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
+#'  so Fast Clicks should be also enabled.
+#'  \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+#'  Default to 750 ms.
+#'  \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+#' }
+#' Navbar options \url{https://v5.framework7.io/docs/navbar.html#navbar-app-parameters}:
+#' \itemize{
+#'  \item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
+#'  title at the center in iOS theme. Sometime (with some custom design) it may not needed.
+#'  \item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
+#' }
+#' Toolbar options \url{https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters}:
+#' \itemize{
+#'  \item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
+#' }
+#'
+#' In any case, you must follow the same structure as provided in the function arguments.
+#'
+#' @param allowPWA Whether to include PWA dependencies. Default to FALSE.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
-                   title = NULL, preloader = FALSE, loading_duration = 3,
-                   icon = NULL, favicon = NULL, manifest = NULL){
+f7Page <- function(
+  ...,
+  title = NULL,
+  preloader = FALSE,
+  loading_duration = 3,
+  # default options
+  options = list(
+    theme = c("ios", "md", "auto", "aurora"),
+    dark = TRUE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      iosTouchRipple = FALSE
+    ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideNavOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideNavOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  ),
+  allowPWA = FALSE
+) {
+
+  # fallback to auto
+  if (length(options$theme) > 1) options$theme <- "auto"
+
+  if (!is.null(options$theme) && !is.null(options$filled) && !is.null(options$color)) {
+    if (options$theme == "dark" && options$filled == TRUE &&
+        (options$color == "white" || options$color == "#fff")) {
+      stop("Wrong theme combination: navbar color cannot be white in a dark theme!")
+    }
+  }
+
+  if (!is.null(options$pullToRefresh)) {
+    dataPTR <- tolower(options$pullToRefresh)
+    options$pullToRefresh <- NULL
+  }
+
+  # configuration tag to be passed to JS
+  configTag <- shiny::tags$script(
+    type = "application/json",
+    `data-for` = "app",
+    jsonlite::toJSON(
+      x = options,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
+
+  bodyTag <- shiny::tags$body(
+    `data-pwa` = tolower(allowPWA),
+    `data-ptr`= dataPTR,
+    # preloader
+    onLoad = if (preloader) {
+      duration <- loading_duration * 1000
+      paste0(
+        "$(function() {
+          // Preloader
+          app.dialog.preloader();
+          setTimeout(function () {
+           app.dialog.close();
+           }, ", duration, ");
+        });
+        "
+      )
+    },
+    shiny::tags$div(
+      id = "app",
+      ...
+    ),
+    configTag
+  )
+
+  pwaDeps <- if (allowPWA) {
+    c("pwa", "pwacompat")
+  } else {
+    NULL
+  }
 
   shiny::tagList(
     # Head
@@ -36,36 +148,17 @@ f7Page <- function(..., init = f7Init(skin = "auto", theme = "light"),
           user-scalable=no,
           viewport-fit=cover"
       ),
-
-      # PAW properties (include https://github.com/GoogleChromeLabs/pwacompat)
-      addPWADeps(icon, favicon, manifest),
-
       shiny::tags$title(title)
     ),
     # Body
-    add_shinyMobile_deps(
-      shiny::tags$body(
-        # preloader
-        onLoad = if (preloader) {
-          duration <- loading_duration * 1000
-          paste0(
-            "$(function() {
-             // Preloader
-             app.dialog.preloader();
-             setTimeout(function () {
-              app.dialog.close();
-              }, ", duration, ");
-            });
-            "
-          )
-        },
-        shiny::tags$div(
-          id = "app",
-          ...
-        )
-      )
-    ),
-    init
+    add_dependencies(
+      deps = c(
+        "framework7",
+        "shinyMobile",
+        pwaDeps
+      ),
+      bodyTag
+    )
   )
 }
 
@@ -424,7 +517,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   # add margins
   items <- shiny::div(...) %>% f7Margin(side = "left") %>% f7Margin(side = "right")
 
-  sidebar <- shiny::tagAppendAttributes(sidebar[[2]], class = "panel-in")
+  sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
   # this trick to prevent to select the panel view in the following
   # javascript code
   sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"

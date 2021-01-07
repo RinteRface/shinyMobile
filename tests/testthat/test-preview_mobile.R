@@ -18,7 +18,7 @@ test_that("dependencies", {
   deps <- htmltools::findDependencies(ui)
 
   expect_length(deps, 2)
-  expect_equal(deps[[1]]$name, "framework7")
-  expect_equal(deps[[1]]$version, "5.7.8")
-  expect_equal(deps[[1]]$stylesheet, "devices/devices.min.css")
+  expect_equal(deps[[2]]$name, "marvel-devices-css")
+  expect_equal(deps[[2]]$version, "1.0.0")
+  expect_equal(deps[[2]]$stylesheet, "devices.min.css")
 })

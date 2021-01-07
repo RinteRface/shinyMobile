@@ -79,7 +79,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
   )
 
   # do.call preserve the data format
-  shiny::tagList(f7InputsDeps(), do.call(shiny::tags$div, gaugeProps))
+  do.call(shiny::tags$div, gaugeProps)
 }
 
 

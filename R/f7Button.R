@@ -46,17 +46,14 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::tags$button(
-      id = inputId,
-      type = "button",
-      class = buttonCl,
-      href = if (!is.null(src)) src else NULL,
-      `data-val` = if (!is.null(inputId)) value else NULL,
-      target = "_blank",
-      label
-    )
+  shiny::tags$button(
+    id = inputId,
+    type = "button",
+    class = buttonCl,
+    href = if (!is.null(src)) src else NULL,
+    `data-val` = if (!is.null(inputId)) value else NULL,
+    target = "_blank",
+    label
   )
 }
 
@@ -172,8 +169,8 @@ f7Segment <- function(..., container = c("segment", "row"), shadow = FALSE,
   btns <- list(...)
   if (container == "row") {
     for (i in seq_along(btns)) {
-      btns[[i]][[2]]$attribs$class <- paste(
-        btns[[i]][[2]]$attribs$class,
+      btns[[i]]$attribs$class <- paste(
+        btns[[i]]$attribs$class,
         class = "col"
       )
     }

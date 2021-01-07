@@ -5,23 +5,23 @@
 \title{Create a fremework7 photo browser}
 \usage{
 f7PhotoBrowser(
-  id,
-  label,
   photos,
   theme = c("light", "dark"),
-  type = c("popup", "standalone", "page")
+  type = c("popup", "standalone", "page"),
+  ...,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{id}{Unique id.}
-
-\item{label}{Trigger label}
-
 \item{photos}{List of photos}
 
 \item{theme}{Browser theme: choose either light or dark.}
 
 \item{type}{Browser type: choose among \code{c("popup", "standalone", "page")}.}
+
+\item{...}{Other options.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Create a fremework7 photo browser
@@ -36,7 +36,12 @@ if (interactive()) {
      title = "f7PhotoBrowser",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7PhotoBrowser"),
-       f7PhotoBrowser(
+       f7Button(inputId = "togglePhoto", "Open photo")
+     )
+   ),
+   server = function(input, output, session) {
+    observeEvent(input$togglePhoto, {
+     f7PhotoBrowser(
          id = "photobrowser1",
          label = "Open",
          theme = "light",
@@ -47,9 +52,9 @@ if (interactive()) {
            "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
          )
        )
-     )
-   ),
-   server = function(input, output, session) {}
+    })
+
+   }
  )
 }
 }

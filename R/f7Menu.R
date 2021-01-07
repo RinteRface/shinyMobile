@@ -46,18 +46,12 @@
 #'  )
 #' }
 f7Menu <- function(...) {
-  menuTag <- shiny::tags$div(
+  shiny::tags$div(
     class = "menu",
     shiny::tags$div(
       class = "menu-inner",
       ...
     )
-  )
-
-  shiny::tagList(
-    # javascript initialization
-    f7InputsDeps(),
-    menuTag
   )
 }
 

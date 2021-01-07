@@ -78,31 +78,30 @@
 f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = FALSE,
                        scrollMessages = TRUE, scrollMessagesOnEdge = TRUE) {
 
-  config <- dropNulls(list(
-    autoLayout = autoLayout,
-    newMessagesFirst = newMessagesFirst,
-    scrollMessages = scrollMessages,
-    scrollMessagesOnEdge = scrollMessagesOnEdge
-  ))
-
-  shiny::tagList(
-    f7InputsDeps(),
-    shiny::tags$div(
-      id = id,
-      shiny::tags$script(
-        type = "application/json",
-        `data-for` = id,
-        jsonlite::toJSON(
-          x = config,
-          auto_unbox = TRUE,
-          json_verbatim = TRUE
-        )
-      ),
-      class = "messages",
-      if (!is.null(title)) {
-        shiny::tags$div(class = "messages-title", title)
-      }
+  config <- dropNulls(
+    list(
+      autoLayout = autoLayout,
+      newMessagesFirst = newMessagesFirst,
+      scrollMessages = scrollMessages,
+      scrollMessagesOnEdge = scrollMessagesOnEdge
     )
+  )
+
+  shiny::tags$div(
+    id = id,
+    shiny::tags$script(
+      type = "application/json",
+      `data-for` = id,
+      jsonlite::toJSON(
+        x = config,
+        auto_unbox = TRUE,
+        json_verbatim = TRUE
+      )
+    ),
+    class = "messages",
+    if (!is.null(title)) {
+      shiny::tags$div(class = "messages-title", title)
+    }
   )
 
 }
@@ -122,28 +121,25 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 
   ns <- shiny::NS(inputId)
 
-  shiny::tagList(
-    f7InputsDeps(),
+  shiny::tags$div(
+    id = inputId,
+    # add this to be able to see the message bar in a f7TabLayout...
+    #style = "margin-bottom: 100px;",
+    class = "toolbar messagebar",
     shiny::tags$div(
-      id = inputId,
-      # add this to be able to see the message bar in a f7TabLayout...
-      #style = "margin-bottom: 100px;",
-      class = "toolbar messagebar",
+      class = "toolbar-inner",
       shiny::tags$div(
-        class = "toolbar-inner",
-        shiny::tags$div(
-          class = "messagebar-area",
-          shiny::tags$textarea(
-            class = "resizable",
-            placeholder = placeholder
-          )
-        ),
-        shiny::tags$a(
-          id = ns("send"),
-          href = "#",
-          class = "link icon-only demo-send-message-link f7-action-button",
-          f7Icon("arrow_up_circle_fill")
+        class = "messagebar-area",
+        shiny::tags$textarea(
+          class = "resizable",
+          placeholder = placeholder
         )
+      ),
+      shiny::tags$a(
+        id = ns("send"),
+        href = "#",
+        class = "link icon-only demo-send-message-link f7-action-button",
+        f7Icon("arrow_up_circle_fill")
       )
     )
   )

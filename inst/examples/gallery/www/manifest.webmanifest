@@ -1,0 +1,16 @@
+{
+  "name": "My Progressive Web App",
+  "short_name": "My App",
+  "description": "What it does!",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144"
+    }
+  ]
+}

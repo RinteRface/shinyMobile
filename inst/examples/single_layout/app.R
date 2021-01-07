@@ -14,7 +14,6 @@ shinyApp(
   ui = f7Page(
     title = "My app",
     dark_mode = FALSE,
-    init = f7Init(skin = "ios", theme = "light"),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -24,7 +23,7 @@ shinyApp(
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", src = "https://www.google.com")
       ),
       # main content
       f7Shadow(

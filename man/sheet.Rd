@@ -17,7 +17,7 @@ f7Sheet(
   swipeHandler = TRUE
 )
 
-updateF7Sheet(inputId, session)
+updateF7Sheet(inputId, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{...}{Sheet content. If wipeToStep is TRUE, these items will be visible at start.}
