@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7TabLayout}
 \alias{f7TabLayout}
-\title{Create a Framework7 page with tab layout}
+\title{Framework7 tab layout}
 \usage{
 f7TabLayout(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL)
 }
@@ -19,7 +19,8 @@ Wrap in \code{tagList} if multiple panels.}
 \item{appbar}{Slot for \link{f7Appbar}.}
 }
 \description{
-Build a Framework7 page with tab layout
+\link{f7TabLayout} create a single page app with multiple tabs,
+giving the illusion of a multi pages experience.
 }
 \examples{
 if(interactive()){

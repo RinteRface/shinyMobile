@@ -1,5 +1,17 @@
 # shinyMobile 2.0.0.9000
 
+## Soft Deprecations
+- `f7AddMessages()` will become `updateF7Messages()` in future release
+- `f7HideNavbar()` and `f7ShowNavbar()` will be replaced by `updateF7Navbar()`
+- `f7ShowPopup()` will become `updateF7Popup()`
+- `f7checkBox()` will become `f7Checkbox()`
+- `f7checkBoxGroup()` will become `f7CheckboxGroup()`
+- `f7ValidateInput()` will become `validateF7Input()`
+- `f7InsertTab()` and `f7RemoveTab()` will becomes `insertF7Tab()` and `removeF7Tab()`,
+respectively
+- `f7ShowPreloader()` and `f7HidePreloader()` will become `showF7Preloader()` and
+`hideF7Preloader()`, respectively. 
+
 ## Breaking changes
 
 ### Inputs
@@ -47,7 +59,7 @@ __label__ have been removed
 - New __allowPWA__ parameter in `f7Page()` so that we doesn't oblige users to create a PWA
 - `f7Page()` has a new __options__ parameter as replacement of `f7Init()`. Much simpler to handle
 - update framework7 from 5.5.0 to 5.7.14
-- add `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `f7OpenMenuDropdown()`: special buttons and dropdown elements, behaving like action buttons
+- add `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `updateF7MenuDropdown()`: special buttons and dropdown elements, behaving like action buttons
 
 ## Minor changes
 - app instance accessible from anywhere is JS code

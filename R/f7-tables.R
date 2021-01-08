@@ -1,7 +1,7 @@
-#' Table
-#' 
-#' Create shinyMobile table.
-#' 
+#' Framework7 table
+#'
+#' Creates a table container.
+#'
 #' @param data A data.frame.
 #' @param colnames Column names to use, if \code{NULL} uses \code{data} column names.
 #' @param card Whether to use as card.
@@ -24,14 +24,14 @@
 #'   }
 #'  )
 #' }
-#' 
+#'
 #' @export
 f7Table <- function(data, colnames = NULL, card = FALSE){
   classes <- lapply(data, class2f7)
 
   if(is.null(colnames))
     colnames <- names(classes)
-  
+
   if(length(colnames) != length(classes))
     stop("The number of `colnames` must match the number of columns of `data`", call. = FALSE)
 
@@ -45,8 +45,8 @@ f7Table <- function(data, colnames = NULL, card = FALSE){
 
   headers <- lapply(headers, function(x){
     shiny::tags$th(class = x$class, x$colname)
-  }) 
-  
+  })
+
   data_list <- apply(data, 1, as.list)
 
   table <- lapply(data_list, function(row){
@@ -73,13 +73,13 @@ f7Table <- function(data, colnames = NULL, card = FALSE){
 }
 
 #' Get CSS class based on cell class
-#' 
+#'
 #' @param x Value.
-#' 
+#'
 #' @keywords internal
 class2f7 <- function(x){
   if(inherits(x, "numeric"))
     return("numeric-cell")
-  
+
   return("label-cell")
 }

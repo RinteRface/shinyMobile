@@ -95,7 +95,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
@@ -135,10 +135,11 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># from CRAN</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"shinyMobile"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># from CRAN</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shinyMobile"</span><span class="op">)</span>
 <span class="co"># for the latest version</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"RinteRface/shinyMobile"</span>)</pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"RinteRface/shinyMobile"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="cheatsheet" class="section level2">
 <h2 class="hasAnchor">
@@ -212,7 +213,7 @@
 <div id="configuration" class="section level3">
 <h3 class="hasAnchor">
 <a href="#configuration" class="anchor"></a>Configuration</h3>
-<p>shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> and the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat">script</a>. The last 3 parameters of <code><a href="reference/f7Page.html">f7Page()</a></code> are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> if <code>allowPWA</code> is <code>TRUE</code> (it leverages the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat">script</a>).</p>
 <p>Below is an example showing the manifest.json file:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">{</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
@@ -254,7 +255,7 @@
 <span id="cb2-38"><a href="#cb2-38"></a>    <span class="op">}</span></span>
 <span id="cb2-39"><a href="#cb2-39"></a>  ]</span>
 <span id="cb2-40"><a href="#cb2-40"></a><span class="op">}</span></span></code></pre></div>
-<p>Be sure to replace the <code>start_url</code> with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. FInally, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</p>
+<p>Be sure to replace the <code>start_url</code> with your own app url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. Finally, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</p>
 </div>
 <div id="add-the-pwa-to-your-desktop-apps" class="section level3">
 <h3 class="hasAnchor">
@@ -334,7 +335,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

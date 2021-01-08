@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 Toolbar — f7Toolbar • shinyMobile</title>
+<title>Framework7 Toolbar — f7Toolbar • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Framework7 Toolbar — f7Toolbar" />
-<meta property="og:description" content="Build a Framework7 Toolbar" />
+<meta property="og:title" content="Framework7 Toolbar — f7Toolbar" />
+<meta property="og:description" content="f7Toolbar is a layout element located at the bottom or top. It is
+internally used by f7Tabs." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -132,7 +133,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -162,23 +163,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 Toolbar</h1>
+    <h1>Framework7 Toolbar</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Toolbar.R'><code>R/f7Toolbar.R</code></a></small>
     <div class="hidden name"><code>f7Toolbar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Build a Framework7 Toolbar</p>
+    <p>f7Toolbar is a layout element located at the bottom or top. It is
+internally used by <a href='f7Tabs.html'>f7Tabs</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Toolbar</span>(
-  <span class='no'>...</span>,
-  <span class='kw'>position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"top"</span>, <span class='st'>"bottom"</span>),
-  <span class='kw'>hairline</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>shadow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>icons</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>scrollable</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>f7Toolbar</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"top"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>,
+  hairline <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  shadow <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  icons <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  scrollable <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,6 +211,9 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -225,7 +230,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

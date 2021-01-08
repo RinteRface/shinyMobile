@@ -3,7 +3,7 @@
 \name{f7Sheet}
 \alias{f7Sheet}
 \alias{updateF7Sheet}
-\title{Create an f7 sheet modal}
+\title{Framework7 sheet}
 \usage{
 f7Sheet(
   ...,
@@ -47,9 +47,9 @@ Need either swipeToClose or swipeToStep set to TRUE to work.}
 \item{session}{Shiny session object}
 }
 \description{
-Create an f7 sheet modal
+\link{f7Sheet} creates an f7 sheet modal window.
 
-Update a framework 7 sheet modal
+\link{updateF7Sheet} toggles a \link{f7Sheet} on the client.
 }
 \note{
 The sheet modal has to be used in combination with \link{updateF7Sheet}.
@@ -57,6 +57,7 @@ Yet, if you need a specific trigger, simply add \code{`data-sheet` = paste0("#",
 to the tag of your choice (a button), where id refers to the sheet unique id.
 }
 \examples{
+# Toggle sheet modal
 if (interactive()) {
  library(shiny)
  library(shinyMobile)

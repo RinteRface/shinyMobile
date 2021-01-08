@@ -2,7 +2,7 @@
 % Please edit documentation in R/typography.R
 \name{f7Margin}
 \alias{f7Margin}
-\title{Create a Framework7 margin}
+\title{Framework7 margin utility}
 \usage{
 f7Margin(tag, side = NULL)
 }
@@ -14,7 +14,7 @@ f7Margin(tag, side = NULL)
 Leave NULL to apply on all sides.}
 }
 \description{
-Build a Framework7 margin
+\link{f7Margin} adds a margin to the given tag.
 }
 \examples{
 if(interactive()){

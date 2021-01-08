@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7PhotoBrowser.R
 \name{f7PhotoBrowser}
 \alias{f7PhotoBrowser}
-\title{Create a fremework7 photo browser}
+\title{Framework7 photo browser}
 \usage{
 f7PhotoBrowser(
   photos,
@@ -24,7 +24,7 @@ f7PhotoBrowser(
 \item{session}{Shiny session object.}
 }
 \description{
-Create a fremework7 photo browser
+A nice photo browser.
 }
 \examples{
 if (interactive()) {

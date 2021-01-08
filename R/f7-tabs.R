@@ -528,8 +528,11 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 
 
 
-#' Insert a \link{f7Tab} in a \link{f7Tabs}
+#' Framework7 tab insertion
 #'
+#' \link{f7InsertTab} is deprecated. Inserts a \link{f7Tab} in a \link{f7Tabs}.
+#'
+#' @rdname inserttab
 #' @param id  \link{f7Tabs} id.
 #' @param tab \link{f7Tab} to insert.
 #' @param target \link{f7Tab} after of before which the new tab will be inserted.
@@ -594,6 +597,14 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 f7InsertTab <- function(id, tab, target, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
+  .Deprecated(
+    "insertF7Tab",
+    package = "shinyMobile",
+    "f7InsertTab will be removed in future release. Please use
+    insertF7Tab instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+
   # in shinyMobile, f7Tab returns a list of 3 elements:
   # - 1 is the tag\
   # - 2 is the icon name
@@ -641,13 +652,24 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 }
 
 
+#' Framework7 tab insertion
+#'
+#' \link{insertF7Tab} inserts a \link{f7Tab} in a \link{f7Tabs}.
+#' @rdname inserttab
+#' @export
+insertF7Tab <- f7InsertTab
 
 
-#' Remove a \link{f7Tab} in a \link{f7Tabs}
+
+#' Framework7 tab deletion
+#'
+#' \link{f7RemoveTab} is deprecated. It removes a \link{f7Tab} in a \link{f7Tabs}.
 #'
 #' @param id  \link{f7Tabs} id.
 #' @param target \link{f7Tab} to remove.
 #' @param session Shiny session object.
+#'
+#' @rdname removetab
 #'
 #' @export
 #'
@@ -705,6 +727,14 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 #' }
 f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain()) {
 
+
+  .Deprecated(
+    "removeF7Tab",
+    package = "shinyMobile",
+    "f7RemoveTab will be removed in future release. Please use
+    removeF7Tab instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
   # tabsetpanel namespace
   ns <- id
 
@@ -724,3 +754,11 @@ f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain())
   session$sendCustomMessage(type = id, message = message)
 
 }
+
+
+#' Framework7 tab deletion
+#'
+#' \link{removeF7Tab} removes a \link{f7Tab} in a \link{f7Tabs}.
+#' @rdname removetab
+#' @export
+removeF7Tab <- f7RemoveTab

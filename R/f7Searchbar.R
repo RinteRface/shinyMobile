@@ -1,4 +1,6 @@
-#' Create a Framework 7 searchbar
+#' Framework 7 searchbar
+#'
+#' Searchbar to filter elements in a page.
 #'
 #' @param id Necessary when using \link{f7SearchbarTrigger}. NULL otherwise.
 #' @param placeholder Searchbar placeholder.
@@ -142,9 +144,11 @@ f7Searchbar <- function(id, placeholder = "Search", expandable = FALSE, inline =
 
 
 
-#' Create a Framework 7 searchbar trigger
+#' Framework 7 searchbar trigger
 #'
-#' @param targetId Id of the \link{f7Searchbar}
+#' Element that triggers the searchbar.
+#'
+#' @param targetId Id of the \link{f7Searchbar}.
 #' @export
 #'
 #' @examples

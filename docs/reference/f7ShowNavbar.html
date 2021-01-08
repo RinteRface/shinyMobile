@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show a framework7 navbar — f7ShowNavbar • shinyMobile</title>
+<title>Show a Framework7 navbar — f7ShowNavbar • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Show a framework7 navbar — f7ShowNavbar" />
-<meta property="og:description" content="Show a framework7 navbar" />
+<meta property="og:title" content="Show a Framework7 navbar — f7ShowNavbar" />
+<meta property="og:description" content="f7ShowNavbar shows a f7Navbar component from the
+server. Deprecated, use updateF7Navbar instead." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -132,7 +133,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -162,59 +163,32 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show a framework7 navbar</h1>
+    <h1>Show a Framework7 navbar</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Navbar.R'><code>R/f7Navbar.R</code></a></small>
     <div class="hidden name"><code>f7ShowNavbar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Show a framework7 navbar</p>
+    <p>f7ShowNavbar shows a <a href='f7Navbar.html'>f7Navbar</a> component from the
+server. Deprecated, use <a href='f7Navbar.html'>updateF7Navbar</a> instead.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ShowNavbar</span>(<span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>(), <span class='kw'>animate</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7ShowNavbar</span><span class='op'>(</span>animate <span class='op'>=</span> <span class='cn'>TRUE</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>session</th>
-      <td><p>Shiny session object.</p></td>
-    </tr>
-    <tr>
       <th>animate</th>
       <td><p>Whether it should be hidden with animation or not. By default is TRUE.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
-
- <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-       <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Accordions"</span>,
-       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-          <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='st'>"Hide/Show navbar"</span>),
-          <span class='fu'><a href='f7Segment.html'>f7Segment</a></span>(
-             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"hide"</span>, <span class='st'>"Hide navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>),
-             <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"show"</span>, <span class='st'>"Show navbar"</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
-          )
-       )
-    ),
-    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>hide</span>, {
-          <span class='fu'><a href='f7HideNavbar.html'>f7HideNavbar</a></span>()
-       })
-
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>show</span>, {
-          <span class='fu'>f7ShowNavbar</span>()
-       })
-    }
- )
-}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -230,7 +204,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

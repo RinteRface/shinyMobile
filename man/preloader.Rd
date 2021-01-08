@@ -2,8 +2,10 @@
 % Please edit documentation in R/f7Preloader.R
 \name{f7ShowPreloader}
 \alias{f7ShowPreloader}
+\alias{showF7Preloader}
 \alias{f7HidePreloader}
-\title{Show preloader}
+\alias{hideF7Preloader}
+\title{Framework7 preloader}
 \usage{
 f7ShowPreloader(
   target = NULL,
@@ -11,7 +13,15 @@ f7ShowPreloader(
   session = shiny::getDefaultReactiveDomain()
 )
 
+showF7Preloader(
+  target = NULL,
+  color = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
+
 f7HidePreloader(target = NULL, session = shiny::getDefaultReactiveDomain())
+
+hideF7Preloader(target = NULL, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{target}{Element where preloader overlay will be added.}
@@ -21,9 +31,13 @@ f7HidePreloader(target = NULL, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-Show preloader
+Deprecated. \link{f7ShowPreloader} shows a preloader.
 
-Hide preloader
+\link{showF7Preloader} shows a preloader.
+
+Deprecated. \link{f7HidePreloader} hides a preloader.
+
+\link{hideF7Preloader} hides a preloader.
 }
 \examples{
 if (interactive()) {

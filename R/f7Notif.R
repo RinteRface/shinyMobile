@@ -1,4 +1,6 @@
-#' Create a Framework7 notification
+#' Framework7 notification
+#'
+#' Notification with title, text, icon and more.
 #'
 #' @param text Notification content.
 #' @param icon Notification icon.
@@ -33,8 +35,7 @@
 #'           icon = f7Icon("bolt_fill"),
 #'           title = "Notification",
 #'           subtitle = "A subtitle",
-#'           titleRightText = "now",
-#'           session = session
+#'           titleRightText = "now"
 #'         )
 #'       })
 #'     }

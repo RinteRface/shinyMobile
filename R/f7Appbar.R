@@ -1,6 +1,6 @@
-#' Create a Framework 7 appbar
+#' Framework7 appbar
 #'
-#' Displayed on top of \link{f7Navbar}. Interestingly, \link{f7Appbar} can also
+#' \link{f7Appbar} is displayed on top of \link{f7Navbar}. \link{f7Appbar} can also
 #' trigger \link{f7Panel}.
 #'
 #' @param ... Any UI content such as \link{f7Searchbar}, \link{f7Next} and
@@ -8,6 +8,8 @@
 #' \link{f7Back} in a \link{f7Flex}.
 #' @param leftPanel Whether to enable the left panel. FALSE by default.
 #' @param rightPanel Whether to enable the right panel. FALSE by default.
+#'
+#' @rdname appbar
 #'
 #' @export
 #' @examples
@@ -98,11 +100,12 @@ f7Appbar <- function(..., leftPanel = FALSE, rightPanel = FALSE) {
 
 
 
-#' Create a framework 7 back button
+#' Framework7 back button
 #'
-#' This buttons allows to switch between multiple \link{f7Tab}.
+#' \link{f7Back} is a button to go back in \link{f7Tabs}.
 #'
 #' @param targetId \link{f7Tabs} id.
+#' @rdname appbar
 #' @export
 f7Back <- function(targetId) {
 
@@ -151,11 +154,12 @@ f7Back <- function(targetId) {
 
 
 
-#' Create a framework 7 next button
+#' Framework7 next button
 #'
-#' This buttons allows to switch between multiple \link{f7Tab}.
+#' \link{f7Next} is a button to go next in \link{f7Tabs}.
 #'
 #' @param targetId \link{f7Tabs} id.
+#' @rdname appbar
 #' @export
 f7Next <- function(targetId) {
 

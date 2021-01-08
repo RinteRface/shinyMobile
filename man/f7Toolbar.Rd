@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Toolbar.R
 \name{f7Toolbar}
 \alias{f7Toolbar}
-\title{Create a Framework7 Toolbar}
+\title{Framework7 Toolbar}
 \usage{
 f7Toolbar(
   ...,
@@ -27,7 +27,8 @@ f7Toolbar(
 \item{scrollable}{Whether to allow scrolling. FALSE by default.}
 }
 \description{
-Build a Framework7 Toolbar
+\link{f7Toolbar} is a layout element located at the bottom or top. It is
+internally used by \link{f7Tabs}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

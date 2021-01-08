@@ -2,7 +2,7 @@
 % Please edit documentation in R/typography.R
 \name{f7Float}
 \alias{f7Float}
-\title{Create a Framework7 float}
+\title{Framework7 float utility}
 \usage{
 f7Float(tag, side = c("left", "right"))
 }
@@ -12,7 +12,7 @@ f7Float(tag, side = c("left", "right"))
 \item{side}{Side to float: "left" or "right".}
 }
 \description{
-Build a Framework7 float
+\link{f7Float} is an alignment utility for items.
 }
 \examples{
 if(interactive()){

@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Toast.R
 \name{f7Toast}
 \alias{f7Toast}
-\title{Create a Framework7 toast}
+\title{Framework7 toast}
 \usage{
 f7Toast(
   text,
@@ -35,7 +35,7 @@ Adding icon will hide the close button.}
 \item{session}{Shiny session.}
 }
 \description{
-Create a Framework7 toast
+\link{f7Toast} creates a small toast notification from the server side.
 }
 \examples{
 if (interactive()) {

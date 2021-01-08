@@ -1,13 +1,16 @@
-#' Create a Framework7 accordion
+#' Framework7 accordion container
 #'
-#' Build a Framework7 accordion
+#' \link{f7Accordion} creates an interactive accordion container.
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
 #' @param id Optional id to recover the state of the accordion.
 #' @param multiCollapse Whether to open multiple items at the same time. FALSE
 #' by default.
 #'
+#' @rdname accordion
+#'
 #' @examples
+#' # Accordion
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -82,17 +85,16 @@ f7Accordion <- function(..., id = NULL, multiCollapse = FALSE) {
 
 
 
-#' Create a Framework7 accordion item
+#' Framework7 accordion item
 #'
-#' Build a Framework7 accordion item
+#' \link{f7AccordionItem} is to be inserted in \link{f7Accordion}.
 #'
 #' @param ... Item content such as \link{f7Block} or any f7 element.
 #' @param title Item title.
 #' @param open Whether the item is open at start. FALSE by default.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
-#'
 #' @export
+#' @rdname accordion
 f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 
   accordionCl <- "accordion-item"
@@ -120,17 +122,19 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 
 
 
-#' Update a Framework 7 accordion
+#' Update Framework 7 accordion
+#'
+#' \link{updateF7Accordion} toggles a \link{f7Accordion} on the client.
 #'
 #' @param id Accordion instance.
 #' @param selected Index of item to select.
 #' @param session Shiny session object
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
+#' @rdname accordion
 #'
 #' @examples
+#' # Update accordion
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)

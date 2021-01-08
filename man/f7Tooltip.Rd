@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Tooltip.R
 \name{f7Tooltip}
 \alias{f7Tooltip}
-\title{Create a Framework7 tooltip}
+\title{Framework7 tooltip}
 \usage{
 f7Tooltip(tag, text)
 }
@@ -12,7 +12,7 @@ f7Tooltip(tag, text)
 \item{text}{Tooltip content.}
 }
 \description{
-This uses the auto init framework 7 tooltip
+\link{f7Tooltip} creates a tooltip, UI side.
 }
 \examples{
 if (interactive()) {

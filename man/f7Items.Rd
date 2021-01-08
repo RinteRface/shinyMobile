@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7Items}
 \alias{f7Items}
-\title{Create a Framework7 wrapper for \link{f7Item}}
+\title{Framework7 item container}
 \usage{
 f7Items(...)
 }

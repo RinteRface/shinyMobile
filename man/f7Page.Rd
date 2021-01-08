@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7Page}
 \alias{f7Page}
-\title{Create a Framework7 page}
+\title{Framework7 page container}
 \usage{
 f7Page(
   ...,
@@ -67,7 +67,7 @@ In any case, you must follow the same structure as provided in the function argu
 \item{allowPWA}{Whether to include PWA dependencies. Default to FALSE.}
 }
 \description{
-Build a Framework7 page
+\link{f7Page} is the main app container.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

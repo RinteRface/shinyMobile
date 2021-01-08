@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Badge.R
 \name{f7Badge}
 \alias{f7Badge}
-\title{Create a Framework7 badge}
+\title{Framework7 badge}
 \usage{
 f7Badge(..., color = NULL)
 }
@@ -12,7 +12,7 @@ f7Badge(..., color = NULL)
 \item{color}{Badge color: see here for valid colors \url{https://framework7.io/docs/badge.html}.}
 }
 \description{
-Build a Framework7 badge
+Container to highlight important information with color.
 }
 \examples{
 if(interactive()){

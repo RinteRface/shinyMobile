@@ -1,6 +1,6 @@
-#' Create a Framework7 tooltip
+#' Framework7 tooltip
 #'
-#' This uses the auto init framework 7 tooltip
+#' \link{f7Tooltip} creates a tooltip, UI side.
 #'
 #' @param tag Tooltip target.
 #' @param text Tooltip content.

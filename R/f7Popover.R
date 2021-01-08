@@ -1,4 +1,4 @@
-#' Create a framework 7 popover
+#' Framework7 popover
 #'
 #' \link{f7Popover} has to be used in an oberve
 #' or observeEvent context. Only works for input elements!
@@ -68,13 +68,13 @@ f7Popover <- function(targetId, content, session = shiny::getDefaultReactiveDoma
 
 
 
-#' Define a popover target
+#' Framework7 popover target
 #'
 #' This must be used in combination of \link{f7Popover}.
 #' Only works for input elements!
 #'
 #' @param tag Tag that will be targeted. Must be a f7Input element.
-#' @param targetId Popover id. Must correspond to the \link{f7Popover}targetId.
+#' @param targetId Popover id. Must correspond to the \link{f7Popover} targetId.
 #'
 #' @export
 f7PopoverTarget <- function(tag, targetId) {

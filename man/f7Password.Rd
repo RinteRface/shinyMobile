@@ -7,13 +7,13 @@
 f7Password(inputId, label, value = "", placeholder = NULL)
 }
 \arguments{
-\item{inputId}{Text input id.}
+\item{inputId}{The id of the input object.}
 
-\item{label}{Text input label.}
+\item{label}{The label to set for the input object.}
 
-\item{value}{Text input value.}
+\item{value}{The value to set for the input object.}
 
-\item{placeholder}{Text input placeholder.}
+\item{placeholder}{The placeholder to set for the input object.}
 }
 \description{
 Create an f7 password input

@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Popover.R
 \name{f7Popover}
 \alias{f7Popover}
-\title{Create a framework 7 popover}
+\title{Framework7 popover}
 \usage{
 f7Popover(targetId, content, session = shiny::getDefaultReactiveDomain())
 }

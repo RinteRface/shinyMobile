@@ -1,6 +1,6 @@
-#' Create a framework7 swipeout element
+#' Framework7 swipeout element
 #'
-#' To be used in combination with \link{f7ListItem}
+#' \link{f7Swipeout} is designed to be used in combination with \link{f7ListItem}.
 #'
 #' @param tag Tag to be swiped.
 #' @param ... When side is either "right" or "left" use this slot to pass
@@ -10,6 +10,7 @@
 #' @param side On which side to swipe: "left", "right" or "both".
 #'
 #' @export
+#' @rdname swipeout
 #'
 #' @examples
 #' if (interactive()) {
@@ -85,15 +86,16 @@ f7Swipeout <- function(tag, ...,left = NULL, right = NULL, side = c("left", "rig
 
 
 
-#' Create a framework7 swipeout item
+#' Framework7 swipeout item
 #'
-#' Insert in \link{f7Swipeout}
+#' \link{f7SwipeoutItem} is inserted in \link{f7Swipeout}.
 #'
 #' @param id  Item unique id.
 #' @param label Item label.
 #' @param color Item color.
 #'
 #' @export
+#' @rdname swipeout
 f7SwipeoutItem <- function(id, label, color = NULL) {
 
   itemCl <- if (!is.null(color)) paste0("color-", color)

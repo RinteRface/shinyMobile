@@ -1,4 +1,6 @@
-#' Create a fremework7 photo browser
+#' Framework7 photo browser
+#'
+#' A nice photo browser.
 #'
 #' @param photos List of photos
 #' @param theme Browser theme: choose either light or dark.

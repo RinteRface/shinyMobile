@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Fab.R
 \name{f7FabClose}
 \alias{f7FabClose}
-\title{Indicate that the current tag should close the \link{f7Fabs}}
+\title{Framework7 FAB close}
 \usage{
 f7FabClose(tag)
 }
@@ -10,5 +10,5 @@ f7FabClose(tag)
 \item{tag}{Target tag.}
 }
 \description{
-Indicate that the current tag should close the \link{f7Fabs}
+\link{f7FabClose} indicates that the current tag should close the \link{f7Fabs}.
 }

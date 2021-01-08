@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Link.R
 \name{f7Link}
 \alias{f7Link}
-\title{Create a Framework7 link}
+\title{Framework7 link}
 \usage{
 f7Link(label, href, icon = NULL)
 }
@@ -14,7 +14,7 @@ f7Link(label, href, icon = NULL)
 \item{icon}{Link icon, if any.}
 }
 \description{
-Build a Framework7 link
+Link to point toward external content.
 }
 \examples{
 if(interactive()){

@@ -2,16 +2,13 @@
 % Please edit documentation in R/f7Swiper.R
 \name{f7Slide}
 \alias{f7Slide}
-\title{Create a Framework7 slide}
+\title{Framework7 slide}
 \usage{
 f7Slide(...)
 }
 \arguments{
-\item{...}{Any element.}
+\item{...}{Slide content. Any element.}
 }
 \description{
-Build a Framework7 slide
-}
-\author{
-David Granjon, \email{dgranjon@ymail.com}
+\link{f7Slide} is a \link{f7Swiper} element.
 }

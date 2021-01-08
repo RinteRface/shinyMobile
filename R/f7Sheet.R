@@ -1,4 +1,6 @@
-#' Create an f7 sheet modal
+#' Framework7 sheet
+#'
+#' \link{f7Sheet} creates an f7 sheet modal window.
 #'
 #' @param ... Sheet content. If wipeToStep is TRUE, these items will be visible at start.
 #' @param id Sheet unique id.
@@ -20,8 +22,9 @@
 #' Yet, if you need a specific trigger, simply add \code{`data-sheet` = paste0("#", id)},
 #' to the tag of your choice (a button), where id refers to the sheet unique id.
 #'
-#' @export
 #' @rdname sheet
+#'
+#' @export
 f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"),
                     swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
                     closeByOutsideClick = TRUE, swipeHandler = TRUE) {
@@ -108,13 +111,16 @@ f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"
 
 
 
-#' Update a framework 7 sheet modal
+#' Update Framework7 sheet modal
+#'
+#' \link{updateF7Sheet} toggles a \link{f7Sheet} on the client.
 #'
 #' @param id Sheet id.
 #' @param session Shiny session object
 #' @export
 #' @rdname sheet
 #' @examples
+#' # Toggle sheet modal
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)

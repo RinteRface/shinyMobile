@@ -1,6 +1,6 @@
-#' Create a Framework7 badge
+#' Framework7 badge
 #'
-#' Build a Framework7 badge
+#' Container to highlight important information with color.
 #'
 #' @param ... Badge content. Avoid long text.
 #' @param color Badge color: see here for valid colors \url{https://framework7.io/docs/badge.html}.

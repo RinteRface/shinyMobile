@@ -2,15 +2,15 @@
 % Please edit documentation in R/f7Block.R
 \name{f7BlockFooter}
 \alias{f7BlockFooter}
-\title{Create a Framework7 block footer}
+\title{Framework7 block footer}
 \usage{
 f7BlockFooter(text = NULL)
 }
 \arguments{
-\item{text}{Footer text.}
+\item{text}{Any text.}
 }
 \description{
-Build a Framework7 block footer
+\link{f7BlockFooter} creates a footer content for \link{f7Block}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

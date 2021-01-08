@@ -131,7 +131,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -165,33 +165,172 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-0809000" class="section level1">
-<h1 class="page-header" data-toc-text="0.8.0.9000">
-<a href="#shinymobile-0809000" class="anchor"></a>shinyMobile 0.8.0.9000<small> Unreleased </small>
+    <div id="shinymobile-2009000" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.9000">
+<a href="#shinymobile-2009000" class="anchor"></a>shinyMobile 2.0.0.9000<small> Unreleased </small>
 </h1>
+<div id="soft-deprecations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#soft-deprecations" class="anchor"></a>Soft Deprecations</h2>
+<ul>
+<li>
+<code><a href="../reference/f7Messages.html">f7AddMessages()</a></code> will become <code><a href="../reference/f7Messages.html">updateF7Messages()</a></code> in future release</li>
+<li>
+<code><a href="../reference/f7Navbar.html">f7HideNavbar()</a></code> and <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> will be replaced by <code><a href="../reference/f7Navbar.html">updateF7Navbar()</a></code>
+</li>
+<li>
+<code>f7ShowPopup()</code> will become <code><a href="../reference/f7Popup.html">updateF7Popup()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7checkBox.html">f7checkBox()</a></code> will become <code><a href="../reference/f7checkBox.html">f7Checkbox()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code> will become <code><a href="../reference/f7checkBoxGroup.html">f7CheckboxGroup()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> will become <code><a href="../reference/f7ValidateInput.html">validateF7Input()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/f7InsertTab.html">insertF7Tab()</a></code> and <code><a href="../reference/f7RemoveTab.html">removeF7Tab()</a></code>, respectively</li>
+<li>
+<code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code> will become <code><a href="../reference/f7ShowPreloader.html">showF7Preloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">hideF7Preloader()</a></code>, respectively.</li>
+</ul>
+</div>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<div id="inputs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inputs" class="anchor"></a>Inputs</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Fabs.html">updateF7Fabs()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="layout" class="section level3">
+<h3 class="hasAnchor">
+<a href="#layout" class="anchor"></a>Layout</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>: <strong>left_panel</strong> becomes <strong>leftPanel</strong> and <strong>right_panel</strong> <strong>rightPanel</strong>
+</li>
+<li>
+<code>f7Init()</code> removed. Now pass it through the <code><a href="../reference/f7Page.html">f7Page()</a></code> <strong>options</strong>
+</li>
+<li>
+<code><a href="../reference/f7Navbar.html">f7Navbar()</a></code>: <strong>left_panel</strong> becomes <strong>leftPanel</strong> and <strong>right_panel</strong> <strong>rightPanel</strong>
+</li>
+<li>
+<code><a href="../reference/f7Panel.html">f7Panel()</a></code> and <code><a href="../reference/f7Panel.html">updateF7Panel()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+<li>
+<code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="cards" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cards" class="anchor"></a>Cards</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Card.html">f7ExpandableCard()</a></code> and <code><a href="../reference/f7Card.html">f7Card()</a></code>: <strong>img</strong> becomes <strong>image</strong>
+</li>
+<li>
+<code><a href="../reference/f7Card.html">f7SocialCard()</a></code>: <strong>author_img</strong> becomes <strong>image</strong>
+</li>
+</ul>
+</div>
+<div id="lists" class="section level3">
+<h3 class="hasAnchor">
+<a href="#lists" class="anchor"></a>Lists</h3>
+<ul>
+<li>
+<code><a href="../reference/f7ListItem.html">f7ListItem()</a></code>: <strong>url</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/f7VirtualList.html">f7VirtualListItem()</a></code>: <strong>url</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: <strong>old_index</strong> and <strong>new_index</strong> become <strong>oldIndex</strong> and <strong>newIndex</strong>, respectively</li>
+</ul>
+</div>
+<div id="interactions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interactions" class="anchor"></a>Interactions</h3>
+<ul>
+<li>
+<strong>session</strong> not mandatory in <code><a href="../reference/f7Toast.html">f7Toast()</a></code>, <code><a href="../reference/f7Progress.html">updateF7Progress()</a></code>, … and has been swapped at the end of the parameters for more convenience</li>
+<li>
+<code><a href="../reference/f7Dialog.html">f7Dialog()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+<li>
+<code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="buttons" class="section level3">
+<h3 class="hasAnchor">
+<a href="#buttons" class="anchor"></a>Buttons</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Link.html">f7Link()</a></code>: <strong>external</strong> has been removed from (much simpler), <strong>src</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/f7Button.html">f7Button()</a></code>: <strong>src</strong> becomes <strong>href</strong>
+</li>
+</ul>
+</div>
+<div id="others" class="section level3">
+<h3 class="hasAnchor">
+<a href="#others" class="anchor"></a>Others</h3>
+<ul>
+<li>
+<strong>session</strong> swapped to the end in <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> and not mandatory. Default to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html">shiny::getDefaultReactiveDomain()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7Chip.html">f7Chip()</a></code>: <strong>icon_status</strong> becomes <strong>iconStatus</strong>, <strong>img</strong> becomes <strong>image</strong>
+</li>
+<li>
+<strong>inputId</strong> becomes <strong>id</strong> in <code><a href="../reference/f7Accordion.html">f7Accordion()</a></code> and <code><a href="../reference/f7Accordion.html">updateF7Accordion()</a></code>
+</li>
+<li>Remove <code>f7ProgressInf()</code> (useless)</li>
+<li>Change <code><a href="../reference/f7Swiper.html">f7Swiper()</a></code> API. New <strong>options</strong> parameter</li>
+<li>
+<code><a href="../reference/f7PhotoBrowser.html">f7PhotoBrowser()</a></code> is now called from the shiny server function. See help, <strong>id</strong> and <strong>label</strong> have been removed</li>
+<li>
+<strong>id</strong> mandatory for <code><a href="../reference/f7Searchbar.html">f7Searchbar()</a></code>
+</li>
+</ul>
+</div>
 </div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
-<li>update framework7 from 5.5.0 to 5.7.8</li>
-<li>add <code><a href="../reference/f7Menu.html">f7Menu()</a></code>, <code><a href="../reference/f7MenuItem.html">f7MenuItem()</a></code>, <code><a href="../reference/f7MenuDropdown.html">f7MenuDropdown()</a></code>, <code><a href="../reference/f7MenuDropdownDivider.html">f7MenuDropdownDivider()</a></code> and <code><a href="../reference/f7OpenMenuDropdown.html">f7OpenMenuDropdown()</a></code>: special buttons and dropdown elements, behaving like action buttons</li>
+<li>New <strong>allowPWA</strong> parameter in <code><a href="../reference/f7Page.html">f7Page()</a></code> so that we doesn’t oblige users to create a PWA</li>
+<li>
+<code><a href="../reference/f7Page.html">f7Page()</a></code> has a new <strong>options</strong> parameter as replacement of <code>f7Init()</code>. Much simpler to handle</li>
+<li>update framework7 from 5.5.0 to 5.7.14</li>
+<li>add <code><a href="../reference/f7Menu.html">f7Menu()</a></code>, <code><a href="../reference/f7Menu.html">f7MenuItem()</a></code>, <code><a href="../reference/f7Menu.html">f7MenuDropdown()</a></code>, <code><a href="../reference/f7Menu.html">f7MenuDropdownDivider()</a></code> and <code><a href="../reference/f7Menu.html">updateF7MenuDropdown()</a></code>: special buttons and dropdown elements, behaving like action buttons</li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Add choices to <code><a href="../reference/updateF7SmartSelect.html">updateF7SmartSelect()</a></code>: thanks <a href='https://github.com/Edireito'>@Edireito</a></li>
+<li>app instance accessible from anywhere is JS code</li>
+<li>New <strong>…</strong> parameter for <code><a href="../reference/f7PhotoBrowser.html">f7PhotoBrowser()</a></code>
+</li>
+<li>Add choices to <code><a href="../reference/f7SmartSelect.html">updateF7SmartSelect()</a></code>: thanks <a href='https://github.com/Edireito'>@Edireito</a></li>
+<li>Add disconnect toast if <code>shiny:disconnect</code> occurs. Gives ability to reload or reconnect</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/128'>#128</a> and <a href='https://github.com/RinteRface/shinyMobile/issues/140'>#140</a>: workerId issue in url. Thanks <a href='https://github.com/Tixierae'>@Tixierae</a> and <a href='https://github.com/ppagnone'>@ppagnone</a>.</li>
 <li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/104'>#104</a>: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a></li>
 </ul>
 </div>
@@ -213,18 +352,18 @@
 <ul>
 <li>
 <code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code>: type param becomes openIn to align with other inputs</li>
-<li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7AddMessages.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
+<li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7Messages.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
 <li>
 <code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
 <li>
-<code><a href="../reference/sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar)</li>
+<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> is still inserted in the UI side but can be triggered either on the server side in combination with <code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code> (see example) or on the UI side. Overall, this improves flexibility since user may choose any trigger element. In practice, any element having <code>data-sheet</code> pointing to the sheet id as well as the “sheet-open” css class may open it, instead of having a default trigger contained in the sheet. A use case may be to open a sheet in the tabbar (the trigger would be a <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> that is a special button styled for the tabbar)</li>
 <li>All update method for inputs : argument <code>session</code> is now optional and has been moved to the last position in function call</li>
 <li>
 <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>: type becomes openIn to align with the framework7 documentation</li>
 <li>remove parameter fill from <code><a href="../reference/f7Icon.html">f7Icon()</a></code> (not used)</li>
-<li>Rewrite <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. It has now an input associated giving the popup state (opened or closed) as well as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. label parameters has been removed. To create an <code><a href="../reference/f7Popup.html">f7Popup()</a></code> put the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> tag in you UI. On the server side call <code><a href="../reference/f7TogglePopup.html">f7TogglePopup()</a></code>. See documentation for a detailed example. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
+<li>Rewrite <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. It has now an input associated giving the popup state (opened or closed) as well as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. label parameters has been removed. To create an <code><a href="../reference/f7Popup.html">f7Popup()</a></code> put the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> tag in you UI. On the server side call <code><a href="../reference/f7Popup.html">f7TogglePopup()</a></code>. See documentation for a detailed example. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>
-<code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7HideNavbar.html">f7HideNavbar()</a></code> for consistancy</li>
+<code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7Navbar.html">f7HideNavbar()</a></code> for consistancy</li>
 <li>
 <code>f7NavbarShow()</code> renamed to <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> for consistancy</li>
 <li>In <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> valueText was removed. It does not make sense that the value can be accidentally different from the text displayed. valueText is then an internal parameter.</li>
@@ -239,22 +378,22 @@
 <ul>
 <li>new <code>input$shinyInfo</code> and <code>input$lastInputChanged</code> (see shinyMobile tools vignette for more details)</li>
 <li>
-<code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code> has input binding as well as an update function <code><a href="../reference/updateF7SmartSelect.html">updateF7SmartSelect()</a></code>
+<code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code> has input binding as well as an update function <code><a href="../reference/f7SmartSelect.html">updateF7SmartSelect()</a></code>
 </li>
-<li>new <code><a href="../reference/f7VirtualList.html">f7VirtualList()</a></code>, <code><a href="../reference/f7VirtualListItem.html">f7VirtualListItem()</a></code>, <code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: high performance list with caching system -&gt; faster rendering (up to 10x faster than <code><a href="../reference/f7List.html">f7List()</a></code>). Ability to add item(s), remove item(s), move item, filter items, …</li>
+<li>new <code><a href="../reference/f7VirtualList.html">f7VirtualList()</a></code>, <code><a href="../reference/f7VirtualList.html">f7VirtualListItem()</a></code>, <code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: high performance list with caching system -&gt; faster rendering (up to 10x faster than <code><a href="../reference/f7List.html">f7List()</a></code>). Ability to add item(s), remove item(s), move item, filter items, …</li>
 <li>new messagebar parameter to <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. This allows to use the <code>f7Messagebar()</code> in a tabs layout configuration.</li>
 <li>new <code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> function to validate input from the server side (similar to shinyFeedback but internal to shinyMobile and without dependencies)</li>
-<li>new <code><a href="../reference/authentication.html">f7Login()</a></code> and <code><a href="../reference/authentication.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
+<li>new <code><a href="../reference/f7Login.html">f7Login()</a></code> and <code><a href="../reference/f7Login.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
 <li>
 <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.</li>
 <li>update <code><a href="../reference/f7Icon.html">f7Icon()</a></code> and icons dependencies. thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
-<li>new <code><a href="../reference/updateF7DatePicker.html">updateF7DatePicker()</a></code>: thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
+<li>new <code><a href="../reference/f7DatePicker.html">updateF7DatePicker()</a></code>: thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
 <li>add input binding to <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> to get the status of the container</li>
-<li>add <code><a href="../reference/updateF7Button.html">updateF7Button()</a></code> and <code><a href="../reference/updateF7Fabs.html">updateF7Fabs()</a></code>
+<li>add <code><a href="../reference/f7Button.html">updateF7Button()</a></code> and <code><a href="../reference/f7Fabs.html">updateF7Fabs()</a></code>
 </li>
-<li>new pullToRefresh parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code>. Pull the screen from top to bottom fires <code>input$ptr</code> which becomes TRUE. When the pull to refresh event is finished, <code>input$ptr</code> is NULL. Useful to trigger events in an observeEvent</li>
-<li>add new <code><a href="../reference/updateF7Select.html">updateF7Select()</a></code>: thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a> for the suggestion</li>
-<li>add <code><a href="../reference/f7TogglePopup.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
+<li>new pullToRefresh parameter to <code>f7Init()</code>. Pull the screen from top to bottom fires <code>input$ptr</code> which becomes TRUE. When the pull to refresh event is finished, <code>input$ptr</code> is NULL. Useful to trigger events in an observeEvent</li>
+<li>add new <code><a href="../reference/f7Select.html">updateF7Select()</a></code>: thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a> for the suggestion</li>
+<li>add <code><a href="../reference/f7Popup.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>add <code><a href="../reference/preview_mobile.html">preview_mobile()</a></code>: function that previews your app in a seleted range of devices (iphone, samsung, htc, …)</li>
 <li>redesign the way inputs options are passed from R to Javascript. This does not have impact on the user side but improves security and code quality</li>
 </ul>
@@ -266,13 +405,13 @@
 <li>add new <code><a href="../reference/f7File.html">f7File()</a></code> for file upload. See shiny <code>fileInput</code>
 </li>
 <li>add new <code><a href="../reference/f7DownloadButton.html">f7DownloadButton()</a></code> to work properly with the shiny <code>downloadHandler</code> function. Thanks <a href='https://github.com/bwganblack'>@bwganblack</a> for the report</li>
-<li>add new tapHoldDelay parameter to <code><a href="../reference/f7Init.html">f7Init()</a></code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
-<li>new <code><a href="../reference/preloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/preloader.html">f7HidePreloader()</a></code>
+<li>add new tapHoldDelay parameter to <code>f7Init()</code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
+<li>new <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code>
 </li>
-<li>new <code><a href="../reference/f7TextArea.html">f7TextArea()</a></code> input and <code><a href="../reference/updateF7Text.html">updateF7TextArea()</a></code> on the server side</li>
+<li>new <code><a href="../reference/f7TextArea.html">f7TextArea()</a></code> input and <code><a href="../reference/f7TextArea.html">updateF7TextArea()</a></code> on the server side</li>
 <li>add block title for <code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code> and <code><a href="../reference/f7Radio.html">f7Radio()</a></code>
 </li>
-<li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/sheet.html">f7Sheet()</a></code>)</li>
+<li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>)</li>
 <li>add new active parameter to <code><a href="../reference/f7Button.html">f7Button()</a></code>
 </li>
 <li>add new strong parameter to <code><a href="../reference/f7Segment.html">f7Segment()</a></code>
@@ -280,7 +419,7 @@
 <li>Improve website. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
 <li>new fullsize and closeButton parameter to <code><a href="../reference/f7Popup.html">f7Popup()</a></code> + rewrite js binding. Thanks <a href='https://github.com/pvictor'>@pvictor</a></li>
 <li>add extra parameters to <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code>: direction, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText, header and headerPlaceholder</li>
-<li>add new parameters to <code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code>. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a> for the suggestion</li>
+<li>add new parameters to <code><a href="../reference/f7Gauge.html">updateF7Gauge()</a></code>. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a> for the suggestion</li>
 <li>add noSwipping argument to <code><a href="../reference/f7Slider.html">f7Slider()</a></code> to prevent wrong behaviour when used in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
 </li>
 <li>
@@ -288,26 +427,26 @@
 <li>add hidden argument to <code><a href="../reference/f7Tab.html">f7Tab()</a></code>: allows to navigate through hidden tabs without displaying them in the tab menu. Thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a></li>
 <li>add closeOnSelect param to <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>
 </li>
-<li>add new parameters to <code><a href="../reference/f7Picker.html">f7Picker()</a></code> and <code><a href="../reference/updateF7Picker.html">updateF7Picker()</a></code>: rotateEffect, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText and sheetSwipeToClose</li>
+<li>add new parameters to <code><a href="../reference/f7Picker.html">f7Picker()</a></code> and <code><a href="../reference/f7Picker.html">updateF7Picker()</a></code>: rotateEffect, openIn, scrollToInput, closeByOutsideClick, toolbar, toolbarCloseText and sheetSwipeToClose</li>
 <li>add color argument to <code><a href="../reference/f7Icon.html">f7Icon()</a></code>
 </li>
 <li>add selected parameter to <code><a href="../reference/f7Select.html">f7Select()</a></code>
 </li>
 <li>update framework7 to 5.3.0</li>
-<li>add color to <code><a href="../reference/updateF7Slider.html">updateF7Slider()</a></code>
+<li>add color to <code><a href="../reference/f7Slider.html">updateF7Slider()</a></code>
 </li>
 <li>add color to <code><a href="../reference/f7Slider.html">f7Slider()</a></code>
 </li>
 <li>add cheatsheet reference in the readme</li>
 <li>add <code><a href="../reference/f7Slider.html">f7Slider()</a></code> labels (remove enableLabels param)</li>
-<li>add step, scaleSteps and scaleSubSteps to <code><a href="../reference/updateF7Slider.html">updateF7Slider()</a></code>
+<li>add step, scaleSteps and scaleSubSteps to <code><a href="../reference/f7Slider.html">updateF7Slider()</a></code>
 </li>
 <li>add scaleSteps, scaleSubSteps and verticalReversed to <code><a href="../reference/f7Slider.html">f7Slider()</a></code>
 </li>
-<li>add decimalPoint to <code><a href="../reference/updateF7Stepper.html">updateF7Stepper()</a></code>
+<li>add decimalPoint to <code><a href="../reference/f7Stepper.html">updateF7Stepper()</a></code>
 </li>
 <li>rework <code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: add 2 more parameters (decimalPoint and buttonsEndInputMode)</li>
-<li>hideNavOnPageScroll is set to FALSE by default in <code><a href="../reference/f7Init.html">f7Init()</a></code>. This improves perfomances on old devices</li>
+<li>hideNavOnPageScroll is set to FALSE by default in <code>f7Init()</code>. This improves perfomances on old devices</li>
 <li>improve <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> example (replace sliderInput by f7Slider)</li>
 <li>improve <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> example (replace sliderInput by f7Slider)</li>
 <li>improve <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code> example</li>
@@ -320,7 +459,7 @@
 <ul>
 <li>Fix issue in <code>updateF7AutoComplete</code>: text input was not updated. Thanks <a href='https://github.com/sanchez5674'>@sanchez5674</a> for the report</li>
 <li>Remove duplicated html tag in <code><a href="../reference/f7Page.html">f7Page()</a></code>. Thanks @ pvictor</li>
-<li>Fix issue in <code><a href="../reference/sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
+<li>Fix issue in <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
 <li>Fix issue in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>: if one put <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> inside a <code><a href="../reference/f7Tab.html">f7Tab()</a></code> in a parent <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset).</li>
 <li>Fix issue with <code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
 <li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
@@ -336,13 +475,13 @@
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/43'>#43</a>: slider label not visible on drag. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/42'>#42</a>: add vertical overflow to <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/41'>#41</a>: cannot render shiny outputs in <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Now <code><a href="../reference/f7Popup.html">f7Popup()</a></code> triggers shiny output rendering. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
-<li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/31'>#31</a>: <code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code> -&gt; wrong fraction for semi circle gauges.</li>
+<li>fix <a href='https://github.com/RinteRface/shinyMobile/issues/31'>#31</a>: <code><a href="../reference/f7Gauge.html">updateF7Gauge()</a></code> -&gt; wrong fraction for semi circle gauges.</li>
 <li>fix <code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: some options were not properly initialized (max, min, …)</li>
 <li>fix <code><a href="../reference/f7Slider.html">f7Slider()</a></code> example 2: wrong argument in help</li>
 <li>fix <code><a href="../reference/f7Icon.html">f7Icon()</a></code> example: wrong function name</li>
 <li>fix <code><a href="../reference/f7Row.html">f7Row()</a></code> example</li>
 <li>
-<code><a href="../reference/sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
+<code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>: hiddenItems is NULL by default</li>
 <li>Do no apply a magin bottom to the toolbar if there is no <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
 </li>
 </ul>
@@ -373,7 +512,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

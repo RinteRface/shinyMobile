@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Button.R
 \name{f7Segment}
 \alias{f7Segment}
-\title{Create a Framework7 segmented button container}
+\title{Framework7 segmented button container}
 \usage{
 f7Segment(
   ...,
@@ -24,7 +24,7 @@ f7Segment(
 \item{strong}{Strong style. FALSE by default.}
 }
 \description{
-Build a Framework7 segmented button container
+A Framework7 segmented button container for \link{f7Button}.
 }
 \examples{
 if(interactive()){

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a Framework7 dialog window — f7Dialog • shinyMobile</title>
+<title>Framework7 dialog window — f7Dialog • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a Framework7 dialog window — f7Dialog" />
-<meta property="og:description" content="Create a Framework7 dialog window" />
+<meta property="og:title" content="Framework7 dialog window — f7Dialog" />
+<meta property="og:description" content="f7Dialog generates a modal window." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -132,7 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -162,28 +162,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a Framework7 dialog window</h1>
+    <h1>Framework7 dialog window</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Dialog.R'><code>R/f7Dialog.R</code></a></small>
     <div class="hidden name"><code>f7Dialog.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create a Framework7 dialog window</p>
+    <p>f7Dialog generates a modal window.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Dialog</span>(
-  <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>text</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"alert"</span>, <span class='st'>"confirm"</span>, <span class='st'>"prompt"</span>, <span class='st'>"login"</span>),
-  <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>f7Dialog</span><span class='op'>(</span>
+  id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>text</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"alert"</span>, <span class='st'>"confirm"</span>, <span class='st'>"prompt"</span>, <span class='st'>"login"</span><span class='op'>)</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>inputId</th>
+      <th>id</th>
       <td><p>Input associated to the alert. Works when type is one of
 "confirm", "prompt" or "login".</p></td>
     </tr>
@@ -208,129 +208,126 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simple alert</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-    <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-      <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-        <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-        <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
-      )
-    ),
-    <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
-      <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-        <span class='fu'>f7Dialog</span>(
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is an alert dialog"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-        )
-      })
-    }
-  )
-}
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+      title <span class='op'>=</span> <span class='st'>"Simple Dialog"</span>,
+      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+        navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Dialog"</span><span class='op'>)</span>,
+        <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span><span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>,
+    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>goButton</span>,<span class='op'>{</span>
+        <span class='fu'>f7Dialog</span><span class='op'>(</span>
+         title <span class='op'>=</span> <span class='st'>"Dialog title"</span>,
+         text <span class='op'>=</span> <span class='st'>"This is an alert dialog"</span>
+        <span class='op'>)</span>
+      <span class='op'>}</span><span class='op'>)</span>
+    <span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
 <span class='co'># confirm alert</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Confirm Dialog"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Dialog"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'>f7Dialog</span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"test"</span>,
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
-         <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"confirm"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is an alert dialog"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>goButton</span>,<span class='op'>{</span>
+       <span class='fu'>f7Dialog</span><span class='op'>(</span>
+         id <span class='op'>=</span> <span class='st'>"test"</span>,
+         title <span class='op'>=</span> <span class='st'>"Dialog title"</span>,
+         type <span class='op'>=</span> <span class='st'>"confirm"</span>,
+         text <span class='op'>=</span> <span class='st'>"This is an alert dialog"</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>test</span>, {
-       <span class='fu'><a href='f7Toast.html'>f7Toast</a></span>(<span class='no'>session</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Alert input is:"</span>, <span class='no'>input</span>$<span class='no'>test</span>))
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>test</span>, <span class='op'>{</span>
+       <span class='fu'><a href='f7Toast.html'>f7Toast</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Alert input is:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>test</span><span class='op'>)</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-   }
- )
-}
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
 <span class='co'># prompt dialog</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"res"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Prompt Dialog"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Dialog"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span><span class='op'>)</span>,
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"res"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>prompt</span>)
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>prompt</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'>f7Dialog</span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"prompt"</span>,
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
-         <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"prompt"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is a prompt dialog"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>goButton</span>,<span class='op'>{</span>
+       <span class='fu'>f7Dialog</span><span class='op'>(</span>
+         id <span class='op'>=</span> <span class='st'>"prompt"</span>,
+         title <span class='op'>=</span> <span class='st'>"Dialog title"</span>,
+         type <span class='op'>=</span> <span class='st'>"prompt"</span>,
+         text <span class='op'>=</span> <span class='st'>"This is a prompt dialog"</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='no'>output</span>$<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span>(<span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>input</span>$<span class='no'>prompt</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='st'>"large"</span>))
-   }
- )
-}
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>prompt</span>, size <span class='op'>=</span> <span class='st'>"large"</span><span class='op'>)</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'># login dialog</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-   <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-     <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-       <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7Dialog"</span>),
-       <span class='fu'><a href='f7Button.html'>f7Button</a></span>(<span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span>),
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span>(<span class='st'>"ui"</span>)
-     )
-   ),
-   <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+     title <span class='op'>=</span> <span class='st'>"Login Dialog"</span>,
+     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Dialog"</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"goButton"</span>, <span class='st'>"Go!"</span><span class='op'>)</span>,
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"ui"</span><span class='op'>)</span>
+     <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span>({
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>input</span>$<span class='no'>login</span>)
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>login</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span>(<span class='no'>input</span>$<span class='no'>goButton</span>,{
-       <span class='fu'>f7Dialog</span>(
-         <span class='kw'>inputId</span> <span class='kw'>=</span> <span class='st'>"login"</span>,
-         <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Dialog title"</span>,
-         <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"login"</span>,
-         <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"This is an login dialog"</span>,
-         <span class='kw'>session</span> <span class='kw'>=</span> <span class='no'>session</span>
-       )
-     })
+     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>goButton</span>,<span class='op'>{</span>
+       <span class='fu'>f7Dialog</span><span class='op'>(</span>
+         id <span class='op'>=</span> <span class='st'>"login"</span>,
+         title <span class='op'>=</span> <span class='st'>"Dialog title"</span>,
+         type <span class='op'>=</span> <span class='st'>"login"</span>,
+         text <span class='op'>=</span> <span class='st'>"This is an login dialog"</span>
+       <span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='no'>output</span>$<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span>({
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span>(<span class='no'>input</span>$<span class='no'>login</span>$<span class='no'>user</span> <span class='kw'>==</span> <span class='st'>"David"</span> <span class='kw'>&amp;</span> <span class='no'>input</span>$<span class='no'>login</span>$<span class='no'>password</span> <span class='kw'>==</span> <span class='st'>"prout"</span>)
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(<span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"https://media2.giphy.com/media/12gfL8Xxrhv7C1fXiV/giphy.gif"</span>)
-     })
-   }
- )
-}</div></pre>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>login</span><span class='op'>$</span><span class='va'>user</span> <span class='op'>==</span> <span class='st'>"David"</span> <span class='op'>&amp;</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>login</span><span class='op'>$</span><span class='va'>password</span> <span class='op'>==</span> <span class='st'>"prout"</span><span class='op'>)</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>src <span class='op'>=</span> <span class='st'>"https://media2.giphy.com/media/12gfL8Xxrhv7C1fXiV/giphy.gif"</span><span class='op'>)</span>
+     <span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -346,7 +343,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

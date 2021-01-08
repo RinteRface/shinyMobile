@@ -1,6 +1,6 @@
-#' Create a Framework7 block
+#' Framework7 block
 #'
-#' Build a Framework7 block
+#' \link{f7Block} creates a block container.
 #'
 #' @param ... Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.
 #' @param hairlines Whether to allow hairlines. TRUE by default.
@@ -8,6 +8,7 @@
 #' @param inset Whether to set block inset. FALSE by default. Works only if strong is TRUE.
 #' @param tablet Whether to make block inset only on large screens. FALSE by default.
 #'
+#' @rdname block
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -112,9 +113,9 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 
 
 
-#' Create a Framework7 block title
+#' Framework7 block title
 #'
-#' Build a Framework7 block title
+#' \link{f7BlockTitle} creates a title for \link{f7Block}.
 #'
 #' @param title Block title.
 #' @param size Block title size. NULL by default or "medium", "large".
@@ -138,13 +139,12 @@ f7BlockTitle <- function(title = NULL, size = NULL) {
 
 
 
-#' Create a Framework7 block header
+#' Framework7 block header
 #'
-#' Build a Framework7 block header
+#' \link{f7BlockHeader} creates a header content for \link{f7Block}.
 #'
-#' @param text Header text.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @param text Any text.
+#' @rdname block
 #'
 #' @export
 f7BlockHeader <- function(text = NULL) {
@@ -152,11 +152,11 @@ f7BlockHeader <- function(text = NULL) {
 }
 
 
-#' Create a Framework7 block footer
+#' Framework7 block footer
 #'
-#' Build a Framework7 block footer
+#' \link{f7BlockFooter} creates a footer content for \link{f7Block}.
 #'
-#' @param text Footer text.
+#' @param text Any text.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'

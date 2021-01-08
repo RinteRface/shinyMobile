@@ -132,7 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -171,7 +171,7 @@
     <p>Create a framework 7 contact list</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7List</span>(<span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>inset</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>f7List</span><span class='op'>(</span><span class='va'>...</span>, mode <span class='op'>=</span> <span class='cn'>NULL</span>, inset <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,79 +192,80 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shiny</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>shinyMobile</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
-<span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span>(
-  <span class='kw'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span>(
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"My app"</span>,
-    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span>(
-      <span class='kw'>navbar</span> <span class='kw'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"f7List"</span>),
+<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7List"</span><span class='op'>)</span>,
 
       <span class='co'># simple list</span>
-      <span class='fu'>f7List</span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
-      ),
+      <span class='fu'>f7List</span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+      <span class='op'>)</span>,
 
       <span class='co'># list with complex items</span>
-      <span class='fu'>f7List</span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-            <span class='no'>letters</span>[<span class='no'>j</span>],
-            <span class='kw'>media</span> <span class='kw'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span>(<span class='st'>"alarm_fill"</span>),
-            <span class='kw'>right</span> <span class='kw'>=</span> <span class='st'>"Right Text"</span>,
-            <span class='kw'>header</span> <span class='kw'>=</span> <span class='st'>"Header"</span>,
-            <span class='kw'>footer</span> <span class='kw'>=</span> <span class='st'>"Footer"</span>
-          )
-        })
-      ),
+      <span class='fu'>f7List</span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span>
+            <span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span>,
+            media <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"alarm_fill"</span><span class='op'>)</span>,
+            right <span class='op'>=</span> <span class='st'>"Right Text"</span>,
+            header <span class='op'>=</span> <span class='st'>"Header"</span>,
+            footer <span class='op'>=</span> <span class='st'>"Footer"</span>
+          <span class='op'>)</span>
+        <span class='op'>}</span><span class='op'>)</span>
+      <span class='op'>)</span>,
 
       <span class='co'># list with complex items</span>
-      <span class='fu'>f7List</span>(
-        <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"media"</span>,
-        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(
-            <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>letters</span>[<span class='no'>j</span>],
-            <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"subtitle"</span>,
+      <span class='fu'>f7List</span><span class='op'>(</span>
+        mode <span class='op'>=</span> <span class='st'>"media"</span>,
+        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span>
+            title <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span>,
+            subtitle <span class='op'>=</span> <span class='st'>"subtitle"</span>,
             <span class='st'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Nulla sagittis tellus ut turpis condimentum, ut dignissim
             lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
             sit amet, pharetra sodales eros. Phasellus vel felis tellus.
             Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
             commodo augue id, pulvinar lacus."</span>,
-            <span class='kw'>media</span> <span class='kw'>=</span> <span class='no'>tags</span>$<span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reexports.html'>img</a></span>(
-             <span class='kw'>src</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(
-             <span class='st'>"https://cdn.framework7.io/placeholder/people-160x160-"</span>, <span class='no'>j</span>, <span class='st'>".jpg"</span>
-             )
-            ),
-            <span class='kw'>right</span> <span class='kw'>=</span> <span class='st'>"Right Text"</span>
-          )
-        })
-      ),
+            media <span class='op'>=</span> <span class='va'>tags</span><span class='op'>$</span><span class='fu'>img</span><span class='op'>(</span>
+             src <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
+             <span class='st'>"https://cdn.framework7.io/placeholder/people-160x160-"</span>, <span class='va'>j</span>, <span class='st'>".jpg"</span>
+             <span class='op'>)</span>
+            <span class='op'>)</span>,
+            right <span class='op'>=</span> <span class='st'>"Right Text"</span>
+          <span class='op'>)</span>
+        <span class='op'>}</span><span class='op'>)</span>
+      <span class='op'>)</span>,
 
       <span class='co'># list with links</span>
-      <span class='fu'>f7List</span>(
-        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) {
-          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='kw'>url</span> <span class='kw'>=</span> <span class='st'>"https://google.com"</span>, <span class='no'>letters</span>[<span class='no'>j</span>])
-        })
-      ),
+      <span class='fu'>f7List</span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span>url <span class='op'>=</span> <span class='st'>"https://google.com"</span>, <span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>
+        <span class='op'>}</span><span class='op'>)</span>
+      <span class='op'>)</span>,
 
       <span class='co'># grouped lists</span>
-      <span class='fu'>f7List</span>(
-        <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"contacts"</span>,
-        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>i</span>) {
-          <span class='fu'><a href='f7ListGroup.html'>f7ListGroup</a></span>(
-            <span class='kw'>title</span> <span class='kw'>=</span> <span class='no'>LETTERS</span>[<span class='no'>i</span>],
-            <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>function</span>(<span class='no'>j</span>) <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span>(<span class='no'>letters</span>[<span class='no'>j</span>]))
-          )
-        })
-      )
-    )
-  ),
-  <span class='kw'>server</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>) {}
- )
-}</div></pre>
+      <span class='fu'>f7List</span><span class='op'>(</span>
+        mode <span class='op'>=</span> <span class='st'>"contacts"</span>,
+        <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='fu'><a href='f7ListGroup.html'>f7ListGroup</a></span><span class='op'>(</span>
+            title <span class='op'>=</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>,
+            <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span> <span class='fu'><a href='f7ListItem.html'>f7ListItem</a></span><span class='op'>(</span><span class='va'>letters</span><span class='op'>[</span><span class='va'>j</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+          <span class='op'>)</span>
+        <span class='op'>}</span><span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -280,7 +281,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

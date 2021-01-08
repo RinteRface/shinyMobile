@@ -2,7 +2,7 @@
 % Please edit documentation in R/typography.R
 \name{f7Padding}
 \alias{f7Padding}
-\title{Create a Framework7 padding}
+\title{Framework7 padding utility}
 \usage{
 f7Padding(tag, side = NULL)
 }
@@ -14,7 +14,7 @@ f7Padding(tag, side = NULL)
 Leave NULL to apply on all sides.}
 }
 \description{
-Build a Framework7 padding
+\link{f7Padding} adds padding to the given tag.
 }
 \examples{
 if(interactive()){

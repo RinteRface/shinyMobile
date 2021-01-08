@@ -1,9 +1,13 @@
-#' Create a framework7 menu
+#' Framework7 menu container
+#'
+#' \link{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
 #'
 #' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropdown}.
 #' @export
+#' @rdname menu
 #'
 #' @examples
+#' # Menu container
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -31,7 +35,7 @@
 #'   ),
 #'   server = function(input, output, session) {
 #'     observeEvent(input$toggle, {
-#'       f7OpenMenuDropdown("menu1")
+#'       openF7MenuDropdown("menu1")
 #'     })
 #'
 #'     observeEvent(input$item1, {
@@ -57,9 +61,12 @@ f7Menu <- function(...) {
 
 
 
-#' Create a special action button for \link{f7Menu}.
+#' Framework7 menu item
 #'
-#' @param inputId Input id.
+#' \link{f7MenuItem} creates a special action button for \link{f7Menu}.
+#'
+#' @rdname menu
+#' @param inputId Menu item input id.
 #' @param label Button label.
 #' @export
 f7MenuItem <- function(inputId, label) {
@@ -73,13 +80,16 @@ f7MenuItem <- function(inputId, label) {
 
 
 
-#' Create dropdown menu for \link{f7Menu}.
+#' Framework7 dropdown menu
+#'
+#' \link{f7MenuDropdown} creates a dropdown menu for \link{f7Menu}.
 #'
 #' @param ... Slot for \link{f7MenuItem} and \link{f7MenuDropdownDivider}.
 #' @param id Dropdown menu id. This is required when once wants to programmatically toggle
-#' the dropdown on the server side with \link{f7OpenMenuDropdown}.
+#' the dropdown on the server side with \link{updateF7MenuDropdown}.
 #' @param label Button label.
 #' @param side Dropdown opening side. Choose among \code{c("left", "center", "right")}.
+#' @rdname menu
 #' @export
 f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "right")) {
 
@@ -112,7 +122,11 @@ f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "ri
 
 
 
-#' Dropdown divider for \link{f7MenuDropdown}.
+#' Framework7 dropdown menu divider
+#'
+#' \link{f7MenuDropdownDivider} creates a dropdown divider for \link{f7MenuDropdown}.
+#'
+#' @rdname menu
 #' @export
 f7MenuDropdownDivider <- function() {
   shiny::tags$div(class = "menu-dropdown-divider")
@@ -120,11 +134,14 @@ f7MenuDropdownDivider <- function() {
 
 
 
-#' Toggle \link{f7MenuDropdown} on the server side
+#' Update Framework7 menu
+#'
+#' \link{updateF7MenuDropdown} toggles \link{f7MenuDropdown} on the client.
 #'
 #' @param id Menu to target.
 #' @param session Shiny session object.
+#' @rdname menu
 #' @export
-f7OpenMenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()) {
+updateF7MenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(inputId = id, message = NULL)
 }

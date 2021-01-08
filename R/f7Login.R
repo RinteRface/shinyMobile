@@ -1,3 +1,5 @@
+#' Framework7 login screen
+#'
 #' Provide a template for authentication
 #'
 #' This function does not provide the backend features. You would
@@ -234,7 +236,10 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 }
 
 
-#' Useful server elements to fine tune the \link{f7Login} page
+#' Framework7 login server module
+#'
+#' \link{f7LoginServer} is a useful server elements to fine tune the
+#' \link{f7Login} page.
 #'
 #' @param input Shiny input object.
 #' @param output Shiny output object.
@@ -291,7 +296,9 @@ f7LoginServer <- function(input, output, session, ignoreInit = FALSE,
 }
 
 
-#' Toggle login page
+#' Activates Framework7 login.
+#'
+#' \link{updateF7Login} toggles a login page.
 #'
 #' @param id \link{f7Login} unique id.
 #' @param user Value of the user input.

@@ -1,4 +1,6 @@
-#' Create a Framework7 dialog window
+#' Framework7 dialog window
+#'
+#' \link{f7Dialog} generates a modal window.
 #'
 #' @param id Input associated to the alert. Works when type is one of
 #' "confirm", "prompt" or "login".
@@ -8,8 +10,6 @@
 #' @param session shiny session.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' # simple alert

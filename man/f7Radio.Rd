@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7-inputs.R
 \name{f7Radio}
 \alias{f7Radio}
-\title{Create an f7 radio button input}
+\title{Framework7 radio input}
 \usage{
 f7Radio(inputId, label, choices = NULL, selected = NULL)
 }
@@ -16,7 +16,7 @@ f7Radio(inputId, label, choices = NULL, selected = NULL)
 \item{selected}{Selected element. NULL by default.}
 }
 \description{
-Create an f7 radio button input
+Creates a radio button input.
 }
 \examples{
 if(interactive()){

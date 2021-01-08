@@ -353,6 +353,15 @@ $((function() {
         if (message.hideStatusbar == "true") hideStatusbar = true; else hideStatusbar = false;
         app.navbar.hide(".navbar", animate = animate, hideStatusbar = hideStatusbar);
     }));
+    Shiny.addCustomMessageHandler("toggle_navbar", (function(message) {
+        $navbar = $(".navbar");
+        var isHidden = $navbar.hasClass("navbar-hidden");
+        if (isHidden) {
+            app.navbar.show(".navbar", animate = message.animate);
+        } else {
+            app.navbar.hide(".navbar", animate = message.animate, hideStatusbar = message.hideStatusbar);
+        }
+    }));
     Shiny.addCustomMessageHandler("action-sheet", (function(message) {
         var grid;
         var buttonsId = message.id + "_button";

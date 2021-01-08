@@ -356,9 +356,10 @@ f7ListIndexItem <- htmltools::tags$li
 
 
 
-#' High performance list component
+#' Framework7 virtual list
 #'
-#' Use if many components in \link{f7List}
+#' \link{f7VirtualList} is a high performance list container.
+#' Use if you have too many components in \link{f7List}.
 #'
 #' @param id Virtual list unique id.
 #' @param items List items. Slot for \link{f7VirtualListItem}.
@@ -375,6 +376,7 @@ f7ListIndexItem <- htmltools::tags$li
 #' or could be modified.
 #'
 #' @export
+#' @rdname virtuallist
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -470,11 +472,12 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 }
 
 
-#' Virtual List item
+#' Framework7 virtual list item
 #'
-#' Item component for \link{f7VirtualList}
+#' \link{f7VirtualListItem} is an item component for \link{f7VirtualList}.
 #'
 #' @inheritParams f7ListItem
+#' @rdname virtuallist
 #' @export
 f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                               href = NULL, media = NULL, right = NULL) {

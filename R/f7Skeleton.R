@@ -1,4 +1,6 @@
-#' Create a Framework 7 skeleton loading overlay
+#' Framework 7 skeleton effect
+#'
+#' Nice loading overlay for UI elements.
 #'
 #' @param tag Tag to be modified.
 #' @param effect Choose between "fade", "blink" or "pulse".

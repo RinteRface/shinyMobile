@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7SplitLayout}
 \alias{f7SplitLayout}
-\title{Create a Framework7 split layout}
+\title{Framework7 split layout}
 \usage{
 f7SplitLayout(
   ...,

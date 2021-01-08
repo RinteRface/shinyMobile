@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Chips.R
 \name{f7Chip}
 \alias{f7Chip}
-\title{Create a Framework7 chips}
+\title{Framework7 chips}
 \usage{
 f7Chip(
   label = NULL,
@@ -30,10 +30,7 @@ f7Chip(
 \item{closable}{Whether to close the chip. FALSE by default.}
 }
 \description{
-Build a Framework7 chips
-}
-\note{
-Not ready for production color and icon isssues.
+\link{f7Chip} is an improved badge container.
 }
 \examples{
 if(interactive()){
@@ -44,7 +41,7 @@ if(interactive()){
   ui = f7Page(
     title = "Chips",
     f7SingleLayout(
-      navbar = f7Navbar(title = "f7Navbar"),
+      navbar = f7Navbar(title = "f7Chip"),
       f7Block(
         strong = TRUE,
         f7Chip(label = "simple Chip"),

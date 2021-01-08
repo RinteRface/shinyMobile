@@ -1,6 +1,8 @@
-#' Create a Framework7 gauge
+#' Framework7 gauge
 #'
-#' Build a Framework7 gauge
+#' \link{f7Gauge} creates a gauge instance.
+#'
+#' @rdname gauge
 #'
 #' @param id Gauge ID.
 #' @param type Gauge type. Can be "circle" or "semicircle". Default is "circle."
@@ -19,6 +21,7 @@
 #' @param labelFontWeight Label text font weight.
 #'
 #' @examples
+#' # Gauge
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -84,7 +87,11 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 
 
 
-#' update a framework7 gauge from the server side
+#' Update Framework7 gauge
+#'
+#' \link{updateF7Gauge} updates a framework7 gauge from the server side.
+#'
+#' @rdname gauge
 #'
 #' @param id Gauge id.
 #' @param value New value. Numeric between 0 and 100.

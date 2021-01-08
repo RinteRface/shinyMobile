@@ -1,6 +1,6 @@
-#' Create a Framework7 tapHold event
+#' Framework7 tapHold module
 #'
-#' Triggered after long press on an element.
+#' \link{f7TapHold} is triggered after long press on an element, from the server.
 #'
 #' @param target Element to apply the tapHold event on. Must be a jQuery selector,
 #' such as "#id" or ".class", ".class1, .class2", "a"...

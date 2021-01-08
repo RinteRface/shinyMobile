@@ -1,6 +1,6 @@
-#' Create a Framework7 chips
+#' Framework7 chips
 #'
-#' Build a Framework7 chips
+#' \link{f7Chip} is an improved badge container.
 #'
 #' @param label Chip label.
 #' @param image Chip image, if any.
@@ -9,8 +9,6 @@
 #' @param status Chip color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
 #' @param iconStatus Chip icon color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
 #' @param closable Whether to close the chip. FALSE by default.
-#'
-#' @note Not ready for production color and icon isssues.
 #'
 #' @examples
 #' if(interactive()){
@@ -21,7 +19,7 @@
 #'   ui = f7Page(
 #'     title = "Chips",
 #'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Navbar"),
+#'       navbar = f7Navbar(title = "f7Chip"),
 #'       f7Block(
 #'         strong = TRUE,
 #'         f7Chip(label = "simple Chip"),

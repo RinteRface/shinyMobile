@@ -89,7 +89,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
@@ -116,13 +116,14 @@
 
       
 
-      </header><script src="Single-Layout_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Single-Layout_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Single-Layout_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="Single-Layout_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Single-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-08-29</h4>
+            <h4 class="date">2021-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Single-Layout.Rmd"><code>vignettes/Single-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Single-Layout.Rmd</code></div>
@@ -131,7 +132,7 @@
 
     
     
-<p>shinyMobile comes with 3 predefined layouts. <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> is dedicated to build simple, one-page apps or gadgets.</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> comes with 3 predefined layouts. <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> is dedicated to build simple, one-page apps or gadgets.</p>
 <div class="marvel-device iphone-x">
 <div class="top-bar">
 
@@ -167,62 +168,61 @@
 </iframe>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shinyMobile</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">apexcharter</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/apexcharter">apexcharter</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"economics_long"</span>)
-<span class="no">economics_long</span> <span class="kw">&lt;-</span> <span class="no">economics_long</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">variable</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span>((<span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>()-<span class="fl">100</span>):<span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span>())
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"economics_long"</span><span class="op">)</span>
+<span class="va">economics_long</span> <span class="op">&lt;-</span> <span class="va">economics_long</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">variable</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">-</span><span class="fl">100</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 
-<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
-  <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span>(
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My app"</span>,
-    <span class="kw">dark_mode</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-    <span class="kw">init</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="kw">skin</span> <span class="kw">=</span> <span class="st">"ios"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"light"</span>),
-    <span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span>(
-      <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(
-        <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Single Layout"</span>,
-        <span class="kw">hairline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="kw">shadow</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-      ),
-      <span class="kw">toolbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span>(
-        <span class="kw">position</span> <span class="kw">=</span> <span class="st">"bottom"</span>,
-        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"Link 1"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>),
-        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"Link 2"</span>, <span class="kw">src</span> <span class="kw">=</span> <span class="st">"https://www.google.com"</span>, <span class="kw">external</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-      ),
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+  ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"My app"</span>,
+    <span class="fu"><a href="../reference/f7SingleLayout.html">f7SingleLayout</a></span><span class="op">(</span>
+      navbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span><span class="op">(</span>
+        title <span class="op">=</span> <span class="st">"Single Layout"</span>,
+        hairline <span class="op">=</span> <span class="cn">TRUE</span>,
+        shadow <span class="op">=</span> <span class="cn">TRUE</span>
+      <span class="op">)</span>,
+      toolbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Toolbar.html">f7Toolbar</a></span><span class="op">(</span>
+        position <span class="op">=</span> <span class="st">"bottom"</span>,
+        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 1"</span>, href <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>,
+        <span class="fu"><a href="../reference/f7Link.html">f7Link</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"Link 2"</span>, href <span class="op">=</span> <span class="st">"https://www.google.com"</span><span class="op">)</span>
+      <span class="op">)</span>,
       <span class="co"># main content</span>
-      <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span>(
-        <span class="kw">intensity</span> <span class="kw">=</span> <span class="fl">16</span>,
-        <span class="kw">hover</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
-          <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Card header"</span>,
-          <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">apexchartOutput</a></span>(<span class="st">"areaChart"</span>)
-        )
-      )
-    )
-  ),
-  <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>) {
-    <span class="no">output</span>$<span class="no">areaChart</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">renderApexchart</a></span>({
-      <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apex.html">apex</a></span>(
-        <span class="kw">data</span> <span class="kw">=</span> <span class="no">economics_long</span>,
-        <span class="kw">type</span> <span class="kw">=</span> <span class="st">"area"</span>,
-        <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-exports.html">aes</a></span>(
-          <span class="kw">x</span> <span class="kw">=</span> <span class="no">date</span>,
-          <span class="kw">y</span> <span class="kw">=</span> <span class="no">value01</span>,
-          <span class="kw">fill</span> <span class="kw">=</span> <span class="no">variable</span>
-        )
-      ) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_yaxis.html">ax_yaxis</a></span>(<span class="kw">decimalsInFloat</span> <span class="kw">=</span> <span class="fl">2</span>) <span class="kw">%&gt;%</span> <span class="co"># number of decimals to keep</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_chart.html">ax_chart</a></span>(<span class="kw">stacked</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/ax_yaxis.html">ax_yaxis</a></span>(<span class="kw">max</span> <span class="kw">=</span> <span class="fl">4</span>, <span class="kw">tickAmount</span> <span class="kw">=</span> <span class="fl">4</span>)
-    })
-  }
-)</pre></body></html></div>
+      <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span>
+        intensity <span class="op">=</span> <span class="fl">16</span>,
+        hover <span class="op">=</span> <span class="cn">TRUE</span>,
+        <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span>
+          title <span class="op">=</span> <span class="st">"Card header"</span>,
+          <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">apexchartOutput</a></span><span class="op">(</span><span class="st">"areaChart"</span><span class="op">)</span>
+        <span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>,
+  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">output</span><span class="op">$</span><span class="va">areaChart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">renderApexchart</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apex.html">apex</a></span><span class="op">(</span>
+        data <span class="op">=</span> <span class="va">economics_long</span>,
+        type <span class="op">=</span> <span class="st">"area"</span>,
+        mapping <span class="op">=</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-exports.html">aes</a></span><span class="op">(</span>
+          x <span class="op">=</span> <span class="va">date</span>,
+          y <span class="op">=</span> <span class="va">value01</span>,
+          fill <span class="op">=</span> <span class="va">variable</span>
+        <span class="op">)</span>
+      <span class="op">)</span> <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/ax_yaxis.html">ax_yaxis</a></span><span class="op">(</span>decimalsInFloat <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># number of decimals to keep</span>
+        <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/ax_chart.html">ax_chart</a></span><span class="op">(</span>stacked <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/ax_yaxis.html">ax_yaxis</a></span><span class="op">(</span>max <span class="op">=</span> <span class="fl">4</span>, tickAmount <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+    <span class="op">}</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">)</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -238,7 +238,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

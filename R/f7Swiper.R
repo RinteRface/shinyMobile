@@ -1,10 +1,12 @@
-#' Create a Framework7 swiper
+#' Framework7 swiper
 #'
-#' Build a Framework7 swiper (like carousel)
+#' \link{f7Swiper} creates a Framework7 swiper container (like carousel).
 #'
 #' @param ... Slot for \link{f7Slide}.
 #' @param id Swiper unique id.
 #' @param options Other options. Expect a list.
+#'
+#' @rdname swiper
 #'
 #' @examples
 #' if(interactive()){
@@ -115,13 +117,11 @@ f7Swiper <- function(
 
 
 
-#' Create a Framework7 slide
+#' Framework7 slide
 #'
-#' Build a Framework7 slide
+#' \link{f7Slide} is a \link{f7Swiper} element.
 #'
-#' @param ... Any element.
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @param ... Slide content. Any element.
 #'
 #' @export
 f7Slide <- function(...) {

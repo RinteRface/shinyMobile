@@ -4,7 +4,7 @@
 \alias{f7Login}
 \alias{f7LoginServer}
 \alias{updateF7Login}
-\title{Provide a template for authentication}
+\title{Framework7 login screen}
 \usage{
 f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
 
@@ -50,6 +50,14 @@ one wants to set up local authentication (for a specific section). See example 2
 \item{password}{Value of the password input.}
 }
 \description{
+Provide a template for authentication
+
+\link{f7LoginServer} is a useful server elements to fine tune the
+\link{f7Login} page.
+
+\link{updateF7Login} toggles a login page.
+}
+\details{
 This function does not provide the backend features. You would
 need to store credentials in a database for instance.
 }

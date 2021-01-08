@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Searchbar.R
 \name{f7Searchbar}
 \alias{f7Searchbar}
-\title{Create a Framework 7 searchbar}
+\title{Framework 7 searchbar}
 \usage{
 f7Searchbar(id, placeholder = "Search", expandable = FALSE, inline = FALSE)
 }
@@ -19,7 +19,7 @@ Notice that utilities like \link{f7HideOnSearch} and \link{f7NotFound} are not
 compatible with this mode.}
 }
 \description{
-Create a Framework 7 searchbar
+Searchbar to filter elements in a page.
 }
 \examples{
 if (interactive()) {

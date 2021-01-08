@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Navbar.R
 \name{f7SubNavbar}
 \alias{f7SubNavbar}
-\title{Create a Framework7 sub navbar}
+\title{Framework7 sub navbar}
 \usage{
 f7SubNavbar(...)
 }
@@ -10,7 +10,8 @@ f7SubNavbar(...)
 \item{...}{Any elements.}
 }
 \description{
-Create a Framework7 sub navbar
+\link{f7SubNavbar} creates a nested navbar component for
+\link{f7Navbar}.
 }
 \examples{
 if (interactive()) {

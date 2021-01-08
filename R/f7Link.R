@@ -1,6 +1,6 @@
-#' Create a Framework7 link
+#' Framework7 link
 #'
-#' Build a Framework7 link
+#' Link to point toward external content.
 #'
 #' @param label Link text.
 #' @param icon Link icon, if any.

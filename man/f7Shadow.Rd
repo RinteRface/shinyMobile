@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Shadow.R
 \name{f7Shadow}
 \alias{f7Shadow}
-\title{Create a Framework7 shadow effect}
+\title{Framework7 shadow effect}
 \usage{
 f7Shadow(tag, intensity, hover = FALSE, pressed = FALSE)
 }
@@ -16,7 +16,7 @@ f7Shadow(tag, intensity, hover = FALSE, pressed = FALSE)
 \item{pressed}{Whether to display the shadow on click. FALSE by default.}
 }
 \description{
-Build a Framework7 shadow effect
+Creates a shadow effect to apply on UI elements like \link{f7Card}.
 }
 \examples{
 if(interactive()){

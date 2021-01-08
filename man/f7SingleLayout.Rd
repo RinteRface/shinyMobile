@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7SingleLayout}
 \alias{f7SingleLayout}
-\title{Create a Framework7 single layout}
+\title{Framework7 single layout}
 \usage{
 f7SingleLayout(..., navbar, toolbar = NULL, panels = NULL, appbar = NULL)
 }
@@ -19,7 +19,7 @@ Wrap in \code{tagList} if multiple panels.}
 \item{appbar}{Slot for \link{f7Appbar}.}
 }
 \description{
-Build a Framework7 single layout
+\link{f7SingleLayout} provides a simple page layout.
 }
 \examples{
 if(interactive()){

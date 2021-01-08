@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7-tables.R
 \name{f7Table}
 \alias{f7Table}
-\title{Table}
+\title{Framework7 table}
 \usage{
 f7Table(data, colnames = NULL, card = FALSE)
 }
@@ -14,7 +14,7 @@ f7Table(data, colnames = NULL, card = FALSE)
 \item{card}{Whether to use as card.}
 }
 \description{
-Create shinyMobile table.
+Creates a table container.
 }
 \examples{
 if(interactive()){

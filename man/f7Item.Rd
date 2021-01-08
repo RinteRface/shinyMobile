@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Page.R
 \name{f7Item}
 \alias{f7Item}
-\title{Create a Framework7 \link{f7Item}.}
+\title{Framework7 body item}
 \usage{
 f7Item(..., tabName)
 }

@@ -1,6 +1,6 @@
-#' Create a Framework7 align
+#' Framework7 align utility
 #'
-#' Build a Framework7 align
+#' \link{f7Align} is an alignment utility for items.
 #'
 #' @param tag Tag to align.
 #' @param side Side to align: "left", "center", "right" or "justify".
@@ -45,9 +45,9 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
 
 
 
-#' Create a Framework7 float
+#' Framework7 float utility
 #'
-#' Build a Framework7 float
+#' \link{f7Float} is an alignment utility for items.
 #'
 #' @param tag Tag to float.
 #' @param side Side to float: "left" or "right".
@@ -85,9 +85,9 @@ f7Float <- function(tag, side = c("left", "right")) {
 
 
 
-#' Create a Framework7 margin
+#' Framework7 margin utility
 #'
-#' Build a Framework7 margin
+#' \link{f7Margin} adds a margin to the given tag.
 #'
 #' @param tag Tag to apply the margin.
 #' @param side margin side: "left", "right", "top", "bottom",
@@ -137,9 +137,9 @@ f7Margin <- function(tag, side = NULL) {
 
 
 
-#' Create a Framework7 padding
+#' Framework7 padding utility
 #'
-#' Build a Framework7 padding
+#' \link{f7Padding} adds padding to the given tag.
 #'
 #' @param tag Tag to apply the padding.
 #' @param side padding side: "left", "right", "top", "bottom",

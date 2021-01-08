@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Skeleton.R
 \name{f7Skeleton}
 \alias{f7Skeleton}
-\title{Create a Framework 7 skeleton loading overlay}
+\title{Framework 7 skeleton effect}
 \usage{
 f7Skeleton(tag, effect = "fade", duration = 2)
 }
@@ -14,7 +14,7 @@ f7Skeleton(tag, effect = "fade", duration = 2)
 \item{duration}{Effect duration: 2s by default.}
 }
 \description{
-Create a Framework 7 skeleton loading overlay
+Nice loading overlay for UI elements.
 }
 \examples{
 if (interactive()) {

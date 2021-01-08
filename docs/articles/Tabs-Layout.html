@@ -89,7 +89,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
@@ -116,13 +116,14 @@
 
       
 
-      </header><script src="Tabs-Layout_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Tabs-Layout_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Tabs-Layout_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
+<script src="Tabs-Layout_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tabs-Layout</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2020-08-29</h4>
+            <h4 class="date">2021-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/Tabs-Layout.Rmd"><code>vignettes/Tabs-Layout.Rmd</code></a></small>
       <div class="hidden name"><code>Tabs-Layout.Rmd</code></div>
@@ -131,7 +132,7 @@
 
     
     
-<p>shinyMobile comes with 2 predefined layouts. The second layout is the <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>, very similar to that of <a href="https://github.com/rstudio/miniUI">miniUI</a>. By default, shinyMobile opens in light mode. However, specifying the <code><a href="../reference/f7Init.html">f7Init()</a></code> theme option to “dark” will enable this mode.</p>
+<p>The second layout is the <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>, very similar to that of <a href="https://github.com/rstudio/miniUI">miniUI</a>.</p>
 <div class="marvel-device iphone-x">
 <div class="top-bar">
 
@@ -167,67 +168,65 @@
 </iframe>
 </div>
 </div>
-<p>Additionally, the <code><a href="../reference/f7Init.html">f7Init()</a></code> function allows to change theme from material design to iOS.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shiny</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shinyMobile</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">apexcharter</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">shinyWidgets</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://shiny.rstudio.com">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/apexcharter">apexcharter</a></span><span class="op">)</span>
 
-<span class="no">poll</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-  <span class="kw">answer</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Yes"</span>, <span class="st">"No"</span>),
-  <span class="kw">n</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">254</span>, <span class="fl">238</span>)
-)
+<span class="va">poll</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  answer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Yes"</span>, <span class="st">"No"</span><span class="op">)</span>,
+  n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">254</span>, <span class="fl">238</span><span class="op">)</span>
+<span class="op">)</span>
 
-<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span>(
-  <span class="kw">ui</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span>(
-    <span class="kw">title</span> <span class="kw">=</span> <span class="st">"My app"</span>,
-    <span class="kw">init</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Init.html">f7Init</a></span>(<span class="kw">theme</span> <span class="kw">=</span> <span class="st">"dark"</span>),
-    <span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span>(
-      <span class="kw">panels</span> <span class="kw">=</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reexports.html">tagList</a></span>(
-       <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Left Panel"</span>, <span class="kw">side</span> <span class="kw">=</span> <span class="st">"left"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"light"</span>, <span class="st">"Blabla"</span>, <span class="kw">effect</span> <span class="kw">=</span> <span class="st">"cover"</span>),
-       <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span>(<span class="kw">title</span> <span class="kw">=</span> <span class="st">"Right Panel"</span>, <span class="kw">side</span> <span class="kw">=</span> <span class="st">"right"</span>, <span class="kw">theme</span> <span class="kw">=</span> <span class="st">"dark"</span>, <span class="st">"Blabla"</span>, <span class="kw">effect</span> <span class="kw">=</span> <span class="st">"cover"</span>)
-      ),
-      <span class="kw">navbar</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span>(
-        <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Tabs"</span>,
-        <span class="kw">hairline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="kw">shadow</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="kw">left_panel</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-        <span class="kw">right_panel</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-      ),
-      <span class="fu"><a href="../reference/f7Tabs.html">f7Tabs</a></span>(
-        <span class="kw">animated</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+<span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html">shinyApp</a></span><span class="op">(</span>
+  ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"My app"</span>,
+    <span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span><span class="op">(</span>
+      panels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/tag.html">tagList</a></span><span class="op">(</span>
+        <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Left Panel"</span>, side <span class="op">=</span> <span class="st">"left"</span>, theme <span class="op">=</span> <span class="st">"light"</span>, <span class="st">"Blabla"</span>, effect <span class="op">=</span> <span class="st">"cover"</span><span class="op">)</span>,
+        <span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Right Panel"</span>, side <span class="op">=</span> <span class="st">"right"</span>, theme <span class="op">=</span> <span class="st">"dark"</span>, <span class="st">"Blabla"</span>, effect <span class="op">=</span> <span class="st">"cover"</span><span class="op">)</span>
+      <span class="op">)</span>,
+      navbar <span class="op">=</span> <span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span><span class="op">(</span>
+        title <span class="op">=</span> <span class="st">"Tabs"</span>,
+        hairline <span class="op">=</span> <span class="cn">TRUE</span>,
+        shadow <span class="op">=</span> <span class="cn">TRUE</span>,
+        leftPanel <span class="op">=</span> <span class="cn">TRUE</span>,
+        rightPanel <span class="op">=</span> <span class="cn">TRUE</span>
+      <span class="op">)</span>,
+      <span class="fu"><a href="../reference/f7Tabs.html">f7Tabs</a></span><span class="op">(</span>
+        animated <span class="op">=</span> <span class="cn">TRUE</span>,
         <span class="co">#swipeable = TRUE,</span>
-        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span>(
-          <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"Tab 1"</span>,
-          <span class="kw">icon</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"folder"</span>),
-          <span class="kw">active</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
+        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span>
+          tabName <span class="op">=</span> <span class="st">"Tab 1"</span>,
+          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"folder"</span><span class="op">)</span>,
+          active <span class="op">=</span> <span class="cn">TRUE</span>,
 
-          <span class="fu"><a href="../reference/f7Flex.html">f7Flex</a></span>(
-            <span class="fu"><a href="https://rdrr.io/pkg/shinyWidgets/man/prettyRadioButtons.html">prettyRadioButtons</a></span>(
-              <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"theme"</span>,
-              <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Select a theme:"</span>,
-              <span class="kw">thick</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-              <span class="kw">inline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-              <span class="kw">selected</span> <span class="kw">=</span> <span class="st">"md"</span>,
-              <span class="kw">choices</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ios"</span>, <span class="st">"md"</span>),
-              <span class="kw">animation</span> <span class="kw">=</span> <span class="st">"pulse"</span>,
-              <span class="kw">status</span> <span class="kw">=</span> <span class="st">"info"</span>
-            ),
+          <span class="fu"><a href="../reference/f7Flex.html">f7Flex</a></span><span class="op">(</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/shinyWidgets/man/prettyRadioButtons.html">prettyRadioButtons</a></span><span class="op">(</span>
+              inputId <span class="op">=</span> <span class="st">"theme"</span>,
+              label <span class="op">=</span> <span class="st">"Select a theme:"</span>,
+              thick <span class="op">=</span> <span class="cn">TRUE</span>,
+              inline <span class="op">=</span> <span class="cn">TRUE</span>,
+              selected <span class="op">=</span> <span class="st">"md"</span>,
+              choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span><span class="op">)</span>,
+              animation <span class="op">=</span> <span class="st">"pulse"</span>,
+              status <span class="op">=</span> <span class="st">"info"</span>
+            <span class="op">)</span>,
 
-            <span class="fu"><a href="https://rdrr.io/pkg/shinyWidgets/man/prettyRadioButtons.html">prettyRadioButtons</a></span>(
-              <span class="kw">inputId</span> <span class="kw">=</span> <span class="st">"color"</span>,
-              <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Select a color:"</span>,
-              <span class="kw">thick</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-              <span class="kw">inline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-              <span class="kw">selected</span> <span class="kw">=</span> <span class="st">"dark"</span>,
-              <span class="kw">choices</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"light"</span>, <span class="st">"dark"</span>),
-              <span class="kw">animation</span> <span class="kw">=</span> <span class="st">"pulse"</span>,
-              <span class="kw">status</span> <span class="kw">=</span> <span class="st">"info"</span>
-            )
-          ),
+            <span class="fu"><a href="https://rdrr.io/pkg/shinyWidgets/man/prettyRadioButtons.html">prettyRadioButtons</a></span><span class="op">(</span>
+              inputId <span class="op">=</span> <span class="st">"color"</span>,
+              label <span class="op">=</span> <span class="st">"Select a color:"</span>,
+              thick <span class="op">=</span> <span class="cn">TRUE</span>,
+              inline <span class="op">=</span> <span class="cn">TRUE</span>,
+              selected <span class="op">=</span> <span class="st">"dark"</span>,
+              choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"light"</span>, <span class="st">"dark"</span><span class="op">)</span>,
+              animation <span class="op">=</span> <span class="st">"pulse"</span>,
+              status <span class="op">=</span> <span class="st">"info"</span>
+            <span class="op">)</span>
+          <span class="op">)</span>,
 
-          <span class="no">tags</span>$<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(
-            <span class="no">tags</span>$<span class="fu">script</span>(
+          <span class="va">tags</span><span class="op">$</span><span class="fu">head</span><span class="op">(</span>
+            <span class="va">tags</span><span class="op">$</span><span class="fu">script</span><span class="op">(</span>
               <span class="st">'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
                 var os = message.os;
                 var skin = message.skin;
@@ -249,97 +248,96 @@
 
                });
               '</span>
-            )
-          ),
+            <span class="op">)</span>
+          <span class="op">)</span>,
 
-          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span>(
-            <span class="kw">intensity</span> <span class="kw">=</span> <span class="fl">10</span>,
-            <span class="kw">hover</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
-              <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Card header"</span>,
-              <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">apexchartOutput</a></span>(<span class="st">"pie"</span>)
-            )
-          )
-        ),
-        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span>(
-          <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"Tab 2"</span>,
-          <span class="kw">icon</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"keyboard"</span>),
-          <span class="kw">active</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span>(
-            <span class="kw">intensity</span> <span class="kw">=</span> <span class="fl">10</span>,
-            <span class="kw">hover</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
-              <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Card header"</span>,
-              <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">apexchartOutput</a></span>(<span class="st">"scatter"</span>)
-            )
-          )
-        ),
-        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span>(
-          <span class="kw">tabName</span> <span class="kw">=</span> <span class="st">"Tab 3"</span>,
-          <span class="kw">icon</span> <span class="kw">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span>(<span class="st">"layers_alt"</span>),
-          <span class="kw">active</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span>(
-            <span class="kw">intensity</span> <span class="kw">=</span> <span class="fl">10</span>,
-            <span class="kw">hover</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span>(
-              <span class="kw">title</span> <span class="kw">=</span> <span class="st">"Card header"</span>,
-              <span class="fu"><a href="https://rdrr.io/pkg/shinyWidgets/man/prettyCheckboxGroup.html">prettyCheckboxGroup</a></span>(
+          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span>
+            intensity <span class="op">=</span> <span class="fl">10</span>,
+            hover <span class="op">=</span> <span class="cn">TRUE</span>,
+            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span>
+              title <span class="op">=</span> <span class="st">"Card header"</span>,
+              <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">apexchartOutput</a></span><span class="op">(</span><span class="st">"pie"</span><span class="op">)</span>
+            <span class="op">)</span>
+          <span class="op">)</span>
+        <span class="op">)</span>,
+        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span>
+          tabName <span class="op">=</span> <span class="st">"Tab 2"</span>,
+          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"keyboard"</span><span class="op">)</span>,
+          active <span class="op">=</span> <span class="cn">FALSE</span>,
+          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span>
+            intensity <span class="op">=</span> <span class="fl">10</span>,
+            hover <span class="op">=</span> <span class="cn">TRUE</span>,
+            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span>
+              title <span class="op">=</span> <span class="st">"Card header"</span>,
+              <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">apexchartOutput</a></span><span class="op">(</span><span class="st">"scatter"</span><span class="op">)</span>
+            <span class="op">)</span>
+          <span class="op">)</span>
+        <span class="op">)</span>,
+        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span>
+          tabName <span class="op">=</span> <span class="st">"Tab 3"</span>,
+          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"layers_alt"</span><span class="op">)</span>,
+          active <span class="op">=</span> <span class="cn">FALSE</span>,
+          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span>
+            intensity <span class="op">=</span> <span class="fl">10</span>,
+            hover <span class="op">=</span> <span class="cn">TRUE</span>,
+            <span class="fu"><a href="../reference/f7Card.html">f7Card</a></span><span class="op">(</span>
+              title <span class="op">=</span> <span class="st">"Card header"</span>,
+              <span class="fu"><a href="../reference/f7SmartSelect.html">f7SmartSelect</a></span><span class="op">(</span>
                 <span class="st">"variable"</span>,
                 <span class="st">"Variables to show:"</span>,
-                <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Cylinders"</span> <span class="kw">=</span> <span class="st">"cyl"</span>,
-                  <span class="st">"Transmission"</span> <span class="kw">=</span> <span class="st">"am"</span>,
-                  <span class="st">"Gears"</span> <span class="kw">=</span> <span class="st">"gear"</span>),
-                <span class="kw">inline</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                <span class="kw">status</span> <span class="kw">=</span> <span class="st">"danger"</span>,
-                <span class="kw">animation</span> <span class="kw">=</span> <span class="st">"pulse"</span>
-              ),
-              <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html">tableOutput</a></span>(<span class="st">"data"</span>)
-            )
-          )
-        )
-      )
-    )
-  ),
-  <span class="kw">server</span> <span class="kw">=</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>, <span class="no">session</span>) {
+                <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Cylinders"</span> <span class="op">=</span> <span class="st">"cyl"</span>,
+                  <span class="st">"Transmission"</span> <span class="op">=</span> <span class="st">"am"</span>,
+                  <span class="st">"Gears"</span> <span class="op">=</span> <span class="st">"gear"</span><span class="op">)</span>,
+                openIn <span class="op">=</span> <span class="st">"sheet"</span>,
+                multiple <span class="op">=</span> <span class="cn">TRUE</span>
+              <span class="op">)</span>,
+              <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html">tableOutput</a></span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span>
+            <span class="op">)</span>
+          <span class="op">)</span>
+        <span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
+  <span class="op">)</span>,
+  server <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
 
     <span class="co"># river plot</span>
-    <span class="no">dates</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html">reactive</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>() - <span class="fl">30</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span>(), <span class="kw">by</span> <span class="kw">=</span> <span class="no">input</span>$<span class="no">by</span>))
+    <span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/reactive.html">reactive</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.Date.html">seq.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">30</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, by <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">by</span><span class="op">)</span><span class="op">)</span>
 
-    <span class="no">output</span>$<span class="no">pie</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">renderApexchart</a></span>({
-      <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apex.html">apex</a></span>(
-        <span class="kw">data</span> <span class="kw">=</span> <span class="no">poll</span>,
-        <span class="kw">type</span> <span class="kw">=</span> <span class="st">"pie"</span>,
-        <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-exports.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">answer</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">n</span>)
-      )
-    })
+    <span class="va">output</span><span class="op">$</span><span class="va">pie</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">renderApexchart</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apex.html">apex</a></span><span class="op">(</span>
+        data <span class="op">=</span> <span class="va">poll</span>,
+        type <span class="op">=</span> <span class="st">"pie"</span>,
+        mapping <span class="op">=</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-exports.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">answer</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">}</span><span class="op">)</span>
 
-    <span class="no">output</span>$<span class="no">scatter</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-shiny.html">renderApexchart</a></span>({
-      <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apex.html">apex</a></span>(
-        <span class="kw">data</span> <span class="kw">=</span> <span class="no">mtcars</span>,
-        <span class="kw">type</span> <span class="kw">=</span> <span class="st">"scatter"</span>,
-        <span class="kw">mapping</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/apexcharter/man/apexcharter-exports.html">aes</a></span>(
-          <span class="kw">x</span> <span class="kw">=</span> <span class="no">wt</span>,
-          <span class="kw">y</span> <span class="kw">=</span> <span class="no">mpg</span>,
-          <span class="kw">fill</span> <span class="kw">=</span> <span class="no">cyl</span>
-        )
-      )
-    })
+    <span class="va">output</span><span class="op">$</span><span class="va">scatter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-shiny.html">renderApexchart</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apex.html">apex</a></span><span class="op">(</span>
+        data <span class="op">=</span> <span class="va">mtcars</span>,
+        type <span class="op">=</span> <span class="st">"scatter"</span>,
+        mapping <span class="op">=</span> <span class="fu"><a href="https://dreamrs.github.io/apexcharter/reference/apexcharter-exports.html">aes</a></span><span class="op">(</span>
+          x <span class="op">=</span> <span class="va">wt</span>,
+          y <span class="op">=</span> <span class="va">mpg</span>,
+          fill <span class="op">=</span> <span class="va">cyl</span>
+        <span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">}</span><span class="op">)</span>
 
     <span class="co"># datatable</span>
-    <span class="no">output</span>$<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderTable.html">renderTable</a></span>({
-      <span class="no">mtcars</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"mpg"</span>, <span class="no">input</span>$<span class="no">variable</span>), <span class="kw">drop</span> <span class="kw">=</span> <span class="fl">FALSE</span>]
-    }, <span class="kw">rownames</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+    <span class="va">output</span><span class="op">$</span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderTable.html">renderTable</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="va">input</span><span class="op">$</span><span class="va">variable</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>
+    <span class="op">}</span>, rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
     <span class="co"># send the theme to javascript</span>
-    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html">observe</a></span>({
-      <span class="no">session</span>$<span class="fu">sendCustomMessage</span>(
-        <span class="kw">type</span> <span class="kw">=</span> <span class="st">"ui-tweak"</span>,
-        <span class="kw">message</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">os</span> <span class="kw">=</span> <span class="no">input</span>$<span class="no">theme</span>, <span class="kw">skin</span> <span class="kw">=</span> <span class="no">input</span>$<span class="no">color</span>)
-      )
-    })
+    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/observe.html">observe</a></span><span class="op">(</span><span class="op">{</span>
+      <span class="va">session</span><span class="op">$</span><span class="fu">sendCustomMessage</span><span class="op">(</span>
+        type <span class="op">=</span> <span class="st">"ui-tweak"</span>,
+        message <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>os <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">theme</span>, skin <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">color</span><span class="op">)</span>
+      <span class="op">)</span>
+    <span class="op">}</span><span class="op">)</span>
 
-  }
-)</pre></body></html></div>
+  <span class="op">}</span>
+<span class="op">)</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -355,7 +353,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

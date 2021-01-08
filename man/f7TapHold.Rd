@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7TapHold.R
 \name{f7TapHold}
 \alias{f7TapHold}
-\title{Create a Framework7 tapHold event}
+\title{Framework7 tapHold module}
 \usage{
 f7TapHold(target, callback, session = shiny::getDefaultReactiveDomain())
 }
@@ -15,7 +15,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...}
 \item{session}{Shiny session object.}
 }
 \description{
-Triggered after long press on an element.
+\link{f7TapHold} is triggered after long press on an element, from the server.
 }
 \examples{
 if (interactive()) {

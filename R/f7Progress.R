@@ -1,6 +1,6 @@
-#' Create a Framework7 progress bar
+#' Framework7 progress bar
 #'
-#' Build a Framework7 progress bar
+#' \link{f7Progress} creates a progress bar.
 #'
 #' @param id Progress id. Must be unique.
 #' @param value Progress value. Between 0 and 100. If NULL the progress bar is infinite.
@@ -9,6 +9,7 @@
 #' @rdname progress
 #'
 #' @examples
+#' # Progress bars
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -49,7 +50,9 @@ f7Progress <- function(id, value = NULL, color) {
 
 
 
-#' update a framework7 progress bar from the server side
+#' Update Framework7 progress bar
+#'
+#' \link{updateF7Progress} update a framework7 progress bar from the server side
 #'
 #' @param id Unique progress bar id.
 #' @param value New value.
@@ -59,6 +62,7 @@ f7Progress <- function(id, value = NULL, color) {
 #' @export
 #'
 #' @examples
+#' # Update progress
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)

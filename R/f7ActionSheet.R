@@ -1,4 +1,7 @@
-#' Create a framework7 action sheet
+#' Framework7 action sheet
+#'
+#' An action sheet may contain multiple buttons. Each of them triggers
+#' an action on the server side.
 #'
 #' @param id Unique id. This gives the state of the action sheet. input$id is TRUE
 #' when opened and inversely. Importantly, if the action sheet has never been opened,

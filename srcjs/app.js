@@ -530,7 +530,7 @@ $(function() {
   };
   activateAllSearchbar();
 
-  // show navbar
+  // show navbar (to remove)
   Shiny.addCustomMessageHandler("show_navbar", function(message) {
     var animate;
     if (message.animate == "true") animate = true;
@@ -538,7 +538,7 @@ $(function() {
     app.navbar.show(".navbar", (animate = message.animate));
   });
 
-  // hide navbar
+  // hide navbar (to remove)
   Shiny.addCustomMessageHandler("hide_navbar", function(message) {
     var animate;
     var hideStatusbar;
@@ -551,6 +551,17 @@ $(function() {
       (animate = animate),
       (hideStatusbar = hideStatusbar)
     );
+  });
+
+  // toggle navbar
+  Shiny.addCustomMessageHandler("toggle_navbar", function(message) {
+    $navbar = $('.navbar');
+    var isHidden = $navbar.hasClass('navbar-hidden');
+    if (isHidden) {
+      app.navbar.show(".navbar", animate = message.animate);
+    } else {
+      app.navbar.hide(".navbar", animate = message.animate, hideStatusbar = message.hideStatusbar);
+    }
   });
 
   // handle action sheet

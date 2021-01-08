@@ -3,7 +3,6 @@ reference:
   desc: Page skeleton functions
   contents:
   - '`f7Appbar`'
-  - '`f7Init`'
   - '`f7Item`'
   - '`f7Items`'
   - '`f7Navbar`'
@@ -20,6 +19,8 @@ reference:
   desc: UI skeletons for authentication purposes
   contents:
   - '`f7Login`'
+  - '`f7LoginServer`'
+  - '`updateF7Login`'
 
 
 - title: Toward progressive web app
@@ -32,6 +33,7 @@ reference:
   desc: Provide feedback when an input is missing, ...
   contents:
   - '`f7ValidateInput`'
+  - '`validateF7Input`'
 
 
 - title: Grid functions
@@ -70,7 +72,9 @@ reference:
   contents:
   - '`f7AutoComplete`'
   - '`f7checkBox`'
+  - '`f7Checkbox`'
   - '`f7checkBoxGroup`'
+  - '`f7CheckboxGroup`'
   - '`f7ColorPicker`'
   - '`f7DatePicker`'
   - '`f7Password`'
@@ -90,10 +94,14 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`f7InsertTab`'
+  - '`insertF7Tab`'
   - '`f7HideNavbar`'
   - '`f7ShowNavbar`'
+  - '`updateF7Navbar`'
   - '`f7RemoveTab`'
+  - '`removeF7Tab`'
   - '`f7TogglePopup`'
+  - '`updateF7Popup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
   - '`updateF7Button`'
@@ -104,6 +112,8 @@ reference:
   - '`updateF7Fabs`'
   - '`updateF7Gauge`'
   - '`updateF7Login`'
+  - '`f7AddMessages`'
+  - '`updateF7Messages`'
   - '`updateF7MessageBar`'
   - '`updateF7Panel`'
   - '`updateF7Picker`'
@@ -170,6 +180,7 @@ reference:
   - '`f7Fab`'
   - '`f7Fabs`'
   - '`f7Link`'
+  - '`f7Menu`'
   - '`f7Segment`'
   - '`f7TabLink`'
 
@@ -201,7 +212,6 @@ reference:
 
 
 
-
 - title: f7 elements
   desc: timelines, carousels, ...
   contents:
@@ -228,7 +238,6 @@ reference:
   contents:
   - '`f7Gauge`'
   - '`f7Progress`'
-  - '`f7ProgressInf`'
 
 
 - title: Typography functions
@@ -250,6 +259,9 @@ reference:
   desc: Loading screens
   contents:
   - '`f7ShowPreloader`'
+  - '`showF7Preloader`'
+  - '`f7HidePreloader`'
+  - '`hideF7Preloader`'
 
 
 - title: CSS effects
@@ -279,6 +291,6 @@ template:
 
 news:
  releases:
- - text: "shinyMobile 0.8.0.9000"
+ - text: "shinyMobile 2.0.0.9000"
  - text: "shinyMobile 0.7.0"
  - text: "shinyMobile 0.1.0"

@@ -2,15 +2,15 @@
 % Please edit documentation in R/f7Searchbar.R
 \name{f7SearchbarTrigger}
 \alias{f7SearchbarTrigger}
-\title{Create a Framework 7 searchbar trigger}
+\title{Framework 7 searchbar trigger}
 \usage{
 f7SearchbarTrigger(targetId)
 }
 \arguments{
-\item{targetId}{Id of the \link{f7Searchbar}}
+\item{targetId}{Id of the \link{f7Searchbar}.}
 }
 \description{
-Create a Framework 7 searchbar trigger
+Element that triggers the searchbar.
 }
 \examples{
 if (interactive()) {

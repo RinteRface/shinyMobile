@@ -1,6 +1,6 @@
-#' Create a Framework7 shadow effect
+#' Framework7 shadow effect
 #'
-#' Build a Framework7 shadow effect
+#' Creates a shadow effect to apply on UI elements like \link{f7Card}.
 #'
 #' @param tag Tag to apply the shadow on.
 #' @param intensity Shadow intensity. Numeric between 1 and 24. 24 is the highest elevation.

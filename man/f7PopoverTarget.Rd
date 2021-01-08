@@ -2,14 +2,14 @@
 % Please edit documentation in R/f7Popover.R
 \name{f7PopoverTarget}
 \alias{f7PopoverTarget}
-\title{Define a popover target}
+\title{Framework7 popover target}
 \usage{
 f7PopoverTarget(tag, targetId)
 }
 \arguments{
 \item{tag}{Tag that will be targeted. Must be a f7Input element.}
 
-\item{targetId}{Popover id. Must correspond to the \link{f7Popover}targetId.}
+\item{targetId}{Popover id. Must correspond to the \link{f7Popover} targetId.}
 }
 \description{
 This must be used in combination of \link{f7Popover}.

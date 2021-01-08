@@ -3,7 +3,7 @@
 \name{f7Timeline}
 \alias{f7Timeline}
 \alias{f7TimelineItem}
-\title{Create a Framework7 timeline}
+\title{Framework7 timeline}
 \usage{
 f7Timeline(
   ...,
@@ -50,9 +50,9 @@ f7TimelineItem(
 \item{side}{Force element to required side: "right" or "left". Only if sides os TRUE in \link{f7Timeline}}
 }
 \description{
-Build a Framework7 timeline
+\link{f7Timeline} is a static timeline container.
 
-Build a Framework7 timeline item
+\link{f7TimelineItem} goes inside \link{f7Timeline}.
 }
 \examples{
 if(interactive()){

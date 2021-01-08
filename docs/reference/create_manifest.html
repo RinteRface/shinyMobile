@@ -132,7 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -171,18 +171,18 @@
     <p>This is a central piece if you want to have your app standalone for instance</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_manifest</span>(
-  <span class='no'>path</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-  <span class='kw'>shortName</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-  <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"What it does!"</span>,
-  <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en-US"</span>,
-  <span class='no'>startUrl</span>,
-  <span class='kw'>display</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"minimal-ui"</span>, <span class='st'>"standalone"</span>, <span class='st'>"fullscreen"</span>, <span class='st'>"browser"</span>),
-  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#000000"</span>,
-  <span class='kw'>theme_color</span> <span class='kw'>=</span> <span class='st'>"#0000ffff"</span>,
-  <span class='no'>icon</span>
-)</pre>
+    <pre class="usage"><span class='fu'>create_manifest</span><span class='op'>(</span>
+  <span class='va'>path</span>,
+  name <span class='op'>=</span> <span class='st'>"My App"</span>,
+  shortName <span class='op'>=</span> <span class='st'>"My App"</span>,
+  description <span class='op'>=</span> <span class='st'>"What it does!"</span>,
+  lang <span class='op'>=</span> <span class='st'>"en-US"</span>,
+  <span class='va'>startUrl</span>,
+  display <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"minimal-ui"</span>, <span class='st'>"standalone"</span>, <span class='st'>"fullscreen"</span>, <span class='st'>"browser"</span><span class='op'>)</span>,
+  background_color <span class='op'>=</span> <span class='st'>"#000000"</span>,
+  theme_color <span class='op'>=</span> <span class='st'>"#0000ffff"</span>,
+  <span class='va'>icon</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -240,22 +240,23 @@ It creates 1 folders to contain icons and the manifest.json file.</p>
     <p>See <a href='https://developer.mozilla.org/en-US/docs/Web/Manifest'>https://developer.mozilla.org/en-US/docs/Web/Manifest</a> for more informations.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_manifest</span>(
-  <span class='kw'>path</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(),
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-  <span class='kw'>shortName</span> <span class='kw'>=</span> <span class='st'>"My App"</span>,
-  <span class='kw'>description</span> <span class='kw'>=</span> <span class='st'>"What it does!"</span>,
-  <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en-US"</span>,
-  <span class='kw'>startUrl</span> <span class='kw'>=</span> <span class='st'>"https://www.google.com/"</span>,
-  <span class='kw'>display</span> <span class='kw'>=</span> <span class='st'>"standalone"</span>,
-  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='st'>"#3367D6"</span>,
-  <span class='kw'>theme_color</span> <span class='kw'>=</span> <span class='st'>"#3367D6"</span>,
-  <span class='kw'>icon</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-    <span class='kw'>src</span> <span class='kw'>=</span> <span class='st'>"icons/128x128.png"</span>,
-    <span class='kw'>sizes</span> <span class='kw'>=</span> <span class='st'>"128x128"</span>, <span class='fl'>10</span>,
-    <span class='kw'>types</span> <span class='kw'>=</span> <span class='st'>"image/png"</span>
-  )
-)</div><div class='output co'>#&gt; {
+    <pre class="examples"><div class='input'><span class='fu'>create_manifest</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
+  name <span class='op'>=</span> <span class='st'>"My App"</span>,
+  shortName <span class='op'>=</span> <span class='st'>"My App"</span>,
+  description <span class='op'>=</span> <span class='st'>"What it does!"</span>,
+  lang <span class='op'>=</span> <span class='st'>"en-US"</span>,
+  startUrl <span class='op'>=</span> <span class='st'>"https://www.google.com/"</span>,
+  display <span class='op'>=</span> <span class='st'>"standalone"</span>,
+  background_color <span class='op'>=</span> <span class='st'>"#3367D6"</span>,
+  theme_color <span class='op'>=</span> <span class='st'>"#3367D6"</span>,
+  icon <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+    src <span class='op'>=</span> <span class='st'>"icons/128x128.png"</span>,
+    sizes <span class='op'>=</span> <span class='st'>"128x128"</span>, <span class='fl'>10</span>,
+    types <span class='op'>=</span> <span class='st'>"image/png"</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; {
 #&gt;   "name": "My App",
 #&gt;   "short_name": "My App",
 #&gt;   "description": "What it does!",
@@ -288,7 +289,7 @@ It creates 1 folders to contain icons and the manifest.json file.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -3,7 +3,7 @@
 \name{f7Progress}
 \alias{f7Progress}
 \alias{updateF7Progress}
-\title{Create a Framework7 progress bar}
+\title{Framework7 progress bar}
 \usage{
 f7Progress(id, value = NULL, color)
 
@@ -19,9 +19,12 @@ updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-Build a Framework7 progress bar
+\link{f7Progress} creates a progress bar.
+
+\link{updateF7Progress} update a framework7 progress bar from the server side
 }
 \examples{
+# Progress bars
 if(interactive()){
  library(shiny)
  library(shinyMobile)
@@ -40,6 +43,7 @@ if(interactive()){
  )
 }
 
+# Update progress
 if (interactive()) {
  library(shiny)
  library(shinyMobile)

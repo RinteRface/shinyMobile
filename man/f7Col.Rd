@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Grid.R
 \name{f7Col}
 \alias{f7Col}
-\title{Create a Framework7 column container}
+\title{Framework7 column container}
 \usage{
 f7Col(...)
 }

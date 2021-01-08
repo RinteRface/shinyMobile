@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Block.R
 \name{f7BlockTitle}
 \alias{f7BlockTitle}
-\title{Create a Framework7 block title}
+\title{Framework7 block title}
 \usage{
 f7BlockTitle(title = NULL, size = NULL)
 }
@@ -12,7 +12,7 @@ f7BlockTitle(title = NULL, size = NULL)
 \item{size}{Block title size. NULL by default or "medium", "large".}
 }
 \description{
-Build a Framework7 block title
+\link{f7BlockTitle} creates a title for \link{f7Block}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

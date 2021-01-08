@@ -1,6 +1,6 @@
-#' Create a Framework7 page
+#' Framework7 page container
 #'
-#' Build a Framework7 page
+#' \link{f7Page} is the main app container.
 #'
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
@@ -164,9 +164,9 @@ f7Page <- function(
 
 
 
-#' Create a Framework7 single layout
+#' Framework7 single layout
 #'
-#' Build a Framework7 single layout
+#' \link{f7SingleLayout} provides a simple page layout.
 #'
 #' @param ... Content.
 #' @param navbar Slot for \link{f7Navbar}.
@@ -251,9 +251,10 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 
 
 
-#' Create a Framework7 page with tab layout
+#' Framework7 tab layout
 #'
-#' Build a Framework7 page with tab layout
+#' \link{f7TabLayout} create a single page app with multiple tabs,
+#' giving the illusion of a multi pages experience.
 #'
 #' @param ... Slot for \link{f7Tabs}.
 #' @param navbar Slot for \link{f7Navbar}.
@@ -437,7 +438,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 
 
 
-#' Create a Framework7 split layout
+#' Framework7 split layout
 #'
 #' This is a modified version of the \link{f7SingleLayout}.
 #' It is intended to be used with tablets.
@@ -587,7 +588,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
 
 
 
-#' Create a Framework7 wrapper for \link{f7Item}
+#' Framework7 item container
 #'
 #' Build a Framework7 wrapper for \link{f7Item}
 #'
@@ -611,7 +612,7 @@ f7Items <- function(...){
 
 
 
-#' Create a Framework7 \link{f7Item}.
+#' Framework7 body item
 #'
 #' Similar to  \link{f7Tab} but for the \link{f7SplitLayout}.
 #'

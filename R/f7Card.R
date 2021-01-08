@@ -1,6 +1,8 @@
-#' Create a Framework7 card
+#' Framework7 card
 #'
-#' Build a Framework7 card
+#' \link{f7Card} creates a simple card container.
+#'
+#' @rdname card
 #'
 #' @param ... Card content.
 #' @param image Card image if any. Displayed in the header.
@@ -10,6 +12,7 @@
 #' @param height Card height. NULL by default.
 #'
 #' @examples
+#' # Simple card
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -110,9 +113,11 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 }
 
 
-#' Create a Framework7 social card
+#' Framework7 social card
 #'
-#' Build a Framework7 social card
+#' \link{f7SocialCard} is a special card for social content.
+#'
+#' @rdname card
 #'
 #' @param ... Card content.
 #' @param image Author img.
@@ -121,6 +126,7 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #' @param footer Footer content, if any. Must be wrapped in a tagList.
 #'
 #' @examples
+#' # Social card
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -147,8 +153,6 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #'   server = function(input, output) {}
 #'  )
 #' }
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
@@ -182,9 +186,12 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 
 
 
-#' Create a Framework7 expandable card
+#' Framework7 expandable card
 #'
-#' Build a Framework7 expandable card
+#' \link{f7ExpandableCard} is a card that can expand. Ideal for a
+#' gallery.
+#'
+#' @rdname card
 #'
 #' @param id Unique card id. Useful to handle multiple cards in the DOM.
 #' @param ... Card content.
@@ -196,9 +203,10 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 #' with the color argument.
 #' @param fullBackground Whether the image should cover the entire card.
 #'
-#' @note image and color are not compatible. Choose one of them.
+#' @note For \link{f7ExpandableCard}, image and color are not compatible. Choose one of them.
 #'
 #' @examples
+#' # Expandable card
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
@@ -255,8 +263,6 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 #'   server = function(input, output) {}
 #'  )
 #' }
-#'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7ExpandableCard <- function(..., id = NULL, title = NULL,
@@ -352,14 +358,18 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 
 
 
-#' Update a framework 7 expandable card
+#' Update Framework7 expandable card
+#'
+#' \link{updateF7Card} maximizes a \link{f7ExpandableCard} on the client.
 #'
 #' @param id Card id.
 #' @param session Shiny session object.
 #'
+#' @rdname card
 #' @export
 #'
 #' @examples
+#' # Update expandable card
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)

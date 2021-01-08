@@ -1,4 +1,7 @@
-#' Create a Framework7 messages container
+#' Framework7 messages container
+#'
+#' \link{f7Messages} is an empty container targeted by \link{updateF7Messages}
+#' to include multiple \link{f7Message}.
 #'
 #' @param id Container id.
 #' @param title Optional messages title.
@@ -10,6 +13,7 @@
 #' @param scrollMessagesOnEdge If enabled then messages auto scrolling will happen only
 #' when user is on top/bottom of the messages view.
 #'
+#' @rdname messages
 #' @export
 #' @examples
 #' if (interactive()) {
@@ -36,7 +40,7 @@
 #'       print(input$mymessages)
 #'     })
 #'     observeEvent(input[["mymessagebar-send"]], {
-#'       f7AddMessages(
+#'       updateF7Messages(
 #'         id = "mymessages",
 #'         list(
 #'          f7Message(
@@ -58,7 +62,7 @@
 #'       names <- c("Victor", "John")
 #'       name <- sample(names, 1)
 #'
-#'       f7AddMessages(
+#'       updateF7Messages(
 #'         id = "mymessages",
 #'         list(
 #'          f7Message(
@@ -108,13 +112,14 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
 
 
 
-#' Create a f7MessageBar to add new messages
+#' Framework7 message bar.
 #'
+#' \link{f7MessageBar} creates a message text container to type new messages.
 #' Insert before \link{f7Messages}. See examples.
 #'
 #' @param inputId Unique id.
 #' @param placeholder Textarea placeholder.
-#'
+#' @rdname messagebar
 #' @export
 f7MessageBar <- function(inputId, placeholder = "Message") {
 
@@ -147,13 +152,16 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 
 
 
-#' Update message bar on the server side
+#' Update Framework7 message bar
+#'
+#' \link{updateF7MessageBar} updates message bar content on the server side.
 #'
 #' @param inputId \link{f7MessageBar} unique id.
 #' @param value New value.
 #' @param placeholder New placeholder value.
 #' @param session Shiny session object.
 #'
+#' @rdname messagebar
 #' @export
 #' @examples
 #' if (interactive()) {
@@ -225,7 +233,10 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 
 
 
-#' Create a f7Message
+#' Framework7 message element
+#'
+#' \link{f7Message} creates a message item to be inserted in
+#' \link{f7Messages} with \link{updateF7Messages}.
 #'
 #' @param text Message text.
 #' @param name Sender name.
@@ -238,7 +249,7 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 #' @param image Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.
 #' @param imageSrc Message image URL string. Can be used instead of image parameter.
 #' @param cssClass Additional CSS class to set on message HTML element.
-
+#' @rdname messages
 #' @export
 f7Message <- function(text, name, type = c("sent", "received"),
                       header = NULL, footer = NULL, avatar = NULL,
@@ -264,17 +275,30 @@ f7Message <- function(text, name, type = c("sent", "received"),
 
 
 
-#' Update \link{f7Messages} on the server side.
+#' Update Framework7 message container
+#'
+#' Deprecated. \link{f7AddMessages} add messages to a \link{f7Messages} container.
 #'
 #' @param id Reference to link{f7Messages} container.
 #' @param showTyping Show typing when a new message comes. Default to FALSE.
 #' Does not work yet...
 #' @param messages List of \link{f7Messages}.
-#' @param session SHiny session object
+#' @param session Shiny session object
 #'
+#' @note \link{f7AddMessages} is deprecated. Use \link{updateF7Messages} instead.
+#'
+#' @rdname messages
 #' @export
 f7AddMessages <- function(id, messages, showTyping = FALSE,
                           session = shiny::getDefaultReactiveDomain()) {
+
+  .Deprecated(
+    "updateF7Messages",
+    package = "shinyMobile",
+    "f7AddMessages will be removed in future release. Please use
+    updateF7Messages instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
 
   message <- list(
     value = jsonlite::toJSON(
@@ -288,3 +312,12 @@ f7AddMessages <- function(id, messages, showTyping = FALSE,
 
   session$sendInputMessage(id, message)
 }
+
+
+#' Update Framework7 message container
+#'
+#' \link{updateF7Messages} add messages to a \link{f7Messages} container.
+#'
+#' @rdname messages
+#' @export
+updateF7Messages <- f7AddMessages

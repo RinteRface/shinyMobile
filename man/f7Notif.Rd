@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Notif.R
 \name{f7Notif}
 \alias{f7Notif}
-\title{Create a Framework7 notification}
+\title{Framework7 notification}
 \usage{
 f7Notif(
   text,
@@ -40,7 +40,7 @@ FALSE by default.}
 \item{session}{shiny session.}
 }
 \description{
-Create a Framework7 notification
+Notification with title, text, icon and more.
 }
 \examples{
 if (interactive()) {
@@ -61,8 +61,7 @@ if (interactive()) {
           icon = f7Icon("bolt_fill"),
           title = "Notification",
           subtitle = "A subtitle",
-          titleRightText = "now",
-          session = session
+          titleRightText = "now"
         )
       })
     }

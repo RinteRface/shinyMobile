@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Grid.R
 \name{f7Row}
 \alias{f7Row}
-\title{Create a Framework7 row container}
+\title{Framework7 row container}
 \usage{
 f7Row(..., gap = TRUE)
 }

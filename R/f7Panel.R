@@ -1,6 +1,8 @@
-#' Create a Framework7 panel
+#' Framework7 panel
 #'
-#' Build a Framework7 panel
+#' \link{f7Panel} is a sidebar element. It may be used as a simple
+#' sidebar or as a container for \link{f7PanelMenu} in case of
+#' \link{f7SplitLayout}.
 #'
 #' @param ... Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.
 #' @param id Panel unique id. This is to access the input$id giving the panel
@@ -12,6 +14,7 @@
 #' @param resizable Whether to enable panel resize. FALSE by default.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname panel
 #'
 #' @export
 #' @examples
@@ -129,14 +132,17 @@ f7Panel <- function(..., id = NULL, title = NULL,
 
 
 
-#' Create a Framework7 sidebar menu
+#' Framework7 sidebar menu
 #'
-#' Build a Framework7 sidebar menu
+#' \link{f7PanelMenu} creates a menu for \link{f7Panel}. It may contain
+#' multiple \link{f7PanelItem}.
 #'
 #' @param ... Slot for \link{f7PanelItem}.
 #' @param id Unique id to access the currently selected item.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
+#'
+#' @rdname panelmenu
 #'
 #' @export
 f7PanelMenu <- function(..., id = NULL) {
@@ -200,9 +206,9 @@ f7PanelMenu <- function(..., id = NULL) {
 
 
 
-#' Create a Framework7 sidebar menu item
+#' Framework7 sidebar menu item
 #'
-#' Build a Framework7 sidebar menu item for \link{f7SplitLayout}.
+#' \link{f7PanelItem} creates a Framework7 sidebar menu item for \link{f7SplitLayout}.
 #'
 #' @param title Item name.
 #' @param tabName Item unique tabName. Must correspond to what is passed to
@@ -210,7 +216,7 @@ f7PanelMenu <- function(..., id = NULL) {
 #' @param icon Item icon.
 #' @param active Whether the item is active at start. Default to FALSE.
 #'
-#' @author David Granjon, \email{dgranjon@@ymail.com}
+#' @rdname panelmenu
 #'
 #' @export
 f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
@@ -237,16 +243,18 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 
 
 
-#' Function to programmatically update the state of a \link{f7Panel}
+#' Update Framework7 panel
 #'
-#' From open to close state and inversely
+#' \link{updateF7Panel} toggles a \link{f7Panel} from the server.
 #'
-#' @inheritParams f7Panel
+#' @param id Panel unique id.
 #' @param session Shiny session object.
+#' @rdname panel
 #'
 #' @export
 #'
 #' @examples
+#' # Toggle panel
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)

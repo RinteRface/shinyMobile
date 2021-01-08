@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7Dialog.R
 \name{f7Dialog}
 \alias{f7Dialog}
-\title{Create a Framework7 dialog window}
+\title{Framework7 dialog window}
 \usage{
 f7Dialog(
   id = NULL,
@@ -25,7 +25,7 @@ f7Dialog(
 \item{session}{shiny session.}
 }
 \description{
-Create a Framework7 dialog window
+\link{f7Dialog} generates a modal window.
 }
 \examples{
 # simple alert

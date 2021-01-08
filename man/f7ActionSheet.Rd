@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7ActionSheet.R
 \name{f7ActionSheet}
 \alias{f7ActionSheet}
-\title{Create a framework7 action sheet}
+\title{Framework7 action sheet}
 \usage{
 f7ActionSheet(
   id,
@@ -39,7 +39,8 @@ when you want to trigger events after a specific button click.}
 \item{session}{Shiny session object.}
 }
 \description{
-Create a framework7 action sheet
+An action sheet may contain multiple buttons. Each of them triggers
+an action on the server side.
 }
 \examples{
 if (interactive()) {
