@@ -180,8 +180,8 @@
   items <span class='op'>=</span> <span class='cn'>NULL</span>,
   index <span class='op'>=</span> <span class='cn'>NULL</span>,
   indexes <span class='op'>=</span> <span class='cn'>NULL</span>,
-  old_index <span class='op'>=</span> <span class='cn'>NULL</span>,
-  new_index <span class='op'>=</span> <span class='cn'>NULL</span>,
+  oldIndex <span class='op'>=</span> <span class='cn'>NULL</span>,
+  newIndex <span class='op'>=</span> <span class='cn'>NULL</span>,
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -213,11 +213,11 @@
       <td><p>If action if one of filterItems, deleteItems.</p></td>
     </tr>
     <tr>
-      <th>old_index</th>
+      <th>oldIndex</th>
       <td><p>If action is moveItem.</p></td>
     </tr>
     <tr>
-      <th>new_index</th>
+      <th>newIndex</th>
       <td><p>If action is moveItem.</p></td>
     </tr>
     <tr>
@@ -231,9 +231,9 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-     title <span class='op'>=</span> <span class='st'>"My app"</span>,
+     title <span class='op'>=</span> <span class='st'>"Update virtual list"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
        navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
          title <span class='op'>=</span> <span class='st'>"Virtual Lists"</span>,
@@ -386,8 +386,8 @@
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"moveItem"</span>,
-         old_index <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemIndex</span>,
-         new_index <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemNewIndex</span>
+         oldIndex <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemIndex</span>,
+         newIndex <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemNewIndex</span>
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 

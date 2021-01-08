@@ -171,13 +171,13 @@
     <p>Remove a <a href='f7Tab.html'>f7Tab</a> in a <a href='f7Tabs.html'>f7Tabs</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7RemoveTab</span><span class='op'>(</span><span class='va'>inputId</span>, <span class='va'>target</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7RemoveTab</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>target</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>inputId</th>
+      <th>id</th>
       <td><p><a href='f7Tabs.html'>f7Tabs</a> id.</p></td>
     </tr>
     <tr>
@@ -207,8 +207,8 @@
      title <span class='op'>=</span> <span class='st'>"Tabs"</span>,
      hairline <span class='op'>=</span> <span class='cn'>FALSE</span>,
      shadow <span class='op'>=</span> <span class='cn'>TRUE</span>,
-     left_panel <span class='op'>=</span> <span class='cn'>TRUE</span>,
-     right_panel <span class='op'>=</span> <span class='cn'>TRUE</span>
+     leftPanel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+     rightPanel <span class='op'>=</span> <span class='cn'>TRUE</span>
    <span class='op'>)</span>,
    <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span><span class='op'>(</span>
      id <span class='op'>=</span> <span class='st'>"tabset1"</span>,
@@ -236,7 +236,7 @@
    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabset1</span><span class='op'>)</span><span class='op'>)</span>
    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>remove1</span>, <span class='op'>{</span>
      <span class='fu'>f7RemoveTab</span><span class='op'>(</span>
-       inputId <span class='op'>=</span> <span class='st'>"tabset1"</span>,
+       id <span class='op'>=</span> <span class='st'>"tabset1"</span>,
        target <span class='op'>=</span> <span class='st'>"Tab 1"</span>
      <span class='op'>)</span>
    <span class='op'>}</span><span class='op'>)</span>

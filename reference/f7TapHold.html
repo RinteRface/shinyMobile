@@ -199,7 +199,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
 
  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-     title <span class='op'>=</span> <span class='st'>"My app"</span>,
+     title <span class='op'>=</span> <span class='st'>"Taphold"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
        navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7TapHold"</span><span class='op'>)</span>,
        <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"pressme"</span>, label <span class='op'>=</span> <span class='st'>"Press me"</span><span class='op'>)</span>
@@ -209,8 +209,7 @@ such as "#id" or ".class", ".class1, .class2", "a"...</p></td>
     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
       <span class='fu'>f7TapHold</span><span class='op'>(</span>
        target <span class='op'>=</span> <span class='st'>"#pressme"</span>,
-       callback <span class='op'>=</span> <span class='st'>"app.dialog.alert('Tap hold fired!');"</span>,
-       session <span class='op'>=</span> <span class='va'>session</span>
+       callback <span class='op'>=</span> <span class='st'>"app.dialog.alert('Tap hold fired!');"</span>
       <span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
    <span class='op'>}</span>

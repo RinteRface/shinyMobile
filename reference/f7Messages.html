@@ -203,11 +203,11 @@ instead of having them on bottom.</p></td>
     </tr>
     <tr>
       <th>scrollMessages</th>
-      <td><p>Enable/disable messages autoscrolling when adding new message.</p></td>
+      <td><p>Enable/disable messages auto scrolling when adding new message.</p></td>
     </tr>
     <tr>
       <th>scrollMessagesOnEdge</th>
-      <td><p>If enabled then messages autoscrolling will happen only
+      <td><p>If enabled then messages auto scrolling will happen only
 when user is on top/bottom of the messages view.</p></td>
     </tr>
     </table>
@@ -217,10 +217,9 @@ when user is on top/bottom of the messages view.</p></td>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"My app"</span>,
-    init <span class='op'>=</span> <span class='fu'>f7Init</span><span class='op'>(</span>skin <span class='op'>=</span> <span class='st'>"ios"</span>, theme <span class='op'>=</span> <span class='st'>"light"</span><span class='op'>)</span>,
+    title <span class='op'>=</span> <span class='st'>"Messages"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
         title <span class='op'>=</span> <span class='st'>"Messages"</span>,

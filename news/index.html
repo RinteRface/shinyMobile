@@ -165,18 +165,107 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-0809000" class="section level1">
-<h1 class="page-header" data-toc-text="0.8.0.9000">
-<a href="#shinymobile-0809000" class="anchor"></a>shinyMobile 0.8.0.9000<small> Unreleased </small>
+    <div id="shinymobile-2009000" class="section level1">
+<h1 class="page-header" data-toc-text="2.0.0.9000">
+<a href="#shinymobile-2009000" class="anchor"></a>shinyMobile 2.0.0.9000<small> Unreleased </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<div id="inputs" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inputs" class="anchor"></a>Inputs</h3>
 <ul>
 <li>
-<strong>external</strong> has been removed from <code><a href="../reference/f7Link.html">f7Link()</a></code> (much simpler)</li>
+<code><a href="../reference/updateF7Fabs.html">updateF7Fabs()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="layout" class="section level3">
+<h3 class="hasAnchor">
+<a href="#layout" class="anchor"></a>Layout</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>: <strong>left_panel</strong> becomes <strong>leftPanel</strong> and <strong>right_panel</strong> <strong>rightPanel</strong>
+</li>
 <li>
 <code>f7Init()</code> removed. Now pass it through the <code><a href="../reference/f7Page.html">f7Page()</a></code> <strong>options</strong>
+</li>
+<li>
+<code><a href="../reference/f7Navbar.html">f7Navbar()</a></code>: <strong>left_panel</strong> becomes <strong>leftPanel</strong> and <strong>right_panel</strong> <strong>rightPanel</strong>
+</li>
+<li>
+<code><a href="../reference/f7Panel.html">f7Panel()</a></code> and <code><a href="../reference/updateF7Panel.html">updateF7Panel()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+<li>
+<code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="cards" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cards" class="anchor"></a>Cards</h3>
+<ul>
+<li>
+<code><a href="../reference/f7ExpandableCard.html">f7ExpandableCard()</a></code> and <code><a href="../reference/f7Card.html">f7Card()</a></code>: <strong>img</strong> becomes <strong>image</strong>
+</li>
+<li>
+<code><a href="../reference/f7SocialCard.html">f7SocialCard()</a></code>: <strong>author_img</strong> becomes <strong>image</strong>
+</li>
+</ul>
+</div>
+<div id="lists" class="section level3">
+<h3 class="hasAnchor">
+<a href="#lists" class="anchor"></a>Lists</h3>
+<ul>
+<li>
+<code><a href="../reference/f7ListItem.html">f7ListItem()</a></code>: <strong>url</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/f7VirtualListItem.html">f7VirtualListItem()</a></code>: <strong>url</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: <strong>old_index</strong> and <strong>new_index</strong> become <strong>oldIndex</strong> and <strong>newIndex</strong>, respectively</li>
+</ul>
+</div>
+<div id="interactions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#interactions" class="anchor"></a>Interactions</h3>
+<ul>
+<li>
+<strong>session</strong> not mandatory in <code><a href="../reference/f7Toast.html">f7Toast()</a></code>, <code><a href="../reference/f7Progress.html">updateF7Progress()</a></code>, … and has been swapped at the end of the parameters for more convenience</li>
+<li>
+<code><a href="../reference/f7Dialog.html">f7Dialog()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+<li>
+<code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+</li>
+</ul>
+</div>
+<div id="buttons" class="section level3">
+<h3 class="hasAnchor">
+<a href="#buttons" class="anchor"></a>Buttons</h3>
+<ul>
+<li>
+<code><a href="../reference/f7Link.html">f7Link()</a></code>: <strong>external</strong> has been removed from (much simpler), <strong>src</strong> becomes <strong>href</strong>
+</li>
+<li>
+<code><a href="../reference/f7Button.html">f7Button()</a></code>: <strong>src</strong> becomes <strong>href</strong>
+</li>
+</ul>
+</div>
+<div id="others" class="section level3">
+<h3 class="hasAnchor">
+<a href="#others" class="anchor"></a>Others</h3>
+<ul>
+<li>
+<strong>session</strong> swapped to the end in <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> and not mandatory. Default to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html">shiny::getDefaultReactiveDomain()</a></code>
+</li>
+<li>
+<code><a href="../reference/f7Chip.html">f7Chip()</a></code>: <strong>icon_status</strong> becomes <strong>iconStatus</strong>, <strong>img</strong> becomes <strong>image</strong>
+</li>
+<li>
+<strong>inputId</strong> becomes <strong>id</strong> in <code><a href="../reference/f7Accordion.html">f7Accordion()</a></code> and <code><a href="../reference/updateF7Accordion.html">updateF7Accordion()</a></code>
 </li>
 <li>Remove <code>f7ProgressInf()</code> (useless)</li>
 <li>Change <code><a href="../reference/f7Swiper.html">f7Swiper()</a></code> API. New <strong>options</strong> parameter</li>
@@ -185,9 +274,8 @@
 <li>
 <strong>id</strong> mandatory for <code><a href="../reference/f7Searchbar.html">f7Searchbar()</a></code>
 </li>
-<li>
-<strong>session</strong> not mandatory in <code><a href="../reference/f7Toast.html">f7Toast()</a></code>, <code><a href="../reference/updateF7Progress.html">updateF7Progress()</a></code>, … and has been swapped at the end of the parameters for more convenience</li>
 </ul>
+</div>
 </div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">

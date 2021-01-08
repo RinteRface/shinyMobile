@@ -204,9 +204,9 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    title <span class='op'>=</span> <span class='st'>"Update message bar"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
         title <span class='op'>=</span> <span class='st'>"Message bar"</span>,
@@ -215,8 +215,8 @@
       <span class='op'>)</span>,
       toolbar <span class='op'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span><span class='op'>(</span>
         position <span class='op'>=</span> <span class='st'>"bottom"</span>,
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 1"</span>, src <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 2"</span>, src <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 1"</span>, href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
+        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 2"</span>, href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
       <span class='op'>)</span>,
       <span class='co'># main content</span>
       <span class='fu'><a href='f7Segment.html'>f7Segment</a></span><span class='op'>(</span>

@@ -173,7 +173,7 @@ trigger f7Panel." />
 trigger <a href='f7Panel.html'>f7Panel</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Appbar</span><span class='op'>(</span><span class='va'>...</span>, left_panel <span class='op'>=</span> <span class='cn'>FALSE</span>, right_panel <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7Appbar</span><span class='op'>(</span><span class='va'>...</span>, leftPanel <span class='op'>=</span> <span class='cn'>FALSE</span>, rightPanel <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,11 +185,11 @@ trigger <a href='f7Panel.html'>f7Panel</a>.</p>
 <a href='f7Back.html'>f7Back</a> in a <a href='f7Flex.html'>f7Flex</a>.</p></td>
     </tr>
     <tr>
-      <th>left_panel</th>
+      <th>leftPanel</th>
       <td><p>Whether to enable the left panel. FALSE by default.</p></td>
     </tr>
     <tr>
-      <th>right_panel</th>
+      <th>rightPanel</th>
       <td><p>Whether to enable the right panel. FALSE by default.</p></td>
     </tr>
     </table>
@@ -202,11 +202,11 @@ trigger <a href='f7Panel.html'>f7Panel</a>.</p>
 
  <span class='va'>cities</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>precip</span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'>f7Appbar</span><span class='op'>(</span>
-       <span class='fu'><a href='f7Flex.html'>f7Flex</a></span><span class='op'>(</span><span class='fu'><a href='f7Back.html'>f7Back</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"tabset"</span><span class='op'>)</span>,<span class='fu'><a href='f7Next.html'>f7Next</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"tabset"</span><span class='op'>)</span><span class='op'>)</span>,
+       <span class='fu'><a href='f7Flex.html'>f7Flex</a></span><span class='op'>(</span><span class='fu'><a href='f7Back.html'>f7Back</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"tabset"</span><span class='op'>)</span>, <span class='fu'><a href='f7Next.html'>f7Next</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"tabset"</span><span class='op'>)</span><span class='op'>)</span>,
        <span class='fu'><a href='f7Searchbar.html'>f7Searchbar</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"search1"</span>, inline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
      <span class='op'>)</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>

@@ -173,7 +173,7 @@
 
     <pre class="usage"><span class='fu'>f7Card</span><span class='op'>(</span>
   <span class='va'>...</span>,
-  img <span class='op'>=</span> <span class='cn'>NULL</span>,
+  image <span class='op'>=</span> <span class='cn'>NULL</span>,
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   footer <span class='op'>=</span> <span class='cn'>NULL</span>,
   outline <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -188,7 +188,7 @@
       <td><p>Card content.</p></td>
     </tr>
     <tr>
-      <th>img</th>
+      <th>image</th>
       <td><p>Card image if any. Displayed in the header.</p></td>
     </tr>
     <tr>
@@ -218,7 +218,7 @@
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Cards"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -238,7 +238,7 @@
     <span class='op'>)</span>,
     <span class='fu'>f7Card</span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Card header"</span>,
-     img <span class='op'>=</span> <span class='st'>"https://lorempixel.com/1000/600/nature/3/"</span>,
+     image <span class='op'>=</span> <span class='st'>"https://lorempixel.com/1000/600/nature/3/"</span>,
      <span class='st'>"This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element."</span>,

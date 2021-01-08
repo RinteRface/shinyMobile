@@ -177,7 +177,7 @@
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
   color <span class='op'>=</span> <span class='cn'>NULL</span>,
-  img <span class='op'>=</span> <span class='cn'>NULL</span>,
+  image <span class='op'>=</span> <span class='cn'>NULL</span>,
   fullBackground <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
@@ -206,7 +206,7 @@
 Not compatible with the img argument.</p></td>
     </tr>
     <tr>
-      <th>img</th>
+      <th>image</th>
       <td><p>Card background image url. Tje JPG format is prefered. Not compatible
 with the color argument.</p></td>
     </tr>
@@ -218,7 +218,7 @@ with the color argument.</p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>img and color are not compatible. Choose one of them.</p>
+    <p>image and color are not compatible. Choose one of them.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>David Granjon, <a href='mailto:dgranjon@ymail.com'>dgranjon@ymail.com</a></p>
@@ -228,7 +228,7 @@ with the color argument.</p></td>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Expandable Cards"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -259,7 +259,7 @@ with the color argument.</p></td>
       <span class='fu'>f7ExpandableCard</span><span class='op'>(</span>
        id <span class='op'>=</span> <span class='st'>"card3"</span>,
        title <span class='op'>=</span> <span class='st'>"Expandable Card 3"</span>,
-       img <span class='op'>=</span> <span class='st'>"https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg"</span>,
+       image <span class='op'>=</span> <span class='st'>"https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg"</span>,
        <span class='st'>"Framework7 - is a free and open source HTML mobile framework
         to develop hybrid mobile apps or web apps with iOS or Android
         native look and feel. It is also an indispensable prototyping apps tool
@@ -269,7 +269,7 @@ with the color argument.</p></td>
        id <span class='op'>=</span> <span class='st'>"card4"</span>,
        title <span class='op'>=</span> <span class='st'>"Expandable Card 4"</span>,
        fullBackground <span class='op'>=</span> <span class='cn'>TRUE</span>,
-       img <span class='op'>=</span> <span class='st'>"https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg"</span>,
+       image <span class='op'>=</span> <span class='st'>"https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg"</span>,
        <span class='st'>"Framework7 - is a free and open source HTML mobile framework
               to develop hybrid mobile apps or web apps with iOS or Android
               native look and feel. It is also an indispensable prototyping apps tool

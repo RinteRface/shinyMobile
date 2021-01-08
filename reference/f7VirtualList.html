@@ -199,7 +199,7 @@ screen scroll position. By default it is equal to the amount of rows
     <tr>
       <th>cache</th>
       <td><p>Disable or enable DOM cache for already rendered list items.
-In this case each item will be rendered only once and all futher
+In this case each item will be rendered only once and all further
 manipulations will be with DOM element. It is useful if your list
 items have some user interaction elements (like form elements or swipe outs)
 or could be modified.</p></td>
@@ -211,9 +211,9 @@ or could be modified.</p></td>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    title <span class='op'>=</span> <span class='st'>"Virtual List"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
         title <span class='op'>=</span> <span class='st'>"Virtual Lists"</span>,
@@ -233,8 +233,7 @@ or could be modified.</p></td>
             footer <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Footer"</span>, <span class='va'>i</span><span class='op'>)</span>,
             right <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Right"</span>, <span class='va'>i</span><span class='op'>)</span>,
             content <span class='op'>=</span> <span class='va'>i</span>,
-            media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>src <span class='op'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span><span class='op'>)</span>,
-            url <span class='op'>=</span> <span class='cn'>NULL</span>
+            media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>src <span class='op'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span><span class='op'>)</span>
           <span class='op'>)</span>
         <span class='op'>}</span><span class='op'>)</span>
       <span class='op'>)</span>
@@ -246,7 +245,7 @@ or could be modified.</p></td>
  <span class='op'>)</span>
 
  <span class='co'># below example will not load with classic f7List</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -264,9 +263,7 @@ or could be modified.</p></td>
              header <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Header"</span>, <span class='va'>i</span><span class='op'>)</span>,
              footer <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Footer"</span>, <span class='va'>i</span><span class='op'>)</span>,
              right <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Right"</span>, <span class='va'>i</span><span class='op'>)</span>,
-             content <span class='op'>=</span> <span class='va'>i</span>,
-             media <span class='op'>=</span> <span class='cn'>NULL</span>,
-             url <span class='op'>=</span> <span class='cn'>NULL</span>
+             content <span class='op'>=</span> <span class='va'>i</span>
            <span class='op'>)</span>
          <span class='op'>}</span><span class='op'>)</span>
        <span class='op'>)</span>

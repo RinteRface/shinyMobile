@@ -122,7 +122,7 @@
       <h1 data-toc-skip>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-01-07</h4>
+            <h4 class="date">2021-01-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/shinyMobile.Rmd"><code>vignettes/shinyMobile.Rmd</code></a></small>
       <div class="hidden name"><code>shinyMobile.Rmd</code></div>
@@ -134,59 +134,44 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<ul>
-<li>
-<p>shinyMobile is built on top of the latest <a href="https://framework7.io">framework7</a> template (V5.1.3). It may be used for different purposes:</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> is built on top of the latest <a href="https://framework7.io">framework7</a> template (V5.7.14). It may be used for different purposes:</p>
 <ul>
 <li>develop mobile-ready shinyapps</li>
 <li>develop progressive web shinyapps (PWA, similar to native apps)</li>
 <li>develop desktop shinyapps</li>
 </ul>
-</li>
-</ul>
 </div>
 <div id="custom-skins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#custom-skins" class="anchor"></a>Custom skins</h2>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> has 3 skins:</p>
 <ul>
 <li>
-<p>shinyMobile has 3 skins:</p>
-<ul>
-<li>aurora for desktop apps</li>
-<li>ios and md for mobile apps</li>
-<li>automatically detects if the app is running with android or iOS and accordingly adapt the layout</li>
+<strong>aurora</strong> for desktop apps</li>
+<li>
+<strong>ios</strong> and <strong>md</strong> for mobile apps</li>
 </ul>
-</li>
-</ul>
-<p>It is possible to apply the iOS skin on android and inversely, even though not recommended.</p>
-<ul>
-<li>This package also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the “widget level”, shinyMobile does not support that feature, to improve the overall consistancy. Only panels can have a color independant of the global theme.</li>
-</ul>
+<p>It automatically detects if the app is running with android or iOS and accordingly adapt the layout. It is of course possible to apply the iOS skin on android and inversely, even though not recommended.</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the “widget level”, <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> does not support that feature, to improve the overall consistency. Only panels can have a color independent of the global theme.</p>
 </div>
 <div id="layouts" class="section level2">
 <h2 class="hasAnchor">
 <a href="#layouts" class="anchor"></a>Layouts</h2>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> brings 3 out of the box layouts:</p>
 <ul>
 <li>
-<p>shinyMobile brings 3 out of the box layouts:</p>
-<ul>
+<code>f7SingleLayout</code>: develop simple apps (best choice for iOS/android Apps)</li>
 <li>
-<code>f7SingleLayout</code>: develop simple shinyMobile Apps (best choice for iOS/android Apps)</li>
-<li>
-<code>f7TabLayout</code>: develop complex multi tabbed Apps (best choice for iOS/android Apps)</li>
+<code>f7TabLayout</code>: develop complex multi-tabbed Apps (best choice for iOS/android Apps)</li>
 <li>
 <code>f7SplitLayout</code>: for tablets and desktop with a sidebar, navbar and a main panel</li>
 <li>Coming soon: a multi-pages layout with animations between pages!</li>
-</ul>
-</li>
 </ul>
 </div>
 <div id="new-inputs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-inputs" class="anchor"></a>New Inputs</h2>
-<ul>
-<li>
-<p>shinyMobile has its own custom input widgets with unique design for each skin (iOS/android/aurora):</p>
+<p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> has its own custom input widgets with unique design for each skin (iOS/android/aurora):</p>
 <ul>
 <li><code><a href="../reference/f7Slider.html">f7Slider()</a></code></li>
 <li><code><a href="../reference/f7Text.html">f7Text()</a></code></li>
@@ -207,9 +192,8 @@
 <code><a href="../reference/f7Button.html">f7Button()</a></code>: similar to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html">actionButton()</a></code> from {shiny}</li>
 <li>
 <code><a href="../reference/f7Fab.html">f7Fab()</a></code>: enhanced <code><a href="../reference/f7Button.html">f7Button()</a></code> with ability to be gathered in a <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> container</li>
+<li>and more</li>
 </ul>
-</li>
-<li>
 <p>It also has custom update functions to act on the server side:</p>
 <ul>
 <li><code><a href="../reference/updateF7AutoComplete.html">updateF7AutoComplete()</a></code></li>
@@ -220,30 +204,16 @@
 <li><code><a href="../reference/updateF7Fab.html">updateF7Fab()</a></code></li>
 <li><code><a href="../reference/updateF7Text.html">updateF7Text()</a></code></li>
 <li><code><a href="../reference/updateF7Checkbox.html">updateF7Checkbox()</a></code></li>
-<li>more to come on a future release</li>
+<li>and many more</li>
 </ul>
-</li>
-<li>
-<p>shinyMobile has custom input values tabs as well as dedicated update functions to act on the server side:</p>
-<ul>
-<li><code><a href="../reference/updateF7Tabs.html">updateF7Tabs()</a></code></li>
-</ul>
-</li>
-<li>
-<p>shinyMobile has custom input for sidebar (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a serve side update function:</p>
-<ul>
-<li><code><a href="../reference/updateF7Panel.html">updateF7Panel()</a></code></li>
-</ul>
-</li>
-</ul>
-<p>Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions and more:</p>
+<p>Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions, tabs, panels and more:</p>
 <ul>
 <li><code><a href="../reference/updateF7Accordion.html">updateF7Accordion()</a></code></li>
 <li><code><a href="../reference/updateF7Card.html">updateF7Card()</a></code></li>
 <li><code><a href="../reference/updateF7Gauge.html">updateF7Gauge()</a></code></li>
-<li><code><a href="../reference/updateF7Progress.html">updateF7Progress()</a></code></li>
+<li><code><a href="../reference/f7Progress.html">updateF7Progress()</a></code></li>
 <li><code><a href="../reference/f7Sheet.html">updateF7Sheet()</a></code></li>
-<li>more to come soon</li>
+<li>many more</li>
 </ul>
 </div>
 <div id="create-your-first-app" class="section level2">
@@ -306,7 +276,7 @@
     icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>The id argument is important if you want to get the currently selected item or update the select tab. Each <code>f7PanelItem</code> has a mandatory tabName. The associated input will be <code>input$menu</code> in that example, with “tab1” for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in <code><a href="../reference/f7Items.html">f7Items()</a></code> containing as many <code><a href="../reference/f7Item.html">f7Item()</a></code> as sidebar items. The tabName must correspond!</p>
+<p>The <strong>id</strong> argument is important if you want to get the currently selected item or update the select tab. Each <code>f7PanelItem</code> has a mandatory <strong>tabName</strong>. The associated input will be <code>input$menu</code> in that example, with “tab1” for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in <code><a href="../reference/f7Items.html">f7Items()</a></code> containing as many <code><a href="../reference/f7Item.html">f7Item()</a></code> as sidebar items. The <strong>tabName</strong> must correspond!</p>
 </div>
 <div id="core-layout-components" class="section level4">
 <h4 class="hasAnchor">
@@ -319,16 +289,36 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span>
   <span class="va">...</span>, 
-  init <span class="op">=</span> <span class="fu">f7Init</span><span class="op">(</span>skin <span class="op">=</span> <span class="st">"auto"</span>, theme <span class="op">=</span> <span class="st">"light"</span><span class="op">)</span>,
+  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span><span class="op">)</span>,
+    dark <span class="op">=</span> <span class="cn">TRUE</span>,
+    filled <span class="op">=</span> <span class="cn">FALSE</span>,
+    color <span class="op">=</span> <span class="st">"#007aff"</span>,
+    touch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      tapHold <span class="op">=</span> <span class="cn">TRUE</span>,
+      tapHoldDelay <span class="op">=</span> <span class="fl">750</span>,
+      iosTouchRipple <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+    iosTranslucentBars <span class="op">=</span> <span class="cn">FALSE</span>,
+    navbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      iosCenterTitle <span class="op">=</span> <span class="cn">TRUE</span>,
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">TRUE</span>
+    <span class="op">)</span>,
+    toolbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+    pullToRefresh <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span>,
   title <span class="op">=</span> <span class="cn">NULL</span>, 
   preloader <span class="op">=</span> <span class="cn">FALSE</span>, 
-  loading_duration <span class="op">=</span> <span class="fl">3</span>
+  loading_duration <span class="op">=</span> <span class="fl">3</span>,
+  allowPWA <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
-<p><code>f7Init()</code> is mandatory (see below) since it sets up the app. preloader is useful in case you want to display a loading screen. <code><a href="../reference/f7Page.html">f7Page()</a></code> accepts any shinyMobile layout.</p>
+<p><strong>options</strong> sets up the app look and feel. <strong>preloader</strong> is useful in case you want to display a loading screen. <code><a href="../reference/f7Page.html">f7Page()</a></code> accepts any <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> layout.</p>
 <div id="navbar" class="section level5">
 <h5 class="hasAnchor">
 <a href="#navbar" class="anchor"></a>Navbar</h5>
-<p>The navbar is one of the most important element of any shinyMobile layout. It contains a title, a subtitle, triggers for both right and left panels (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a subnavbar (<code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>).</p>
+<p>The <strong>navbar</strong> is a mandatory element of any <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> layout. It contains a title, a subtitle, triggers for both right and left panels (<code><a href="../reference/f7Panel.html">f7Panel()</a></code>) as well as a subnavbar (<code><a href="../reference/f7SubNavbar.html">f7SubNavbar()</a></code>).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Navbar.html">f7Navbar</a></span><span class="op">(</span>
   <span class="va">...</span>, 
@@ -338,10 +328,10 @@
   hairline <span class="op">=</span> <span class="cn">TRUE</span>, 
   shadow <span class="op">=</span> <span class="cn">TRUE</span>, 
   bigger <span class="op">=</span> <span class="cn">FALSE</span>,
-  left_panel <span class="op">=</span> <span class="cn">FALSE</span>, 
-  right_panel <span class="op">=</span> <span class="cn">FALSE</span>
+  leftPanel <span class="op">=</span> <span class="cn">FALSE</span>, 
+  rightPanel <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
-<p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline. Disclaimer: the bigger parameters does not work well yet… and I suggest to ignore it for the moment.</p>
+<p>For complex apps, it might be interesting to add a <code><a href="../reference/f7SubNavbar.html">f7SubNavbar(...)</a></code>. It may contain any element like <code><a href="../reference/f7Button.html">f7Button()</a></code> or text. <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> has also styling parameters such as shadow and hairline.</p>
 </div>
 <div id="the-toolbar" class="section level5">
 <h5 class="hasAnchor">
@@ -356,7 +346,7 @@
   icons <span class="op">=</span> <span class="cn">FALSE</span>, 
   scrollable <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
-<p>Interestingly, <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> is a custom <code><a href="../reference/f7Toolbar.html">f7Toolbar()</a></code>!</p>
+<p>Under the hood, <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> is a custom <code><a href="../reference/f7Toolbar.html">f7Toolbar()</a></code>!</p>
 </div>
 <div id="panels" class="section level5">
 <h5 class="hasAnchor">
@@ -365,15 +355,23 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>
   <span class="va">...</span>, 
+  id <span class="op">=</span> <span class="cn">NULL</span>,
   title <span class="op">=</span> <span class="cn">NULL</span>, 
   side <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"left"</span>, <span class="st">"right"</span><span class="op">)</span>,
   theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dark"</span>, <span class="st">"light"</span><span class="op">)</span>, 
   effect <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"reveal"</span>, <span class="st">"cover"</span><span class="op">)</span>,
   resizable <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
-<p>Although the App has a theme parameter, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independant theme option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument: - “reveal” will make the body content move and resize - “cover” will cover the body content The resizable argument allows to dynamically resize the panel.</p>
+<p>Although the App has a <strong>theme</strong> option, <code><a href="../reference/f7Panel.html">f7Panel()</a></code> has an independent <strong>theme</strong> option. For instance, it is definitely possible to create a dark <code><a href="../reference/f7Panel.html">f7Panel()</a></code> while the page theme is light, and conversely. Its behaviour is controlled via the effect argument:</p>
+<ul>
+<li>
+<strong>reveal</strong> will make the body content move and resize</li>
+<li>
+<strong>cover</strong> will cover the body content</li>
+</ul>
+<p>The <strong>resizable</strong> argument allows to dynamically resize the panel.</p>
 <p>Note that for the moment, there is no option to control the width of each panel.</p>
-<p>As stated previously for the <code>f7SplitLayout</code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>. Finally do not forget to set up the <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> so that panels are allowed!</p>
+<p>As stated previously for the <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code>, the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be considered as a sidebar. In that case, we may include <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>. Finally do not forget to set up the <code><a href="../reference/f7Navbar.html">f7Navbar()</a></code> so that panels are allowed!</p>
 </div>
 <div id="the-appbar" class="section level5">
 <h5 class="hasAnchor">
@@ -382,29 +380,38 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Appbar.html">f7Appbar</a></span><span class="op">(</span>
   <span class="va">...</span>, 
-  left_panel <span class="op">=</span> <span class="cn">FALSE</span>, 
-  right_panel <span class="op">=</span> <span class="cn">FALSE</span>,
+  leftPanel <span class="op">=</span> <span class="cn">FALSE</span>, 
+  rightPanel <span class="op">=</span> <span class="cn">FALSE</span>,
   maximizable <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div id="app-initialization" class="section level4">
+<div id="options" class="section level4">
 <h4 class="hasAnchor">
-<a href="#app-initialization" class="anchor"></a>App Initialization</h4>
-<p>This is probably the most inportant function of the template: <code>f7Init()</code>. This functions helps to set up the template as well as properly initializing the main view of your app.</p>
+<a href="#options" class="anchor"></a>Options</h4>
+<p>This is probably the most important element of the template:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">f7Init</span><span class="op">(</span>
-  skin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span><span class="op">)</span>, 
-  theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dark"</span>, <span class="st">"light"</span><span class="op">)</span>, 
-  filled <span class="op">=</span> <span class="cn">FALSE</span>, 
-  color <span class="op">=</span> <span class="cn">NULL</span>, 
-  tapHold <span class="op">=</span> <span class="cn">TRUE</span>,
-  iosTouchRipple <span class="op">=</span> <span class="cn">FALSE</span>, 
-  iosCenterTitle <span class="op">=</span> <span class="cn">TRUE</span>, 
-  hideNavOnPageScroll <span class="op">=</span> <span class="cn">TRUE</span>,
-  hideTabsOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
-<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called “filled” that allows to fill the navbar and toolbar if enabled. The color options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar which is useful to focus on the content. The tapHold parameter ensure that the “long-press” feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.</p>
+<code class="sourceCode R"><span class="va">options</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span><span class="op">)</span>,
+    dark <span class="op">=</span> <span class="cn">TRUE</span>,
+    filled <span class="op">=</span> <span class="cn">FALSE</span>,
+    color <span class="op">=</span> <span class="st">"#007aff"</span>,
+    touch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      tapHold <span class="op">=</span> <span class="cn">TRUE</span>,
+      tapHoldDelay <span class="op">=</span> <span class="fl">750</span>,
+      iosTouchRipple <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+    iosTranslucentBars <span class="op">=</span> <span class="cn">FALSE</span>,
+    navbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      iosCenterTitle <span class="op">=</span> <span class="cn">TRUE</span>,
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">TRUE</span>
+    <span class="op">)</span>,
+    toolbar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      hideNavOnPageScroll <span class="op">=</span> <span class="cn">FALSE</span>
+    <span class="op">)</span>,
+    pullToRefresh <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span></code></pre></div>
+<p>As stated above, you may choose between 3 skins and 2 color themes. There is a third option called <strong>filled</strong> that allows to fill the navbar and toolbar if enabled. The <strong>color</strong> options simply changes the color of elements such as buttons, panel triggers, tabs triggers, … <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> brings a lot of different colors. <strong>hideOnPageScroll</strong> allow to hide/show the navbar and toolbar which is useful to focus on the content. The <strong>tapHold</strong> parameter ensure that the “long-press” feature is activated. Framework7 has many more options which can be passed through this <strong>options</strong> parameter</p>
 </div>
 </div>
   </div>

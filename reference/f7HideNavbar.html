@@ -172,18 +172,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>f7HideNavbar</span><span class='op'>(</span>
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>,
   animate <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  hideStatusbar <span class='op'>=</span> <span class='cn'>FALSE</span>
+  hideStatusbar <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>Shiny session object.</p></td>
-    </tr>
     <tr>
       <th>animate</th>
       <td><p>Whether it should be hidden with animation or not. By default is TRUE.</p></td>
@@ -193,6 +189,10 @@
       <td><p>When FALSE (default) it hides navbar partially keeping space
 required to cover statusbar area. Otherwise, navbar will be fully hidden.</p></td>
     </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
+    </tr>
     </table>
 
 
@@ -201,9 +201,9 @@ required to cover statusbar area. Otherwise, navbar will be fully hidden.</p></t
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
     ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-       title <span class='op'>=</span> <span class='st'>"Accordions"</span>,
+       title <span class='op'>=</span> <span class='st'>"Hide navbar"</span>,
        <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
           navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span><span class='st'>"Hide/Show navbar"</span><span class='op'>)</span>,
           <span class='fu'><a href='f7Segment.html'>f7Segment</a></span><span class='op'>(</span>

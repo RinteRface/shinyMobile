@@ -171,7 +171,7 @@
     <p>Build a Framework7 social card</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7SocialCard</span><span class='op'>(</span><span class='va'>...</span>, author_img <span class='op'>=</span> <span class='cn'>NULL</span>, author <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, footer <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7SocialCard</span><span class='op'>(</span><span class='va'>...</span>, image <span class='op'>=</span> <span class='cn'>NULL</span>, author <span class='op'>=</span> <span class='cn'>NULL</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, footer <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,7 +181,7 @@
       <td><p>Card content.</p></td>
     </tr>
     <tr>
-      <th>author_img</th>
+      <th>image</th>
       <td><p>Author img.</p></td>
     </tr>
     <tr>
@@ -207,13 +207,13 @@
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Social Card"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7SocialCard"</span><span class='op'>)</span>,
      <span class='fu'>f7SocialCard</span><span class='op'>(</span>
-     author_img <span class='op'>=</span> <span class='st'>"http://lorempixel.com/68/68/people/1/"</span>,
+     image <span class='op'>=</span> <span class='st'>"http://lorempixel.com/68/68/people/1/"</span>,
      author <span class='op'>=</span> <span class='st'>"John Doe"</span>,
      date <span class='op'>=</span> <span class='st'>"Monday at 3:47 PM"</span>,
      <span class='st'>"What a nice photo i took yesterday!"</span>,

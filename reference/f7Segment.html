@@ -213,7 +213,7 @@
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Button Segments"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -222,7 +222,7 @@
     <span class='fu'>f7Segment</span><span class='op'>(</span>
      container <span class='op'>=</span> <span class='st'>"row"</span>,
      <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
-     <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"green"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, src <span class='op'>=</span> <span class='st'>"http://www.google.com"</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"green"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, href <span class='op'>=</span> <span class='st'>"http://www.google.com"</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
      <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"yellow"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, fill <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
     <span class='op'>)</span>,
     <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Filled Buttons in a segment/rounded container"</span><span class='op'>)</span>,
@@ -230,7 +230,7 @@
      rounded <span class='op'>=</span> <span class='cn'>TRUE</span>,
      container <span class='op'>=</span> <span class='st'>"segment"</span>,
      <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"black"</span>, label <span class='op'>=</span> <span class='st'>"Action Button"</span>, inputId <span class='op'>=</span> <span class='st'>"button2"</span><span class='op'>)</span>,
-     <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"green"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, src <span class='op'>=</span> <span class='st'>"http://www.google.com"</span><span class='op'>)</span>,
+     <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"green"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span>, href <span class='op'>=</span> <span class='st'>"http://www.google.com"</span><span class='op'>)</span>,
      <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"yellow"</span>, label <span class='op'>=</span> <span class='st'>"My button"</span><span class='op'>)</span>
     <span class='op'>)</span>,
     <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Outline Buttons in a segment/shadow container"</span><span class='op'>)</span>,

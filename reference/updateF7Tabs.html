@@ -171,15 +171,11 @@
     <p>Update <a href='f7Tabs.html'>f7Tabs</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateF7Tabs</span><span class='op'>(</span><span class='va'>session</span>, <span class='va'>id</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>updateF7Tabs</span><span class='op'>(</span><span class='va'>id</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>Shiny session object.</p></td>
-    </tr>
     <tr>
       <th>id</th>
       <td><p>Id of the <a href='f7Tabs.html'>f7Tabs</a> to update.</p></td>
@@ -187,6 +183,10 @@
     <tr>
       <th>selected</th>
       <td><p>Newly selected tab.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
     </tr>
     </table>
 
@@ -197,7 +197,7 @@
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
  <span class='va'>subtabs_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span> <span class='op'>{</span>
-   <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+   <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
 
    <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
      <span class='fu'><a href='f7Toggle.html'>f7Toggle</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"updateSubTab"</span><span class='op'>)</span>, label <span class='op'>=</span> <span class='st'>"Update SubTab"</span>, checked <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
@@ -220,7 +220,7 @@
    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>subtabdemo</span><span class='op'>)</span><span class='op'>)</span>
  <span class='op'>}</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Tab Layout"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
@@ -255,7 +255,7 @@
      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectedTab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabdemo</span><span class='op'>)</span>
      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>updateTab</span>, <span class='op'>{</span>
        <span class='va'>selected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>updateTab</span>, <span class='st'>"Tab 1"</span>, <span class='st'>"Tab 2"</span><span class='op'>)</span>
-       <span class='fu'>updateF7Tabs</span><span class='op'>(</span><span class='va'>session</span>, id <span class='op'>=</span> <span class='st'>"tabdemo"</span>, selected <span class='op'>=</span> <span class='va'>selected</span><span class='op'>)</span>
+       <span class='fu'>updateF7Tabs</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"tabdemo"</span>, selected <span class='op'>=</span> <span class='va'>selected</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
      <span class='va'>subtab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span><span class='va'>subtabs</span>, <span class='st'>"subtabs1"</span><span class='op'>)</span>
      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectedSubTab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span><span class='op'>(</span><span class='fu'>subtab</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
@@ -265,22 +265,12 @@
  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"shinyMobile"</span>,
-    init <span class='op'>=</span> <span class='fu'>f7Init</span><span class='op'>(</span>
-      skin <span class='op'>=</span> <span class='st'>"auto"</span>,
-      theme <span class='op'>=</span> <span class='st'>"light"</span>,
-      color <span class='op'>=</span> <span class='st'>'blue'</span>,
-      filled <span class='op'>=</span> <span class='cn'>TRUE</span>,
-      hideNavOnPageScroll <span class='op'>=</span> <span class='cn'>FALSE</span>,
-      hideTabsOnPageScroll <span class='op'>=</span> <span class='cn'>FALSE</span>
-    <span class='op'>)</span>,
     <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
         title <span class='op'>=</span> <span class='st'>"Update Tabs with hidden tab"</span>,
         subtitle <span class='op'>=</span> <span class='st'>""</span>,
         hairline <span class='op'>=</span> <span class='cn'>TRUE</span>,
         shadow <span class='op'>=</span> <span class='cn'>TRUE</span>,
-        left_panel <span class='op'>=</span> <span class='cn'>TRUE</span>,
-        right_panel <span class='op'>=</span> <span class='cn'>FALSE</span>,
         bigger <span class='op'>=</span> <span class='cn'>FALSE</span>,
         transparent <span class='op'>=</span> <span class='cn'>TRUE</span>
       <span class='op'>)</span>,

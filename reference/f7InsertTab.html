@@ -172,7 +172,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>f7InsertTab</span><span class='op'>(</span>
-  <span class='va'>inputId</span>,
+  <span class='va'>id</span>,
   <span class='va'>tab</span>,
   <span class='va'>target</span>,
   position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"before"</span>, <span class='st'>"after"</span><span class='op'>)</span>,
@@ -184,7 +184,7 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>inputId</th>
+      <th>id</th>
       <td><p><a href='f7Tabs.html'>f7Tabs</a> id.</p></td>
     </tr>
     <tr>
@@ -214,7 +214,7 @@
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Insert a tab Before the target"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
@@ -226,8 +226,8 @@
          title <span class='op'>=</span> <span class='st'>"Tabs"</span>,
          hairline <span class='op'>=</span> <span class='cn'>FALSE</span>,
          shadow <span class='op'>=</span> <span class='cn'>TRUE</span>,
-         left_panel <span class='op'>=</span> <span class='cn'>TRUE</span>,
-         right_panel <span class='op'>=</span> <span class='cn'>TRUE</span>
+         leftPanel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+         rightPanel <span class='op'>=</span> <span class='cn'>TRUE</span>
        <span class='op'>)</span>,
        <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span><span class='op'>(</span>
          animated <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -251,7 +251,7 @@
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
        <span class='fu'>f7InsertTab</span><span class='op'>(</span>
-         inputId <span class='op'>=</span> <span class='st'>"tabs"</span>,
+         id <span class='op'>=</span> <span class='st'>"tabs"</span>,
          position <span class='op'>=</span> <span class='st'>"before"</span>,
          target <span class='op'>=</span> <span class='st'>"Tab 2"</span>,
          tab <span class='op'>=</span> <span class='fu'><a href='f7Tab.html'>f7Tab</a></span> <span class='op'>(</span>tabName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"tab_"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>go</span><span class='op'>)</span>, <span class='st'>"Test"</span><span class='op'>)</span>,

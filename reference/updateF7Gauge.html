@@ -172,7 +172,6 @@
     </div>
 
     <pre class="usage"><span class='fu'>updateF7Gauge</span><span class='op'>(</span>
-  <span class='va'>session</span>,
   <span class='va'>id</span>,
   value <span class='op'>=</span> <span class='cn'>NULL</span>,
   labelText <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -186,16 +185,13 @@
   valueFontWeight <span class='op'>=</span> <span class='cn'>NULL</span>,
   labelTextColor <span class='op'>=</span> <span class='cn'>NULL</span>,
   labelFontSize <span class='op'>=</span> <span class='cn'>NULL</span>,
-  labelFontWeight <span class='op'>=</span> <span class='cn'>NULL</span>
+  labelFontWeight <span class='op'>=</span> <span class='cn'>NULL</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>session</th>
-      <td><p>Shiny session object.</p></td>
-    </tr>
     <tr>
       <th>id</th>
       <td><p>Gauge id.</p></td>
@@ -252,6 +248,10 @@
       <th>labelFontWeight</th>
       <td><p>Label text font weight.</p></td>
     </tr>
+    <tr>
+      <th>session</th>
+      <td><p>Shiny session object.</p></td>
+    </tr>
     </table>
 
 
@@ -261,7 +261,7 @@
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
     ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
        title <span class='op'>=</span> <span class='st'>"Gauges"</span>,
        <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -281,7 +281,7 @@
     <span class='op'>)</span>,
     server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
-          <span class='fu'>updateF7Gauge</span><span class='op'>(</span><span class='va'>session</span>, id <span class='op'>=</span> <span class='st'>"mygauge"</span>, value <span class='op'>=</span> <span class='fl'>75</span>, labelText <span class='op'>=</span> <span class='st'>"New label!"</span><span class='op'>)</span>
+          <span class='fu'>updateF7Gauge</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"mygauge"</span>, value <span class='op'>=</span> <span class='fl'>75</span>, labelText <span class='op'>=</span> <span class='st'>"New label!"</span><span class='op'>)</span>
        <span class='op'>}</span><span class='op'>)</span>
     <span class='op'>}</span>
  <span class='op'>)</span>
