@@ -107,27 +107,10 @@ $((function() {
         $(".page").addClass("page-with-subnavbar");
     }
     Shiny.addCustomMessageHandler("notif", (function(message) {
-        var closeButton = message.closeButton == "true";
-        var closeOnClick = message.closeOnClick == "true";
-        var swipeToClose = message.swipeToClose == "true";
-        var icon;
-        if (message.icon !== undefined) {
-            icon = '<i class="' + message.icon[1].attribs.class + '">' + message.icon[1].children[0] + "</i>";
-        } else {
-            icon = undefined;
+        if (typeof message.icon !== "string") {
+            message.icon = undefined;
         }
-        var notif = app.notification.create({
-            icon: icon,
-            title: message.title,
-            titleRightText: message.titleRightText,
-            subtitle: message.subtitle,
-            text: message.text,
-            closeTimeout: parseInt(message.closeTimeout),
-            closeOnClick: closeOnClick,
-            swipeToClose: swipeToClose,
-            closeButton: closeButton
-        });
-        notif.open();
+        app.notification.create(message).open();
     }));
     popoverIds = [];
     getAllPopoverIds = function() {

@@ -1462,8 +1462,8 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'   }
 #'  )
 #' }
-updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, ..., multiple = NULL,
-                                maxLength = NULL,
+updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multiple = NULL,
+                                maxLength = NULL, ...,
                                 session = shiny::getDefaultReactiveDomain()) {
 
   if (!is.null(selected)) {

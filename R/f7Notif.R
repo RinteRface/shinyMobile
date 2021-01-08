@@ -12,6 +12,7 @@
 #' FALSE by default.
 #' @param closeOnClick Whether to close the notification on click. TRUE by default.
 #' @param swipeToClose If enabled, notification can be closed by swipe gesture.
+#' @param ... Other options. See \url{https://framework7.io/docs/notification.html}.
 #' @param session shiny session.
 #'
 #' @export
@@ -49,18 +50,26 @@ f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subt
   message <- dropNulls(
     list(
       title = title,
-      icon = icon,
+      icon = as.character(icon),
       titleRightText = titleRightText,
       subtitle = subtitle,
       text = text,
-      closeOnClick = tolower(closeOnClick),
-      swipeToClose = tolower(swipeToClose),
-      closeButton = tolower(closeButton),
-      closeTimeout = closeTimeout
+      closeOnClick = closeOnClick,
+      swipeToClose = swipeToClose,
+      closeButton = closeButton,
+      closeTimeout = closeTimeout,
+      ...
     )
   )
   # see my-app.js function
-  session$sendCustomMessage(type = "notif", message = message)
+  session$sendCustomMessage(
+    type = "notif",
+    message = jsonlite::toJSON(
+      message,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
 
 }
 
