@@ -136,17 +136,7 @@ $((function() {
         }));
     }));
     Shiny.addCustomMessageHandler("toast", (function(message) {
-        var closeButton = message.closeButton == "true";
-        var toast = app.toast.create({
-            icon: message.icon,
-            text: message.text,
-            position: message.position,
-            closeButton: closeButton,
-            closeTimeout: parseInt(message.closeTimeout),
-            closeButtonText: message.closeButtonText,
-            closeButtonColor: message.closeButtonColor
-        });
-        toast.open();
+        app.toast.create(message).open();
     }));
     Shiny.addCustomMessageHandler("dialog", (function(message) {
         var type = message.type;

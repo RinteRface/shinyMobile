@@ -12,6 +12,7 @@ f7Toast(
   closeButtonColor = "red",
   closeTimeout = 3000,
   icon = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -31,6 +32,8 @@ TRUE by default.}
 
 \item{icon}{Optional. Expect \link{f7Icon}. Warning:
 Adding icon will hide the close button.}
+
+\item{...}{Other options. See \url{https://framework7.io/docs/toast.html#toast-parameters}.}
 
 \item{session}{Shiny session.}
 }

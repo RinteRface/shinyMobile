@@ -163,21 +163,7 @@ $(function() {
 
   // handle toasts
   Shiny.addCustomMessageHandler("toast", function(message) {
-    // properly treat Booleans get from R
-    // R returns strings containing 'true' or 'false'
-    var closeButton = message.closeButton == "true";
-
-    var toast = app.toast.create({
-      icon: message.icon,
-      text: message.text,
-      position: message.position,
-      closeButton: closeButton,
-      closeTimeout: parseInt(message.closeTimeout),
-      closeButtonText: message.closeButtonText,
-      closeButtonColor: message.closeButtonColor
-    });
-    // Open Notifications
-    toast.open();
+    app.toast.create(message).open();
   });
 
   // handle dialog

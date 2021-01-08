@@ -11,6 +11,7 @@
 #' @param closeTimeout Time before toast closes.
 #' @param icon Optional. Expect \link{f7Icon}. Warning:
 #' Adding icon will hide the close button.
+#' @param ... Other options. See \url{https://framework7.io/docs/toast.html#toast-parameters}.
 #' @param session Shiny session.
 #'
 #' @export
@@ -40,9 +41,9 @@
 f7Toast <- function(text, position = c("bottom", "top", "center"),
                     closeButton = TRUE, closeButtonText = "close",
                     closeButtonColor = "red", closeTimeout = 3000, icon = NULL,
-                    session = shiny::getDefaultReactiveDomain()) {
+                    ..., session = shiny::getDefaultReactiveDomain()) {
 
-  icon <- if(!is.null(icon)) as.character(icon)
+  if(!is.null(icon)) icon <- as.character(icon)
 
   position <- match.arg(position)
 
@@ -52,11 +53,19 @@ f7Toast <- function(text, position = c("bottom", "top", "center"),
       position = position,
       closeTimeout = closeTimeout,
       icon = icon,
-      closeButton = tolower(closeButton),
+      closeButton = closeButton,
       closeButtonText = closeButtonText,
-      closeButtonColor = closeButtonColor
+      closeButtonColor = closeButtonColor,
+      ...
     )
   )
   # see my-app.js function
-  session$sendCustomMessage(type = "toast", message = message)
+  session$sendCustomMessage(
+    type = "toast",
+    message = jsonlite::toJSON(
+      message,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
 }
