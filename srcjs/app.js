@@ -56,11 +56,7 @@ $(function() {
   // visible because it takes the same color has the messagebar background ...
   // To detect if the layout is filled, we search in the body class since the
   // global color is hosted here.
-  if (
-    $("body").attr("filled") === "true" &&
-    !$("html").hasClass("theme-light") &&
-    $("body").attr("class") !== "#ffffff"
-  ) {
+  if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
     $(".demo-send-message-link")
       .find("i")
       .addClass("color-white");
@@ -68,8 +64,7 @@ $(function() {
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background
-  var dark_mode = $("html").hasClass("theme-dark");
-  if (dark_mode) {
+  if (app.params.dark) {
     $(".page-content").css("background-color", "");
     $(".page-content.tab, .tab").css("background-color", "");
     $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");

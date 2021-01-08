@@ -74,11 +74,10 @@ $((function() {
         }
     }
     $(".tabs-standalone").css("height", "auto");
-    if ($("body").attr("filled") === "true" && !$("html").hasClass("theme-light") && $("body").attr("class") !== "#ffffff") {
+    if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
         $(".demo-send-message-link").find("i").addClass("color-white");
     }
-    var dark_mode = $("html").hasClass("theme-dark");
-    if (dark_mode) {
+    if (app.params.dark) {
         $(".page-content").css("background-color", "");
         $(".page-content.tab, .tab").css("background-color", "");
         $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
