@@ -132,7 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -263,7 +263,7 @@
        <span class='fu'><a href='f7VirtualList.html'>f7VirtualList</a></span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          items <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
-           <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span><span class='op'>(</span>
+           <span class='fu'><a href='f7VirtualList.html'>f7VirtualListItem</a></span><span class='op'>(</span>
              title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Title"</span>, <span class='va'>i</span><span class='op'>)</span>,
              subtitle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Subtitle"</span>, <span class='va'>i</span><span class='op'>)</span>,
              header <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Header"</span>, <span class='va'>i</span><span class='op'>)</span>,
@@ -325,7 +325,7 @@
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"appendItem"</span>,
-         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span><span class='op'>(</span>
+         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualList.html'>f7VirtualListItem</a></span><span class='op'>(</span>
            title <span class='op'>=</span> <span class='st'>"New Item Title"</span>,
            right <span class='op'>=</span> <span class='st'>"New Item Right"</span>,
            content <span class='op'>=</span> <span class='st'>"New Item Content"</span>,
@@ -339,7 +339,7 @@
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"prependItems"</span>,
          items <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
-           <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span><span class='op'>(</span>
+           <span class='fu'><a href='f7VirtualList.html'>f7VirtualListItem</a></span><span class='op'>(</span>
              title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Title"</span>, <span class='va'>i</span><span class='op'>)</span>,
              right <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Right"</span>, <span class='va'>i</span><span class='op'>)</span>,
              content <span class='op'>=</span> <span class='va'>i</span>,
@@ -354,7 +354,7 @@
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"insertItemBefore"</span>,
          index <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemIndex</span>,
-         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span><span class='op'>(</span>
+         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualList.html'>f7VirtualListItem</a></span><span class='op'>(</span>
            title <span class='op'>=</span> <span class='st'>"New Item Title"</span>,
            content <span class='op'>=</span> <span class='st'>"New Item Content"</span>,
            media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>src <span class='op'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span><span class='op'>)</span>
@@ -367,7 +367,7 @@
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"replaceItem"</span>,
          index <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>itemIndex</span>,
-         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualListItem.html'>f7VirtualListItem</a></span><span class='op'>(</span>
+         item <span class='op'>=</span> <span class='fu'><a href='f7VirtualList.html'>f7VirtualListItem</a></span><span class='op'>(</span>
            title <span class='op'>=</span> <span class='st'>"Replacement"</span>,
            content <span class='op'>=</span> <span class='st'>"Replacement Content"</span>,
            media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>img</a></span><span class='op'>(</span>src <span class='op'>=</span> <span class='st'>"https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"</span><span class='op'>)</span>

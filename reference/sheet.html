@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an f7 sheet modal — f7Sheet • shinyMobile</title>
+<title>Framework7 sheet — f7Sheet • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create an f7 sheet modal — f7Sheet" />
-<meta property="og:description" content="Create an f7 sheet modal
-Update a framework 7 sheet modal" />
+<meta property="og:title" content="Framework7 sheet — f7Sheet" />
+<meta property="og:description" content="f7Sheet creates an f7 sheet modal window.
+updateF7Sheet toggles a f7Sheet on the client." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -133,7 +133,7 @@ Update a framework 7 sheet modal" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -163,14 +163,14 @@ Update a framework 7 sheet modal" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an f7 sheet modal</h1>
+    <h1>Framework7 sheet</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Sheet.R'><code>R/f7Sheet.R</code></a></small>
     <div class="hidden name"><code>sheet.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create an f7 sheet modal</p>
-<p>Update a framework 7 sheet modal</p>
+    <p>f7Sheet creates an f7 sheet modal window.</p>
+<p>updateF7Sheet toggles a f7Sheet on the client.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Sheet</span><span class='op'>(</span>
@@ -245,7 +245,8 @@ Yet, if you need a specific trigger, simply add <code>`data-sheet` = paste0("#",
 to the tag of your choice (a button), where id refers to the sheet unique id.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'><span class='co'># Toggle sheet modal</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
@@ -303,7 +304,7 @@ to the tag of your choice (a button), where id refers to the sheet unique id.</p
           <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>)</span><span class='op'>)</span>
        <span class='op'>}</span><span class='op'>)</span>
        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span>, <span class='op'>{</span>
-          <span class='fu'><a href='updateF7Gauge.html'>updateF7Gauge</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"mygauge"</span>, value <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>)</span>
+          <span class='fu'><a href='f7Gauge.html'>updateF7Gauge</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"mygauge"</span>, value <span class='op'>=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span><span class='op'>)</span>
        <span class='op'>}</span><span class='op'>)</span>
        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
           <span class='fu'>updateF7Sheet</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"sheet1"</span><span class='op'>)</span>

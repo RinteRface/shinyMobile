@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Provide a template for authentication — f7Login • shinyMobile</title>
+<title>Framework7 login screen — f7Login • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Provide a template for authentication — f7Login" />
-<meta property="og:description" content="This function does not provide the backend features. You would
-need to store credentials in a database for instance." />
+<meta property="og:title" content="Framework7 login screen — f7Login" />
+<meta property="og:description" content="Provide a template for authentication
+f7LoginServer is a useful server elements to fine tune the
+f7Login page.
+updateF7Login toggles a login page." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -133,7 +135,7 @@ need to store credentials in a database for instance." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -163,14 +165,16 @@ need to store credentials in a database for instance." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Provide a template for authentication</h1>
+    <h1>Framework7 login screen</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Login.R'><code>R/f7Login.R</code></a></small>
     <div class="hidden name"><code>authentication.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function does not provide the backend features. You would
-need to store credentials in a database for instance.</p>
+    <p>Provide a template for authentication</p>
+<p>f7LoginServer is a useful server elements to fine tune the
+f7Login page.</p>
+<p>updateF7Login toggles a login page.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Login</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>id</span>, <span class='va'>title</span>, label <span class='op'>=</span> <span class='st'>"Sign In"</span>, footer <span class='op'>=</span> <span class='cn'>NULL</span>, startOpen <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -246,6 +250,10 @@ one wants to set up local authentication (for a specific section). See example 2
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function does not provide the backend features. You would
+need to store credentials in a database for instance.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>There is an input associated with the login status, namely input$login.

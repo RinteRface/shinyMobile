@@ -89,7 +89,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider">
@@ -131,7 +131,7 @@
 
     
     
-<p><code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is the third layout introduced with <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a>. This template is focused for tablet/desktop use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to <code><a href="../reference/f7Panel.html">f7Panel()</a></code>. While <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be embedded in both <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> and <code>f7TabsLayout</code>, it accepts extra arguments like <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code> and <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code>, which are very similar to sidebar items of <code>{shinydashboard}</code>:</p>
+<p><code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is the third layout introduced with <a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a>. This template is focused for tablet/desktop use. It is composed of a sidebar, and a main panel. The sidebar goes in its dedicated slot, corresponding to <code><a href="../reference/f7Panel.html">f7Panel()</a></code>. While <code><a href="../reference/f7Panel.html">f7Panel()</a></code> may also be embedded in both <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> and <code>f7TabsLayout</code>, it accepts extra arguments like <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code> and <code><a href="../reference/f7PanelMenu.html">f7PanelItem()</a></code>, which are very similar to sidebar items of <code>{shinydashboard}</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/f7Panel.html">f7Panel</a></span><span class="op">(</span>
   title <span class="op">=</span> <span class="st">"Sidebar"</span>,
@@ -139,12 +139,12 @@
   theme <span class="op">=</span> <span class="st">"light"</span>,
   <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelMenu</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"menu"</span>,
-    <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>tabName <span class="op">=</span> <span class="st">"tab1"</span>, title <span class="op">=</span> <span class="st">"Tab 1"</span>, icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"email"</span><span class="op">)</span>, active <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>tabName <span class="op">=</span> <span class="st">"tab2"</span>, title <span class="op">=</span> <span class="st">"Tab 2"</span>, icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelItem</a></span><span class="op">(</span>tabName <span class="op">=</span> <span class="st">"tab1"</span>, title <span class="op">=</span> <span class="st">"Tab 1"</span>, icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"email"</span><span class="op">)</span>, active <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelItem</a></span><span class="op">(</span>tabName <span class="op">=</span> <span class="st">"tab2"</span>, title <span class="op">=</span> <span class="st">"Tab 2"</span>, icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"home"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>,
   style <span class="op">=</span> <span class="st">"reveal"</span>
 <span class="op">)</span></code></pre></div>
-<p>The content must be passed in <code>...</code> If you have a menu in the sidebar, you must use the corresponding body function, namely <code><a href="../reference/f7Items.html">f7Items()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code>. Particularly, the <em>tabName</em> argument provided in <code><a href="../reference/f7PanelItem.html">f7PanelItem()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code> must exactly match (like in <code>{shinydashboard}</code>, again). If you don’t have any <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>, you can pass tags in the <code>...</code> directly. However, this prevents you from having a tabbed navigation.</p>
+<p>The content must be passed in <code>...</code> If you have a menu in the sidebar, you must use the corresponding body function, namely <code><a href="../reference/f7Items.html">f7Items()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code>. Particularly, the <em>tabName</em> argument provided in <code><a href="../reference/f7PanelMenu.html">f7PanelItem()</a></code> and <code><a href="../reference/f7Item.html">f7Item()</a></code> must exactly match (like in <code>{shinydashboard}</code>, again). If you don’t have any <code><a href="../reference/f7PanelMenu.html">f7PanelMenu()</a></code>, you can pass tags in the <code>...</code> directly. However, this prevents you from having a tabbed navigation.</p>
 <div class="marvel-device ipad black">
 <div class="camera">
 
@@ -208,18 +208,18 @@
         theme <span class="op">=</span> <span class="st">"light"</span>,
         <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelMenu</a></span><span class="op">(</span>
           id <span class="op">=</span> <span class="st">"menu"</span>,
-          <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>
+          <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelItem</a></span><span class="op">(</span>
             tabName <span class="op">=</span> <span class="st">"tab1"</span>,
             title <span class="op">=</span> <span class="st">"Tab 1"</span>,
             icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"equal_circle"</span><span class="op">)</span>,
             active <span class="op">=</span> <span class="cn">TRUE</span>
           <span class="op">)</span>,
-          <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>
+          <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelItem</a></span><span class="op">(</span>
             tabName <span class="op">=</span> <span class="st">"tab2"</span>,
             title <span class="op">=</span> <span class="st">"Tab 2"</span>,
             icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"equal_circle"</span><span class="op">)</span>
           <span class="op">)</span>,
-          <span class="fu"><a href="../reference/f7PanelItem.html">f7PanelItem</a></span><span class="op">(</span>
+          <span class="fu"><a href="../reference/f7PanelMenu.html">f7PanelItem</a></span><span class="op">(</span>
             tabName <span class="op">=</span> <span class="st">"tab3"</span>,
             title <span class="op">=</span> <span class="st">"Tab 3"</span>,
             icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"equal_circle"</span><span class="op">)</span>

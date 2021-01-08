@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show preloader — f7ShowPreloader • shinyMobile</title>
+<title>Framework7 preloader — f7ShowPreloader • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Show preloader — f7ShowPreloader" />
-<meta property="og:description" content="Show preloader
-Hide preloader" />
+<meta property="og:title" content="Framework7 preloader — f7ShowPreloader" />
+<meta property="og:description" content="Deprecated. f7ShowPreloader shows a preloader.
+showF7Preloader shows a preloader.
+Deprecated. f7HidePreloader hides a preloader.
+hideF7Preloader hides a preloader." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -133,7 +135,7 @@ Hide preloader" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 0.8.0.9000</li>
+    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -163,14 +165,16 @@ Hide preloader" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show preloader</h1>
+    <h1>Framework7 preloader</h1>
     <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Preloader.R'><code>R/f7Preloader.R</code></a></small>
     <div class="hidden name"><code>preloader.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Show preloader</p>
-<p>Hide preloader</p>
+    <p>Deprecated. f7ShowPreloader shows a preloader.</p>
+<p>showF7Preloader shows a preloader.</p>
+<p>Deprecated. f7HidePreloader hides a preloader.</p>
+<p>hideF7Preloader hides a preloader.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7ShowPreloader</span><span class='op'>(</span>
@@ -179,7 +183,15 @@ Hide preloader" />
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='fu'>f7HidePreloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>showF7Preloader</span><span class='op'>(</span>
+  target <span class='op'>=</span> <span class='cn'>NULL</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='fu'>f7HidePreloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>hideF7Preloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
