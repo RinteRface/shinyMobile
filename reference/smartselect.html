@@ -191,9 +191,9 @@ allows for choices filtering, ...</p>
   <span class='va'>inputId</span>,
   selected <span class='op'>=</span> <span class='cn'>NULL</span>,
   choices <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>...</span>,
   multiple <span class='op'>=</span> <span class='cn'>NULL</span>,
   maxLength <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -239,13 +239,13 @@ Note that the search bar is only available when the type is popup.</p></td>
 of options. Default to FALSE.</p></td>
     </tr>
     <tr>
+      <th>maxLength</th>
+      <td><p>Maximum items to select when multiple is TRUE.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Parameters used to update the smart select,
 use same arguments as in <code>f7SmartSelect</code>.</p></td>
-    </tr>
-    <tr>
-      <th>maxLength</th>
-      <td><p>Maximum items to select when multiple is TRUE.</p></td>
     </tr>
     <tr>
       <th>session</th>
