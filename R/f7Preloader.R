@@ -11,9 +11,9 @@
 #'  library(shinyMobile)
 #'
 #'  # basic preloader with red color
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Preloader",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Preloader",
@@ -48,9 +48,9 @@
 #'  )
 #'
 #'  # preloader in container
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Preloader in container",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Preloader in container",

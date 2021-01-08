@@ -20,7 +20,7 @@ if (interactive()) {
  library(shinyMobile)
  shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Tooltip",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Tooltip"),
        f7Tooltip(

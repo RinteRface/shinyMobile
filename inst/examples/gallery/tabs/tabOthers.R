@@ -64,8 +64,8 @@ tabOthers <- f7Tab(
     strong = TRUE,
     f7Chip(label = "Example Chip"),
     f7Chip(label = "Example Chip", outline = TRUE),
-    f7Chip(label = "Example Chip", icon = f7Icon("add_round"), icon_status = "pink"),
-    f7Chip(label = "Example Chip", img = "https://picsum.photos/200"),
+    f7Chip(label = "Example Chip", icon = f7Icon("add_round"), iconStatus = "pink"),
+    f7Chip(label = "Example Chip", image = "https://picsum.photos/200"),
     f7Chip(label = "Example Chip", closable = TRUE),
     f7Chip(label = "Example Chip", status = "green"),
     f7Chip(label = "Example Chip", status = "green", outline = TRUE)
@@ -75,7 +75,7 @@ tabOthers <- f7Tab(
   # accordion
   f7BlockTitle(title = "f7Accordion") %>% f7Align(side = "center"),
   f7Accordion(
-    inputId = "accordion1",
+    id = "accordion1",
     f7AccordionItem(
       title = "Item 1",
       f7Block("Item 1 content")

@@ -61,7 +61,7 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Gauges",
     f7SingleLayout(
@@ -86,5 +86,5 @@ if(interactive()){
 
 }
 \author{
-David Granjon and Isabelle Rudolf, \email{dgranjon@ymail.com}
+David Granjon \email{dgranjon@ymail.com}
 }

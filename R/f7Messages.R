@@ -6,8 +6,8 @@
 #' automatically based on passed conditions.
 #' @param newMessagesFirst Enable if you want to use new messages on top,
 #' instead of having them on bottom.
-#' @param scrollMessages Enable/disable messages autoscrolling when adding new message.
-#' @param scrollMessagesOnEdge If enabled then messages autoscrolling will happen only
+#' @param scrollMessages Enable/disable messages auto scrolling when adding new message.
+#' @param scrollMessagesOnEdge If enabled then messages auto scrolling will happen only
 #' when user is on top/bottom of the messages view.
 #'
 #' @export
@@ -15,10 +15,9 @@
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
-#'     init = f7Init(skin = "ios", theme = "light"),
+#'     title = "Messages",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Messages",
@@ -160,9 +159,9 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Update message bar",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Message bar",
@@ -171,8 +170,8 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 #'       ),
 #'       toolbar = f7Toolbar(
 #'         position = "bottom",
-#'         f7Link(label = "Link 1", src = "https://www.google.com"),
-#'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'         f7Link(label = "Link 1", href = "https://www.google.com"),
+#'         f7Link(label = "Link 2", href = "https://www.google.com", external = TRUE)
 #'       ),
 #'       # main content
 #'       f7Segment(
@@ -269,6 +268,7 @@ f7Message <- function(text, name, type = c("sent", "received"),
 #'
 #' @param id Reference to link{f7Messages} container.
 #' @param showTyping Show typing when a new message comes. Default to FALSE.
+#' Does not work yet...
 #' @param messages List of \link{f7Messages}.
 #' @param session SHiny session object
 #'

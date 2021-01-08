@@ -20,7 +20,7 @@ screen scroll position. By default it is equal to the amount of rows
 (items) that fit to screen.}
 
 \item{cache}{Disable or enable DOM cache for already rendered list items.
-In this case each item will be rendered only once and all futher
+In this case each item will be rendered only once and all further
 manipulations will be with DOM element. It is useful if your list
 items have some user interaction elements (like form elements or swipe outs)
 or could be modified.}
@@ -32,9 +32,9 @@ Use if many components in \link{f7List}
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Virtual List",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Virtual Lists",
@@ -54,8 +54,7 @@ if (interactive()) {
             footer = paste("Footer", i),
             right = paste("Right", i),
             content = i,
-            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"),
-            url = NULL
+            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
           )
         })
       )
@@ -67,7 +66,7 @@ if (interactive()) {
  )
 
  # below example will not load with classic f7List
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "My app",
      f7SingleLayout(
@@ -85,9 +84,7 @@ if (interactive()) {
              header = paste("Header", i),
              footer = paste("Footer", i),
              right = paste("Right", i),
-             content = i,
-             media = NULL,
-             url = NULL
+             content = i
            )
          })
        )

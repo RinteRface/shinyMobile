@@ -5,7 +5,7 @@
 #' @param inputId The input slot that will be used to access the value.
 #' @param label The contents of the button or link–usually a text label,
 #' but you could also use any other HTML, like an image or \link{f7Icon}.
-#' @param src Button link.
+#' @param href Button link.
 #' @param color Button color. Not compatible with outline.
 #' See here for valid colors \url{https://framework7.io/docs/badge.html}.
 #' @param fill Fill style. TRUE by default. Not compatible with outline
@@ -19,12 +19,12 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Button <- function(inputId = NULL, label = NULL, src = NULL,
+f7Button <- function(inputId = NULL, label = NULL, href = NULL,
                      color = NULL, fill = TRUE, outline = FALSE,
                      shadow = FALSE, rounded = FALSE, size = NULL,
                      active = FALSE) {
 
-  if (!is.null(inputId) & !is.null(src)) stop("Cannot set inputId and src at the same time.")
+  if (!is.null(inputId) & !is.null(href)) stop("Cannot set inputId and src at the same time.")
 
   # outline and fill are incompatible by definition
   # as well as color and outline
@@ -34,7 +34,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 
   # need to add external to handle external url
   buttonCl <- "button"
-  if (!is.null(src)) buttonCl <- paste0(buttonCl, " external")
+  if (!is.null(href)) buttonCl <- paste0(buttonCl, " external")
   if (!is.null(inputId)) buttonCl <- paste0(buttonCl, " f7-action-button")
   if (!is.null(color)) buttonCl <- paste0(buttonCl, " color-", color)
   if (fill) buttonCl <- paste0(buttonCl, " button-fill")
@@ -50,9 +50,8 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
     id = inputId,
     type = "button",
     class = buttonCl,
-    href = if (!is.null(src)) src else NULL,
+    href = if (!is.null(href)) href else NULL,
     `data-val` = if (!is.null(inputId)) value else NULL,
-    target = "_blank",
     label
   )
 }
@@ -76,7 +75,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Button Segments",
 #'     f7SingleLayout(
@@ -85,7 +84,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'     f7Segment(
 #'      container = "row",
 #'      f7Button(color = "blue", label = "My button", fill = FALSE),
-#'      f7Button(color = "green", label = "My button", src = "http://www.google.com", fill = FALSE),
+#'      f7Button(color = "green", label = "My button", href = "http://www.google.com", fill = FALSE),
 #'      f7Button(color = "yellow", label = "My button", fill = FALSE)
 #'     ),
 #'     f7BlockTitle(title = "Filled Buttons in a segment/rounded container"),
@@ -93,7 +92,7 @@ f7Button <- function(inputId = NULL, label = NULL, src = NULL,
 #'      rounded = TRUE,
 #'      container = "segment",
 #'      f7Button(color = "black", label = "Action Button", inputId = "button2"),
-#'      f7Button(color = "green", label = "My button", src = "http://www.google.com"),
+#'      f7Button(color = "green", label = "My button", href = "http://www.google.com"),
 #'      f7Button(color = "yellow", label = "My button")
 #'     ),
 #'     f7BlockTitle(title = "Outline Buttons in a segment/shadow container"),

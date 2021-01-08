@@ -23,7 +23,7 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Gauges",
 #'     f7SingleLayout(
@@ -46,7 +46,7 @@
 #'  )
 #' }
 #'
-#' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
+#' @author David Granjon \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Gauge <- function(id, type = "circle", value, size = 200,
@@ -86,7 +86,6 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 
 #' update a framework7 gauge from the server side
 #'
-#' @param session Shiny session object.
 #' @param id Gauge id.
 #' @param value New value. Numeric between 0 and 100.
 #' @param size Generated SVG image size (in px). Default is 200.
@@ -101,6 +100,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 #' @param labelTextColor Label text color.
 #' @param labelFontSize Label text font size.
 #' @param labelFontWeight Label text font weight.
+#' @param session Shiny session object.
 #'
 #' @export
 #'
@@ -110,7 +110,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 #'  library(shinyMobile)
 #'
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'     ui = f7Page(
 #'        title = "Gauges",
 #'        f7SingleLayout(
@@ -130,17 +130,18 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 #'     ),
 #'     server = function(input, output, session) {
 #'        observeEvent(input$go, {
-#'           updateF7Gauge(session, id = "mygauge", value = 75, labelText = "New label!")
+#'           updateF7Gauge(id = "mygauge", value = 75, labelText = "New label!")
 #'        })
 #'     }
 #'  )
 #' }
-updateF7Gauge <- function(session, id, value = NULL, labelText = NULL, size = NULL,
+updateF7Gauge <- function(id, value = NULL, labelText = NULL, size = NULL,
                           bgColor = NULL, borderBgColor = NULL,
                           borderColor = NULL, borderWidth = NULL,
                           valueTextColor = NULL, valueFontSize = NULL,
                           valueFontWeight = NULL, labelTextColor = NULL,
-                          labelFontSize = NULL, labelFontWeight = NULL) {
+                          labelFontSize = NULL, labelFontWeight = NULL,
+                          session = shiny::getDefaultReactiveDomain()) {
 
   message <- dropNulls(
     list(

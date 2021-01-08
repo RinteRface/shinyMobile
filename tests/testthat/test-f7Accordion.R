@@ -9,7 +9,7 @@ test_that("accordion", {
 
   # id
   expect_equal(
-    f7Accordion(inputId = "test")$attribs$id,
+    f7Accordion(id = "test")$attribs$id,
     "test"
   )
 
@@ -53,7 +53,7 @@ test_that("update", {
     }
   ))
 
-  updateF7Accordion(session = session, inputId = "accordion", selected = 1)
+  updateF7Accordion(session = session, id = "accordion", selected = 1)
   result <- session$lastInputMessage
 
   expect_equal(result$message$selected, 1)

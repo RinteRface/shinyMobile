@@ -4,7 +4,7 @@ test_that("button", {
   expect_true(inherits(f7Button(), "shiny.tag"))
 
   # errors
-  expect_error(f7Button(inputId = "test", src = "src"))
+  expect_error(f7Button(inputId = "test", href = "https://www.google.com"))
   expect_error(f7Button(outline = TRUE, fill = TRUE))
   expect_error(f7Button(outline = TRUE, color = "red"))
 

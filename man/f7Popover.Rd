@@ -51,16 +51,14 @@ if (interactive()) {
      observe({
        f7Popover(
          targetId = "test",
-         content = "This is a f7Button",
-         session
+         content = "This is a f7Button"
        )
      })
 
      observe({
        f7Popover(
          targetId = "test2",
-         content = "This is a f7Slider",
-         session
+         content = "This is a f7Slider"
        )
      })
    }

@@ -4,12 +4,12 @@
 \alias{f7SocialCard}
 \title{Create a Framework7 social card}
 \usage{
-f7SocialCard(..., author_img = NULL, author = NULL, date = NULL, footer = NULL)
+f7SocialCard(..., image = NULL, author = NULL, date = NULL, footer = NULL)
 }
 \arguments{
 \item{...}{Card content.}
 
-\item{author_img}{Author img.}
+\item{image}{Author img.}
 
 \item{author}{Author.}
 
@@ -25,13 +25,13 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Social Card",
     f7SingleLayout(
      navbar = f7Navbar(title = "f7SocialCard"),
      f7SocialCard(
-     author_img = "http://lorempixel.com/68/68/people/1/",
+     image = "http://lorempixel.com/68/68/people/1/",
      author = "John Doe",
      date = "Monday at 3:47 PM",
      "What a nice photo i took yesterday!",

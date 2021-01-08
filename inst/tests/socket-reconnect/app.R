@@ -3,11 +3,8 @@ library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    color = "pink",
+    allowPWA = TRUE,
     title = "shinyReconnect",
-    icon = "apple-touch-icon.png",
-    favicon = "favicon.png",
-    manifest = "manifest.json",
     f7SingleLayout(
       navbar = f7Navbar(title = "f7Fabs"),
       tags$head(tags$script(src = "reconnect.js")),

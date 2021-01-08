@@ -7,7 +7,7 @@
 f7Button(
   inputId = NULL,
   label = NULL,
-  src = NULL,
+  href = NULL,
   color = NULL,
   fill = TRUE,
   outline = FALSE,
@@ -23,7 +23,7 @@ f7Button(
 \item{label}{The contents of the button or link–usually a text label,
 but you could also use any other HTML, like an image or \link{f7Icon}.}
 
-\item{src}{Button link.}
+\item{href}{Button link.}
 
 \item{color}{Button color. Not compatible with outline.
 See here for valid colors \url{https://framework7.io/docs/badge.html}.}

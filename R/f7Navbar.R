@@ -12,8 +12,8 @@
 #' compatible with subtitle.
 #' @param transparent Whether the navbar should be transparent. FALSE by default.
 #' Only works if bigger is TRUE.
-#' @param left_panel Whether to enable the left panel. FALSE by default.
-#' @param right_panel Whether to enable the right panel. FALSE by default.
+#' @param leftPanel Whether to enable the left panel. FALSE by default.
+#' @param rightPanel Whether to enable the right panel. FALSE by default.
 #'
 #' @note Currently, bigger parameters does mess with the CSS.
 #'
@@ -21,8 +21,8 @@
 #'
 #' @export
 f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairline = TRUE,
-                     shadow = TRUE, bigger = FALSE, transparent = FALSE, left_panel = FALSE,
-                     right_panel = FALSE) {
+                     shadow = TRUE, bigger = FALSE, transparent = FALSE, leftPanel = FALSE,
+                     rightPanel = FALSE) {
 
    navbarClass <- "navbar"
    # bigger and transparent work together
@@ -36,7 +36,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
    if (!hairline) navbarClass <- paste0(navbarClass, " no-hairline")
    if (!shadow) navbarClass <- paste0(navbarClass, " no-shadow")
 
-   leftNav <- if (left_panel) {
+   leftNav <- if (leftPanel) {
       shiny::tags$div(
          class = "left",
          shiny::tags$a(
@@ -49,7 +49,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
       )
    }
 
-   rightNav <- if (right_panel) {
+   rightNav <- if (rightPanel) {
       shiny::tags$div(
          class = "right",
          shiny::tags$a(
@@ -114,7 +114,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'      title = "Sub Navbar",
 #'      f7TabLayout(
@@ -126,8 +126,8 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 #'            title = "SubNavbar",
 #'            hairline = FALSE,
 #'            shadow = TRUE,
-#'            left_panel = TRUE,
-#'            right_panel = TRUE,
+#'            leftPanel = TRUE,
+#'            rightPanel = TRUE,
 #'            subNavbar = f7SubNavbar(
 #'               f7Button(label = "My button", outline = TRUE),
 #'               f7Button(label = "My button", outline = TRUE),
@@ -187,16 +187,14 @@ f7SubNavbar <- function(...) {
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'     ui = f7Page(
-#'        title = "Accordions",
+#'        title = "Hide navbar",
 #'        f7SingleLayout(
 #'           navbar = f7Navbar("Hide/Show navbar"),
 #'           f7Segment(
@@ -217,8 +215,8 @@ f7SubNavbar <- function(...) {
 #'     }
 #'  )
 #' }
-f7HideNavbar <- function(session = shiny::getDefaultReactiveDomain(), animate = TRUE,
-                         hideStatusbar = FALSE) {
+f7HideNavbar <- function(animate = TRUE, hideStatusbar = FALSE,
+                         session = shiny::getDefaultReactiveDomain()) {
    message <- dropNulls(
       list(
          animate = tolower(animate),
@@ -237,16 +235,14 @@ f7HideNavbar <- function(session = shiny::getDefaultReactiveDomain(), animate = 
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'     ui = f7Page(
-#'        title = "Accordions",
+#'        title = "Show navbar",
 #'        f7SingleLayout(
 #'           navbar = f7Navbar("Hide/Show navbar"),
 #'           f7Segment(
@@ -267,6 +263,6 @@ f7HideNavbar <- function(session = shiny::getDefaultReactiveDomain(), animate = 
 #'     }
 #'  )
 #' }
-f7ShowNavbar <- function(session = shiny::getDefaultReactiveDomain(), animate = TRUE) {
+f7ShowNavbar <- function(animate = TRUE, session = shiny::getDefaultReactiveDomain()) {
    session$sendCustomMessage(type = "show_navbar", message = tolower(animate))
 }

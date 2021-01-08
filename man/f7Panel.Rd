@@ -6,7 +6,7 @@
 \usage{
 f7Panel(
   ...,
-  inputId = NULL,
+  id = NULL,
   title = NULL,
   side = c("left", "right"),
   theme = c("dark", "light"),
@@ -17,7 +17,7 @@ f7Panel(
 \arguments{
 \item{...}{Panel content. Slot for \link{f7PanelMenu}, if used as a sidebar.}
 
-\item{inputId}{Panel unique id. This is to access the input$id giving the panel
+\item{id}{Panel unique id. This is to access the input$id giving the panel
 state, namely open or closed.}
 
 \item{title}{Panel title.}
@@ -37,29 +37,28 @@ Build a Framework7 panel
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
-     init = f7Init(skin = "ios", theme = "light"),
+     title = "Panels",
      f7SingleLayout(
        navbar = f7Navbar(
          title = "Single Layout",
          hairline = FALSE,
          shadow = TRUE,
-         left_panel = TRUE,
-         right_panel = TRUE
+         leftPanel = TRUE,
+         rightPanel = TRUE
        ),
        panels = tagList(
-         f7Panel(side = "left", inputId = "mypanel1"),
-         f7Panel(side = "right", inputId = "mypanel2")
+         f7Panel(side = "left", id = "mypanel1"),
+         f7Panel(side = "right", id = "mypanel2")
        ),
        toolbar = f7Toolbar(
          position = "bottom",
          icons = TRUE,
          hairline = FALSE,
          shadow = FALSE,
-         f7Link(label = "Link 1", src = "https://www.google.com"),
-         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+         f7Link(label = "Link 1", href = "https://www.google.com"),
+         f7Link(label = "Link 2", href = "https://www.google.com")
        ),
        # main content
        f7Shadow(
@@ -71,7 +70,7 @@ if (interactive()) {
            h1("You only see me by opening the left panel"),
            plotOutput("distPlot"),
            footer = tagList(
-             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+             f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
              f7Badge("Badge", color = "green")
            )
          )
@@ -85,7 +84,6 @@ if (interactive()) {
        state <- if (input$mypanel2) "open" else "closed"
 
        f7Toast(
-         session,
          text = paste0("Right panel is ", state),
          position = "center",
          closeTimeout = 1000,

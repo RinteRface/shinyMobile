@@ -4,10 +4,10 @@
 \alias{updateF7Panel}
 \title{Function to programmatically update the state of a \link{f7Panel}}
 \usage{
-updateF7Panel(inputId, session = shiny::getDefaultReactiveDomain())
+updateF7Panel(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{inputId}{Panel unique id. This is to access the input$id giving the panel
+\item{id}{Panel unique id. This is to access the input$id giving the panel
 state, namely open or closed.}
 
 \item{session}{Shiny session object.}
@@ -19,29 +19,28 @@ From open to close state and inversely
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
-     init = f7Init(skin = "md", theme = "light"),
+     title = "Update panel menu",
      f7SingleLayout(
        navbar = f7Navbar(
          title = "Single Layout",
          hairline = FALSE,
          shadow = TRUE,
-         left_panel = TRUE,
-         right_panel = TRUE
+         leftPanel = TRUE,
+         rightPanel = TRUE
        ),
        panels = tagList(
-         f7Panel(side = "left", inputId = "mypanel1", theme = "light", effect = "cover"),
-         f7Panel(side = "right", inputId = "mypanel2", theme = "light")
+         f7Panel(side = "left", id = "mypanel1", theme = "light", effect = "cover"),
+         f7Panel(side = "right", id = "mypanel2", theme = "light")
        ),
        toolbar = f7Toolbar(
          position = "bottom",
          icons = TRUE,
          hairline = FALSE,
          shadow = FALSE,
-         f7Link(label = "Link 1", src = "https://www.google.com"),
-         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+         f7Link(label = "Link 1", href = "https://www.google.com"),
+         f7Link(label = "Link 2", href = "https://www.google.com")
        )
      )
    ),
@@ -58,7 +57,7 @@ if (interactive()) {
 
      observe({
        invalidateLater(2000)
-       updateF7Panel(inputId = "mypanel1", session = session)
+       updateF7Panel(id = "mypanel1")
      })
 
    }

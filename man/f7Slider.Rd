@@ -63,7 +63,7 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "My app",
     f7SingleLayout(
@@ -103,7 +103,7 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "My app",
     f7SingleLayout(

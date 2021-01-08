@@ -27,9 +27,9 @@ Update message bar on the server side
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Update message bar",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Message bar",
@@ -38,8 +38,8 @@ if (interactive()) {
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com", external = TRUE)
       ),
       # main content
       f7Segment(

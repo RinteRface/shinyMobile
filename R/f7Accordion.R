@@ -3,7 +3,7 @@
 #' Build a Framework7 accordion
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
-#' @param inputId Optional id to recover the state of the accordion.
+#' @param id Optional id to recover the state of the accordion.
 #' @param multiCollapse Whether to open multiple items at the same time. FALSE
 #' by default.
 #'
@@ -12,13 +12,13 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Accordions",
 #'     f7SingleLayout(
 #'      navbar = f7Navbar("Accordions"),
 #'      f7Accordion(
-#'       inputId = "myaccordion1",
+#'       id = "myaccordion1",
 #'       f7AccordionItem(
 #'        title = "Item 1",
 #'        f7Block("Item 1 content"),
@@ -59,7 +59,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Accordion <- function(..., inputId = NULL, multiCollapse = FALSE) {
+f7Accordion <- function(..., id = NULL, multiCollapse = FALSE) {
 
   accordionTag <- if (multiCollapse) {
     shiny::tags$div(
@@ -75,7 +75,7 @@ f7Accordion <- function(..., inputId = NULL, multiCollapse = FALSE) {
 
  tagAppendAttributes(
    accordionTag,
-   id = inputId,
+   id = id,
    class = "collapsible"
  )
 }
@@ -122,7 +122,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 
 #' Update a Framework 7 accordion
 #'
-#' @param inputId Accordion instance.
+#' @param id Accordion instance.
 #' @param selected Index of item to select.
 #' @param session Shiny session object
 #'
@@ -135,14 +135,14 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Accordions",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar("Accordions"),
 #'        f7Button(inputId = "go", "Go"),
 #'        f7Accordion(
-#'          inputId = "myaccordion1",
+#'          id = "myaccordion1",
 #'          f7AccordionItem(
 #'            title = "Item 1",
 #'            f7Block("Item 1 content"),
@@ -158,7 +158,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #'    server = function(input, output, session) {
 #'
 #'      observeEvent(input$go, {
-#'        updateF7Accordion(inputId = "myaccordion1", selected = 2, session = session)
+#'        updateF7Accordion(id = "myaccordion1", selected = 2)
 #'      })
 #'
 #'      observe({
@@ -172,7 +172,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #'    }
 #'  )
 #' }
-updateF7Accordion <- function(inputId, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
+updateF7Accordion <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <-list(selected = selected)
-  session$sendInputMessage(inputId, message)
+  session$sendInputMessage(id, message)
 }

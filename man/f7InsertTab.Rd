@@ -5,7 +5,7 @@
 \title{Insert a \link{f7Tab} in a \link{f7Tabs}}
 \usage{
 f7InsertTab(
-  inputId,
+  id,
   tab,
   target,
   position = c("before", "after"),
@@ -14,7 +14,7 @@ f7InsertTab(
 )
 }
 \arguments{
-\item{inputId}{\link{f7Tabs} id.}
+\item{id}{\link{f7Tabs} id.}
 
 \item{tab}{\link{f7Tab} to insert.}
 
@@ -33,7 +33,7 @@ Insert a \link{f7Tab} in a \link{f7Tabs}
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Insert a tab Before the target",
      f7TabLayout(
@@ -45,8 +45,8 @@ if (interactive()) {
          title = "Tabs",
          hairline = FALSE,
          shadow = TRUE,
-         left_panel = TRUE,
-         right_panel = TRUE
+         leftPanel = TRUE,
+         rightPanel = TRUE
        ),
        f7Tabs(
          animated = TRUE,
@@ -70,7 +70,7 @@ if (interactive()) {
    server = function(input, output, session) {
      observeEvent(input$go, {
        f7InsertTab(
-         inputId = "tabs",
+         id = "tabs",
          position = "before",
          target = "Tab 2",
          tab = f7Tab (tabName = paste0("tab_", input$go), "Test"),

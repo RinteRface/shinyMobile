@@ -1,8 +1,9 @@
+library(shiny)
+library(shinyMobile)
 library(shinyWidgets)
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
-    f7Init(theme = "md"),
     f7Block(
       strong = TRUE,
       # action button

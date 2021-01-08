@@ -14,15 +14,12 @@
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'   library(shiny)
 #'   library(shinyMobile)
 #'   shinyApp(
 #'     ui = f7Page(
-#'       color = "pink",
 #'       title = "My app",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(title = "f7Notif"),
@@ -30,7 +27,7 @@
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'       shiny::observeEvent(input$goButton,{
+#'       observeEvent(input$goButton,{
 #'         f7Notif(
 #'           text = "test",
 #'           icon = f7Icon("bolt_fill"),

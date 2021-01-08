@@ -17,7 +17,7 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "Align",
     f7SingleLayout(

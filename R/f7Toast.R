@@ -19,7 +19,7 @@
 #'  library(shinyMobile)
 #'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Toast",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Toast"),
 #'       f7Button(inputId = "toast", label = "Open Toast")
@@ -28,7 +28,6 @@
 #'   server = function(input, output, session) {
 #'     observeEvent(input$toast, {
 #'       f7Toast(
-#'         session,
 #'         position = "top",
 #'         text = "I am a toast. Eat me!"
 #'       )

@@ -1,7 +1,6 @@
 library(shiny)
 library(shinyMobile)
 library(apexcharter)
-library(shinyWidgets)
 
 poll <- data.frame(
   answer = c("Yes", "No"),
@@ -20,8 +19,8 @@ shinyApp(
         title = "Tabs",
         hairline = TRUE,
         shadow = TRUE,
-        left_panel = TRUE,
-        right_panel = TRUE
+        leftPanel = TRUE,
+        rightPanel = TRUE
       ),
       f7Tabs(
         animated = TRUE,
@@ -112,15 +111,14 @@ shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              prettyCheckboxGroup(
+              f7SmartSelect(
                 "variable",
                 "Variables to show:",
                 c("Cylinders" = "cyl",
                   "Transmission" = "am",
                   "Gears" = "gear"),
-                inline = TRUE,
-                status = "danger",
-                animation = "pulse"
+                openIn = "sheet",
+                multiple = TRUE
               ),
               tableOutput("data")
             )

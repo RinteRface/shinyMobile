@@ -6,8 +6,8 @@
 #' @param ... Any UI content such as \link{f7Searchbar}, \link{f7Next} and
 #' \link{f7Back}. It is best practice to wrap \link{f7Next} and
 #' \link{f7Back} in a \link{f7Flex}.
-#' @param left_panel Whether to enable the left panel. FALSE by default.
-#' @param right_panel Whether to enable the right panel. FALSE by default.
+#' @param leftPanel Whether to enable the left panel. FALSE by default.
+#' @param rightPanel Whether to enable the right panel. FALSE by default.
 #'
 #' @export
 #' @examples
@@ -17,11 +17,11 @@
 #'
 #'  cities <- names(precip)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7Appbar(
-#'        f7Flex(f7Back(targetId = "tabset"),f7Next(targetId = "tabset")),
+#'        f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
 #'        f7Searchbar(id = "search1", inline = TRUE)
 #'      ),
 #'      f7TabLayout(
@@ -58,9 +58,9 @@
 #'    server = function(input, output) {}
 #'  )
 #' }
-f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
+f7Appbar <- function(..., leftPanel = FALSE, rightPanel = FALSE) {
 
-  panelToggle <- if (left_panel | right_panel) {
+  panelToggle <- if (leftPanel || rightPanel) {
     shiny::tags$a(
       href = "#",
       class = "button button-small panel-toggle display-flex",
@@ -78,14 +78,14 @@ f7Appbar <- function(..., left_panel = FALSE, right_panel = FALSE) {
     class = "appbar",
     shiny::tags$div(
       class = "appbar-inner",
-      if (left_panel) {
+      if (leftPanel) {
         shiny::tags$div(
           class = "left",
           setPanelToggle(panelToggle, "left")
         )
       },
       ...,
-      if (right_panel) {
+      if (rightPanel) {
         shiny::tags$div(
           class = "right",
           setPanelToggle(panelToggle, "right")

@@ -9,8 +9,6 @@
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #' library(shiny)
@@ -18,7 +16,7 @@
 #'
 #'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "Taphold",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7TapHold"),
 #'        f7Button(inputId = "pressme", label = "Press me")
@@ -28,8 +26,7 @@
 #'     observe({
 #'       f7TapHold(
 #'        target = "#pressme",
-#'        callback = "app.dialog.alert('Tap hold fired!');",
-#'        session = session
+#'        callback = "app.dialog.alert('Tap hold fired!');"
 #'       )
 #'     })
 #'    }

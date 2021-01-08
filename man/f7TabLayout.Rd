@@ -27,10 +27,9 @@ if(interactive()){
  library(shinyMobile)
  library(shinyWidgets)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
-     init = f7Init(skin = "md", theme = "light"),
+     title = "Tab layout",
      f7TabLayout(
        tags$head(
          tags$script(
@@ -50,8 +49,8 @@ if(interactive()){
          title = "Tabs",
          hairline = FALSE,
          shadow = TRUE,
-         left_panel = TRUE,
-         right_panel = TRUE
+         leftPanel = TRUE,
+         rightPanel = TRUE
        ),
        f7Tabs(
          animated = FALSE,
@@ -102,7 +101,7 @@ if(interactive()){
                ),
                plotOutput("distPlot2"),
                footer = tagList(
-                 f7Button(label = "My button", src = "https://www.google.com"),
+                 f7Button(label = "My button", href = "https://www.google.com"),
                  f7Badge("Badge", color = "orange")
                )
              )
@@ -128,7 +127,7 @@ if(interactive()){
                ),
                tableOutput("data"),
                footer = tagList(
-                 f7Button(label = "My button", src = "https://www.google.com"),
+                 f7Button(label = "My button", href = "https://www.google.com"),
                  f7Badge("Badge", color = "green")
                )
              )

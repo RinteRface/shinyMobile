@@ -16,11 +16,11 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "Swipeout",
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7List"),
+#'        navbar = f7Navbar(title = "Swipeout"),
 #'        # simple list
 #'        f7List(
 #'          lapply(1:3, function(j) {
@@ -50,16 +50,14 @@
 #'          icon = f7Icon("bolt_fill"),
 #'          title = "Notification",
 #'          subtitle = "A subtitle",
-#'          titleRightText = "now",
-#'          session = session
+#'          titleRightText = "now"
 #'        )
 #'      })
 #'
 #'      observeEvent(input$alert, {
 #'        f7Dialog(
 #'          title = "Dialog title",
-#'          text = "This is an alert dialog",
-#'          session = session
+#'          text = "This is an alert dialog"
 #'        )
 #'      })
 #'

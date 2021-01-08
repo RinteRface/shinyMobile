@@ -32,13 +32,13 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Action sheet",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar("Action sheet"),
 #'        br(),
-#'        f7Button(inputId = "go", "Show action sheet", color = "red")
+#'        f7Button(inputId = "go", label = "Show action sheet", color = "red")
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
@@ -56,22 +56,20 @@
 #'            text = "You clicked on the first button",
 #'            icon = f7Icon("bolt_fill"),
 #'            title = "Notification",
-#'            titleRightText = "now",
-#'            session = session
+#'            titleRightText = "now"
 #'          )
 #'        } else if (input$action1_button == 2) {
 #'          f7Dialog(
 #'            inputId = "test",
 #'            title = "Click me to launch a Toast!",
 #'            type = "confirm",
-#'            text = "You clicked on the second button",
-#'            session = session
+#'            text = "You clicked on the second button"
 #'          )
 #'        }
 #'      })
 #'
 #'      observeEvent(input$test, {
-#'        f7Toast(session, text = paste("Alert input is:", input$test))
+#'        f7Toast(text = paste("Alert input is:", input$test))
 #'      })
 #'
 #'      observeEvent(input$go, {
@@ -100,8 +98,8 @@
 #'  library(shinyMobile)
 #'
 #'  sheetModuleUI <- function(id) {
-#'    ns <- shiny::NS(id)
-#'    f7Button(inputId = ns("go"), "Show action sheet", color = "red")
+#'    ns <- NS(id)
+#'    f7Button(inputId = ns("go"), label = "Show action sheet", color = "red")
 #'  }
 #'
 #'  sheetModule <- function(input, output, session) {
@@ -121,12 +119,11 @@
 #'          text = "You clicked on the first button",
 #'          icon = f7Icon("bolt_fill"),
 #'          title = "Notification",
-#'          titleRightText = "now",
-#'          session = session
+#'          titleRightText = "now"
 #'        )
 #'      } else if (input$action1_button == 2) {
 #'        f7Dialog(
-#'          inputId = ns("test"),
+#'          id = ns("test"),
 #'          title = "Click me to launch a Toast!",
 #'          type = "confirm",
 #'          text = "You clicked on the second button",
@@ -135,7 +132,7 @@
 #'    })
 #'
 #'    observeEvent(input$test, {
-#'      f7Toast(session, text = paste("Alert input is:", input$test))
+#'      f7Toast(text = paste("Alert input is:", input$test))
 #'    })
 #'
 #'    observeEvent(input$go, {
@@ -158,7 +155,7 @@
 #'    })
 #'  }
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Action sheet",
 #'      f7SingleLayout(
@@ -172,8 +169,7 @@
 #'    }
 #'  )
 #' }
-f7ActionSheet <- function(id, session = shiny::getDefaultReactiveDomain(),
-                          grid = FALSE, buttons) {
+f7ActionSheet <- function(id, buttons, grid = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
   buttons <- lapply(buttons, dropNulls)
 

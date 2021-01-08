@@ -10,7 +10,7 @@ f7ListItem(
   subtitle = NULL,
   header = NULL,
   footer = NULL,
-  url = NULL,
+  href = NULL,
   media = NULL,
   right = NULL
 )
@@ -26,7 +26,7 @@ f7ListItem(
 
 \item{footer}{Item footer. Do not use when \link{f7List} mode is not NULL.}
 
-\item{url}{Item url.}
+\item{href}{Item external link.}
 
 \item{media}{Expect \link{f7Icon} or \code{img}.}
 

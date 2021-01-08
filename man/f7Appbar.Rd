@@ -4,16 +4,16 @@
 \alias{f7Appbar}
 \title{Create a Framework 7 appbar}
 \usage{
-f7Appbar(..., left_panel = FALSE, right_panel = FALSE)
+f7Appbar(..., leftPanel = FALSE, rightPanel = FALSE)
 }
 \arguments{
 \item{...}{Any UI content such as \link{f7Searchbar}, \link{f7Next} and
 \link{f7Back}. It is best practice to wrap \link{f7Next} and
 \link{f7Back} in a \link{f7Flex}.}
 
-\item{left_panel}{Whether to enable the left panel. FALSE by default.}
+\item{leftPanel}{Whether to enable the left panel. FALSE by default.}
 
-\item{right_panel}{Whether to enable the right panel. FALSE by default.}
+\item{rightPanel}{Whether to enable the right panel. FALSE by default.}
 }
 \description{
 Displayed on top of \link{f7Navbar}. Interestingly, \link{f7Appbar} can also
@@ -26,11 +26,11 @@ if (interactive()) {
 
  cities <- names(precip)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "My app",
      f7Appbar(
-       f7Flex(f7Back(targetId = "tabset"),f7Next(targetId = "tabset")),
+       f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
        f7Searchbar(id = "search1", inline = TRUE)
      ),
      f7TabLayout(

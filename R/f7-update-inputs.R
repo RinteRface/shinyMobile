@@ -6,8 +6,6 @@
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -16,7 +14,6 @@
 #'  shiny::shinyApp(
 #'   ui = f7Page(
 #'     title = "Update f7Button",
-#'     init = f7Init(theme = "light", skin = "ios"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "Update f7Button"),
 #'       f7Button(
@@ -72,25 +69,22 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 
 #' Toggle \link{f7Fabs} on the server side.
 #'
-#' @param inputId The id of the input object.
+#' @param id The id of the input object.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Update f7Fabs",
-#'     init = f7Init(theme = "light", skin = "ios"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "Update f7Fabs"),
-#'       f7Button("toggleFabs", "Toggle Fabs"),
+#'       f7Button(inputId = "toggleFabs", label = "Toggle Fabs"),
 #'       f7Fabs(
 #'         position = "center-center",
 #'         id = "fabs",
@@ -101,16 +95,13 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'   server = function(input, output, session) {
 #'     observe(print(input$fabs))
 #'     observeEvent(input$toggleFabs, {
-#'       updateF7Fabs(
-#'         inputId = "fabs"
-#'       )
+#'       updateF7Fabs(id = "fabs")
 #'     })
 #'   }
 #'  )
 #' }
-updateF7Fabs <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
-  message <- NULL
-  session$sendInputMessage(inputId, message)
+updateF7Fabs <- function(id, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(inputId = id, NULL)
 }
 
 
@@ -124,8 +115,6 @@ updateF7Fabs <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -191,8 +180,6 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -602,8 +589,6 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @note While updating, the autorepeat field does not work correctly.
 #'
 #' @examples
@@ -705,8 +690,6 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {
@@ -882,8 +865,6 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -948,8 +929,6 @@ updateF7AutoComplete <- function(inputId, value =  NULL,
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
@@ -1008,8 +987,6 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
-#'
-#' @importFrom shiny getDefaultReactiveDomain
 #'
 #' @examples
 #' if (interactive()) {

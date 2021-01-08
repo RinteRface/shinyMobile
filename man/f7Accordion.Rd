@@ -4,12 +4,12 @@
 \alias{f7Accordion}
 \title{Create a Framework7 accordion}
 \usage{
-f7Accordion(..., inputId = NULL, multiCollapse = FALSE)
+f7Accordion(..., id = NULL, multiCollapse = FALSE)
 }
 \arguments{
 \item{...}{Slot for \link{f7AccordionItem}.}
 
-\item{inputId}{Optional id to recover the state of the accordion.}
+\item{id}{Optional id to recover the state of the accordion.}
 
 \item{multiCollapse}{Whether to open multiple items at the same time. FALSE
 by default.}
@@ -22,13 +22,13 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Accordions",
     f7SingleLayout(
      navbar = f7Navbar("Accordions"),
      f7Accordion(
-      inputId = "myaccordion1",
+      id = "myaccordion1",
       f7AccordionItem(
        title = "Item 1",
        f7Block("Item 1 content"),

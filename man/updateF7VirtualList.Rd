@@ -13,8 +13,8 @@ updateF7VirtualList(
   items = NULL,
   index = NULL,
   indexes = NULL,
-  old_index = NULL,
-  new_index = NULL,
+  oldIndex = NULL,
+  newIndex = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -31,9 +31,9 @@ updateF7VirtualList(
 
 \item{indexes}{If action if one of filterItems, deleteItems.}
 
-\item{old_index}{If action is moveItem.}
+\item{oldIndex}{If action is moveItem.}
 
-\item{new_index}{If action is moveItem.}
+\item{newIndex}{If action is moveItem.}
 
 \item{session}{Shiny session.}
 }
@@ -44,9 +44,9 @@ This function wraps all methods from \url{https://framework7.io/docs/virtual-lis
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Update virtual list",
      f7SingleLayout(
        navbar = f7Navbar(
          title = "Virtual Lists",
@@ -199,8 +199,8 @@ if (interactive()) {
        updateF7VirtualList(
          id = "vlist",
          action = "moveItem",
-         old_index = input$itemIndex,
-         new_index = input$itemNewIndex
+         oldIndex = input$itemIndex,
+         newIndex = input$itemNewIndex
        )
      })
 

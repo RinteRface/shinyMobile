@@ -32,7 +32,6 @@ The second layout is the `f7TabLayout()`, very similar to that of [miniUI](https
 library(shiny)
 library(shinyMobile)
 library(apexcharter)
-library(shinyWidgets)
 
 poll <- data.frame(
   answer = c("Yes", "No"),
@@ -44,15 +43,15 @@ shinyApp(
     title = "My app",
     f7TabLayout(
       panels = tagList(
-       f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-       f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
       ),
       navbar = f7Navbar(
         title = "Tabs",
         hairline = TRUE,
         shadow = TRUE,
-        left_panel = TRUE,
-        right_panel = TRUE
+        leftPanel = TRUE,
+        rightPanel = TRUE
       ),
       f7Tabs(
         animated = TRUE,
@@ -143,15 +142,14 @@ shinyApp(
             hover = TRUE,
             f7Card(
               title = "Card header",
-              prettyCheckboxGroup(
+              f7SmartSelect(
                 "variable",
                 "Variables to show:",
                 c("Cylinders" = "cyl",
                   "Transmission" = "am",
                   "Gears" = "gear"),
-                inline = TRUE,
-                status = "danger",
-                animation = "pulse"
+                openIn = "sheet",
+                multiple = TRUE
               ),
               tableOutput("data")
             )
@@ -167,19 +165,19 @@ shinyApp(
 
     output$pie <- renderApexchart({
       apex(
-        data = poll, 
-        type = "pie", 
+        data = poll,
+        type = "pie",
         mapping = aes(x = answer, y = n)
       )
     })
 
     output$scatter <- renderApexchart({
       apex(
-        data = mtcars, 
-        type = "scatter", 
+        data = mtcars,
+        type = "scatter",
         mapping = aes(
-          x = wt, 
-          y = mpg, 
+          x = wt,
+          y = mpg,
           fill = cyl
         )
       )
@@ -202,4 +200,5 @@ shinyApp(
 
   }
 )
+
 ```

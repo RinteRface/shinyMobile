@@ -12,7 +12,7 @@
 #'
 #'  colors <- getF7Colors()
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Badges",
 #'      f7SingleLayout(
@@ -33,11 +33,7 @@
 #'
 #' @export
 f7Badge <- function(..., color = NULL) {
-  if (!is.null(color)) {
-    if (!(color %in% getF7Colors())) {
-      stop("Color must be one of: ", paste(getF7Colors(), collapse = ", "))
-    }
-  }
+  if (!is.null(color)) validateF7Color(color)
 
   badgeCl <- "badge"
   if (!is.null(color)) badgeCl <- paste0(badgeCl, " color-", color)

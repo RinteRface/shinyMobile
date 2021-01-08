@@ -6,19 +6,15 @@
 \usage{
 f7ActionSheet(
   id,
-  session = shiny::getDefaultReactiveDomain(),
+  buttons,
   grid = FALSE,
-  buttons
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
 \item{id}{Unique id. This gives the state of the action sheet. input$id is TRUE
 when opened and inversely. Importantly, if the action sheet has never been opened,
 input$id is NULL.}
-
-\item{session}{Shiny session object.}
-
-\item{grid}{Whether to display buttons on a grid. Default to FALSE.}
 
 \item{buttons}{list of buttons such as
 \preformatted{buttons <- list(
@@ -37,6 +33,10 @@ input$id is NULL.}
 The currently selected button may be accessed via input$<sheet_id>_button. The value is
 numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
 when you want to trigger events after a specific button click.}
+
+\item{grid}{Whether to display buttons on a grid. Default to FALSE.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Create a framework7 action sheet
@@ -46,13 +46,13 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Action sheet",
      f7SingleLayout(
        navbar = f7Navbar("Action sheet"),
        br(),
-       f7Button(inputId = "go", "Show action sheet", color = "red")
+       f7Button(inputId = "go", label = "Show action sheet", color = "red")
      )
    ),
    server = function(input, output, session) {
@@ -70,22 +70,20 @@ if (interactive()) {
            text = "You clicked on the first button",
            icon = f7Icon("bolt_fill"),
            title = "Notification",
-           titleRightText = "now",
-           session = session
+           titleRightText = "now"
          )
        } else if (input$action1_button == 2) {
          f7Dialog(
            inputId = "test",
            title = "Click me to launch a Toast!",
            type = "confirm",
-           text = "You clicked on the second button",
-           session = session
+           text = "You clicked on the second button"
          )
        }
      })
 
      observeEvent(input$test, {
-       f7Toast(session, text = paste("Alert input is:", input$test))
+       f7Toast(text = paste("Alert input is:", input$test))
      })
 
      observeEvent(input$go, {
@@ -114,8 +112,8 @@ if (interactive()) {
  library(shinyMobile)
 
  sheetModuleUI <- function(id) {
-   ns <- shiny::NS(id)
-   f7Button(inputId = ns("go"), "Show action sheet", color = "red")
+   ns <- NS(id)
+   f7Button(inputId = ns("go"), label = "Show action sheet", color = "red")
  }
 
  sheetModule <- function(input, output, session) {
@@ -135,12 +133,11 @@ if (interactive()) {
          text = "You clicked on the first button",
          icon = f7Icon("bolt_fill"),
          title = "Notification",
-         titleRightText = "now",
-         session = session
+         titleRightText = "now"
        )
      } else if (input$action1_button == 2) {
        f7Dialog(
-         inputId = ns("test"),
+         id = ns("test"),
          title = "Click me to launch a Toast!",
          type = "confirm",
          text = "You clicked on the second button",
@@ -149,7 +146,7 @@ if (interactive()) {
    })
 
    observeEvent(input$test, {
-     f7Toast(session, text = paste("Alert input is:", input$test))
+     f7Toast(text = paste("Alert input is:", input$test))
    })
 
    observeEvent(input$go, {
@@ -172,7 +169,7 @@ if (interactive()) {
    })
  }
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Action sheet",
      f7SingleLayout(

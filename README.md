@@ -26,7 +26,8 @@ devtools::install_github("RinteRface/shinyMobile")
 
 ## Demo
 
-A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. Left side: android demo, right side: iOS demo
+A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. 
+Left side: android demo, right side: iOS demo.
 
 
 ![](man/figures/demo.png)
@@ -36,11 +37,9 @@ A running demo is available here : https://dgranjon.shinyapps.io/miniUI2Demo/. L
 ## Progressive Web App (PWA)
 
 ### Configuration
-
-shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile
-devices. This feature is automatically handled by `f7Page()` and the Google PWA compatibility
-[script](https://github.com/GoogleChromeLabs/pwacompat). The last 3 parameters of `f7Page()`
-are not mandatory. If not provided, the app will use shinyMobile default resources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.
+`{shinyMobile}` is PWA capable, meaning that it can be displayed full screen on many mobile
+devices. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE` (it leverages the Google PWA compatibility
+[script](https://github.com/GoogleChromeLabs/pwacompat)). 
 
 
 Below is an example showing the manifest.json file:

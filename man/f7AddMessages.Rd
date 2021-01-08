@@ -16,7 +16,8 @@ f7AddMessages(
 
 \item{messages}{List of \link{f7Messages}.}
 
-\item{showTyping}{Show typing when a new message comes. Default to FALSE.}
+\item{showTyping}{Show typing when a new message comes. Default to FALSE.
+Does not work yet...}
 
 \item{session}{SHiny session object}
 }

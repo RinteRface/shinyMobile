@@ -19,16 +19,16 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "Align",
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Align"),
      f7Row(
-     f7Align(h1("Left"), side = "left"),
-     f7Align(h1("Center"), side = "center"),
-     f7Align(h1("Right"), side = "right")
-    )
+      f7Align(h1("Left"), side = "left"),
+      f7Align(h1("Center"), side = "center"),
+      f7Align(h1("Right"), side = "right")
+     )
     )
    ),
    server = function(input, output) {}

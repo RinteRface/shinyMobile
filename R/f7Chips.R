@@ -3,11 +3,11 @@
 #' Build a Framework7 chips
 #'
 #' @param label Chip label.
-#' @param img Chip image, if any.
+#' @param image Chip image, if any.
 #' @param icon Icon, if any. IOS and Material icons available.
 #' @param outline Whether to outline chip. FALSE by default.
 #' @param status Chip color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
-#' @param icon_status Chip icon color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
+#' @param iconStatus Chip icon color: see here for valid colors \url{https://framework7.io/docs/chips.html}.
 #' @param closable Whether to close the chip. FALSE by default.
 #'
 #' @note Not ready for production color and icon isssues.
@@ -17,18 +17,17 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Chips",
-#'     init = f7Init(theme = "light", skin = "md"),
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "f7Navbar"),
 #'       f7Block(
 #'         strong = TRUE,
 #'         f7Chip(label = "simple Chip"),
 #'         f7Chip(label = "outline Chip", outline = TRUE),
-#'         f7Chip(label = "icon Chip", icon = f7Icon("add_round"), icon_status = "pink"),
-#'         f7Chip(label = "image Chip", img = "https://lorempixel.com/64/64/people/9/"),
+#'         f7Chip(label = "icon Chip", icon = f7Icon("add_round"), iconStatus = "pink"),
+#'         f7Chip(label = "image Chip", image = "https://lorempixel.com/64/64/people/9/"),
 #'         f7Chip(label = "closable Chip", closable = TRUE),
 #'         f7Chip(label = "colored Chip", status = "green"),
 #'         f7Chip(label = "colored outline Chip", status = "green", outline = TRUE)
@@ -42,8 +41,8 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
-                   status = NULL, icon_status = NULL, closable = FALSE) {
+f7Chip <- function(label = NULL, image = NULL, icon = NULL, outline = FALSE,
+                   status = NULL, iconStatus = NULL, closable = FALSE) {
 
   chipCl <- "chip"
   if (outline) chipCl <- paste0(chipCl, " chip-outline")
@@ -65,8 +64,8 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
 
   iconTag <- if (!is.null(icon)) {
     shiny::tags$div(
-      class = if (!is.null(icon_status)) {
-        paste0("chip-media bg-color-", icon_status)
+      class = if (!is.null(iconStatus)) {
+        paste0("chip-media bg-color-", iconStatus)
       } else {
         "chip-media"
       },
@@ -74,16 +73,16 @@ f7Chip <- function(label = NULL, img = NULL, icon = NULL, outline = FALSE,
     )
   }
 
-  imageTag <- if (!is.null(img)) {
+  imageTag <- if (!is.null(image)) {
     shiny::tags$div(
       class = "chip-media",
-      shiny::img(src = img)
+      shiny::img(src = image)
     )
   }
 
   chipTag <- shiny::tags$div(
     class = chipCl,
-    if (!is.null(img)) imageTag,
+    if (!is.null(image)) imageTag,
     if (!is.null(icon)) iconTag,
     shiny::tags$div(
       class = "chip-label",

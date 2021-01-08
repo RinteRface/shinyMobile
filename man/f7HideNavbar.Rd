@@ -5,18 +5,18 @@
 \title{Hide a framework7 navbar}
 \usage{
 f7HideNavbar(
-  session = shiny::getDefaultReactiveDomain(),
   animate = TRUE,
-  hideStatusbar = FALSE
+  hideStatusbar = FALSE,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{Shiny session object.}
-
 \item{animate}{Whether it should be hidden with animation or not. By default is TRUE.}
 
 \item{hideStatusbar}{When FALSE (default) it hides navbar partially keeping space
 required to cover statusbar area. Otherwise, navbar will be fully hidden.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Hide a framework7 navbar
@@ -26,9 +26,9 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
     ui = f7Page(
-       title = "Accordions",
+       title = "Hide navbar",
        f7SingleLayout(
           navbar = f7Navbar("Hide/Show navbar"),
           f7Segment(

@@ -4,14 +4,14 @@
 \alias{updateF7Tabs}
 \title{Update a Framework 7 tabsetPanel}
 \usage{
-updateF7Tabs(session, id, selected = NULL)
+updateF7Tabs(id, selected = NULL, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{Shiny session object.}
-
 \item{id}{Id of the \link{f7Tabs} to update.}
 
 \item{selected}{Newly selected tab.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Update \link{f7Tabs}.
@@ -22,7 +22,7 @@ if (interactive()) {
  library(shinyMobile)
 
  subtabs_ui <- function(id) {
-   ns <- shiny::NS(id)
+   ns <- NS(id)
 
    tagList(
      f7Toggle(inputId = ns("updateSubTab"), label = "Update SubTab", checked = FALSE),
@@ -45,7 +45,7 @@ if (interactive()) {
    return(reactive(input$subtabdemo))
  }
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Tab Layout",
      f7TabLayout(
@@ -80,7 +80,7 @@ if (interactive()) {
      output$selectedTab <- renderText(input$tabdemo)
      observeEvent(input$updateTab, {
        selected <- ifelse(input$updateTab, "Tab 1", "Tab 2")
-       updateF7Tabs(session, id = "tabdemo", selected = selected)
+       updateF7Tabs(id = "tabdemo", selected = selected)
      })
      subtab <- callModule(subtabs, "subtabs1")
      output$selectedSubTab <- renderText(subtab())
@@ -90,22 +90,12 @@ if (interactive()) {
  shinyApp(
   ui <- f7Page(
     title = "shinyMobile",
-    init = f7Init(
-      skin = "auto",
-      theme = "light",
-      color = 'blue',
-      filled = TRUE,
-      hideNavOnPageScroll = FALSE,
-      hideTabsOnPageScroll = FALSE
-    ),
     f7TabLayout(
       navbar = f7Navbar(
         title = "Update Tabs with hidden tab",
         subtitle = "",
         hairline = TRUE,
         shadow = TRUE,
-        left_panel = TRUE,
-        right_panel = FALSE,
         bigger = FALSE,
         transparent = TRUE
       ),

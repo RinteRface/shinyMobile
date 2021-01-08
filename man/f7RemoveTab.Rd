@@ -4,10 +4,10 @@
 \alias{f7RemoveTab}
 \title{Remove a \link{f7Tab} in a \link{f7Tabs}}
 \usage{
-f7RemoveTab(inputId, target, session = shiny::getDefaultReactiveDomain())
+f7RemoveTab(id, target, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{inputId}{\link{f7Tabs} id.}
+\item{id}{\link{f7Tabs} id.}
 
 \item{target}{\link{f7Tab} to remove.}
 
@@ -32,8 +32,8 @@ if (interactive()) {
      title = "Tabs",
      hairline = FALSE,
      shadow = TRUE,
-     left_panel = TRUE,
-     right_panel = TRUE
+     leftPanel = TRUE,
+     rightPanel = TRUE
    ),
    f7Tabs(
      id = "tabset1",
@@ -61,7 +61,7 @@ if (interactive()) {
    observe(print(input$tabset1))
    observeEvent(input$remove1, {
      f7RemoveTab(
-       inputId = "tabset1",
+       id = "tabset1",
        target = "Tab 1"
      )
    })

@@ -17,7 +17,7 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Fabs Morph"),

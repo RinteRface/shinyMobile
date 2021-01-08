@@ -17,7 +17,7 @@ test_that("appbar", {
   expect_length(getInnerChildren(f7Appbar("test")), 1)
 
   # left toggle
-  appbar <- f7Appbar(left_panel = TRUE, right_panel = FALSE)
+  appbar <- f7Appbar(leftPanel = TRUE, rightPanel = FALSE)
 
   expect_length(getInnerChildren(appbar), 1)
   inner <- getInnerChildren(appbar)[[1]]
@@ -25,7 +25,7 @@ test_that("appbar", {
   expect_equal(inner$children[[1]]$attribs$`data-panel`, "left")
 
   # right panel
-  appbar <- f7Appbar(left_panel = TRUE, right_panel = TRUE)
+  appbar <- f7Appbar(leftPanel = TRUE, rightPanel = TRUE)
 
   expect_length(getInnerChildren(appbar), 2)
   inner <- getInnerChildren(appbar)[[2]]

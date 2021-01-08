@@ -17,7 +17,7 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
      title = "Sub Navbar",
      f7TabLayout(
@@ -29,8 +29,8 @@ if (interactive()) {
            title = "SubNavbar",
            hairline = FALSE,
            shadow = TRUE,
-           left_panel = TRUE,
-           right_panel = TRUE,
+           leftPanel = TRUE,
+           rightPanel = TRUE,
            subNavbar = f7SubNavbar(
               f7Button(label = "My button", outline = TRUE),
               f7Button(label = "My button", outline = TRUE),

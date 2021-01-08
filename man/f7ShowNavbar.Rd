@@ -4,12 +4,12 @@
 \alias{f7ShowNavbar}
 \title{Show a framework7 navbar}
 \usage{
-f7ShowNavbar(session = shiny::getDefaultReactiveDomain(), animate = TRUE)
+f7ShowNavbar(animate = TRUE, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{session}{Shiny session object.}
-
 \item{animate}{Whether it should be hidden with animation or not. By default is TRUE.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Show a framework7 navbar
@@ -19,9 +19,9 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
     ui = f7Page(
-       title = "Accordions",
+       title = "Show navbar",
        f7SingleLayout(
           navbar = f7Navbar("Hide/Show navbar"),
           f7Segment(

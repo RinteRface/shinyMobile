@@ -1,6 +1,6 @@
 #' Create a Framework7 dialog window
 #'
-#' @param inputId Input associated to the alert. Works when type is one of
+#' @param id Input associated to the alert. Works when type is one of
 #' "confirm", "prompt" or "login".
 #' @param title Dialog title
 #' @param text Dialog text.
@@ -18,7 +18,7 @@
 #'   library(shinyMobile)
 #'   shinyApp(
 #'     ui = f7Page(
-#'       title = "My App",
+#'       title = "Simple Dialog",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(title = "f7Dialog"),
 #'         f7Button(inputId = "goButton", "Go!")
@@ -28,8 +28,7 @@
 #'       shiny::observeEvent(input$goButton,{
 #'         f7Dialog(
 #'          title = "Dialog title",
-#'          text = "This is an alert dialog",
-#'          session = session
+#'          text = "This is an alert dialog"
 #'         )
 #'       })
 #'     }
@@ -41,7 +40,7 @@
 #'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My App",
+#'      title = "Confirm Dialog",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Dialog"),
 #'        f7Button(inputId = "goButton", "Go!")
@@ -51,16 +50,15 @@
 #'
 #'      observeEvent(input$goButton,{
 #'        f7Dialog(
-#'          inputId = "test",
+#'          id = "test",
 #'          title = "Dialog title",
 #'          type = "confirm",
-#'          text = "This is an alert dialog",
-#'          session = session
+#'          text = "This is an alert dialog"
 #'        )
 #'      })
 #'
 #'      observeEvent(input$test, {
-#'        f7Toast(session, text = paste("Alert input is:", input$test))
+#'        f7Toast(text = paste("Alert input is:", input$test))
 #'      })
 #'
 #'    }
@@ -72,7 +70,7 @@
 #'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My App",
+#'      title = "Prompt Dialog",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Dialog"),
 #'        f7Button(inputId = "goButton", "Go!"),
@@ -87,11 +85,10 @@
 #'
 #'      observeEvent(input$goButton,{
 #'        f7Dialog(
-#'          inputId = "prompt",
+#'          id = "prompt",
 #'          title = "Dialog title",
 #'          type = "prompt",
-#'          text = "This is a prompt dialog",
-#'          session = session
+#'          text = "This is a prompt dialog"
 #'        )
 #'      })
 #'
@@ -106,7 +103,7 @@
 #'  library(shinyMobile)
 #'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My App",
+#'      title = "Login Dialog",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Dialog"),
 #'        f7Button(inputId = "goButton", "Go!"),
@@ -121,11 +118,10 @@
 #'
 #'      observeEvent(input$goButton,{
 #'        f7Dialog(
-#'          inputId = "login",
+#'          id = "login",
 #'          title = "Dialog title",
 #'          type = "login",
-#'          text = "This is an login dialog",
-#'          session = session
+#'          text = "This is an login dialog"
 #'        )
 #'      })
 #'
@@ -136,7 +132,7 @@
 #'    }
 #'  )
 #' }
-f7Dialog <- function(inputId = NULL, title = NULL, text,
+f7Dialog <- function(id = NULL, title = NULL, text,
                      type = c("alert", "confirm", "prompt", "login"),
                      session = shiny::getDefaultReactiveDomain()) {
 
@@ -148,7 +144,7 @@ f7Dialog <- function(inputId = NULL, title = NULL, text,
 
   message <- dropNulls(
     list(
-      id = inputId,
+      id = id,
       title = title,
       text = text,
       type = type

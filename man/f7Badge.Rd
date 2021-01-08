@@ -21,7 +21,7 @@ if(interactive()){
 
  colors <- getF7Colors()
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Badges",
      f7SingleLayout(

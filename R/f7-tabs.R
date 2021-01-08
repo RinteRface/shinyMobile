@@ -407,7 +407,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'  library(shinyMobile)
 #'
 #'  subtabs_ui <- function(id) {
-#'    ns <- shiny::NS(id)
+#'    ns <- NS(id)
 #'
 #'    tagList(
 #'      f7Toggle(inputId = ns("updateSubTab"), label = "Update SubTab", checked = FALSE),
@@ -430,7 +430,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'    return(reactive(input$subtabdemo))
 #'  }
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Tab Layout",
 #'      f7TabLayout(
@@ -465,7 +465,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'      output$selectedTab <- renderText(input$tabdemo)
 #'      observeEvent(input$updateTab, {
 #'        selected <- ifelse(input$updateTab, "Tab 1", "Tab 2")
-#'        updateF7Tabs(session, id = "tabdemo", selected = selected)
+#'        updateF7Tabs(id = "tabdemo", selected = selected)
 #'      })
 #'      subtab <- callModule(subtabs, "subtabs1")
 #'      output$selectedSubTab <- renderText(subtab())
@@ -475,22 +475,12 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'  shinyApp(
 #'   ui <- f7Page(
 #'     title = "shinyMobile",
-#'     init = f7Init(
-#'       skin = "auto",
-#'       theme = "light",
-#'       color = 'blue',
-#'       filled = TRUE,
-#'       hideNavOnPageScroll = FALSE,
-#'       hideTabsOnPageScroll = FALSE
-#'     ),
 #'     f7TabLayout(
 #'       navbar = f7Navbar(
 #'         title = "Update Tabs with hidden tab",
 #'         subtitle = "",
 #'         hairline = TRUE,
 #'         shadow = TRUE,
-#'         left_panel = TRUE,
-#'         right_panel = FALSE,
 #'         bigger = FALSE,
 #'         transparent = TRUE
 #'       ),
@@ -527,7 +517,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'   }
 #'  )
 #' }
-updateF7Tabs <- function(session, id, selected = NULL) {
+updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
 
   # remove the space in the tab name
   selected <- gsub(x = selected, pattern = " ", replacement = "")
@@ -540,7 +530,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 
 #' Insert a \link{f7Tab} in a \link{f7Tabs}
 #'
-#' @param inputId  \link{f7Tabs} id.
+#' @param id  \link{f7Tabs} id.
 #' @param tab \link{f7Tab} to insert.
 #' @param target \link{f7Tab} after of before which the new tab will be inserted.
 #' @param position Insert before or after: \code{c("before", "after")}.
@@ -549,13 +539,11 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #'
 #' @export
 #'
-#' @importFrom shiny getDefaultReactiveDomain
-#'
 #' @examples
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Insert a tab Before the target",
 #'      f7TabLayout(
@@ -567,8 +555,8 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #'          title = "Tabs",
 #'          hairline = FALSE,
 #'          shadow = TRUE,
-#'          left_panel = TRUE,
-#'          right_panel = TRUE
+#'          leftPanel = TRUE,
+#'          rightPanel = TRUE
 #'        ),
 #'        f7Tabs(
 #'          animated = TRUE,
@@ -592,7 +580,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #'    server = function(input, output, session) {
 #'      observeEvent(input$go, {
 #'        f7InsertTab(
-#'          inputId = "tabs",
+#'          id = "tabs",
 #'          position = "before",
 #'          target = "Tab 2",
 #'          tab = f7Tab (tabName = paste0("tab_", input$go), "Test"),
@@ -603,7 +591,7 @@ updateF7Tabs <- function(session, id, selected = NULL) {
 #'  )
 #' }
 #'
-f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
+f7InsertTab <- function(id, tab, target, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
   # in shinyMobile, f7Tab returns a list of 3 elements:
@@ -613,7 +601,7 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
   # Below we check if the tag is really a shiny tag...
   if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
 
-  nsWrapper <- shiny::NS(inputId)
+  nsWrapper <- shiny::NS(id)
   position <- match.arg(position)
 
   # create the corresponding tablink
@@ -642,14 +630,14 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
       target = target,
       position = position,
       select = tolower(select),
-      ns = inputId
+      ns = id
     )
   )
 
   # we need to create a new id not to overlap with the updateF7Tab id
   # prefix by insert_ makes sense
-  inputId <- paste0("insert_", inputId)
-  session$sendCustomMessage(type = inputId, message)
+  id <- paste0("insert_", id)
+  session$sendCustomMessage(type = id, message)
 }
 
 
@@ -657,7 +645,7 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
 
 #' Remove a \link{f7Tab} in a \link{f7Tabs}
 #'
-#' @param inputId  \link{f7Tabs} id.
+#' @param id  \link{f7Tabs} id.
 #' @param target \link{f7Tab} to remove.
 #' @param session Shiny session object.
 #'
@@ -679,8 +667,8 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
 #'      title = "Tabs",
 #'      hairline = FALSE,
 #'      shadow = TRUE,
-#'      left_panel = TRUE,
-#'      right_panel = TRUE
+#'      leftPanel = TRUE,
+#'      rightPanel = TRUE
 #'    ),
 #'    f7Tabs(
 #'      id = "tabset1",
@@ -708,21 +696,21 @@ f7InsertTab <- function(inputId, tab, target, position = c("before", "after"),
 #'    observe(print(input$tabset1))
 #'    observeEvent(input$remove1, {
 #'      f7RemoveTab(
-#'        inputId = "tabset1",
+#'        id = "tabset1",
 #'        target = "Tab 1"
 #'      )
 #'    })
 #'  }
 #'  shinyApp(ui, server)
 #' }
-f7RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDomain()) {
+f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain()) {
 
   # tabsetpanel namespace
-  ns <- inputId
+  ns <- id
 
   # we need to create a new id not to overlap with the updatebs4TabSetPanel id
   # prefix by remove_ makes sense
-  inputId <- paste0("remove_", inputId)
+  id <- paste0("remove_", id)
 
   # remove all whitespace from the target name
   target <- gsub(" ", "", target, fixed = TRUE)
@@ -733,6 +721,6 @@ f7RemoveTab <- function(inputId, target, session = shiny::getDefaultReactiveDoma
       ns = ns
     )
   )
-  session$sendCustomMessage(type = inputId, message = message)
+  session$sendCustomMessage(type = id, message = message)
 
 }

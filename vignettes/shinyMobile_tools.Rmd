@@ -14,17 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(shiny)
-library(shinyMobile)
-```
-
 ## Mobile preview
 Since V0.2.0, `{shinyMobile}` has a function to preview your app in a large range of 
 mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5,
 Samsung galaxy Note 8, ... either locally on online:
 
 ```{r, eval = FALSE}
+library(shiny)
+library(shinyMobile)
 preview_mobile(appPath = system.file("examples/gallery/app.R", package = "shinyMobile"), device = "iphoneX")
 preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ipadMini")
 ```
@@ -42,10 +39,7 @@ The local preview is a 4 steps process:
 `{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page` options will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation. This allows to trigger updates/computations on the server side, for instance:
 
 ```{r, eval=FALSE}
-library(shiny)
-library(shinyMobile)
-
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
     options = list(pullToRefresh = TRUE),
@@ -57,8 +51,8 @@ shiny::shinyApp(
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com")
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7List(
@@ -80,7 +74,6 @@ shiny::shinyApp(
     observeEvent(input$ptr, {
       ptrStatus <- if (input$ptr) "on"
       f7Dialog(
-        session = session,
         text = paste('ptr is', ptrStatus),
         type = "alert"
       )
@@ -151,7 +144,7 @@ There are other fields, with less inportance:
 Below the example displays a card only when the app is on desktop.
 
 ```{r, eval = FALSE}
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
     f7SingleLayout(
@@ -190,9 +183,7 @@ shiny::shinyApp(
 last changed input, see below:
 
 ```{r, eval = FALSE}
-library(shiny)
-library(shinyMobile)
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
     f7SingleLayout(
@@ -203,8 +194,8 @@ shiny::shinyApp(
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com")
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7Card(verbatimTextOutput("infos")),

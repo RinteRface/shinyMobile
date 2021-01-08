@@ -4,10 +4,10 @@
 \alias{updateF7Fabs}
 \title{Toggle \link{f7Fabs} on the server side.}
 \usage{
-updateF7Fabs(inputId, session = shiny::getDefaultReactiveDomain())
+updateF7Fabs(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{id}{The id of the input object.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -19,13 +19,12 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Update f7Fabs",
-    init = f7Init(theme = "light", skin = "ios"),
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7Fabs"),
-      f7Button("toggleFabs", "Toggle Fabs"),
+      f7Button(inputId = "toggleFabs", label = "Toggle Fabs"),
       f7Fabs(
         position = "center-center",
         id = "fabs",
@@ -36,9 +35,7 @@ if (interactive()) {
   server = function(input, output, session) {
     observe(print(input$fabs))
     observeEvent(input$toggleFabs, {
-      updateF7Fabs(
-        inputId = "fabs"
-      )
+      updateF7Fabs(id = "fabs")
     })
   }
  )

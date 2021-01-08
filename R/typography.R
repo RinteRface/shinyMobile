@@ -10,16 +10,16 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Align",
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Align"),
 #'      f7Row(
-#'      f7Align(h1("Left"), side = "left"),
-#'      f7Align(h1("Center"), side = "center"),
-#'      f7Align(h1("Right"), side = "right")
-#'     )
+#'       f7Align(h1("Left"), side = "left"),
+#'       f7Align(h1("Center"), side = "center"),
+#'       f7Align(h1("Right"), side = "right")
+#'      )
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -57,7 +57,7 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Float",
 #'     f7SingleLayout(
@@ -105,12 +105,12 @@ f7Float <- function(tag, side = c("left", "right")) {
 #'   but cards can also contain their own header,
 #'   footer, list view, image, or any other element.",
 #'   footer = tagList(
-#'     f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'     f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
 #'     f7Badge("Badge", color = "green")
 #'   )
 #'  )
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Margins",
 #'     f7SingleLayout(
@@ -157,12 +157,12 @@ f7Margin <- function(tag, side = NULL) {
 #'    p("The padding is applied here.")
 #'   ),
 #'   footer = tagList(
-#'     f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'     f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
 #'     f7Badge("Badge", color = "green")
 #'   )
 #'  )
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Padding",
 #'     f7SingleLayout(navbar = f7Navbar(title = "f7Padding"), cardTag)

@@ -1,15 +1,47 @@
-# shinyMobile 0.8.0.9000
+# shinyMobile 2.0.0.9000
 
 ## Breaking changes
-- __external__ has been removed from `f7Link()` (much simpler)
+
+### Inputs
+- `updateF7Fabs()`: __inputId__ becomes __id__
+
+### Layout
+- `f7Appbar()`: __left_panel__ becomes __leftPanel__ and __right_panel__ __rightPanel__
 - `f7Init()` removed. Now pass it through the `f7Page()` __options__
+- `f7Navbar()`:  __left_panel__ becomes __leftPanel__ and __right_panel__ __rightPanel__
+- `f7Panel()` and `updateF7Panel()`: __inputId__ becomes __id__
+- `f7InsertTab()` and `f7RemoveTab()`: __inputId__ becomes __id__
+
+### Cards
+- `f7ExpandableCard()` and `f7Card()`: __img__ becomes __image__
+- `f7SocialCard()`: __author_img__ becomes __image__
+
+### Lists
+- `f7ListItem()`: __url__ becomes __href__
+- `f7VirtualListItem()`:  __url__ becomes __href__
+- `updateF7VirtualList()`: __old_index__ and __new_index__ become __oldIndex__ and __newIndex__, respectively
+
+### Interactions
+- __session__ not mandatory in `f7Toast()`, `updateF7Progress()`, ... and has been
+swapped at the end of the parameters for more convenience
+- `f7Dialog()`: __inputId__ becomes __id__
+- `updateF7Sheet()`: __inputId__ becomes __id__
+
+
+### Buttons
+- `f7Link()`: __external__ has been removed from  (much simpler), __src__ becomes __href__
+- `f7Button()`: __src__ becomes __href__
+
+### Others
+- __session__ swapped to the end in `f7Gauge()` and not mandatory. Default to `shiny::getDefaultReactiveDomain()`
+- `f7Chip()`: __icon_status__ becomes __iconStatus__, __img__ becomes __image__
+- __inputId__ becomes __id__ in `f7Accordion()` and `updateF7Accordion()`
 - Remove `f7ProgressInf()` (useless)
 - Change `f7Swiper()` API. New __options__ parameter
 - `f7PhotoBrowser()` is now called from the shiny server function. See help, __id__ and 
 __label__ have been removed
 - __id__ mandatory for `f7Searchbar()`
-- __session__ not mandatory in `f7Toast()`, `updateF7Progress()`, ... and has been
-swapped at the end of the parameters for more convenience
+
 
 ## Major changes
 - New __allowPWA__ parameter in `f7Page()` so that we doesn't oblige users to create a PWA

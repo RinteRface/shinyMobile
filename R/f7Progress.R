@@ -6,12 +6,14 @@
 #' @param value Progress value. Between 0 and 100. If NULL the progress bar is infinite.
 #' @param color Progress color. See \url{http://framework7.io/docs/progressbar.html}.
 #'
+#' @rdname progress
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Progress",
 #'     f7SingleLayout(
@@ -53,6 +55,7 @@ f7Progress <- function(id, value = NULL, color) {
 #' @param value New value.
 #' @param session Shiny session object.
 #'
+#' @rdname progress
 #' @export
 #'
 #' @examples
@@ -60,9 +63,9 @@ f7Progress <- function(id, value = NULL, color) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "Progress",
+#'      title = "Update Progress",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(title = "f7Progress"),
 #'        f7Block(

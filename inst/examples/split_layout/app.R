@@ -75,13 +75,14 @@ shinyApp(
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com")
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7Items(
         f7Item(
           tabName = "tab1",
+          f7Button("toggleSheet", "Plot parameters"),
           f7Sheet(
             id = "sheet1",
             label = "Plot Parameters",
@@ -116,6 +117,10 @@ shinyApp(
   ),
   server = function(input, output, session) {
 
+    observeEvent(input$toggleSheet, {
+      updateF7Sheet(id = "sheet1")
+    })
+
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
@@ -123,8 +128,7 @@ shinyApp(
                         increase it"),
           icon = f7Icon("bolt_fill"),
           title = "Alert",
-          titleRightText = Sys.Date(),
-          session = session
+          titleRightText = Sys.Date()
         )
       }
     })

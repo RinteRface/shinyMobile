@@ -22,9 +22,9 @@ example below. The second list does not work.
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "List Index",
      f7TabLayout(
        navbar = f7Navbar(
          title = "f7ListIndex",

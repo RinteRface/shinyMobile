@@ -1,8 +1,7 @@
 # Unexported usefull functions from shiny
 
 # dropNulls
-dropNulls <- function (x)
-{
+dropNulls <- function(x) {
   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
 }
 
@@ -63,8 +62,14 @@ getF7Colors <- function() {
 }
 
 
-tagAppendAttributes <- function (tag, ...)
-{
+validateF7Color <- function(color) {
+  if (!(color %in% getF7Colors())) {
+    stop("Color must be one of: ", paste(getF7Colors(), collapse = ", "))
+  }
+}
+
+
+tagAppendAttributes <- function(tag, ...) {
   tag$attribs <- c(tag$attribs, dropNulls(list(...)))
   tag
 }

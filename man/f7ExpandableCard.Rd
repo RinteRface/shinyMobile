@@ -10,7 +10,7 @@ f7ExpandableCard(
   title = NULL,
   subtitle = NULL,
   color = NULL,
-  img = NULL,
+  image = NULL,
   fullBackground = FALSE
 )
 }
@@ -26,7 +26,7 @@ f7ExpandableCard(
 \item{color}{Card background color. See \url{http://framework7.io/docs/cards.html}.
 Not compatible with the img argument.}
 
-\item{img}{Card background image url. Tje JPG format is prefered. Not compatible
+\item{image}{Card background image url. Tje JPG format is prefered. Not compatible
 with the color argument.}
 
 \item{fullBackground}{Whether the image should cover the entire card.}
@@ -35,14 +35,14 @@ with the color argument.}
 Build a Framework7 expandable card
 }
 \note{
-img and color are not compatible. Choose one of them.
+image and color are not compatible. Choose one of them.
 }
 \examples{
 if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Expandable Cards",
     f7SingleLayout(
@@ -73,7 +73,7 @@ if(interactive()){
       f7ExpandableCard(
        id = "card3",
        title = "Expandable Card 3",
-       img = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+       image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
        "Framework7 - is a free and open source HTML mobile framework
         to develop hybrid mobile apps or web apps with iOS or Android
         native look and feel. It is also an indispensable prototyping apps tool
@@ -83,7 +83,7 @@ if(interactive()){
        id = "card4",
        title = "Expandable Card 4",
        fullBackground = TRUE,
-       img = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+       image = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
        "Framework7 - is a free and open source HTML mobile framework
               to develop hybrid mobile apps or web apps with iOS or Android
               native look and feel. It is also an indispensable prototyping apps tool

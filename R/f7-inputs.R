@@ -483,8 +483,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'
 #'   shinyApp(
 #'     ui = f7Page(
-#'       preloader = FALSE,
-#'       color = "pink",
 #'       title = "My app",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(title = "f7DatePicker"),
@@ -606,7 +604,7 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -962,7 +960,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
@@ -1101,7 +1099,7 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7TextArea(
@@ -1164,7 +1162,7 @@ f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
@@ -1238,7 +1236,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -1278,7 +1276,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -1418,7 +1416,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -1543,7 +1541,7 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -1608,7 +1606,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(

@@ -13,8 +13,8 @@ f7Navbar(
   shadow = TRUE,
   bigger = FALSE,
   transparent = FALSE,
-  left_panel = FALSE,
-  right_panel = FALSE
+  leftPanel = FALSE,
+  rightPanel = FALSE
 )
 }
 \arguments{
@@ -36,9 +36,9 @@ compatible with subtitle.}
 \item{transparent}{Whether the navbar should be transparent. FALSE by default.
 Only works if bigger is TRUE.}
 
-\item{left_panel}{Whether to enable the left panel. FALSE by default.}
+\item{leftPanel}{Whether to enable the left panel. FALSE by default.}
 
-\item{right_panel}{Whether to enable the right panel. FALSE by default.}
+\item{rightPanel}{Whether to enable the right panel. FALSE by default.}
 }
 \description{
 Build a Framework7 Navbar

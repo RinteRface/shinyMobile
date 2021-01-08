@@ -10,7 +10,7 @@
 #' library(shiny)
 #' library(shinyMobile)
 #'
-#' shiny::shinyApp(
+#' shinyApp(
 #'   ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
@@ -108,12 +108,12 @@ f7List <- function(..., mode = NULL, inset = FALSE) {
 #' @param subtitle Item subtitle.
 #' @param header Item header. Do not use when \link{f7List} mode is not NULL.
 #' @param footer Item footer. Do not use when \link{f7List} mode is not NULL.
-#' @param url Item url.
+#' @param href Item external link.
 #' @param media Expect \link{f7Icon} or \code{img}.
 #' @param right Right content if any.
 #' @export
 f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
-                       url = NULL, media = NULL, right = NULL) {
+                       href = NULL, media = NULL, right = NULL) {
 
   # avoid to have crazy large images
   if (!is.null(media)) {
@@ -209,7 +209,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     )
   )
 
-  itemContentWrapper <- if (is.null(url)) {
+  itemContentWrapper <- if (is.null(href)) {
     shiny::tags$div(
       class = "item-content",
       itemContent
@@ -217,8 +217,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
   } else {
     shiny::tags$a(
       class = "item-link item-content external",
-      href = url,
-      target = "_blank",
+      href = href,
       itemContent
     )
   }
@@ -259,9 +258,9 @@ f7ListGroup <- function(..., title) {
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "List Index",
 #'      f7TabLayout(
 #'        navbar = f7Navbar(
 #'          title = "f7ListIndex",
@@ -370,7 +369,7 @@ f7ListIndexItem <- htmltools::tags$li
 #' screen scroll position. By default it is equal to the amount of rows
 #' (items) that fit to screen.
 #' @param cache Disable or enable DOM cache for already rendered list items.
-#' In this case each item will be rendered only once and all futher
+#' In this case each item will be rendered only once and all further
 #' manipulations will be with DOM element. It is useful if your list
 #' items have some user interaction elements (like form elements or swipe outs)
 #' or could be modified.
@@ -380,9 +379,9 @@ f7ListIndexItem <- htmltools::tags$li
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Virtual List",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Virtual Lists",
@@ -402,8 +401,7 @@ f7ListIndexItem <- htmltools::tags$li
 #'             footer = paste("Footer", i),
 #'             right = paste("Right", i),
 #'             content = i,
-#'             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg"),
-#'             url = NULL
+#'             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
 #'           )
 #'         })
 #'       )
@@ -415,7 +413,7 @@ f7ListIndexItem <- htmltools::tags$li
 #'  )
 #'
 #'  # below example will not load with classic f7List
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
@@ -433,9 +431,7 @@ f7ListIndexItem <- htmltools::tags$li
 #'              header = paste("Header", i),
 #'              footer = paste("Footer", i),
 #'              right = paste("Right", i),
-#'              content = i,
-#'              media = NULL,
-#'              url = NULL
+#'              content = i
 #'            )
 #'          })
 #'        )
@@ -481,7 +477,7 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 #' @inheritParams f7ListItem
 #' @export
 f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
-                              url = NULL, media = NULL, right = NULL) {
+                              href = NULL, media = NULL, right = NULL) {
 
   dropNulls(
     list(
@@ -490,7 +486,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
       subtitle = subtitle,
       header = header,
       footer = footer,
-      url = url,
+      url = href,
       media = as.character(media), # avoid issue on JS side
       right = right
     )
@@ -510,8 +506,8 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #' @param items If action is one of appendItems, prependItems, replaceAllItems.
 #' @param index If action is one of replaceItem, insertItemBefore, deleteItem.
 #' @param indexes If action if one of filterItems, deleteItems.
-#' @param old_index If action is moveItem.
-#' @param new_index If action is moveItem.
+#' @param oldIndex If action is moveItem.
+#' @param newIndex If action is moveItem.
 #' @param session Shiny session.
 #'
 #' @export
@@ -520,9 +516,9 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "Update virtual list",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(
 #'          title = "Virtual Lists",
@@ -675,8 +671,8 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'        updateF7VirtualList(
 #'          id = "vlist",
 #'          action = "moveItem",
-#'          old_index = input$itemIndex,
-#'          new_index = input$itemNewIndex
+#'          oldIndex = input$itemIndex,
+#'          newIndex = input$itemNewIndex
 #'        )
 #'      })
 #'
@@ -696,14 +692,14 @@ updateF7VirtualList <- function(id, action = c("appendItem", "appendItems", "pre
                                                "moveItem", "insertItemBefore", "filterItems",
                                                "deleteItem", "deleteAllItems", "scrollToItem"),
                                 item = NULL, items = NULL, index = NULL, indexes = NULL,
-                                old_index = NULL, new_index = NULL,
+                                oldIndex = NULL, newIndex = NULL,
                                 session = shiny::getDefaultReactiveDomain()) {
 
   # JavaScript starts from 0!
   index <- index - 1
   indexes <- indexes - 1
-  oldIndex <- old_index - 1
-  newIndex <- new_index - 1
+  oldIndex <- oldIndex - 1
+  newIndex <- newIndex - 1
 
   message <- dropNulls(
     list(

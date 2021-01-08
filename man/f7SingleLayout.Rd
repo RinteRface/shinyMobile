@@ -25,9 +25,9 @@ Build a Framework7 single layout
 if(interactive()){
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Single layout",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -36,8 +36,8 @@ if(interactive()){
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7Shadow(
@@ -48,7 +48,7 @@ if(interactive()){
           f7Slider("obs", "Number of observations", 0, 1000, 500),
           plotOutput("distPlot"),
           footer = tagList(
-            f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+            f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
             f7Badge("Badge", color = "green")
           )
         )

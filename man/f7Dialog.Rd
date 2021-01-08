@@ -5,7 +5,7 @@
 \title{Create a Framework7 dialog window}
 \usage{
 f7Dialog(
-  inputId = NULL,
+  id = NULL,
   title = NULL,
   text,
   type = c("alert", "confirm", "prompt", "login"),
@@ -13,7 +13,7 @@ f7Dialog(
 )
 }
 \arguments{
-\item{inputId}{Input associated to the alert. Works when type is one of
+\item{id}{Input associated to the alert. Works when type is one of
 "confirm", "prompt" or "login".}
 
 \item{title}{Dialog title}
@@ -34,7 +34,7 @@ if (interactive()) {
   library(shinyMobile)
   shinyApp(
     ui = f7Page(
-      title = "My App",
+      title = "Simple Dialog",
       f7SingleLayout(
         navbar = f7Navbar(title = "f7Dialog"),
         f7Button(inputId = "goButton", "Go!")
@@ -44,8 +44,7 @@ if (interactive()) {
       shiny::observeEvent(input$goButton,{
         f7Dialog(
          title = "Dialog title",
-         text = "This is an alert dialog",
-         session = session
+         text = "This is an alert dialog"
         )
       })
     }
@@ -57,7 +56,7 @@ if (interactive()) {
  library(shinyMobile)
  shinyApp(
    ui = f7Page(
-     title = "My App",
+     title = "Confirm Dialog",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Dialog"),
        f7Button(inputId = "goButton", "Go!")
@@ -67,16 +66,15 @@ if (interactive()) {
 
      observeEvent(input$goButton,{
        f7Dialog(
-         inputId = "test",
+         id = "test",
          title = "Dialog title",
          type = "confirm",
-         text = "This is an alert dialog",
-         session = session
+         text = "This is an alert dialog"
        )
      })
 
      observeEvent(input$test, {
-       f7Toast(session, text = paste("Alert input is:", input$test))
+       f7Toast(text = paste("Alert input is:", input$test))
      })
 
    }
@@ -88,7 +86,7 @@ if (interactive()) {
  library(shinyMobile)
  shinyApp(
    ui = f7Page(
-     title = "My App",
+     title = "Prompt Dialog",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Dialog"),
        f7Button(inputId = "goButton", "Go!"),
@@ -103,11 +101,10 @@ if (interactive()) {
 
      observeEvent(input$goButton,{
        f7Dialog(
-         inputId = "prompt",
+         id = "prompt",
          title = "Dialog title",
          type = "prompt",
-         text = "This is a prompt dialog",
-         session = session
+         text = "This is a prompt dialog"
        )
      })
 
@@ -122,7 +119,7 @@ if (interactive()) {
  library(shinyMobile)
  shinyApp(
    ui = f7Page(
-     title = "My App",
+     title = "Login Dialog",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7Dialog"),
        f7Button(inputId = "goButton", "Go!"),
@@ -137,11 +134,10 @@ if (interactive()) {
 
      observeEvent(input$goButton,{
        f7Dialog(
-         inputId = "login",
+         id = "login",
          title = "Dialog title",
          type = "login",
-         text = "This is an login dialog",
-         session = session
+         text = "This is an login dialog"
        )
      })
 

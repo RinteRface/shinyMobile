@@ -27,12 +27,12 @@ if(interactive()){
    p("The padding is applied here.")
   ),
   footer = tagList(
-    f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+    f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
     f7Badge("Badge", color = "green")
   )
  )
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "Padding",
     f7SingleLayout(navbar = f7Navbar(title = "f7Padding"), cardTag)

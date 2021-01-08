@@ -9,6 +9,8 @@
 #' @param year Current year, only if calendar is TRUE.
 #' @param month Current month, only if calendar is TRUE.
 #'
+#' @rdname timeline
+#'
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -42,7 +44,7 @@
 #'    )
 #'  )
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'      title = "Timelines",
 #'      f7SingleLayout(
@@ -72,7 +74,7 @@
 #'  )
 #' }
 #'
-#' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
+#' @author David Granjon \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7Timeline <- function(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
@@ -131,7 +133,9 @@ f7Timeline <- function(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
 #' @param subtitle Timeline item subtitle. Optional.
 #' @param side Force element to required side: "right" or "left". Only if sides os TRUE in \link{f7Timeline}
 #'
-#' @author David Granjon and Isabelle Rudolf, \email{dgranjon@@ymail.com}
+#' @author David Granjon \email{dgranjon@@ymail.com}
+#'
+#' @rdname timeline
 #'
 #' @export
 f7TimelineItem <- function(..., date = NULL, card = FALSE, time = NULL,

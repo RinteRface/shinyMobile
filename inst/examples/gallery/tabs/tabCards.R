@@ -67,8 +67,8 @@ tabCards <- f7Tab(
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
     footer = tagList(
-      f7Link(label = "Google", src = "https://www.google.com"),
-      f7Link(label = "Twitter", src = "https://www.twitter.com")
+      f7Link(label = "Google", href = "https://www.google.com"),
+      f7Link(label = "Twitter", href = "https://www.twitter.com")
     )
   ),
   br(),
@@ -77,12 +77,12 @@ tabCards <- f7Tab(
   f7BlockTitle(title = "f7Card with media") %>% f7Align(side = "center"),
   f7Card(
     title = "Card with header, footer and image",
-    img = "https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg",
+    image = "https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg",
     "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
     footer = tagList(
-      f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+      f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
       f7Badge("Badge", color = "green")
     )
   ),
@@ -92,7 +92,7 @@ tabCards <- f7Tab(
   # social card
   f7BlockTitle(title = "f7SocialCard") %>% f7Align(side = "center"),
   f7SocialCard(
-    author_img = "https://cdn.framework7.io/placeholder/people-68x68-1.jpg",
+    image = "https://cdn.framework7.io/placeholder/people-68x68-1.jpg",
     author = "A social Card",
     date = "Monday at 3:47 PM",
     "What a nice photo i took yesterday!",
@@ -122,13 +122,13 @@ tabCards <- f7Tab(
             lacus tincidunt.",
           media = tags$img(src = "https://picsum.photos/200"),
           right = "Right Text",
-          url = "https://www.google.com"
+          href = "https://www.google.com"
         )
       })
     ),
     footer = tagList(
       span("January 20", 2015),
-      f7Chip(label = "Example Chip", img = "https://picsum.photos/200"),
+      f7Chip(label = "Example Chip", image = "https://picsum.photos/200"),
       span(5, "comments")
     )
   ),
@@ -149,7 +149,7 @@ tabCards <- f7Tab(
   f7ExpandableCard(
     id = "card2",
     title = "Expandable Card 2",
-    img = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+    image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
     "Framework7 - is a free and open source HTML mobile framework
     to develop hybrid mobile apps or web apps with iOS or Android
     native look and feel. It is also an indispensable prototyping apps tool
@@ -159,7 +159,7 @@ tabCards <- f7Tab(
     id = "card3",
     title = "Expandable Card 3",
     fullBackground = TRUE,
-    img = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+    image = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
     "Framework7 - is a free and open source HTML mobile framework
     to develop hybrid mobile apps or web apps with iOS or Android
     native look and feel. It is also an indispensable prototyping apps tool

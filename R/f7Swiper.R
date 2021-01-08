@@ -42,7 +42,7 @@
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'     title = "My app",
+#'     title = "Swiper",
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Swiper"),
 #'      f7Swiper(

@@ -179,9 +179,9 @@ f7Page <- function(
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Single layout",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "Single Layout",
@@ -190,8 +190,8 @@ f7Page <- function(
 #'       ),
 #'       toolbar = f7Toolbar(
 #'         position = "bottom",
-#'         f7Link(label = "Link 1", src = "https://www.google.com"),
-#'         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'         f7Link(label = "Link 1", href = "https://www.google.com"),
+#'         f7Link(label = "Link 2", href = "https://www.google.com")
 #'       ),
 #'       # main content
 #'       f7Shadow(
@@ -202,7 +202,7 @@ f7Page <- function(
 #'           f7Slider("obs", "Number of observations", 0, 1000, 500),
 #'           plotOutput("distPlot"),
 #'           footer = tagList(
-#'             f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'             f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
 #'             f7Badge("Badge", color = "green")
 #'           )
 #'         )
@@ -268,10 +268,9 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'  library(shinyMobile)
 #'  library(shinyWidgets)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
-#'      init = f7Init(skin = "md", theme = "light"),
+#'      title = "Tab layout",
 #'      f7TabLayout(
 #'        tags$head(
 #'          tags$script(
@@ -291,8 +290,8 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'          title = "Tabs",
 #'          hairline = FALSE,
 #'          shadow = TRUE,
-#'          left_panel = TRUE,
-#'          right_panel = TRUE
+#'          leftPanel = TRUE,
+#'          rightPanel = TRUE
 #'        ),
 #'        f7Tabs(
 #'          animated = FALSE,
@@ -343,7 +342,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'                ),
 #'                plotOutput("distPlot2"),
 #'                footer = tagList(
-#'                  f7Button(label = "My button", src = "https://www.google.com"),
+#'                  f7Button(label = "My button", href = "https://www.google.com"),
 #'                  f7Badge("Badge", color = "orange")
 #'                )
 #'              )
@@ -369,7 +368,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'                ),
 #'                tableOutput("data"),
 #'                footer = tagList(
-#'                  f7Button(label = "My button", src = "https://www.google.com"),
+#'                  f7Button(label = "My button", href = "https://www.google.com"),
 #'                  f7Badge("Badge", color = "green")
 #'                )
 #'              )
@@ -456,9 +455,9 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #' if(interactive()){
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "Split layout",
 #'      f7SplitLayout(
 #'        sidebar = f7Panel(
 #'          inputId = "sidebar",
@@ -479,8 +478,8 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #'        ),
 #'        toolbar = f7Toolbar(
 #'          position = "bottom",
-#'          f7Link(label = "Link 1", src = "https://www.google.com"),
-#'          f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+#'          f7Link(label = "Link 1", href = "https://www.google.com"),
+#'          f7Link(label = "Link 2", href = "https://www.google.com")
 #'        ),
 #'        # main content
 #'        f7Items(

@@ -35,9 +35,9 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Validate inputs",
      f7SingleLayout(
        navbar = f7Navbar(title = "f7ValidateInput"),
        f7Text(

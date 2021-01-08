@@ -6,7 +6,7 @@
 \usage{
 f7Card(
   ...,
-  img = NULL,
+  image = NULL,
   title = NULL,
   footer = NULL,
   outline = FALSE,
@@ -16,7 +16,7 @@ f7Card(
 \arguments{
 \item{...}{Card content.}
 
-\item{img}{Card image if any. Displayed in the header.}
+\item{image}{Card image if any. Displayed in the header.}
 
 \item{title}{Card title.}
 
@@ -34,7 +34,7 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
     title = "Cards",
     f7SingleLayout(
@@ -54,7 +54,7 @@ if(interactive()){
     ),
     f7Card(
      title = "Card header",
-     img = "https://lorempixel.com/1000/600/nature/3/",
+     image = "https://lorempixel.com/1000/600/nature/3/",
      "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",

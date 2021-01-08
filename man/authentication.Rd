@@ -66,9 +66,9 @@ if (interactive()) {
  # global authentication
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Login module",
      f7SingleLayout(
        navbar = f7Navbar(
          title = "Login Example",
@@ -77,8 +77,8 @@ if (interactive()) {
        ),
        toolbar = f7Toolbar(
          position = "bottom",
-         f7Link(label = "Link 1", src = "https://www.google.com"),
-         f7Link(label = "Link 2", src = "https://www.google.com", external = TRUE)
+         f7Link(label = "Link 1", href = "https://www.google.com"),
+         f7Link(label = "Link 2", href = "https://www.google.com")
        ),
        f7Login(id = "loginPage", title = "Welcome"),
        # main content
@@ -102,9 +102,9 @@ if (interactive()) {
  # section specific authentication
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Local access restriction",
      f7TabLayout(
        navbar = f7Navbar(
          title = "Login Example for Specific Section",
@@ -153,11 +153,11 @@ if (interactive()) {
  )
 
  # with 2 different protected sections
- ibrary(shiny)
+ library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
-     title = "My app",
+     title = "Multiple restricted areas",
      f7TabLayout(
        navbar = f7Navbar(
          title = "Login Example for 2 Specific Section",

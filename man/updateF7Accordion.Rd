@@ -5,13 +5,13 @@
 \title{Update a Framework 7 accordion}
 \usage{
 updateF7Accordion(
-  inputId,
+  id,
   selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{Accordion instance.}
+\item{id}{Accordion instance.}
 
 \item{selected}{Index of item to select.}
 
@@ -25,14 +25,14 @@ if (interactive()) {
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Accordions",
      f7SingleLayout(
        navbar = f7Navbar("Accordions"),
        f7Button(inputId = "go", "Go"),
        f7Accordion(
-         inputId = "myaccordion1",
+         id = "myaccordion1",
          f7AccordionItem(
            title = "Item 1",
            f7Block("Item 1 content"),
@@ -48,7 +48,7 @@ if (interactive()) {
    server = function(input, output, session) {
 
      observeEvent(input$go, {
-       updateF7Accordion(inputId = "myaccordion1", selected = 2, session = session)
+       updateF7Accordion(id = "myaccordion1", selected = 2)
      })
 
      observe({

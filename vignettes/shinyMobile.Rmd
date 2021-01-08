@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 
-- shinyMobile is built on top of the latest [framework7](https://framework7.io) template (V5.1.3). It may be 
+`{shinyMobile}` is built on top of the latest [framework7](https://framework7.io) template (V5.7.14). It may be 
 used for different purposes:
 
   * develop mobile-ready shinyapps
@@ -20,31 +20,33 @@ used for different purposes:
   
 ## Custom skins
 
-- shinyMobile has 3 skins:
+`{shinyMobile}` has 3 skins:
 
-  * aurora for desktop apps
-  * ios and md for mobile apps
-  * automatically detects if the app is running with android or iOS and accordingly adapt 
-the layout
+  * __aurora__ for desktop apps
+  * __ios__ and __md__ for mobile apps
 
-It is possible to apply the iOS skin on android and inversely, even though not recommended.
+It automatically detects if the app is running with android or iOS and accordingly adapt 
+the layout. It is of course possible to apply the iOS skin on android and inversely, even though not recommended.
 
-- This package also provides 2 themes, namely light and dark. While framework7 allows to apply dark or light theme not only at the global level but at the "widget level", shinyMobile does not support that feature, to improve the overall consistancy. Only panels can have a color independant of the global theme.
+`{shinyMobile}` also provides 2 themes, namely light and dark. 
+While framework7 allows to apply dark or light theme not only at the global level but at the "widget level", 
+`{shinyMobile}` does not support that feature, to improve the overall consistency. 
+Only panels can have a color independent of the global theme.
 
 
 ## Layouts
 
-- shinyMobile brings 3 out of the box layouts:
+`{shinyMobile}` brings 3 out of the box layouts:
 
-  * `f7SingleLayout`: develop simple shinyMobile Apps (best choice for iOS/android Apps)
-  * `f7TabLayout`: develop complex multi tabbed Apps (best choice for iOS/android Apps)
+  * `f7SingleLayout`: develop simple apps (best choice for iOS/android Apps)
+  * `f7TabLayout`: develop complex multi-tabbed Apps (best choice for iOS/android Apps)
   * `f7SplitLayout`: for tablets and desktop with a sidebar, navbar and a main panel
   * Coming soon: a multi-pages layout with animations between pages!
 
 
 ## New Inputs
 
-- shinyMobile has its own custom input widgets with unique design for each skin (iOS/android/aurora):
+`{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android/aurora):
 
   * `f7Slider()`
   * `f7Text()`
@@ -62,8 +64,9 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * `f7AutoComplete()`
   * `f7Button()`: similar to `actionButton()` from {shiny}
   * `f7Fab()`: enhanced `f7Button()` with ability to be gathered in a `f7Fabs()` container
+  * and more
   
-- It also has custom update functions to act on the server side:
+It also has custom update functions to act on the server side:
 
   * `updateF7AutoComplete()`
   * `updateF7Picker()`
@@ -73,25 +76,17 @@ It is possible to apply the iOS skin on android and inversely, even though not r
   * `updateF7Fab()`
   * `updateF7Text()`
   * `updateF7Checkbox()`
-  * more to come on a future release
+  * and many more
   
-
-- shinyMobile has custom input values tabs as well as dedicated update functions to act on the server side:
-
-  * `updateF7Tabs()`
-  
-- shinyMobile has custom input for sidebar (`f7Panel()`) as well as a serve side update function:
-
-  * `updateF7Panel()`
-  
-Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions and more:
+Finally, it also provides tools to dynamically update widgets on the server side 
+like cards, accordions, tabs, panels and more:
 
   * `updateF7Accordion()`
   * `updateF7Card()`
   * `updateF7Gauge()`
   * `updateF7Progress()`
   * `updateF7Sheet()`
-  * more to come soon
+  * many more
   
 ## Create your first App
 
@@ -168,11 +163,11 @@ f7PanelMenu(
 )
 ```
 
-The id argument is important if you want to get the currently selected item or
-update the select tab. Each `f7PanelItem` has a mandatory tabName. The associated input
+The __id__ argument is important if you want to get the currently selected item or
+update the select tab. Each `f7PanelItem` has a mandatory __tabName__. The associated input
 will be `input$menu` in that example, with "tab1" for value since the first tab was
 set to an active state. To adequately link the body and the sidebar, you must wrap the
-body content in `f7Items()` containing as many `f7Item()` as sidebar items. The tabName must
+body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must
 correspond!
 
 
@@ -184,18 +179,38 @@ It is the main skeleton of the template.
 ```r
 f7Page(
   ..., 
-  init = f7Init(skin = "auto", theme = "light"),
+  options = list(
+    theme = c("ios", "md", "auto", "aurora"),
+    dark = TRUE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      iosTouchRipple = FALSE
+    ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideNavOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideNavOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  ),
   title = NULL, 
   preloader = FALSE, 
-  loading_duration = 3
+  loading_duration = 3,
+  allowPWA = FALSE
 )
 ```
 
-`f7Init()` is mandatory (see below) since it sets up the app. preloader is useful
-in case you want to display a loading screen. `f7Page()` accepts any shinyMobile layout.
+__options__ sets up the app look and feel. __preloader__ is useful
+in case you want to display a loading screen. `f7Page()` accepts any `{shinyMobile}` layout.
 
 ##### Navbar
-The navbar is one of the most important element of any shinyMobile layout.
+The __navbar__ is a mandatory element of any `{shinyMobile}` layout.
 It contains a title, a subtitle, triggers for both right and left panels (`f7Panel()`) as well
 as a subnavbar (`f7SubNavbar()`).
 
@@ -208,15 +223,14 @@ f7Navbar(
   hairline = TRUE, 
   shadow = TRUE, 
   bigger = FALSE,
-  left_panel = FALSE, 
-  right_panel = FALSE
+  leftPanel = FALSE, 
+  rightPanel = FALSE
 )
 ```
 
 For complex apps, it might be interesting to add a `f7SubNavbar(...)`. It may contain
 any element like `f7Button()` or text. `f7Navbar()` has also styling parameters such as
-shadow and hairline. Disclaimer: the bigger parameters does not work well yet... and I suggest to ignore it for the moment.
-
+shadow and hairline.
 
 ##### The Toolbar
 
@@ -235,7 +249,7 @@ f7Toolbar(
 )
 ```
 
-Interestingly, `f7Tabs()` is a custom `f7Toolbar()`!
+Under the hood, `f7Tabs()` is a custom `f7Toolbar()`!
 
 ##### Panels
 
@@ -244,6 +258,7 @@ Panels are also called sidebars. `f7Panel()` is the corresponding function.
 ```r
 f7Panel(
   ..., 
+  id = NULL,
   title = NULL, 
   side = c("left", "right"),
   theme = c("dark", "light"), 
@@ -252,16 +267,18 @@ f7Panel(
 )
 ```
 
-Although the App has a theme parameter, `f7Panel()` has an independant theme option.
+Although the App has a __theme__ option, `f7Panel()` has an independent __theme__ option.
 For instance, it is definitely possible to create a dark `f7Panel()` while the page
 theme is light, and conversely. Its behaviour is controlled via the effect argument:
-- "reveal" will make the body content move and resize
-- "cover" will cover the body content
-The resizable argument allows to dynamically resize the panel.
+
+  - __reveal__ will make the body content move and resize
+  - __cover__ will cover the body content
+  
+The __resizable__ argument allows to dynamically resize the panel.
 
 Note that for the moment, there is no option to control the width of each panel.
   
-As stated previously for the `f7SplitLayout`, the `f7Panel()` may also be considered
+As stated previously for the `f7SplitLayout()`, the `f7Panel()` may also be considered
 as a sidebar. In that case, we may include `f7PanelMenu()`.
 Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
 
@@ -273,37 +290,45 @@ Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
 ```r
 f7Appbar(
   ..., 
-  left_panel = FALSE, 
-  right_panel = FALSE,
+  leftPanel = FALSE, 
+  rightPanel = FALSE,
   maximizable = FALSE
 )
 ```
 
-#### App Initialization
+#### Options
 
-This is probably the most inportant function of the template: `f7Init()`.
-This functions helps to set up the template as well as properly initializing 
-the main view of your app.
+This is probably the most important element of the template: 
 
 ```r
-f7Init(
-  skin = c("ios", "md", "auto", "aurora"), 
-  theme = c("dark", "light"), 
-  filled = FALSE, 
-  color = NULL, 
-  tapHold = TRUE,
-  iosTouchRipple = FALSE, 
-  iosCenterTitle = TRUE, 
-  hideNavOnPageScroll = TRUE,
-  hideTabsOnPageScroll = FALSE
-)
+options = list(
+    theme = c("ios", "md", "auto", "aurora"),
+    dark = TRUE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      iosTouchRipple = FALSE
+    ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideNavOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideNavOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  )
 ```
 
 As stated above, you may choose between 3 skins and 2 color themes. There is a third option
-called "filled" that allows to fill the navbar and toolbar if enabled. The color options simply
+called __filled__ that allows to fill the navbar and toolbar if enabled. The __color__ options simply
 changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
-shinyMobile brings a lot of different colors. hideNavOnPageScroll and hideTabsOnPageScroll allow to hide/show the navbar and toolbar
-which is useful to focus on the content. The tapHold parameter ensure that the "long-press" feature is activated. framework7 has more options which will be implemented in a next version of shinyMobile.
+`{shinyMobile}` brings a lot of different colors. __hideOnPageScroll__ allow to hide/show the navbar and toolbar
+which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. 
+Framework7 has many more options which can be passed through this __options__ parameter
 
 
 

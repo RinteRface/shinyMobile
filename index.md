@@ -1,7 +1,8 @@
 # shinyMobile <img src="man/figures/logo.png" width="200px" align="right"/>
 
 
-> Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest [Framework7](https://framework7.io) template.
+> Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. 
+{shinyMobile} is built on top of the latest [Framework7](https://framework7.io) template.
 
 [![R build status](https://github.com/RinteRface/shinyMobile/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/shinyMobile/actions)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -72,11 +73,9 @@ Left side: android demo, right side: iOS demo
 
 ### Configuration
 
-shinyMobile is PWA capable, meaning that it can be displayed full screen on many mobile
-devices. This feature is automatically handled by `f7Page()` and the Google PWA compatibility
-[script](https://github.com/GoogleChromeLabs/pwacompat). The last 3 parameters of `f7Page()`
-are not mandatory. If not provided, the app will use shinyMobile default ressources to create an apple-touch-icon, a manifest and a favicon. The PWA compatibility script will automatically create any missing icons and splash screens for iOS and Android devices.
-
+`{shinyMobile}` is PWA capable, meaning that it can be displayed full screen on many mobile
+devices. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE` (it leverages the Google PWA compatibility
+[script](https://github.com/GoogleChromeLabs/pwacompat)). 
 
 Below is an example showing the manifest.json file:
 
@@ -123,8 +122,9 @@ Below is an example showing the manifest.json file:
 }
 ```
 
-Be sure to replace the `start_url` with your own url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
-`create_manifest`. FInally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+Be sure to replace the `start_url` with your own app url. Also, add a custom name, 
+even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
+`create_manifest`. Finally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
 
 

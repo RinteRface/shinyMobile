@@ -12,7 +12,7 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
 #'     title = "Shadows",
 #'     f7SingleLayout(
@@ -27,7 +27,7 @@
 #'        but cards can also contain their own header,
 #'        footer, list view, image, or any other element.",
 #'       footer = tagList(
-#'        f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'        f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
 #'        f7Badge("Badge", color = "green")
 #'       )
 #'      )

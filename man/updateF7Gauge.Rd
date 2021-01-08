@@ -5,7 +5,6 @@
 \title{update a framework7 gauge from the server side}
 \usage{
 updateF7Gauge(
-  session,
   id,
   value = NULL,
   labelText = NULL,
@@ -19,12 +18,11 @@ updateF7Gauge(
   valueFontWeight = NULL,
   labelTextColor = NULL,
   labelFontSize = NULL,
-  labelFontWeight = NULL
+  labelFontWeight = NULL,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{session}{Shiny session object.}
-
 \item{id}{Gauge id.}
 
 \item{value}{New value. Numeric between 0 and 100.}
@@ -52,6 +50,8 @@ updateF7Gauge(
 \item{labelFontSize}{Label text font size.}
 
 \item{labelFontWeight}{Label text font weight.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 update a framework7 gauge from the server side
@@ -62,7 +62,7 @@ if (interactive()) {
  library(shinyMobile)
 
 
- shiny::shinyApp(
+ shinyApp(
     ui = f7Page(
        title = "Gauges",
        f7SingleLayout(
@@ -82,7 +82,7 @@ if (interactive()) {
     ),
     server = function(input, output, session) {
        observeEvent(input$go, {
-          updateF7Gauge(session, id = "mygauge", value = 75, labelText = "New label!")
+          updateF7Gauge(id = "mygauge", value = 75, labelText = "New label!")
        })
     }
  )

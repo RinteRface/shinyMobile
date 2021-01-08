@@ -1,9 +1,9 @@
 #' Create an f7 sheet modal
 #'
 #' @param ... Sheet content. If wipeToStep is TRUE, these items will be visible at start.
+#' @param id Sheet unique id.
 #' @param hiddenItems Put items you want to hide inside. Only works when
 #' swipeToStep is TRUE. Default to NULL.
-#' @param id Sheet unique id.
 #' @param orientation "top" or "bottom".
 #' @param swipeToClose If TRUE, it can be closed by swiping down.
 #' @param swipeToStep If TRUE then sheet will be opened partially,
@@ -22,7 +22,7 @@
 #'
 #' @export
 #' @rdname sheet
-f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"),
+f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"),
                     swipeToClose = FALSE, swipeToStep = FALSE, backdrop = FALSE,
                     closeByOutsideClick = TRUE, swipeHandler = TRUE) {
 
@@ -108,9 +108,9 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
 
 
 
-#' update a framework 7 sheet modal
+#' Update a framework 7 sheet modal
 #'
-#' @param inputId Sheet id.
+#' @param id Sheet id.
 #' @param session Shiny session object
 #' @export
 #' @rdname sheet
@@ -118,10 +118,9 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'     ui = f7Page(
-#'        color = "pink",
-#'        title = "My app",
+#'        title = "Update f7Sheet",
 #'        f7SingleLayout(
 #'           navbar = f7Navbar(title = "f7Sheet"),
 #'           f7Button(inputId = "go", label = "Go"),
@@ -174,15 +173,14 @@ f7Sheet <- function(..., hiddenItems = NULL, id, orientation = c("top", "bottom"
 #'           hist(rnorm(input$obs))
 #'        })
 #'        observeEvent(input$obs, {
-#'           updateF7Gauge(session, id = "mygauge", value = input$obs)
+#'           updateF7Gauge(id = "mygauge", value = input$obs)
 #'        })
 #'        observeEvent(input$go, {
-#'           updateF7Sheet(inputId = "sheet1", session = session)
+#'           updateF7Sheet(id = "sheet1")
 #'        })
 #'     }
 #'  )
 #' }
-updateF7Sheet <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
-   message <- NULL
-   session$sendInputMessage(inputId, NULL)
+updateF7Sheet <- function(id, session = shiny::getDefaultReactiveDomain()) {
+   session$sendInputMessage(id, NULL)
 }

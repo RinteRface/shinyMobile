@@ -17,10 +17,9 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
 #'     title = "Icons",
-#'     init = f7Init(theme = "light", skin = "ios"),
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "icons"),
 #'      f7List(

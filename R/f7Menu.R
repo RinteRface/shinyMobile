@@ -7,16 +7,16 @@
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Menus",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "f7Menu",
 #'         hairline = FALSE,
 #'         shadow = TRUE
 #'       ),
-#'       f7Button("toggle", "Toggle menu"),
+#'       f7Button(inputId = "toggle", label = "Toggle menu"),
 #'       f7Menu(
 #'         f7MenuDropdown(
 #'           id = "menu1",

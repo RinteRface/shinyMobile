@@ -26,7 +26,7 @@ shinyApp(
       messagebar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
       panels = tagList(
         f7Panel(
-          inputId = "panelLeft",
+          id = "panelLeft",
           title = "Left Panel",
           side = "left",
           theme = "light",
@@ -46,8 +46,8 @@ shinyApp(
         subtitle = "for Shiny",
         hairline = TRUE,
         shadow = TRUE,
-        left_panel = TRUE,
-        right_panel = TRUE,
+        leftPanel = TRUE,
+        rightPanel = TRUE,
         bigger = TRUE,
         transparent = FALSE
       ),
@@ -61,7 +61,7 @@ shinyApp(
       ),
       # recover the color picker input and update the text background
       # color accordingly.
-      shiny::tags$script(
+      tags$script(
         "$(function() {
           Shiny.addCustomMessageHandler('text-color', function(message) {
             $('#colorPickerVal').css('background-color', message);
@@ -190,7 +190,7 @@ shinyApp(
     output$colorPickerVal <- renderText(input$mycolorpicker)
 
     # send the color picker input to JS
-    observe({
+    observeEvent(input$mycolorpicker, {
       session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
     })
 
@@ -218,7 +218,7 @@ shinyApp(
     })
 
     observeEvent(input$toggleSheet, {
-      updateF7Sheet(inputId = "sheet1")
+      updateF7Sheet(id = "sheet1")
     })
 
     # notifications
@@ -249,14 +249,14 @@ shinyApp(
           )
         } else if (i == 2) {
           f7Dialog(
-            inputId = "confirmDialog",
+            id = "confirmDialog",
             title = "Dialog title",
             type = "confirm",
             text = "This is an confirm dialog"
           )
         } else if (i == 3) {
           f7Dialog(
-            inputId = "promptDialog",
+            id = "promptDialog",
             title = "Dialog title",
             type = "prompt",
             text = "This is a prompt dialog"
@@ -322,7 +322,7 @@ shinyApp(
         )
       } else if (input$action1_button == 2) {
         f7Dialog(
-          inputId = "actionSheetDialog",
+          id = "actionSheetDialog",
           title = "Click me to launch a Toast!",
           type = "confirm",
           text = "You clicked on the second button"
@@ -340,7 +340,7 @@ shinyApp(
         )
       } else if (input$swipeAction_button == 2) {
         f7Dialog(
-          inputId = "actionSheetDialog",
+          id = "actionSheetDialog",
           title = "Click me to launch a Toast!",
           type = "confirm",
           text = "You clicked on the second button"
@@ -359,26 +359,25 @@ shinyApp(
 
     # update gauge
     observeEvent(input$updategauge1, {
-      updateF7Gauge(session, id = "mygauge1", value = input$updategauge1)
+      updateF7Gauge(id = "mygauge1", value = input$updategauge1)
     })
 
     # expand card 3
     observeEvent(input$goCard, {
-      updateF7Card(id = "card3", session = session)
+      updateF7Card(id = "card3")
     })
 
     # toggle accordion
     observeEvent(input$goAccordion, {
       updateF7Accordion(
-        inputId = "accordion1",
-        selected = 1,
-        session = session
+        id = "accordion1",
+        selected = 1
       )
     })
 
     # update panel
     observeEvent(input$goPanel, {
-      updateF7Panel(inputId = "panelLeft", session = session)
+      updateF7Panel(id = "panelLeft")
     })
 
     # swipeout
@@ -431,7 +430,7 @@ shinyApp(
     # photo browser
     observeEvent(input$togglePhoto, {
       f7PhotoBrowser(
-        theme = "light",
+        theme = "dark",
         type = "standalone",
         photos = c(
           "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
@@ -441,13 +440,21 @@ shinyApp(
       )
     })
 
+    # Menus
+    observeEvent(input$toggleMenu, {
+      f7OpenMenuDropdown("menu1")
+    })
+
+    observeEvent(input$menuItem1, {
+      f7Notif(text = "Well done!")
+    })
+
     # pull to refresh
     # observeEvent(input$ptr, {
     #
     #   ptrStatus <- if (input$ptr) "on"
     #
     #   f7Dialog(
-    #     session = session,
     #     text = paste('ptr is', ptrStatus),
     #     type = "alert"
     #   )

@@ -13,7 +13,6 @@ economics_long <- economics_long %>%
 shinyApp(
   ui = f7Page(
     title = "My app",
-    dark_mode = FALSE,
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
@@ -22,8 +21,8 @@ shinyApp(
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com")
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7Shadow(

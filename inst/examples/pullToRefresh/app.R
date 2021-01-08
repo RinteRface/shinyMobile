@@ -1,7 +1,7 @@
 library(shiny)
 library(shinyMobile)
 
-shiny::shinyApp(
+shinyApp(
   ui = f7Page(
     title = "My app",
     options = list(pullToRefresh = TRUE),
@@ -13,8 +13,8 @@ shiny::shinyApp(
       ),
       toolbar = f7Toolbar(
         position = "bottom",
-        f7Link(label = "Link 1", src = "https://www.google.com"),
-        f7Link(label = "Link 2", src = "https://www.google.com")
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       uiOutput("growingList")
@@ -33,7 +33,6 @@ shiny::shinyApp(
       ptrStatus <- if (input$ptr) "on"
 
       f7Dialog(
-        session = session,
         text = paste('ptr is', ptrStatus),
         type = "alert"
       )

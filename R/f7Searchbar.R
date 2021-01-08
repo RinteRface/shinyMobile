@@ -16,9 +16,9 @@
 #'
 #' cars <- rownames(mtcars)
 #'
-#' shiny::shinyApp(
+#' shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Simple searchbar",
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "f7Searchbar",
@@ -52,7 +52,7 @@
 #'
 #'  shiny::shinyApp(
 #'    ui = f7Page(
-#'      title = "My app",
+#'      title = "Expandable searchbar",
 #'      f7SingleLayout(
 #'        navbar = f7Navbar(
 #'          title = "f7Searchbar with trigger",
@@ -83,9 +83,9 @@
 #'  )
 #'
 #'  # Searchbar in \link{f7Appbar}
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'   ui = f7Page(
-#'     title = "My app",
+#'     title = "Searchbar in appbar",
 #'     f7Appbar(
 #'       f7Searchbar(id = "search1", inline = TRUE)
 #'     ),

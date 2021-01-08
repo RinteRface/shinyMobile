@@ -27,10 +27,9 @@
 #' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
-#'  shiny::shinyApp(
+#'  shinyApp(
 #'    ui = f7Page(
-#'      color = "pink",
-#'      title = "My app",
+#'      title = "Popup",
 #'      f7SingleLayout(
 #'       navbar = f7Navbar(
 #'         title = "f7Popup",
@@ -59,7 +58,6 @@
 #'      popupStatus <- if (input$popup1) "opened" else "closed"
 #'
 #'      f7Toast(
-#'       session,
 #'       position = "top",
 #'       text = paste("Popup is", popupStatus)
 #'      )

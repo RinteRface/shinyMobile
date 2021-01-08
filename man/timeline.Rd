@@ -2,6 +2,7 @@
 % Please edit documentation in R/f7Timeline.R
 \name{f7Timeline}
 \alias{f7Timeline}
+\alias{f7TimelineItem}
 \title{Create a Framework7 timeline}
 \usage{
 f7Timeline(
@@ -12,9 +13,19 @@ f7Timeline(
   year = NULL,
   month = NULL
 )
+
+f7TimelineItem(
+  ...,
+  date = NULL,
+  card = FALSE,
+  time = NULL,
+  title = NULL,
+  subtitle = NULL,
+  side = NULL
+)
 }
 \arguments{
-\item{...}{Slot for \link{f7TimelineItem}.}
+\item{...}{Item content, text for instance.}
 
 \item{sides}{Enable side-by-side timeline mode.}
 
@@ -25,9 +36,23 @@ f7Timeline(
 \item{year}{Current year, only if calendar is TRUE.}
 
 \item{month}{Current month, only if calendar is TRUE.}
+
+\item{date}{Timeline item date. Required.}
+
+\item{card}{Whether to wrap the content in a card. FALSE by default.}
+
+\item{time}{Timeline item time. Optional.}
+
+\item{title}{Timeline item title. Optional.}
+
+\item{subtitle}{Timeline item subtitle. Optional.}
+
+\item{side}{Force element to required side: "right" or "left". Only if sides os TRUE in \link{f7Timeline}}
 }
 \description{
 Build a Framework7 timeline
+
+Build a Framework7 timeline item
 }
 \examples{
 if(interactive()){
@@ -62,7 +87,7 @@ if(interactive()){
    )
  )
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
      title = "Timelines",
      f7SingleLayout(
@@ -94,5 +119,7 @@ if(interactive()){
 
 }
 \author{
-David Granjon and Isabelle Rudolf, \email{dgranjon@ymail.com}
+David Granjon \email{dgranjon@ymail.com}
+
+David Granjon \email{dgranjon@ymail.com}
 }

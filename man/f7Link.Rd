@@ -4,14 +4,14 @@
 \alias{f7Link}
 \title{Create a Framework7 link}
 \usage{
-f7Link(label = NULL, icon = NULL, src = NULL)
+f7Link(label, href, icon = NULL)
 }
 \arguments{
 \item{label}{Link text.}
 
-\item{icon}{Link icon, if any.}
+\item{href}{Link source, url.}
 
-\item{src}{Link source, url.}
+\item{icon}{Link icon, if any.}
 }
 \description{
 Build a Framework7 link
@@ -21,13 +21,13 @@ if(interactive()){
  library(shiny)
  library(shinyMobile)
 
- shiny::shinyApp(
+ shinyApp(
    ui = f7Page(
     title = "Links",
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Link"),
-     f7Link(label = "Google", src = "https://www.google.com"),
-     f7Link(label = "Twitter", src = "https://www.twitter.com")
+     f7Link(label = "Google", href = "https://www.google.com"),
+     f7Link(label = "Twitter", href = "https://www.twitter.com")
     )
    ),
    server = function(input, output) {}

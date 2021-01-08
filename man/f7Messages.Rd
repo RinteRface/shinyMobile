@@ -24,9 +24,9 @@ automatically based on passed conditions.}
 \item{newMessagesFirst}{Enable if you want to use new messages on top,
 instead of having them on bottom.}
 
-\item{scrollMessages}{Enable/disable messages autoscrolling when adding new message.}
+\item{scrollMessages}{Enable/disable messages auto scrolling when adding new message.}
 
-\item{scrollMessagesOnEdge}{If enabled then messages autoscrolling will happen only
+\item{scrollMessagesOnEdge}{If enabled then messages auto scrolling will happen only
 when user is on top/bottom of the messages view.}
 }
 \description{
@@ -36,10 +36,9 @@ Create a Framework7 messages container
 if (interactive()) {
  library(shiny)
  library(shinyMobile)
- shiny::shinyApp(
+ shinyApp(
   ui = f7Page(
-    title = "My app",
-    init = f7Init(skin = "ios", theme = "light"),
+    title = "Messages",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Messages",
