@@ -107,9 +107,6 @@ $((function() {
         $(".page").addClass("page-with-subnavbar");
     }
     Shiny.addCustomMessageHandler("notif", (function(message) {
-        if (typeof message.icon !== "string") {
-            message.icon = undefined;
-        }
         app.notification.create(message).open();
     }));
     popoverIds = [];

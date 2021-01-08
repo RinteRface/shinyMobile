@@ -45,12 +45,14 @@
 f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subtitle = NULL,
                     closeTimeout = 5000, closeButton = FALSE,
                     closeOnClick = TRUE, swipeToClose = TRUE,
-                    session = shiny::getDefaultReactiveDomain()) {
+                    ..., session = shiny::getDefaultReactiveDomain()) {
+
+  if (!is.null(icon)) icon <- as.character(icon)
 
   message <- dropNulls(
     list(
       title = title,
-      icon = as.character(icon),
+      icon = icon,
       titleRightText = titleRightText,
       subtitle = subtitle,
       text = text,

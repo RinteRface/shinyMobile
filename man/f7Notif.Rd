@@ -14,6 +14,7 @@ f7Notif(
   closeButton = FALSE,
   closeOnClick = TRUE,
   swipeToClose = TRUE,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -37,9 +38,9 @@ FALSE by default.}
 
 \item{swipeToClose}{If enabled, notification can be closed by swipe gesture.}
 
-\item{session}{shiny session.}
-
 \item{...}{Other options. See \url{https://framework7.io/docs/notification.html}.}
+
+\item{session}{shiny session.}
 }
 \description{
 Notification with title, text, icon and more.
