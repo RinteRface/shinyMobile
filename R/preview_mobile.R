@@ -119,8 +119,8 @@ create_app_ui <- function(iframe, device, color, landscape) {
 
   shiny::fluidPage(
     htmltools::attachDependencies(
-      devices_css_deps,
-      shiny::br()
+      shiny::br(),
+      devices_css_deps
     ),
     # container for preview app
     shiny::br(),

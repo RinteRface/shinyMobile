@@ -1,3 +1,7 @@
+# shinyMobile 0.7.1
+
+Patch release correcting an internal use of htmltools::attachDependencies().
+
 # shinyMobile 0.7.0
 
 ## Notes

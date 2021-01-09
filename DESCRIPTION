@@ -1,7 +1,7 @@
 Package: shinyMobile
 Type: Package
 Title: Mobile Ready 'shiny' Apps with Standalone Capabilities
-Version: 0.7.0
+Version: 0.7.1
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person("Victor", "Perrier", email = "info@dreamrs.fr", role = "aut"),
@@ -23,7 +23,7 @@ Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
 BugReports: https://github.com/RinteRface/shinyMobile/issues
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests: 
     knitr,
     rmarkdown,
