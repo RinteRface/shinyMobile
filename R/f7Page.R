@@ -91,6 +91,8 @@ f7Page <- function(
   if (!is.null(options$pullToRefresh)) {
     dataPTR <- tolower(options$pullToRefresh)
     options$pullToRefresh <- NULL
+  } else {
+    dataPTR <- NULL
   }
 
   # configuration tag to be passed to JS
