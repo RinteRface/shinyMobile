@@ -27,6 +27,12 @@ $(function() {
       }
     };
 
+  config.data = function() {
+    return {
+      popovers: []
+    };
+  };
+
   // create app instance
   app = new Framework7(config);
 
@@ -40,16 +46,18 @@ $(function() {
   }
 
   // tapHold custom css
-  if (config.touch.tapHold) {
-    $("<style>")
-      .prop("type", "text/css")
-      .html(
-        `
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;`
-      )
-      .appendTo("head");
+  if (config.hasOwnProperty("touch")) {
+    if (config.touch.tapHold) {
+      $("<style>")
+        .prop("type", "text/css")
+        .html(
+          `
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;`
+        )
+        .appendTo("head");
+    }
   }
 
   // Set color theme
