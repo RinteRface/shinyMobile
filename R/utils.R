@@ -5,7 +5,7 @@ dropNulls <- function(x) {
   x[!vapply(x, is.null, FUN.VALUE = logical(1))]
 }
 
-
+"%OR%" <- function(a, b) if (!is.null(a)) a else b
 
 # function needed to set up the color theme
 # of the app. Generate the hex corresponding to the
