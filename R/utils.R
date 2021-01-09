@@ -112,3 +112,23 @@ add_dependencies <- function(tag, deps = NULL) {
 
   htmltools::tagList(tag, deps)
 }
+
+
+# Popovers utils
+validatePopoverSelector <- function(id, selector) {
+  if (!is.null(id) && !is.null(selector)) {
+    stop("Please choose either target or selector!")
+  }
+}
+
+
+sendPopoverMessage <- function(type, message, session) {
+  session$sendCustomMessage(
+    type,
+    jsonlite::toJSON(
+      message,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
+}

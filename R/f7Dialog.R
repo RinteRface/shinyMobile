@@ -151,6 +151,13 @@ f7Dialog <- function(id = NULL, title = NULL, text,
     )
   )
   # see my-app.js function
-  session$sendCustomMessage(type = "dialog", message = message)
+  session$sendCustomMessage(
+    type = "dialog",
+    message = jsonlite::toJSON(
+      message,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
 
 }

@@ -16,14 +16,21 @@ $((function() {
             $html.toggleClass("theme-dark");
         }
     };
+    config.data = function() {
+        return {
+            popovers: []
+        };
+    };
     app = new Framework7(config);
     mainView = app.views.create(".view-main");
     if (!config.hasOwnProperty("dark")) config.dark = false;
     if (config.dark) {
         app.methods.toggleDarkTheme();
     }
-    if (config.touch.tapHold) {
-        $("<style>").prop("type", "text/css").html(`\n        -moz-user-select: none;\n        -webkit-user-select: none;\n        user-select: none;`).appendTo("head");
+    if (config.hasOwnProperty("touch")) {
+        if (config.touch.tapHold) {
+            $("<style>").prop("type", "text/css").html(`\n          -moz-user-select: none;\n          -webkit-user-select: none;\n          user-select: none;`).appendTo("head");
+        }
     }
     if (config.hasOwnProperty("color")) {
         var colorCSS = app.utils.colorThemeCSSProperties(config.color);
@@ -120,20 +127,29 @@ $((function() {
         Shiny.addCustomMessageHandler(index, (function(message) {
             var popover = app.popover.create({
                 targetEl: '[data-popover = "' + index + '"]',
-                content: '<div class="popover">' + '<div class="popover-inner">' + '<div class="block">' + message.content + "</div>" + "</div>" + "</div>",
-                on: {
-                    open: function(popover) {
-                        console.log("Popover open");
-                    },
-                    opened: function(popover) {
-                        console.log("Popover opened");
-                    }
-                }
+                content: '<div class="popover">' + '<div class="popover-inner">' + '<div class="block">' + message.content + "</div>" + "</div>" + "</div>"
             });
             $('[data-popover = "' + index + '"]').on("click", (function() {
                 popover.open();
             }));
         }));
+    }));
+    Shiny.addCustomMessageHandler("add_popover", (function(message) {
+        if (app.data.popovers[message.targetEl] === undefined) {
+            if (!$(message.targetEl).hasClass("popover-disabled")) {
+                message.content = `\n        <div class="popover">\n          <div class="popover-angle"></div>\n          <div class="popover-inner">\n            <div class="block">${message.content}</div>\n          </div>\n        </div>\n        `;
+                var p = app.popover.create(message);
+                p.open();
+                app.data.popovers[message.targetEl] = p;
+            }
+        } else {
+            if (!$(message.targetEl).hasClass("popover-disabled")) {
+                app.data.popovers[message.targetEl].open();
+            }
+        }
+    }));
+    Shiny.addCustomMessageHandler("toggle_popover", (function(message) {
+        $(message).toggleClass("popover-disabled");
     }));
     Shiny.addCustomMessageHandler("toast", (function(message) {
         app.toast.create(message).open();

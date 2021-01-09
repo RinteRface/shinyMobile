@@ -11,6 +11,7 @@
 respectively
 - `f7ShowPreloader()` and `f7HidePreloader()` will become `showF7Preloader()` and
 `hideF7Preloader()`, respectively. 
+- `f7Popover()` and `f7PopoverTarget()` replaced by `addF7Popover()` and `toggleF7Popover()`
 
 ## Breaking changes
 
