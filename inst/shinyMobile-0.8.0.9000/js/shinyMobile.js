@@ -155,28 +155,25 @@ $((function() {
     }));
     Shiny.addCustomMessageHandler("add_tooltip", (function(message) {
         if (app.data.tooltips[message.targetEl] === undefined) {
-            if (!$(message.targetEl).hasClass("tooltip-disabled")) {
-                var t = app.tooltip.create(message);
-                t.show();
-                app.data.tooltips[message.targetEl] = t;
-            }
+            var t = app.tooltip.create(message);
+            t.show();
+            app.data.tooltips[message.targetEl] = t;
         }
     }));
     Shiny.addCustomMessageHandler("update_tooltip", (function(message) {
         if (app.data.tooltips[message.targetEl] !== undefined) {
-            var t = app.data.tooltips[message.targetEl];
-            var exists = app.tooltip.get(message.targetEl);
+            var t = app.tooltip.get(message.targetEl);
             if (message.action === "update") {
-                if (exists) {
+                if (t) {
                     t.setText(message.text);
                 }
             } else if (message.action === "toggle") {
-                var pars = t.params;
-                if (exists) {
+                if (t) {
                     var cachedTooltip = Object.assign({}, t);
                     app.data.tooltips[message.targetEl] = cachedTooltip;
                     t.destroy();
                 } else {
+                    var pars = app.data.tooltips[message.targetEl].params;
                     t = app.tooltip.create(pars);
                     app.data.tooltips[message.targetEl] = t;
                 }
