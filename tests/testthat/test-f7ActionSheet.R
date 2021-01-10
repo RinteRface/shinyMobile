@@ -27,11 +27,12 @@ test_that("send custom message", {
   )
 
   res <- session$lastCustomMessage
+  res$message <- jsonlite::fromJSON(res$message)
   expect_length(res, 2)
   expect_equal(res$type, "action-sheet")
   expect_length(res$message, 3)
-  expect_is(res$message$buttons, "json")
-  expect_equal(res$message$grid, "false")
+  expect_is(res$message$buttons, "data.frame")
+  expect_equal(res$message$grid, FALSE)
   expect_equal(res$message$id, "action")
 })
 

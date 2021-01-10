@@ -57,6 +57,7 @@ __label__ have been removed
 
 
 ## Major changes
+- New `updateF7ActionSheet()`
 - New `addF7Tooltip()` and `updateF7Tooltip()` to generate tooltips from the server
 - New __allowPWA__ parameter in `f7Page()` so that we doesn't oblige users to create a PWA
 - `f7Page()` has a new __options__ parameter as replacement of `f7Init()`. Much simpler to handle

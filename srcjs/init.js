@@ -30,7 +30,8 @@ $(function() {
   config.data = function() {
     return {
       popovers: [],
-      tooltips: []
+      tooltips: [],
+      actionsheets: []
     };
   };
 

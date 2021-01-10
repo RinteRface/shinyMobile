@@ -592,36 +592,30 @@ $(function() {
 
   // handle action sheet
   Shiny.addCustomMessageHandler("action-sheet", function(message) {
-    var grid;
-    var buttonsId = message.id + "_button";
-    if (message.grid == "true") grid = true;
-    else grid = false;
+    // Only create action sheet whenever necessary
+    if (app.data.actionsheets[message.id] === undefined) {
+      var buttonsId = message.id + "_button";
 
-    // define function that set an inputvalue those name depends on an index
-    // parameter
-    function setButtonInput(index) {
-      Shiny.setInputValue(buttonsId, index);
-    }
+      // define function that set an inputvalue those name depends on an index
+      // parameter
+      function setButtonInput(index) {
+        Shiny.setInputValue(buttonsId, index);
+      }
 
-    // add those functions to the message.button array
-    function setOnClick(element, index) {
-      Object.defineProperty(element, "onClick", {
-        value: function() {
-          setButtonInput(index + 1);
-        },
-        writable: false
-      });
-    }
+      // add those functions to the message.button array
+      function setOnClick(element, index) {
+        Object.defineProperty(element, "onClick", {
+          value: function() {
+            setButtonInput(index + 1);
+          },
+          writable: false
+        });
+      }
 
-    message.buttons.forEach(setOnClick);
+      message.buttons.forEach(setOnClick);
 
-    // create the sheet
-    var actionSheet = app.actions.create({
-      //el: message.id,
-      grid: grid,
-      buttons: message.buttons,
-      // below we set up events to set/update input values for Shiny
-      on: {
+      // Callbacks for shiny inputs
+      message.on = {
         opened: function() {
           Shiny.setInputValue(message.id, true);
         },
@@ -630,11 +624,30 @@ $(function() {
           // input$button is null when the action is closed
           Shiny.setInputValue(buttonsId, null);
         }
-      }
-    });
-    // open the sheet
-    actionSheet.open();
+      };
+
+      // create the sheet
+      var a = app.actions.create(message)
+      a.open();
+      // save action sheet to app data to update it later
+      app.data.actionsheets[message.id] = a;
+
+    } else {
+      app.data.actionsheets[message.id].open();
+    }
   });
+
+
+  Shiny.addCustomMessageHandler("update-action-sheet", function(message) {
+    // Destroy old instance
+    app.data.actionsheets[message.id].destroy();
+    // Create new config
+    var a = app.actions.create(message);
+    // Update app data
+    app.data.actionsheets[message.id] = a;
+  });
+
+
 
   // pull to refresh
   // add the preloader tag dynamically

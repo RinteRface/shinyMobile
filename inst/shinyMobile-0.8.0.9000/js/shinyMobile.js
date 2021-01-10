@@ -19,7 +19,8 @@ $((function() {
     config.data = function() {
         return {
             popovers: [],
-            tooltips: []
+            tooltips: [],
+            actionsheets: []
         };
     };
     app = new Framework7(config);
@@ -379,25 +380,21 @@ $((function() {
         }
     }));
     Shiny.addCustomMessageHandler("action-sheet", (function(message) {
-        var grid;
-        var buttonsId = message.id + "_button";
-        if (message.grid == "true") grid = true; else grid = false;
-        function setButtonInput(index) {
-            Shiny.setInputValue(buttonsId, index);
-        }
-        function setOnClick(element, index) {
-            Object.defineProperty(element, "onClick", {
-                value: function() {
-                    setButtonInput(index + 1);
-                },
-                writable: false
-            });
-        }
-        message.buttons.forEach(setOnClick);
-        var actionSheet = app.actions.create({
-            grid: grid,
-            buttons: message.buttons,
-            on: {
+        if (app.data.actionsheets[message.id] === undefined) {
+            var buttonsId = message.id + "_button";
+            function setButtonInput(index) {
+                Shiny.setInputValue(buttonsId, index);
+            }
+            function setOnClick(element, index) {
+                Object.defineProperty(element, "onClick", {
+                    value: function() {
+                        setButtonInput(index + 1);
+                    },
+                    writable: false
+                });
+            }
+            message.buttons.forEach(setOnClick);
+            message.on = {
                 opened: function() {
                     Shiny.setInputValue(message.id, true);
                 },
@@ -405,9 +402,18 @@ $((function() {
                     Shiny.setInputValue(message.id, false);
                     Shiny.setInputValue(buttonsId, null);
                 }
-            }
-        });
-        actionSheet.open();
+            };
+            var a = app.actions.create(message);
+            a.open();
+            app.data.actionsheets[message.id] = a;
+        } else {
+            app.data.actionsheets[message.id].open();
+        }
+    }));
+    Shiny.addCustomMessageHandler("update-action-sheet", (function(message) {
+        app.data.actionsheets[message.id].destroy();
+        var a = app.actions.create(message);
+        app.data.actionsheets[message.id] = a;
     }));
     if ($("body").attr("data-ptr") === "true") {
         const ptrLoader = $('<div class="ptr-preloader">' + '<div class="preloader"></div>' + '<div class="ptr-arrow"></div>' + "</div>");
