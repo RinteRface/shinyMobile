@@ -72,7 +72,8 @@ __label__ have been removed
 
 ## Bug fixes
 - Fix #128 and #140: workerId issue in url. Thanks @Tixierae and @ppagnone.
-- Fix #104: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks @Seyphaton
+- Fix #104: f7Picker cannot have NULL value. Prevents JS from breaking. Thanks @Seyphaton
+- Correcting an internal use of `htmltools::attachDependencies()` in `create_app_ui`
 
 
 # shinyMobile 0.7.0
