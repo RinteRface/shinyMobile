@@ -192,6 +192,51 @@ $(function() {
   });
 
 
+  // Tooltips new API shinyMobile 2.0.0
+  Shiny.addCustomMessageHandler('add_tooltip', function(message) {
+    // We store all created instances in app data so that we don't
+    // recreate them later if they exist ...
+    if (app.data.tooltips[message.targetEl] === undefined) {
+      if (!$(message.targetEl).hasClass('tooltip-disabled')) {
+        // create instance
+        var t = app.tooltip.create(message);
+        // Open tooltip
+        t.show();
+        // Storage in app data (tooltips array)
+        app.data.tooltips[message.targetEl] = t;
+      }
+    }
+  });
+
+  Shiny.addCustomMessageHandler('update_tooltip', function(message) {
+    if (app.data.tooltips[message.targetEl] !== undefined) {
+      var t = app.data.tooltips[message.targetEl];
+      // Try to get the instance
+      var exists = app.tooltip.get(message.targetEl);
+      if (message.action === "update") {
+        if (exists) {
+          t.setText(message.text);
+        }
+      } else if (message.action === "toggle") {
+        // cache pars
+        var pars = t.params;
+        if (exists) {
+          // create copy that won't be modified if t is destroyed!
+          var cachedTooltip = Object.assign({}, t);
+          // save copy to replace the deleted one in the app data
+          app.data.tooltips[message.targetEl] = cachedTooltip;
+          // destroy current instance
+          t.destroy();
+        } else {
+          // recreate the tooltip based on the copy configuration
+          t = app.tooltip.create(pars);
+          app.data.tooltips[message.targetEl] = t;
+        }
+      }
+    }
+  });
+
+
   // handle toasts
   Shiny.addCustomMessageHandler("toast", function(message) {
     app.toast.create(message).open();

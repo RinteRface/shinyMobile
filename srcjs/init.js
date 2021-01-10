@@ -29,7 +29,8 @@ $(function() {
 
   config.data = function() {
     return {
-      popovers: []
+      popovers: [],
+      tooltips: []
     };
   };
 

@@ -18,7 +18,8 @@ $((function() {
     };
     config.data = function() {
         return {
-            popovers: []
+            popovers: [],
+            tooltips: []
         };
     };
     app = new Framework7(config);
@@ -150,6 +151,36 @@ $((function() {
     }));
     Shiny.addCustomMessageHandler("toggle_popover", (function(message) {
         $(message).toggleClass("popover-disabled");
+    }));
+    Shiny.addCustomMessageHandler("add_tooltip", (function(message) {
+        if (app.data.tooltips[message.targetEl] === undefined) {
+            if (!$(message.targetEl).hasClass("tooltip-disabled")) {
+                var t = app.tooltip.create(message);
+                t.show();
+                app.data.tooltips[message.targetEl] = t;
+            }
+        }
+    }));
+    Shiny.addCustomMessageHandler("update_tooltip", (function(message) {
+        if (app.data.tooltips[message.targetEl] !== undefined) {
+            var t = app.data.tooltips[message.targetEl];
+            var exists = app.tooltip.get(message.targetEl);
+            if (message.action === "update") {
+                if (exists) {
+                    t.setText(message.text);
+                }
+            } else if (message.action === "toggle") {
+                var pars = t.params;
+                if (exists) {
+                    var cachedTooltip = Object.assign({}, t);
+                    app.data.tooltips[message.targetEl] = cachedTooltip;
+                    t.destroy();
+                } else {
+                    t = app.tooltip.create(pars);
+                    app.data.tooltips[message.targetEl] = t;
+                }
+            }
+        }
     }));
     Shiny.addCustomMessageHandler("toast", (function(message) {
         app.toast.create(message).open();
