@@ -124,10 +124,10 @@ f7Tooltip <- function(tag, text) {
 addF7Tooltip <- function(id = NULL, selector = NULL, options,
                          session = shiny::getDefaultReactiveDomain()) {
   # We use already defined popover functions
-  validatePopoverSelector(id, selector)
+  validateSelector(id, selector)
   if (!is.null(id)) id <- paste0("#", session$ns(id))
   options$targetEl <- id %OR% selector
-  sendPopoverMessage("add_tooltip", options, session)
+  sendCustomMessage("add_tooltip", options, session)
 }
 
 
@@ -149,9 +149,9 @@ addF7Tooltip <- function(id = NULL, selector = NULL, options,
 updateF7Tooltip <- function(id = NULL, selector = NULL,
                             action = c("toggle", "update"), text = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-  validatePopoverSelector(id, selector)
+  validateSelector(id, selector)
   if (!is.null(id)) id <- paste0("#", session$ns(id))
   targetEl <- id %OR% selector
   message <- dropNulls(list(targetEl = targetEl, action = action, text = text))
-  sendPopoverMessage("update_tooltip", message, session)
+  sendCustomMessage("update_tooltip", message, session)
 }

@@ -1,4 +1,4 @@
-# shinyMobile 2.0.0.9000
+# shinyMobile 0.8.0.9000
 
 ## Soft Deprecations
 - `f7AddMessages()` will become `updateF7Messages()` in future release

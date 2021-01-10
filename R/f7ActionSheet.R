@@ -189,7 +189,7 @@ f7ActionSheet <- function(id, buttons, grid = FALSE, ..., session = shiny::getDe
     ...
   )
 
-  sendPopoverMessage("action-sheet", message, session)
+  sendCustomMessage("action-sheet", message, session)
 }
 
 
@@ -280,5 +280,5 @@ updateF7ActionSheet <- function(id, options, session = shiny::getDefaultReactive
 
   options$id <- id
 
-  sendPopoverMessage("update-action-sheet", options, session)
+  sendCustomMessage("update-action-sheet", options, session)
 }

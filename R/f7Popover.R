@@ -197,10 +197,10 @@ f7PopoverTarget <- function(tag, targetId) {
 #'  )
 #' }
 addF7Popover <- function(id = NULL, selector = NULL, options, session = shiny::getDefaultReactiveDomain()) {
-  validatePopoverSelector(id, selector)
+  validateSelector(id, selector)
   if (!is.null(id)) id <- paste0("#", session$ns(id))
   options$targetEl <- id %OR% selector
-  sendPopoverMessage("add_popover", options, session)
+  sendCustomMessage("add_popover", options, session)
 }
 
 
@@ -215,8 +215,8 @@ addF7Popover <- function(id = NULL, selector = NULL, options, session = shiny::g
 #' @export
 #' @rdname popover
 toggleF7Popover <- function(id = NULL, selector = NULL, session = shiny::getDefaultReactiveDomain()) {
-  validatePopoverSelector(id, selector)
+  validateSelector(id, selector)
   if (!is.null(id)) id <- paste0("#", session$ns(id))
   targetEl <- id %OR% selector
-  sendPopoverMessage("toggle_popover", targetEl, session)
+  sendCustomMessage("toggle_popover", targetEl, session)
 }

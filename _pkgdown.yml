@@ -291,6 +291,6 @@ template:
 
 news:
  releases:
- - text: "shinyMobile 2.0.0.9000"
+ - text: "shinyMobile 0.8.0.9000"
  - text: "shinyMobile 0.7.0"
  - text: "shinyMobile 0.1.0"

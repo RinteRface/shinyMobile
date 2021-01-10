@@ -115,14 +115,14 @@ add_dependencies <- function(tag, deps = NULL) {
 
 
 # Popovers utils
-validatePopoverSelector <- function(id, selector) {
+validateSelector <- function(id, selector) {
   if (!is.null(id) && !is.null(selector)) {
     stop("Please choose either target or selector!")
   }
 }
 
 
-sendPopoverMessage <- function(type, message, session) {
+sendCustomMessage <- function(type, message, session) {
   session$sendCustomMessage(
     type,
     jsonlite::toJSON(
