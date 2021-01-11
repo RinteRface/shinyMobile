@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -179,6 +179,7 @@
   closeButtonColor <span class='op'>=</span> <span class='st'>"red"</span>,
   closeTimeout <span class='op'>=</span> <span class='fl'>3000</span>,
   icon <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -214,6 +215,10 @@ TRUE by default.</p></td>
       <th>icon</th>
       <td><p>Optional. Expect <a href='f7Icon.html'>f7Icon</a>. Warning:
 Adding icon will hide the close button.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other options. See <a href='https://framework7.io/docs/toast.html#toast-parameters'>https://framework7.io/docs/toast.html#toast-parameters</a>.</p></td>
     </tr>
     <tr>
       <th>session</th>

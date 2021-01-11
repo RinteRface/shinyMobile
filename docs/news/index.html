@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 2.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
     <li class="divider"></li>
@@ -165,10 +165,11 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-2009000" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.0.9000">
-<a href="#shinymobile-2009000" class="anchor"></a>shinyMobile 2.0.0.9000<small> Unreleased </small>
+    <div id="shinymobile-080" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.0">
+<a href="#shinymobile-080" class="anchor"></a>shinyMobile 0.8.0<small> Unreleased </small>
 </h1>
+<p>This release is to addresses the following reverse dependency issue with <a href="https://github.com/rstudio/shiny/pull/3239">shiny</a>. Moreover, it also starts the road to v1.0.0 (later this year).</p>
 <div id="soft-deprecations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#soft-deprecations" class="anchor"></a>Soft Deprecations</h2>
@@ -194,6 +195,12 @@
 <code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/f7InsertTab.html">insertF7Tab()</a></code> and <code><a href="../reference/f7RemoveTab.html">removeF7Tab()</a></code>, respectively</li>
 <li>
 <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code> will become <code><a href="../reference/f7ShowPreloader.html">showF7Preloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">hideF7Preloader()</a></code>, respectively.</li>
+<li>
+<code><a href="../reference/f7Popover.html">f7Popover()</a></code> and <code><a href="../reference/f7Popover.html">f7PopoverTarget()</a></code> replaced by <code><a href="../reference/f7Popover.html">addF7Popover()</a></code> and <code><a href="../reference/f7Popover.html">toggleF7Popover()</a></code>
+</li>
+<li>
+<code><a href="../reference/create_manifest.html">create_manifest()</a></code> is going to be replaced by the workflow described here: <a href="https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools" class="uri">https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools</a>
+</li>
 </ul>
 </div>
 <div id="breaking-changes" class="section level2">
@@ -308,6 +315,11 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
+<li>New <code><a href="../reference/updateF7Entity.html">updateF7Entity()</a></code>
+</li>
+<li>New <code><a href="../reference/f7ActionSheet.html">updateF7ActionSheet()</a></code>
+</li>
+<li>New <code><a href="../reference/f7Tooltip.html">addF7Tooltip()</a></code> and <code><a href="../reference/f7Tooltip.html">updateF7Tooltip()</a></code> to generate tooltips from the server</li>
 <li>New <strong>allowPWA</strong> parameter in <code><a href="../reference/f7Page.html">f7Page()</a></code> so that we doesn’t oblige users to create a PWA</li>
 <li>
 <code><a href="../reference/f7Page.html">f7Page()</a></code> has a new <strong>options</strong> parameter as replacement of <code>f7Init()</code>. Much simpler to handle</li>
@@ -331,7 +343,9 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/128'>#128</a> and <a href='https://github.com/RinteRface/shinyMobile/issues/140'>#140</a>: workerId issue in url. Thanks <a href='https://github.com/Tixierae'>@Tixierae</a> and <a href='https://github.com/ppagnone'>@ppagnone</a>.</li>
-<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/104'>#104</a>: f7Picker cannot have NULL value. Prevents JS from bracking. Thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a></li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/104'>#104</a>: f7Picker cannot have NULL value. Prevents JS from breaking. Thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a></li>
+<li>Correcting an internal use of <code><a href="https://rdrr.io/pkg/htmltools/man/htmlDependencies.html">htmltools::attachDependencies()</a></code> in <code>create_app_ui</code>
+</li>
 </ul>
 </div>
 </div>

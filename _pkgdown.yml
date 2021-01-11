@@ -128,6 +128,8 @@ reference:
   - '`updateF7TextArea`'
   - '`updateF7Toggle`'
   - '`updateF7VirtualList`'
+  - '`updateF7App`'
+  - '`updateF7Entity`'
 
 
 - title: Search
