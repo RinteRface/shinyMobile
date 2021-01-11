@@ -52,7 +52,7 @@ with the color argument.}
 
 \item{subtitle}{Card subtitle.}
 
-\item{color}{Card background color. See \url{http://framework7.io/docs/cards.html}.
+\item{color}{Card background color. See \url{https://framework7.io/docs/cards.html}.
 Not compatible with the img argument.}
 
 \item{fullBackground}{Whether the image should cover the entire card.}
@@ -124,11 +124,11 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7SocialCard"),
      f7SocialCard(
-     image = "http://lorempixel.com/68/68/people/1/",
+     image = "https://lorempixel.com/68/68/people/1/",
      author = "John Doe",
      date = "Monday at 3:47 PM",
      "What a nice photo i took yesterday!",
-     img(src = "http://lorempixel.com/1000/700/nature/8/", width = "100\%"),
+     img(src = "https://lorempixel.com/1000/700/nature/8/", width = "100\%"),
      footer = tagList(
       f7Badge("1", color = "yellow"),
       f7Badge("2", color = "green"),
@@ -216,7 +216,7 @@ if (interactive()) {
        f7ExpandableCard(
          id = "card1",
          title = "Expandable Card 1",
-         image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+         image = "http://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
          "Framework7 - is a free and open source HTML mobile framework
          to develop hybrid mobile apps or web apps with iOS or Android
          native look and feel. It is also an indispensable prototyping apps tool
@@ -231,7 +231,7 @@ if (interactive()) {
          id = "card2",
          title = "Expandable Card 2",
          fullBackground = TRUE,
-         image = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+         image = "http://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
          "Framework7 - is a free and open source HTML mobile framework
                to develop hybrid mobile apps or web apps with iOS or Android
                native look and feel. It is also an indispensable prototyping apps tool

@@ -15,7 +15,7 @@
 #'  \item \code{dark}: Dark layout. TRUE or FALSE.
 #'  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #'  the current selected color. FALSE by default.
-#'  \item \code{color}: Color theme: See \url{http://framework7.io/docs/color-themes.html}.
+#'  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
 #'  Expect a name like blue or red. If NULL, use the default color.
 #'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
 #'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.

@@ -164,7 +164,7 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'     f7Segment(
 #'      container = "row",
 #'      f7Button(color = "blue", label = "My button", fill = FALSE),
-#'      f7Button(color = "green", label = "My button", href = "http://www.google.com", fill = FALSE),
+#'      f7Button(color = "green", label = "My button", href = "https://www.google.com", fill = FALSE),
 #'      f7Button(color = "yellow", label = "My button", fill = FALSE)
 #'     ),
 #'     f7BlockTitle(title = "Filled Buttons in a segment/rounded container"),
@@ -172,7 +172,7 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'      rounded = TRUE,
 #'      container = "segment",
 #'      f7Button(color = "black", label = "Action Button", inputId = "button2"),
-#'      f7Button(color = "green", label = "My button", href = "http://www.google.com"),
+#'      f7Button(color = "green", label = "My button", href = "https://www.google.com"),
 #'      f7Button(color = "yellow", label = "My button")
 #'     ),
 #'     f7BlockTitle(title = "Outline Buttons in a segment/shadow container"),

@@ -14,7 +14,7 @@ updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 
 \item{value}{New value.}
 
-\item{color}{Progress color. See \url{http://framework7.io/docs/progressbar.html}.}
+\item{color}{Progress color. See \url{https://framework7.io/docs/progressbar.html}.}
 
 \item{session}{Shiny session object.}
 }

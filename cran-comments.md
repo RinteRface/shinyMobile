@@ -5,6 +5,4 @@
 * win-builder (devel and release)
 
 ## R CMD check results
-This version 0.7.0 fixes:
-  - 1 ERROR from CRAN check: Remove V8 from package suggest to fix the Fedora issue (mail received from Prof Brian Ripley).  
-  - 1 NOTE from the previous version 0.1.0: installed package size.
+This version 0.8.0 fixes a reverse dependency issue with `{htmltools}`: see https://github.com/RinteRface/shinyMobile/pull/145.

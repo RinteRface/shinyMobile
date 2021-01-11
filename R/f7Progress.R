@@ -4,7 +4,7 @@
 #'
 #' @param id Progress id. Must be unique.
 #' @param value Progress value. Between 0 and 100. If NULL the progress bar is infinite.
-#' @param color Progress color. See \url{http://framework7.io/docs/progressbar.html}.
+#' @param color Progress color. See \url{https://framework7.io/docs/progressbar.html}.
 #'
 #' @rdname progress
 #'
