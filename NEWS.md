@@ -1,4 +1,7 @@
-# shinyMobile 0.8.0.9000
+# shinyMobile 0.8.0
+
+This release is to addresses the following reverse dependency issue with [shiny](https://github.com/rstudio/shiny/pull/3239). Moreover, it also starts
+the road to v1.0.0 (later this year).
 
 ## Soft Deprecations
 - `f7AddMessages()` will become `updateF7Messages()` in future release
