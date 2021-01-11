@@ -25,7 +25,7 @@
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'       shiny::observeEvent(input$goButton,{
+#'       observeEvent(input$goButton,{
 #'         f7Dialog(
 #'          title = "Dialog title",
 #'          text = "This is an alert dialog"
@@ -137,6 +137,10 @@ f7Dialog <- function(id = NULL, title = NULL, text,
                      session = shiny::getDefaultReactiveDomain()) {
 
   type <- match.arg(type)
+
+  if (is.null(id) && type %in% c("confirm", "prompt", "login")) {
+    stop("Missing id.")
+  }
 
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else

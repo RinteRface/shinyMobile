@@ -12,6 +12,7 @@ respectively
 - `f7ShowPreloader()` and `f7HidePreloader()` will become `showF7Preloader()` and
 `hideF7Preloader()`, respectively. 
 - `f7Popover()` and `f7PopoverTarget()` replaced by `addF7Popover()` and `toggleF7Popover()`
+- `create_manifest()` is going to be replaced by the workflow described here: https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools
 
 ## Breaking changes
 
@@ -57,6 +58,7 @@ __label__ have been removed
 
 
 ## Major changes
+- New `updateF7Entity()`
 - New `updateF7ActionSheet()`
 - New `addF7Tooltip()` and `updateF7Tooltip()` to generate tooltips from the server
 - New __allowPWA__ parameter in `f7Page()` so that we doesn't oblige users to create a PWA

@@ -20,7 +20,7 @@ $((function() {
         return {
             popovers: [],
             tooltips: [],
-            actionsheets: []
+            actions: []
         };
     };
     app = new Framework7(config);
@@ -115,6 +115,25 @@ $((function() {
     if (subnavbar.length == 1) {
         $(".page").addClass("page-with-subnavbar");
     }
+    Shiny.addCustomMessageHandler("update-app", (function(message) {
+        app.utils.extend(app.params, message);
+    }));
+    Shiny.addCustomMessageHandler("update-entity", (function(message) {
+        var instanceFamily;
+        for (const property in app.data) {
+            for (const e in app.data[property]) {
+                if (e === message.id) {
+                    instanceFamily = property;
+                }
+            }
+        }
+        var oldInstance = app.data[instanceFamily][message.id];
+        var oldConfig = oldInstance.params;
+        var newConfig = app.utils.extend(oldConfig, message.options);
+        oldInstance.destroy();
+        var newInstance = app[instanceFamily].create(newConfig);
+        app.data[instanceFamily][message.id] = newInstance;
+    }));
     Shiny.addCustomMessageHandler("notif", (function(message) {
         app.notification.create(message).open();
     }));
@@ -377,7 +396,7 @@ $((function() {
         }
     }));
     Shiny.addCustomMessageHandler("action-sheet", (function(message) {
-        if (app.data.actionsheets[message.id] === undefined) {
+        if (app.data.actions[message.id] === undefined) {
             var buttonsId = message.id + "_button";
             function setButtonInput(index) {
                 Shiny.setInputValue(buttonsId, index);
@@ -402,15 +421,15 @@ $((function() {
             };
             var a = app.actions.create(message);
             a.open();
-            app.data.actionsheets[message.id] = a;
+            app.data.actions[message.id] = a;
         } else {
-            app.data.actionsheets[message.id].open();
+            app.data.actions[message.id].open();
         }
     }));
     Shiny.addCustomMessageHandler("update-action-sheet", (function(message) {
-        app.data.actionsheets[message.id].destroy();
+        app.data.actions[message.id].destroy();
         var a = app.actions.create(message);
-        app.data.actionsheets[message.id] = a;
+        app.data.actions[message.id] = a;
     }));
     if ($("body").attr("data-ptr") === "true") {
         const ptrLoader = $('<div class="ptr-preloader">' + '<div class="preloader"></div>' + '<div class="ptr-arrow"></div>' + "</div>");

@@ -41,7 +41,7 @@ if (interactive()) {
       )
     ),
     server = function(input, output, session) {
-      shiny::observeEvent(input$goButton,{
+      observeEvent(input$goButton,{
         f7Dialog(
          title = "Dialog title",
          text = "This is an alert dialog"

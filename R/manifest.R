@@ -1,6 +1,7 @@
 #' Create a manifest for your shiny app
 #'
-#' This is a central piece if you want to have your app standalone for instance
+#' Deprecated. Please use this workflow instead:
+#' \url{https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools}.
 #'
 #' @param path package path.
 #' @param name App name.
@@ -43,6 +44,14 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
                             startUrl, display = c("minimal-ui", "standalone", "fullscreen", "browser"),
                             background_color = "#000000", theme_color = "#0000ffff",
                             icon) {
+
+  .Deprecated(
+    NULL,
+    package = "shinyMobile",
+    "create_manifest will be removed in future release. Please use
+    the workflow desribed at https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
 
   display <- match.arg(display)
 

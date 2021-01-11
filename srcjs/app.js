@@ -115,8 +115,37 @@ $(function() {
     $(".page").addClass("page-with-subnavbar");
   }
 
-  // set up notifications
-  // for now, it only works for 1 notification at a time
+  // Update app instance params
+  Shiny.addCustomMessageHandler('update-app', function(message) {
+    // Merge new config to existing one
+    app.utils.extend(app.params, message);
+  });
+
+  Shiny.addCustomMessageHandler('update-entity', function(message) {
+    // Recover in which array is stored the given instance.
+    // Uniqueness is ensured since HTML id are supposed to be unique.
+    var instanceFamily;
+    for (const property in app.data) {
+      for (const e in app.data[property]) {
+        if (e === message.id) {
+          instanceFamily = property;
+        }
+      }
+    }
+
+    var oldInstance = app.data[instanceFamily][message.id];
+    var oldConfig = oldInstance.params;
+    var newConfig = app.utils.extend(oldConfig,  message.options);
+
+    // Destroy old instance
+    oldInstance.destroy();
+    // Create new config
+    var newInstance = app[instanceFamily].create(newConfig);
+    // Update app data
+    app.data[instanceFamily][message.id] = newInstance;
+  });
+
+  // Notifications
   Shiny.addCustomMessageHandler("notif", function(message) {
     app.notification.create(message).open();
   });
@@ -590,7 +619,7 @@ $(function() {
   // handle action sheet
   Shiny.addCustomMessageHandler("action-sheet", function(message) {
     // Only create action sheet whenever necessary
-    if (app.data.actionsheets[message.id] === undefined) {
+    if (app.data.actions[message.id] === undefined) {
       var buttonsId = message.id + "_button";
 
       // define function that set an inputvalue those name depends on an index
@@ -627,21 +656,21 @@ $(function() {
       var a = app.actions.create(message)
       a.open();
       // save action sheet to app data to update it later
-      app.data.actionsheets[message.id] = a;
+      app.data.actions[message.id] = a;
 
     } else {
-      app.data.actionsheets[message.id].open();
+      app.data.actions[message.id].open();
     }
   });
 
 
   Shiny.addCustomMessageHandler("update-action-sheet", function(message) {
     // Destroy old instance
-    app.data.actionsheets[message.id].destroy();
+    app.data.actions[message.id].destroy();
     // Create new config
     var a = app.actions.create(message);
     // Update app data
-    app.data.actionsheets[message.id] = a;
+    app.data.actions[message.id] = a;
   });
 
 

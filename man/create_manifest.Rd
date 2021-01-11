@@ -45,7 +45,8 @@ This function creates a www folder for your shiny app. Must specify the path.
 It creates 1 folders to contain icons and the manifest.json file.
 }
 \description{
-This is a central piece if you want to have your app standalone for instance
+Deprecated. Please use this workflow instead:
+\url{https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools}.
 }
 \note{
 See \url{https://developer.mozilla.org/en-US/docs/Web/Manifest} for more informations.
