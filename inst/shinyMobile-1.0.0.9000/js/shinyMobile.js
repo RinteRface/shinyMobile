@@ -333,7 +333,6 @@ $((function() {
             var $el = $(this);
             var config = $(document).find("script[data-for='" + $el.attr("id") + "']");
             config = JSON.parse(config.html());
-            config.valueText = 100 * config.value + "%";
             config.el = "#" + $el.attr("id");
             app.gauge.create(config);
         }));
@@ -341,7 +340,6 @@ $((function() {
     activateAllGauges();
     Shiny.addCustomMessageHandler("update-gauge", (function(message) {
         var el = "#" + message.id;
-        message.id = undefined;
         app.gauge.get(el).update(message);
     }));
     activateAllProgress = function() {

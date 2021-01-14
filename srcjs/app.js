@@ -530,10 +530,6 @@ $(function() {
         "script[data-for='" + $el.attr("id") + "']"
       );
       config = JSON.parse(config.html());
-
-      // valueText should not be let as a free parameter since it does not make sense
-      // that the value is different from the displayed text.
-      config.valueText = 100 * config.value + '%';
       // add the id
       config.el = '#' + $el.attr("id");
 
