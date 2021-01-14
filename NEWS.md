@@ -1,6 +1,10 @@
 # shinyMobile 1.0.0.9000
 
 
+## Minor change
+- Add `valueText` param for `f7Gauge()`.
+- Reworked `f7Gauge()` JS code (no user impact).
+
 
 
 # shinyMobile 0.8.0

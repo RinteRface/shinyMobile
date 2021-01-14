@@ -521,6 +521,36 @@ $(function() {
     });
   });
 
+
+  // Create gauges instances
+  activateAllGauges = function() {
+    $(".gauge").each(function() {
+      var $el = $(this);
+      var config = $(document).find(
+        "script[data-for='" + $el.attr("id") + "']"
+      );
+      config = JSON.parse(config.html());
+
+      // valueText should not be let as a free parameter since it does not make sense
+      // that the value is different from the displayed text.
+      config.valueText = 100 * config.value + '%';
+      // add the id
+      config.el = '#' + $el.attr("id");
+
+      // feed the create method
+      app.gauge.create(config);
+    });
+  };
+
+  activateAllGauges();
+
+
+  Shiny.addCustomMessageHandler("update-gauge", function(message) {
+    var el = "#" + message.id;
+    app.gauge.get(el).update(message);
+  });
+
+
   // Create and show all f7Progress
   activateAllProgress = function() {
     $(".progressbar").each(function() {
