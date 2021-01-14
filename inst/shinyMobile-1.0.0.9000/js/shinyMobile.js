@@ -134,8 +134,26 @@ $((function() {
         var newInstance = app[instanceFamily].create(newConfig);
         app.data[instanceFamily][message.id] = newInstance;
     }));
-    Shiny.addCustomMessageHandler("notif", (function(message) {
-        app.notification.create(message).open();
+    const uiWidgets = [ "gauge", "swiper", "searchbar" ];
+    const serverWidgets = [ "toast", "photoBrowser", "notification" ];
+    const widgets = uiWidgets.concat(serverWidgets);
+    activateWidget = function(widget) {
+        if (uiWidgets.indexOf(widget) > -1) {
+            $("." + widget).each((function() {
+                var $el = $(this);
+                var config = $(document).find("script[data-for='" + $el.attr("id") + "']");
+                config = JSON.parse(config.html());
+                config.el = "#" + $el.attr("id");
+                app[widget].create(config);
+            }));
+        } else {
+            Shiny.addCustomMessageHandler(widget, (function(message) {
+                app[widget].create(message).open();
+            }));
+        }
+    };
+    widgets.forEach((function(w) {
+        activateWidget(w);
     }));
     popoverIds = [];
     getAllPopoverIds = function() {
@@ -198,9 +216,6 @@ $((function() {
                 }
             }
         }
-    }));
-    Shiny.addCustomMessageHandler("toast", (function(message) {
-        app.toast.create(message).open();
     }));
     Shiny.addCustomMessageHandler("dialog", (function(message) {
         var type = message.type;
@@ -328,16 +343,6 @@ $((function() {
             }
         }));
     }));
-    activateAllGauges = function() {
-        $(".gauge").each((function() {
-            var $el = $(this);
-            var config = $(document).find("script[data-for='" + $el.attr("id") + "']");
-            config = JSON.parse(config.html());
-            config.el = "#" + $el.attr("id");
-            app.gauge.create(config);
-        }));
-    };
-    activateAllGauges();
     Shiny.addCustomMessageHandler("update-gauge", (function(message) {
         var el = "#" + message.id;
         app.gauge.get(el).update(message);
@@ -353,41 +358,6 @@ $((function() {
     Shiny.addCustomMessageHandler("update-progress", (function(message) {
         app.progressbar.set("#" + message.id, message.progress);
     }));
-    activateAllSwiper = function() {
-        $(".swiper-container.demo-swiper").each((function() {
-            var $el = $(this);
-            var config = $(document).find("script[data-for='" + $el.attr("id") + "']");
-            config = JSON.parse(config.html());
-            app.swiper.create("#" + $el.attr("id"), {
-                speed: config.speed,
-                spaceBetween: config.spaceBetween,
-                slidesPerView: config.slidesPerView,
-                centeredSlides: config.centeredSlides,
-                pagination: config.pagination
-            });
-        }));
-    };
-    activateAllSwiper();
-    Shiny.addCustomMessageHandler("open-photo-browser", (function(message) {
-        app.photoBrowser.create(message).open();
-    }));
-    activateAllSearchbar = function() {
-        $(".searchbar").each((function() {
-            var $el = $(this);
-            app.searchbar.create({
-                el: "#" + $el.attr("id"),
-                searchContainer: ".list",
-                searchIn: ".item-title",
-                backdrop: false,
-                on: {
-                    search(sb, query, previousQuery) {
-                        console.log(query, previousQuery);
-                    }
-                }
-            });
-        }));
-    };
-    activateAllSearchbar();
     Shiny.addCustomMessageHandler("show_navbar", (function(message) {
         var animate;
         if (message.animate == "true") animate = true; else animate = false;

@@ -2,8 +2,10 @@
 
 
 ## Minor change
+- Add `options` to `f7SearchBar()` to provide more configuration.
 - Add `valueText` param for `f7Gauge()`.
 - Reworked `f7Gauge()` JS code (no user impact).
+- Rework widget JS code base (no user impact). 
 
 
 

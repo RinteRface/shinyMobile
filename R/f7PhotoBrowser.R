@@ -60,7 +60,7 @@ f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
   )
 
   session$sendCustomMessage(
-    "open-photo-browser",
+    "photoBrowser",
     message = jsonlite::toJSON(
       x = options,
       auto_unbox = TRUE,

@@ -65,7 +65,7 @@ f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subt
   )
   # see my-app.js function
   session$sendCustomMessage(
-    type = "notif",
+    type = "notification",
     message = jsonlite::toJSON(
       message,
       auto_unbox = TRUE,
