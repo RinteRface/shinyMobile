@@ -34,7 +34,7 @@ library(shinyMobile)
     observe({
       f7TapHold(
        target = "#pressme",
-       callback = "app.dialog.alert('Tap hold fired!');"
+       callback = "app.dialog.alert('Tap hold fired!')"
       )
     })
    }

@@ -98,31 +98,8 @@ f7Swipeout <- function(tag, ...,left = NULL, right = NULL, side = c("left", "rig
 #' @rdname swipeout
 f7SwipeoutItem <- function(id, label, color = NULL) {
 
-  itemCl <- if (!is.null(color)) paste0("color-", color)
+  itemCl <- "swipeout-item"
+  if (!is.null(color)) itemCl <- paste0(itemCl, " color-", color)
 
-  shiny::tagList(
-    shiny::singleton(
-      shiny::tags$head(
-        shiny::tags$script(
-          paste0(
-            "$(function(){
-              // reset value of the previous swipe on opening animation
-              $('.swipeout').on('swipeout:open', function() {
-                Shiny.setInputValue('", id, "', null);
-              });
-              // once clicked on the action button inside the swipout
-              // set the input value to TRUE
-              $('#", id, "').on('click', function() {
-               Shiny.setInputValue('", id, "', true);
-               // close the swipeout element
-               app.swipeout.close('.swipeout');
-              });
-            });
-            "
-          )
-        )
-      )
-    ),
-    shiny::a(href = "#", label, id = id, class = itemCl)
-  )
+  shiny::a(href = "#", label, id = id, class = itemCl)
 }

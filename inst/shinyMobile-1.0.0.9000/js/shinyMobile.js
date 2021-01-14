@@ -257,9 +257,9 @@ $((function() {
         }
     }));
     Shiny.addCustomMessageHandler("tapHold", (function(message) {
-        var selector = String(message.target);
-        $(selector).on("taphold", (function() {
-            eval(message.callback);
+        var callback = new Function("return (" + message.callback + ")");
+        $(message.target).on("taphold", (function() {
+            callback();
         }));
     }));
     var tabIds = [];
@@ -452,6 +452,17 @@ $((function() {
         } else {
             app.preloader.hide();
         }
+    }));
+    $(".swipeout").on("swipeout:open", (function() {
+        $(this).find(".swipeout-item").each((function() {
+            Shiny.setInputValue($(this).attr("id"), null);
+        }));
+    }));
+    $(".swipeout-item").each((function() {
+        $(this).on("click", (function() {
+            Shiny.setInputValue($(this).attr("id"), true);
+            app.swipeout.close($(this).closest(".swipeout"));
+        }));
     }));
 }));
 
