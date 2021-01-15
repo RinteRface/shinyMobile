@@ -453,14 +453,11 @@ $((function() {
             app.preloader.hide();
         }
     }));
-    $(".swipeout").on("swipeout:open", (function() {
-        $(this).find(".swipeout-item").each((function() {
-            Shiny.setInputValue($(this).attr("id"), null);
-        }));
-    }));
     $(".swipeout-item").each((function() {
         $(this).on("click", (function() {
-            Shiny.setInputValue($(this).attr("id"), true);
+            Shiny.setInputValue($(this).attr("id"), true, {
+                priority: "event"
+            });
             app.swipeout.close($(this).closest(".swipeout"));
         }));
     }));
