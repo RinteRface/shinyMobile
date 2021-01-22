@@ -7,6 +7,8 @@
 - Reworked `f7Gauge()` JS code (no user impact).
 - Rework widget JS code base (no user impact). 
 
+## Bug fixes
+- Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
 
 
 # shinyMobile 0.8.0
