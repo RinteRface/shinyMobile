@@ -56,10 +56,10 @@ where `APP_PATH` is the app location. It only works if the app is inside a packa
 - A valid `offline.html` fallback.
 - A valid web manifest. Don't forget to change the `start_url` property to the path of your app.
 For instance, the following app hosted at https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/, has the `/rstudio-global-2021-calendar/` path.
-- A valid set of icons. Finally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+- A valid set of icons. There are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
 
-It is really easier with `{charpente}`, the reason whey we strongly recommend to develop your app
+It is really easier with `{charpente}`, the reason why we strongly recommend to develop your app
 inside a package.
 
 ### Add the PWA to your desktop Apps
