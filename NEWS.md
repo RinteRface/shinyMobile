@@ -9,6 +9,7 @@
 
 ## Bug fixes
 - Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
+- Fix #120: `f7Button()` with link not working. Thanks @bwganblack.
 
 
 # shinyMobile 0.8.0

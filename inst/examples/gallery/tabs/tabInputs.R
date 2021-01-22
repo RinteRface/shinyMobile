@@ -79,10 +79,10 @@ tabInputs <- f7Tab(
   ),
   br(),
 
-  f7BlockTitle(title = "f7checkBox input") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7Checkbox input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
-    f7checkBox(
+    f7Checkbox(
       inputId = "check",
       label = "Checkbox",
       value = FALSE
@@ -91,8 +91,8 @@ tabInputs <- f7Tab(
   ),
   br(),
 
-  f7BlockTitle(title = "f7checkBoxGroup input") %>% f7Align(side = "center"),
-  f7checkBoxGroup(
+  f7BlockTitle(title = "f7CheckboxGroup input") %>% f7Align(side = "center"),
+  f7CheckboxGroup(
     inputId = "checkgroup",
     label = "Choose a variable:",
     choices = colnames(mtcars)[1:3],

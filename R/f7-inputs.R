@@ -936,6 +936,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' @param value Initial value (TRUE or FALSE).
 #'
 #' @rdname checkbox
+#' @export
 f7Checkbox <- f7checkBox
 
 
