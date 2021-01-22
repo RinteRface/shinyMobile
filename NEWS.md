@@ -2,6 +2,7 @@
 
 
 ## Minor change
+- Add `...` to `f7SmartSelect()`. 
 - Add `options` to `f7SearchBar()` to provide more configuration. Fixes #47: thanks @rodrigoheck.
 - Add `valueText` param for `f7Gauge()`. Fixes #84: thanks @tanho63.
 - Reworked `f7Gauge()` JS code (no user impact).
@@ -10,6 +11,7 @@
 ## Bug fixes
 - Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
 - Fix #120: `f7Button()` with link not working. Thanks @bwganblack.
+- Fix #144: Close `f7SmartSelect()` on selection. Thanks @dewalex.
 
 
 # shinyMobile 0.8.0

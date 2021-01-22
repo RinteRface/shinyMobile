@@ -1319,6 +1319,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param maxlength Maximum items to select when multiple is TRUE.
 #' @param virtualList Enable Virtual List for smart select if your select has a lot
 #' of options. Default to FALSE.
+#' @param ... Other options. See \url{https://v5.framework7.io/docs/smart-select.html#smart-select-parameters}.
 #'
 #' @rdname smartselect
 #'
@@ -1355,7 +1356,7 @@ updateF7Select <- function(inputId, selected = NULL,
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           openIn = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxlength = NULL,
-                          virtualList = FALSE) {
+                          virtualList = FALSE, ...) {
 
   options <- createSelectOptions(choices, selected)
   type <- match.arg(openIn)
@@ -1364,7 +1365,8 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
     openIn = openIn,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
-    virtualList = virtualList
+    virtualList = virtualList,
+    ...
   ))
 
   shiny::tags$div(
