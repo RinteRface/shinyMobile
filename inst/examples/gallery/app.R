@@ -277,9 +277,9 @@ shinyApp(
     })
 
     # popovers
-    observeEvent(input$popoverTrigger, {
+    observeEvent(input$popoverButton, {
       addF7Popover(
-        id = "mypopover",
+        id = "popoverButton",
         options = list(content = "This is a f7Button")
       )
     })

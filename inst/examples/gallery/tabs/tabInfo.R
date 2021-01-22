@@ -94,12 +94,9 @@ tabInfo <- f7Tab(
   # popovers
   f7BlockTitle(title = "Popovers") %>% f7Align("center"),
   f7Block(
-    f7PopoverTarget(
-      f7Button(
-        inputId = "popoverButton",
-        "Click me!"
-      ),
-      targetId = "popoverTrigger"
+    f7Button(
+      inputId = "popoverButton",
+      "Click me!"
     )
   ),
 
