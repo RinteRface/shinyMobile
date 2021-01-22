@@ -1,5 +1,7 @@
 # shinyMobile 1.0.0.9000
 
+## Major change
+- New `updateF7Radio()`. Fixes #135. Thanks @korterling.
 
 ## Minor change
 - Add `...` to `f7SmartSelect()`. 

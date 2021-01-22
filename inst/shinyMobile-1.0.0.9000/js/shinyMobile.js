@@ -1254,6 +1254,94 @@ $.extend(f7PopupBinding, {
 
 Shiny.inputBindings.register(f7PopupBinding, "f7.popup");
 
+let $escape = Shiny.$escape;
+
+function updateLabel(labelTxt, labelNode) {
+    if (typeof labelTxt === "undefined") return;
+    if (labelNode.length !== 1) {
+        throw new Error("labelNode must be of length 1");
+    }
+    var emptyLabel = $.isArray(labelTxt) && labelTxt.length === 0;
+    if (emptyLabel) {
+        labelNode.addClass("shiny-label-null");
+    } else {
+        labelNode.text(labelTxt);
+        labelNode.removeClass("shiny-label-null");
+    }
+}
+
+var radioInputBinding = new Shiny.InputBinding;
+
+$.extend(radioInputBinding, {
+    find: function(scope) {
+        return $(scope).find(".shiny-input-radiogroup");
+    },
+    getValue: function(el) {
+        var checked_items = $('input:radio[name="' + $escape(el.id) + '"]:checked');
+        if (checked_items.length === 0) {
+            return null;
+        }
+        return checked_items.val();
+    },
+    setValue: function(el, value) {
+        if ($.isArray(value) && value.length === 0) {
+            $('input:radio[name="' + $escape(el.id) + '"]').prop("checked", false);
+        } else {
+            $('input:radio[name="' + $escape(el.id) + '"][value="' + $escape(value) + '"]').prop("checked", true);
+        }
+    },
+    getState: function(el) {
+        var $objs = $('input:radio[name="' + $escape(el.id) + '"]');
+        var options = new Array($objs.length);
+        for (var i = 0; i < options.length; i++) {
+            options[i] = {
+                value: $objs[i].value,
+                label: this._getLabel($objs[i])
+            };
+        }
+        return {
+            label: this._getLabelNode(el).text(),
+            value: this.getValue(el),
+            options: options
+        };
+    },
+    receiveMessage: function(el, data) {
+        var $el = $(el);
+        if (data.hasOwnProperty("options")) {
+            $el.find("ul").remove();
+            $el.append(data.options);
+        }
+        if (data.hasOwnProperty("value")) this.setValue(el, data.value);
+        updateLabel(data.label, this._getLabelNode(el));
+        $(el).trigger("change");
+    },
+    subscribe: function(el, callback) {
+        $(el).on("change.radioInputBinding", (function(event) {
+            callback();
+        }));
+    },
+    unsubscribe: function(el) {
+        $(el).off(".radioInputBinding");
+    },
+    _getLabelNode: function(el) {
+        return $(el).siblings("div.block-title");
+    },
+    _getLabel: function(obj) {
+        if (obj.parentNode.tagName === "LABEL") {
+            return $(obj.parentNode).find("div.item-title").text().trim();
+        }
+        return null;
+    },
+    _setLabel: function(obj, value) {
+        if (obj.parentNode.tagName === "LABEL") {
+            $(obj.parentNode).find("div.item-title").text(value);
+        }
+        return null;
+    }
+});
+
+Shiny.inputBindings.register(radioInputBinding, "shiny.radioInput");
+
 var f7SelectBinding = new Shiny.InputBinding;
 
 $.extend(f7SelectBinding, {
