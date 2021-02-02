@@ -159,7 +159,7 @@ f7PanelMenu <- function(..., id = NULL) {
         // If no tab is active at start, the first tab is shown by default.
         $(function() {
           var firstPanel = $('#", id," li:eq(0)');
-          var panelActiveId = $('#", id," a.tab-link-active').attr('href');
+          var panelActiveId = $('#", id," a.tab-link-active').attr('data-tab');
           if (panelActiveId != undefined) {
             app.tab.show(panelActiveId);
           } else {
@@ -184,7 +184,7 @@ f7PanelMenu <- function(..., id = NULL) {
 
           // update the input value
           $(window).on('click', function(e) {
-           var selectedPanelVal = $('#", id," a.tab-link-active').attr('href');
+           var selectedPanelVal = $('#", id," a.tab-link-active').attr('data-tab');
            var selectedPanelVal = selectedPanelVal.split('#')[1];
            Shiny.setInputValue('", id, "', selectedPanelVal);
           });
@@ -224,14 +224,14 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
     # generate the link
     if (!is.null(icon)) {
       shiny::a(
-        href = paste0("#", tabName),
+        `data-tab`= paste0("#", tabName),
         class = if (active) "tab-link tab-link-active" else "tab-link",
         icon,
         shiny::span(class = "tabbar-label", title)
       )
     } else {
       shiny::a(
-        href = paste0("#", tabName),
+        `data-tab` = paste0("#", tabName),
         class = if (active) "tab-link tab-link-active" else "tab-link",
         title
       )
