@@ -12,8 +12,8 @@ f7Page(
   options = list(theme = c("ios", "md", "auto", "aurora"), dark = TRUE, filled = FALSE,
     color = "#007aff", touch = list(tapHold = TRUE, tapHoldDelay = 750, iosTouchRipple =
     FALSE), iosTranslucentBars = FALSE, navbar = list(iosCenterTitle = TRUE,
-    hideNavOnPageScroll = TRUE), toolbar = list(hideNavOnPageScroll = FALSE),
-    pullToRefresh = FALSE),
+    hideOnPageScroll = TRUE), toolbar = list(hideOnPageScroll = FALSE), pullToRefresh =
+    FALSE),
   allowPWA = FALSE
 )
 }
