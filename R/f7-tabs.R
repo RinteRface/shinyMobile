@@ -79,7 +79,7 @@
 #'          style = "strong", animated = FALSE, swipeable = TRUE,
 #'          f7Tab(
 #'            tabName = "Tab 1",
-#'            icon = f7Icon("email"),
+#'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            f7Shadow(
 #'              intensity = 10,
@@ -490,7 +490,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'         f7Tab(
 #'           active = TRUE,
 #'           tabName = 'Main tab',
-#'           icon = f7Icon('document_text'),
+#'           icon = f7Icon('doc_text'),
 #'           h1("This is the first tab."),
 #'           f7Button(inputId ='goto', label = 'Go to hidden tab')
 #'         ),
@@ -567,7 +567,7 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'          id = "tabs",
 #'          f7Tab(
 #'            tabName = "Tab 1",
-#'            icon = f7Icon("email"),
+#'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            "Tab 1",
 #'            f7Button(inputId = "go", label = "Go")
@@ -604,7 +604,6 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
   # - 3 is the tabName
   # Below we check if the tag is really a shiny tag...
   if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
-  browser()
   nsWrapper <- shiny::NS(id)
   position <- match.arg(position)
 

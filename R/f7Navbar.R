@@ -145,7 +145,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 #'            #swipeable = TRUE,
 #'            f7Tab(
 #'               tabName = "Tab 1",
-#'               icon = f7Icon("email"),
+#'               icon = f7Icon("envelope"),
 #'               active = TRUE,
 #'               "Tab 1"
 #'            ),
