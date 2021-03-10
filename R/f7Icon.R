@@ -37,7 +37,7 @@
 #'         title = f7Icon("home", f7Badge("1", color = "red"))
 #'       ),
 #'       f7ListItem(
-#'         title = f7Icon("email_fill", lib = "md"),
+#'         title = f7Icon("envelope", lib = "md"),
 #'         "This will not appear since only for material design"
 #'       )
 #'      )
