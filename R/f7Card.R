@@ -31,7 +31,7 @@
 #'      but cards can also contain their own header,
 #'      footer, list view, image, or any other element.",
 #'      footer = tagList(
-#'       f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'       f7Button(color = "blue", label = "My button"),
 #'       f7Badge("Badge", color = "green")
 #'      )
 #'     ),
@@ -42,7 +42,7 @@
 #'      but cards can also contain their own header,
 #'      footer, list view, image, or any other element.",
 #'      footer = tagList(
-#'       f7Button(color = "blue", label = "My button", src = "https://www.google.com"),
+#'       f7Button(color = "blue", label = "My button"),
 #'       f7Badge("Badge", color = "green")
 #'      )
 #'     )
