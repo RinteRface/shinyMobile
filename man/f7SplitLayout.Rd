@@ -47,8 +47,8 @@ if(interactive()){
          theme = "light",
          f7PanelMenu(
            id = "menu",
-           f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("email"), active = TRUE),
-           f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("home"))
+           f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("envelope"), active = TRUE),
+           f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("house"))
          ),
          effect = "reveal"
        ),

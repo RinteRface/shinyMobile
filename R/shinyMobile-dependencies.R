@@ -12,7 +12,7 @@ add_shinyMobile_deps <- function(tag) {
   name = "shinyMobile",
   version = packageVersion("shinyMobile"),
   src = c(file = "shinyMobile-0.8.0.9000"),
-  script = "js/shinyMobile.js",
+  script = "js/shinyMobile.min.js",
   package = "shinyMobile",
  )
  tagList(tag, shinyMobile_deps)

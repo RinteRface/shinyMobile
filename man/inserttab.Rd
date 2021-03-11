@@ -64,7 +64,7 @@ if (interactive()) {
          id = "tabs",
          f7Tab(
            tabName = "Tab 1",
-           icon = f7Icon("email"),
+           icon = f7Icon("envelope"),
            active = TRUE,
            "Tab 1",
            f7Button(inputId = "go", label = "Go")
@@ -84,7 +84,7 @@ if (interactive()) {
          id = "tabs",
          position = "before",
          target = "Tab 2",
-         tab = f7Tab (tabName = paste0("tab_", input$go), "Test"),
+         tab = f7Tab (tabName = paste0("newtab", input$go), "Test"),
          select = TRUE
        )
      })

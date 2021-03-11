@@ -1,4 +1,4 @@
-library(charpent)
+library(charpente)
 
 # order files
 jsFiles <- list.files("srcjs")

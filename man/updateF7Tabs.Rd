@@ -105,7 +105,7 @@ if (interactive()) {
         f7Tab(
           active = TRUE,
           tabName = 'Main tab',
-          icon = f7Icon('document_text'),
+          icon = f7Icon('doc_text'),
           h1("This is the first tab."),
           f7Button(inputId ='goto', label = 'Go to hidden tab')
         ),

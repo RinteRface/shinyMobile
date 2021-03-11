@@ -587,7 +587,7 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'          id = "tabs",
 #'          position = "before",
 #'          target = "Tab 2",
-#'          tab = f7Tab (tabName = paste0("tab_", input$go), "Test"),
+#'          tab = f7Tab (tabName = paste0("newtab", input$go), "Test"),
 #'          select = TRUE
 #'        )
 #'      })

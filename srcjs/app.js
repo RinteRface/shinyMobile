@@ -355,7 +355,7 @@ $(function() {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
-      var tabId = $("#" + message.ns + "-" + message.target);
+      var tabId = $('#' + message.ns + '-' + message.target);
 
       // for swipeable tabs
       var newTab;
@@ -374,11 +374,11 @@ $(function() {
         if (message.select === "true") {
           $(newTab).addClass("swiper-slide-active");
         }
-        if (dark_mode) $(newTab).css("background-color", "");
+        if (app.params.dark) $(newTab).css("background-color", "");
       } else {
         // remove white background for tab in dark mode
         newTab = $(message.value);
-        if (dark_mode) $(newTab).css("background-color", "");
+        if (app.params.dark) $(newTab).css("background-color", "");
       }
 
       if (message.position === "after") {
