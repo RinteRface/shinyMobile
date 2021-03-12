@@ -39,9 +39,17 @@ shinyApp(
       insertF7Tab(
         id = "tabs",
         position = "before",
-        target = "Tab 2",
+        target = "Tab 1",
         tab = f7Tab (tabName = paste0("tab_", input$go), "Test",
-                     icon = f7Icon("today")),
+                     icon = f7Icon("app_badge_fill")),
+        select = FALSE
+      )
+      insertF7Tab(
+        id = "tabs",
+        position = "after",
+        target = "Tab 1",
+        tab = f7Tab (tabName = paste0("tabx_", input$go), "Test",
+                     icon = f7Icon("app_badge")),
         select = TRUE
       )
     })
