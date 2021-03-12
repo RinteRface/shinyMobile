@@ -5,8 +5,8 @@ shinyApp(
     title = "Insert a tab Before the target",
     f7TabLayout(
       panels = tagList(
-#        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-#        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
       ),
       navbar = f7Navbar(
         title = "Tabs",
@@ -39,7 +39,7 @@ shinyApp(
       insertF7Tab(
         id = "tabs",
         position = "before",
-        target = "#Tab 2",
+        target = "Tab 2",
         tab = f7Tab (tabName = paste0("tab_", input$go), "Test",
                      icon = f7Icon("today")),
         select = TRUE
