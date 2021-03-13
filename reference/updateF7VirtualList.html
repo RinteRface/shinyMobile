@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -182,7 +182,7 @@
   indexes <span class='op'>=</span> <span class='cn'>NULL</span>,
   oldIndex <span class='op'>=</span> <span class='cn'>NULL</span>,
   newIndex <span class='op'>=</span> <span class='cn'>NULL</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -229,9 +229,9 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Update virtual list"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -256,9 +256,9 @@
          <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"filterItems"</span>, <span class='st'>"Filter Items"</span><span class='op'>)</span>
        <span class='op'>)</span>,
        <span class='fu'><a href='f7Flex.html'>f7Flex</a></span><span class='op'>(</span>
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemIndexUI"</span><span class='op'>)</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemNewIndexUI"</span><span class='op'>)</span>,
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemsFilterUI"</span><span class='op'>)</span>
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemIndexUI"</span><span class='op'>)</span>,
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemNewIndexUI"</span><span class='op'>)</span>,
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"itemsFilterUI"</span><span class='op'>)</span>
        <span class='op'>)</span>,
        <span class='fu'><a href='f7VirtualList.html'>f7VirtualList</a></span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
@@ -278,8 +278,8 @@
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemIndexUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemIndexUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
        <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span><span class='op'>(</span>
          inputId <span class='op'>=</span> <span class='st'>"itemIndex"</span>,
          label <span class='op'>=</span> <span class='st'>"Index"</span>,
@@ -289,8 +289,8 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemNewIndexUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemNewIndexUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
        <span class='fu'><a href='f7Stepper.html'>f7Stepper</a></span><span class='op'>(</span>
          inputId <span class='op'>=</span> <span class='st'>"itemNewIndex"</span>,
          label <span class='op'>=</span> <span class='st'>"New Index"</span>,
@@ -300,15 +300,15 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemsFilterUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>itemsFilterUI</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>appendItem</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>prependItems</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>insertBefore</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>replaceItem</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>deleteAllItems</span>
        <span class='va'>input</span><span class='op'>$</span><span class='va'>moveItem</span>
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/isolate.html'>isolate</a></span><span class='op'>(</span><span class='op'>{</span>
-         <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/isolate.html'>isolate</a></span><span class='op'>(</span><span class='op'>{</span>
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>$</span><span class='va'>length</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span>
          <span class='fu'><a href='f7Slider.html'>f7Slider</a></span><span class='op'>(</span>
            inputId <span class='op'>=</span> <span class='st'>"itemsFilter"</span>,
            label <span class='op'>=</span> <span class='st'>"Items to Filter"</span>,
@@ -319,9 +319,9 @@
        <span class='op'>}</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observe.html'>observe</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>)</span><span class='op'>)</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>vlist</span><span class='op'>)</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>appendItem</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>appendItem</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"appendItem"</span>,
@@ -334,7 +334,7 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>prependItems</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>prependItems</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"prependItems"</span>,
@@ -349,7 +349,7 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>insertBefore</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>insertBefore</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"insertItemBefore"</span>,
@@ -362,7 +362,7 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>replaceItem</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>replaceItem</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"replaceItem"</span>,
@@ -375,14 +375,14 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>deleteAllItems</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>deleteAllItems</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"deleteAllItems"</span>
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>moveItem</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>moveItem</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"moveItem"</span>,
@@ -391,7 +391,7 @@
        <span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>filterItems</span>, <span class='op'>{</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>filterItems</span>, <span class='op'>{</span>
        <span class='fu'>updateF7VirtualList</span><span class='op'>(</span>
          id <span class='op'>=</span> <span class='st'>"vlist"</span>,
          action <span class='op'>=</span> <span class='st'>"filterItems"</span>,

@@ -83,7 +83,7 @@ updateF7Stepper changes the value of a stepper input on the client." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -207,7 +207,7 @@ updateF7Stepper changes the value of a stepper input on the client." />
   decimalPoint <span class='op'>=</span> <span class='cn'>NULL</span>,
   autorepeat <span class='op'>=</span> <span class='cn'>NULL</span>,
   manual <span class='op'>=</span> <span class='cn'>NULL</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -296,10 +296,10 @@ Return key, ending manual mode. TRUE by default.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Stepper input</span>
 <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"My app"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -311,7 +311,7 @@ Return key, ending manual mode. TRUE by default.</p></td>
       max <span class='op'>=</span> <span class='fl'>10</span>,
       value <span class='op'>=</span> <span class='fl'>4</span>
      <span class='op'>)</span>,
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>,
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>,
      <span class='fu'>f7Stepper</span><span class='op'>(</span>
       inputId <span class='op'>=</span> <span class='st'>"stepper2"</span>,
       label <span class='op'>=</span> <span class='st'>"My stepper 2"</span>,
@@ -323,21 +323,21 @@ Return key, ending manual mode. TRUE by default.</p></td>
       fill <span class='op'>=</span> <span class='cn'>TRUE</span>,
       rounded <span class='op'>=</span> <span class='cn'>TRUE</span>
      <span class='op'>)</span>,
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test2"</span><span class='op'>)</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test2"</span><span class='op'>)</span>
     <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper</span><span class='op'>)</span>
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>test2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper2</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>test2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper2</span><span class='op'>)</span>
    <span class='op'>}</span>
  <span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># Update stepper input</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"My app"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -357,15 +357,15 @@ Return key, ending manual mode. TRUE by default.</p></td>
           raised <span class='op'>=</span> <span class='cn'>FALSE</span>,
           manual <span class='op'>=</span> <span class='cn'>FALSE</span>
         <span class='op'>)</span>,
-        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"test"</span><span class='op'>)</span>
       <span class='op'>)</span>
     <span class='op'>)</span>
   <span class='op'>)</span>,
   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>stepper</span><span class='op'>)</span>
 
-    <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>update</span>, <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>update</span>, <span class='op'>{</span>
       <span class='fu'>updateF7Stepper</span><span class='op'>(</span>
         inputId <span class='op'>=</span> <span class='st'>"stepper"</span>,
         value <span class='op'>=</span> <span class='fl'>0.1</span>,

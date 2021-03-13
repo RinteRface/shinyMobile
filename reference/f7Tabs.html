@@ -84,7 +84,7 @@ styles." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -225,13 +225,13 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='co'># tabs as toolbar</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Tab Layout"</span>,
     <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
-      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Currently selected:"</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"selected"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Currently selected:"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"selected"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
       <span class='fu'>f7Tabs</span><span class='op'>(</span>
         id <span class='op'>=</span> <span class='st'>"tabdemo"</span>,
         swipeable <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -262,13 +262,13 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
     <span class='op'>)</span>
   <span class='op'>)</span>,
   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>selected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderText.html'>renderText</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabdemo</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>selected</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabdemo</span><span class='op'>)</span>
   <span class='op'>}</span>
  <span class='op'>)</span>
  <span class='co'># standalone tabs</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -282,7 +282,7 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
          style <span class='op'>=</span> <span class='st'>"strong"</span>, animated <span class='op'>=</span> <span class='cn'>FALSE</span>, swipeable <span class='op'>=</span> <span class='cn'>TRUE</span>,
          <span class='fu'><a href='f7Tab.html'>f7Tab</a></span><span class='op'>(</span>
            tabName <span class='op'>=</span> <span class='st'>"Tab 1"</span>,
-           icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"email"</span><span class='op'>)</span>,
+           icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"envelope"</span><span class='op'>)</span>,
            active <span class='op'>=</span> <span class='cn'>TRUE</span>,
            <span class='fu'><a href='f7Shadow.html'>f7Shadow</a></span><span class='op'>(</span>
              intensity <span class='op'>=</span> <span class='fl'>10</span>,
@@ -297,7 +297,7 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
                  value <span class='op'>=</span> <span class='fl'>500</span>,
                  step <span class='op'>=</span> <span class='fl'>100</span>
                <span class='op'>)</span>,
-               <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"distPlot"</span><span class='op'>)</span>
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"distPlot"</span><span class='op'>)</span>
              <span class='op'>)</span>
            <span class='op'>)</span>
          <span class='op'>)</span>,
@@ -320,7 +320,7 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
                    <span class='st'>"Exponential"</span> <span class='op'>=</span> <span class='st'>"exp"</span>
                  <span class='op'>)</span>
                <span class='op'>)</span>,
-               <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"distPlot2"</span><span class='op'>)</span>
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"distPlot2"</span><span class='op'>)</span>
              <span class='op'>)</span>
            <span class='op'>)</span>
          <span class='op'>)</span>,
@@ -342,7 +342,7 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
                  multiple <span class='op'>=</span> <span class='cn'>TRUE</span>,
                  selected <span class='op'>=</span> <span class='st'>"cyl"</span>
                <span class='op'>)</span>,
-               <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
+               <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
              <span class='op'>)</span>
            <span class='op'>)</span>
          <span class='op'>)</span>
@@ -350,12 +350,12 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
      <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
        <span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs1</span><span class='op'>)</span>
        <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
        <span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='kw'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span><span class='op'>(</span>
          <span class='va'>input</span><span class='op'>$</span><span class='va'>obs2</span>,
          norm <span class='op'>=</span> <span class='va'>rnorm</span>,
@@ -368,7 +368,7 @@ is toolbar, then <a href='f7Tab.html'>f7Tab</a> have a toolbar behavior.</p></td
        <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/dist.html'>dist</a></span><span class='op'>(</span><span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
        <span class='va'>mtcars</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>variable</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span>
      <span class='op'>}</span>, rownames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
    <span class='op'>}</span>

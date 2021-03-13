@@ -83,7 +83,7 @@ updateF7DatePicker changes the value of a date picker input on the client." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -195,7 +195,7 @@ updateF7DatePicker changes the value of a date picker input on the client." />
   <span class='va'>inputId</span>,
   value <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -281,10 +281,10 @@ use same arguments as in <code>f7DatePicker</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Date picker</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
     ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
       title <span class='op'>=</span> <span class='st'>"My app"</span>,
       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -295,7 +295,7 @@ use same arguments as in <code>f7DatePicker</code>.</p></td>
           value <span class='op'>=</span> <span class='st'>"2019-08-24"</span>
         <span class='op'>)</span>,
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectDate"</span><span class='op'>)</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectDate"</span><span class='op'>)</span>,
         <span class='fu'>f7DatePicker</span><span class='op'>(</span>
           inputId <span class='op'>=</span> <span class='st'>"multipleDates"</span>,
           label <span class='op'>=</span> <span class='st'>"Choose multiple dates"</span>,
@@ -303,31 +303,31 @@ use same arguments as in <code>f7DatePicker</code>.</p></td>
           multiple <span class='op'>=</span> <span class='cn'>TRUE</span>
         <span class='op'>)</span>,
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectMultipleDates"</span><span class='op'>)</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectMultipleDates"</span><span class='op'>)</span>,
         <span class='fu'>f7DatePicker</span><span class='op'>(</span>
           inputId <span class='op'>=</span> <span class='st'>"default"</span>,
           label <span class='op'>=</span> <span class='st'>"Choose a date"</span>,
           value <span class='op'>=</span> <span class='cn'>NULL</span>
         <span class='op'>)</span>,
         <span class='st'>"The selected date is"</span>,
-        <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectDefault"</span><span class='op'>)</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"selectDefault"</span><span class='op'>)</span>
       <span class='op'>)</span>
     <span class='op'>)</span>,
     server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectDate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>date</span><span class='op'>)</span>
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectMultipleDates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>multipleDates</span><span class='op'>)</span>
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectDefault</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>default</span><span class='op'>)</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectDate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>date</span><span class='op'>)</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectMultipleDates</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>multipleDates</span><span class='op'>)</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>selectDefault</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>default</span><span class='op'>)</span>
 
     <span class='op'>}</span>
   <span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># Update date picker</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
     ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
       title <span class='op'>=</span> <span class='st'>"My app"</span>,
       <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -343,22 +343,22 @@ use same arguments as in <code>f7DatePicker</code>.</p></td>
             openIn <span class='op'>=</span> <span class='st'>"auto"</span>,
             direction <span class='op'>=</span> <span class='st'>"horizontal"</span>
           <span class='op'>)</span>,
-          <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"pickerval"</span><span class='op'>)</span>
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>verbatimTextOutput</a></span><span class='op'>(</span><span class='st'>"pickerval"</span><span class='op'>)</span>
         <span class='op'>)</span>
       <span class='op'>)</span>
     <span class='op'>)</span>,
     server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>pickerval</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>mypicker</span><span class='op'>)</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>pickerval</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>mypicker</span><span class='op'>)</span>
 
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>selectToday</span>, <span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>selectToday</span>, <span class='op'>{</span>
         <span class='fu'>updateF7DatePicker</span><span class='op'>(</span>
           inputId <span class='op'>=</span> <span class='st'>"mypicker"</span>,
           value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
         <span class='op'>)</span>
       <span class='op'>}</span><span class='op'>)</span>
 
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>rmToolbar</span>, <span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>rmToolbar</span>, <span class='op'>{</span>
         <span class='fu'>updateF7DatePicker</span><span class='op'>(</span>
           inputId <span class='op'>=</span> <span class='st'>"mypicker"</span>,
           toolbar <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -366,7 +366,7 @@ use same arguments as in <code>f7DatePicker</code>.</p></td>
         <span class='op'>)</span>
       <span class='op'>}</span><span class='op'>)</span>
 
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>addToolbar</span>, <span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>addToolbar</span>, <span class='op'>{</span>
         <span class='fu'>updateF7DatePicker</span><span class='op'>(</span>
           inputId <span class='op'>=</span> <span class='st'>"mypicker"</span>,
           toolbar <span class='op'>=</span> <span class='cn'>TRUE</span>,

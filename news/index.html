@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -167,7 +167,7 @@
 
     <div id="shinymobile-080" class="section level1">
 <h1 class="page-header" data-toc-text="0.8.0">
-<a href="#shinymobile-080" class="anchor"></a>shinyMobile 0.8.0<small> Unreleased </small>
+<a href="#shinymobile-080" class="anchor"></a>shinyMobile 0.8.0<small> 2021-01-11 </small>
 </h1>
 <p>This release is to addresses the following reverse dependency issue with <a href="https://github.com/rstudio/shiny/pull/3239">shiny</a>. Moreover, it also starts the road to v1.0.0 (later this year).</p>
 <div id="soft-deprecations" class="section level2">
@@ -192,7 +192,7 @@
 <code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> will become <code><a href="../reference/f7ValidateInput.html">validateF7Input()</a></code>
 </li>
 <li>
-<code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/f7InsertTab.html">insertF7Tab()</a></code> and <code><a href="../reference/f7RemoveTab.html">removeF7Tab()</a></code>, respectively</li>
+<code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/insertF7Tab.html">insertF7Tab()</a></code> and <code><a href="../reference/removeF7Tab.html">removeF7Tab()</a></code>, respectively</li>
 <li>
 <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code> will become <code><a href="../reference/f7ShowPreloader.html">showF7Preloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">hideF7Preloader()</a></code>, respectively.</li>
 <li>
@@ -232,7 +232,7 @@
 <code><a href="../reference/f7Panel.html">f7Panel()</a></code> and <code><a href="../reference/f7Panel.html">updateF7Panel()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
 </li>
 <li>
-<code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+<code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
 </li>
 </ul>
 </div>
@@ -293,7 +293,7 @@
 <a href="#others" class="anchor"></a>Others</h3>
 <ul>
 <li>
-<strong>session</strong> swapped to the end in <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> and not mandatory. Default to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/domains.html">shiny::getDefaultReactiveDomain()</a></code>
+<strong>session</strong> swapped to the end in <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> and not mandatory. Default to <code><a href="https://rdrr.io/pkg/shiny/man/domains.html">shiny::getDefaultReactiveDomain()</a></code>
 </li>
 <li>
 <code><a href="../reference/f7Chip.html">f7Chip()</a></code>: <strong>icon_status</strong> becomes <strong>iconStatus</strong>, <strong>img</strong> becomes <strong>image</strong>
@@ -475,7 +475,7 @@
 <li>Remove duplicated html tag in <code><a href="../reference/f7Page.html">f7Page()</a></code>. Thanks @ pvictor</li>
 <li>Fix issue in <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
 <li>Fix issue in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>: if one put <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> inside a <code><a href="../reference/f7Tab.html">f7Tab()</a></code> in a parent <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset).</li>
-<li>Fix issue with <code><a href="../reference/f7InsertTab.html">f7InsertTab()</a></code> and <code><a href="../reference/f7RemoveTab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
+<li>Fix issue with <code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
 <li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
 <li>Allow output elements to be displayed in <code><a href="../reference/f7Panel.html">f7Panel()</a></code> (need to provide the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> inputId)</li>
 <li>Prevent <code><a href="../reference/f7Swipeout.html">f7Swipeout()</a></code> to make the current tab swipping if in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
