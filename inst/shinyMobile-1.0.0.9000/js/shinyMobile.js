@@ -282,10 +282,10 @@ $((function() {
                 if (message.select === "true") {
                     $(newTab).addClass("swiper-slide-active");
                 }
-                if (dark_mode) $(newTab).css("background-color", "");
+                if (app.params.dark) $(newTab).css("background-color", "");
             } else {
                 newTab = $(message.value);
-                if (dark_mode) $(newTab).css("background-color", "");
+                if (app.params.dark) $(newTab).css("background-color", "");
             }
             if (message.position === "after") {
                 $(newTab).insertAfter($(tabId));
