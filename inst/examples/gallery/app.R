@@ -442,7 +442,7 @@ shinyApp(
 
     # Menus
     observeEvent(input$toggleMenu, {
-      openF7MenuDropdown("menu1")
+      updateF7MenuDropdown("menu1")
     })
 
     observeEvent(input$menuItem1, {
