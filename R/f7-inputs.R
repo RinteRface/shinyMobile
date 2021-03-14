@@ -936,6 +936,7 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #' @param value Initial value (TRUE or FALSE).
 #'
 #' @rdname checkbox
+#' @export
 f7Checkbox <- f7checkBox
 
 
@@ -1318,6 +1319,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param maxlength Maximum items to select when multiple is TRUE.
 #' @param virtualList Enable Virtual List for smart select if your select has a lot
 #' of options. Default to FALSE.
+#' @param ... Other options. See \url{https://v5.framework7.io/docs/smart-select.html#smart-select-parameters}.
 #'
 #' @rdname smartselect
 #'
@@ -1354,7 +1356,7 @@ updateF7Select <- function(inputId, selected = NULL,
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           openIn = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxlength = NULL,
-                          virtualList = FALSE) {
+                          virtualList = FALSE, ...) {
 
   options <- createSelectOptions(choices, selected)
   type <- match.arg(openIn)
@@ -1363,7 +1365,8 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
     openIn = openIn,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
-    virtualList = virtualList
+    virtualList = virtualList,
+    ...
   ))
 
   shiny::tags$div(
@@ -2505,7 +2508,7 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 
 #' Framework7 radio input
 #'
-#' Creates a radio button input.
+#' \link{f7Radio} creates a radio button input.
 #'
 #' @param inputId Radio input id.
 #' @param label Radio label
@@ -2513,9 +2516,10 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 #' @param selected Selected element. NULL by default.
 #'
 #' @export
+#' @rdname radio
 #'
 #' @examples
-#' if(interactive()){
+#' if (interactive()) {
 #'  library(shiny)
 #'  library(shinyMobile)
 #'
@@ -2542,6 +2546,103 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 #' }
 f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
 
+  shiny::tagList(
+    shiny::tags$div(
+      class = "block-title",
+      label
+    ),
+    shiny::tags$div(
+      class = "list shiny-input-radiogroup",
+      id = inputId,
+      shiny::tags$ul(
+        createRadioOptions(choices, selected, inputId)
+      )
+    )
+  )
+
+}
+
+
+
+
+
+#' Update Framework7 radio buttons
+#'
+#' \link{updateF7Radio} updates a radio button input.
+#'
+#' @param inputId Radio input id.
+#' @param label New radio label
+#' @param choices New list of choices.
+#' @param selected New selected element. NULL by default.
+#' @param session Shiny session object.
+#'
+#' @rdname radio
+#' @export
+#'
+#' @examples
+#' # Update radio
+#' if (interactive()) {
+#'  library(shiny)
+#'  library(shinyMobile)
+#'
+#'  shinyApp(
+#'   ui = f7Page(
+#'     title = "Update radio",
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "Update f7Radio"),
+#'       f7Button("go", "Update radio"),
+#'       f7Radio(
+#'         inputId = "radio",
+#'         label = "Choose a fruit:",
+#'         choices = c("banana", "apple", "peach"),
+#'         selected = "apple"
+#'       ),
+#'       textOutput("radio_value")
+#'     )
+#'   ),
+#'   server = function(input, output, session) {
+#'     output$radio_value <- renderText(input$radio)
+#'
+#'     observeEvent(input$go, {
+#'       updateF7Radio(
+#'         session,
+#'         inputId = "radio",
+#'         label = "New label",
+#'         choices = colnames(mtcars),
+#'         selected = colnames(mtcars)[1]
+#'       )
+#'     })
+#'   }
+#'  )
+#' }
+updateF7Radio <- function (inputId, label = NULL, choices = NULL,
+                           selected = NULL, session = shiny::getDefaultReactiveDomain()) {
+
+  if (is.null(selected)) {
+    if (!is.null(choices))
+      selected <- choices[[1]]
+  }
+
+  message <- dropNulls(
+    list(
+      label = label,
+      options = as.character(createRadioOptions(choices, selected, inputId)),
+      value = selected
+    )
+  )
+
+  session$sendInputMessage(inputId, message)
+}
+
+
+#' Generates a list of option for \link{f7Radio}
+#'
+#' @param choices List of choices.
+#' @param selected Selected value
+#' @param inputId Radio input id.
+#'
+#' @keywords internal
+createRadioOptions <- function(choices, selected, inputId) {
   selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
 
   choicesTag <- lapply(X = seq_along(choices), function(i) {
@@ -2564,18 +2665,5 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
 
   if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
 
-  shiny::tagList(
-    shiny::tags$div(
-      class = "block-title",
-      label
-    ),
-    shiny::tags$div(
-      class = "list shiny-input-radiogroup",
-      id = inputId,
-      shiny::tags$ul(
-        choicesTag
-      )
-    )
-  )
-
+  shiny::tags$ul(choicesTag)
 }

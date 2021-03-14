@@ -12,6 +12,7 @@
 #' @param borderBgColor Main border/stroke background color.
 #' @param borderColor Main border/stroke color.
 #' @param borderWidth Main border/stroke width.
+#' @param valueText Gauge value text (large text in the center of gauge).
 #' @param valueTextColor Value text color.
 #' @param valueFontSize Value text font size.
 #' @param valueFontWeight Value text font weight.
@@ -54,35 +55,48 @@
 #' @export
 f7Gauge <- function(id, type = "circle", value, size = 200,
                     bgColor = "transparent", borderBgColor = "#eeeeee", borderColor = "#000000",
-                    borderWidth = "10", valueTextColor = "#000000", valueFontSize = "31",
+                    borderWidth = "10", valueText = NULL,
+                    valueTextColor = "#000000", valueFontSize = "31",
                     valueFontWeight = "500", labelText = NULL, labelTextColor = "#888888",
                     labelFontSize = "14", labelFontWeight = "400") {
 
-  gaugeId <- paste0("gauge_", id)
+  if (is.null(valueText)) valueText <- paste(value, "%")
 
   gaugeProps <- dropNulls(
     list(
-      class = "gauge",
-      id = gaugeId,
-      `data-type` = type,
-      `data-value` = value / 100,
-      `data-size` = size,
-      `data-bg-color` = bgColor,
-      `data-border-bg-color` = borderBgColor,
-      `data-border-color` = borderColor,
-      `data-border-width` = borderWidth,
-      `data-value-text-color` = valueTextColor,
-      `data-value-font-size` = valueFontSize,
-      `data-value-font-weight` = valueFontWeight,
-      `data-label-text` = labelText,
-      `data-label-text-color` = labelTextColor,
-      `data-label-font-size` = labelFontSize,
-      `data-label-font-weight` = labelFontWeight
+      type = type,
+      value = value / 100,
+      size = size,
+      bgColor = bgColor,
+      borderBgColor = borderBgColor,
+      borderColor = borderColor,
+      borderWidth = borderWidth,
+      valueText = valueText,
+      valueTextColor = valueTextColor,
+      valueFontSize = valueFontSize,
+      valueFontWeight = valueFontWeight,
+      labelText = labelText,
+      labelTextColor = labelTextColor,
+      labelFontSize = labelFontSize,
+      labelFontWeight = labelFontWeight
     )
   )
 
-  # do.call preserve the data format
-  do.call(shiny::tags$div, gaugeProps)
+  gaugeConfig <- shiny::tags$script(
+    type = "application/json",
+    `data-for` = id,
+    jsonlite::toJSON(
+      x = gaugeProps,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
+
+  shiny::tags$div(
+    class = "gauge",
+    id = id,
+    gaugeConfig
+  )
 }
 
 
@@ -100,6 +114,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 #' @param borderBgColor Main border/stroke background color.
 #' @param borderColor Main border/stroke color.
 #' @param borderWidth Main border/stroke width.
+#' @param valueText Gauge value text (large text in the center of gauge).
 #' @param valueTextColor Value text color.
 #' @param valueFontSize Value text font size.
 #' @param valueFontWeight Value text font weight.
@@ -145,28 +160,33 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 updateF7Gauge <- function(id, value = NULL, labelText = NULL, size = NULL,
                           bgColor = NULL, borderBgColor = NULL,
                           borderColor = NULL, borderWidth = NULL,
+                          valueText = NULL,
                           valueTextColor = NULL, valueFontSize = NULL,
                           valueFontWeight = NULL, labelTextColor = NULL,
                           labelFontSize = NULL, labelFontWeight = NULL,
                           session = shiny::getDefaultReactiveDomain()) {
 
+  if (is.null(valueText)) valueText <- paste(value, "%")
+
   message <- dropNulls(
     list(
-      value = value,
-      text = labelText,
+      id = id,
+      value = value / 100,
       size = size,
       bgColor = bgColor,
       borderBgColor = borderBgColor,
       borderColor = borderColor,
       borderWidth = borderWidth,
+      valueText = valueText,
       valueTextColor = valueTextColor,
       valueFontSize = valueFontSize,
       valueFontWeight = valueFontWeight,
+      labelText = labelText,
       labelTextColor = labelTextColor,
       labelFontSize = labelFontSize,
       labelFontWeight = labelFontWeight
-      )
+    )
   )
 
-   session$sendInputMessage(inputId = paste0("gauge_", id), message)
+  sendCustomMessage("update-gauge", message, session)
 }

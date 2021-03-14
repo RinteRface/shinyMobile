@@ -99,8 +99,8 @@ shinyApp(
 
     # input validation
     observe({
-      f7ValidateInput(inputId = "text", info = "Whatever")
-      f7ValidateInput(
+      validateF7Input(inputId = "text", info = "Whatever")
+      validateF7Input(
         inputId = "password",
         pattern = "[0-9]*",
         error = "Only numbers please!"
@@ -114,7 +114,7 @@ shinyApp(
 
     # user send new message
     observeEvent(input[["mymessagebar-send"]], {
-      f7AddMessages(
+      updateF7Messages(
         id = "mymessages",
         list(
           f7Message(
@@ -137,7 +137,7 @@ shinyApp(
       names <- c("Victor", "John")
       name <- sample(names, 1)
 
-      f7AddMessages(
+      updateF7Messages(
         id = "mymessages",
         list(
           f7Message(
@@ -277,10 +277,10 @@ shinyApp(
     })
 
     # popovers
-    observe({
-      f7Popover(
-        targetId = "popoverTrigger",
-        content = "This is a f7Button"
+    observeEvent(input$popoverButton, {
+      addF7Popover(
+        id = "popoverButton",
+        options = list(content = "This is a f7Button")
       )
     })
 

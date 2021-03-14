@@ -48,7 +48,9 @@ f7Button <- function(inputId = NULL, label = NULL, href = NULL,
 
   value <- if (!is.null(inputId)) shiny::restoreInput(id = inputId, default = NULL)
 
-  shiny::tags$button(
+  func <- if (!is.null(href)) shiny::tags$a else shiny::tags$button
+
+  func(
     id = inputId,
     type = "button",
     class = buttonCl,

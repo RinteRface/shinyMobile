@@ -14,6 +14,7 @@ f7Gauge(
   borderBgColor = "#eeeeee",
   borderColor = "#000000",
   borderWidth = "10",
+  valueText = NULL,
   valueTextColor = "#000000",
   valueFontSize = "31",
   valueFontWeight = "500",
@@ -32,6 +33,7 @@ updateF7Gauge(
   borderBgColor = NULL,
   borderColor = NULL,
   borderWidth = NULL,
+  valueText = NULL,
   valueTextColor = NULL,
   valueFontSize = NULL,
   valueFontWeight = NULL,
@@ -57,6 +59,8 @@ updateF7Gauge(
 \item{borderColor}{Main border/stroke color.}
 
 \item{borderWidth}{Main border/stroke width.}
+
+\item{valueText}{Gauge value text (large text in the center of gauge).}
 
 \item{valueTextColor}{Value text color.}
 

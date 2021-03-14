@@ -145,10 +145,49 @@ $(function() {
     app.data[instanceFamily][message.id] = newInstance;
   });
 
-  // Notifications
-  Shiny.addCustomMessageHandler("notif", function(message) {
-    app.notification.create(message).open();
+
+
+
+
+  /**
+  * Instantiate all widgets: gauges, swiper, searchbar
+  */
+  const uiWidgets = ["gauge", "swiper", "searchbar"];
+  const serverWidgets = ["toast", "photoBrowser", "notification"];
+
+  const widgets = uiWidgets.concat(serverWidgets);
+
+  // Instantiate a widget
+  activateWidget = function(widget) {
+    // Handle ui side widgets
+    if (uiWidgets.indexOf(widget) > -1) {
+      $("." + widget).each(function() {
+        var $el = $(this);
+        var config = $(document).find(
+          "script[data-for='" + $el.attr("id") + "']"
+        );
+        config = JSON.parse(config.html());
+        // add the id
+        config.el = '#' + $el.attr("id");
+
+        // feed the create method
+        app[widget].create(config);
+      });
+    } else {
+      // This concerns toasts, notifications, photoBrowser, ...
+      // that don't have any UI element in the DOM before creating
+      // the widget instance.
+      Shiny.addCustomMessageHandler(widget, function(message) {
+        app[widget].create(message).open();
+      });
+    }
+  };
+
+  // Loop over all widgets to activate them
+  widgets.forEach(function(w) {
+    activateWidget(w);
   });
+
 
   // set up popovers
   popoverIds = [];
@@ -263,11 +302,6 @@ $(function() {
   });
 
 
-  // handle toasts
-  Shiny.addCustomMessageHandler("toast", function(message) {
-    app.toast.create(message).open();
-  });
-
   // handle dialog
   Shiny.addCustomMessageHandler("dialog", function(message) {
     var type = message.type;
@@ -329,9 +363,9 @@ $(function() {
 
   // handle taphold events
   Shiny.addCustomMessageHandler("tapHold", function(message) {
-    var selector = String(message.target);
-    $(selector).on("taphold", function() {
-      eval(message.callback);
+    var callback = new Function('return ('+ message.callback +')');
+    $(message.target).on("taphold", function() {
+      callback();
     });
   });
 
@@ -521,6 +555,14 @@ $(function() {
     });
   });
 
+
+  // Update gauges
+  Shiny.addCustomMessageHandler("update-gauge", function(message) {
+    var el = "#" + message.id;
+    app.gauge.get(el).update(message);
+  });
+
+
   // Create and show all f7Progress
   activateAllProgress = function() {
     $(".progressbar").each(function() {
@@ -538,49 +580,6 @@ $(function() {
     app.progressbar.set("#" + message.id, message.progress);
   });
 
-  // swiper
-  activateAllSwiper = function() {
-    $(".swiper-container.demo-swiper").each(function() {
-      var $el = $(this);
-      var config = $(document).find(
-        "script[data-for='" + $el.attr("id") + "']"
-      );
-      config = JSON.parse(config.html());
-      app.swiper.create("#" + $el.attr("id"), {
-        speed: config.speed,
-        spaceBetween: config.spaceBetween,
-        slidesPerView: config.slidesPerView,
-        centeredSlides: config.centeredSlides,
-        pagination: config.pagination
-      });
-    });
-  };
-
-  activateAllSwiper();
-
-  // Photo browser
-  Shiny.addCustomMessageHandler("open-photo-browser", function(message) {
-    app.photoBrowser.create(message).open();
-  });
-
-  // Searchbar
-  activateAllSearchbar = function() {
-    $(".searchbar").each(function() {
-      var $el = $(this);
-      app.searchbar.create({
-        el: "#" + $el.attr("id"),
-        searchContainer: ".list",
-        searchIn: ".item-title",
-        backdrop: false,
-        on: {
-          search(sb, query, previousQuery) {
-            console.log(query, previousQuery);
-          }
-        }
-      });
-    });
-  };
-  activateAllSearchbar();
 
   // show navbar (to remove)
   Shiny.addCustomMessageHandler("show_navbar", function(message) {
@@ -750,5 +749,19 @@ $(function() {
       app.preloader.hide();
     }
   });
+
+
+  // Each click on swipeout item set shiny input value to TRUE
+  // We also close the parent swipeout container. Set proirity to event
+  // so that the input always invalidate observers on the R side, even though
+  // its value does not change.
+  $('.swipeout-item').each(function() {
+    $(this).on('click', function() {
+      Shiny.setInputValue($(this).attr('id'), true, {priority: 'event'});
+      // close the swipeout element
+      app.swipeout.close($(this).closest('.swipeout'));
+    });
+  })
+
 });
 

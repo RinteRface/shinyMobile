@@ -68,10 +68,10 @@ f7Page <- function(
     iosTranslucentBars = FALSE,
     navbar = list(
       iosCenterTitle = TRUE,
-      hideNavOnPageScroll = TRUE
+      hideOnPageScroll = TRUE
     ),
     toolbar = list(
-      hideNavOnPageScroll = FALSE
+      hideOnPageScroll = FALSE
     ),
     pullToRefresh = FALSE
   ),

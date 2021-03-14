@@ -77,56 +77,26 @@ Left side: android demo, right side: iOS demo
 devices. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE` (it leverages the Google PWA compatibility
 [script](https://github.com/GoogleChromeLabs/pwacompat)). 
 
-Below is an example showing the manifest.json file:
+To setup the necessary assets for your PWA, you may run:
 
-```javascript
-{
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App",
-  "lang": "en-US",
-  "start_url": "https://dgranjon.shinyapps.io/miniUI2Demo/",
-  "display": "standalone",
-  "icons": [
-    {
-      "src": "icons/128x128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/152x152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/256x256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
+```r
+remotes::install_github("RinteRface/charpente")
+library(charpente)
+set_pwa(APP_PATH, ...)
 ```
 
-Be sure to replace the `start_url` with your own app url. Also, add a custom name, 
-even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is
-`create_manifest`. Finally, there are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+where `APP_PATH` is the app location. It only works if the app is inside a package like with
+{golem}. Alternatively, you may copy the `www` folder of the gallery [app](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www), which provides:
+
+- A valid service worker.
+- A valid `offline.html` fallback.
+- A valid web manifest. Don't forget to change the `start_url` property to the path of your app.
+For instance, the following app hosted at https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/, has the `/rstudio-global-2021-calendar/` path.
+- A valid set of icons. There are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
 
+It is really easier with `{charpente}`, the reason why we strongly recommend to develop your app
+inside a package.
 
 ### Add the PWA to your desktop Apps
 

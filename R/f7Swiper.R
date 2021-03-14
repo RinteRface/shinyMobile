@@ -85,7 +85,7 @@ f7Swiper <- function(
   )
 ) {
   # swiper class
-  swiperCl <- "swiper-container demo-swiper"
+  swiperCl <- "swiper swiper-container demo-swiper"
   if (!is.null(options$slidePerView)) {
     if (options$slidePerView == "auto") swiperCl <- paste0(swiperCl, " demo-swiper-auto")
   }

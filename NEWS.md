@@ -1,3 +1,21 @@
+# shinyMobile 1.0.0.9000
+
+## Major change
+- New `updateF7Radio()`. Fixes #135. Thanks @korterling.
+
+## Minor change
+- Add `...` to `f7SmartSelect()`. 
+- Add `options` to `f7SearchBar()` to provide more configuration. Fixes #47: thanks @rodrigoheck.
+- Add `valueText` param for `f7Gauge()`. Fixes #84: thanks @tanho63.
+- Reworked `f7Gauge()` JS code (no user impact).
+- Rework widget JS code base (no user impact). 
+
+## Bug fixes
+- Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
+- Fix #120: `f7Button()` with link not working. Thanks @bwganblack.
+- Fix #144: Close `f7SmartSelect()` on selection. Thanks @dewalex.
+
+
 # shinyMobile 0.8.0
 
 This release is to addresses the following reverse dependency issue with [shiny](https://github.com/rstudio/shiny/pull/3239). Moreover, it also starts

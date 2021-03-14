@@ -10,3 +10,4 @@ inst/examples/chat_widget
 .vscode
 docs
 inst/examples/chat_widget
+inst/tests/**

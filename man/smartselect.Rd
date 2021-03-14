@@ -14,7 +14,8 @@ f7SmartSelect(
   searchbar = TRUE,
   multiple = FALSE,
   maxlength = NULL,
-  virtualList = FALSE
+  virtualList = FALSE,
+  ...
 )
 
 updateF7SmartSelect(
@@ -48,10 +49,10 @@ Note that the search bar is only available when the type is popup.}
 \item{virtualList}{Enable Virtual List for smart select if your select has a lot
 of options. Default to FALSE.}
 
-\item{maxLength}{Maximum items to select when multiple is TRUE.}
-
 \item{...}{Parameters used to update the smart select,
 use same arguments as in \code{\link{f7SmartSelect}}.}
+
+\item{maxLength}{Maximum items to select when multiple is TRUE.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
