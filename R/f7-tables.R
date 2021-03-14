@@ -14,6 +14,9 @@
 #'   ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
+#'        navbar = f7Navbar(
+#'          title = "Single Layout",
+#'        ),
 #'       uiOutput("table")
 #'     )
 #'   ),

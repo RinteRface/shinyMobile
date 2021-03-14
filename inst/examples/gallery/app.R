@@ -11,7 +11,7 @@ sapply(
     pattern = ".R",
     ignore.case = TRUE
   ),
-  function(f) { source(paste0(path, f), local = e) }
+  function(f) { source(file.path(path, f), local = e) }
 )
 
 # shiny app
