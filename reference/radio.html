@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Framework7 message bar. — f7MessageBar • shinyMobile</title>
+<title>Framework7 radio input — f7Radio • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,10 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Framework7 message bar. — f7MessageBar" />
-<meta property="og:description" content="f7MessageBar creates a message text container to type new messages.
-Insert before f7Messages. See examples.
-updateF7MessageBar updates message bar content on the server side." />
+<meta property="og:title" content="Framework7 radio input — f7Radio" />
+<meta property="og:description" content="f7Radio creates a radio button input.
+updateF7Radio updates a radio button input." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -165,23 +164,23 @@ updateF7MessageBar updates message bar content on the server side." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Framework7 message bar.</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7Messages.R'><code>R/f7Messages.R</code></a></small>
-    <div class="hidden name"><code>messagebar.Rd</code></div>
+    <h1>Framework7 radio input</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/f7-inputs.R'><code>R/f7-inputs.R</code></a></small>
+    <div class="hidden name"><code>radio.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>f7MessageBar creates a message text container to type new messages.
-Insert before <a href='f7Messages.html'>f7Messages</a>. See examples.</p>
-<p>updateF7MessageBar updates message bar content on the server side.</p>
+    <p>f7Radio creates a radio button input.</p>
+<p>updateF7Radio updates a radio button input.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7MessageBar</span><span class='op'>(</span><span class='va'>inputId</span>, placeholder <span class='op'>=</span> <span class='st'>"Message"</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>f7Radio</span><span class='op'>(</span><span class='va'>inputId</span>, <span class='va'>label</span>, choices <span class='op'>=</span> <span class='cn'>NULL</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>updateF7MessageBar</span><span class='op'>(</span>
+<span class='fu'>updateF7Radio</span><span class='op'>(</span>
   <span class='va'>inputId</span>,
-  value <span class='op'>=</span> <span class='cn'>NULL</span>,
-  placeholder <span class='op'>=</span> <span class='cn'>NULL</span>,
+  label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  choices <span class='op'>=</span> <span class='cn'>NULL</span>,
+  selected <span class='op'>=</span> <span class='cn'>NULL</span>,
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
@@ -190,15 +189,19 @@ Insert before <a href='f7Messages.html'>f7Messages</a>. See examples.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>inputId</th>
-      <td><p>f7MessageBar unique id.</p></td>
+      <td><p>Radio input id.</p></td>
     </tr>
     <tr>
-      <th>placeholder</th>
-      <td><p>New placeholder value.</p></td>
+      <th>label</th>
+      <td><p>New radio label</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>New value.</p></td>
+      <th>choices</th>
+      <td><p>New list of choices.</p></td>
+    </tr>
+    <tr>
+      <th>selected</th>
+      <td><p>New selected element. NULL by default.</p></td>
     </tr>
     <tr>
       <th>session</th>
@@ -211,51 +214,58 @@ Insert before <a href='f7Messages.html'>f7Messages</a>. See examples.</p>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"My app"</span>,
+    <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
+     navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Radio"</span><span class='op'>)</span>,
+     <span class='fu'>f7Radio</span><span class='op'>(</span>
+      inputId <span class='op'>=</span> <span class='st'>"radio"</span>,
+      label <span class='op'>=</span> <span class='st'>"Choose a fruit:"</span>,
+      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"banana"</span>, <span class='st'>"apple"</span>, <span class='st'>"peach"</span><span class='op'>)</span>,
+      selected <span class='op'>=</span> <span class='st'>"apple"</span>
+     <span class='op'>)</span>,
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+   <span class='op'>)</span>,
+   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+     <span class='kw'>if</span> <span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>radio</span> <span class='op'>==</span> <span class='st'>"apple"</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>[</span>, <span class='st'>"mpg"</span><span class='op'>]</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+   <span class='op'>}</span>
+ <span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Update radio</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
+
  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"Update message bar"</span>,
+    title <span class='op'>=</span> <span class='st'>"Update radio"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
-      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
-        title <span class='op'>=</span> <span class='st'>"Message bar"</span>,
-        hairline <span class='op'>=</span> <span class='cn'>FALSE</span>,
-        shadow <span class='op'>=</span> <span class='cn'>TRUE</span>
+      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Update f7Radio"</span><span class='op'>)</span>,
+      <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span><span class='st'>"go"</span>, <span class='st'>"Update radio"</span><span class='op'>)</span>,
+      <span class='fu'>f7Radio</span><span class='op'>(</span>
+        inputId <span class='op'>=</span> <span class='st'>"radio"</span>,
+        label <span class='op'>=</span> <span class='st'>"Choose a fruit:"</span>,
+        choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"banana"</span>, <span class='st'>"apple"</span>, <span class='st'>"peach"</span><span class='op'>)</span>,
+        selected <span class='op'>=</span> <span class='st'>"apple"</span>
       <span class='op'>)</span>,
-      toolbar <span class='op'>=</span> <span class='fu'><a href='f7Toolbar.html'>f7Toolbar</a></span><span class='op'>(</span>
-        position <span class='op'>=</span> <span class='st'>"bottom"</span>,
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 1"</span>, href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
-        <span class='fu'><a href='f7Link.html'>f7Link</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Link 2"</span>, href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span>, external <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-      <span class='op'>)</span>,
-      <span class='co'># main content</span>
-      <span class='fu'><a href='f7Segment.html'>f7Segment</a></span><span class='op'>(</span>
-        container <span class='op'>=</span> <span class='st'>"segment"</span>,
-        <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span><span class='st'>"updateMessageBar"</span>, <span class='st'>"Update value"</span><span class='op'>)</span>,
-        <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span><span class='st'>"updateMessageBarPlaceholder"</span>, <span class='st'>"Update placeholder"</span><span class='op'>)</span>
-      <span class='op'>)</span>,
-      <span class='fu'>f7MessageBar</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"mymessagebar"</span>, placeholder <span class='op'>=</span> <span class='st'>"Message"</span><span class='op'>)</span>,
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"messageContent"</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"radio_value"</span><span class='op'>)</span>
     <span class='op'>)</span>
   <span class='op'>)</span>,
   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>radio_value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>radio</span><span class='op'>)</span>
 
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>messageContent</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>mymessagebar</span><span class='op'>)</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
-        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span><span class='st'>"Message Content"</span>, size <span class='op'>=</span> <span class='st'>"large"</span><span class='op'>)</span>,
-        <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span>strong <span class='op'>=</span> <span class='cn'>TRUE</span>, inset <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>mymessagebar</span><span class='op'>)</span>
-      <span class='op'>)</span>
-    <span class='op'>}</span><span class='op'>)</span>
-
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>updateMessageBar</span>, <span class='op'>{</span>
-      <span class='fu'>updateF7MessageBar</span><span class='op'>(</span>
-        inputId <span class='op'>=</span> <span class='st'>"mymessagebar"</span>,
-        value <span class='op'>=</span> <span class='st'>"sjsjsj"</span>
-      <span class='op'>)</span>
-    <span class='op'>}</span><span class='op'>)</span>
-
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>updateMessageBarPlaceholder</span>, <span class='op'>{</span>
-      <span class='fu'>updateF7MessageBar</span><span class='op'>(</span>
-        inputId <span class='op'>=</span> <span class='st'>"mymessagebar"</span>,
-        placeholder <span class='op'>=</span> <span class='st'>"Enter your message"</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+      <span class='fu'>updateF7Radio</span><span class='op'>(</span>
+        <span class='va'>session</span>,
+        inputId <span class='op'>=</span> <span class='st'>"radio"</span>,
+        label <span class='op'>=</span> <span class='st'>"New label"</span>,
+        choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span>,
+        selected <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
       <span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
   <span class='op'>}</span>

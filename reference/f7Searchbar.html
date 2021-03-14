@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
 
@@ -132,6 +132,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -171,7 +172,13 @@
     <p>Searchbar to filter elements in a page.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Searchbar</span><span class='op'>(</span><span class='va'>id</span>, placeholder <span class='op'>=</span> <span class='st'>"Search"</span>, expandable <span class='op'>=</span> <span class='cn'>FALSE</span>, inline <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7Searchbar</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  placeholder <span class='op'>=</span> <span class='st'>"Search"</span>,
+  expandable <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  inline <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  options <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,6 +201,14 @@ in the navbar. See <a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a>.</p>
       <td><p>Useful to add a f7Searchbar in a <a href='f7Appbar.html'>f7Appbar</a>.
 Notice that utilities like <a href='f7HideOnSearch.html'>f7HideOnSearch</a> and <a href='f7NotFound.html'>f7NotFound</a> are not
 compatible with this mode.</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>Search bar options.
+See <a href='https://v5.framework7.io/docs/searchbar.html#searchbar-parameters'>https://v5.framework7.io/docs/searchbar.html#searchbar-parameters</a>.
+If no options are provided, the searchbar will search in list elements by
+item title. This may be changed by updating the default searchContainer and
+searchIn.</p></td>
     </tr>
     </table>
 
@@ -239,7 +254,7 @@ compatible with this mode.</p></td>
  <span class='co'># Expandable searchbar with trigger</span>
  <span class='va'>cities</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>precip</span><span class='op'>)</span>
 
- <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Expandable searchbar"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -247,14 +262,12 @@ compatible with this mode.</p></td>
          title <span class='op'>=</span> <span class='st'>"f7Searchbar with trigger"</span>,
          hairline <span class='op'>=</span> <span class='cn'>FALSE</span>,
          shadow <span class='op'>=</span> <span class='cn'>TRUE</span>,
-         <span class='fu'><a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"search1"</span><span class='op'>)</span>,
          subNavbar <span class='op'>=</span> <span class='fu'><a href='f7SubNavbar.html'>f7SubNavbar</a></span><span class='op'>(</span>
            <span class='fu'>f7Searchbar</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"search1"</span>, expandable <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
          <span class='op'>)</span>
        <span class='op'>)</span>,
        <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span>
-         <span class='st'>"This block will be hidden on search.
-         Lorem ipsum dolor sit amet, consectetur adipisicing elit."</span>
+         <span class='fu'><a href='f7SearchbarTrigger.html'>f7SearchbarTrigger</a></span><span class='op'>(</span>targetId <span class='op'>=</span> <span class='st'>"search1"</span><span class='op'>)</span>
        <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='f7HideOnSearch.html'>f7HideOnSearch</a></span><span class='op'>(</span><span class='op'>)</span>,
        <span class='fu'><a href='f7List.html'>f7List</a></span><span class='op'>(</span>
          <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>cities</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
