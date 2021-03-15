@@ -2,19 +2,9 @@
 % Please edit documentation in R/f7-tabs.R
 \name{insertF7Tab}
 \alias{insertF7Tab}
-\alias{f7InsertTab}
 \title{Framework7 tab insertion}
 \usage{
 insertF7Tab(
-  id,
-  tab,
-  target,
-  position = c("before", "after"),
-  select = FALSE,
-  session = shiny::getDefaultReactiveDomain()
-)
-
-f7InsertTab(
   id,
   tab,
   target,
@@ -38,7 +28,6 @@ f7InsertTab(
 }
 \description{
 \link{insertF7Tab} inserts a \link{f7Tab} in a \link{f7Tabs}.
-\link{f7InsertTab} is deprecated. Inserts a \link{f7Tab} in a \link{f7Tabs}.
 }
 \examples{
 if (interactive()) {

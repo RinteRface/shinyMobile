@@ -2,12 +2,9 @@
 % Please edit documentation in R/f7-inputs.R
 \name{f7checkBoxGroup}
 \alias{f7checkBoxGroup}
-\alias{f7CheckboxGroup}
 \title{Framework7 checkbox group}
 \usage{
 f7checkBoxGroup(inputId, label, choices = NULL, selected = NULL)
-
-f7CheckboxGroup(inputId, label, choices = NULL, selected = NULL)
 }
 \arguments{
 \item{inputId}{Checkbox group input.}
@@ -19,8 +16,6 @@ f7CheckboxGroup(inputId, label, choices = NULL, selected = NULL)
 \item{selected}{Checkbox group selected value.}
 }
 \description{
-Deprecated. Creates a checkbox group input
-
 Creates a checkbox group input
 }
 \examples{

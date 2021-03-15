@@ -1,6 +1,6 @@
 #' Create a Framework7 tabs
 #'
-#' By default, \link{f7Tabs} are used within the \link{f7TabLayout}. However, you
+#' By default, \code{f7Tabs} are used within the \link{f7TabLayout}. However, you
 #' may use them as standalone components if you specify a the segmented or strong
 #' styles.
 #'
@@ -530,8 +530,7 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 
 #' Framework7 tab insertion
 #'
-#' \link{insertF7Tab} inserts a \link{f7Tab} in a \link{f7Tabs}.
-#' \link{f7InsertTab} is deprecated. Inserts a \link{f7Tab} in a \link{f7Tabs}.
+#' \code{insertF7Tab} inserts an \link{f7Tab} into an \link{f7Tabs}.
 #'
 #' @rdname inserttab
 #' @param id  \link{f7Tabs} id.
@@ -644,9 +643,12 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
 }
 
 
-#' Framework7 tab insertion
+#' Framework7 tab insertion (DEPRECATED)
 #'
-#' @rdname inserttab
+#' Inserts an f7Tab in an \link{f7Tabs} (use \link{f7InsertTab} instead).
+#'
+#' @rdname f7-deprecated
+#' @inheritParams insertF7Tab
 #' @export
 f7InsertTab <- function(id, tab, target, position = c("before", "after"),
                      select = FALSE, session = shiny::getDefaultReactiveDomain()) {
@@ -664,7 +666,6 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 #' Framework7 tab deletion
 #'
 #' \link{removeF7Tab} removes a \link{f7Tab} in a \link{f7Tabs}.
-#' \link{f7RemoveTab} is deprecated. It removes a \link{f7Tab} in a \link{f7Tabs}.
 #'
 #' @param id  \link{f7Tabs} id.
 #' @param target \link{f7Tab} to remove.
@@ -749,9 +750,13 @@ removeF7Tab <- function(id, target, session = shiny::getDefaultReactiveDomain())
 }
 
 
-#' Framework7 tab deletion
+#' Framework7 tab deletion (DEPRECATED)
 #'
-#' @rdname removetab
+#' Removes a \link{f7Tab} in a \link{f7Tabs} (use \link{removeF7Tab}).
+
+#' @rdname f7-deprecated
+#' @inheritParams removeF7Tab
+#' @internal
 #' @export
 f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain()) {
   .Deprecated(
