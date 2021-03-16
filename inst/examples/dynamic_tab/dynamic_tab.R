@@ -39,21 +39,19 @@ shinyApp(
     observeEvent(input$stay, {
       f7Toast("Please stay")
     })
-    observeEvent(input$go, {
-      insertF7Tab(
-        id = "tabs",
-        position = "before",
-        target = "Tab 1",
-        tab = f7Tab (tabName = paste0("tab_", input$go), "Test1",
-                     icon = f7Icon("app_badge_fill")),
-        select = FALSE
-      )
+    observeEvent(input$add, {
       insertF7Tab(
         id = "tabs",
         position = "after",
         target = "Tab 1",
-        tab = f7Tab (tabName = paste0("tabx_", input$go), "Test2",
-                     icon = f7Icon("app_badge")),
+        tab = f7Tab (
+          # Use multiple elements to test for accessor function
+          f7Button(inputId = "add_dynamic", label = "Add dyn"),
+          f7Text(inputId = "my_text", label ="Enter something", placeholder = "What?"),
+          f7Text(inputId = "my_other", label ="Else:", placeholder = "Else ?"),
+          tabName = paste0("tabx_", input$go), "Test2",
+          icon = f7Icon("app_badge")
+        ),
         select = TRUE
       )
     })

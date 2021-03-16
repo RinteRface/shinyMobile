@@ -178,7 +178,6 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   if (swipeable && animated) stop("Cannot use two effects at the same time")
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
   ns <- shiny::NS(id)
-
   items <- list(...)
   found_active <- FALSE
 
@@ -605,14 +604,16 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
   if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
   nsWrapper <- shiny::NS(id)
   position <- match.arg(position)
-
   # create the corresponding tab-link
   tabId <- gsub(" ", "", nsWrapper(tab[[1]]$attribs$id), fixed = TRUE)
+  children = tab[[1]]$children
   tabLink <- shiny::a(
     class = if (select) "tab-link tab-link-active" else "tab-link",
     `data-tab` = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
     tab[[2]],
-    shiny::span(class = "tabbar-label", as.character(tab[[1]]$children))
+    # Get the last element - check if this accessor is correct in
+    # case of errors with nested controls
+    shiny::span(class = "tabbar-label", as.character(children[[length(children)]]))
   )
   tabLink <- as.character(force(tabLink))
 
