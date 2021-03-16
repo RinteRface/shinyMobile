@@ -273,9 +273,10 @@ $((function() {
         var id = "insert_" + index;
         Shiny.addCustomMessageHandler(id, (function(message) {
             var tabId = $("#" + message.ns + "-" + message.target);
+            var tab = $(message.value.html);
             var newTab;
             if ($(tabId).hasClass("swiper-slide")) {
-                newTab = $(message.value).addClass("swiper-slide");
+                newTab = $(tab).addClass("swiper-slide");
                 if ($(".tabLinks").children(1).hasClass("segmented")) {
                     $(newTab).removeClass("page-content");
                 }
@@ -284,7 +285,7 @@ $((function() {
                 }
                 if (app.params.dark) $(newTab).css("background-color", "");
             } else {
-                newTab = $(message.value);
+                newTab = $(tab);
                 if (app.params.dark) $(newTab).css("background-color", "");
             }
             if (message.position === "after") {
@@ -294,6 +295,10 @@ $((function() {
                 $(newTab).insertBefore($(tabId));
                 $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
             }
+            Shiny.renderContent(tab[0], {
+                html: tab.html(),
+                deps: message.value.deps
+            });
             if ($(".tabLinks").children(1).hasClass("segmented")) {
                 var newLink;
                 var oldLink = $('.tabLinks [data-tab ="#' + message.id + '"]');
