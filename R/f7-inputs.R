@@ -1124,13 +1124,28 @@ f7CheckboxGroup <- f7checkBoxGroup
 createSelectOptions <- function(choices, selected) {
   choices <- choicesWithNames(choices)
   options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(
-      value = choices[[i]],
-      names(choices)[i],
-      selected = if (!is.null(selected)) {
-        if (choices[[i]] %in% selected) NA else NULL
-      }
-    )
+    if (inherits(choices[[1]], "list")) {
+      shiny::tags$optgroup(
+        label = names(choices)[i],
+        lapply(X = seq_along(choices[[i]]), function(j) {
+          shiny::tags$option(
+            value = choices[[i]][[j]],
+            names(choices[[i]])[j],
+            selected = if (!is.null(selected)) {
+              if (choices[[i]][[j]] %in% selected) NA else NULL
+            }
+          )
+        })
+      )
+    } else {
+      shiny::tags$option(
+        value = choices[[i]],
+        names(choices)[i],
+        selected = if (!is.null(selected)) {
+          if (choices[[i]] %in% selected) NA else NULL
+        }
+      )
+    }
   })
 
   return(options)
@@ -1343,10 +1358,22 @@ updateF7Select <- function(inputId, selected = NULL,
 #'          choices = colnames(mtcars)[-1],
 #'          openIn = "popup"
 #'        ),
-#'        tableOutput("data")
+#'        tableOutput("data"),
+#'        f7SmartSelect(
+#'          inputId = "variable2",
+#'          label = "Group variables:",
+#'          choices = list(
+#'           `East Coast` = list("NY", "NJ", "CT"),
+#'           `West Coast` = list("WA", "OR", "CA"),
+#'           `Midwest` = list("MN", "WI", "IA")
+#'          ),
+#'          openIn = "sheet"
+#'        ),
+#'        textOutput("var")
 #'      )
 #'    ),
 #'    server = function(input, output) {
+#'      output$var <- renderText(input$variable2)
 #'      output$data <- renderTable({
 #'        mtcars[, c("mpg", input$variable), drop = FALSE]
 #'      }, rownames = TRUE)

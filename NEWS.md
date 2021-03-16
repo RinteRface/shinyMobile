@@ -11,6 +11,8 @@
 - Rework widget JS code base (no user impact). 
 
 ## Bug fixes
+- Fix #127: Enable groups in `f7SmartSelect()`. 
+- Fix #174 and #134: Reactive elements created inside `insertF7Tab()` are losing reactivity.
 - Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
 - Fix #120: `f7Button()` with link not working. Thanks @bwganblack.
 - Fix #144: Close `f7SmartSelect()` on selection. Thanks @dewalex.
