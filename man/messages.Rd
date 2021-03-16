@@ -3,7 +3,6 @@
 \name{f7Messages}
 \alias{f7Messages}
 \alias{f7Message}
-\alias{f7AddMessages}
 \alias{updateF7Messages}
 \title{Framework7 messages container}
 \usage{
@@ -28,13 +27,6 @@ f7Message(
   image = NULL,
   imageSrc = NULL,
   cssClass = NULL
-)
-
-f7AddMessages(
-  id,
-  messages,
-  showTyping = FALSE,
-  session = shiny::getDefaultReactiveDomain()
 )
 
 updateF7Messages(
@@ -90,18 +82,13 @@ Does not work yet...}
 \item{session}{Shiny session object}
 }
 \description{
-\link{f7Messages} is an empty container targeted by \link{updateF7Messages}
+\code{f7Messages} is an empty container targeted by \link{updateF7Messages}
 to include multiple \link{f7Message}.
 
-\link{f7Message} creates a message item to be inserted in
+\code{f7Message} creates a message item to be inserted in
 \link{f7Messages} with \link{updateF7Messages}.
 
-Deprecated. \link{f7AddMessages} add messages to a \link{f7Messages} container.
-
-\link{updateF7Messages} add messages to a \link{f7Messages} container.
-}
-\note{
-\link{f7AddMessages} is deprecated. Use \link{updateF7Messages} instead.
+\code{updateF7Messages} add messages to an \link{f7Messages} container.
 }
 \examples{
 if (interactive()) {

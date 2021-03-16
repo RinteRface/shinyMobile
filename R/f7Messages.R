@@ -1,6 +1,6 @@
 #' Framework7 messages container
 #'
-#' \link{f7Messages} is an empty container targeted by \link{updateF7Messages}
+#' \code{f7Messages} is an empty container targeted by \link{updateF7Messages}
 #' to include multiple \link{f7Message}.
 #'
 #' @param id Container id.
@@ -114,7 +114,7 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
 
 #' Framework7 message bar.
 #'
-#' \link{f7MessageBar} creates a message text container to type new messages.
+#' \code{f7MessageBar} creates a message text container to type new messages.
 #' Insert before \link{f7Messages}. See examples.
 #'
 #' @param inputId Unique id.
@@ -154,7 +154,7 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 
 #' Update Framework7 message bar
 #'
-#' \link{updateF7MessageBar} updates message bar content on the server side.
+#' \code{updateF7MessageBar} updates message bar content on the server side.
 #'
 #' @param inputId \link{f7MessageBar} unique id.
 #' @param value New value.
@@ -235,7 +235,7 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 
 #' Framework7 message element
 #'
-#' \link{f7Message} creates a message item to be inserted in
+#' \code{f7Message} creates a message item to be inserted in
 #' \link{f7Messages} with \link{updateF7Messages}.
 #'
 #' @param text Message text.
@@ -277,7 +277,7 @@ f7Message <- function(text, name, type = c("sent", "received"),
 
 #' Update Framework7 message container
 #'
-#' Deprecated. \link{f7AddMessages} add messages to a \link{f7Messages} container.
+#' \code{updateF7Messages} add messages to an \link{f7Messages} container.
 #'
 #' @param id Reference to link{f7Messages} container.
 #' @param showTyping Show typing when a new message comes. Default to FALSE.
@@ -285,20 +285,12 @@ f7Message <- function(text, name, type = c("sent", "received"),
 #' @param messages List of \link{f7Messages}.
 #' @param session Shiny session object
 #'
-#' @note \link{f7AddMessages} is deprecated. Use \link{updateF7Messages} instead.
 #'
 #' @rdname messages
 #' @export
-f7AddMessages <- function(id, messages, showTyping = FALSE,
+updateF7Messages <- function(id, messages, showTyping = FALSE,
                           session = shiny::getDefaultReactiveDomain()) {
 
-  .Deprecated(
-    "updateF7Messages",
-    package = "shinyMobile",
-    "f7AddMessages will be removed in future release. Please use
-    updateF7Messages instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
 
   message <- list(
     value = jsonlite::toJSON(
@@ -316,8 +308,22 @@ f7AddMessages <- function(id, messages, showTyping = FALSE,
 
 #' Update Framework7 message container
 #'
-#' \link{updateF7Messages} add messages to a \link{f7Messages} container.
+#' \code{f7AddMessages} adds messages to an \link{f7Messages} container.
+#' Use \link{updateF7Messages} instead
 #'
-#' @rdname messages
+#' @rdname f7-deprecated
+#' @inheritParams updateF7Messages
+#' @keywords internal
 #' @export
-updateF7Messages <- f7AddMessages
+f7AddMessages <- function(id, messages, showTyping = FALSE,
+                             session = shiny::getDefaultReactiveDomain()) {
+
+  .Deprecated(
+    "updateF7Messages",
+    package = "shinyMobile",
+    "f7AddMessages will be removed in future release. Please use
+      updateF7Messages instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+  updateF7Messages(id, messages, showTyping, session)
+}

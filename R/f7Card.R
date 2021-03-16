@@ -1,6 +1,6 @@
 #' Framework7 card
 #'
-#' \link{f7Card} creates a simple card container.
+#' \code{f7Card} creates a simple card container.
 #'
 #' @rdname card
 #'
@@ -115,7 +115,7 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 
 #' Framework7 social card
 #'
-#' \link{f7SocialCard} is a special card for social content.
+#' \code{f7SocialCard} is a special card for social content.
 #'
 #' @rdname card
 #'
@@ -188,7 +188,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 
 #' Framework7 expandable card
 #'
-#' \link{f7ExpandableCard} is a card that can expand. Ideal for a
+#' \code{f7ExpandableCard} is a card that can expand. Ideal for a
 #' gallery.
 #'
 #' @rdname card
@@ -360,7 +360,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 
 #' Update Framework7 expandable card
 #'
-#' \link{updateF7Card} maximizes a \link{f7ExpandableCard} on the client.
+#' \code{updateF7Card} maximizes an \link{f7ExpandableCard} on the client.
 #'
 #' @param id Card id.
 #' @param session Shiny session object.

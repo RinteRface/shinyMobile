@@ -919,13 +919,13 @@ f7Checkbox <- function(inputId, label, value = FALSE){
 }
 
 
-#' Framework7 checkbox (DEPRECATED)
+#' Deprecated functions
 #'
-#' \code{f7checkBox} creates a checkbox input (use \link{f7Checkbox}).
+#' \code{f7checkBox} creates a checkbox input. Use \link{f7Checkbox} instead.
 #'
 #' @rdname f7-deprecated
 #' @inheritParams f7checkBoxGroup
-#' @internal
+#' @keywords internal
 #' @export
 f7checkBox <- function(inputId, label, value = FALSE){
 
@@ -1008,7 +1008,7 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 
 #' Framework7 checkbox group
 #'
-#' Creates a checkbox group input
+#' \code{f7CheckboxGroup} creates a checkbox group input
 #'
 #' @param inputId Checkbox group input.
 #' @param label Checkbox group label.
@@ -1027,8 +1027,8 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'     ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7checkBoxGroup"),
-#'       f7checkBoxGroup(
+#'       navbar = f7Navbar(title = "f7CheckboxGroup"),
+#'       f7CheckboxGroup(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
 #'        choices = colnames(mtcars)[-1],
@@ -1044,7 +1044,7 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'     }
 #'   )
 #'  }
-f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
+f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
   selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
 
@@ -1086,13 +1086,14 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
 
 
-#' Framework7 checkbox group (DEPRECATED)
+#' Deprecated functions
 #'
-#' Creates a checkbox group input (use \link{f7checkBoxGroup})
+#' \code{f7checkBoxGroup} creates a checkbox group input.
+#' Use \link{f7CheckboxGroup} instead
 #'
 #' @rdname f7-deprecated
 #' @inheritParams f7checkBoxGroup
-#' @internal
+#' @keywords internal
 #' @export
 f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
@@ -1104,7 +1105,7 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
     old = as.character(sys.call(sys.parent()))[1L]
   )
 
-  f7CheckboxGroup <- f7checkBoxGroup
+  f7CheckboxGroup(inputId, label, choices, selected)
 }
 
 
@@ -1301,7 +1302,7 @@ updateF7Select <- function(inputId, selected = NULL,
 
 #' Framework7 smart select
 #'
-#' \link{f7SmartSelect} is smarter than the classic \link{f7Select},
+#' \code{f7SmartSelect} is smarter than the classic \link{f7Select},
 #' allows for choices filtering, ...
 #'
 #' @param inputId Select input id.
@@ -1864,7 +1865,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
 #' expected.
 #' @param color See \link{getF7Colors} for valid colors.
-#' @param noSwipping Prevent swiping when slider is manipulated in a \code{\link{f7TabLayout}}.
+#' @param noSwipping Prevent swiping when slider is manipulated in an \link{f7TabLayout}.
 #'
 #' @note labels option only works when vertical is FALSE!
 #'

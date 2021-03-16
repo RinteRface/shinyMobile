@@ -19,7 +19,7 @@ Wrap in \code{tagList} if multiple panels.}
 \item{appbar}{Slot for \link{f7Appbar}.}
 }
 \description{
-\link{f7TabLayout} create a single page app with multiple tabs,
+\code{f7TabLayout} create a single page app with multiple tabs,
 giving the illusion of a multi pages experience.
 }
 \examples{

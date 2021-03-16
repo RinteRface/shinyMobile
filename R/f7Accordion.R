@@ -1,6 +1,6 @@
 #' Framework7 accordion container
 #'
-#' \link{f7Accordion} creates an interactive accordion container.
+#' \code{f7Accordion} creates an interactive accordion container.
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
 #' @param id Optional id to recover the state of the accordion.
@@ -87,7 +87,7 @@ f7Accordion <- function(..., id = NULL, multiCollapse = FALSE) {
 
 #' Framework7 accordion item
 #'
-#' \link{f7AccordionItem} is to be inserted in \link{f7Accordion}.
+#' \code{f7AccordionItem} is to be inserted in \link{f7Accordion}.
 #'
 #' @param ... Item content such as \link{f7Block} or any f7 element.
 #' @param title Item title.
@@ -124,7 +124,7 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 
 #' Update Framework 7 accordion
 #'
-#' \link{updateF7Accordion} toggles a \link{f7Accordion} on the client.
+#' \link{updateF7Accordion} toggles an \link{f7Accordion} on the client.
 #'
 #' @param id Accordion instance.
 #' @param selected Index of item to select.

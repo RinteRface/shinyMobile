@@ -14,7 +14,7 @@ f7Padding(tag, side = NULL)
 Leave NULL to apply on all sides.}
 }
 \description{
-\link{f7Padding} adds padding to the given tag.
+\code{f7Padding} adds padding to the given tag.
 }
 \examples{
 if(interactive()){

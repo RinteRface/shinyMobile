@@ -1,6 +1,6 @@
 #' Framework7 dialog window
 #'
-#' \link{f7Dialog} generates a modal window.
+#' \code{f7Dialog} generates a modal window.
 #'
 #' @param id Input associated to the alert. Works when type is one of
 #' "confirm", "prompt" or "login".

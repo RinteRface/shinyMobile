@@ -12,7 +12,7 @@ f7Align(tag, side = c("left", "center", "right", "justify"))
 \item{side}{Side to align: "left", "center", "right" or "justify".}
 }
 \description{
-\link{f7Align} is an alignment utility for items.
+\code{f7Align} is an alignment utility for items.
 }
 \examples{
 if(interactive()){

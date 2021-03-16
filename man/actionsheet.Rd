@@ -47,10 +47,10 @@ when you want to trigger events after a specific button click.}
 \item{options}{Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.}
 }
 \description{
-\link{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
+\code{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
 an action on the server side. It may be updated later by \link{updateF7ActionSheet}.
 
-\link{updateF7ActionSheet} updates a \link{f7ActionSheet} from the server.
+\code{updateF7ActionSheet} updates an \link{f7ActionSheet} from the server.
 }
 \examples{
 if (interactive()) {

@@ -34,9 +34,9 @@ f7SwipeoutItem(id, label, color = NULL)
 \item{color}{Item color.}
 }
 \description{
-\link{f7Swipeout} is designed to be used in combination with \link{f7ListItem}.
+\code{f7Swipeout} is designed to be used in combination with \link{f7ListItem}.
 
-\link{f7SwipeoutItem} is inserted in \link{f7Swipeout}.
+\code{f7SwipeoutItem} is inserted in \link{f7Swipeout}.
 }
 \examples{
 if (interactive()) {

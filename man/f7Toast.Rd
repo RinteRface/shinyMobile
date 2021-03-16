@@ -38,7 +38,7 @@ Adding icon will hide the close button.}
 \item{session}{Shiny session.}
 }
 \description{
-\link{f7Toast} creates a small toast notification from the server side.
+\code{f7Toast} creates a small toast notification from the server side.
 }
 \examples{
 if (interactive()) {

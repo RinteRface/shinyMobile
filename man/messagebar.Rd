@@ -24,10 +24,10 @@ updateF7MessageBar(
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7MessageBar} creates a message text container to type new messages.
+\code{f7MessageBar} creates a message text container to type new messages.
 Insert before \link{f7Messages}. See examples.
 
-\link{updateF7MessageBar} updates message bar content on the server side.
+\code{updateF7MessageBar} updates message bar content on the server side.
 }
 \examples{
 if (interactive()) {

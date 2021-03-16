@@ -14,7 +14,7 @@ removeF7Tab(id, target, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{removeF7Tab} removes a \link{f7Tab} in a \link{f7Tabs}.
+\code{removeF7Tab} removes an \link{f7Tab} in a \link{f7Tabs}.
 }
 \examples{
 if (interactive()) {

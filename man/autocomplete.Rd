@@ -59,9 +59,9 @@ when openIn is 'popup' or 'page'.}
 \item{session}{The Shiny session object.}
 }
 \description{
-\link{f7AutoComplete} generates a Framework7 autocomplete input.
+\code{f7AutoComplete} generates a Framework7 autocomplete input.
 
-\link{updateF7AutoComplete} Change the value of an autocomplete input on the client.
+\code{updateF7AutoComplete} changes the value of an autocomplete input on the client.
 }
 \note{
 You cannot update choices yet.

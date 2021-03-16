@@ -1,11 +1,11 @@
 #' Framework7 appbar
 #'
-#' \link{f7Appbar} is displayed on top of \link{f7Navbar}. \link{f7Appbar} can also
+#' \code{f7Appbar} is displayed on top of an \link{f7Navbar}. \link{f7Appbar} can also
 #' trigger \link{f7Panel}.
 #'
 #' @param ... Any UI content such as \link{f7Searchbar}, \link{f7Next} and
 #' \link{f7Back}. It is best practice to wrap \link{f7Next} and
-#' \link{f7Back} in a \link{f7Flex}.
+#' \link{f7Back} in an \link{f7Flex}.
 #' @param leftPanel Whether to enable the left panel. FALSE by default.
 #' @param rightPanel Whether to enable the right panel. FALSE by default.
 #'

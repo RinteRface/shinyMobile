@@ -1,6 +1,6 @@
 #' Framework7 sheet
 #'
-#' \link{f7Sheet} creates an f7 sheet modal window.
+#' \code{f7Sheet} creates an f7 sheet modal window.
 #'
 #' @param ... Sheet content. If wipeToStep is TRUE, these items will be visible at start.
 #' @param id Sheet unique id.
@@ -113,7 +113,7 @@ f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"
 
 #' Update Framework7 sheet modal
 #'
-#' \link{updateF7Sheet} toggles a \link{f7Sheet} on the client.
+#' \code{updateF7Sheet} toggles an \link{f7Sheet} on the client.
 #'
 #' @param id Sheet id.
 #' @param session Shiny session object

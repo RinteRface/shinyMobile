@@ -50,9 +50,9 @@ f7TimelineItem(
 \item{side}{Force element to required side: "right" or "left". Only if sides os TRUE in \link{f7Timeline}}
 }
 \description{
-\link{f7Timeline} is a static timeline container.
+\code{f7Timeline} is a static timeline container.
 
-\link{f7TimelineItem} goes inside \link{f7Timeline}.
+\code{f7TimelineItem} goes inside \link{f7Timeline}.
 }
 \examples{
 if(interactive()){

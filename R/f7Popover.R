@@ -1,14 +1,15 @@
 #' Framework7 popover
 #'
-#' \link{f7Popover} is deprecated. It has to be used in an oberve
+#' \code{f7Popover} is deprecated. It has to be used in an oberve
 #' or observeEvent context. Only works for input elements!
 #'
 #' @param targetId Target to put the popover on.
 #' @param content Popover content.
 #' @param session shiny session.
 #'
+#' @keywords internal
+#' @rdname f7-deprecated
 #' @export
-#' @rdname popover
 #'
 #' @examples
 #' if (interactive()) {
@@ -80,13 +81,14 @@ f7Popover <- function(targetId, content, session = shiny::getDefaultReactiveDoma
 
 #' Framework7 popover target
 #'
-#' \link{f7PopoverTarget} is deprecated. This must be used in combination of \link{f7Popover}.
+#' \code{f7PopoverTarget} is deprecated. This must be used in combination of \link{f7Popover}.
 #' Only works for input elements!
 #'
 #' @param tag Tag that will be targeted. Must be a f7Input element.
 #' @param targetId Popover id. Must correspond to the \link{f7Popover} targetId.
 #'
-#' @rdname popover
+#' @rdname f7-deprecated
+#' @keywords internal
 #'
 #' @export
 f7PopoverTarget <- function(tag, targetId) {
@@ -124,7 +126,7 @@ f7PopoverTarget <- function(tag, targetId) {
 
 #' Add Framework7 popover
 #'
-#' \link{addF7Popover} adds a popover to the given target and show it if enabled
+#' \code{addF7Popover} adds a popover to the given target and show it if enabled
 #' by \link{toggleF7Popover}.
 #'
 #' @param id Popover target id.
@@ -207,7 +209,7 @@ addF7Popover <- function(id = NULL, selector = NULL, options, session = shiny::g
 
 #' Toggle Framework7 popover
 #'
-#' \link{toggleF7Popover} toggles the visibility of popover. See example for use case.
+#' \code{toggleF7Popover} toggles the visibility of popover. See example for use case.
 #'
 #' @param id Popover target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).

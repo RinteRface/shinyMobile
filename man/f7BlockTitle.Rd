@@ -12,7 +12,7 @@ f7BlockTitle(title = NULL, size = NULL)
 \item{size}{Block title size. NULL by default or "medium", "large".}
 }
 \description{
-\link{f7BlockTitle} creates a title for \link{f7Block}.
+\code{f7BlockTitle} creates a title for \link{f7Block}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

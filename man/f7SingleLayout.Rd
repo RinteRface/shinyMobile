@@ -19,7 +19,7 @@ Wrap in \code{tagList} if multiple panels.}
 \item{appbar}{Slot for \link{f7Appbar}.}
 }
 \description{
-\link{f7SingleLayout} provides a simple page layout.
+\code{f7SingleLayout} provides a simple page layout.
 }
 \examples{
 if(interactive()){

@@ -27,7 +27,7 @@ insertF7Tab(
 \item{session}{Shiny session object.}
 }
 \description{
-\link{insertF7Tab} inserts a \link{f7Tab} in a \link{f7Tabs}.
+\code{insertF7Tab} inserts an \link{f7Tab} in an \link{f7Tabs}.
 }
 \examples{
 if (interactive()) {

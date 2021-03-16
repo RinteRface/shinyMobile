@@ -1,6 +1,6 @@
 #' Framework7 swipeout element
 #'
-#' \link{f7Swipeout} is designed to be used in combination with \link{f7ListItem}.
+#' \code{f7Swipeout} is designed to be used in combination with \link{f7ListItem}.
 #'
 #' @param tag Tag to be swiped.
 #' @param ... When side is either "right" or "left" use this slot to pass
@@ -88,7 +88,7 @@ f7Swipeout <- function(tag, ...,left = NULL, right = NULL, side = c("left", "rig
 
 #' Framework7 swipeout item
 #'
-#' \link{f7SwipeoutItem} is inserted in \link{f7Swipeout}.
+#' \code{f7SwipeoutItem} is inserted in \link{f7Swipeout}.
 #'
 #' @param id  Item unique id.
 #' @param label Item label.

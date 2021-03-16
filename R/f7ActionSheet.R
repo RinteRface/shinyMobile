@@ -1,6 +1,6 @@
 #' Framework7 action sheet
 #'
-#' \link{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
+#' \code{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
 #' an action on the server side. It may be updated later by \link{updateF7ActionSheet}.
 #'
 #' @param id Unique id. This gives the state of the action sheet. input$id is TRUE
@@ -196,7 +196,7 @@ f7ActionSheet <- function(id, buttons, grid = FALSE, ..., session = shiny::getDe
 
 #' Update Framework7 action sheet
 #'
-#' \link{updateF7ActionSheet} updates a \link{f7ActionSheet} from the server.
+#' \code{updateF7ActionSheet} updates an \link{f7ActionSheet} from the server.
 #'
 #' @param id Unique id. This gives the state of the action sheet. input$id is TRUE
 #' when opened and inversely. Importantly, if the action sheet has never been opened,

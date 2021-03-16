@@ -10,7 +10,7 @@ f7SubNavbar(...)
 \item{...}{Any elements.}
 }
 \description{
-\link{f7SubNavbar} creates a nested navbar component for
+\code{f7SubNavbar} creates a nested navbar component for
 \link{f7Navbar}.
 }
 \examples{

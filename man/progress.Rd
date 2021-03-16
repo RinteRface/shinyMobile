@@ -19,9 +19,9 @@ updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Progress} creates a progress bar.
+\code{f7Progress} creates a progress bar.
 
-\link{updateF7Progress} update a framework7 progress bar from the server side
+\code{updateF7Progress} update a framework7 progress bar from the server side
 }
 \examples{
 # Progress bars

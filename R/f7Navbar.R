@@ -108,7 +108,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 
 #' Framework7 sub navbar
 #'
-#' \link{f7SubNavbar} creates a nested navbar component for
+#' \code{f7SubNavbar} creates a nested navbar component for
 #' \link{f7Navbar}.
 #'
 #' @param ... Any elements.
@@ -186,16 +186,17 @@ f7SubNavbar <- function(...) {
 
 #' Hide a Framework7 navbar
 #'
-#' \link{f7HideNavbar} hides a \link{f7Navbar} component from the
-#' server. Deprecated, use \link{updateF7Navbar} instead.
+#' \code{f7HideNavbar} hides an \link{f7Navbar} component from the
+#' server. Use \link{updateF7Navbar} instead.
 #'
 #' @param animate Whether it should be hidden with animation or not. By default is TRUE.
 #' @param hideStatusbar  When FALSE (default) it hides navbar partially keeping space
 #' required to cover statusbar area. Otherwise, navbar will be fully hidden.
 #' @param session Shiny session object.
 #'
+#' @keywords internal
+#' @rdname f7-deprecated
 #' @export
-#' @rdname navbar
 #'
 #' @examples
 #' if (interactive()) {
@@ -249,12 +250,12 @@ f7HideNavbar <- function(animate = TRUE, hideStatusbar = FALSE,
 
 #' Show a Framework7 navbar
 #'
-#' \link{f7ShowNavbar} shows a \link{f7Navbar} component from the
-#' server. Deprecated, use \link{updateF7Navbar} instead.
+#' \code{f7ShowNavbar} shows an \link{f7Navbar} component from the server.
+#' Use \link{updateF7Navbar} instead.
 #'
-#' @param animate Whether it should be hidden with animation or not. By default is TRUE.
-#' @param session Shiny session object.
-#'
+#' @inheritParams updateF7Navbar
+#' @keywords internal
+#' @rdname f7-deprecated
 #' @export
 f7ShowNavbar <- function(animate = TRUE, session = shiny::getDefaultReactiveDomain()) {
    .Deprecated(
@@ -272,8 +273,7 @@ f7ShowNavbar <- function(animate = TRUE, session = shiny::getDefaultReactiveDoma
 
 #' Toggle a Framework7 navbar
 #'
-#' \link{updateF7Navbar} toggles a \link{f7Navbar} component from the
-#' server.
+#' \code{updateF7Navbar} toggles an \link{f7Navbar} component from the server.
 #'
 #' @param animate Whether it should be hidden with animation or not. By default is TRUE.
 #' @param hideStatusbar  When FALSE (default) it hides navbar partially keeping space

@@ -19,7 +19,7 @@ f7Swiper(
 \item{options}{Other options. Expect a list.}
 }
 \description{
-\link{f7Swiper} creates a Framework7 swiper container (like carousel).
+\code{f7Swiper} creates a Framework7 swiper container (like carousel).
 }
 \examples{
 if(interactive()){

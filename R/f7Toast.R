@@ -1,6 +1,6 @@
 #' Framework7 toast
 #'
-#' \link{f7Toast} creates a small toast notification from the server side.
+#' \code{f7Toast} creates a small toast notification from the server side.
 #'
 #' @param text Toast content.
 #' @param position Toast position \code{c("bottom", "top", "center")}.

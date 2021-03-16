@@ -1,6 +1,6 @@
 #' Framework7 swiper
 #'
-#' \link{f7Swiper} creates a Framework7 swiper container (like carousel).
+#' \code{f7Swiper} creates a Framework7 swiper container (like carousel).
 #'
 #' @param ... Slot for \link{f7Slide}.
 #' @param id Swiper unique id.
@@ -119,7 +119,7 @@ f7Swiper <- function(
 
 #' Framework7 slide
 #'
-#' \link{f7Slide} is a \link{f7Swiper} element.
+#' \code{f7Slide} is an \link{f7Swiper} element.
 #'
 #' @param ... Slide content. Any element.
 #'

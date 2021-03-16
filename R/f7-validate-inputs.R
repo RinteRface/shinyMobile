@@ -1,6 +1,6 @@
 #' Framework7 input validation
 #'
-#' \link{f7ValidateInput} is deprecated. Function to validate a given shinyMobile input.
+#' \code{validateF7Input} is a function to validate a given shinyMobile input.
 #'
 #' @param inputId Input to validate.
 #' @param info Additional text to display below the input field.
@@ -22,7 +22,7 @@
 #'    ui = f7Page(
 #'      title = "Validate inputs",
 #'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7ValidateInput"),
+#'        navbar = f7Navbar(title = "validateF7Input"),
 #'        f7Text(
 #'          inputId = "caption",
 #'          label = "Caption",
@@ -39,8 +39,8 @@
 #'    ),
 #'    server = function(input, output, session) {
 #'      observe({
-#'        f7ValidateInput(inputId = "caption", info = "Whatever")
-#'        f7ValidateInput(
+#'        validateF7Input(inputId = "caption", info = "Whatever")
+#'        validateF7Input(
 #'          inputId = "caption2",
 #'          pattern = "[0-9]*",
 #'          error = "Only numbers please!"
@@ -50,17 +50,8 @@
 #'    }
 #'  )
 #' }
-f7ValidateInput <- function(inputId, info = NULL, pattern = NULL, error = NULL,
+validateF7Input <- function(inputId, info = NULL, pattern = NULL, error = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-
-  .Deprecated(
-    "validateF7Input",
-    package = "shinyMobile",
-    "f7ValidateInput will be removed in future release. Please use
-    validateF7Input instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
-
   message <- dropNulls(
     list(
       target = inputId,
@@ -75,14 +66,22 @@ f7ValidateInput <- function(inputId, info = NULL, pattern = NULL, error = NULL,
 
 #' Framework7 input validation
 #'
-#' \link{validateF7Input} is a function to validate a given shinyMobile input.
+#' \code{f7ValidateInput} validates a given shinyMobile input.
+#' Use \link{validateF7Input} instead
 #'
-#' @param inputId Input to validate.
-#' @param info Additional text to display below the input field.
-#' @param pattern Pattern for validation. Regex.
-#' @param error Error text.
-#' @param session Shiny session object.
-#' @rdname validation
+#' @inheritParams validateF7Input
+#' @rdname f7-deprecated
+#' @keywords internal
 #' @export
-validateF7Input <- f7ValidateInput
+f7ValidateInput <- function(inputId, info = NULL, pattern = NULL, error = NULL,
+                            session = shiny::getDefaultReactiveDomain()) {
+  .Deprecated(
+    "validateF7Input",
+    package = "shinyMobile",
+    "f7ValidateInput will be removed in future release. Please use
+    validateF7Input instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+  validateF7Input(inputId, info, pattern, error, session)
 
+}

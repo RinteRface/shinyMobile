@@ -10,7 +10,7 @@
 #' as the button is pressed, its value is incremented which might fire a
 #' \code{observeEvent} listening to it (See example below). Importantly,
 #' the login page is closed only if the text and password inputs are filled. The
-#' \link{f7LoginServer} contains a piece of server logic that does this work for you.
+#' \code{f7LoginServer} contains a piece of server logic that does this work for you.
 #'
 #' @param ... Slot for inputs like password, text, ...
 #' @param id Login unique id. input$<id> gives the status of the login page (
@@ -238,7 +238,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 
 #' Framework7 login server module
 #'
-#' \link{f7LoginServer} is a useful server elements to fine tune the
+#' \code{f7LoginServer} is a useful server elements to fine tune the
 #' \link{f7Login} page.
 #'
 #' @param input Shiny input object.
@@ -298,7 +298,7 @@ f7LoginServer <- function(input, output, session, ignoreInit = FALSE,
 
 #' Activates Framework7 login.
 #'
-#' \link{updateF7Login} toggles a login page.
+#' \code{updateF7Login} toggles a login page.
 #'
 #' @param id \link{f7Login} unique id.
 #' @param user Value of the user input.

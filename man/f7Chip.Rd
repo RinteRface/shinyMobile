@@ -30,7 +30,7 @@ f7Chip(
 \item{closable}{Whether to close the chip. FALSE by default.}
 }
 \description{
-\link{f7Chip} is an improved badge container.
+\code{f7Chip} is an improved badge container.
 }
 \examples{
 if(interactive()){

@@ -79,9 +79,9 @@ updateF7Gauge(
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Gauge} creates a gauge instance.
+\code{f7Gauge} creates a gauge instance.
 
-\link{updateF7Gauge} updates a framework7 gauge from the server side.
+\code{updateF7Gauge} updates a framework7 gauge from the server side.
 }
 \examples{
 # Gauge

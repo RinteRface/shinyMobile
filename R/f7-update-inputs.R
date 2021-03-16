@@ -30,7 +30,7 @@
 
 
 
-# #' Change the value of a \link{f7Button} input on the client
+# #' Change the value of an \link{f7Button} input on the client
 # #'
 # #' @note This function does not work if \link{f7Button} has a not NULL src argument.
 # #'

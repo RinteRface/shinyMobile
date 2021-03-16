@@ -1,6 +1,6 @@
 #' Update Framework7 configuration
 #'
-#' \link{updateF7App} allows to update a shinyMobile app at run time by
+#' \code{updateF7App} allows to update a shinyMobile app at run time by
 #' injecting any configuration inside the current running instance. Useful it you want
 #' to share the same behavior across multiple elements.
 #'
@@ -62,7 +62,7 @@ updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
 
 #' Update Framework7 entity
 #'
-#' \link{updateF7Entity} allows to update any Framework7 instance from the server.
+#' \code{updateF7Entity} allows to update any Framework7 instance from the server.
 #' For each entity, the list of updatable properties may significantly vary. Please
 #' refer to the Framework7 documentation at \url{https://v5.framework7.io/docs/}.
 #'

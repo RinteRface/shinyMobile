@@ -27,9 +27,9 @@ updateF7Select(
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Select} creates a select input.
+\code{f7Select} creates a select input.
 
-\link{updateF7Select} changes the value of a select input on the client
+\code{updateF7Select} changes the value of a select input on the client
 }
 \examples{
 # Select input

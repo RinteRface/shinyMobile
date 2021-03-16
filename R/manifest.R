@@ -1,6 +1,6 @@
 #' Create a manifest for your shiny app
 #'
-#' Deprecated. Please use this workflow instead:
+#' \code{create_manifest} creates a manifest for your shiny App. Please use this workflow instead:
 #' \url{https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools}.
 #'
 #' @param path package path.
@@ -20,6 +20,8 @@
 #' It creates 1 folders to contain icons and the manifest.json file.
 #'
 #' @note See \url{https://developer.mozilla.org/en-US/docs/Web/Manifest} for more informations.
+#' @rdname f7-deprecated
+#' @keywords internal
 #' @export
 #'
 #' @examples

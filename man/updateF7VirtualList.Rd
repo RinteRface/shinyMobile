@@ -2,7 +2,7 @@
 % Please edit documentation in R/f7List.R
 \name{updateF7VirtualList}
 \alias{updateF7VirtualList}
-\title{Update a \link{f7VirtualList} on the server side}
+\title{Update an \link{f7VirtualList} on the server side}
 \usage{
 updateF7VirtualList(
   id,

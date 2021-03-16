@@ -1,6 +1,6 @@
 #' Framework7 container for floating action button (FAB)
 #'
-#' \link{f7Fabs} hosts multiple \link{f7Fab}.
+#' \code{f7Fabs} hosts multiple \link{f7Fab}.
 #'
 #' @param ... Slot for \link{f7Fab}.
 #' @param id Optional: access the current state of the \link{f7Fabs} container.
@@ -102,7 +102,7 @@ f7Fabs <- function(..., id = NULL, position = c("right-top", "right-center", "ri
 
 #' Update Framework 7 FAB container
 #'
-#' \link{updateF7Fabs} toggles \link{f7Fabs} on the server side.
+#' \code{updateF7Fabs} toggles \link{f7Fabs} on the server side.
 #'
 #' @param id The id of the input object.
 #' @param session The Shiny session object, usually the default value will suffice.
@@ -146,7 +146,7 @@ updateF7Fabs <- function(id, session = shiny::getDefaultReactiveDomain()) {
 
 #' Framework7 floating action button (FAB)
 #'
-#' \link{f7Fab} generates a nice button to be put in \link{f7Fabs}.
+#' \code{f7Fab} generates a nice button to be put in \link{f7Fabs}.
 #'
 #' @inheritParams shiny::actionButton
 #' @param flag Additional text displayed next to the button content. Only works
@@ -178,7 +178,7 @@ f7Fab <- function(inputId, label, width = NULL, ..., flag = NULL) {
 
 #' Update FAB
 #'
-#' \link{updateF7Fab} changes the label of a \link{f7Fab} input on the client.
+#' \code{updateF7Fab} changes the label of an \link{f7Fab} input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
@@ -219,7 +219,7 @@ updateF7Fab <- function(inputId, label = NULL,
 
 #' Framework7 FAB morphing
 #'
-#' \link{f7FabMorphTarget} convert a tag into a target morphing.
+#' \code{f7FabMorphTarget} convert a tag into a target morphing.
 #' See \url{https://v5.framework7.io/docs/floating-action-button.html#fab-morph}.
 #'
 #' @rdname fabs
@@ -263,7 +263,7 @@ f7FabMorphTarget <- function(tag) {
 
 #' Framework7 FAB close
 #'
-#' \link{f7FabClose} indicates that the current tag should close the \link{f7Fabs}.
+#' \code{f7FabClose} indicates that the current tag should close the \link{f7Fabs}.
 #'
 #' @param tag Target tag.
 #' @export
