@@ -2,9 +2,9 @@
 #'
 #' Link to point toward external content.
 #'
-#' @param label Link text.
-#' @param icon Link icon, if any.
+#' @param label Optional link text.
 #' @param href Link source, url.
+#' @param icon Link icon, if any. Must pass \link{f7Icon}.
 #'
 #' @examples
 #' if(interactive()){
@@ -17,7 +17,7 @@
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Link"),
 #'      f7Link(label = "Google", href = "https://www.google.com"),
-#'      f7Link(label = "Twitter", href = "https://www.twitter.com")
+#'      f7Link(href = "https://www.twitter.com", icon = f7Icon("bolt_fill"))
 #'     )
 #'    ),
 #'    server = function(input, output) {}
@@ -27,7 +27,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Link <- function(label, href, icon = NULL) {
+f7Link <- function(label = NULL, href, icon = NULL) {
 
   linkCl <- "link external"
 
@@ -37,8 +37,8 @@ f7Link <- function(label, href, icon = NULL) {
    class = linkCl,
    if (!is.null(icon)) {
      shiny::tagList(
-       shiny::tags$i(class = "icon", icon),
-       shiny::span(label)
+       icon,
+       label
      )
    } else {
      label
