@@ -4,10 +4,6 @@ shinyApp(
   ui = f7Page(
     title = "Insert a tab Before the target",
     f7TabLayout(
-      panels = tagList(
-        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
-      ),
       navbar = f7Navbar(
         title = "Tabs",
         hairline = FALSE,
