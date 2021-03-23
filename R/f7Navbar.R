@@ -14,7 +14,9 @@
 #' @param transparent Whether the navbar should be transparent. FALSE by default.
 #' Only works if bigger is TRUE.
 #' @param leftPanel Whether to enable the left panel. FALSE by default.
+#' @param leftPanelIcon Customize the icon that opens the leftPanel. "bars" by default.
 #' @param rightPanel Whether to enable the right panel. FALSE by default.
+#' @param rightPanelIcon Customize the icon that opens the rightPanel. "bars" by default.
 #'
 #' @note Currently, bigger parameters does mess with the CSS.
 #'
@@ -25,7 +27,7 @@
 #' @export
 f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairline = TRUE,
                      shadow = TRUE, bigger = FALSE, transparent = FALSE, leftPanel = FALSE,
-                     rightPanel = FALSE) {
+                     leftPanelIcon = "bars", rightPanel = FALSE, rightPanelIcon = "bars") {
 
    navbarClass <- "navbar"
    # bigger and transparent work together
@@ -47,7 +49,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
             `data-panel` = "left",
             # shiny::tags$i(class = "f7-icons ios-only", "bars"),
             # shiny::tags$i(class = "icon material-icons md-only", "menu")
-            f7Icon("bars")
+            f7Icon(leftPanelIcon)
          )
       )
    }
@@ -60,7 +62,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
             `data-panel` = "right",
             # shiny::tags$i(class = "f7-icons ios-only", "bars"),
             # shiny::tags$i(class = "icon material-icons md-only", "menu")
-            f7Icon("bars")
+            f7Icon(rightPanelIcon)
          )
       )
    }
