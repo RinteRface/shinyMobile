@@ -562,6 +562,7 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
     tab[[2]],
     # Get the last element - check if this accessor is correct in
     # case of errors with nested controls
+    #shiny::span(class = "tabbar-label", tab[[1]]$attribs$`data-value`)
     shiny::span(class = "tabbar-label", as.character(children[[length(children)]]))
   )
   tabLink <- as.character(force(tabLink))
