@@ -37,7 +37,7 @@
 #'     ),
 #'     f7Card(
 #'      title = "Card header",
-#'      image = "https://lorempixel.com/1000/600/nature/3/",
+#'      image = "https://loremflickr.com/320/240",
 #'      "This is a simple card with plain text,
 #'      but cards can also contain their own header,
 #'      footer, list view, image, or any other element.",
@@ -137,11 +137,11 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7SocialCard"),
 #'      f7SocialCard(
-#'      image = "https://lorempixel.com/68/68/people/1/",
+#'      image = "https://loremflickr.com/g/320/240/paris",
 #'      author = "John Doe",
 #'      date = "Monday at 3:47 PM",
 #'      "What a nice photo i took yesterday!",
-#'      img(src = "https://lorempixel.com/1000/700/nature/8/", width = "100%"),
+#'      img(src = "https://loremflickr.com/g/320/240/paris", width = "100%"),
 #'      footer = tagList(
 #'       f7Badge("1", color = "yellow"),
 #'       f7Badge("2", color = "green"),
