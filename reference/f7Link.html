@@ -172,14 +172,14 @@
     <p>Link to point toward external content.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7Link</span><span class='op'>(</span><span class='va'>label</span>, <span class='va'>href</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>href</span>, icon <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>label</th>
-      <td><p>Link text.</p></td>
+      <td><p>Optional link text.</p></td>
     </tr>
     <tr>
       <th>href</th>
@@ -187,7 +187,7 @@
     </tr>
     <tr>
       <th>icon</th>
-      <td><p>Link icon, if any.</p></td>
+      <td><p>Link icon, if any. Must pass <a href='f7Icon.html'>f7Icon</a>.</p></td>
     </tr>
     </table>
 
@@ -206,7 +206,7 @@
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7Link"</span><span class='op'>)</span>,
      <span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Google"</span>, href <span class='op'>=</span> <span class='st'>"https://www.google.com"</span><span class='op'>)</span>,
-     <span class='fu'>f7Link</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"Twitter"</span>, href <span class='op'>=</span> <span class='st'>"https://www.twitter.com"</span><span class='op'>)</span>
+     <span class='fu'>f7Link</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.twitter.com"</span>, icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"bolt_fill"</span><span class='op'>)</span><span class='op'>)</span>
     <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span><span class='op'>}</span>
