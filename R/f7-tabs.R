@@ -612,11 +612,12 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
 
   # create the corresponding tablink
   tabId <- gsub(" ", "", nsWrapper(tab[[1]]$attribs$id), fixed = TRUE)
+  children = tab[[1]]$children
   tabLink <- shiny::a(
     class = if (select) "tab-link tab-link-active" else "tab-link",
     `data-tab` = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
     tab[[2]],
-    shiny::span(class = "tabbar-label", tab[[1]]$attribs$`data-value`)
+    shiny::span(class = "tabbar-label", as.character(children[[length(children)]]))
   )
   tabLink <- as.character(force(tabLink))
 
