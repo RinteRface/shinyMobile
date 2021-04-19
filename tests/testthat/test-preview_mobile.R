@@ -22,7 +22,7 @@ test_that("dependencies", {
   deps_names <- vapply(deps, `[[`, "name", FUN.VALUE = character(1))
   idx <- which(deps_names == "marvel-devices-css")
 
-  expect_length(deps, 3)
+  expect_length(deps, 2)
   expect_equal(deps[[idx]]$name, "marvel-devices-css")
   expect_equal(deps[[idx]]$version, "1.0.0")
   expect_equal(deps[[idx]]$stylesheet, "devices.min.css")
