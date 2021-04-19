@@ -44,7 +44,7 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7checkBox"),
      f7Card(
-      f7checkBox(
+      f7Checkbox(
        inputId = "check",
        label = "Checkbox",
        value = FALSE

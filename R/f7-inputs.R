@@ -874,6 +874,29 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #'
 #' @rdname checkbox
 #'
+#' @export
+f7checkBox <- function(inputId, label, value = FALSE) {
+
+  .Deprecated(
+    "f7Checkbox",
+    package = "shinyMobile",
+    "f7checkBox will be removed in future release. Please use
+    f7Checkbox instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+  f7Checkbox(inputId, label, value)
+}
+
+
+#' Framework7 checkbox
+#'
+#' \link{f7Checkbox} creates a checkbox input.
+#'
+#' @param inputId The input slot that will be used to access the value.
+#' @param label Display label for the control, or NULL for no label.
+#' @param value Initial value (TRUE or FALSE).
+#'
+#' @rdname checkbox
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -885,7 +908,7 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7checkBox"),
 #'      f7Card(
-#'       f7checkBox(
+#'       f7Checkbox(
 #'        inputId = "check",
 #'        label = "Checkbox",
 #'        value = FALSE
@@ -901,15 +924,7 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #' }
 #
 #' @export
-f7checkBox <- function(inputId, label, value = FALSE){
-
-  .Deprecated(
-    "f7Checkbox",
-    package = "shinyMobile",
-    "f7checkBox will be removed in future release. Please use
-    f7Checkbox instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
+f7Checkbox <- function(inputId, label, value = FALSE) {
 
   value <- shiny::restoreInput(id = inputId, default = value)
   inputTag <- shiny::tags$input(id = inputId, type = "checkbox")
@@ -925,21 +940,6 @@ f7checkBox <- function(inputId, label, value = FALSE){
     )
   )
 }
-
-
-#' Framework7 checkbox
-#'
-#' \link{f7Checkbox} creates a checkbox input.
-#'
-#' @param inputId The input slot that will be used to access the value.
-#' @param label Display label for the control, or NULL for no label.
-#' @param value Initial value (TRUE or FALSE).
-#'
-#' @rdname checkbox
-#' @export
-f7Checkbox <- f7checkBox
-
-
 
 
 #' Update Framework7 checkbox
