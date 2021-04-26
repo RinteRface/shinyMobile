@@ -4,14 +4,14 @@
 \alias{f7Link}
 \title{Framework7 link}
 \usage{
-f7Link(label, href, icon = NULL)
+f7Link(label = NULL, href, icon = NULL)
 }
 \arguments{
-\item{label}{Link text.}
+\item{label}{Optional link text.}
 
 \item{href}{Link source, url.}
 
-\item{icon}{Link icon, if any.}
+\item{icon}{Link icon, if any. Must pass \link{f7Icon}.}
 }
 \description{
 Link to point toward external content.
@@ -27,7 +27,7 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Link"),
      f7Link(label = "Google", href = "https://www.google.com"),
-     f7Link(label = "Twitter", href = "https://www.twitter.com")
+     f7Link(href = "https://www.twitter.com", icon = f7Icon("bolt_fill"))
     )
    ),
    server = function(input, output) {}

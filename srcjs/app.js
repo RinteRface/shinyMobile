@@ -391,11 +391,14 @@ $(function() {
     Shiny.addCustomMessageHandler(id, function(message) {
       var tabId = $('#' + message.ns + '-' + message.target);
 
+      var tab = $(message.value.html);
+
+
       // for swipeable tabs
       var newTab;
       if ($(tabId).hasClass("swiper-slide")) {
         // prepare the new slide
-        newTab = $(message.value).addClass("swiper-slide");
+        newTab = $(tab).addClass("swiper-slide");
         // remove page content class for standalone tabs
         if (
           $(".tabLinks")
@@ -411,7 +414,7 @@ $(function() {
         if (app.params.dark) $(newTab).css("background-color", "");
       } else {
         // remove white background for tab in dark mode
-        newTab = $(message.value);
+        newTab = $(tab);
         if (app.params.dark) $(newTab).css("background-color", "");
       }
 
@@ -434,6 +437,14 @@ $(function() {
           )
         );
       }
+
+      // needed to render input/output in newly added tab. It takes the possible
+      // deps and add them to the tag. Indeed, if we insert a tab, its deps are not
+      // included in the page so it can't render properly
+      Shiny.renderContent(
+        tab[0],
+        {html: tab.html(), deps: message.value.deps}
+      );
 
       // we need to transform a in button in case
       // the container has segmented class (for standalone tabs).

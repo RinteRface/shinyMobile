@@ -1,5 +1,8 @@
 # shinyMobile 1.0.0.9000
 
+# Breaking change
+- `f7Link()` __icon__ now expects `f7Icon()`. __label__ is not mandatory anymore.
+
 ## Major change
 - New `updateF7Radio()`. Fixes #135. Thanks @korterling.
 
@@ -11,6 +14,9 @@
 - Rework widget JS code base (no user impact). 
 
 ## Bug fixes
+- Fix #154: How to include link icon in f7Link() function.
+- Fix #127: Enable groups in `f7SmartSelect()`. 
+- Fix #174 and #134: Reactive elements created inside `insertF7Tab()` are losing reactivity.
 - Fix #98: `f7DatePicker()` visibility issue. Thanks @styvens.
 - Fix #120: `f7Button()` with link not working. Thanks @bwganblack.
 - Fix #144: Close `f7SmartSelect()` on selection. Thanks @dewalex.

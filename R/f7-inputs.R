@@ -874,6 +874,29 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #'
 #' @rdname checkbox
 #'
+#' @export
+f7checkBox <- function(inputId, label, value = FALSE) {
+
+  .Deprecated(
+    "f7Checkbox",
+    package = "shinyMobile",
+    "f7checkBox will be removed in future release. Please use
+    f7Checkbox instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+  f7Checkbox(inputId, label, value)
+}
+
+
+#' Framework7 checkbox
+#'
+#' \link{f7Checkbox} creates a checkbox input.
+#'
+#' @param inputId The input slot that will be used to access the value.
+#' @param label Display label for the control, or NULL for no label.
+#' @param value Initial value (TRUE or FALSE).
+#'
+#' @rdname checkbox
 #' @examples
 #' if(interactive()){
 #'  library(shiny)
@@ -901,7 +924,7 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #' }
 #
 #' @export
-f7Checkbox <- function(inputId, label, value = FALSE){
+f7Checkbox <- function(inputId, label, value = FALSE) {
 
   value <- shiny::restoreInput(id = inputId, default = value)
   inputTag <- shiny::tags$input(id = inputId, type = "checkbox")
@@ -919,6 +942,7 @@ f7Checkbox <- function(inputId, label, value = FALSE){
 }
 
 
+ 
 #' Deprecated functions
 #'
 #' \code{f7checkBox} creates a checkbox input. Use \link{f7Checkbox} instead.
@@ -1121,13 +1145,28 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 createSelectOptions <- function(choices, selected) {
   choices <- choicesWithNames(choices)
   options <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$option(
-      value = choices[[i]],
-      names(choices)[i],
-      selected = if (!is.null(selected)) {
-        if (choices[[i]] %in% selected) NA else NULL
-      }
-    )
+    if (inherits(choices[[1]], "list")) {
+      shiny::tags$optgroup(
+        label = names(choices)[i],
+        lapply(X = seq_along(choices[[i]]), function(j) {
+          shiny::tags$option(
+            value = choices[[i]][[j]],
+            names(choices[[i]])[j],
+            selected = if (!is.null(selected)) {
+              if (choices[[i]][[j]] %in% selected) NA else NULL
+            }
+          )
+        })
+      )
+    } else {
+      shiny::tags$option(
+        value = choices[[i]],
+        names(choices)[i],
+        selected = if (!is.null(selected)) {
+          if (choices[[i]] %in% selected) NA else NULL
+        }
+      )
+    }
   })
 
   return(options)
@@ -1340,10 +1379,22 @@ updateF7Select <- function(inputId, selected = NULL,
 #'          choices = colnames(mtcars)[-1],
 #'          openIn = "popup"
 #'        ),
-#'        tableOutput("data")
+#'        tableOutput("data"),
+#'        f7SmartSelect(
+#'          inputId = "variable2",
+#'          label = "Group variables:",
+#'          choices = list(
+#'           `East Coast` = list("NY", "NJ", "CT"),
+#'           `West Coast` = list("WA", "OR", "CA"),
+#'           `Midwest` = list("MN", "WI", "IA")
+#'          ),
+#'          openIn = "sheet"
+#'        ),
+#'        textOutput("var")
 #'      )
 #'    ),
 #'    server = function(input, output) {
+#'      output$var <- renderText(input$variable2)
 #'      output$data <- renderTable({
 #'        mtcars[, c("mpg", input$variable), drop = FALSE]
 #'      }, rownames = TRUE)

@@ -550,7 +550,10 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
   # - 2 is the icon name
   # - 3 is the tabName
   # Below we check if the tag is really a shiny tag...
-  if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) stop("tab must be a shiny tag")
+  if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) {
+    stop("tab must be a shiny tag")
+  }
+
   nsWrapper <- shiny::NS(id)
   position <- match.arg(position)
   # create the corresponding tab-link
@@ -560,24 +563,20 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
     class = if (select) "tab-link tab-link-active" else "tab-link",
     `data-tab` = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
     tab[[2]],
-    # Get the last element - check if this accessor is correct in
-    # case of errors with nested controls
-    #shiny::span(class = "tabbar-label", tab[[1]]$attribs$`data-value`)
-    shiny::span(class = "tabbar-label", as.character(children[[length(children)]]))
+    shiny::span(class = "tabbar-label", tab[[1]]$attribs$`data-value`)
   )
   tabLink <- as.character(force(tabLink))
 
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
   tab[[1]]$attribs$id <- nsWrapper(tab[[1]]$attribs$id)
-  tab <- as.character(force(tab[[1]]))
 
   # remove all whitespace from the target name
   target <- gsub(" ", "", target, fixed = TRUE)
 
   message <- dropNulls(
     list(
-      value = tab,
+      value = processDeps(tab[[1]], session),
       id = tabId,
       link = tabLink,
       target = target,

@@ -80,10 +80,22 @@ library(shinyMobile)
          choices = colnames(mtcars)[-1],
          openIn = "popup"
        ),
-       tableOutput("data")
+       tableOutput("data"),
+       f7SmartSelect(
+         inputId = "variable2",
+         label = "Group variables:",
+         choices = list(
+          `East Coast` = list("NY", "NJ", "CT"),
+          `West Coast` = list("WA", "OR", "CA"),
+          `Midwest` = list("MN", "WI", "IA")
+         ),
+         openIn = "sheet"
+       ),
+       textOutput("var")
      )
    ),
    server = function(input, output) {
+     output$var <- renderText(input$variable2)
      output$data <- renderTable({
        mtcars[, c("mpg", input$variable), drop = FALSE]
      }, rownames = TRUE)
