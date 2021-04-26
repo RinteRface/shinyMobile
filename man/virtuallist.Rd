@@ -54,10 +54,10 @@ or could be modified.}
 \item{right}{Right content if any.}
 }
 \description{
-\link{f7VirtualList} is a high performance list container.
+\code{f7VirtualList} is a high performance list container.
 Use if you have too many components in \link{f7List}.
 
-\link{f7VirtualListItem} is an item component for \link{f7VirtualList}.
+\code{f7VirtualListItem} is an item component for \link{f7VirtualList}.
 }
 \examples{
 if (interactive()) {

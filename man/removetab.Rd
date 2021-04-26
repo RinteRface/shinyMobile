@@ -2,12 +2,9 @@
 % Please edit documentation in R/f7-tabs.R
 \name{removeF7Tab}
 \alias{removeF7Tab}
-\alias{f7RemoveTab}
 \title{Framework7 tab deletion}
 \usage{
 removeF7Tab(id, target, session = shiny::getDefaultReactiveDomain())
-
-f7RemoveTab(id, target, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{id}{\link{f7Tabs} id.}
@@ -17,8 +14,7 @@ f7RemoveTab(id, target, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{removeF7Tab} removes a \link{f7Tab} in a \link{f7Tabs}.
-\link{f7RemoveTab} is deprecated. It removes a \link{f7Tab} in a \link{f7Tabs}.
+\code{removeF7Tab} removes an \link{f7Tab} in a \link{f7Tabs}.
 }
 \examples{
 if (interactive()) {

@@ -1,6 +1,6 @@
 #' Framework7 gauge
 #'
-#' \link{f7Gauge} creates a gauge instance.
+#' \code{f7Gauge} creates a gauge instance.
 #'
 #' @rdname gauge
 #'
@@ -103,7 +103,7 @@ f7Gauge <- function(id, type = "circle", value, size = 200,
 
 #' Update Framework7 gauge
 #'
-#' \link{updateF7Gauge} updates a framework7 gauge from the server side.
+#' \code{updateF7Gauge} updates a framework7 gauge from the server side.
 #'
 #' @rdname gauge
 #'

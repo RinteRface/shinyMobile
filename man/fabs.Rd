@@ -47,11 +47,11 @@ f7FabMorphTarget(tag)
 \item{tag}{Target tag.}
 }
 \description{
-\link{f7Fabs} hosts multiple \link{f7Fab}.
+\code{f7Fabs} hosts multiple \link{f7Fab}.
 
-\link{updateF7Fabs} toggles \link{f7Fabs} on the server side.
+\code{updateF7Fabs} toggles \link{f7Fabs} on the server side.
 
-\link{f7FabMorphTarget} convert a tag into a target morphing.
+\code{f7FabMorphTarget} convert a tag into a target morphing.
 See \url{https://v5.framework7.io/docs/floating-action-button.html#fab-morph}.
 }
 \note{

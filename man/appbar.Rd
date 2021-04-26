@@ -15,7 +15,7 @@ f7Next(targetId)
 \arguments{
 \item{...}{Any UI content such as \link{f7Searchbar}, \link{f7Next} and
 \link{f7Back}. It is best practice to wrap \link{f7Next} and
-\link{f7Back} in a \link{f7Flex}.}
+\link{f7Back} in an \link{f7Flex}.}
 
 \item{leftPanel}{Whether to enable the left panel. FALSE by default.}
 
@@ -24,7 +24,7 @@ f7Next(targetId)
 \item{targetId}{\link{f7Tabs} id.}
 }
 \description{
-\link{f7Appbar} is displayed on top of \link{f7Navbar}. \link{f7Appbar} can also
+\code{f7Appbar} is displayed on top of an \link{f7Navbar}. \link{f7Appbar} can also
 trigger \link{f7Panel}.
 
 \link{f7Back} is a button to go back in \link{f7Tabs}.

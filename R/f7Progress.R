@@ -1,6 +1,6 @@
 #' Framework7 progress bar
 #'
-#' \link{f7Progress} creates a progress bar.
+#' \code{f7Progress} creates a progress bar.
 #'
 #' @param id Progress id. Must be unique.
 #' @param value Progress value. Between 0 and 100. If NULL the progress bar is infinite.
@@ -52,7 +52,7 @@ f7Progress <- function(id, value = NULL, color) {
 
 #' Update Framework7 progress bar
 #'
-#' \link{updateF7Progress} update a framework7 progress bar from the server side
+#' \code{updateF7Progress} update a framework7 progress bar from the server side
 #'
 #' @param id Unique progress bar id.
 #' @param value New value.

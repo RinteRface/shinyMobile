@@ -1,6 +1,6 @@
 #' Framework7 tooltip
 #'
-#' \link{f7Tooltip} creates a static tooltip, UI side.
+#' \code{f7Tooltip} creates a static tooltip, UI side.
 #'
 #' @param tag Tooltip target.
 #' @param text Tooltip content.
@@ -38,7 +38,7 @@ f7Tooltip <- function(tag, text) {
 
 #' Add Framework7 tooltip
 #'
-#' \link{addF7Tooltip} adds a dynamic tooltip to the given target. The tooltip can
+#' \code{addF7Tooltip} adds a dynamic tooltip to the given target. The tooltip can
 #' be modified later.
 #'
 #' @param id Tooltip target id.
@@ -135,7 +135,7 @@ addF7Tooltip <- function(id = NULL, selector = NULL, options,
 
 #' Update Framework7 tooltip
 #'
-#' \link{updateF7Tooltip} updates a tooltip from the server. Either toggle or update the text
+#' \code{updateF7Tooltip} updates a tooltip from the server. Either toggle or update the text
 #' content.
 #'
 #' @param id Tooltip target id.

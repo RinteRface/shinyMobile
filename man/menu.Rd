@@ -32,15 +32,15 @@ updateF7MenuDropdown(id, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
+\code{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
 
-\link{f7MenuItem} creates a special action button for \link{f7Menu}.
+\code{f7MenuItem} creates a special action button for \link{f7Menu}.
 
-\link{f7MenuDropdown} creates a dropdown menu for \link{f7Menu}.
+\code{f7MenuDropdown} creates a dropdown menu for \link{f7Menu}.
 
-\link{f7MenuDropdownDivider} creates a dropdown divider for \link{f7MenuDropdown}.
+\code{f7MenuDropdownDivider} creates a dropdown divider for \link{f7MenuDropdown}.
 
-\link{updateF7MenuDropdown} toggles \link{f7MenuDropdown} on the client.
+\code{updateF7MenuDropdown} toggles \link{f7MenuDropdown} on the client.
 }
 \examples{
 # Menu container

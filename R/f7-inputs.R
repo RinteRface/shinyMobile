@@ -1,6 +1,6 @@
 #' Framework7 autocomplete input
 #'
-#' \link{f7AutoComplete} generates a Framework7 autocomplete input.
+#' \code{f7AutoComplete} generates a Framework7 autocomplete input.
 #'
 #' @param inputId Autocomplete input id.
 #' @param label Autocomplete label.
@@ -170,7 +170,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 
 #' Update Framework7 autocomplete
 #'
-#' \link{updateF7AutoComplete} Change the value of an autocomplete input on the client.
+#' \code{updateF7AutoComplete} changes the value of an autocomplete input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param value New value.
@@ -238,7 +238,7 @@ updateF7AutoComplete <- function(inputId, value =  NULL,
 
 #' Framework7 picker input
 #'
-#' \link{f7Picker} generates a picker input.
+#' \code{f7Picker} generates a picker input.
 #'
 #' @param inputId Picker input id.
 #' @param label Picker label.
@@ -361,7 +361,7 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
 
 #' Update Framework7 picker
 #'
-#' \link{updateF7Picker} changes the value of a picker input on the client.
+#' \code{updateF7Picker} changes the value of a picker input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param value Picker initial value, if any.
@@ -625,7 +625,7 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 
 #' Framework7 date picker
 #'
-#' \link{f7DatePicker} creates a Framework7 date picker input.
+#' \code{f7DatePicker} creates a Framework7 date picker input.
 #'
 #' @param inputId Date input id.
 #' @param label Input label.
@@ -773,7 +773,7 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
 
 #' Update Framework7 date picker
 #'
-#' \link{updateF7DatePicker} changes the value of a date picker input on the client.
+#' \code{updateF7DatePicker} changes the value of a date picker input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param value The new value for the input.
@@ -866,7 +866,7 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 
 #' Framework7 checkbox
 #'
-#' Deprecated. \link{f7checkBox} creates a checkbox input.
+#' \code{f7Checkbox} creates a checkbox input.
 #'
 #' @param inputId The input slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
@@ -906,7 +906,7 @@ f7checkBox <- function(inputId, label, value = FALSE) {
 #'    ui = f7Page(
 #'     title = "My app",
 #'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7checkBox"),
+#'      navbar = f7Navbar(title = "f7Checkbox"),
 #'      f7Card(
 #'       f7Checkbox(
 #'        inputId = "check",
@@ -942,9 +942,30 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
 }
 
 
+ 
+#' Deprecated functions
+#'
+#' \code{f7checkBox} creates a checkbox input. Use \link{f7Checkbox} instead.
+#'
+#' @rdname f7-deprecated
+#' @inheritParams f7checkBoxGroup
+#' @keywords internal
+#' @export
+f7checkBox <- function(inputId, label, value = FALSE){
+
+  .Deprecated(
+    "f7Checkbox",
+    package = "shinyMobile",
+    "f7checkBox will be removed in future release. Please use
+      f7Checkbox instead.",
+    old = as.character(sys.call(sys.parent()))[1L])
+  f7Checkbox(inputId, label, value)
+}
+
+
 #' Update Framework7 checkbox
 #'
-#' \link{updateF7Checkbox} changes the value of a checkbox input on the client.
+#' \code{updateF7Checkbox} changes the value of a checkbox input on the client.
 #'
 #' @rdname checkbox
 #' @param inputId The id of the input object.
@@ -1011,7 +1032,7 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 
 #' Framework7 checkbox group
 #'
-#' Deprecated. Creates a checkbox group input
+#' \code{f7CheckboxGroup} creates a checkbox group input
 #'
 #' @param inputId Checkbox group input.
 #' @param label Checkbox group label.
@@ -1030,8 +1051,8 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'     ui = f7Page(
 #'      title = "My app",
 #'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7checkBoxGroup"),
-#'       f7checkBoxGroup(
+#'       navbar = f7Navbar(title = "f7CheckboxGroup"),
+#'       f7CheckboxGroup(
 #'        inputId = "variable",
 #'        label = "Choose a variable:",
 #'        choices = colnames(mtcars)[-1],
@@ -1047,15 +1068,7 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'     }
 #'   )
 #'  }
-f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
-
-  .Deprecated(
-    "f7CheckboxGroup",
-    package = "shinyMobile",
-    "f7checkBoxGroup will be removed in future release. Please use
-    f7CheckboxGroup instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
+f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
   selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
 
@@ -1097,19 +1110,27 @@ f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
 
 
-#' Framework7 checkbox group
+#' Deprecated functions
 #'
-#' Creates a checkbox group input
+#' \code{f7checkBoxGroup} creates a checkbox group input.
+#' Use \link{f7CheckboxGroup} instead
 #'
-#' @param inputId Checkbox group input.
-#' @param label Checkbox group label.
-#' @param choices Checkbox group choices.
-#' @param selected Checkbox group selected value.
-#'
+#' @rdname f7-deprecated
+#' @inheritParams f7checkBoxGroup
+#' @keywords internal
 #' @export
-#' @rdname checkboxgroup
-f7CheckboxGroup <- f7checkBoxGroup
+f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 
+  .Deprecated(
+    "f7CheckboxGroup",
+    package = "shinyMobile",
+    "f7checkBoxGroup will be removed in future release. Please use
+    f7CheckboxGroup instead.",
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
+
+  f7CheckboxGroup(inputId, label, choices, selected)
+}
 
 
 
@@ -1187,7 +1208,7 @@ choicesWithNames <- function(choices) {
 
 #' Framework7 select input
 #'
-#' \link{f7Select} creates a select input.
+#' \code{f7Select} creates a select input.
 #'
 #' @param inputId Select input id.
 #' @param label Select input label.
@@ -1260,7 +1281,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 
 #' Update Framework7 select
 #'
-#' \link{updateF7Select} changes the value of a select input on the client
+#' \code{updateF7Select} changes the value of a select input on the client
 #'
 #' @param inputId The id of the input object.
 #' @param selected New value.
@@ -1320,7 +1341,7 @@ updateF7Select <- function(inputId, selected = NULL,
 
 #' Framework7 smart select
 #'
-#' \link{f7SmartSelect} is smarter than the classic \link{f7Select},
+#' \code{f7SmartSelect} is smarter than the classic \link{f7Select},
 #' allows for choices filtering, ...
 #'
 #' @param inputId Select input id.
@@ -1438,7 +1459,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 
 #' Update Framework7 smart select
 #'
-#' \link{updateF7SmartSelect} changes the value of a smart select input on the client.
+#' \code{updateF7SmartSelect} changes the value of a smart select input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param selected The new value for the input.
@@ -1521,7 +1542,7 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
 
 #' Framework7 text input
 #'
-#' \link{f7Text} creates a text input container.
+#' \code{f7Text} creates a text input container.
 #'
 #' @param inputId Text input id.
 #' @param label Text input label.
@@ -1608,7 +1629,7 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 
 #' Update Framework7 text input
 #'
-#' \link{updateF7Text} changes the value of a text input on the client.
+#' \code{updateF7Text} changes the value of a text input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param label The label to set for the input object.
@@ -1715,7 +1736,7 @@ updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL
 
 #' Framework7 text area input
 #'
-#' \link{f7TextArea} creates a f7 text area input.
+#' \code{f7TextArea} creates a f7 text area input.
 #'
 #' @inheritParams f7Text
 #' @param resize Whether to box can be resized. Default to FALSE.
@@ -1781,7 +1802,7 @@ f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
 
 #' Update Framework7 text area input
 #'
-#' \link{updateF7TextArea} changes the value of a text area input on the client.
+#' \code{updateF7TextArea} changes the value of a text area input on the client.
 #'
 #' @inheritParams updateF7Text
 #' @rdname textarea
@@ -1878,7 +1899,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 
 #' Framework7 range slider
 #'
-#' \link{f7Slider} creates a f7 slider input.
+#' \code{f7Slider} creates a f7 slider input.
 #'
 #' @param inputId Slider input id.
 #' @param label Slider label.
@@ -1895,7 +1916,7 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #' @param labels Enables additional label around range slider knob. List of 2 \link{f7Icon}
 #' expected.
 #' @param color See \link{getF7Colors} for valid colors.
-#' @param noSwipping Prevent swiping when slider is manipulated in a \code{\link{f7TabLayout}}.
+#' @param noSwipping Prevent swiping when slider is manipulated in an \link{f7TabLayout}.
 #'
 #' @note labels option only works when vertical is FALSE!
 #'
@@ -2063,7 +2084,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
 #' Update Framework7 range slider
 #'
-#' \link{updateF7Slider} changes the value of a slider input on the client.
+#' \code{updateF7Slider} changes the value of a slider input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param min Slider minimum range.
@@ -2148,7 +2169,7 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
 
 #' Framework7 stepper input
 #'
-#' \link{f7Stepper} creates a stepper input.
+#' \code{f7Stepper} creates a stepper input.
 #'
 #' @param inputId Stepper input id.
 #' @param label Stepper label.
@@ -2294,7 +2315,7 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
 #' Update Framework7 stepper
 #'
-#' \link{updateF7Stepper} changes the value of a stepper input on the client.
+#' \code{updateF7Stepper} changes the value of a stepper input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param min Stepper minimum value.
@@ -2407,7 +2428,7 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 
 #' Framework7 toggle input
 #'
-#' \link{f7Toggle} creates a F7 toggle switch input.
+#' \code{f7Toggle} creates a F7 toggle switch input.
 #'
 #' @param inputId Toggle input id.
 #' @param label Toggle label.
@@ -2474,7 +2495,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 
 #' Update Framework7 toggle input
 #'
-#' \link{updateF7Toggle} changes the value of a toggle input on the client.
+#' \code{updateF7Toggle} changes the value of a toggle input on the client.
 #'
 #' @param inputId The id of the input object.
 #' @param checked Whether the toggle is TRUE or FALSE.
@@ -2535,7 +2556,7 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 
 #' Framework7 radio input
 #'
-#' \link{f7Radio} creates a radio button input.
+#' \code{f7Radio} creates a radio button input.
 #'
 #' @param inputId Radio input id.
 #' @param label Radio label
@@ -2595,7 +2616,7 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
 
 #' Update Framework7 radio buttons
 #'
-#' \link{updateF7Radio} updates a radio button input.
+#' \code{updateF7Radio} updates a radio button input.
 #'
 #' @param inputId Radio input id.
 #' @param label New radio label

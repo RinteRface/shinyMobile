@@ -1,6 +1,6 @@
 #' Framework7 popup
 #'
-#' \link{f7Popup} creates a popup window with any UI content that pops up over App's main content.
+#' \code{f7Popup} creates a popup window with any UI content that pops up over App's main content.
 #' Popup as all other overlays is part of so called "Temporary Views".
 #'
 #' @param ... UI elements for the body of the popup window.
@@ -51,7 +51,7 @@
 #'     output$popupContent <- renderPrint(input$text)
 #'
 #'     observeEvent(input$togglePopup, {
-#'      f7TogglePopup(id = "popup1")
+#'      updateF7Popup(id = "popup1")
 #'     })
 #'
 #'     observeEvent(input$popup1, {
@@ -121,23 +121,17 @@ f7Popup <- function(..., id, title = NULL,
 
 
 
-#' Toggle Framework7 popup
+#' Updates Framework7 popup
 #'
-#' Deprecated. \link{f7TogglePopup} toggles a \link{f7Popup} from the server.
+#' \code{updateF7Popup} toggles an \link{f7Popup} from the server.
+#' Use \link{updateF7Popup} instead
 #'
 #' @param id Popup id.
 #' @param session Shiny session.
-#' @rdname popup
+#' @rdname f7-deprecated
 #'
 #' @export
-f7TogglePopup <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "updateF7Popup",
-    package = "shinyMobile",
-    "f7TogglePopup will be removed in future release. Please use
-    updateF7Popup instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
+updateF7Popup <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, message = NULL)
 }
 
@@ -145,11 +139,22 @@ f7TogglePopup <- function(id, session = shiny::getDefaultReactiveDomain()) {
 
 #' Toggle Framework7 popup
 #'
-#' \link{updateF7Popup} toggles a \link{f7Popup} from the server.
+#' \code{f7TogglePopup} toggles an \link{f7Popup} from the server.
+#' Use \link{updateF7Popup} instead
 #'
-#' @param id Popup id.
-#' @param session Shiny session.
-#' @rdname popup
+#' @inheritParams updateF7Popup
+#' @rdname f7-deprecated
+#' @keywords internal
 #'
 #' @export
-updateF7Popup <- f7TogglePopup
+f7TogglePopup <-  function(id,
+           session = shiny::getDefaultReactiveDomain()) {
+    .Deprecated(
+      "updateF7Popup",
+      package = "shinyMobile",
+      "f7TogglePopup will be removed in future release. Please use
+    updateF7Popup instead.",
+      old = as.character(sys.call(sys.parent()))[1L]
+    )
+  session$sendInputMessage(id, message = NULL)
+}

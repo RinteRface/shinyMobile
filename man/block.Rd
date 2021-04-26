@@ -23,9 +23,9 @@ f7BlockHeader(text = NULL)
 \item{text}{Any text.}
 }
 \description{
-\link{f7Block} creates a block container.
+\code{f7Block} creates a block container.
 
-\link{f7BlockHeader} creates a header content for \link{f7Block}.
+\code{f7BlockHeader} creates a header content for \link{f7Block}.
 }
 \examples{
 if(interactive()){

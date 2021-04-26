@@ -1,6 +1,6 @@
 #' Framework7 block
 #'
-#' \link{f7Block} creates a block container.
+#' \code{f7Block} creates a block container.
 #'
 #' @param ... Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.
 #' @param hairlines Whether to allow hairlines. TRUE by default.
@@ -115,7 +115,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 
 #' Framework7 block title
 #'
-#' \link{f7BlockTitle} creates a title for \link{f7Block}.
+#' \code{f7BlockTitle} creates a title for \link{f7Block}.
 #'
 #' @param title Block title.
 #' @param size Block title size. NULL by default or "medium", "large".
@@ -141,7 +141,7 @@ f7BlockTitle <- function(title = NULL, size = NULL) {
 
 #' Framework7 block header
 #'
-#' \link{f7BlockHeader} creates a header content for \link{f7Block}.
+#' \code{f7BlockHeader} creates a header content for \link{f7Block}.
 #'
 #' @param text Any text.
 #' @rdname block

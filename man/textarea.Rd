@@ -29,9 +29,9 @@ updateF7TextArea(
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7TextArea} creates a f7 text area input.
+\code{f7TextArea} creates a f7 text area input.
 
-\link{updateF7TextArea} changes the value of a text area input on the client.
+\code{updateF7TextArea} changes the value of a text area input on the client.
 }
 \examples{
 if(interactive()){

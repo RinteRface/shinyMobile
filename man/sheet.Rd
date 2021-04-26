@@ -47,9 +47,9 @@ Need either swipeToClose or swipeToStep set to TRUE to work.}
 \item{session}{Shiny session object}
 }
 \description{
-\link{f7Sheet} creates an f7 sheet modal window.
+\code{f7Sheet} creates an f7 sheet modal window.
 
-\link{updateF7Sheet} toggles a \link{f7Sheet} on the client.
+\code{updateF7Sheet} toggles an \link{f7Sheet} on the client.
 }
 \note{
 The sheet modal has to be used in combination with \link{updateF7Sheet}.

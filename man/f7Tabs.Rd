@@ -17,7 +17,7 @@ f7Tabs(
 \item{...}{Slot for \link{f7Tab}.}
 
 \item{.items}{Slot for other items that could be part of the toolbar such as
-buttons or \link{f7TabLink}. This may be useful to open a \link{f7Sheet} from
+buttons or \link{f7TabLink}. This may be useful to open an \link{f7Sheet} from
 the tabbar.}
 
 \item{id}{Optional to get the id of the currently selected \link{f7Tab}.}

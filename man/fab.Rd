@@ -25,9 +25,9 @@ if \link{f7Fabs} position parameter is not starting with center-...}
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Fab} generates a nice button to be put in \link{f7Fabs}.
+\code{f7Fab} generates a nice button to be put in \link{f7Fabs}.
 
-\link{updateF7Fab} changes the label of a \link{f7Fab} input on the client.
+\code{updateF7Fab} changes the label of an \link{f7Fab} input on the client.
 }
 \examples{
 if (interactive()) {

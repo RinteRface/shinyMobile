@@ -52,10 +52,10 @@ one wants to set up local authentication (for a specific section). See example 2
 \description{
 Provide a template for authentication
 
-\link{f7LoginServer} is a useful server elements to fine tune the
+\code{f7LoginServer} is a useful server elements to fine tune the
 \link{f7Login} page.
 
-\link{updateF7Login} toggles a login page.
+\code{updateF7Login} toggles a login page.
 }
 \details{
 This function does not provide the backend features. You would
@@ -67,7 +67,7 @@ It is linked to an action button, which is 0 when the application starts. As soo
 as the button is pressed, its value is incremented which might fire a
 \code{observeEvent} listening to it (See example below). Importantly,
 the login page is closed only if the text and password inputs are filled. The
-\link{f7LoginServer} contains a piece of server logic that does this work for you.
+\code{f7LoginServer} contains a piece of server logic that does this work for you.
 }
 \examples{
 if (interactive()) {

@@ -1,6 +1,6 @@
 #' Framework7 Toolbar
 #'
-#' \link{f7Toolbar} is a layout element located at the bottom or top. It is
+#' \code{f7Toolbar} is a layout element located at the bottom or top. It is
 #' internally used by \link{f7Tabs}.
 #'
 #' @param ... Slot for \link{f7Link} or any other element.

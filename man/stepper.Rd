@@ -84,9 +84,9 @@ Return key, ending manual mode. TRUE by default.}
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Stepper} creates a stepper input.
+\code{f7Stepper} creates a stepper input.
 
-\link{updateF7Stepper} changes the value of a stepper input on the client.
+\code{updateF7Stepper} changes the value of a stepper input on the client.
 }
 \note{
 While updating, the autorepeat field does not work correctly.

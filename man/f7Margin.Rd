@@ -14,7 +14,7 @@ f7Margin(tag, side = NULL)
 Leave NULL to apply on all sides.}
 }
 \description{
-\link{f7Margin} adds a margin to the given tag.
+\code{f7Margin} adds a margin to the given tag.
 }
 \examples{
 if(interactive()){

@@ -60,14 +60,14 @@ Not compatible with the img argument.}
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Card} creates a simple card container.
+\code{f7Card} creates a simple card container.
 
-\link{f7SocialCard} is a special card for social content.
+\code{f7SocialCard} is a special card for social content.
 
-\link{f7ExpandableCard} is a card that can expand. Ideal for a
+\code{f7ExpandableCard} is a card that can expand. Ideal for a
 gallery.
 
-\link{updateF7Card} maximizes a \link{f7ExpandableCard} on the client.
+\code{updateF7Card} maximizes an \link{f7ExpandableCard} on the client.
 }
 \note{
 For \link{f7ExpandableCard}, image and color are not compatible. Choose one of them.

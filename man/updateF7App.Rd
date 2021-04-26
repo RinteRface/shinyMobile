@@ -12,7 +12,7 @@ updateF7App(options, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{updateF7App} allows to update a shinyMobile app at run time by
+\code{updateF7App} allows to update a shinyMobile app at run time by
 injecting any configuration inside the current running instance. Useful it you want
 to share the same behavior across multiple elements.
 }

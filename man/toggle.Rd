@@ -26,9 +26,9 @@ updateF7Toggle(
 \item{session}{The Shiny session object.}
 }
 \description{
-\link{f7Toggle} creates a F7 toggle switch input.
+\code{f7Toggle} creates a F7 toggle switch input.
 
-\link{updateF7Toggle} changes the value of a toggle input on the client.
+\code{updateF7Toggle} changes the value of a toggle input on the client.
 }
 \examples{
 # f7Toggle

@@ -12,7 +12,7 @@ f7Float(tag, side = c("left", "right"))
 \item{side}{Side to float: "left" or "right".}
 }
 \description{
-\link{f7Float} is an alignment utility for items.
+\code{f7Float} is an alignment utility for items.
 }
 \examples{
 if(interactive()){

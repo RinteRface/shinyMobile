@@ -67,7 +67,7 @@ In any case, you must follow the same structure as provided in the function argu
 \item{allowPWA}{Whether to include PWA dependencies. Default to FALSE.}
 }
 \description{
-\link{f7Page} is the main app container.
+\code{f7Page} is the main app container.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

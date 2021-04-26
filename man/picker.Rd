@@ -66,9 +66,9 @@ Default to TRUE.}
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Picker} generates a picker input.
+\code{f7Picker} generates a picker input.
 
-\link{updateF7Picker} changes the value of a picker input on the client.
+\code{updateF7Picker} changes the value of a picker input on the client.
 }
 \examples{
 # Picker input

@@ -1,6 +1,6 @@
 #' Framework7 timeline
 #'
-#' \link{f7Timeline} is a static timeline container.
+#' \code{f7Timeline} is a static timeline container.
 #'
 #' @param ... Slot for \link{f7TimelineItem}.
 #' @param sides Enable side-by-side timeline mode.
@@ -123,7 +123,7 @@ f7Timeline <- function(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
 
 #' Framework7 timeline item
 #'
-#' \link{f7TimelineItem} goes inside \link{f7Timeline}.
+#' \code{f7TimelineItem} goes inside \link{f7Timeline}.
 #'
 #' @param ... Item content, text for instance.
 #' @param date Timeline item date. Required.

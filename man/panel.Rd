@@ -35,11 +35,11 @@ updateF7Panel(id, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Panel} is a sidebar element. It may be used as a simple
+\code{f7Panel} is a sidebar element. It may be used as a simple
 sidebar or as a container for \link{f7PanelMenu} in case of
 \link{f7SplitLayout}.
 
-\link{updateF7Panel} toggles a \link{f7Panel} from the server.
+\code{updateF7Panel} toggles an \link{f7Panel} from the server.
 }
 \examples{
 if (interactive()) {

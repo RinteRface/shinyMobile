@@ -27,9 +27,9 @@ updateF7Radio(
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7Radio} creates a radio button input.
+\code{f7Radio} creates a radio button input.
 
-\link{updateF7Radio} updates a radio button input.
+\code{updateF7Radio} updates a radio button input.
 }
 \examples{
 if (interactive()) {

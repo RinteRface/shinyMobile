@@ -57,10 +57,10 @@ use same arguments as in \code{\link{f7SmartSelect}}.}
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7SmartSelect} is smarter than the classic \link{f7Select},
+\code{f7SmartSelect} is smarter than the classic \link{f7Select},
 allows for choices filtering, ...
 
-\link{updateF7SmartSelect} changes the value of a smart select input on the client.
+\code{updateF7SmartSelect} changes the value of a smart select input on the client.
 }
 \examples{
 # Smart select input

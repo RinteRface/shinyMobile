@@ -2,8 +2,6 @@
 % Please edit documentation in R/f7Popup.R
 \name{f7Popup}
 \alias{f7Popup}
-\alias{f7TogglePopup}
-\alias{updateF7Popup}
 \title{Framework7 popup}
 \usage{
 f7Popup(
@@ -18,15 +16,11 @@ f7Popup(
   fullsize = FALSE,
   closeButton = TRUE
 )
-
-f7TogglePopup(id, session = shiny::getDefaultReactiveDomain())
-
-updateF7Popup(id, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{...}{UI elements for the body of the popup window.}
 
-\item{id}{Popup id.}
+\item{id}{Popup unique id.}
 
 \item{title}{Title for the popup window, use \code{NULL} for no title.}
 
@@ -50,16 +44,10 @@ Default to \code{FALSE}.}
 
 \item{closeButton}{Add or not a button to easily close the popup.
 Default to \code{TRUE}.}
-
-\item{session}{Shiny session.}
 }
 \description{
-\link{f7Popup} creates a popup window with any UI content that pops up over App's main content.
+\code{f7Popup} creates a popup window with any UI content that pops up over App's main content.
 Popup as all other overlays is part of so called "Temporary Views".
-
-Deprecated. \link{f7TogglePopup} toggles a \link{f7Popup} from the server.
-
-\link{updateF7Popup} toggles a \link{f7Popup} from the server.
 }
 \examples{
 if (interactive()) {
@@ -88,7 +76,7 @@ if (interactive()) {
     output$popupContent <- renderPrint(input$text)
 
     observeEvent(input$togglePopup, {
-     f7TogglePopup(id = "popup1")
+     updateF7Popup(id = "popup1")
     })
 
     observeEvent(input$popup1, {

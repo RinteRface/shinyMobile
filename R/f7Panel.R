@@ -1,6 +1,6 @@
 #' Framework7 panel
 #'
-#' \link{f7Panel} is a sidebar element. It may be used as a simple
+#' \code{f7Panel} is a sidebar element. It may be used as a simple
 #' sidebar or as a container for \link{f7PanelMenu} in case of
 #' \link{f7SplitLayout}.
 #'
@@ -134,7 +134,7 @@ f7Panel <- function(..., id = NULL, title = NULL,
 
 #' Framework7 sidebar menu
 #'
-#' \link{f7PanelMenu} creates a menu for \link{f7Panel}. It may contain
+#' \code{f7PanelMenu} creates a menu for \link{f7Panel}. It may contain
 #' multiple \link{f7PanelItem}.
 #'
 #' @param ... Slot for \link{f7PanelItem}.
@@ -208,7 +208,7 @@ f7PanelMenu <- function(..., id = NULL) {
 
 #' Framework7 sidebar menu item
 #'
-#' \link{f7PanelItem} creates a Framework7 sidebar menu item for \link{f7SplitLayout}.
+#' \code{f7PanelItem} creates a Framework7 sidebar menu item for \link{f7SplitLayout}.
 #'
 #' @param title Item name.
 #' @param tabName Item unique tabName. Must correspond to what is passed to
@@ -245,7 +245,7 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 
 #' Update Framework7 panel
 #'
-#' \link{updateF7Panel} toggles a \link{f7Panel} from the server.
+#' \code{updateF7Panel} toggles an \link{f7Panel} from the server.
 #'
 #' @param id Panel unique id.
 #' @param session Shiny session object.

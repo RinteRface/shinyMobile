@@ -41,12 +41,12 @@ See \url{https://v5.framework7.io/docs/tooltip.html#tooltip-parameters}.}
 \item{action}{Either toggle or update the tooltip.}
 }
 \description{
-\link{f7Tooltip} creates a static tooltip, UI side.
+\code{f7Tooltip} creates a static tooltip, UI side.
 
-\link{addF7Tooltip} adds a dynamic tooltip to the given target. The tooltip can
+\code{addF7Tooltip} adds a dynamic tooltip to the given target. The tooltip can
 be modified later.
 
-\link{updateF7Tooltip} updates a tooltip from the server. Either toggle or update the text
+\code{updateF7Tooltip} updates a tooltip from the server. Either toggle or update the text
 content.
 }
 \examples{

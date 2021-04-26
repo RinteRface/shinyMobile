@@ -1,6 +1,6 @@
 #' Framework7 menu container
 #'
-#' \link{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
+#' \code{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
 #'
 #' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropdown}.
 #' @export
@@ -63,7 +63,7 @@ f7Menu <- function(...) {
 
 #' Framework7 menu item
 #'
-#' \link{f7MenuItem} creates a special action button for \link{f7Menu}.
+#' \code{f7MenuItem} creates a special action button for \link{f7Menu}.
 #'
 #' @rdname menu
 #' @param inputId Menu item input id.
@@ -82,7 +82,7 @@ f7MenuItem <- function(inputId, label) {
 
 #' Framework7 dropdown menu
 #'
-#' \link{f7MenuDropdown} creates a dropdown menu for \link{f7Menu}.
+#' \code{f7MenuDropdown} creates a dropdown menu for \link{f7Menu}.
 #'
 #' @param ... Slot for \link{f7MenuItem} and \link{f7MenuDropdownDivider}.
 #' @param id Dropdown menu id. This is required when once wants to programmatically toggle
@@ -124,7 +124,7 @@ f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "ri
 
 #' Framework7 dropdown menu divider
 #'
-#' \link{f7MenuDropdownDivider} creates a dropdown divider for \link{f7MenuDropdown}.
+#' \code{f7MenuDropdownDivider} creates a dropdown divider for \link{f7MenuDropdown}.
 #'
 #' @rdname menu
 #' @export
@@ -136,7 +136,7 @@ f7MenuDropdownDivider <- function() {
 
 #' Update Framework7 menu
 #'
-#' \link{updateF7MenuDropdown} toggles \link{f7MenuDropdown} on the client.
+#' \code{updateF7MenuDropdown} toggles \link{f7MenuDropdown} on the client.
 #'
 #' @param id Menu to target.
 #' @param session Shiny session object.

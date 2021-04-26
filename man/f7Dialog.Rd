@@ -25,7 +25,7 @@ f7Dialog(
 \item{session}{shiny session.}
 }
 \description{
-\link{f7Dialog} generates a modal window.
+\code{f7Dialog} generates a modal window.
 }
 \examples{
 # simple alert

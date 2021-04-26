@@ -358,7 +358,7 @@ f7ListIndexItem <- htmltools::tags$li
 
 #' Framework7 virtual list
 #'
-#' \link{f7VirtualList} is a high performance list container.
+#' \code{f7VirtualList} is a high performance list container.
 #' Use if you have too many components in \link{f7List}.
 #'
 #' @param id Virtual list unique id.
@@ -474,7 +474,7 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 
 #' Framework7 virtual list item
 #'
-#' \link{f7VirtualListItem} is an item component for \link{f7VirtualList}.
+#' \code{f7VirtualListItem} is an item component for \link{f7VirtualList}.
 #'
 #' @inheritParams f7ListItem
 #' @rdname virtuallist
@@ -499,7 +499,7 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 
 
 
-#' Update a \link{f7VirtualList} on the server side
+#' Update an \link{f7VirtualList} on the server side
 #'
 #' This function wraps all methods from \url{https://framework7.io/docs/virtual-list.html}
 #'

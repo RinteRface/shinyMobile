@@ -10,5 +10,5 @@ f7FabClose(tag)
 \item{tag}{Target tag.}
 }
 \description{
-\link{f7FabClose} indicates that the current tag should close the \link{f7Fabs}.
+\code{f7FabClose} indicates that the current tag should close the \link{f7Fabs}.
 }

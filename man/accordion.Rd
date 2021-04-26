@@ -33,11 +33,11 @@ by default.}
 \item{session}{Shiny session object}
 }
 \description{
-\link{f7Accordion} creates an interactive accordion container.
+\code{f7Accordion} creates an interactive accordion container.
 
-\link{f7AccordionItem} is to be inserted in \link{f7Accordion}.
+\code{f7AccordionItem} is to be inserted in \link{f7Accordion}.
 
-\link{updateF7Accordion} toggles a \link{f7Accordion} on the client.
+\link{updateF7Accordion} toggles an \link{f7Accordion} on the client.
 }
 \examples{
 # Accordion

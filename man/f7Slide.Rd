@@ -10,5 +10,5 @@ f7Slide(...)
 \item{...}{Slide content. Any element.}
 }
 \description{
-\link{f7Slide} is a \link{f7Swiper} element.
+\code{f7Slide} is an \link{f7Swiper} element.
 }

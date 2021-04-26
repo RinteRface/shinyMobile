@@ -1,6 +1,6 @@
 #' Framework7 chips
 #'
-#' \link{f7Chip} is an improved badge container.
+#' \code{f7Chip} is an improved badge container.
 #'
 #' @param label Chip label.
 #' @param image Chip image, if any.

@@ -24,10 +24,10 @@ f7PanelItem(title, tabName, icon = NULL, active = FALSE)
 \item{active}{Whether the item is active at start. Default to FALSE.}
 }
 \description{
-\link{f7PanelMenu} creates a menu for \link{f7Panel}. It may contain
+\code{f7PanelMenu} creates a menu for \link{f7Panel}. It may contain
 multiple \link{f7PanelItem}.
 
-\link{f7PanelItem} creates a Framework7 sidebar menu item for \link{f7SplitLayout}.
+\code{f7PanelItem} creates a Framework7 sidebar menu item for \link{f7SplitLayout}.
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

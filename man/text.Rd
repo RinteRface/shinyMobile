@@ -27,9 +27,9 @@ updateF7Text(
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Text} creates a text input container.
+\code{f7Text} creates a text input container.
 
-\link{updateF7Text} changes the value of a text input on the client.
+\code{updateF7Text} changes the value of a text input on the client.
 }
 \examples{
 # A text input

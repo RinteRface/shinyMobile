@@ -72,9 +72,9 @@ use same arguments as in \code{\link{f7DatePicker}}.}
 a \code{Date} vector.
 }
 \description{
-\link{f7DatePicker} creates a Framework7 date picker input.
+\code{f7DatePicker} creates a Framework7 date picker input.
 
-\link{updateF7DatePicker} changes the value of a date picker input on the client.
+\code{updateF7DatePicker} changes the value of a date picker input on the client.
 }
 \examples{
 # Date picker

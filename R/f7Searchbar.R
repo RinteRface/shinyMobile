@@ -6,7 +6,7 @@
 #' @param placeholder Searchbar placeholder.
 #' @param expandable Whether to enable the searchbar with a target link,
 #' in the navbar. See \link{f7SearchbarTrigger}.
-#' @param inline Useful to add a \link{f7Searchbar} in a \link{f7Appbar}.
+#' @param inline Useful to add an \link{f7Searchbar} in an \link{f7Appbar}.
 #' Notice that utilities like \link{f7HideOnSearch} and \link{f7NotFound} are not
 #' compatible with this mode.
 #' @param options Search bar options.

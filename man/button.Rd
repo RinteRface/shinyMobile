@@ -57,9 +57,9 @@ used in \link{f7Segment} with the strong parameter set to TRUE.}
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
-\link{f7Button} generates a Framework7 action button.
+\code{f7Button} generates a Framework7 action button.
 
-\link{updateF7Button} updates a \link{f7Button}.
+\code{updateF7Button} updates an \link{f7Button}.
 }
 \examples{
 if (interactive()) {

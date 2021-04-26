@@ -64,14 +64,14 @@ expected.}
 
 \item{color}{See \link{getF7Colors} for valid colors.}
 
-\item{noSwipping}{Prevent swiping when slider is manipulated in a \code{\link{f7TabLayout}}.}
+\item{noSwipping}{Prevent swiping when slider is manipulated in an \link{f7TabLayout}.}
 
 \item{session}{The Shiny session object.}
 }
 \description{
-\link{f7Slider} creates a f7 slider input.
+\code{f7Slider} creates a f7 slider input.
 
-\link{updateF7Slider} changes the value of a slider input on the client.
+\code{updateF7Slider} changes the value of a slider input on the client.
 }
 \note{
 labels option only works when vertical is FALSE!

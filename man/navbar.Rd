@@ -2,7 +2,6 @@
 % Please edit documentation in R/f7Navbar.R
 \name{f7Navbar}
 \alias{f7Navbar}
-\alias{f7HideNavbar}
 \alias{updateF7Navbar}
 \title{Framework7 Navbar}
 \usage{
@@ -17,12 +16,6 @@ f7Navbar(
   transparent = FALSE,
   leftPanel = FALSE,
   rightPanel = FALSE
-)
-
-f7HideNavbar(
-  animate = TRUE,
-  hideStatusbar = FALSE,
-  session = shiny::getDefaultReactiveDomain()
 )
 
 updateF7Navbar(
@@ -65,43 +58,12 @@ required to cover statusbar area. Otherwise, navbar will be fully hidden.}
 Build a navbar layout element to insert in \link{f7SingleLayout},
 \link{f7TabLayout} or \link{f7SplitLayout}.
 
-\link{f7HideNavbar} hides a \link{f7Navbar} component from the
-server. Deprecated, use \link{updateF7Navbar} instead.
-
-\link{updateF7Navbar} toggles a \link{f7Navbar} component from the
-server.
+\code{updateF7Navbar} toggles an \link{f7Navbar} component from the server.
 }
 \note{
 Currently, bigger parameters does mess with the CSS.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-    ui = f7Page(
-       title = "Hide navbar",
-       f7SingleLayout(
-          navbar = f7Navbar("Hide/Show navbar"),
-          f7Segment(
-             f7Button(inputId = "hide", "Hide navbar", color = "red"),
-             f7Button(inputId = "show", "Show navbar", color = "green"),
-          )
-       )
-    ),
-    server = function(input, output, session) {
-
-       observeEvent(input$hide, {
-          f7HideNavbar()
-       })
-
-       observeEvent(input$show, {
-          f7ShowNavbar()
-       })
-    }
- )
-}
 # Toggle f7Navbar
 if (interactive()) {
  library(shiny)

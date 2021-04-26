@@ -1,6 +1,6 @@
 #' Framework7 page container
 #'
-#' \link{f7Page} is the main app container.
+#' \code{f7Page} is the main app container.
 #'
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
@@ -168,7 +168,7 @@ f7Page <- function(
 
 #' Framework7 single layout
 #'
-#' \link{f7SingleLayout} provides a simple page layout.
+#' \code{f7SingleLayout} provides a simple page layout.
 #'
 #' @param ... Content.
 #' @param navbar Slot for \link{f7Navbar}.
@@ -255,7 +255,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 
 #' Framework7 tab layout
 #'
-#' \link{f7TabLayout} create a single page app with multiple tabs,
+#' \code{f7TabLayout} create a single page app with multiple tabs,
 #' giving the illusion of a multi pages experience.
 #'
 #' @param ... Slot for \link{f7Tabs}.
