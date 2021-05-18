@@ -53,7 +53,6 @@
 f7LoginServer is a useful server elements to fine tune the
 f7Login page.
 updateF7Login toggles a login page." />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -85,7 +84,7 @@ updateF7Login toggles a login page." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -135,7 +134,7 @@ updateF7Login toggles a login page." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -173,9 +172,9 @@ updateF7Login toggles a login page." />
 
     <div class="ref-description">
     <p>Provide a template for authentication</p>
-<p>f7LoginServer is a useful server elements to fine tune the
+<p><code>f7LoginServer</code> is a useful server elements to fine tune the
 f7Login page.</p>
-<p>updateF7Login toggles a login page.</p>
+<p><code>updateF7Login</code> toggles a login page.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Login</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>id</span>, <span class='va'>title</span>, label <span class='op'>=</span> <span class='st'>"Sign In"</span>, footer <span class='op'>=</span> <span class='cn'>NULL</span>, startOpen <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -262,7 +261,7 @@ It is linked to an action button, which is 0 when the application starts. As soo
 as the button is pressed, its value is incremented which might fire a
 <code>observeEvent</code> listening to it (See example below). Importantly,
 the login page is closed only if the text and password inputs are filled. The
-f7LoginServer contains a piece of server logic that does this work for you.</p>
+<code>f7LoginServer</code> contains a piece of server logic that does this work for you.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>

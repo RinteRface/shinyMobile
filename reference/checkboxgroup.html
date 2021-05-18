@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Framework7 checkbox group — f7checkBoxGroup • shinyMobile</title>
+<title>Framework7 checkbox group — f7CheckboxGroup • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,10 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Framework7 checkbox group — f7checkBoxGroup" />
-<meta property="og:description" content="Deprecated. Creates a checkbox group input
-Creates a checkbox group input" />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:title" content="Framework7 checkbox group — f7CheckboxGroup" />
+<meta property="og:description" content="f7CheckboxGroup creates a checkbox group input" />
 
 
 
@@ -83,7 +81,7 @@ Creates a checkbox group input" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -133,7 +131,7 @@ Creates a checkbox group input" />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -170,13 +168,10 @@ Creates a checkbox group input" />
     </div>
 
     <div class="ref-description">
-    <p>Deprecated. Creates a checkbox group input</p>
-<p>Creates a checkbox group input</p>
+    <p><code>f7CheckboxGroup</code> creates a checkbox group input</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7checkBoxGroup</span><span class='op'>(</span><span class='va'>inputId</span>, <span class='va'>label</span>, choices <span class='op'>=</span> <span class='cn'>NULL</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
-
-<span class='fu'>f7CheckboxGroup</span><span class='op'>(</span><span class='va'>inputId</span>, <span class='va'>label</span>, choices <span class='op'>=</span> <span class='cn'>NULL</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7CheckboxGroup</span><span class='op'>(</span><span class='va'>inputId</span>, <span class='va'>label</span>, choices <span class='op'>=</span> <span class='cn'>NULL</span>, selected <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,8 +204,8 @@ Creates a checkbox group input" />
     ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"My app"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
-      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7checkBoxGroup"</span><span class='op'>)</span>,
-      <span class='fu'>f7checkBoxGroup</span><span class='op'>(</span>
+      navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7CheckboxGroup"</span><span class='op'>)</span>,
+      <span class='fu'>f7CheckboxGroup</span><span class='op'>(</span>
        inputId <span class='op'>=</span> <span class='st'>"variable"</span>,
        label <span class='op'>=</span> <span class='st'>"Choose a variable:"</span>,
        choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>mtcars</span><span class='op'>)</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>]</span>,

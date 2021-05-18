@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Framework7 preloader — f7ShowPreloader • shinyMobile</title>
+<title>Framework7 preloader — showF7Preloader • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,12 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Framework7 preloader — f7ShowPreloader" />
-<meta property="og:description" content="Deprecated. f7ShowPreloader shows a preloader.
-showF7Preloader shows a preloader.
-Deprecated. f7HidePreloader hides a preloader.
-hideF7Preloader hides a preloader." />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:title" content="Framework7 preloader — showF7Preloader" />
+<meta property="og:description" content="showF7Preloader shows a preloader.
+f7HidePreloader hides a preloader." />
 
 
 
@@ -85,7 +82,7 @@ hideF7Preloader hides a preloader." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -135,7 +132,7 @@ hideF7Preloader hides a preloader." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -172,27 +169,17 @@ hideF7Preloader hides a preloader." />
     </div>
 
     <div class="ref-description">
-    <p>Deprecated. f7ShowPreloader shows a preloader.</p>
-<p>showF7Preloader shows a preloader.</p>
-<p>Deprecated. f7HidePreloader hides a preloader.</p>
-<p>hideF7Preloader hides a preloader.</p>
+    <p><code>showF7Preloader</code> shows a preloader.</p>
+<p><code>f7HidePreloader</code> hides a preloader.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ShowPreloader</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>showF7Preloader</span><span class='op'>(</span>
   target <span class='op'>=</span> <span class='cn'>NULL</span>,
   color <span class='op'>=</span> <span class='cn'>NULL</span>,
   session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='fu'>showF7Preloader</span><span class='op'>(</span>
-  target <span class='op'>=</span> <span class='cn'>NULL</span>,
-  color <span class='op'>=</span> <span class='cn'>NULL</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='fu'>f7HidePreloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>hideF7Preloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'>f7HidePreloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -247,7 +234,7 @@ hideF7Preloader hides a preloader." />
     <span class='op'>}</span><span class='op'>)</span>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>showLoader</span>, <span class='op'>{</span>
-      <span class='fu'>f7ShowPreloader</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+      <span class='fu'>showF7Preloader</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
       <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
       <span class='fu'>f7HidePreloader</span><span class='op'>(</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
@@ -286,7 +273,7 @@ hideF7Preloader hides a preloader." />
     <span class='op'>}</span><span class='op'>)</span>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>obs</span>, <span class='op'>{</span>
-      <span class='fu'>f7ShowPreloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='st'>"#distPlot"</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+      <span class='fu'>showF7Preloader</span><span class='op'>(</span>target <span class='op'>=</span> <span class='st'>"#distPlot"</span>, color <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
       <span class='fu'><a href='https://rdrr.io/r/base/Sys.sleep.html'>Sys.sleep</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
       <span class='fu'>f7HidePreloader</span><span class='op'>(</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>

@@ -50,10 +50,7 @@
 
 <meta property="og:title" content="Framework7 popup — f7Popup" />
 <meta property="og:description" content="f7Popup creates a popup window with any UI content that pops up over App's main content.
-Popup as all other overlays is part of so called &quot;Temporary Views&quot;.
-Deprecated. f7TogglePopup toggles a f7Popup from the server.
-updateF7Popup toggles a f7Popup from the server." />
-<meta property="og:image" content="/logo.png" />
+Popup as all other overlays is part of so called &quot;Temporary Views&quot;." />
 
 
 
@@ -85,7 +82,7 @@ updateF7Popup toggles a f7Popup from the server." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -135,7 +132,7 @@ updateF7Popup toggles a f7Popup from the server." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -172,10 +169,8 @@ updateF7Popup toggles a f7Popup from the server." />
     </div>
 
     <div class="ref-description">
-    <p>f7Popup creates a popup window with any UI content that pops up over App's main content.
+    <p><code>f7Popup</code> creates a popup window with any UI content that pops up over App's main content.
 Popup as all other overlays is part of so called "Temporary Views".</p>
-<p>Deprecated. f7TogglePopup toggles a f7Popup from the server.</p>
-<p>updateF7Popup toggles a f7Popup from the server.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Popup</span><span class='op'>(</span>
@@ -189,11 +184,7 @@ Popup as all other overlays is part of so called "Temporary Views".</p>
   swipeToClose <span class='op'>=</span> <span class='cn'>FALSE</span>,
   fullsize <span class='op'>=</span> <span class='cn'>FALSE</span>,
   closeButton <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='fu'>f7TogglePopup</span><span class='op'>(</span><span class='va'>id</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>updateF7Popup</span><span class='op'>(</span><span class='va'>id</span>, session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,7 +195,7 @@ Popup as all other overlays is part of so called "Temporary Views".</p>
     </tr>
     <tr>
       <th>id</th>
-      <td><p>Popup id.</p></td>
+      <td><p>Popup unique id.</p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -245,10 +236,6 @@ Default to <code>FALSE</code>.</p></td>
       <td><p>Add or not a button to easily close the popup.
 Default to <code>TRUE</code>.</p></td>
     </tr>
-    <tr>
-      <th>session</th>
-      <td><p>Shiny session.</p></td>
-    </tr>
     </table>
 
 
@@ -279,7 +266,7 @@ Default to <code>TRUE</code>.</p></td>
     <span class='va'>output</span><span class='op'>$</span><span class='va'>popupContent</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderPrint</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>text</span><span class='op'>)</span>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>togglePopup</span>, <span class='op'>{</span>
-     <span class='fu'>f7TogglePopup</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"popup1"</span><span class='op'>)</span>
+     <span class='fu'><a href='f7checkBox.html'>updateF7Popup</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"popup1"</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>popup1</span>, <span class='op'>{</span>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Framework7 input validation — f7ValidateInput • shinyMobile</title>
+<title>Framework7 input validation — validateF7Input • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,10 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Framework7 input validation — f7ValidateInput" />
-<meta property="og:description" content="f7ValidateInput is deprecated. Function to validate a given shinyMobile input.
-validateF7Input is a function to validate a given shinyMobile input." />
-<meta property="og:image" content="/logo.png" />
+<meta property="og:title" content="Framework7 input validation — validateF7Input" />
+<meta property="og:description" content="validateF7Input is a function to validate a given shinyMobile input." />
 
 
 
@@ -83,7 +81,7 @@ validateF7Input is a function to validate a given shinyMobile input." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -133,7 +131,7 @@ validateF7Input is a function to validate a given shinyMobile input." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -170,19 +168,10 @@ validateF7Input is a function to validate a given shinyMobile input." />
     </div>
 
     <div class="ref-description">
-    <p>f7ValidateInput is deprecated. Function to validate a given shinyMobile input.</p>
-<p>validateF7Input is a function to validate a given shinyMobile input.</p>
+    <p><code>validateF7Input</code> is a function to validate a given shinyMobile input.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ValidateInput</span><span class='op'>(</span>
-  <span class='va'>inputId</span>,
-  info <span class='op'>=</span> <span class='cn'>NULL</span>,
-  pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
-  error <span class='op'>=</span> <span class='cn'>NULL</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>)</span>
-
-<span class='fu'>validateF7Input</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>validateF7Input</span><span class='op'>(</span>
   <span class='va'>inputId</span>,
   info <span class='op'>=</span> <span class='cn'>NULL</span>,
   pattern <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -229,7 +218,7 @@ See more at <a href='https://framework7.io/docs/inputs.html'>https://framework7.
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Validate inputs"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
-       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f7ValidateInput"</span><span class='op'>)</span>,
+       navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"validateF7Input"</span><span class='op'>)</span>,
        <span class='fu'><a href='f7Text.html'>f7Text</a></span><span class='op'>(</span>
          inputId <span class='op'>=</span> <span class='st'>"caption"</span>,
          label <span class='op'>=</span> <span class='st'>"Caption"</span>,
@@ -246,8 +235,8 @@ See more at <a href='https://framework7.io/docs/inputs.html'>https://framework7.
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'>f7ValidateInput</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"caption"</span>, info <span class='op'>=</span> <span class='st'>"Whatever"</span><span class='op'>)</span>
-       <span class='fu'>f7ValidateInput</span><span class='op'>(</span>
+       <span class='fu'>validateF7Input</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"caption"</span>, info <span class='op'>=</span> <span class='st'>"Whatever"</span><span class='op'>)</span>
+       <span class='fu'>validateF7Input</span><span class='op'>(</span>
          inputId <span class='op'>=</span> <span class='st'>"caption2"</span>,
          pattern <span class='op'>=</span> <span class='st'>"[0-9]*"</span>,
          error <span class='op'>=</span> <span class='st'>"Only numbers please!"</span>

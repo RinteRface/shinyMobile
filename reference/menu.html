@@ -54,7 +54,6 @@ f7MenuItem creates a special action button for f7Menu.
 f7MenuDropdown creates a dropdown menu for f7Menu.
 f7MenuDropdownDivider creates a dropdown divider for f7MenuDropdown.
 updateF7MenuDropdown toggles f7MenuDropdown on the client." />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -86,7 +85,7 @@ updateF7MenuDropdown toggles f7MenuDropdown on the client." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -136,7 +135,7 @@ updateF7MenuDropdown toggles f7MenuDropdown on the client." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -173,11 +172,11 @@ updateF7MenuDropdown toggles f7MenuDropdown on the client." />
     </div>
 
     <div class="ref-description">
-    <p>f7Menu is a container for f7MenuItem and/or f7MenuDropdown.</p>
-<p>f7MenuItem creates a special action button for f7Menu.</p>
-<p>f7MenuDropdown creates a dropdown menu for f7Menu.</p>
-<p>f7MenuDropdownDivider creates a dropdown divider for f7MenuDropdown.</p>
-<p>updateF7MenuDropdown toggles f7MenuDropdown on the client.</p>
+    <p><code>f7Menu</code> is a container for f7MenuItem and/or f7MenuDropdown.</p>
+<p><code>f7MenuItem</code> creates a special action button for f7Menu.</p>
+<p><code>f7MenuDropdown</code> creates a dropdown menu for f7Menu.</p>
+<p><code>f7MenuDropdownDivider</code> creates a dropdown divider for f7MenuDropdown.</p>
+<p><code>updateF7MenuDropdown</code> toggles f7MenuDropdown on the client.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Menu</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
@@ -249,7 +248,7 @@ updateF7MenuDropdown toggles f7MenuDropdown on the client." />
   <span class='op'>)</span>,
   server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>toggle</span>, <span class='op'>{</span>
-      <span class='fu'>openF7MenuDropdown</span><span class='op'>(</span><span class='st'>"menu1"</span><span class='op'>)</span>
+      <span class='fu'>updateF7MenuDropdown</span><span class='op'>(</span><span class='st'>"menu1"</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
 
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>item1</span>, <span class='op'>{</span>

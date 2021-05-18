@@ -49,7 +49,6 @@
   
 
 <meta property="og:title" content="Changelog" />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -81,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -131,7 +130,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0.9000</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -166,10 +165,51 @@
       <small>Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="shinymobile-1009000" class="section level1">
-<h1 class="page-header" data-toc-text="1.0.0.9000">
-<a href="#shinymobile-1009000" class="anchor"></a>shinyMobile 1.0.0.9000<small> Unreleased </small>
+    <div id="shinymobile-1009001" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0.9001">
+<a href="#shinymobile-1009001" class="anchor"></a>shinyMobile 1.0.0.9001<small> Unreleased </small>
 </h1>
+<div id="breaking-change" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-change" class="anchor"></a>Breaking change</h2>
+<ul>
+<li>
+<code><a href="../reference/f7Link.html">f7Link()</a></code> <strong>icon</strong> now expects <code><a href="../reference/f7Icon.html">f7Icon()</a></code>. <strong>label</strong> is not mandatory anymore.</li>
+</ul>
+</div>
+<div id="major-change" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-change" class="anchor"></a>Major change</h2>
+<ul>
+<li>New <code><a href="../reference/f7Radio.html">updateF7Radio()</a></code>. Fixes <a href='https://github.com/RinteRface/shinyMobile/issues/135'>#135</a>. Thanks <a href='https://github.com/korterling'>@korterling</a>.</li>
+</ul>
+</div>
+<div id="minor-change" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-change" class="anchor"></a>Minor change</h2>
+<ul>
+<li>
+<code><a href="../reference/f7Dialog.html">f7Dialog()</a></code> has a fixed height of 300px and vertical overflow to avoid issues.</li>
+<li>Add <code>...</code> to <code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code>.</li>
+<li>Add <code>options</code> to <code>f7SearchBar()</code> to provide more configuration. Fixes <a href='https://github.com/RinteRface/shinyMobile/issues/47'>#47</a>: thanks <a href='https://github.com/rodrigoheck'>@rodrigoheck</a>.</li>
+<li>Add <code>valueText</code> param for <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code>. Fixes <a href='https://github.com/RinteRface/shinyMobile/issues/84'>#84</a>: thanks <a href='https://github.com/tanho63'>@tanho63</a>.</li>
+<li>Reworked <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> JS code (no user impact).</li>
+<li>Rework widget JS code base (no user impact).</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/190'>#190</a>: How to add a longer dialog text for f7Dialog.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/154'>#154</a>: How to include link icon in f7Link() function.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/127'>#127</a>: Enable groups in <code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code>.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/174'>#174</a> and <a href='https://github.com/RinteRface/shinyMobile/issues/134'>#134</a>: Reactive elements created inside <code><a href="../reference/insertF7Tab.html">insertF7Tab()</a></code> are losing reactivity.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/98'>#98</a>: <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code> visibility issue. Thanks <a href='https://github.com/styvens'>@styvens</a>.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/120'>#120</a>: <code><a href="../reference/f7Button.html">f7Button()</a></code> with link not working. Thanks <a href='https://github.com/bwganblack'>@bwganblack</a>.</li>
+<li>Fix <a href='https://github.com/RinteRface/shinyMobile/issues/144'>#144</a>: Close <code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code> on selection. Thanks <a href='https://github.com/dewalex'>@dewalex</a>.</li>
+</ul>
+</div>
 </div>
     <div id="shinymobile-080" class="section level1">
 <h1 class="page-header" data-toc-text="0.8.0">
@@ -181,31 +221,31 @@
 <a href="#soft-deprecations" class="anchor"></a>Soft Deprecations</h2>
 <ul>
 <li>
-<code><a href="../reference/f7Messages.html">f7AddMessages()</a></code> will become <code><a href="../reference/f7Messages.html">updateF7Messages()</a></code> in future release</li>
+<code><a href="../reference/f7checkBox.html">f7AddMessages()</a></code> will become <code><a href="../reference/f7Messages.html">updateF7Messages()</a></code> in future release</li>
 <li>
-<code><a href="../reference/f7Navbar.html">f7HideNavbar()</a></code> and <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> will be replaced by <code><a href="../reference/f7Navbar.html">updateF7Navbar()</a></code>
+<code><a href="../reference/f7checkBox.html">f7HideNavbar()</a></code> and <code><a href="../reference/f7checkBox.html">f7ShowNavbar()</a></code> will be replaced by <code><a href="../reference/f7Navbar.html">updateF7Navbar()</a></code>
 </li>
 <li>
-<code>f7ShowPopup()</code> will become <code><a href="../reference/f7Popup.html">updateF7Popup()</a></code>
+<code>f7ShowPopup()</code> will become <code><a href="../reference/f7checkBox.html">updateF7Popup()</a></code>
 </li>
 <li>
-<code><a href="../reference/f7checkBox.html">f7checkBox()</a></code> will become <code><a href="../reference/f7checkBox.html">f7Checkbox()</a></code>
+<code><a href="../reference/f7checkBox.html">f7checkBox()</a></code> will become <code><a href="../reference/f7Checkbox.html">f7Checkbox()</a></code>
 </li>
 <li>
-<code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code> will become <code><a href="../reference/f7checkBoxGroup.html">f7CheckboxGroup()</a></code>
+<code><a href="../reference/f7checkBox.html">f7checkBoxGroup()</a></code> will become <code><a href="../reference/f7CheckboxGroup.html">f7CheckboxGroup()</a></code>
 </li>
 <li>
-<code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> will become <code><a href="../reference/f7ValidateInput.html">validateF7Input()</a></code>
+<code><a href="../reference/f7checkBox.html">f7ValidateInput()</a></code> will become <code><a href="../reference/validateF7Input.html">validateF7Input()</a></code>
 </li>
 <li>
-<code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/insertF7Tab.html">insertF7Tab()</a></code> and <code><a href="../reference/removeF7Tab.html">removeF7Tab()</a></code>, respectively</li>
+<code><a href="../reference/f7checkBox.html">f7InsertTab()</a></code> and <code><a href="../reference/f7checkBox.html">f7RemoveTab()</a></code> will becomes <code><a href="../reference/insertF7Tab.html">insertF7Tab()</a></code> and <code><a href="../reference/removeF7Tab.html">removeF7Tab()</a></code>, respectively</li>
 <li>
-<code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code> will become <code><a href="../reference/f7ShowPreloader.html">showF7Preloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">hideF7Preloader()</a></code>, respectively.</li>
+<code><a href="../reference/f7checkBox.html">f7ShowPreloader()</a></code> and <code><a href="../reference/showF7Preloader.html">f7HidePreloader()</a></code> will become <code><a href="../reference/showF7Preloader.html">showF7Preloader()</a></code> and <code><a href="../reference/f7checkBox.html">hideF7Preloader()</a></code>, respectively.</li>
 <li>
-<code><a href="../reference/f7Popover.html">f7Popover()</a></code> and <code><a href="../reference/f7Popover.html">f7PopoverTarget()</a></code> replaced by <code><a href="../reference/f7Popover.html">addF7Popover()</a></code> and <code><a href="../reference/f7Popover.html">toggleF7Popover()</a></code>
+<code><a href="../reference/f7checkBox.html">f7Popover()</a></code> and <code><a href="../reference/f7checkBox.html">f7PopoverTarget()</a></code> replaced by <code><a href="../reference/addF7Popover.html">addF7Popover()</a></code> and <code><a href="../reference/addF7Popover.html">toggleF7Popover()</a></code>
 </li>
 <li>
-<code><a href="../reference/create_manifest.html">create_manifest()</a></code> is going to be replaced by the workflow described here: <a href="https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools" class="uri">https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools</a>
+<code><a href="../reference/f7checkBox.html">create_manifest()</a></code> is going to be replaced by the workflow described here: <a href="https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools" class="uri">https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools</a>
 </li>
 </ul>
 </div>
@@ -238,7 +278,7 @@
 <code><a href="../reference/f7Panel.html">f7Panel()</a></code> and <code><a href="../reference/f7Panel.html">updateF7Panel()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
 </li>
 <li>
-<code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
+<code><a href="../reference/f7checkBox.html">f7InsertTab()</a></code> and <code><a href="../reference/f7checkBox.html">f7RemoveTab()</a></code>: <strong>inputId</strong> becomes <strong>id</strong>
 </li>
 </ul>
 </div>
@@ -372,7 +412,7 @@
 <ul>
 <li>
 <code><a href="../reference/f7SmartSelect.html">f7SmartSelect()</a></code>: type param becomes openIn to align with other inputs</li>
-<li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7Messages.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
+<li>rework <code><a href="../reference/f7Messages.html">f7Messages()</a></code>: messages are updated on the server side with <code><a href="../reference/f7checkBox.html">f7AddMessages()</a></code>. New <code><a href="../reference/f7MessageBar.html">f7MessageBar()</a></code> to send messages from the server side.</li>
 <li>
 <code><a href="../reference/f7ActionSheet.html">f7ActionSheet()</a></code>: to access the currently selected button, use input$[sheet_id]_button. This is to make action sheets compatible with shiny modules. Moreover, the buttons provided must be included in a list (not in a dataframe)</li>
 <li>
@@ -381,11 +421,11 @@
 <li>
 <code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code>: type becomes openIn to align with the framework7 documentation</li>
 <li>remove parameter fill from <code><a href="../reference/f7Icon.html">f7Icon()</a></code> (not used)</li>
-<li>Rewrite <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. It has now an input associated giving the popup state (opened or closed) as well as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. label parameters has been removed. To create an <code><a href="../reference/f7Popup.html">f7Popup()</a></code> put the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> tag in you UI. On the server side call <code><a href="../reference/f7Popup.html">f7TogglePopup()</a></code>. See documentation for a detailed example. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
+<li>Rewrite <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. It has now an input associated giving the popup state (opened or closed) as well as new parameters: backdrop, closeByBackdropClick, closeOnEscape, animate and swipeToClose. label parameters has been removed. To create an <code><a href="../reference/f7Popup.html">f7Popup()</a></code> put the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> tag in you UI. On the server side call <code><a href="../reference/f7checkBox.html">f7TogglePopup()</a></code>. See documentation for a detailed example. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>
-<code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7Navbar.html">f7HideNavbar()</a></code> for consistancy</li>
+<code>f7NavbarHide()</code> renamed to <code><a href="../reference/f7checkBox.html">f7HideNavbar()</a></code> for consistancy</li>
 <li>
-<code>f7NavbarShow()</code> renamed to <code><a href="../reference/f7ShowNavbar.html">f7ShowNavbar()</a></code> for consistancy</li>
+<code>f7NavbarShow()</code> renamed to <code><a href="../reference/f7checkBox.html">f7ShowNavbar()</a></code> for consistancy</li>
 <li>In <code><a href="../reference/f7Gauge.html">f7Gauge()</a></code> valueText was removed. It does not make sense that the value can be accidentally different from the text displayed. valueText is then an internal parameter.</li>
 <li>In <code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code>: min becomes minDate, max becomes maxDate and format becomes dateFormat</li>
 <li>remove maximizable parameter from <code><a href="../reference/f7Appbar.html">f7Appbar()</a></code>
@@ -402,7 +442,7 @@
 </li>
 <li>new <code><a href="../reference/f7VirtualList.html">f7VirtualList()</a></code>, <code><a href="../reference/f7VirtualList.html">f7VirtualListItem()</a></code>, <code><a href="../reference/updateF7VirtualList.html">updateF7VirtualList()</a></code>: high performance list with caching system -&gt; faster rendering (up to 10x faster than <code><a href="../reference/f7List.html">f7List()</a></code>). Ability to add item(s), remove item(s), move item, filter items, …</li>
 <li>new messagebar parameter to <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. This allows to use the <code>f7Messagebar()</code> in a tabs layout configuration.</li>
-<li>new <code><a href="../reference/f7ValidateInput.html">f7ValidateInput()</a></code> function to validate input from the server side (similar to shinyFeedback but internal to shinyMobile and without dependencies)</li>
+<li>new <code><a href="../reference/f7checkBox.html">f7ValidateInput()</a></code> function to validate input from the server side (similar to shinyFeedback but internal to shinyMobile and without dependencies)</li>
 <li>new <code><a href="../reference/f7Login.html">f7Login()</a></code> and <code><a href="../reference/f7Login.html">updateF7Login()</a></code> feature to provide UI boilerplates for authentication</li>
 <li>
 <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> may be used as standalone components with the style argument (segmented or strong). toolbar has the default behavior.</li>
@@ -413,7 +453,7 @@
 </li>
 <li>new pullToRefresh parameter to <code>f7Init()</code>. Pull the screen from top to bottom fires <code>input$ptr</code> which becomes TRUE. When the pull to refresh event is finished, <code>input$ptr</code> is NULL. Useful to trigger events in an observeEvent</li>
 <li>add new <code><a href="../reference/f7Select.html">updateF7Select()</a></code>: thanks <a href='https://github.com/Seyphaton'>@Seyphaton</a> for the suggestion</li>
-<li>add <code><a href="../reference/f7Popup.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
+<li>add <code><a href="../reference/f7checkBox.html">f7TogglePopup()</a></code> to close/open a <code><a href="../reference/f7Popup.html">f7Popup()</a></code>. Thanks <a href='https://github.com/pasahe'>@pasahe</a></li>
 <li>add <code><a href="../reference/preview_mobile.html">preview_mobile()</a></code>: function that previews your app in a seleted range of devices (iphone, samsung, htc, …)</li>
 <li>redesign the way inputs options are passed from R to Javascript. This does not have impact on the user side but improves security and code quality</li>
 </ul>
@@ -426,10 +466,10 @@
 </li>
 <li>add new <code><a href="../reference/f7DownloadButton.html">f7DownloadButton()</a></code> to work properly with the shiny <code>downloadHandler</code> function. Thanks <a href='https://github.com/bwganblack'>@bwganblack</a> for the report</li>
 <li>add new tapHoldDelay parameter to <code>f7Init()</code> to control the delay necessary to trigger a long press (default to 750 ms)</li>
-<li>new <code><a href="../reference/f7ShowPreloader.html">f7ShowPreloader()</a></code> and <code><a href="../reference/f7ShowPreloader.html">f7HidePreloader()</a></code>
+<li>new <code><a href="../reference/f7checkBox.html">f7ShowPreloader()</a></code> and <code><a href="../reference/showF7Preloader.html">f7HidePreloader()</a></code>
 </li>
 <li>new <code><a href="../reference/f7TextArea.html">f7TextArea()</a></code> input and <code><a href="../reference/f7TextArea.html">updateF7TextArea()</a></code> on the server side</li>
-<li>add block title for <code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code> and <code><a href="../reference/f7Radio.html">f7Radio()</a></code>
+<li>add block title for <code><a href="../reference/f7checkBox.html">f7checkBoxGroup()</a></code> and <code><a href="../reference/f7Radio.html">f7Radio()</a></code>
 </li>
 <li>add new <code><a href="../reference/f7TabLink.html">f7TabLink()</a></code> (special link to insert in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> that may open a <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code>)</li>
 <li>add new active parameter to <code><a href="../reference/f7Button.html">f7Button()</a></code>
@@ -481,7 +521,7 @@
 <li>Remove duplicated html tag in <code><a href="../reference/f7Page.html">f7Page()</a></code>. Thanks @ pvictor</li>
 <li>Fix issue in <code><a href="../reference/f7Sheet.html">f7Sheet()</a></code> wrong css style applied when multiple sheets are in the same app</li>
 <li>Fix issue in <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>: if one put <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> inside a <code><a href="../reference/f7Tab.html">f7Tab()</a></code> in a parent <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code>, the input binding was giving the wrong tab for the top level tabset (once we clicked in the tab containing the sub-tabset).</li>
-<li>Fix issue with <code><a href="../reference/insertF7Tab.html">f7InsertTab()</a></code> and <code><a href="../reference/removeF7Tab.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
+<li>Fix issue with <code><a href="../reference/f7checkBox.html">f7InsertTab()</a></code> and <code><a href="../reference/f7checkBox.html">f7RemoveTab()</a></code> when swipeable is TRUE</li>
 <li>trigger shown event for <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> on click. This allows to use <code><a href="../reference/f7Tabs.html">f7Tabs()</a></code> without swipeable and animated</li>
 <li>Allow output elements to be displayed in <code><a href="../reference/f7Panel.html">f7Panel()</a></code> (need to provide the <code><a href="../reference/f7Panel.html">f7Panel()</a></code> inputId)</li>
 <li>Prevent <code><a href="../reference/f7Swipeout.html">f7Swipeout()</a></code> to make the current tab swipping if in <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>
