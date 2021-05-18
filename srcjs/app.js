@@ -305,14 +305,17 @@ $(function() {
   // handle dialog
   Shiny.addCustomMessageHandler("dialog", function(message) {
     var type = message.type;
+    // decide to lock the vertical size so that
+    // people don't need to manually add overflow.
+    var text = `<div style="height: 300px; overflow-y: scroll;">${message.text}</div>`
     switch (type) {
       case "alert":
-        var dialog = app.dialog.alert(message.text, message.title);
+        var dialog = app.dialog.alert(text, message.title);
         break;
       case "confirm":
         var confirm = app.dialog
           .confirm(
-            (text = message.text),
+            (text = text),
             (title = message.title),
             (callbackOk = function() {
               Shiny.setInputValue(message.id, true);
@@ -327,7 +330,7 @@ $(function() {
       case "prompt":
         var prompt = app.dialog
           .prompt(
-            (text = message.text),
+            (text = text),
             (title = message.title),
             (callbackOk = function(value) {
               Shiny.setInputValue(message.id, value);
@@ -342,7 +345,7 @@ $(function() {
         console.log(login);
         var login = app.dialog
           .login(
-            (text = message.text),
+            (text = text),
             (title = message.title),
             (callbackOk = function(username, password) {
               Shiny.setInputValue(message.id, {

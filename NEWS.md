@@ -1,12 +1,13 @@
-# shinyMobile 1.0.0.9000
+# shinyMobile 1.0.0.9001
 
-# Breaking change
+## Breaking change
 - `f7Link()` __icon__ now expects `f7Icon()`. __label__ is not mandatory anymore.
 
 ## Major change
 - New `updateF7Radio()`. Fixes #135. Thanks @korterling.
 
 ## Minor change
+- `f7Dialog()` has a fixed height of 300px and vertical overflow to avoid issues.
 - Add `...` to `f7SmartSelect()`. 
 - Add `options` to `f7SearchBar()` to provide more configuration. Fixes #47: thanks @rodrigoheck.
 - Add `valueText` param for `f7Gauge()`. Fixes #84: thanks @tanho63.
@@ -14,6 +15,7 @@
 - Rework widget JS code base (no user impact). 
 
 ## Bug fixes
+- Fix #190: How to add a longer dialog text for f7Dialog.
 - Fix #154: How to include link icon in f7Link() function.
 - Fix #127: Enable groups in `f7SmartSelect()`. 
 - Fix #174 and #134: Reactive elements created inside `insertF7Tab()` are losing reactivity.
