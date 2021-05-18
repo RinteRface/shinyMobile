@@ -219,7 +219,7 @@ $((function() {
     }));
     Shiny.addCustomMessageHandler("dialog", (function(message) {
         var type = message.type;
-        var text = `<div style="height: 300px; overflow-y: scroll;">${message.text}</div>`;
+        var text = `<div style="max-height: 300px; overflow-y: scroll;">${message.text}</div>`;
         switch (type) {
           case "alert":
             var dialog = app.dialog.alert(text, message.title);
