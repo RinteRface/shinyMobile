@@ -863,31 +863,6 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 
 
 
-
-#' Framework7 checkbox
-#'
-#' \code{f7Checkbox} creates a checkbox input.
-#'
-#' @param inputId The input slot that will be used to access the value.
-#' @param label Display label for the control, or NULL for no label.
-#' @param value Initial value (TRUE or FALSE).
-#'
-#' @rdname checkbox
-#'
-#' @export
-f7checkBox <- function(inputId, label, value = FALSE) {
-
-  .Deprecated(
-    "f7Checkbox",
-    package = "shinyMobile",
-    "f7checkBox will be removed in future release. Please use
-    f7Checkbox instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
-  f7Checkbox(inputId, label, value)
-}
-
-
 #' Framework7 checkbox
 #'
 #' \link{f7Checkbox} creates a checkbox input.
@@ -942,7 +917,7 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
 }
 
 
- 
+
 #' Deprecated functions
 #'
 #' \code{f7checkBox} creates a checkbox input. Use \link{f7Checkbox} instead.

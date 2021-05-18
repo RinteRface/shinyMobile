@@ -24,7 +24,7 @@ updateF7Checkbox(
 \item{session}{The Shiny session object.}
 }
 \description{
-\code{f7Checkbox} creates a checkbox input.
+\link{f7Checkbox} creates a checkbox input.
 
 \code{updateF7Checkbox} changes the value of a checkbox input on the client.
 }
