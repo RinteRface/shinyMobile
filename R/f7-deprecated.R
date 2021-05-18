@@ -1,4 +1,4 @@
 #' Deprecated functions
 #'
-#'@name f7-deprecated
+#'@rdname f7-deprecated
 

@@ -176,11 +176,6 @@ f7Searchbar <- function(id, placeholder = "Search", expandable = FALSE, inline =
 #'
 #' @param targetId Id of the \link{f7Searchbar}.
 #' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'
-#' }
 f7SearchbarTrigger <- function(targetId) {
   shiny::tags$a(
     class = "link icon-only searchbar-enable",

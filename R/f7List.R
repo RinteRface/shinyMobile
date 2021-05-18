@@ -395,7 +395,7 @@ f7ListIndexItem <- htmltools::tags$li
 #'         id = "vlist",
 #'         rowsBefore = 2,
 #'         rowsAfter = 2,
-#'         items = lapply(1:20000, function(i) {
+#'         items = lapply(1:2000, function(i) {
 #'           f7VirtualListItem(
 #'             title = paste("Title", i),
 #'             subtitle = paste("Subtitle", i),
@@ -415,34 +415,34 @@ f7ListIndexItem <- htmltools::tags$li
 #'  )
 #'
 #'  # below example will not load with classic f7List
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "Virtual Lists",
-#'          hairline = FALSE,
-#'          shadow = TRUE
-#'        ),
-#'        # main content
-#'        f7List(
-#'          lapply(1:20000, function(i) {
-#'            f7ListItem(
-#'              title = paste("Title", i),
-#'              subtitle = paste("Subtitle", i),
-#'              header = paste("Header", i),
-#'              footer = paste("Footer", i),
-#'              right = paste("Right", i),
-#'              content = i
-#'            )
-#'          })
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'
-#'    }
-#'  )
+#'  #shinyApp(
+#'  #  ui = f7Page(
+#'  #    title = "My app",
+#'  #    f7SingleLayout(
+#'  #      navbar = f7Navbar(
+#'  #        title = "Virtual Lists",
+#'  #        hairline = FALSE,
+#'  #        shadow = TRUE
+#'  #      ),
+#'  #      # main content
+#'  #      f7List(
+#'  #        lapply(1:20000, function(i) {
+#'  #          f7ListItem(
+#'  #            title = paste("Title", i),
+#'  #            subtitle = paste("Subtitle", i),
+#'  #            header = paste("Header", i),
+#'  #            footer = paste("Footer", i),
+#'  #            right = paste("Right", i),
+#'  #            content = i
+#'  #          )
+#'  #        })
+#'  #      )
+#'  #    )
+#'  #  ),
+#'  #  server = function(input, output) {
+#'  #
+#'  #  }
+#'  #)
 #' }
 f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
                           cache = TRUE) {

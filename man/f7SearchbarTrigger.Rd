@@ -12,8 +12,3 @@ f7SearchbarTrigger(targetId)
 \description{
 Element that triggers the searchbar.
 }
-\examples{
-if (interactive()) {
-
-}
-}

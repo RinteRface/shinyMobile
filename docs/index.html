@@ -26,7 +26,6 @@
     12 new widgets (expandable cards, badges, chips, timelines, gauges, progress bars, ...) 
     combined with the power of server-side notifications such as alerts, modals, toasts,
     action sheets, sheets (and more) as well as 3 layouts (single, tabs and split).">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -95,6 +94,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -214,48 +214,19 @@
 <h3 class="hasAnchor">
 <a href="#configuration" class="anchor"></a>Configuration</h3>
 <p><a href="https://github.com/RinteRface/shinyMobile">shinyMobile</a> is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> if <code>allowPWA</code> is <code>TRUE</code> (it leverages the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat">script</a>).</p>
-<p>Below is an example showing the manifest.json file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="st">"name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="st">"short_name"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">"description"</span><span class="op">:</span> <span class="st">"My App"</span><span class="op">,</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="st">"lang"</span><span class="op">:</span> <span class="st">"en-US"</span><span class="op">,</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="st">"start_url"</span><span class="op">:</span> <span class="st">"https://dgranjon.shinyapps.io/miniUI2Demo/"</span><span class="op">,</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="st">"display"</span><span class="op">:</span> <span class="st">"standalone"</span><span class="op">,</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="st">"icons"</span><span class="op">:</span> [</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="op">{</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/128x128.png"</span><span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"128x128"</span><span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>    <span class="op">},</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>    <span class="op">{</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/144x144.png"</span><span class="op">,</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"144x144"</span><span class="op">,</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>    <span class="op">},</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/152x152.png"</span><span class="op">,</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"152x152"</span><span class="op">,</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>    <span class="op">},</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>    <span class="op">{</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/192x192.png"</span><span class="op">,</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"192x192"</span><span class="op">,</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>    <span class="op">},</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>    <span class="op">{</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/256x256.png"</span><span class="op">,</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"256x256"</span><span class="op">,</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a>    <span class="op">},</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a>    <span class="op">{</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a>      <span class="st">"src"</span><span class="op">:</span> <span class="st">"icons/512x512.png"</span><span class="op">,</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a>      <span class="st">"sizes"</span><span class="op">:</span> <span class="st">"512x512"</span><span class="op">,</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a>      <span class="st">"type"</span><span class="op">:</span> <span class="st">"image/png"</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a>    <span class="op">}</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a>  ]</span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="op">}</span></span></code></pre></div>
-<p>Be sure to replace the <code>start_url</code> with your own app url. Also, add a custom name, even though this can be modified later when adding the PWA to your IOS apps. shinyMobile has an helper to create the manifest, that is <code>create_manifest</code>. Finally, there are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</p>
+<p>To setup the necessary assets for your PWA, you may run:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"RinteRface/charpente"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/charpente">charpente</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/charpente/man/set_pwa.html">set_pwa</a></span><span class="op">(</span><span class="va">APP_PATH</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<p>where <code>APP_PATH</code> is the app location. It only works if the app is inside a package like with {golem}. Alternatively, you may copy the <code>www</code> folder of the gallery <a href="https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www">app</a>, which provides:</p>
+<ul>
+<li>A valid service worker.</li>
+<li>A valid <code>offline.html</code> fallback.</li>
+<li>A valid web manifest. Don’t forget to change the <code>start_url</code> property to the path of your app. For instance, the following app hosted at <a href="https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/" class="uri">https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/</a>, has the <code>/rstudio-global-2021-calendar/</code> path.</li>
+<li>A valid set of icons. There are tools such as <a href="https://appsco.pe/developer/splash-screens">appsco</a> and <a href="https://app-manifest.firebaseapp.com">app-manifest</a>, to create those custom icons and splash screens, if you need to.</li>
+</ul>
+<p>It is really easier with <a href="https://github.com/RinteRface/charpente">charpente</a>, the reason why we strongly recommend to develop your app inside a package.</p>
 </div>
 <div id="add-the-pwa-to-your-desktop-apps" class="section level3">
 <h3 class="hasAnchor">
@@ -335,7 +306,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

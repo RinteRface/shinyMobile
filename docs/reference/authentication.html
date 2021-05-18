@@ -53,7 +53,6 @@
 f7LoginServer is a useful server elements to fine tune the
 f7Login page.
 updateF7Login toggles a login page." />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -85,7 +84,7 @@ updateF7Login toggles a login page." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -135,6 +134,7 @@ updateF7Login toggles a login page." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -172,9 +172,9 @@ updateF7Login toggles a login page." />
 
     <div class="ref-description">
     <p>Provide a template for authentication</p>
-<p>f7LoginServer is a useful server elements to fine tune the
+<p><code>f7LoginServer</code> is a useful server elements to fine tune the
 f7Login page.</p>
-<p>updateF7Login toggles a login page.</p>
+<p><code>updateF7Login</code> toggles a login page.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Login</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>id</span>, <span class='va'>title</span>, label <span class='op'>=</span> <span class='st'>"Sign In"</span>, footer <span class='op'>=</span> <span class='cn'>NULL</span>, startOpen <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -185,7 +185,7 @@ f7Login page.</p>
   <span class='va'>id</span>,
   user <span class='op'>=</span> <span class='cn'>NULL</span>,
   password <span class='op'>=</span> <span class='cn'>NULL</span>,
-  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
+  session <span class='op'>=</span> <span class='fu'>shiny</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/domains.html'>getDefaultReactiveDomain</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -261,14 +261,14 @@ It is linked to an action button, which is 0 when the application starts. As soo
 as the button is pressed, its value is incremented which might fire a
 <code>observeEvent</code> listening to it (See example below). Importantly,
 the login page is closed only if the text and password inputs are filled. The
-f7LoginServer contains a piece of server logic that does this work for you.</p>
+<code>f7LoginServer</code> contains a piece of server logic that does this work for you.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
  <span class='co'># global authentication</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Login module"</span>,
      <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -285,26 +285,26 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
        <span class='fu'>f7Login</span><span class='op'>(</span>id <span class='op'>=</span> <span class='st'>"loginPage"</span>, title <span class='op'>=</span> <span class='st'>"Welcome"</span><span class='op'>)</span>,
        <span class='co'># main content</span>
        <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>
-         title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Welcome"</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"user"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+         title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"user"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
          size <span class='op'>=</span> <span class='st'>"large"</span>
        <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span><span class='op'>(</span><span class='st'>"center"</span><span class='op'>)</span>
      <span class='op'>)</span>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='va'>loginData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span><span class='va'>f7LoginServer</span>, id <span class='op'>=</span> <span class='st'>"loginPage"</span><span class='op'>)</span>
+     <span class='va'>loginData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span><span class='op'>(</span><span class='va'>f7LoginServer</span>, id <span class='op'>=</span> <span class='st'>"loginPage"</span><span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>user</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>loginData</span><span class='op'>$</span><span class='va'>user</span><span class='op'>)</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>user</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>loginData</span><span class='op'>$</span><span class='va'>user</span><span class='op'>)</span>
       <span class='va'>loginData</span><span class='op'>$</span><span class='fu'>user</span><span class='op'>(</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
    <span class='op'>}</span>
  <span class='op'>)</span>
 
  <span class='co'># section specific authentication</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Local access restriction"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
@@ -323,7 +323,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
            tabName <span class='op'>=</span> <span class='st'>"Restricted"</span>,
            <span class='co'># main content</span>
            <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span>
-             title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Welcome"</span>, <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"user"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+             title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Welcome"</span>, <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"user"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
              size <span class='op'>=</span> <span class='st'>"large"</span>
            <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='f7Align.html'>f7Align</a></span><span class='op'>(</span><span class='st'>"center"</span><span class='op'>)</span>
          <span class='op'>)</span>
@@ -334,20 +334,20 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
      <span class='co'># trigger</span>
-     <span class='va'>trigger</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span><span class='op'>)</span>
+     <span class='va'>trigger</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='va'>loginData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span>
+     <span class='va'>loginData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span><span class='op'>(</span>
       <span class='va'>f7LoginServer</span>,
       id <span class='op'>=</span> <span class='st'>"loginPage"</span>,
       ignoreInit <span class='op'>=</span> <span class='cn'>TRUE</span>,
       trigger <span class='op'>=</span> <span class='va'>trigger</span>
      <span class='op'>)</span>
 
-     <span class='va'>output</span><span class='op'>$</span><span class='va'>user</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
-      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>loginData</span><span class='op'>$</span><span class='va'>user</span><span class='op'>)</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>user</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>loginData</span><span class='op'>$</span><span class='va'>user</span><span class='op'>)</span>
       <span class='va'>loginData</span><span class='op'>$</span><span class='fu'>user</span><span class='op'>(</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
@@ -355,9 +355,9 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
  <span class='op'>)</span>
 
  <span class='co'># with 2 different protected sections</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
    ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Multiple restricted areas"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
@@ -395,23 +395,23 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='va'>trigger1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span> <span class='op'>==</span> <span class='st'>"Restricted"</span><span class='op'>)</span>
+     <span class='va'>trigger1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span> <span class='op'>==</span> <span class='st'>"Restricted"</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
-     <span class='va'>trigger2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span> <span class='op'>==</span> <span class='st'>"Restricted 2"</span><span class='op'>)</span>
+     <span class='va'>trigger2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>tabs</span> <span class='op'>==</span> <span class='st'>"Restricted 2"</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
      <span class='co'># do not run first since the login page is not yet visible</span>
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span><span class='op'>(</span>
        <span class='va'>f7LoginServer</span>,
        id <span class='op'>=</span> <span class='st'>"loginPage"</span>,
        ignoreInit <span class='op'>=</span> <span class='cn'>TRUE</span>,
        trigger <span class='op'>=</span> <span class='va'>trigger1</span>
      <span class='op'>)</span>
 
-     <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/callModule.html'>callModule</a></span><span class='op'>(</span>
+     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/callModule.html'>callModule</a></span><span class='op'>(</span>
        <span class='va'>f7LoginServer</span>,
        id <span class='op'>=</span> <span class='st'>"loginPage2"</span>,
        ignoreInit <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -437,7 +437,7 @@ f7LoginServer contains a piece of server logic that does this work for you.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -35,7 +35,7 @@
 #'   ),
 #'   server = function(input, output, session) {
 #'     observeEvent(input$toggle, {
-#'       openF7MenuDropdown("menu1")
+#'       updateF7MenuDropdown("menu1")
 #'     })
 #'
 #'     observeEvent(input$item1, {

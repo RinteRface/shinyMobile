@@ -15,14 +15,14 @@
 #'     title = "My app",
 #'     f7SingleLayout(
 #'        navbar = f7Navbar(
-#'          title = "Single Layout",
+#'          title = "f7Table"
 #'        ),
 #'       uiOutput("table")
 #'     )
 #'   ),
 #'   server = function(input, output) {
 #'     output$table <- renderUI({
-#'       f7Table(cars)
+#'       f7Table(mtcars)
 #'     })
 #'   }
 #'  )

@@ -135,9 +135,9 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
 #'            leftPanel = TRUE,
 #'            rightPanel = TRUE,
 #'            subNavbar = f7SubNavbar(
-#'               f7Button(label = "My button", outline = TRUE),
-#'               f7Button(label = "My button", outline = TRUE),
-#'               f7Button(label = "My button", outline = TRUE)
+#'               f7Button(label = "My button"),
+#'               f7Button(label = "My button"),
+#'               f7Button(label = "My button")
 #'            )
 #'         ),
 #'         f7Tabs(

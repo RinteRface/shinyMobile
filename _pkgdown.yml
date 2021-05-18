@@ -204,6 +204,7 @@ reference:
   - '`f7Notif`'
   - '`f7Popover`'
   - '`f7PopoverTarget`'
+  - '`addF7Popover`'
   - '`f7Popup`'
   - '`f7Sheet`'
   - '`f7Swipeout`'

@@ -50,7 +50,6 @@
 
 <meta property="og:title" content="Framework7 chips — f7Chip" />
 <meta property="og:description" content="f7Chip is an improved badge container." />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -82,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -132,6 +131,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -168,7 +168,7 @@
     </div>
 
     <div class="ref-description">
-    <p>f7Chip is an improved badge container.</p>
+    <p><code>f7Chip</code> is an improved badge container.</p>
     </div>
 
     <pre class="usage"><span class='fu'>f7Chip</span><span class='op'>(</span>
@@ -220,10 +220,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
     title <span class='op'>=</span> <span class='st'>"Chips"</span>,
     <span class='fu'><a href='f7SingleLayout.html'>f7SingleLayout</a></span><span class='op'>(</span>
@@ -232,8 +232,8 @@
         strong <span class='op'>=</span> <span class='cn'>TRUE</span>,
         <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"simple Chip"</span><span class='op'>)</span>,
         <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"outline Chip"</span>, outline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
-        <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"icon Chip"</span>, icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"add_round"</span><span class='op'>)</span>, iconStatus <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>,
-        <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"image Chip"</span>, image <span class='op'>=</span> <span class='st'>"https://lorempixel.com/64/64/people/9/"</span><span class='op'>)</span>,
+        <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"icon Chip"</span>, icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"plus_circle_fill"</span><span class='op'>)</span>, iconStatus <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>,
+        <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"image Chip"</span>, image <span class='op'>=</span> <span class='st'>"https://loremflickr.com/g/320/240/london"</span><span class='op'>)</span>,
         <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"closable Chip"</span>, closable <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
         <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"colored Chip"</span>, status <span class='op'>=</span> <span class='st'>"green"</span><span class='op'>)</span>,
         <span class='fu'>f7Chip</span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"colored outline Chip"</span>, status <span class='op'>=</span> <span class='st'>"green"</span>, outline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
@@ -260,7 +260,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

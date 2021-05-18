@@ -20,7 +20,6 @@
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Getting Started">
 <meta property="og:description" content="shinyMobile">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -89,6 +88,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -116,14 +116,13 @@
 
       
 
-      </header><script src="shinyMobile_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="shinyMobile_files/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet">
-<script src="shinyMobile_files/anchor-sections-1.0.1/anchor-sections.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting Started</h1>
                         <h4 class="author">David Granjon</h4>
             
-            <h4 class="date">2021-01-11</h4>
+            <h4 class="date">2021-05-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/shinyMobile.Rmd"><code>vignettes/shinyMobile.Rmd</code></a></small>
       <div class="hidden name"><code>shinyMobile.Rmd</code></div>
@@ -177,11 +176,11 @@
 <li><code><a href="../reference/f7Slider.html">f7Slider()</a></code></li>
 <li><code><a href="../reference/f7Text.html">f7Text()</a></code></li>
 <li><code><a href="../reference/f7checkBox.html">f7checkBox()</a></code></li>
-<li><code><a href="../reference/f7checkBoxGroup.html">f7checkBoxGroup()</a></code></li>
+<li><code><a href="../reference/f7checkBox.html">f7checkBoxGroup()</a></code></li>
 <li><code><a href="../reference/f7Radio.html">f7Radio()</a></code></li>
 <li><code><a href="../reference/f7Toggle.html">f7Toggle()</a></code></li>
 <li>
-<code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: equivalent to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/numericInput.html">numericInput()</a></code> from {shiny}</li>
+<code><a href="../reference/f7Stepper.html">f7Stepper()</a></code>: equivalent to <code><a href="https://rdrr.io/pkg/shiny/man/numericInput.html">numericInput()</a></code> from {shiny}</li>
 <li><code><a href="../reference/f7Picker.html">f7Picker()</a></code></li>
 <li><code><a href="../reference/f7DatePicker.html">f7DatePicker()</a></code></li>
 <li><code><a href="../reference/f7ColorPicker.html">f7ColorPicker()</a></code></li>
@@ -190,7 +189,7 @@
 <li><code><a href="../reference/f7Select.html">f7Select()</a></code></li>
 <li><code><a href="../reference/f7AutoComplete.html">f7AutoComplete()</a></code></li>
 <li>
-<code><a href="../reference/f7Button.html">f7Button()</a></code>: similar to <code><a href="https://shiny.rstudio.com/reference/shiny/latest/actionButton.html">actionButton()</a></code> from {shiny}</li>
+<code><a href="../reference/f7Button.html">f7Button()</a></code>: similar to <code><a href="https://rdrr.io/pkg/shiny/man/actionButton.html">actionButton()</a></code> from {shiny}</li>
 <li>
 <code><a href="../reference/f7Fab.html">f7Fab()</a></code>: enhanced <code><a href="../reference/f7Button.html">f7Button()</a></code> with ability to be gathered in a <code><a href="../reference/f7Fabs.html">f7Fabs()</a></code> container</li>
 <li>and more</li>
@@ -204,7 +203,7 @@
 <li><code><a href="../reference/f7Slider.html">updateF7Slider()</a></code></li>
 <li><code><a href="../reference/f7Fab.html">updateF7Fab()</a></code></li>
 <li><code><a href="../reference/f7Text.html">updateF7Text()</a></code></li>
-<li><code><a href="../reference/f7checkBox.html">updateF7Checkbox()</a></code></li>
+<li><code><a href="../reference/f7Checkbox.html">updateF7Checkbox()</a></code></li>
 <li>and many more</li>
 </ul>
 <p>Finally, it also provides tools to dynamically update widgets on the server side like cards, accordions, tabs, panels and more:</p>
@@ -432,7 +431,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

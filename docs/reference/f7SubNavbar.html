@@ -51,7 +51,6 @@
 <meta property="og:title" content="Framework7 sub navbar — f7SubNavbar" />
 <meta property="og:description" content="f7SubNavbar creates a nested navbar component for
 f7Navbar." />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -83,7 +82,7 @@ f7Navbar." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9001</span>
       </span>
     </div>
 
@@ -133,6 +132,7 @@ f7Navbar." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Releases</li>
+    <li class="dropdown-header">shinyMobile 1.0.0.9001</li>
     <li class="dropdown-header">shinyMobile 0.8.0</li>
     <li class="dropdown-header">shinyMobile 0.7.0</li>
     <li class="dropdown-header">shinyMobile 0.1.0</li>
@@ -169,7 +169,7 @@ f7Navbar." />
     </div>
 
     <div class="ref-description">
-    <p>f7SubNavbar creates a nested navbar component for
+    <p><code>f7SubNavbar</code> creates a nested navbar component for
 <a href='f7Navbar.html'>f7Navbar</a>.</p>
     </div>
 
@@ -187,10 +187,10 @@ f7Navbar." />
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
- <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+ <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/RinteRface/shinyMobile'>shinyMobile</a></span><span class='op'>)</span>
 
- <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+ <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
   ui <span class='op'>=</span> <span class='fu'><a href='f7Page.html'>f7Page</a></span><span class='op'>(</span>
      title <span class='op'>=</span> <span class='st'>"Sub Navbar"</span>,
      <span class='fu'><a href='f7TabLayout.html'>f7TabLayout</a></span><span class='op'>(</span>
@@ -205,9 +205,9 @@ f7Navbar." />
            leftPanel <span class='op'>=</span> <span class='cn'>TRUE</span>,
            rightPanel <span class='op'>=</span> <span class='cn'>TRUE</span>,
            subNavbar <span class='op'>=</span> <span class='fu'>f7SubNavbar</span><span class='op'>(</span>
-              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span>, outline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
-              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span>, outline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
-              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span>, outline <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span><span class='op'>)</span>,
+              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span><span class='op'>)</span>,
+              <span class='fu'><a href='f7Button.html'>f7Button</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='st'>"My button"</span><span class='op'>)</span>
            <span class='op'>)</span>
         <span class='op'>)</span>,
         <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span><span class='op'>(</span>
@@ -215,7 +215,7 @@ f7Navbar." />
            <span class='co'>#swipeable = TRUE,</span>
            <span class='fu'><a href='f7Tab.html'>f7Tab</a></span><span class='op'>(</span>
               tabName <span class='op'>=</span> <span class='st'>"Tab 1"</span>,
-              icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"email"</span><span class='op'>)</span>,
+              icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"envelope"</span><span class='op'>)</span>,
               active <span class='op'>=</span> <span class='cn'>TRUE</span>,
               <span class='st'>"Tab 1"</span>
            <span class='op'>)</span>,
@@ -253,7 +253,7 @@ f7Navbar." />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

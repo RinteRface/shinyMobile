@@ -45,7 +45,7 @@ if (interactive()) {
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", href = "https://www.google.com"),
-        f7Link(label = "Link 2", href = "https://www.google.com", external = TRUE)
+        f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
       f7Segment(
