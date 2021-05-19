@@ -29,10 +29,8 @@ $((function() {
     if (config.dark) {
         app.methods.toggleDarkTheme();
     }
-    if (config.hasOwnProperty("touch")) {
-        if (config.touch.tapHold) {
-            $("<style>").prop("type", "text/css").html(`\n          -moz-user-select: none;\n          -webkit-user-select: none;\n          user-select: none;`).appendTo("head");
-        }
+    if (!app.device.desktop) {
+        $("<style>").prop("type", "text/css").html(`-webkit-user-select: none;\n         -khtml-user-select: none;\n         -moz-user-select: none;\n         -ms-user-select: none;\n         user-select: none;\n         -webkit-tap-highligth-color: transparent;\n         -webkit-touch-callout: none;\n        `).appendTo("head");
     }
     if (config.hasOwnProperty("color")) {
         var colorCSS = app.utils.colorThemeCSSProperties(config.color);

@@ -59,16 +59,6 @@
 }
 
 
-/* Disable text selection */
-@media only screen and (min-width: 800px) {
-  body {
-    -webkit-user-select: none;
-    -webkit-tap-highligth-color: transparent;
-    -webkit-touch-callout: none;
-  }
-}
-
-
 .demo-facebook-card .card-header {
   display: block;
   padding: 10px;

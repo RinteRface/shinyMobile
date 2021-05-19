@@ -47,19 +47,21 @@ $(function() {
     app.methods.toggleDarkTheme();
   }
 
-  // tapHold custom css
-  if (config.hasOwnProperty("touch")) {
-    if (config.touch.tapHold) {
-      $("<style>")
-        .prop("type", "text/css")
-        .html(
-          `
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          user-select: none;`
-        )
-        .appendTo("head");
-    }
+  // For mobile devices prevent text selection
+  if (!app.device.desktop) {
+    $("<style>")
+      .prop("type", "text/css")
+      .html(
+        `-webkit-user-select: none;
+         -khtml-user-select: none;
+         -moz-user-select: none;
+         -ms-user-select: none;
+         user-select: none;
+         -webkit-tap-highligth-color: transparent;
+         -webkit-touch-callout: none;
+        `
+      )
+      .appendTo("head");
   }
 
   // Set color theme
