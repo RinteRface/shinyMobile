@@ -325,7 +325,6 @@ $((function() {
                 swiper.update();
             }
             if (message.select === "true") {
-                $(".tab-link-highlight").remove();
                 app.tab.show("#" + message.id, true);
             }
             if (!$(".tabLinks").children(1).hasClass("segmented")) {

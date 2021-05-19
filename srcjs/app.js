@@ -506,9 +506,6 @@ $(function() {
 
       // if the newly inserted tab is active, disable other tabs
       if (message.select === "true") {
-        // Also need to temporarily remove the tab highlight on android
-        // app.tab.show will put it correctly later on...
-        $(".tab-link-highlight").remove();
         // trigger a click on corresponding the new tab button.
         app.tab.show("#" + message.id, true);
       }
