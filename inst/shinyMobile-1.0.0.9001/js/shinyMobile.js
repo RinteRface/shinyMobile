@@ -261,6 +261,23 @@ $((function() {
             callback();
         }));
     }));
+    function handleTabLinkHighlight() {
+        $(".tab-link-highlight").remove();
+        var segment_width = 100 / $(".toolbar-inner > a").length;
+        var tabs = $(".toolbar-inner > a");
+        var tabsClasses = [];
+        for (i = 0; i < tabs.length; i++) {
+            tabsClasses.push(tabs[i].className);
+        }
+        var idx = tabsClasses.indexOf("tab-link tab-link-active");
+        var translate_rate;
+        if (idx === -1) {
+            translate_rate = 0;
+        } else {
+            translate_rate = idx * 100 + "%";
+        }
+        $(".toolbar-inner").append('<span class="tab-link-highlight" style="width: ' + segment_width + "%; transform: translate3d(" + translate_rate + ', 0px, 0px);"></span>');
+    }
     var tabIds = [];
     getAllTabSetIds = function() {
         $(".tabs.ios-edges").each((function() {
@@ -308,7 +325,11 @@ $((function() {
                 swiper.update();
             }
             if (message.select === "true") {
+                $(".tab-link-highlight").remove();
                 app.tab.show("#" + message.id, true);
+            }
+            if (!$(".tabLinks").children(1).hasClass("segmented")) {
+                handleTabLinkHighlight();
             }
         }));
     }));
@@ -341,9 +362,7 @@ $((function() {
             var nextTabId = $(tabToRemove).next().attr("id");
             app.tab.show("#" + nextTabId);
             if (!$(".tabLinks").children(1).hasClass("segmented")) {
-                $(".tab-link-highlight").remove();
-                segment_width = 100 / $(".toolbar-inner > a").length;
-                $(".toolbar-inner").append('<span class="tab-link-highlight" style="width: ' + segment_width + '%;"></span>');
+                handleTabLinkHighlight();
             }
         }));
     }));

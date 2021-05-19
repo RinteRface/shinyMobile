@@ -15,6 +15,7 @@
 - Rework widget JS code base (no user impact). 
 
 ## Bug fixes
+- Fix #180: Tab highlight index issue for android devices when tab remove or add tab.
 - Fix #190: How to add a longer dialog text for f7Dialog.
 - Fix #154: How to include link icon in f7Link() function.
 - Fix #127: Enable groups in `f7SmartSelect()`. 

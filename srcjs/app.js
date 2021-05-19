@@ -378,6 +378,35 @@ $(function() {
   // id to the Shiny.addCustomMessageHandler function
   // which first argument is the type and should be the id
   // of the targeted tabSet
+
+  function handleTabLinkHighlight() {
+    $(".tab-link-highlight").remove();
+    // calculate new segment width
+    var segment_width = 100 / $(".toolbar-inner > a").length;
+    // calculate new indicator position
+    var tabs = $(".toolbar-inner > a");
+    var tabsClasses = [];
+    for (i= 0; i<tabs.length; i++) {
+      tabsClasses.push(tabs[i].className)
+    }
+    var idx = tabsClasses.indexOf("tab-link tab-link-active");
+    var translate_rate;
+    // In case of removeTab, if no other tab is active,
+    // we select the first tab after the one removed.
+    if (idx === -1) {
+      translate_rate = 0;
+    } else {
+      translate_rate = idx * 100 + '%';
+    }
+
+
+    $(".toolbar-inner").append(
+      '<span class="tab-link-highlight" style="width: ' +
+        segment_width +
+        '%; transform: translate3d(' + translate_rate + ', 0px, 0px);"></span>'
+    );
+  }
+
   var tabIds = [];
   getAllTabSetIds = function() {
     $(".tabs.ios-edges").each(function() {
@@ -477,8 +506,21 @@ $(function() {
 
       // if the newly inserted tab is active, disable other tabs
       if (message.select === "true") {
+        // Also need to temporarily remove the tab highlight on android
+        // app.tab.show will put it correctly later on...
+        $(".tab-link-highlight").remove();
         // trigger a click on corresponding the new tab button.
         app.tab.show("#" + message.id, true);
+      }
+
+      // we programmatically remove the old tabbar indicator and rebuild it.
+      // The with of the tabbar indicator depends on the number of tab items it contains
+      if (
+        !$(".tabLinks")
+          .children(1)
+          .hasClass("segmented")
+      ) {
+        handleTabLinkHighlight();
       }
     });
   });
@@ -558,13 +600,7 @@ $(function() {
           .children(1)
           .hasClass("segmented")
       ) {
-        $(".tab-link-highlight").remove();
-        segment_width = 100 / $(".toolbar-inner > a").length;
-        $(".toolbar-inner").append(
-          '<span class="tab-link-highlight" style="width: ' +
-            segment_width +
-            '%;"></span>'
-        );
+        handleTabLinkHighlight();
       }
     });
   });
