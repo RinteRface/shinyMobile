@@ -79,6 +79,8 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 
   type <- match.arg(openIn)
 
+  if(is.null(value)) value <- character()
+
   value <- jsonlite::toJSON(value)
   choices <- jsonlite::toJSON(choices)
 
