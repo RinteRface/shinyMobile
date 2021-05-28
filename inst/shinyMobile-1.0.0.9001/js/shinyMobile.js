@@ -65,7 +65,7 @@ $((function() {
         Shiny.setInputValue("lastInputChanged", {
             name: event.name,
             value: event.value,
-            type: event.binding.name.split(".")[1]
+            type: event.binding !== undefined ? event.binding.name.split(".")[1] : "NA"
         });
     }));
     $(document).on("shiny:connected", (function(event) {
