@@ -463,16 +463,16 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #'      title = "Split layout",
 #'      f7SplitLayout(
 #'        sidebar = f7Panel(
-#'          inputId = "sidebar",
+#'          id = "sidebar",
 #'          title = "Sidebar",
 #'          side = "left",
-#'          theme = "light",
+#'          theme = "dark",
 #'          f7PanelMenu(
 #'            id = "menu",
 #'            f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("envelope"), active = TRUE),
 #'            f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("house"))
 #'          ),
-#'          effect = "reveal"
+#'          uiOutput("selected_tab")
 #'        ),
 #'        navbar = f7Navbar(
 #'          title = "Split Layout",
@@ -499,8 +499,8 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #'    ),
 #'    server = function(input, output) {
 #'
-#'      observe({
-#'        print(input$menu)
+#'      output$selected_tab <- renderUI({
+#'       HTML(paste0("Selected tab: ", strong(input$menu)))
 #'      })
 #'
 #'      output$distPlot <- renderPlot({

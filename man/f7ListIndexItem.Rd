@@ -4,21 +4,29 @@
 \alias{f7ListIndexItem}
 \title{Create a Framework 7 list index item}
 \usage{
-f7ListIndexItem(..., .noWS = NULL)
+f7ListIndexItem(..., .noWS = NULL, .renderHook = NULL)
 }
 \arguments{
-\item{...}{Attributes and children of the element. Named arguments become
-attributes, and positional arguments become children. Valid children are
-tags, single-character character vectors (which become text nodes), raw
-HTML (see \code{\link[htmltools]{HTML}}), and \code{html_dependency} objects. You can
-also pass lists that contain tags, text nodes, or HTML. To use boolean
-attributes, use a named argument with a \code{NA} value. (see example)}
+\item{...}{Tag attributes (named arguments) and children (unnamed arguments).
+A named argument with an \code{NA} value is rendered as a boolean attributes
+(see example). Children may include any combination of:
+\itemize{
+\item Other tags objects
+\item \code{\link[htmltools:HTML]{HTML()}} strings
+\item \code{\link[htmltools:htmlDependency]{htmlDependency()}}s
+\item Single-element atomic vectors
+\item \code{list()}s containing any combination of the above
+}}
 
-\item{.noWS}{A character vector used to omit some of the whitespace that
-would normally be written around this tag. Valid options include
-\code{before}, \code{after}, \code{outside}, \code{after-begin},
-\code{before-end}, and \code{inside}. Any number of these options can be
-specified.}
+\item{.noWS}{Character vector used to omit some of the whitespace that would
+normally be written around this tag. Valid options include \code{before},
+\code{after}, \code{outside}, \code{after-begin}, and \code{before-end}.
+Any number of these options can be specified.}
+
+\item{.renderHook}{A function (or list of functions) to call when the \code{tag} is rendered. This
+function should have at least one argument (the \code{tag}) and return anything
+that can be converted into tags via \code{\link[htmltools:as.tags]{as.tags()}}. Additional hooks may also be
+added to a particular \code{tag} via \code{\link[htmltools:tagAddRenderHook]{tagAddRenderHook()}}.}
 }
 \description{
 Create a Framework 7 list index item
