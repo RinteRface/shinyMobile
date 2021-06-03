@@ -226,16 +226,16 @@ It is intended to be used with tablets.</p>
      title <span class='op'>=</span> <span class='st'>"Split layout"</span>,
      <span class='fu'>f7SplitLayout</span><span class='op'>(</span>
        sidebar <span class='op'>=</span> <span class='fu'><a href='f7Panel.html'>f7Panel</a></span><span class='op'>(</span>
-         inputId <span class='op'>=</span> <span class='st'>"sidebar"</span>,
+         id <span class='op'>=</span> <span class='st'>"sidebar"</span>,
          title <span class='op'>=</span> <span class='st'>"Sidebar"</span>,
          side <span class='op'>=</span> <span class='st'>"left"</span>,
-         theme <span class='op'>=</span> <span class='st'>"light"</span>,
+         theme <span class='op'>=</span> <span class='st'>"dark"</span>,
          <span class='fu'><a href='f7PanelMenu.html'>f7PanelMenu</a></span><span class='op'>(</span>
            id <span class='op'>=</span> <span class='st'>"menu"</span>,
            <span class='fu'><a href='f7PanelMenu.html'>f7PanelItem</a></span><span class='op'>(</span>tabName <span class='op'>=</span> <span class='st'>"tab1"</span>, title <span class='op'>=</span> <span class='st'>"Tab 1"</span>, icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"envelope"</span><span class='op'>)</span>, active <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
            <span class='fu'><a href='f7PanelMenu.html'>f7PanelItem</a></span><span class='op'>(</span>tabName <span class='op'>=</span> <span class='st'>"tab2"</span>, title <span class='op'>=</span> <span class='st'>"Tab 2"</span>, icon <span class='op'>=</span> <span class='fu'><a href='f7Icon.html'>f7Icon</a></span><span class='op'>(</span><span class='st'>"house"</span><span class='op'>)</span><span class='op'>)</span>
          <span class='op'>)</span>,
-         effect <span class='op'>=</span> <span class='st'>"reveal"</span>
+         <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/htmlOutput.html'>uiOutput</a></span><span class='op'>(</span><span class='st'>"selected_tab"</span><span class='op'>)</span>
        <span class='op'>)</span>,
        navbar <span class='op'>=</span> <span class='fu'><a href='f7Navbar.html'>f7Navbar</a></span><span class='op'>(</span>
          title <span class='op'>=</span> <span class='st'>"Split Layout"</span>,
@@ -262,8 +262,8 @@ It is intended to be used with tablets.</p>
    <span class='op'>)</span>,
    server <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
 
-     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observe.html'>observe</a></span><span class='op'>(</span><span class='op'>{</span>
-       <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>menu</span><span class='op'>)</span>
+     <span class='va'>output</span><span class='op'>$</span><span class='va'>selected_tab</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Selected tab: "</span>, <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>strong</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>menu</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
      <span class='op'>}</span><span class='op'>)</span>
 
      <span class='va'>output</span><span class='op'>$</span><span class='va'>distPlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>

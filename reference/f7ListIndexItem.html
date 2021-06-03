@@ -171,27 +171,36 @@
     <p>Create a Framework 7 list index item</p>
     </div>
 
-    <pre class="usage"><span class='fu'>f7ListIndexItem</span><span class='op'>(</span><span class='va'>...</span>, .noWS <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>f7ListIndexItem</span><span class='op'>(</span><span class='va'>...</span>, .noWS <span class='op'>=</span> <span class='cn'>NULL</span>, .renderHook <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Attributes and children of the element. Named arguments become
-attributes, and positional arguments become children. Valid children are
-tags, single-character character vectors (which become text nodes), raw
-HTML (see <code><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML</a></code>), and <code>html_dependency</code> objects. You can
-also pass lists that contain tags, text nodes, or HTML. To use boolean
-attributes, use a named argument with a <code>NA</code> value. (see example)</p></td>
+      <td><p>Tag attributes (named arguments) and children (unnamed arguments).
+A named argument with an <code>NA</code> value is rendered as a boolean attributes
+(see example). Children may include any combination of:</p><ul>
+<li><p>Other tags objects</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/htmltools/man/HTML.html'>HTML()</a></code> strings</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/htmltools/man/htmlDependency.html'>htmlDependency()</a></code>s</p></li>
+<li><p>Single-element atomic vectors</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>s containing any combination of the above</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>.noWS</th>
-      <td><p>A character vector used to omit some of the whitespace that
-would normally be written around this tag. Valid options include
-<code>before</code>, <code>after</code>, <code>outside</code>, <code>after-begin</code>,
-<code>before-end</code>, and <code>inside</code>. Any number of these options can be
-specified.</p></td>
+      <td><p>Character vector used to omit some of the whitespace that would
+normally be written around this tag. Valid options include <code>before</code>,
+<code>after</code>, <code>outside</code>, <code>after-begin</code>, and <code>before-end</code>.
+Any number of these options can be specified.</p></td>
+    </tr>
+    <tr>
+      <th>.renderHook</th>
+      <td><p>A function (or list of functions) to call when the <code>tag</code> is rendered. This
+function should have at least one argument (the <code>tag</code>) and return anything
+that can be converted into tags via <code><a href='https://rdrr.io/pkg/htmltools/man/as.tags.html'>as.tags()</a></code>. Additional hooks may also be
+added to a particular <code>tag</code> via <code>tagAddRenderHook()</code>.</p></td>
     </tr>
     </table>
 
