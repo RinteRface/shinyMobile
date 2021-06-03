@@ -2579,9 +2579,7 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
     shiny::tags$div(
       class = "list shiny-input-radiogroup",
       id = inputId,
-      shiny::tags$ul(
-        createRadioOptions(choices, selected, inputId)
-      )
+      createRadioOptions(choices, selected, inputId)
     )
   )
 
