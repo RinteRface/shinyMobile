@@ -14,7 +14,7 @@ $(function() {
   if (isPWA) {
     config.serviceWorker = {
       path: window.location.pathname + "www/service-worker.js",
-      scope: window.location.pathname + "www"
+      scope: window.location.pathname + "www/"
     };
   }
 
