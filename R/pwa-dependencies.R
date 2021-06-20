@@ -12,9 +12,9 @@ add_pwa_deps <- function(tag) {
   name = "pwa-utils",
   version = packageVersion("shinyMobile"),
   src = c(file = "shinyMobile-1.0.0.9001"),
-  head = "<link rel=\"manifest\" href=\"manifest.webmanifest\"  />
+  head = "<link rel=\"manifest\" href=\"manifest.webmanifest\" />
 <link rel=\"icon\" type=\"image/png\" href=\"icons/icon-144.png\" sizes=\"144x144\" />
-<link rel=\"apple-touch-icon\" href=\"icons/apple-touch-icon.png\"/>
+<link rel=\"apple-touch-icon\" href=\"icons/apple-touch-icon.png\" />
 <link rel=\"icon\" href=\"icons/favicon.png\"/>
   ",
   package = "shinyMobile",
