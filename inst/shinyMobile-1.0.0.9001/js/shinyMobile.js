@@ -5,8 +5,8 @@ $((function() {
     config.root = "#app";
     if (isPWA) {
         config.serviceWorker = {
-            path: "service-worker.js",
-            scope: window.location.pathname + "www/"
+            path: "www/service-worker.js",
+            scope: window.location.pathname
         };
     }
     config.methods = {
