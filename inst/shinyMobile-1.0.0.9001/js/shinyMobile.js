@@ -4,10 +4,12 @@ $((function() {
     var isPWA = $("body").attr("data-pwa") === "true";
     config.root = "#app";
     if (isPWA) {
-        config.serviceWorker = {
-            path: window.location.pathname + "service-worker.js",
-            scope: window.location.pathname
-        };
+        var pathname = window.location.pathname;
+        navigator.serviceWorker.register(pathname + "www/service-worker.js", {
+            scope: pathname + "www/"
+        }).then((function() {
+            console.log("Service Worker Registered");
+        }));
     }
     config.methods = {
         toggleDarkTheme: function() {
