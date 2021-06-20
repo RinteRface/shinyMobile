@@ -13,8 +13,8 @@ $(function() {
   // only register sw if the user wants to make a PWA and has a sw available
   if (isPWA) {
     config.serviceWorker = {
-      path: "www/service-worker.js",
-      scope: window.location.pathname
+      path: window.location.pathname + "www/service-worker.js",
+      scope: window.location.pathname + "www"
     };
   }
 
