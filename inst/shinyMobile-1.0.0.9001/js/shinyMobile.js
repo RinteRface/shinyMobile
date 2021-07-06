@@ -43,6 +43,31 @@ $((function() {
     }
     $("body").addClass(config.color);
     $("body").attr("filled", config.filled);
+    if (isPWA) {
+        var installToast = app.toast.create({
+            position: "center",
+            text: '<button id="install-button" class="toast-button button color-green">Install</button>'
+        });
+        var deferredPrompt;
+        $(window).on("beforeinstallprompt", e => {
+            e.preventDefault();
+            deferredPrompt = e.originalEvent;
+            installToast.open();
+        });
+        app.utils.nextTick((function() {
+            $("#install-button").on("click", (function() {
+                installToast.close();
+                if (!deferredPrompt) {
+                    return;
+                }
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(result => {
+                    console.log("👍", "userChoice", result);
+                    deferredPrompt = null;
+                });
+            }));
+        }), 500);
+    }
 }));
 
 $((function() {
