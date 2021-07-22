@@ -7,7 +7,7 @@
 f7ListGroup(..., title)
 }
 \arguments{
-\item{...}{slot for \link{f7ListItem}.}
+\item{...}{slot for \link{f7ListIndexItem}.}
 
 \item{title}{Group title.}
 }

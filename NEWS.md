@@ -1,5 +1,7 @@
 # shinyMobile 0.9.0
 
+This release also fixes an issue with R CMD check and [htmltools](https://github.com/RinteRface/shinyMobile/runs/3133178817?check_suite_focus=true#step:10:119)
+
 ## Breaking change
 - `f7Link()` __icon__ now expects `f7Icon()`. __label__ is not mandatory anymore.
 

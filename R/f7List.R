@@ -230,7 +230,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
 
 #' Create a framework 7 group of contacts
 #'
-#' @param ... slot for \link{f7ListItem}.
+#' @param ... slot for \link{f7ListIndexItem}.
 #' @param title Group title.
 #' @export
 f7ListGroup <- function(..., title) {
@@ -348,10 +348,12 @@ f7ListIndex <- function(..., id) {
 
 #' Create a Framework 7 list index item
 #'
-#' @inheritParams htmltools::tags
+#' @param ... Item content.
 #'
 #' @export
-f7ListIndexItem <- htmltools::tags$li
+f7ListIndexItem <- function(...) {
+  htmltools::tags$li(...)
+}
 
 
 
