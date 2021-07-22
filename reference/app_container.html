@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create the app UI — create_app_ui • shinyMobile</title>
+<title>Create an iframe container for app demo — app_container • shinyMobile</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create the app UI — create_app_ui" />
-<meta property="og:description" content="Create the app UI" />
+<meta property="og:title" content="Create an iframe container for app demo — app_container" />
+<meta property="og:description" content="Create an iframe container for app demo" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -163,35 +163,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create the app UI</h1>
-    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/preview_mobile.R'><code>R/preview_mobile.R</code></a></small>
-    <div class="hidden name"><code>create_app_ui.Rd</code></div>
+    <h1>Create an iframe container for app demo</h1>
+    <small class="dont-index">Source: <a href='https://github.com/RinteRface/shinyMobile/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>app_container.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create the app UI</p>
+    <p>Create an iframe container for app demo</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_app_ui</span><span class='op'>(</span><span class='va'>iframe</span>, <span class='va'>device</span>, <span class='va'>color</span>, <span class='va'>landscape</span>, static <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>app_container</span><span class='op'>(</span><span class='va'>url</span>, deps <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>skin</span>, color <span class='op'>=</span> <span class='cn'>NULL</span>, landscape <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>iframe</th>
-      <td><p>iframe tag designed by <a href='preview_mobile.html'>preview_mobile</a>.</p></td>
+      <th>url</th>
+      <td><p>app URL. httr GET test is run before. If failed,
+function returns NULL.</p></td>
     </tr>
     <tr>
-      <th>device</th>
-      <td><p>See <a href='preview_mobile.html'>preview_mobile</a> input.</p></td>
+      <th>deps</th>
+      <td><p>Whether to include marvel device assets. Default to FALSE.
+The first occurence must set deps to TRUE so that CSS is loaded in the page.</p></td>
+    </tr>
+    <tr>
+      <th>skin</th>
+      <td><p>Wrapper devices.</p></td>
     </tr>
     <tr>
       <th>color</th>
-      <td><p>See <a href='preview_mobile.html'>preview_mobile</a> input.</p></td>
+      <td><p>Wrapper color. Only with iphone8 (black, silver, gold),
+iphone8+ (black, silver, gold), iphone5s (black, silver, gold),
+iphone5c (white,red , yellow, green, blue), iphone4s (black, silver), ipadMini (black, silver) and
+galaxyS5 (black, white).</p></td>
     </tr>
     <tr>
       <th>landscape</th>
-      <td><p>See <a href='preview_mobile.html'>preview_mobile</a> input.</p></td>
+      <td><p>Whether to put the device wrapper in landscape mode. Default to FALSE.</p></td>
     </tr>
     </table>
 
