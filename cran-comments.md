@@ -4,5 +4,5 @@
 * Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.1 (2017-01-27)
 * win-builder (devel and release)
 
-## R CMD check results
-This version 0.8.0 fixes a reverse dependency issue with `{htmltools}`: see https://github.com/RinteRface/shinyMobile/pull/145.
+## Note
+This version 0.9.0 also fixes NOTES from the CRAN check page: https://cran.r-project.org/web/checks/check_results_shinyMobile.html

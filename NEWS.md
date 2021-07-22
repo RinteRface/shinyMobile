@@ -1,4 +1,4 @@
-# shinyMobile 1.0.0.9001
+# shinyMobile 0.9.0
 
 ## Breaking change
 - `f7Link()` __icon__ now expects `f7Icon()`. __label__ is not mandatory anymore.

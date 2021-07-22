@@ -11,7 +11,7 @@ add_shinyMobile_deps <- function(tag) {
  shinyMobile_deps <- htmlDependency(
   name = "shinyMobile",
   version = packageVersion("shinyMobile"),
-  src = c(file = "shinyMobile-1.0.0.9001"),
+  src = c(file = "shinyMobile-0.9.0"),
   script = "js/shinyMobile.min.js",
   stylesheet = "css/shinyMobile.css",
   package = "shinyMobile",
