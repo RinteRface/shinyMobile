@@ -191,7 +191,5 @@ app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FAL
     } else {
       device_tag
     }
-  } else {
-    NULL
   }
 }
