@@ -9,8 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "https://rinterface.com/shiny/talks/rencontresR2021/slides.html", ratio = "16:9")
+```{r echo=FALSE}
+knitr::include_url("https://rinterface.com/shiny/talks/rencontresR2021/slides.html")
 ```
 
 ## Introduction
