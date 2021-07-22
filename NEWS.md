@@ -7,6 +7,8 @@
 - New `updateF7Radio()`. Fixes #135. Thanks @korterling.
 
 ## Minor change
+- More security for embedded apps. 
+- Added shinyMobile hands on slides in Getting Started vignette. 
 - `f7Dialog()` has a fixed height of 300px and vertical overflow to avoid issues.
 - Add `...` to `f7SmartSelect()`. 
 - Add `options` to `f7SearchBar()` to provide more configuration. Fixes #47: thanks @rodrigoheck.

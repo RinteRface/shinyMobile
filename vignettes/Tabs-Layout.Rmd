@@ -11,22 +11,13 @@ vignette: >
 
 The second layout is the `f7TabLayout()`, very similar to that of [miniUI](https://github.com/rstudio/miniUI).
 
-<div class="marvel-device iphone-x">
-<div class="top-bar"></div>
-<div class="sleep"></div>
-<div class="bottom-bar"></div>
-<div class="volume"></div>
-<div class="overflow">
-<div class="shadow shadow--tr"></div>
-<div class="shadow shadow--tl"></div>
-<div class="shadow shadow--br"></div>
-<div class="shadow shadow--bl"></div>
-</div>
-<div class="inner-shadow"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Tabs" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
-</div>
-</div>
+```{r, echo=FALSE}
+shinyMobile:::app_container(
+  "https://dgranjon.shinyapps.io/miniUI2Tabs", 
+  deps = TRUE,
+  skin = "iphone8"
+)
+```
 
 ```{r, eval=FALSE}
 library(shiny)

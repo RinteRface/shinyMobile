@@ -12,22 +12,13 @@ vignette: >
 `{shinyMobile}` comes with 3 predefined layouts. `f7SingleLayout()` is dedicated to build simple, 
 one-page apps or gadgets.
 
-<div class="marvel-device iphone-x">
-<div class="top-bar"></div>
-<div class="sleep"></div>
-<div class="bottom-bar"></div>
-<div class="volume"></div>
-<div class="overflow">
-<div class="shadow shadow--tr"></div>
-<div class="shadow shadow--tl"></div>
-<div class="shadow shadow--br"></div>
-<div class="shadow shadow--bl"></div>
-</div>
-<div class="inner-shadow"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Single" allowfullscreen="" frameborder="0" scrolling="no" height="720px"></iframe>
-</div>
-</div>
+```{r, echo=FALSE}
+shinyMobile:::app_container(
+  "https://dgranjon.shinyapps.io/miniUI2Single", 
+  deps = TRUE,
+  skin = "iphone8"
+)
+```
 
 ```{r, eval=FALSE}
 library(shiny)

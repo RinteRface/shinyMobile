@@ -4,7 +4,7 @@
 \alias{create_app_ui}
 \title{Create the app UI}
 \usage{
-create_app_ui(iframe, device, color, landscape)
+create_app_ui(iframe, device, color, landscape, static = FALSE)
 }
 \arguments{
 \item{iframe}{iframe tag designed by \link{preview_mobile}.}
@@ -16,5 +16,6 @@ create_app_ui(iframe, device, color, landscape)
 \item{landscape}{See \link{preview_mobile} input.}
 }
 \description{
-Internal
+Create the app UI
 }
+\keyword{Internal}
