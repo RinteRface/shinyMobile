@@ -112,7 +112,7 @@ set_app_height <- function(device, landscape) {
 #' @param device See \link{preview_mobile} input.
 #' @param color See \link{preview_mobile} input.
 #' @param landscape See \link{preview_mobile} input.
-create_app_ui <- function(iframe, device, color, landscape, static = FALSE) {
+create_app_ui <- function(iframe, device, color, landscape) {
 
   # should never change!
   devices_css_deps <- htmltools::htmlDependency(
@@ -122,27 +122,23 @@ create_app_ui <- function(iframe, device, color, landscape, static = FALSE) {
     stylesheet = "devices.min.css"
   )
 
-  if (static) {
-
-  } else {
-    shiny::fluidPage(
-      shiny::tagList(
-        devices_css_deps,
-        shiny::br()
-      ),
-      # container for preview app
-      shiny::br(),
-      shiny::fluidRow(
-        align = "center",
-        create_app_container(
-          iframe,
-          skin = device,
-          color = color,
-          landscape = landscape
-        )
+  shiny::fluidPage(
+    shiny::tagList(
+      devices_css_deps,
+      shiny::br()
+    ),
+    # container for preview app
+    shiny::br(),
+    shiny::fluidRow(
+      align = "center",
+      create_app_container(
+        iframe,
+        skin = device,
+        color = color,
+        landscape = landscape
       )
     )
-  }
+  )
 
 }
 

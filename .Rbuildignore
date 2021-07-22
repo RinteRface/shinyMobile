@@ -12,3 +12,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^srcjs$
 ^tools$
+^index\.Rmd$

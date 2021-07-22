@@ -4,7 +4,7 @@
 \alias{create_app_ui}
 \title{Create the app UI}
 \usage{
-create_app_ui(iframe, device, color, landscape, static = FALSE)
+create_app_ui(iframe, device, color, landscape)
 }
 \arguments{
 \item{iframe}{iframe tag designed by \link{preview_mobile}.}
