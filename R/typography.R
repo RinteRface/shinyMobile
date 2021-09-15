@@ -39,7 +39,7 @@ f7Align <- function(tag, side = c("left", "center", "right", "justify")) {
   } else {
     paste(tag$attribs$class, alignCl)
   }
-  return(tag)
+  tag
 }
 
 
@@ -79,7 +79,7 @@ f7Float <- function(tag, side = c("left", "right")) {
   floatCl <- paste0("float-", side)
 
   tag$attribs$class <- paste(tag$attribs$class, floatCl)
-  return(tag)
+  tag
 }
 
 
@@ -131,7 +131,7 @@ f7Margin <- function(tag, side = NULL) {
   marginCl <- if (!is.null(side)) paste0("margin-", side) else "margin"
 
   tag$attribs$class <- paste(tag$attribs$class, marginCl)
-  return(tag)
+  tag
 }
 
 
@@ -179,5 +179,5 @@ f7Padding <- function(tag, side = NULL) {
   paddingCl <- if (!is.null(side)) paste0("padding-", side) else "padding"
 
   tag$attribs$class <- paste(tag$attribs$class, paddingCl)
-  return(tag)
+  tag
 }
