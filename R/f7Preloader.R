@@ -128,9 +128,12 @@ f7ShowPreloader <- function(target = NULL, color = NULL,
 #' @rdname preloader
 f7HidePreloader <- function(target = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-
-  message <- dropNulls(list(el = target))
-  session$sendCustomMessage('hide-preloader', message)
+  .Deprecated(
+    "hideF7Preloader",
+    package = "shinyMobile",
+    "f7HidePreloader will be removed in future release. Please use
+      hideF7Preloader instead.",
+    old = as.character(sys.call(sys.parent()))[1L])
 }
 
 
@@ -140,18 +143,13 @@ f7HidePreloader <- function(target = NULL,
 #' \code{hideF7Preloader} hides a preloader.
 #' Use \link{f7HidePreloader} instead
 #'
-#' @inheritParams  hideF7Preloader
+#' @inheritParams hideF7Preloader
 #' @rdname f7-deprecated
 #' @keywords internal
 #' @export
 hideF7Preloader <- function(target = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "hideF7Preloader",
-    package = "shinyMobile",
-    "f7HidePreloader will be removed in future release. Please use
-      hideF7Preloader instead.",
-    old = as.character(sys.call(sys.parent()))[1L])
-    f7HidePreloader(target, session)
+  message <- dropNulls(list(el = target))
+  session$sendCustomMessage('hide-preloader', message)
 }
 

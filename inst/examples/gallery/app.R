@@ -199,7 +199,7 @@ shinyApp(
     output$popupContent <- renderPrint(input$popupText)
 
     observeEvent(input$togglePopup, {
-      f7TogglePopup(id = "popup1")
+      updateF7Popup(id = "popup1")
     })
 
     observeEvent(input$popup1, {
@@ -419,9 +419,9 @@ shinyApp(
 
     # preloaders
     observeEvent(input$showLoader, {
-      f7ShowPreloader(target = "#preloaderPlot", color = "blue")
+      showF7Preloader(target = "#preloaderPlot", color = "blue")
       Sys.sleep(2)
-      f7HidePreloader(target = "#preloaderPlot")
+      hideF7Preloader(target = "#preloaderPlot")
     })
     output$preloaderPlot <- renderPlot({
       hist(rnorm(100))
