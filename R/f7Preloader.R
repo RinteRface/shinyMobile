@@ -115,7 +115,9 @@ f7ShowPreloader <- function(target = NULL, color = NULL,
       showF7Preloader instead.",
     old = as.character(sys.call(sys.parent()))[1L]
   )
+  showF7Preloader(target = target, color = color, session = session)
 }
+
 
 
 #' Framework7 preloader
@@ -134,6 +136,7 @@ f7HidePreloader <- function(target = NULL,
     "f7HidePreloader will be removed in future release. Please use
       hideF7Preloader instead.",
     old = as.character(sys.call(sys.parent()))[1L])
+  hideF7Preloader(target = target, session = session)
 }
 
 
