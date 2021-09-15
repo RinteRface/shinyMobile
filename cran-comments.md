@@ -5,4 +5,4 @@
 * win-builder (devel and release)
 
 ## Note
-This version 0.9.0 also fixes NOTES from the CRAN check page: https://cran.r-project.org/web/checks/check_results_shinyMobile.html
+This version 0.9.1 fixes issue blocking Shiny 1.7.0 to be [released](https://github.com/rstudio/shiny/issues/3500). 

@@ -1,3 +1,7 @@
+# shinyMobile 0.9.1
+This release only fixes an issue with Shiny 1.7.0 with a failing unit [test](https://github.com/RinteRface/shinyMobile/pull/211). Thanks @schloerke
+
+
 # shinyMobile 0.9.0
 
 This release also fixes an issue with R CMD check and [htmltools](https://github.com/RinteRface/shinyMobile/runs/3133178817?check_suite_focus=true#step:10:119)
