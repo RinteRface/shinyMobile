@@ -200,7 +200,7 @@
  <span class='va'>subtabs_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span> <span class='op'>{</span>
    <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
 
-   <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+   <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tagList.html'>tagList</a></span><span class='op'>(</span>
      <span class='fu'><a href='f7Toggle.html'>f7Toggle</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"updateSubTab"</span><span class='op'>)</span>, label <span class='op'>=</span> <span class='st'>"Update SubTab"</span>, checked <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>,
      <span class='fu'><a href='f7Tabs.html'>f7Tabs</a></span><span class='op'>(</span>
        id <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"subtabdemo"</span><span class='op'>)</span>,

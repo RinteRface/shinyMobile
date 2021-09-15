@@ -239,7 +239,7 @@ Insert before <a href='f7Messages.html'>f7Messages</a>. See examples.</p>
 
     <span class='va'>output</span><span class='op'>$</span><span class='va'>messageContent</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderUI.html'>renderUI</a></span><span class='op'>(</span><span class='op'>{</span>
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>mymessagebar</span><span class='op'>)</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tagList.html'>tagList</a></span><span class='op'>(</span>
         <span class='fu'><a href='f7BlockTitle.html'>f7BlockTitle</a></span><span class='op'>(</span><span class='st'>"Message Content"</span>, size <span class='op'>=</span> <span class='st'>"large"</span><span class='op'>)</span>,
         <span class='fu'><a href='f7Block.html'>f7Block</a></span><span class='op'>(</span>strong <span class='op'>=</span> <span class='cn'>TRUE</span>, inset <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>mymessagebar</span><span class='op'>)</span>
       <span class='op'>)</span>
