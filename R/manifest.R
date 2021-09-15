@@ -51,7 +51,7 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
     NULL,
     package = "shinyMobile",
     "create_manifest will be removed in future release. Please use
-    the workflow desribed at https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools instead.",
+    the workflow described at https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools instead.",
     old = as.character(sys.call(sys.parent()))[1L]
   )
 
