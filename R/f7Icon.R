@@ -75,7 +75,7 @@ f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = NULL) {
     iconCl <- paste0(iconCl, " color-", color)
   }
 
-  iconTag <- add_f7icons_dependencies(shiny::tags$i(class = iconCl, style = style, ...))
+  iconTag <- shiny::tags$i(class = iconCl, style = style, ...)
   htmltools::browsable(iconTag)
 }
 

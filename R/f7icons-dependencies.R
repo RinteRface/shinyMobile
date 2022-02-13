@@ -6,7 +6,7 @@
 #'
 #' @importFrom htmltools tagList htmlDependency
 #' @export
-add_f7icons_dependencies <- function(tag) {
+add_f7icons_deps <- function(tag) {
   icon_deps <- htmlDependency(
     name = "f7-icons",
     version = "3.0.0",

@@ -157,7 +157,8 @@ f7Page <- function(
       deps = c(
         "framework7",
         "shinyMobile",
-        pwaDeps
+        pwaDeps,
+        "f7icons"
       ),
       bodyTag
     )
