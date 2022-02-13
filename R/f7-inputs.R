@@ -1402,7 +1402,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
           class = "item-link smart-select",
           id = inputId,
           shiny::tags$select(
-            id = inputId,
             multiple = if (multiple) NA else NULL,
             maxlength = if (!is.null(maxlength)) maxlength else NULL,
             options
