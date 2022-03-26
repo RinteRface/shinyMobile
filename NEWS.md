@@ -1,5 +1,8 @@
 # shinyMobile 1.0.0.9000
 
+## Minor change
+- Fixes #204: issue with `f7DatePicker()` and DST. 
+
 
 # shinyMobile 0.9.1
 This release only fixes an issue with Shiny 1.7.0 with a failing unit [test](https://github.com/RinteRface/shinyMobile/pull/211). Thanks @schloerke
