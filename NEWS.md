@@ -5,6 +5,7 @@
 - Fixes #215: Icon not displayed in reconnect / reload toaster. Add f7Icon deps anyway.
 - Fixes #204: issue with `f7DatePicker()` and DST. 
 - Update CI/CD setup.
+- Fixes #222: f7Slider code updated to work with the fix for #215 above. 
 
 
 # shinyMobile 0.9.1
