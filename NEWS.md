@@ -6,6 +6,7 @@
 - Fixes #204: issue with `f7DatePicker()` and DST. 
 - Update CI/CD setup.
 - Fix [issue](https://github.com/RinteRface/shinyMobile/issues/165#issuecomment-1226581561) where `f7Page()` does not accept anymore color by its name. Now, and like in earlier versions, `f7Page()` accepts either hex code or color name. 
+- Fixes #222: `f7Slider()` code updated to work with the fix for #215 above. 
 
 
 # shinyMobile 0.9.1
