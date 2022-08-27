@@ -1,10 +1,11 @@
 # shinyMobile 1.0.0.9000
 
-## Minor change
-- Fixes #217: f7SmartSelect interfering NS for server-side module.
+## Bug fixes
+- Fixes #217: `f7SmartSelect()` interfering NS for server-side module.
 - Fixes #215: Icon not displayed in reconnect / reload toaster. Add f7Icon deps anyway.
 - Fixes #204: issue with `f7DatePicker()` and DST. 
 - Update CI/CD setup.
+- Fix [issue](https://github.com/RinteRface/shinyMobile/issues/165#issuecomment-1226581561) where `f7Page()` does not accept anymore color by its name. Now, and like in earlier versions, `f7Page()` accepts either hex code or color name. 
 
 
 # shinyMobile 0.9.1

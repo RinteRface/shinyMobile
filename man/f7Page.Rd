@@ -9,7 +9,7 @@ f7Page(
   title = NULL,
   preloader = FALSE,
   loading_duration = 3,
-  options = list(theme = c("ios", "md", "auto", "aurora"), dark = TRUE, filled = FALSE,
+  options = list(theme = c("auto", "ios", "md", "aurora"), dark = TRUE, filled = FALSE,
     color = "#007aff", touch = list(tapHold = TRUE, tapHoldDelay = 750, iosTouchRipple =
     FALSE), iosTranslucentBars = FALSE, navbar = list(iosCenterTitle = TRUE,
     hideOnPageScroll = TRUE), toolbar = list(hideOnPageScroll = FALSE), pullToRefresh =
@@ -36,7 +36,9 @@ notable options. General options:
  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
  the current selected color. FALSE by default.
  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
- Expect a name like blue or red. If NULL, use the default color.
+ Expect a name like blue, red or hex code like `#FF0000`. If NULL, use the default color.
+ If a name is specified it must be accepted either by \link[grDevices]{colo2rgb} or
+ \link{getF7Colors} (valid Framework 7 color names).
  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
  \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).

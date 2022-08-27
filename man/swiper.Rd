@@ -7,8 +7,8 @@
 f7Swiper(
   ...,
   id,
-  options = list(speed = 400, spaceBetween = 50, slidesPerView = "auto", centeredSlides
-    = TRUE, pagination = TRUE)
+  options = list(speed = 400, spaceBetween = 50, slidesPerView = "auto", centeredSlides =
+    TRUE, pagination = TRUE)
 )
 }
 \arguments{

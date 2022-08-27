@@ -42,7 +42,7 @@ colorToHex <- function(color) {
 #' @return A vector containing colors
 #' @export
 getF7Colors <- function() {
-  colors <- c(
+  c(
     "red",
     "green",
     "blue",
@@ -58,7 +58,6 @@ getF7Colors <- function() {
     "gray",
     "black"
   )
-  colors
 }
 
 

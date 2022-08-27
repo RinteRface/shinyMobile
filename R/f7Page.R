@@ -16,7 +16,9 @@
 #'  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #'  the current selected color. FALSE by default.
 #'  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
-#'  Expect a name like blue or red. If NULL, use the default color.
+#'  Expect a name like blue, red or hex code like `#FF0000`. If NULL, use the default color.
+#'  If a name is specified it must be accepted either by \link[grDevices]{colo2rgb} or
+#'  \link{getF7Colors} (valid Framework 7 color names).
 #'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
 #'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
 #'  \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
@@ -50,33 +52,47 @@
 #'
 #' @export
 f7Page <- function(
-  ...,
-  title = NULL,
-  preloader = FALSE,
-  loading_duration = 3,
-  # default options
-  options = list(
-    theme = c("ios", "md", "auto", "aurora"),
-    dark = TRUE,
-    filled = FALSE,
-    color = "#007aff",
-    touch = list(
-      tapHold = TRUE,
-      tapHoldDelay = 750,
-      iosTouchRipple = FALSE
+    ...,
+    title = NULL,
+    preloader = FALSE,
+    loading_duration = 3,
+    # default options
+    options = list(
+      theme = c("auto", "ios", "md", "aurora"),
+      dark = TRUE,
+      filled = FALSE,
+      color = "#007aff",
+      touch = list(
+        tapHold = TRUE,
+        tapHoldDelay = 750,
+        iosTouchRipple = FALSE
+      ),
+      iosTranslucentBars = FALSE,
+      navbar = list(
+        iosCenterTitle = TRUE,
+        hideOnPageScroll = TRUE
+      ),
+      toolbar = list(
+        hideOnPageScroll = FALSE
+      ),
+      pullToRefresh = FALSE
     ),
-    iosTranslucentBars = FALSE,
-    navbar = list(
-      iosCenterTitle = TRUE,
-      hideOnPageScroll = TRUE
-    ),
-    toolbar = list(
-      hideOnPageScroll = FALSE
-    ),
-    pullToRefresh = FALSE
-  ),
-  allowPWA = FALSE
+    allowPWA = FALSE
 ) {
+
+  # Color must be converted to HEX before going to JavaScript
+  if (!is.null(options$color)) {
+    # If color is a name
+    if (!grepl("#", options$color)) {
+      # Color belongs to Framework7 valid colors
+      if (options$color %in% getF7Colors()) {
+        options$color <- colorToHex(options$color)
+      } else {
+        # If not we use gplots and internal R colors
+        options$color <- gplots::col2hex(options$color)
+      }
+    }
+  }
 
   # fallback to auto
   if (length(options$theme) > 1) options$theme <- "auto"
