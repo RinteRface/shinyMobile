@@ -522,6 +522,20 @@ $.extend(f7ActionSheetBinding, {
 
 Shiny.inputBindings.register(f7ActionSheetBinding);
 
+function setSource(query, render) {
+    var results = [];
+    if (query.length === 0) {
+        render(results);
+        return;
+    }
+    for (var i = 0; i < vals.length; i++) {
+        if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+            results.push(vals[i]);
+        }
+    }
+    render(results);
+}
+
 var f7AutoCompleteBinding = new Shiny.InputBinding;
 
 $.extend(f7AutoCompleteBinding, {
@@ -541,20 +555,13 @@ $.extend(f7AutoCompleteBinding, {
                 }
             }
         }));
-        var vals = JSON.parse(data.choices);
         data.value = JSON.parse(data.value);
         if (data.openIn == "dropdown") {
             data.inputEl = "#" + id;
         } else {
             data.openerEl = "#" + id;
         }
-        data.on = {
-            change: function(value) {
-                $("#" + id).find(".item-after").text(value[0]);
-                $("#" + id).find("input").val(value[0]);
-                $("#" + id).trigger("change");
-            }
-        };
+        var vals = JSON.parse(data.choices);
         data.source = function(query, render) {
             var results = [];
             if (query.length === 0) {
@@ -568,6 +575,11 @@ $.extend(f7AutoCompleteBinding, {
             }
             render(results);
         };
+        data.on = {
+            change: function(value) {
+                $("#" + id).trigger("change");
+            }
+        };
         app.autocomplete.create(data);
     },
     find: function(scope) {
@@ -575,18 +587,27 @@ $.extend(f7AutoCompleteBinding, {
     },
     getValue: function(el) {
         var a = app.autocomplete.get($(el));
+        $(a.params.inputEl).val(a.value);
         return a.value;
     },
     setValue: function(el, value) {
-        var a = app.autocomplete.get($(el));
-        a.value = value;
-        a.$inputEl[0].value = value;
-        $(el).trigger("change");
+        el.value = value;
+        el.params.value = value;
+        $(el.params.inputEl).val(el.value);
+    },
+    _setChoices: function(el, choices) {
+        vals = choices;
+        el.params.source = setSource;
     },
     receiveMessage: function(el, data) {
-        if (data.hasOwnProperty("value")) {
-            this.setValue(el, data.value);
+        var a = app.autocomplete.get($(el));
+        if (data.hasOwnProperty("choices")) {
+            this._setChoices(a, data.choices);
         }
+        if (data.hasOwnProperty("value")) {
+            this.setValue(a, data.value);
+        }
+        $(el).trigger("change");
     },
     subscribe: function(el, callback) {
         $(el).on("change.f7AutoCompleteBinding", (function(e) {

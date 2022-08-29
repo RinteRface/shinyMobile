@@ -22,6 +22,7 @@ f7AutoComplete(
 updateF7AutoComplete(
   inputId,
   value = NULL,
+  choices = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -34,7 +35,7 @@ updateF7AutoComplete(
 
 \item{value}{New value.}
 
-\item{choices}{Autocomplete choices.}
+\item{choices}{New set of choices.}
 
 \item{openIn}{Defines how to open Autocomplete,
 can be page or popup (for Standalone) or dropdown.}
@@ -144,7 +145,8 @@ if (interactive()) {
     observeEvent(input$update, {
       updateF7AutoComplete(
         inputId = "myautocomplete",
-        value = "Banana"
+        value = "plip",
+        choices = c("plip", "plap", "ploup")
       )
     })
   }

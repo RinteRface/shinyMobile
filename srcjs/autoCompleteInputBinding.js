@@ -1,4 +1,20 @@
 // Input binding
+function setSource(query, render) {
+  var results = [];
+  if (query.length === 0) {
+    render(results);
+    return;
+  }
+  // Find matched items
+  for (var i = 0; i < vals.length; i++) {
+    if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+      results.push(vals[i]);
+    }
+  }
+  // Render items by passing array with result items
+  render(results);
+};
+
 var f7AutoCompleteBinding = new Shiny.InputBinding();
 
 $.extend(f7AutoCompleteBinding, {
@@ -26,8 +42,6 @@ $.extend(f7AutoCompleteBinding, {
       }
     });
 
-
-    var vals = JSON.parse(data.choices);
     data.value = JSON.parse(data.value);
 
     // special case where the autocomplete is standalone
@@ -37,18 +51,7 @@ $.extend(f7AutoCompleteBinding, {
       data.openerEl = '#' + id;
     }
 
-    data.on = {
-      change: function (value) {
-        // Add item text value to item-after
-        $('#' + id).find('.item-after').text(value[0]);
-        // Add item value to input value
-        $('#' + id).find('input').val(value[0]);
-        // important: trigger change so that the input value
-        // is updated for Shiny
-        $('#' + id).trigger('change');
-      }
-    };
-
+    var vals = JSON.parse(data.choices);
     data.source = function (query, render) {
       var results = [];
       if (query.length === 0) {
@@ -65,6 +68,15 @@ $.extend(f7AutoCompleteBinding, {
       render(results);
     };
 
+    // for popup and page so that shiny is aware about input change
+    data.on = {
+      change: function (value) {
+        // important: trigger change so that the input value
+        // is updated for Shiny
+        $('#' + id).trigger('change');
+      }
+    };
+
     app.autocomplete.create(data);
   },
 
@@ -75,29 +87,37 @@ $.extend(f7AutoCompleteBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     var a = app.autocomplete.get($(el));
+    // Set value in placeholder
+    $(a.params.inputEl).val(a.value);
     return a.value;
   },
 
   // see updateF7AutoComplete
   setValue: function(el, value) {
-    var a = app.autocomplete.get($(el));
-    a.value = value;
+    el.value = value;
+    el.params.value = value;
     // needed to update the text input
-    a.$inputEl[0].value = value;
-    $(el).trigger('change');
+    $(el.params.inputEl).val(el.value);
+  },
+
+  _setChoices: function(el, choices) {
+    // vals is required by setSource as global var.
+    vals = choices;
+    el.params.source = setSource;
   },
 
   // see updateF7AutoComplete
   receiveMessage: function(el, data) {
-    //var a = app.autocomplete.get($(el));
+    var a = app.autocomplete.get($(el));
     // update choices
-    //if (data.hasOwnProperty('choices')) {
-
-    //}
+    if (data.hasOwnProperty('choices')) {
+      this._setChoices(a, data.choices);
+    }
     // Update value
     if (data.hasOwnProperty('value')) {
-      this.setValue(el, data.value);
+      this.setValue(a, data.value);
     }
+    $(el).trigger('change');
   },
 
   subscribe: function(el, callback) {

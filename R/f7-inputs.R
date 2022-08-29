@@ -176,6 +176,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #'
 #' @param inputId The id of the input object.
 #' @param value New value.
+#' @param choices New set of choices.
 #' @param session The Shiny session object.
 #'
 #' @note You cannot update choices yet.
@@ -218,17 +219,19 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #'     observeEvent(input$update, {
 #'       updateF7AutoComplete(
 #'         inputId = "myautocomplete",
-#'         value = "Banana"
+#'         value = "plip",
+#'         choices = c("plip", "plap", "ploup")
 #'       )
 #'     })
 #'   }
 #'  )
 #' }
-updateF7AutoComplete <- function(inputId, value =  NULL,
+updateF7AutoComplete <- function(inputId, value =  NULL, choices = NULL,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
-      value = I(value)
+      value = I(value),
+      choices = choices
     )
   )
   session$sendInputMessage(inputId, message)

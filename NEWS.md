@@ -1,6 +1,7 @@
 # shinyMobile 1.0.0.9000
 
 ## Bug fixes
+- Fix #224: `updateF7AutoComplete` accepts __choices__.
 - Fixes #217: `f7SmartSelect()` interfering NS for server-side module.
 - Fixes #215: Icon not displayed in reconnect / reload toaster. Add f7Icon deps anyway.
 - Fixes #204: issue with `f7DatePicker()` and DST. 
