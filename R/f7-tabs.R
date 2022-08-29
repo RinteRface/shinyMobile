@@ -328,6 +328,27 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 }
 
 
+#' Validate a tab name
+#'
+#' TO avoid JS issues: avoid punctuation and space
+#'
+#' @param tabName Tab to validate.
+#'
+#' @return An error if a wrong pattern is found
+validate_tabName <- function(tabName) {
+  forbidden <- "(?!_)[[:punct:]]|[[:space:]]"
+  wrong_selector <- grepl(forbidden, tabName, perl = TRUE)
+  if (wrong_selector) {
+    stop(
+      paste(
+        "Please do not use punctuation or space in tabNames.
+        This might cause JavaScript issues."
+      )
+    )
+  }
+}
+
+
 
 #' Create a Framework7 tab item
 #'
@@ -347,16 +368,13 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 #' @export
 f7Tab <- function(..., tabName, icon = NULL, active = FALSE, hidden = FALSE) {
 
-  id <- tabName
-  # handle punctuation
-  id <- gsub(x = id, pattern = "[[:punct:]]", replacement = "")
-  # handle tab names with space
-  id <- gsub(x = id, pattern = " ", replacement = "")
+  # Tab name validation
+  validate_tabName(tabName)
 
   itemTag <- shiny::tags$div(
     class = if (!active) "page-content tab" else "page-content tab tab-active",
     `data-active` = tolower(active),
-    id = id,
+    id = tabName,
     `data-value` = tabName,
     `data-hidden` = tolower(hidden),
     style = "background-color: gainsboro;",
