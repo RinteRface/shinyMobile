@@ -9,7 +9,7 @@ tabOthers <- f7Tab(
     animated = TRUE,
     swipeable = FALSE,
     f7Tab(
-      tabName = "Tab 1",
+      tabName = "Tab1",
       active = TRUE,
       f7Block(
         strong = TRUE,
@@ -19,7 +19,7 @@ tabOthers <- f7Tab(
       )
     ),
     f7Tab(
-      tabName = "Tab 2",
+      tabName = "Tab2",
       f7Block(
         strong = TRUE,
         f7BlockHeader(text = "Header"),
@@ -28,7 +28,7 @@ tabOthers <- f7Tab(
       )
     ),
     f7Tab(
-      tabName = "Tab 3",
+      tabName = "Tab3",
       f7Block(
         strong = TRUE,
         f7BlockHeader(text = "Header"),

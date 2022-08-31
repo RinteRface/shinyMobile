@@ -3,7 +3,7 @@ library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Standalone tabs",
     options = list(
       theme = "auto",
       dark = TRUE,

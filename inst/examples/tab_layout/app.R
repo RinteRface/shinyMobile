@@ -10,7 +10,7 @@ poll <- data.frame(
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Tabs layout",
     f7TabLayout(
       panels = tagList(
         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
