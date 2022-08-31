@@ -57,7 +57,7 @@ if(interactive()){
          animated = FALSE,
          swipeable = TRUE,
          f7Tab(
-           tabName = "Tab 1",
+           tabName = "Tab1",
            icon = f7Icon("envelope"),
            active = TRUE,
            f7Shadow(
@@ -82,7 +82,7 @@ if(interactive()){
            )
          ),
          f7Tab(
-           tabName = "Tab 2",
+           tabName = "Tab2",
            icon = f7Icon("today"),
            active = FALSE,
            f7Shadow(
@@ -109,7 +109,7 @@ if(interactive()){
            )
          ),
          f7Tab(
-           tabName = "Tab 3",
+           tabName = "Tab3",
            icon = f7Icon("cloud_upload"),
            active = FALSE,
            f7Shadow(

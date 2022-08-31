@@ -257,8 +257,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
         # toolbar goes here
         toolbar,
         shiny::tags$div(
-          class= "page-content",
-          style = "background-color: gainsboro;",
+          class= "singlelayout page-content",
           # page content
           ...
         )
@@ -317,7 +316,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'          animated = FALSE,
 #'          swipeable = TRUE,
 #'          f7Tab(
-#'            tabName = "Tab 1",
+#'            tabName = "Tab1",
 #'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            f7Shadow(
@@ -342,7 +341,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 2",
+#'            tabName = "Tab2",
 #'            icon = f7Icon("today"),
 #'            active = FALSE,
 #'            f7Shadow(
@@ -369,7 +368,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 3",
+#'            tabName = "Tab3",
 #'            icon = f7Icon("cloud_upload"),
 #'            active = FALSE,
 #'            f7Shadow(
@@ -552,6 +551,12 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     appbar = appbar
   )
 
+  # Custonize class
+  splitSkeleton <- htmltools::tagQuery(splitSkeleton)$
+    find(".singlelayout")$
+    addClass("splitlayout")$
+    allTags()
+
   splitTemplateCSS <- shiny::singleton(
     shiny::tags$style(
       '/* Left Panel right border when it is visible by breakpoint */
@@ -642,10 +647,9 @@ f7Items <- function(...){
 #' @export
 f7Item <- function(..., tabName) {
   shiny::tags$div(
-    class = "page-content tab",
+    class = "tab",
     id = tabName,
     `data-value` = tabName,
-    style = "background-color: gainsboro;",
     ...
   )
 }

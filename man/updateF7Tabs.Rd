@@ -30,16 +30,16 @@ if (interactive()) {
        id = ns("subtabdemo"),
        style = "strong",
        animated = FALSE,
-       f7Tab(tabName = "SubTab 1", "SubTab 1"),
-       f7Tab(tabName = "SubTab 2", "SubTab 2", active = TRUE),
-       f7Tab(tabName = "SubTab 3", "SubTab 3")
+       f7Tab(title = "Subtab 1", tabName = "SubTab1", "SubTab 1"),
+       f7Tab(title = "Subtab 2", tabName = "SubTab2", "SubTab 2", active = TRUE),
+       f7Tab(title = "Subtab 3", tabName = "SubTab3", "SubTab 3")
      )
    )
  }
 
  subtabs <- function(input, output, session) {
    observeEvent(input$updateSubTab, {
-     selected <- ifelse(input$updateSubTab, "SubTab 1", "SubTab 2")
+     selected <- ifelse(input$updateSubTab, "SubTab1", "SubTab2")
      updateF7Tabs(session, id = "subtabdemo", selected = selected)
    })
    return(reactive(input$subtabdemo))
@@ -68,18 +68,19 @@ if (interactive()) {
          swipeable = TRUE,
          animated = FALSE,
          f7Tab(
-           tabName = "Tab 1",
+           title = "Tab 1",
+           tabName = "Tab1",
            subtabs_ui("subtabs1")[[2]]
          ),
-         f7Tab(tabName = "Tab 2", "Tab 2"),
-         f7Tab(tabName = "Tab 3", "Tab 3")
+         f7Tab(title = "Tab 2", tabName = "Tab2", "Tab 2"),
+         f7Tab(title = "Tab 3", tabName = "Tab3", "Tab 3")
        )
      )
    ),
    server = function(input, output, session) {
      output$selectedTab <- renderText(input$tabdemo)
      observeEvent(input$updateTab, {
-       selected <- ifelse(input$updateTab, "Tab 1", "Tab 2")
+       selected <- ifelse(input$updateTab, "Tab1", "Tab2")
        updateF7Tabs(id = "tabdemo", selected = selected)
      })
      subtab <- callModule(subtabs, "subtabs1")
@@ -104,31 +105,33 @@ if (interactive()) {
         animated = TRUE,
         f7Tab(
           active = TRUE,
-          tabName = 'Main tab',
-          icon = f7Icon('doc_text'),
+          title = "Main tab",
+          tabName = "Tab1",
+          icon = f7Icon("doc_text"),
           h1("This is the first tab."),
-          f7Button(inputId ='goto', label = 'Go to hidden tab')
+          f7Button(inputId = "goto", label = "Go to hidden tab")
         ),
         f7Tab(
-          tabName = 'Second tab',
-          icon = f7Icon('bolt_horizontal'),
-          h1('This is the second tab.')
+          title = "Second tab",
+          tabName = "Tab2",
+          icon = f7Icon("bolt_horizontal"),
+          h1("This is the second tab.")
         ),
         f7Tab(
-          tabName = 'Hidden tab',
+          title = "Hidden tab",
+          tabName = "Tab3",
           hidden = TRUE,
-          h1('This is a tab that does not appear in the tab menu.
-          Yet, you can still access it.')
+          h1("This is a tab that does not appear in the tab menu.
+          Yet, you can still access it.")
         )
       )
     )
   ),
   server = function(input, output, session) {
     observe(print(input$tabs))
-    observeEvent(input$goto,{
-      updateF7Tabs(session = session, id = 'tabs', selected = 'Hidden tab')
+    observeEvent(input$goto, {
+      updateF7Tabs(session = session, id = "tabs", selected = "Tab3")
     })
-
   }
  )
 }

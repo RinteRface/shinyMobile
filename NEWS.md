@@ -1,8 +1,17 @@
 # shinyMobile 1.0.0.9000
 
+## Breaking change
+- `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
+Tabs will have to be manually renamed by end users.
+
+## Minor change
+- Related to #220. A new __title__ parameter is available for `f7Tab()` so as to pass any
+name, as oposed to __tabName__. 
+
 ## Bug fixes
+- Fix #219: Avoid using inline CSS so that users can easily override {shinyMobile} defaults.
 - Fix #220: `f7Tab()` can create duplicate IDs which in turn break the page. Now we use `validate_tabName` internally
-to check whether the tab is valid (avoid JS issues with jQuery selectors)... 
+to check whether the tab is valid (avoid JS issues with jQuery selectors)...
 - Fix #224: `updateF7AutoComplete()` accepts __choices__.
 - Fixes #217: `f7SmartSelect()` interfering NS for server-side module.
 - Fixes #215: Icon not displayed in reconnect / reload toaster. Add f7Icon deps anyway.

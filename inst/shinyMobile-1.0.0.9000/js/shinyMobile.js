@@ -109,9 +109,13 @@ $((function() {
     if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
         $(".demo-send-message-link").find("i").addClass("color-white");
     }
+    isSplitLayout = $("#app").find(".splitlayout").length > 0;
     if (app.params.dark) {
-        $(".page-content").css("background-color", "");
-        $(".page-content.tab, .tab").css("background-color", "");
+        if (isSplitLayout) {
+            if ($(".panel-left").hasClass("theme-light")) {
+                $(".panel-left").removeClass("theme-light").addClass("theme-dark");
+            }
+        }
         $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
         $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
         $(".popup").css("background-color", "#1b1b1d");
@@ -125,6 +129,13 @@ $((function() {
         $(sidebarItems).css("background-color", "#171717");
     } else {
         $("div.messages").css("background-color", "gainsboro");
+        $(".singlelayout.page-content").css("background-color", "gainsboro");
+        $(".tablayout.tab").css("background-color", "gainsboro");
+        if (isSplitLayout) {
+            if ($(".panel-left").hasClass("theme-dark")) {
+                $(".panel-left").removeClass("theme-dark").addClass("theme-light");
+            }
+        }
         $("a").on("click", (function() {
             setTimeout((function() {
                 var linkColors = $("body").attr("class");

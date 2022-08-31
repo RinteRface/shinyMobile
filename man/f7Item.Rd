@@ -9,7 +9,7 @@ f7Item(..., tabName)
 \arguments{
 \item{...}{Item content.}
 
-\item{tabName}{Item id. Must be unique.}
+\item{tabName}{Item id. Must be unique, without space nor punctuation symbols.}
 }
 \description{
 Similar to  \link{f7Tab} but for the \link{f7SplitLayout}.

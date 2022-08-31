@@ -34,7 +34,8 @@
 #'         swipeable = TRUE,
 #'         animated = FALSE,
 #'         f7Tab(
-#'          tabName = "Tab 1",
+#'          title = "Tab 1",
+#'          tabName = "Tab1",
 #'          f7Sheet(
 #'           id = "sheet",
 #'           label = "More",
@@ -47,8 +48,8 @@
 #'           scelerisque est, at porta justo cursus ac"
 #'          )
 #'         ),
-#'         f7Tab(tabName = "Tab 2", "tab 2 text"),
-#'         f7Tab(tabName = "Tab 3", "tab 3 text"),
+#'         f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
+#'         f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
 #'         .items = f7TabLink(
 #'          icon = f7Icon("bolt_fill"),
 #'          label = "Toggle Sheet",
@@ -78,7 +79,7 @@
 #'          id = "tabs",
 #'          style = "strong", animated = FALSE, swipeable = TRUE,
 #'          f7Tab(
-#'            tabName = "Tab 1",
+#'            tabName = "Tab1",
 #'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            f7Shadow(
@@ -99,9 +100,8 @@
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 2",
+#'            tabName = "Tab2",
 #'            icon = f7Icon("today"),
-#'            active = FALSE,
 #'            f7Shadow(
 #'              intensity = 10,
 #'              hover = TRUE,
@@ -122,9 +122,8 @@
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 3",
+#'            tabName = "Tab3",
 #'            icon = f7Icon("cloud_upload"),
-#'            active = FALSE,
 #'            f7Shadow(
 #'              intensity = 10,
 #'              hover = TRUE,
@@ -185,7 +184,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 
     item <- items[[i]][[1]]
     itemIcon <- items[[i]][[2]]
-    itemName <- items[[i]][[3]]
+    itemName <- items[[i]][[5]] # May be NULL
     itemClass <- item$attribs$class
     itemId <- item$attribs$id
 
@@ -210,14 +209,14 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
             class = if (active) "button tab-link tab-link-active" else "button tab-link",
             `data-tab` = paste0("#", ns(itemId)),
             itemIcon,
-            shiny::span(class = "tabbar-label", itemName)
+            if (!is.null(itemName)) shiny::span(class = "tabbar-label", itemName)
           )
         } else if (style == "toolbar") {
           shiny::a(
             `data-tab` = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
             itemIcon,
-            shiny::span(class = "tabbar-label", itemName)
+            if (!is.null(itemName)) shiny::span(class = "tabbar-label", itemName)
           )
         }
       } else {
@@ -225,13 +224,13 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
           shiny::tags$button(
             class = if (active) "button tab-link tab-link-active" else "button tab-link",
             `data-tab` = paste0("#", ns(itemId)),
-            itemName
+            if (!is.null(itemName)) itemName
           )
         } else if (style == "toolbar"){
           shiny::a(
             `data-tab` = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
-            itemName
+            if (!is.null(itemName)) itemName
           )
         }
       }
@@ -355,7 +354,8 @@ validate_tabName <- function(tabName) {
 #' Build a Framework7 tab item
 #'
 #' @param ... Item content.
-#' @param tabName Item id. Must be unique.
+#' @param title Tab title (name).
+#' @param tabName Item id. Must be unique, without space nor punctuation symbols.
 #' @param icon Item icon. Expect \link{f7Icon} function with the suitable lib argument
 #' (either md or ios or NULL for native f7 icons).
 #' @param active Whether the tab is active at start. Do not select multiple tabs, only
@@ -366,21 +366,24 @@ validate_tabName <- function(tabName) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Tab <- function(..., tabName, icon = NULL, active = FALSE, hidden = FALSE) {
+f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidden = FALSE) {
 
   # Tab name validation
   validate_tabName(tabName)
 
   itemTag <- shiny::tags$div(
-    class = if (!active) "page-content tab" else "page-content tab tab-active",
+    class = if (!active) {
+      "tablayout page-content tab"
+    } else {
+      "tablayout page-content tab tab-active"
+    },
     `data-active` = tolower(active),
     id = tabName,
     `data-value` = tabName,
     `data-hidden` = tolower(hidden),
-    style = "background-color: gainsboro;",
     ...
   )
-  return(list(itemTag, icon, tabName, hidden))
+  return(list(itemTag, icon, tabName, hidden, title))
 }
 
 
@@ -432,16 +435,16 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'        id = ns("subtabdemo"),
 #'        style = "strong",
 #'        animated = FALSE,
-#'        f7Tab(tabName = "SubTab 1", "SubTab 1"),
-#'        f7Tab(tabName = "SubTab 2", "SubTab 2", active = TRUE),
-#'        f7Tab(tabName = "SubTab 3", "SubTab 3")
+#'        f7Tab(title = "Subtab 1", tabName = "SubTab1", "SubTab 1"),
+#'        f7Tab(title = "Subtab 2", tabName = "SubTab2", "SubTab 2", active = TRUE),
+#'        f7Tab(title = "Subtab 3", tabName = "SubTab3", "SubTab 3")
 #'      )
 #'    )
 #'  }
 #'
 #'  subtabs <- function(input, output, session) {
 #'    observeEvent(input$updateSubTab, {
-#'      selected <- ifelse(input$updateSubTab, "SubTab 1", "SubTab 2")
+#'      selected <- ifelse(input$updateSubTab, "SubTab1", "SubTab2")
 #'      updateF7Tabs(session, id = "subtabdemo", selected = selected)
 #'    })
 #'    return(reactive(input$subtabdemo))
@@ -470,18 +473,19 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'          swipeable = TRUE,
 #'          animated = FALSE,
 #'          f7Tab(
-#'            tabName = "Tab 1",
+#'            title = "Tab 1",
+#'            tabName = "Tab1",
 #'            subtabs_ui("subtabs1")[[2]]
 #'          ),
-#'          f7Tab(tabName = "Tab 2", "Tab 2"),
-#'          f7Tab(tabName = "Tab 3", "Tab 3")
+#'          f7Tab(title = "Tab 2", tabName = "Tab2", "Tab 2"),
+#'          f7Tab(title = "Tab 3", tabName = "Tab3", "Tab 3")
 #'        )
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
 #'      output$selectedTab <- renderText(input$tabdemo)
 #'      observeEvent(input$updateTab, {
-#'        selected <- ifelse(input$updateTab, "Tab 1", "Tab 2")
+#'        selected <- ifelse(input$updateTab, "Tab1", "Tab2")
 #'        updateF7Tabs(id = "tabdemo", selected = selected)
 #'      })
 #'      subtab <- callModule(subtabs, "subtabs1")
@@ -506,31 +510,33 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'         animated = TRUE,
 #'         f7Tab(
 #'           active = TRUE,
-#'           tabName = 'Main tab',
-#'           icon = f7Icon('doc_text'),
+#'           title = "Main tab",
+#'           tabName = "Tab1",
+#'           icon = f7Icon("doc_text"),
 #'           h1("This is the first tab."),
-#'           f7Button(inputId ='goto', label = 'Go to hidden tab')
+#'           f7Button(inputId = "goto", label = "Go to hidden tab")
 #'         ),
 #'         f7Tab(
-#'           tabName = 'Second tab',
-#'           icon = f7Icon('bolt_horizontal'),
-#'           h1('This is the second tab.')
+#'           title = "Second tab",
+#'           tabName = "Tab2",
+#'           icon = f7Icon("bolt_horizontal"),
+#'           h1("This is the second tab.")
 #'         ),
 #'         f7Tab(
-#'           tabName = 'Hidden tab',
+#'           title = "Hidden tab",
+#'           tabName = "Tab3",
 #'           hidden = TRUE,
-#'           h1('This is a tab that does not appear in the tab menu.
-#'           Yet, you can still access it.')
+#'           h1("This is a tab that does not appear in the tab menu.
+#'           Yet, you can still access it.")
 #'         )
 #'       )
 #'     )
 #'   ),
 #'   server = function(input, output, session) {
 #'     observe(print(input$tabs))
-#'     observeEvent(input$goto,{
-#'       updateF7Tabs(session = session, id = 'tabs', selected = 'Hidden tab')
+#'     observeEvent(input$goto, {
+#'       updateF7Tabs(session = session, id = "tabs", selected = "Tab3")
 #'     })
-#'
 #'   }
 #'  )
 #' }
@@ -567,7 +573,7 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'      title = "Insert a tab Before the target",
 #'      f7TabLayout(
 #'        navbar = f7Navbar(
-#'          title = "Tabs",
+#'          title = "insertF7Tab",
 #'          hairline = FALSE,
 #'          shadow = TRUE,
 #'          leftPanel = TRUE,
@@ -577,14 +583,14 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'          animated = TRUE,
 #'          id = "tabs",
 #'          f7Tab(
-#'            tabName = "Tab 1",
+#'            tabName = "Tab1",
 #'            icon = f7Icon("airplane"),
 #'            active = TRUE,
 #'            "Tab 1",
 #'            f7Button(inputId = "add", label = "Add tabs")
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 2",
+#'            tabName = "Tab2",
 #'            icon = f7Icon("today"),
 #'            active = FALSE,
 #'            f7Button(inputId="stay", label = "Stay"),
@@ -601,13 +607,13 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'        insertF7Tab(
 #'          id = "tabs",
 #'          position = "after",
-#'          target = "Tab 1",
+#'          target = "Tab1",
 #'          tab = f7Tab (
 #'            # Use multiple elements to test for accessor function
-#'            f7Button(inputId = "add_dynamic", label = "Add dyn"),
 #'            f7Text(inputId = "my_text", label ="Enter something", placeholder = "What?"),
 #'            f7Text(inputId = "my_other", label ="Else:", placeholder = "Else ?"),
-#'            tabName = paste0("tabx_", input$go), "Test2",
+#'            tabName = paste0("tabx_", input$go),
+#'            "Test2",
 #'            icon = f7Icon("app_badge")
 #'          ),
 #'          select = TRUE
@@ -620,10 +626,13 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 insertF7Tab <- function(id, tab, target, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
-  # in shinyMobile, f7Tab returns a list of 3 elements:
+  # in shinyMobile, f7Tab returns a list of 5 elements:
   # - 1 is the tag\
   # - 2 is the icon name
   # - 3 is the tabName
+  # - 4 hidden
+  # - 5 is the title
+
   # Below we check if the tag is really a shiny tag...
   if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) {
     stop("tab must be a shiny tag")
@@ -721,19 +730,20 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 #'    f7Tabs(
 #'      id = "tabset1",
 #'      f7Tab(
-#'        tabName = "Tab 1",
+#'        title = "Tab 1",
+#'        tabName = "Tab1",
 #'        active = TRUE,
 #'        p("Text 1"),
 #'        f7Button("remove1","Remove tab 1")
 #'      ),
 #'      f7Tab(
-#'        tabName = "Tab 2",
-#'        active = FALSE,
+#'        title = "Tab 2",
+#'        tabName = "Tab2",
 #'        p("Text 2")
 #'      ),
 #'      f7Tab(
-#'        tabName = "Tab 3",
-#'        active = FALSE,
+#'        title = "Tab 3",
+#'        tabName = "Tab3",
 #'        p("Text 3")
 #'      )
 #'    )
@@ -745,7 +755,7 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 #'    observeEvent(input$remove1, {
 #'      removeF7Tab(
 #'        id = "tabset1",
-#'        target = "Tab 1"
+#'        target = "Tab1"
 #'      )
 #'    })
 #'  }

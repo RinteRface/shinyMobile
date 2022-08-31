@@ -64,9 +64,17 @@ $(function() {
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background
+  isSplitLayout = $("#app").find(".splitlayout").length > 0;
   if (app.params.dark) {
-    $(".page-content").css("background-color", "");
-    $(".page-content.tab, .tab").css("background-color", "");
+    // Fix panel color in splitlayout
+    if (isSplitLayout) {
+      if ($(".panel-left").hasClass("theme-light")) {
+        $(".panel-left")
+          .removeClass("theme-light")
+          .addClass("theme-dark");
+      }
+    }
+
     $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
     $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
     $(".popup").css("background-color", "#1b1b1d");
@@ -89,6 +97,18 @@ $(function() {
     $(sidebarItems).css("background-color", "#171717");
   } else {
     $("div.messages").css("background-color", "gainsboro");
+    $(".singlelayout.page-content").css("background-color", "gainsboro");
+    $(".tablayout.tab").css("background-color", "gainsboro");
+
+    // Fix panel color in splitlayout
+    if (isSplitLayout) {
+      if ($(".panel-left").hasClass("theme-dark")) {
+        $(".panel-left")
+          .removeClass("theme-dark")
+          .addClass("theme-light");
+      }
+    }
+
     // fix photo browser links issue
     $("a").on("click", function() {
       setTimeout(function() {

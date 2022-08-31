@@ -192,3 +192,11 @@ app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FAL
     }
   }
 }
+
+# Get arguments of function call at a given level. Level can be negative.
+get_args <- function(level) {
+  cl <- sys.call(level)
+  f <- get(as.character(cl[[1]]), mode="function", sys.frame(-2))
+  cl <- match.call(definition=f, call=cl)
+  as.list(cl)[-1]
+}
