@@ -87,10 +87,16 @@ $((function() {
         Shiny.setInputValue("shinyInfo", Shiny.shinyapp.config);
     }));
     $(document).on("shiny:inputchanged", (function(event) {
+        var type;
+        if (event.binding !== null) {
+            type = event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA";
+        } else {
+            type = "NA";
+        }
         Shiny.setInputValue("lastInputChanged", {
             name: event.name,
             value: event.value,
-            type: event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA"
+            type: type
         });
     }));
     $(document).on("shiny:connected", (function(event) {

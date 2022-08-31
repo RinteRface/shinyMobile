@@ -9,6 +9,7 @@ Tabs will have to be manually renamed by end users.
 name, as oposed to __tabName__. 
 
 ## Bug fixes
+- Fix #228: Vignette Example doesn't show graphs. Breaking change in shiny 1.7.2.
 - Issue in `f7SmartSelect()` with __openIn__ param (failed when not provided).
 - Fix #219: Avoid using inline CSS so that users can easily override {shinyMobile} defaults.
 - Fix #220: `f7Tab()` can create duplicate IDs which in turn break the page. Now we use `validate_tabName` internally
