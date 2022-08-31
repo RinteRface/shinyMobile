@@ -7,7 +7,7 @@
 insertF7Tab(
   id,
   tab,
-  target,
+  target = NULL,
   position = c("before", "after"),
   select = FALSE,
   session = shiny::getDefaultReactiveDomain()
@@ -31,6 +31,7 @@ insertF7Tab(
 }
 \examples{
 if (interactive()) {
+ # Insert after
  library(shiny)
  library(shinyMobile)
  shinyApp(
@@ -86,6 +87,25 @@ if (interactive()) {
      })
    }
  )
+ # Insert in an empty tabsetpanel
+ library(shiny)
+ ui <- f7Page(
+   f7SingleLayout(
+     navbar = f7Navbar(),
+     f7Button("add", "Add 'Dynamic' tab"),
+     br(),
+     f7Tabs(id = "tabs"),
+   )
+ )
+ server <- function(input, output, session) {
+   observeEvent(input$add, {
+     insertF7Tab(
+       id = "tabs",
+       f7Tab(title = "Dynamic", tabName = "Dynamic", "This a dynamically-added tab"),
+       target = NULL
+     )
+   })
+ }
+ shinyApp(ui, server)
 }
-
 }

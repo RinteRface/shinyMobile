@@ -86,19 +86,6 @@ $((function() {
     $(document).on("shiny:sessioninitialized", (function(event) {
         Shiny.setInputValue("shinyInfo", Shiny.shinyapp.config);
     }));
-    $(document).on("shiny:inputchanged", (function(event) {
-        var type;
-        if (event.binding !== null) {
-            type = event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA";
-        } else {
-            type = "NA";
-        }
-        Shiny.setInputValue("lastInputChanged", {
-            name: event.name,
-            value: event.value,
-            type: type
-        });
-    }));
     $(document).on("shiny:connected", (function(event) {
         Shiny.setInputValue("deviceInfo", Framework7.device);
     }));
@@ -330,7 +317,12 @@ $((function() {
     tabIds.forEach((function(index) {
         var id = "insert_" + index;
         Shiny.addCustomMessageHandler(id, (function(message) {
-            var tabId = $("#" + message.ns + "-" + message.target);
+            var tabId;
+            if (message.target === undefined) {
+                tabId = $("#" + message.ns);
+            } else {
+                tabId = $("#" + message.ns + "-" + message.target);
+            }
             var tab = $(message.value.html);
             var newTab;
             if ($(tabId).hasClass("swiper-slide")) {
@@ -341,17 +333,20 @@ $((function() {
                 if (message.select === "true") {
                     $(newTab).addClass("swiper-slide-active");
                 }
-                if (app.params.dark) $(newTab).css("background-color", "");
             } else {
                 newTab = $(tab);
-                if (app.params.dark) $(newTab).css("background-color", "");
             }
-            if (message.position === "after") {
-                $(newTab).insertAfter($(tabId));
-                $(message.link).insertAfter($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
-            } else if (message.position === "before") {
-                $(newTab).insertBefore($(tabId));
-                $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+            if (message.target === undefined) {
+                $(tabId).append(newTab);
+                $(".tabLinks .toolbar-inner").prepend(message.link);
+            } else {
+                if (message.position === "after") {
+                    $(newTab).insertAfter($(tabId));
+                    $(message.link).insertAfter($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+                } else if (message.position === "before") {
+                    $(newTab).insertBefore($(tabId));
+                    $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+                }
             }
             Shiny.renderContent(tab[0], {
                 html: tab.html(),
@@ -1838,7 +1833,7 @@ $.extend(f7TabsBinding, {
         } else {
             $(".tab-link-highlight").show();
         }
-        return $(activeTab).attr("data-value");
+        return $(activeTab).attr("data-value") !== undefined ? $(activeTab).attr("data-value") : null;
     },
     receiveMessage: function(el, data) {
         if (data.hasOwnProperty("selected")) {

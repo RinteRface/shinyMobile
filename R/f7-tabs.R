@@ -566,6 +566,7 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #' @export
 #' @examples
 #' if (interactive()) {
+#'  # Insert after
 #'  library(shiny)
 #'  library(shinyMobile)
 #'  shinyApp(
@@ -621,9 +622,28 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #'      })
 #'    }
 #'  )
+#'  # Insert in an empty tabsetpanel
+#'  library(shiny)
+#'  ui <- f7Page(
+#'    f7SingleLayout(
+#'      navbar = f7Navbar(),
+#'      f7Button("add", "Add 'Dynamic' tab"),
+#'      br(),
+#'      f7Tabs(id = "tabs"),
+#'    )
+#'  )
+#'  server <- function(input, output, session) {
+#'    observeEvent(input$add, {
+#'      insertF7Tab(
+#'        id = "tabs",
+#'        f7Tab(title = "Dynamic", tabName = "Dynamic", "This a dynamically-added tab"),
+#'        target = NULL
+#'      )
+#'    })
+#'  }
+#'  shinyApp(ui, server)
 #' }
-#'
-insertF7Tab <- function(id, tab, target, position = c("before", "after"),
+insertF7Tab <- function(id, tab, target = NULL, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
 
   # in shinyMobile, f7Tab returns a list of 5 elements:
@@ -641,7 +661,7 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
   nsWrapper <- shiny::NS(id)
   position <- match.arg(position)
   # create the corresponding tab-link
-  tabId <- gsub(" ", "", nsWrapper(tab[[1]]$attribs$id), fixed = TRUE)
+  tabId <- nsWrapper(tab[[1]]$attribs$id)
   children = tab[[1]]$children
   tabLink <- shiny::a(
     class = if (select) "tab-link tab-link-active" else "tab-link",
@@ -654,9 +674,6 @@ insertF7Tab <- function(id, tab, target, position = c("before", "after"),
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
   tab[[1]]$attribs$id <- nsWrapper(tab[[1]]$attribs$id)
-
-  # remove all whitespace from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
 
   message <- dropNulls(
     list(
@@ -769,9 +786,6 @@ removeF7Tab <- function(id, target, session = shiny::getDefaultReactiveDomain())
   # we need to create a new id not to overlap with the updatebs4TabSetPanel id
   # prefix by remove_ makes sense
   id <- paste0("remove_", id)
-
-  # remove all whitespace from the target name
-  target <- gsub(" ", "", target, fixed = TRUE)
 
   message <- dropNulls(
     list(

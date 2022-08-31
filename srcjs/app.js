@@ -27,21 +27,21 @@ $(function() {
   });
 
   // Returns the last input changed (name, value, type, ...)
-  $(document).on("shiny:inputchanged", function(event) {
-
-    var type;
-    if (event.binding !== null) {
-      type = (event.binding.name !== undefined) ? event.binding.name.split(".")[1] : 'NA'
-    } else {
-      type = 'NA'
-    }
-
-    Shiny.setInputValue("lastInputChanged", {
-      name: event.name,
-      value: event.value,
-      type: type
-    });
-  });
+  //$(document).on("shiny:inputchanged", function(event) {
+//
+  //  var type;
+  //  if (event.binding !== null) {
+  //    type = (event.binding.name !== undefined) ? event.binding.name.split(".")[1] : 'NA'
+  //  } else {
+  //    type = 'NA'
+  //  }
+//
+  //  Shiny.setInputValue("lastInputChanged", {
+  //    name: event.name,
+  //    value: event.value,
+  //    type: type
+  //  });
+  //});
 
   // Framework7.device is extremely useful to set up custom design
   $(document).on("shiny:connected", function(event) {
@@ -449,7 +449,13 @@ $(function() {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
-      var tabId = $('#' + message.ns + '-' + message.target);
+      // Handle when message.target is null
+      var tabId;
+      if (message.target === undefined) {
+        tabId = $('#' + message.ns); // target the parent tabset
+      } else {
+        tabId = $('#' + message.ns + '-' + message.target);
+      }
 
       var tab = $(message.value.html);
 
@@ -471,31 +477,36 @@ $(function() {
         if (message.select === "true") {
           $(newTab).addClass("swiper-slide-active");
         }
-        if (app.params.dark) $(newTab).css("background-color", "");
       } else {
-        // remove white background for tab in dark mode
         newTab = $(tab);
-        if (app.params.dark) $(newTab).css("background-color", "");
       }
 
-      if (message.position === "after") {
-        // insert after the targeted tag in the tab-panel div
-        $(newTab).insertAfter($(tabId));
-        // we also need to insert an item in the navigation
-        $(message.link).insertAfter(
-          $(
-            '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
-          )
-        );
-      } else if (message.position === "before") {
-        // insert before the targeted tag in the tab-panel div
-        $(newTab).insertBefore($(tabId));
-        // we also need to insert an item in the navigation
-        $(message.link).insertBefore(
-          $(
-            '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
-          )
-        );
+      // Ignore position if target is not defined
+      if (message.target === undefined) {
+        // Insert tab content
+        $(tabId).append(newTab);
+        // Insert tab link in tabset toolbar
+        $('.tabLinks .toolbar-inner').prepend(message.link);
+      } else {
+        if (message.position === "after") {
+          // insert after the targeted tag in the tab-panel div
+          $(newTab).insertAfter($(tabId));
+          // we also need to insert an item in the navigation
+          $(message.link).insertAfter(
+            $(
+              '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
+            )
+          );
+        } else if (message.position === "before") {
+          // insert before the targeted tag in the tab-panel div
+          $(newTab).insertBefore($(tabId));
+          // we also need to insert an item in the navigation
+          $(message.link).insertBefore(
+            $(
+              '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
+            )
+          );
+        }
       }
 
       // needed to render input/output in newly added tab. It takes the possible

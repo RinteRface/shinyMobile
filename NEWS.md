@@ -4,11 +4,10 @@
 - `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
 Tabs will have to be manually renamed by end users.
 
-## Minor change
+## Bug fixes and improvements
+- Fix #181: Adding dynamic tab to an empty panel.
 - Related to #220. A new __title__ parameter is available for `f7Tab()` so as to pass any
 name, as oposed to __tabName__. 
-
-## Bug fixes
 - Fix #228: Vignette Example doesn't show graphs. Breaking change in shiny 1.7.2.
 - Issue in `f7SmartSelect()` with __openIn__ param (failed when not provided).
 - Fix #219: Avoid using inline CSS so that users can easily override {shinyMobile} defaults.
