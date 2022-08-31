@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyMobile)
 library(apexcharter)
+library(shinyWidgets)
 
 poll <- data.frame(
   answer = c("Yes", "No"),
@@ -26,7 +27,7 @@ shinyApp(
         animated = TRUE,
         #swipeable = TRUE,
         f7Tab(
-          tabName = "Tab 1",
+          tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
 
@@ -70,9 +71,9 @@ shinyApp(
                 }
 
                 if (skin === "dark") {
-                 $("html").addClass("theme-dark");
+                 $(".view-main").addClass("theme-dark");
                 } else {
-                  $("html").removeClass("theme-dark");
+                  $(".view-main").removeClass("theme-dark");
                 }
 
                });
@@ -90,7 +91,7 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 2",
+          tabName = "Tab2",
           icon = f7Icon("keyboard"),
           active = FALSE,
           f7Shadow(
@@ -103,7 +104,7 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 3",
+          tabName = "Tab3",
           icon = f7Icon("layers_alt"),
           active = FALSE,
           f7Shadow(
