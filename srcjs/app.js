@@ -61,7 +61,7 @@ $(function() {
   $(".tabs-standalone").css("height", "auto");
 
   // Fix messagebar send icon issue when filled is TRUE. It is not
-  // visible because it takes the same color has the messagebar background ...
+  // visible because it takes the same color as the messagebar background ...
   // To detect if the layout is filled, we search in the body class since the
   // global color is hosted here.
   if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
@@ -82,10 +82,9 @@ $(function() {
           .addClass("theme-dark");
       }
     }
-
+    $(".appbar").addClass("theme-dark");
     $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
     $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
-    $(".popup").css("background-color", "#1b1b1d");
     $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
     $(".fab-label").css("color", "var(--f7-fab-text-color)");
 
@@ -116,24 +115,6 @@ $(function() {
           .addClass("theme-light");
       }
     }
-
-    // fix photo browser links issue
-    $("a").on("click", function() {
-      setTimeout(function() {
-        // we recover the body class that contains the page
-        // color we set up in f7Init
-        var linkColors = $("body").attr("class");
-        $(".navbar-photo-browser .navbar-inner .title").css("color", "black");
-        $(".navbar-photo-browser .navbar-inner .right .popup-close").css(
-          "color",
-          linkColors
-        );
-        $(".photo-browser-page .toolbar .toolbar-inner a").css(
-          "color",
-          linkColors
-        );
-      }, 100);
-    });
   }
 
   // allow for subnavbar. If a subnavbar if provided in the navbar
@@ -206,6 +187,14 @@ $(function() {
       // that don't have any UI element in the DOM before creating
       // the widget instance.
       Shiny.addCustomMessageHandler(widget, function(message) {
+        // Handle dark mode
+        message.on = {
+          open: function(target) {
+            if (target.app.params.dark) {
+              $(target.el).addClass("theme-dark");
+            }
+          }
+        };
         app[widget].create(message).open();
       });
     }
@@ -231,6 +220,14 @@ $(function() {
 
   popoverIds.forEach(function(index) {
     Shiny.addCustomMessageHandler(index, function(message) {
+      // Handle dark mode
+      message.on = {
+        open: function(target) {
+          if (target.app.params.dark) {
+            $(target.el).addClass("theme-dark");
+          }
+        }
+      };
       var popover = app.popover.create({
         targetEl: '[data-popover = "' + index + '"]',
         content:
@@ -265,6 +262,15 @@ $(function() {
           </div>
         </div>
         `;
+
+        // Handle dark mode
+        message.on = {
+          open: function(target) {
+            if (target.app.params.dark) {
+              $(target.el).addClass("theme-dark");
+            }
+          }
+        };
 
         // create instance
         var p = app.popover.create(message);
@@ -336,12 +342,13 @@ $(function() {
     // decide to lock the vertical size so that
     // people don't need to manually add overflow.
     var text = `<div style="max-height: 300px; overflow-y: scroll;">${message.text}</div>`
+    var dialog;
     switch (type) {
       case "alert":
-        var dialog = app.dialog.alert(text, message.title);
+        dialog = app.dialog.alert(text, message.title, message.on);
         break;
       case "confirm":
-        var confirm = app.dialog
+        dialog = app.dialog
           .confirm(
             (text = text),
             (title = message.title),
@@ -356,7 +363,7 @@ $(function() {
         //confirm.closed(Shiny.setInputValue(message.id, null));
         break;
       case "prompt":
-        var prompt = app.dialog
+        dialog =  app.dialog
           .prompt(
             (text = text),
             (title = message.title),
@@ -370,8 +377,7 @@ $(function() {
           .open(Shiny.setInputValue(message.id, null));
         break;
       case "login":
-        console.log(login);
-        var login = app.dialog
+        dialog = app.dialog
           .login(
             (text = text),
             (title = message.title),
@@ -389,6 +395,10 @@ $(function() {
         break;
       default:
         console.log("");
+    }
+    // Handle dark mode
+    if (app.params.dark) {
+      $(dialog.el).addClass("theme-dark");
     }
   });
 
@@ -727,6 +737,11 @@ $(function() {
 
       // Callbacks for shiny inputs
       message.on = {
+        open: function(target) {
+          if (target.app.params.dark) {
+            $(target.el).addClass("theme-dark");
+          }
+        },
         opened: function() {
           Shiny.setInputValue(message.id, true);
         },

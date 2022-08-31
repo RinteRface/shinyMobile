@@ -12,8 +12,8 @@ $((function() {
     config.methods = {
         toggleDarkTheme: function() {
             var self = this;
-            var $view = self.$(".view-main");
-            $view.toggleClass("theme-dark");
+            var $html = self.$(".view-main");
+            $html.toggleClass("theme-dark");
         }
     };
     config.data = function() {
@@ -109,9 +109,9 @@ $((function() {
                 $(".panel-left").removeClass("theme-light").addClass("theme-dark");
             }
         }
+        $(".appbar").addClass("theme-dark");
         $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
         $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
-        $(".popup").css("background-color", "#1b1b1d");
         $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
         $(".fab-label").css("color", "var(--f7-fab-text-color)");
         $(".accordion-item .item-content .item-inner").css("color", "white");
@@ -129,14 +129,6 @@ $((function() {
                 $(".panel-left").removeClass("theme-dark").addClass("theme-light");
             }
         }
-        $("a").on("click", (function() {
-            setTimeout((function() {
-                var linkColors = $("body").attr("class");
-                $(".navbar-photo-browser .navbar-inner .title").css("color", "black");
-                $(".navbar-photo-browser .navbar-inner .right .popup-close").css("color", linkColors);
-                $(".photo-browser-page .toolbar .toolbar-inner a").css("color", linkColors);
-            }), 100);
-        }));
     }
     var subnavbar = $(".subnavbar");
     if (subnavbar.length == 1) {
@@ -175,6 +167,13 @@ $((function() {
             }));
         } else {
             Shiny.addCustomMessageHandler(widget, (function(message) {
+                message.on = {
+                    open: function(target) {
+                        if (target.app.params.dark) {
+                            $(target.el).addClass("theme-dark");
+                        }
+                    }
+                };
                 app[widget].create(message).open();
             }));
         }
@@ -191,6 +190,13 @@ $((function() {
     getAllPopoverIds();
     popoverIds.forEach((function(index) {
         Shiny.addCustomMessageHandler(index, (function(message) {
+            message.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.el).addClass("theme-dark");
+                    }
+                }
+            };
             var popover = app.popover.create({
                 targetEl: '[data-popover = "' + index + '"]',
                 content: '<div class="popover">' + '<div class="popover-inner">' + '<div class="block">' + message.content + "</div>" + "</div>" + "</div>"
@@ -204,6 +210,13 @@ $((function() {
         if (app.data.popovers[message.targetEl] === undefined) {
             if (!$(message.targetEl).hasClass("popover-disabled")) {
                 message.content = `\n        <div class="popover">\n          <div class="popover-angle"></div>\n          <div class="popover-inner">\n            <div class="block">${message.content}</div>\n          </div>\n        </div>\n        `;
+                message.on = {
+                    open: function(target) {
+                        if (target.app.params.dark) {
+                            $(target.el).addClass("theme-dark");
+                        }
+                    }
+                };
                 var p = app.popover.create(message);
                 p.open();
                 app.data.popovers[message.targetEl] = p;
@@ -247,13 +260,14 @@ $((function() {
     Shiny.addCustomMessageHandler("dialog", (function(message) {
         var type = message.type;
         var text = `<div style="max-height: 300px; overflow-y: scroll;">${message.text}</div>`;
+        var dialog;
         switch (type) {
           case "alert":
-            var dialog = app.dialog.alert(text, message.title);
+            dialog = app.dialog.alert(text, message.title, message.on);
             break;
 
           case "confirm":
-            var confirm = app.dialog.confirm(text = text, title = message.title, callbackOk = function() {
+            dialog = app.dialog.confirm(text = text, title = message.title, callbackOk = function() {
                 Shiny.setInputValue(message.id, true);
             }, callbackCancel = function() {
                 Shiny.setInputValue(message.id, false);
@@ -261,7 +275,7 @@ $((function() {
             break;
 
           case "prompt":
-            var prompt = app.dialog.prompt(text = text, title = message.title, callbackOk = function(value) {
+            dialog = app.dialog.prompt(text = text, title = message.title, callbackOk = function(value) {
                 Shiny.setInputValue(message.id, value);
             }, callbackCancel = function() {
                 Shiny.setInputValue(message.id, null);
@@ -269,8 +283,7 @@ $((function() {
             break;
 
           case "login":
-            console.log(login);
-            var login = app.dialog.login(text = text, title = message.title, callbackOk = function(username, password) {
+            dialog = app.dialog.login(text = text, title = message.title, callbackOk = function(username, password) {
                 Shiny.setInputValue(message.id, {
                     user: username,
                     password: password
@@ -282,6 +295,9 @@ $((function() {
 
           default:
             console.log("");
+        }
+        if (app.params.dark) {
+            $(dialog.el).addClass("theme-dark");
         }
     }));
     Shiny.addCustomMessageHandler("tapHold", (function(message) {
@@ -454,6 +470,11 @@ $((function() {
             }
             message.buttons.forEach(setOnClick);
             message.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.el).addClass("theme-dark");
+                    }
+                },
                 opened: function() {
                     Shiny.setInputValue(message.id, true);
                 },
@@ -990,6 +1011,11 @@ $.extend(f7LoginBinding, {
         data.el = "#" + $(el).attr("id");
         data.animate = false;
         data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.el).addClass("theme-dark");
+                }
+            },
             opened: function() {
                 $(el).trigger("shown");
             }
@@ -1316,6 +1342,11 @@ $.extend(f7PopupBinding, {
         config = JSON.parse(config.html());
         config.el = el;
         config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.el).addClass("theme-dark");
+                }
+            },
             opened: function() {
                 $(el).trigger("shown");
             }
@@ -1483,6 +1514,11 @@ $.extend(f7SheetBinding, {
         }));
         data.el = "#" + id;
         data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.el).addClass("theme-dark");
+                }
+            },
             opened: function() {
                 $(el).trigger("shown");
             }
