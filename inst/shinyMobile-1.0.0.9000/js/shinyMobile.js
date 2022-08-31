@@ -12,8 +12,8 @@ $((function() {
     config.methods = {
         toggleDarkTheme: function() {
             var self = this;
-            var $html = self.$("html");
-            $html.toggleClass("theme-dark");
+            var $view = self.$(".view-main");
+            $view.toggleClass("theme-dark");
         }
     };
     config.data = function() {

@@ -5,6 +5,7 @@
 Tabs will have to be manually renamed by end users.
 
 ## Bug fixes and improvements
+- Fix #165: Setting separate theme for panels does not work.
 - Fix #181: Adding dynamic tab to an empty panel.
 - Related to #220. A new __title__ parameter is available for `f7Tab()` so as to pass any
 name, as oposed to __tabName__. 
