@@ -1390,7 +1390,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
   type <- match.arg(openIn)
 
   config <- dropNulls(list(
-    openIn = openIn,
+    openIn = type,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
     virtualList = virtualList,
