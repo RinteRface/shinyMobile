@@ -17,7 +17,7 @@ sapply(
 # shiny app
 shinyApp(
   ui = f7Page(
-    allowPWA = TRUE,
+    allowPWA = TRUE, options = list(dark = FALSE, color = "red"),
     f7TabLayout(
       appbar = f7Appbar(
         f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),

@@ -28,6 +28,16 @@ $.extend(f7ColorPickerBinding, {
       value: {
         hex: colorPickerValue,
       },
+      on : {
+        open: function(target) {
+          if (target.app.params.dark) {
+            target
+              .$el
+              .closest(".modal-in")
+              .addClass("theme-dark");
+          }
+        }
+      }
     });
   },
 

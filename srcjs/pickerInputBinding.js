@@ -35,6 +35,17 @@ $.extend(f7PickerBinding, {
       }
     ];
 
+    data.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          target
+            .$el
+            .closest(".modal-in")
+            .addClass("theme-dark");
+        }
+      }
+    }
+
     // feed the create method
     var p = app.picker.create(data);
     inputEl.f7Picker = p;

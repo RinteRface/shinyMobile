@@ -9,6 +9,13 @@ $.extend(f7SmartSelectBinding, {
     config = JSON.parse(config.html());
     config.el = '#' + id;
     // feed the create method
+    config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.$containerEl).addClass("theme-dark");
+        }
+      }
+    }
     var ss = app.smartSelect.create(config);
     this["smart-select-" + el.id] = ss;
   },
@@ -30,6 +37,13 @@ $.extend(f7SmartSelectBinding, {
   // see updateF7SmartSelect
   receiveMessage: function(el, data) {
     // update config
+    data.config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.$containerEl).addClass("theme-dark");
+        }
+      }
+    }
     if (data.hasOwnProperty("config")) {
       this["smart-select-" + el.id].destroy();
       data.config.el = '#' + $(el).attr('id');

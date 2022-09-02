@@ -20,6 +20,16 @@ $.extend(f7DatePickerBinding, {
     config.inputEl = inputEl;
 
     //data.timePicker = true;
+    config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          target
+            .$el
+            .closest(".modal-in")
+            .addClass("theme-dark");
+        }
+      }
+    }
 
     // feed the create method
     var calendar = app.calendar.create(config);
@@ -76,6 +86,13 @@ $.extend(f7DatePickerBinding, {
     if (data.hasOwnProperty("config")) {
       this["calendar-" + el.id].destroy();
       data.config.inputEl = el;
+      data.config.on = {
+        open: function(target) {
+          if (target.app.params.dark) {
+            $(target.$el).addClass("theme-dark");
+          }
+        }
+      }
       this["calendar-" + el.id] = app.calendar.create(data.config);
     }
     if (data.hasOwnProperty("value")) {

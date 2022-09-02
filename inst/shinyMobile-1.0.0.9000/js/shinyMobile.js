@@ -111,7 +111,6 @@ $((function() {
         }
         $(".appbar").addClass("theme-dark");
         $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
-        $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
         $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
         $(".fab-label").css("color", "var(--f7-fab-text-color)");
         $(".accordion-item .item-content .item-inner").css("color", "white");
@@ -850,6 +849,13 @@ $.extend(f7ColorPickerBinding, {
             palette: colorPickerPalettes,
             value: {
                 hex: colorPickerValue
+            },
+            on: {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        target.$el.closest(".modal-in").addClass("theme-dark");
+                    }
+                }
             }
         });
     },
@@ -922,6 +928,13 @@ $.extend(f7DatePickerBinding, {
             }
         }
         config.inputEl = inputEl;
+        config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    target.$el.closest(".modal-in").addClass("theme-dark");
+                }
+            }
+        };
         var calendar = app.calendar.create(config);
         this["calendar-" + el.id] = calendar;
     },
@@ -955,6 +968,13 @@ $.extend(f7DatePickerBinding, {
         if (data.hasOwnProperty("config")) {
             this["calendar-" + el.id].destroy();
             data.config.inputEl = el;
+            data.config.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.$el).addClass("theme-dark");
+                    }
+                }
+            };
             this["calendar-" + el.id] = app.calendar.create(data.config);
         }
         if (data.hasOwnProperty("value")) {
@@ -1273,6 +1293,13 @@ $.extend(f7PickerBinding, {
             textAlign: "center",
             values: JSON.parse(data.choices)
         } ];
+        data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    target.$el.closest(".modal-in").addClass("theme-dark");
+                }
+            }
+        };
         var p = app.picker.create(data);
         inputEl.f7Picker = p;
     },
@@ -1651,6 +1678,13 @@ $.extend(f7SmartSelectBinding, {
         var config = $(el).children().eq(2);
         config = JSON.parse(config.html());
         config.el = "#" + id;
+        config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.$containerEl).addClass("theme-dark");
+                }
+            }
+        };
         var ss = app.smartSelect.create(config);
         this["smart-select-" + el.id] = ss;
     },
@@ -1664,6 +1698,13 @@ $.extend(f7SmartSelectBinding, {
         this["smart-select-" + el.id].setValue(value);
     },
     receiveMessage: function(el, data) {
+        data.config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.$containerEl).addClass("theme-dark");
+                }
+            }
+        };
         if (data.hasOwnProperty("config")) {
             this["smart-select-" + el.id].destroy();
             data.config.el = "#" + $(el).attr("id");

@@ -46,7 +46,7 @@ f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"
     list(
        class = sheetCl,
        id = id,
-       style = if (swipeToStep | swipeToClose) "height: auto; --f7-sheet-bg-color: #fff;",
+       style = if (swipeToStep | swipeToClose) "height: auto;",
        style = sheetCSS,
        `data-swipe-to-close` = tolower(swipeToClose),
        `data-swipe-to-step` = tolower(swipeToStep),
@@ -61,7 +61,6 @@ f7Sheet <- function(..., id, hiddenItems = NULL, orientation = c("top", "bottom"
     position: absolute;
     left: 0;
     width: 100%;
-    background: #fff;
     cursor: pointer;
     z-index: 10;"
  swiperHandlerCSS <- if (orientation == "bottom") {
