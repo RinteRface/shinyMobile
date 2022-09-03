@@ -94,17 +94,6 @@ f7Panel <- function(..., id = NULL, title = NULL,
   panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, effect, theme)
   if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
-  items <- list(...)
-  items <- lapply(seq_along(items), function(i) {
-    if (length(items[[i]]) > 1) {
-      item <- items[[i]][[1]]
-      if (class(item) == "shiny.tag") items[[i]] else f7Block(items[[i]])
-    } else {
-      if (class(items[[i]]) == "shiny.tag") items[[i]] else f7Block(items[[i]])
-    }
-
-  })
-
   panelTag <- shiny::tags$div(
     class = panelCl,
     id = id,
@@ -121,7 +110,7 @@ f7Panel <- function(..., id = NULL, title = NULL,
       # Panel content
       shiny::tags$div(
         class = "panellayout page-content",
-        items
+        ...
       )
     )
   )
@@ -147,58 +136,16 @@ f7Panel <- function(..., id = NULL, title = NULL,
 #' @export
 f7PanelMenu <- function(..., id = NULL) {
 
-  if (is.null(id)) id <- paste0("panelMenu_", round(stats::runif(1, min = 0, max = 1e9)))
+  if (is.null(id)) {
+    id <- paste0("panelMenu_", round(stats::runif(1, min = 0, max = 1e9)))
+  }
 
-  panelMenuJS <- shiny::singleton(
-    shiny::tags$script(
-      paste0(
-        "
-        // This function is necessary to activate the good tab at start.
-        // If one tab is active, it has a data-active attribute set to true.
-        // We then trigger the show function on that tab.
-        // If no tab is active at start, the first tab is shown by default.
-        $(function() {
-          var firstPanel = $('#", id," li:eq(0)');
-          var panelActiveId = $('#", id," a.tab-link-active').attr('data-tab');
-          if (panelActiveId != undefined) {
-            app.tab.show(panelActiveId);
-          } else {
-            app.tab.show('#' + firstPanelId);
-          }
-        });
-
-        // Below is necessary to set the input value for shiny
-        $(document).on('shiny:sessioninitialized', function() {
-          // trigger a click on the window at start
-          // to be sure that the input value is setup
-          setTimeout(function() {
-            $(window).trigger('click');
-          }, 10);
-
-          // Below is to handle the case where tabs are swipeable
-          // Swiping left or right does not trigger any click by default.
-          // Therefore, we need to trigger a click to update the shiny input.
-          app.on('tabShow', function() {
-           $(window).trigger('click');
-          });
-
-          // update the input value
-          $(window).on('click', function(e) {
-           var selectedPanelVal = $('#", id," a.tab-link-active').attr('data-tab');
-           var selectedPanelVal = selectedPanelVal.split('#')[1];
-           Shiny.setInputValue('", id, "', selectedPanelVal);
-          });
-        });
-        "
-      )
-    )
-  )
-
-  shiny::tagList(
-    panelMenuJS,
-    shiny::tags$div(
-      class = "list links-list",
-      shiny::tags$ul(..., id = id)
+  shiny::tags$div(
+    class = "list links-list",
+    shiny::tags$ul(
+      class ="panel-menu ",
+      ...,
+      id = id
     )
   )
 }
