@@ -51,8 +51,7 @@ shinyApp(
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
-            icon = f7Icon("equal_circle"),
-            active = TRUE
+            icon = f7Icon("equal_circle")
           ),
           f7PanelItem(
             tabName = "tab2",
