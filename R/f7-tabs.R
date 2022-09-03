@@ -373,9 +373,9 @@ f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidde
 
   itemTag <- shiny::tags$div(
     class = if (!active) {
-      "tablayout page-content tab"
+      "page-content tab"
     } else {
-      "tablayout page-content tab tab-active"
+      "page-content tab tab-active"
     },
     `data-active` = tolower(active),
     id = tabName,
@@ -541,9 +541,7 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'  )
 #' }
 updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
-
   # remove the space in the tab name
-  selected <- gsub(x = selected, pattern = " ", replacement = "")
   message <- dropNulls(list(selected = selected, ns = session$ns(id)))
   session$sendInputMessage(id, message)
 }

@@ -568,14 +568,14 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     appbar = appbar
   )
 
-  # Custonize class
-  split_layout_tag <- htmltools::tagQuery(splitSkeleton)$
-    find(".view-main")$
-    addClass("safe-areas")$
-    allTags()
+  # Customize class
+  splitSkeleton[[3]] <- tagAppendAttributes(
+    splitSkeleton[[3]],
+    class = "safe-areas"
+  )
 
-  attr(split_layout_tag, "layout") <- "split-layout"
-  split_layout_tag
+  attr(splitSkeleton, "layout") <- "split-layout"
+  splitSkeleton
 }
 
 
@@ -591,15 +591,15 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
 #'
 #' @export
 f7Items <- function(...){
-  shiny::tags$div(
-    class = "tabs-animated-wrap",
+  #shiny::tags$div(
+    #class = "tabs-animated-wrap",
     shiny::tags$div(
       # ios-edges necessary to have
       # the good ios rendering
       class = "tabs ios-edges",
       ...
     )
-  )
+  #)
 }
 
 
