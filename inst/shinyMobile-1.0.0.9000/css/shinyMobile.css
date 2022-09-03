@@ -22,6 +22,10 @@
   background-color: gainsboro;
 }
 
+.panel.theme-dark {
+  --f7-panel-bg-color: #000;
+}
+
 .split-layout .view-main {
   margin-left: 260px;
 }

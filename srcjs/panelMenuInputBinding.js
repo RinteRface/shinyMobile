@@ -12,8 +12,8 @@ $.extend(f7PanelMenuBinding, {
   // We then trigger the show function on that tab.
   // If no tab is active at start, the first tab is shown by default.
   initialize: function(el) {
-    var firstPanelId = $(el).find("a").first().attr('data-tab');
-    var panelActiveId = $(el).find("a.tab-link-active").attr('data-tab');
+    var firstPanelId = $(el).find("a").first().data('tab');
+    var panelActiveId = $(el).find("a.tab-link-active").data('tab');
     if (panelActiveId !== undefined) {
       app.tab.show(panelActiveId);
     } else {
@@ -25,7 +25,7 @@ $.extend(f7PanelMenuBinding, {
   getValue: function(el) {
     var activeTab = $(el)
       .find("a.tab-link-active")
-      .attr('data-tab');
+      .data('tab');
 
     if (activeTab !== undefined) {
       return activeTab.split('#')[1];
@@ -44,12 +44,12 @@ $.extend(f7PanelMenuBinding, {
 
   subscribe: function(el, callback) {
     $(el).find("a").on("click.f7PanelMenuBinding", function(e) {
-      $(this).trigger("shown");
-        callback();
+      $($(this).data("tab")).trigger("shown").trigger("shown");
+        callback(false);
     });
 
     app.on("tabShow.f7PanelMenuBinding", function(tab) {
-      callback();
+      callback(false);
     });
   },
 
