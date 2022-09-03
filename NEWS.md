@@ -1,10 +1,13 @@
 # shinyMobile 1.0.0.9000
 
 ## Breaking change
+- __panels__ becomes __panel__ in `f7SplitLayout()` for consistency reasons.
 - `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
 Tabs will have to be manually renamed by end users.
 
 ## Bug fixes and improvements
+- Fix issue in `f7Navbar()`: hard-coded css style causing white text on white
+background.
 - Fix #151: Issue in navbar/toolbar scroll. See [here](https://github.com/RinteRface/shinyMobile/issues/151).
 - Fix #165: Setting separate theme for panels does not work.
 - Fix #181: Adding dynamic tab to an empty panel.
