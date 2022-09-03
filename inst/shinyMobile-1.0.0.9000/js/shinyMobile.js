@@ -102,7 +102,7 @@ $((function() {
     if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
         $(".demo-send-message-link").find("i").addClass("color-white");
     }
-    isSplitLayout = $("#app").find(".splitlayout").length > 0;
+    isSplitLayout = $("#app").hasClass("split-layout");
     if (app.params.dark) {
         $("body").addClass("dark");
         if (isSplitLayout) {

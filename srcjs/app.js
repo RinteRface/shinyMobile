@@ -72,8 +72,9 @@ $(function() {
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background
-  isSplitLayout = $("#app").find(".splitlayout").length > 0;
+  isSplitLayout = $("#app").hasClass("split-layout");
   if (app.params.dark) {
+    // Required to apply correct CSS in shinyMobile.css
     $("body").addClass("dark");
     // Fix panel color in splitlayout
     if (isSplitLayout) {
@@ -103,10 +104,8 @@ $(function() {
     var sidebarItems = $("#f7-sidebar-view").find("li");
     $(sidebarItems).css("background-color", "#171717");
   } else {
+    // Required to apply correct CSS in shinyMobile.css
     $("body").addClass("light");
-    //$("div.messages").css("background-color", "gainsboro");
-    //$(".singlelayout.page-content").css("background-color", "gainsboro");
-    //$(".tablayout.tab").css("background-color", "gainsboro");
 
     // Fix panel color in splitlayout
     if (isSplitLayout) {
