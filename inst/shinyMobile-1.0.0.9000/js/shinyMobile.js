@@ -12,8 +12,8 @@ $((function() {
     config.methods = {
         toggleDarkTheme: function() {
             var self = this;
-            var $html = self.$(".view-main");
-            $html.toggleClass("theme-dark");
+            var $view = self.$(".view-main");
+            $view.toggleClass("theme-dark");
         }
     };
     config.data = function() {
@@ -104,6 +104,7 @@ $((function() {
     }
     isSplitLayout = $("#app").find(".splitlayout").length > 0;
     if (app.params.dark) {
+        $("body").addClass("dark");
         if (isSplitLayout) {
             if ($(".panel-left").hasClass("theme-light")) {
                 $(".panel-left").removeClass("theme-light").addClass("theme-dark");
@@ -120,9 +121,7 @@ $((function() {
         var sidebarItems = $("#f7-sidebar-view").find("li");
         $(sidebarItems).css("background-color", "#171717");
     } else {
-        $("div.messages").css("background-color", "gainsboro");
-        $(".singlelayout.page-content").css("background-color", "gainsboro");
-        $(".tablayout.tab").css("background-color", "gainsboro");
+        $("body").addClass("light");
         if (isSplitLayout) {
             if ($(".panel-left").hasClass("theme-dark")) {
                 $(".panel-left").removeClass("theme-dark").addClass("theme-light");
@@ -1267,6 +1266,50 @@ $.extend(f7PanelBinding, {
 });
 
 Shiny.inputBindings.register(f7PanelBinding, "f7.panel");
+
+var f7PanelMenuBinding = new Shiny.InputBinding;
+
+$.extend(f7PanelMenuBinding, {
+    find: function(scope) {
+        return $(scope).find(".panel-menu");
+    },
+    initialize: function(el) {
+        var firstPanelId = $(el).find("a").first().attr("data-tab");
+        var panelActiveId = $(el).find("a.tab-link-active").attr("data-tab");
+        if (panelActiveId !== undefined) {
+            app.tab.show(panelActiveId);
+        } else {
+            app.tab.show(firstPanelId);
+        }
+    },
+    getValue: function(el) {
+        var activeTab = $(el).find("a.tab-link-active").attr("data-tab");
+        if (activeTab !== undefined) {
+            return activeTab.split("#")[1];
+        } else {
+            return null;
+        }
+    },
+    receiveMessage: function(el, data) {
+        if (data.hasOwnProperty("selected")) {
+            app.tab.show("#" + data.ns + "-" + data.selected);
+        }
+    },
+    subscribe: function(el, callback) {
+        $(el).find("a").on("click.f7PanelMenuBinding", (function(e) {
+            $(this).trigger("shown");
+            callback();
+        }));
+        app.on("tabShow.f7PanelMenuBinding", (function(tab) {
+            callback();
+        }));
+    },
+    unsubscribe: function(el) {
+        $(el).off(".f7PanelMenuBinding");
+    }
+});
+
+Shiny.inputBindings.register(f7PanelMenuBinding, "f7.tabsMenu");
 
 var f7PickerBinding = new Shiny.InputBinding;
 

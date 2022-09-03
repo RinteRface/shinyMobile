@@ -122,6 +122,16 @@ f7Page <- function(
     )
   )
 
+  # Can also contain app bar
+  items <- list(...)
+  # Find current layout stored in attribute
+  layout <- unlist(lapply(items, function(item) {
+    is_layout <- inherits(item, "shiny.tag.list")
+    if (is_layout) {
+      attributes(item)$layout
+    }
+  }))
+
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
     `data-ptr`= dataPTR,
@@ -141,7 +151,8 @@ f7Page <- function(
     },
     shiny::tags$div(
       id = "app",
-      ...
+      class = layout,
+      items
     ),
     configTag
   )
@@ -243,7 +254,7 @@ f7Page <- function(
 f7SingleLayout <- function(..., navbar, toolbar = NULL,
                            panels = NULL, appbar = NULL) {
 
-  shiny::tagList(
+  single_layout_tag <- shiny::tagList(
     # appbar goes here
     appbar,
     # panels go here
@@ -257,13 +268,16 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
         # toolbar goes here
         toolbar,
         shiny::tags$div(
-          class= "singlelayout page-content",
+          class= "page-content",
           # page content
           ...
         )
       )
     )
   )
+
+  attr(single_layout_tag, "layout") <- "single-layout"
+  single_layout_tag
 }
 
 
@@ -427,7 +441,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @export
 f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL) {
 
-  shiny::tagList(
+  tab_layout_tag <- shiny::tagList(
     # appbar goes here
     appbar,
     # panels go here
@@ -449,6 +463,9 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
       )
     )
   )
+
+  attr(tab_layout_tag, "layout") <- "tab-layout"
+  tab_layout_tag
 }
 
 
@@ -466,7 +483,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
 #' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}
 #' @param toolbar Slot for \link{f7Toolbar}.
-#' @param panels Slot for \link{f7Panel}. Expect only a right panel, for instance:
+#' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
 #' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
 #' @param appbar Slot for \link{f7Appbar}.
 #'
@@ -530,7 +547,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
-                          panels = NULL, appbar = NULL) {
+                          panel = NULL, appbar = NULL) {
 
   # add margins
   items <- shiny::div(...) %>% f7Margin(side = "left") %>% f7Margin(side = "right")
@@ -538,7 +555,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
   # this trick to prevent to select the panel view in the following
   # javascript code
-  sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"
+  sidebar$children[[1]]$attribs$class <- "panel-visible-by-breakpoint"
 
   splitSkeleton <- f7SingleLayout(
     items,
@@ -546,67 +563,19 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     toolbar = toolbar,
     panels = shiny::tagList(
       sidebar,
-      panels
+      panel
     ),
     appbar = appbar
   )
 
   # Custonize class
-  splitSkeleton <- htmltools::tagQuery(splitSkeleton)$
-    find(".singlelayout")$
-    addClass("splitlayout")$
+  split_layout_tag <- htmltools::tagQuery(splitSkeleton)$
+    find(".view-main")$
+    addClass("safe-areas")$
     allTags()
 
-  splitTemplateCSS <- shiny::singleton(
-    shiny::tags$style(
-      '/* Left Panel right border when it is visible by breakpoint */
-      .panel-left.panel-visible-by-breakpoint:before {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: rgba(0,0,0,0.1);
-        content: "";
-        z-index: 6000;
-      }
-
-      /* Hide navbar link which opens left panel when it is visible by breakpoint */
-      .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
-        display: none;
-      }
-
-      /*
-        Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
-      */
-      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
-      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: rgba(0,0,0,0.1);
-        content: "";
-        z-index: 6000;
-      }
-      '
-    )
-  )
-
-  splitTemplateJS <- shiny::singleton(
-    shiny::tags$script(
-      "$(function() {
-        $('#f7-sidebar').addClass('panel-visible-by-breakpoint');
-        $('.view:not(\"#f7-sidebar-view\")').addClass('safe-areas');
-        $('.view:not(\"#f7-sidebar-view\")').css('margin-left', '260px');
-      });
-      "
-    )
-  )
-
-  shiny::tagList(splitTemplateCSS, splitTemplateJS, splitSkeleton)
-
+  attr(split_layout_tag, "layout") <- "split-layout"
+  split_layout_tag
 }
 
 
@@ -647,7 +616,7 @@ f7Items <- function(...){
 #' @export
 f7Item <- function(..., tabName) {
   shiny::tags$div(
-    class = "tab",
+    class = "page-content tab",
     id = tabName,
     `data-value` = tabName,
     ...

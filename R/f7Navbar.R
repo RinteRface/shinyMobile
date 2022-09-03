@@ -78,10 +78,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairl
             shiny::tagList(
                shiny::tags$div(
                   class = "title",
-                  title,
-                  # add style to prevent title from
-                  # being black. Bug in Framework7?
-                  style = "color: white;"
+                  title
                ),
                rightNav,
                shiny::tags$div(

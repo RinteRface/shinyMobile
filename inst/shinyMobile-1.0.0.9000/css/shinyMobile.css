@@ -14,3 +14,46 @@
   border-radius: 3px;
   background: #121212;
 }
+
+.light .split-layout .page-content:not(.login-screen-content, .panel-content),
+.light .single-layout .page-content:not(.login-screen-content, .panel-content),
+.light .tab-layout .page-content:not(.login-screen-content, .panel-content),
+.light div.messages {
+  background-color: gainsboro;
+}
+
+.split-layout .view-main {
+  margin-left: 260px;
+}
+
+/* Left Panel right border when it is visible by breakpoint */
+.split-layout .panel-left.panel-visible-by-breakpoint:before {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
+  content: "";
+  z-index: 6000;
+}
+
+/* Hide navbar link which opens left panel when it is visible by breakpoint */
+.split-layout .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
+  display: none;
+}
+
+      /*
+        Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
+      */
+.ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
+.ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
+  content: "";
+  z-index: 6000;
+}

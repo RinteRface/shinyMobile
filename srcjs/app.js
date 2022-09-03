@@ -74,6 +74,7 @@ $(function() {
   // need to remove the custom gainsboro color background
   isSplitLayout = $("#app").find(".splitlayout").length > 0;
   if (app.params.dark) {
+    $("body").addClass("dark");
     // Fix panel color in splitlayout
     if (isSplitLayout) {
       if ($(".panel-left").hasClass("theme-light")) {
@@ -102,9 +103,10 @@ $(function() {
     var sidebarItems = $("#f7-sidebar-view").find("li");
     $(sidebarItems).css("background-color", "#171717");
   } else {
-    $("div.messages").css("background-color", "gainsboro");
-    $(".singlelayout.page-content").css("background-color", "gainsboro");
-    $(".tablayout.tab").css("background-color", "gainsboro");
+    $("body").addClass("light");
+    //$("div.messages").css("background-color", "gainsboro");
+    //$(".singlelayout.page-content").css("background-color", "gainsboro");
+    //$(".tablayout.tab").css("background-color", "gainsboro");
 
     // Fix panel color in splitlayout
     if (isSplitLayout) {

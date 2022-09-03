@@ -93,7 +93,6 @@ shinyApp(
         f7Tab(
           tabName = "Tab2",
           icon = f7Icon("keyboard"),
-          active = FALSE,
           f7Shadow(
             intensity = 10,
             hover = TRUE,
@@ -106,7 +105,6 @@ shinyApp(
         f7Tab(
           tabName = "Tab3",
           icon = f7Icon("layers_alt"),
-          active = FALSE,
           f7Shadow(
             intensity = 10,
             hover = TRUE,

@@ -109,7 +109,7 @@ f7Panel <- function(..., id = NULL, title = NULL,
       ),
       # Panel content
       shiny::tags$div(
-        class = "panellayout page-content",
+        class = "panel-content page-content",
         ...
       )
     )
