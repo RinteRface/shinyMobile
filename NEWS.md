@@ -8,6 +8,7 @@ Tabs will have to be manually renamed by end users.
 `f7TogglePopup`.
 
 ## Bug fixes and improvements
+- Improve `f7Swiper()`: better CSS, pagination, navigation, scrollbar, ...
 - Fix issue in `f7PhotoBrowser()` example: wrong default theme ...
 - `f7CheckBox()`: better layout.
 - Fix issue in `f7FabMorphTarget()` example.

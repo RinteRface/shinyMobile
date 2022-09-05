@@ -7,8 +7,10 @@
 f7Swiper(
   ...,
   id,
-  options = list(speed = 400, spaceBetween = 50, slidesPerView = "auto", centeredSlides =
-    TRUE, pagination = TRUE)
+  options = list(speed = 400, loop = FALSE, spaceBetween = 50, slidesPerView = "auto",
+    centeredSlides = TRUE, navigation = list(nextEl = ".swiper-button-next", prevEl =
+    ".swiper-button-prev"), pagination = list(el = ".swiper-pagination"), scrollbar =
+    list(el = ".swiper-scrollbar"))
 )
 }
 \arguments{
@@ -16,7 +18,8 @@ f7Swiper(
 
 \item{id}{Swiper unique id.}
 
-\item{options}{Other options. Expect a list.}
+\item{options}{Other options. Expect a list.
+See \url{https://swiperjs.com/swiper-api} for all available options.}
 }
 \description{
 \code{f7Swiper} creates a Framework7 swiper container (like carousel).
@@ -61,24 +64,45 @@ if(interactive()){
     f7SingleLayout(
      navbar = f7Navbar(title = "f7Swiper"),
      f7Swiper(
-     id = "my-swiper",
-     f7Slide(
-      timeline
-     ),
-     f7Slide(
-      f7Toggle(
-       inputId = "toggle",
-       label = "My toggle",
-       color = "pink",
-       checked = TRUE
+      id = "my-swiper",
+      f7Slide(
+       timeline
       ),
-      verbatimTextOutput("test")
+      f7Slide(
+       f7Toggle(
+        inputId = "toggle",
+        label = "My toggle",
+        color = "pink",
+        checked = TRUE
+       ),
+       verbatimTextOutput("test")
+      ),
+      f7Slide(
+       f7Slider(
+        inputId = "obs",
+        label = "Number of observations",
+        max = 1000,
+        min = 0,
+        value = 100,
+        scaleSteps = 5,
+        scaleSubSteps = 3,
+        scale = TRUE,
+        color = "orange",
+        labels = tagList(
+          f7Icon("circle"),
+          f7Icon("circle_fill")
+        )
+       ),
+       plotOutput("distPlot")
+      )
      )
-    )
     )
    ),
    server = function(input, output) {
     output$test <- renderPrint(input$toggle)
+    output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+   })
    }
  )
 }

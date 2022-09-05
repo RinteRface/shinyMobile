@@ -5,6 +5,7 @@
 #' @param ... Slot for \link{f7Slide}.
 #' @param id Swiper unique id.
 #' @param options Other options. Expect a list.
+#' See \url{https://swiperjs.com/swiper-api} for all available options.
 #'
 #' @rdname swiper
 #'
@@ -48,24 +49,45 @@
 #'     f7SingleLayout(
 #'      navbar = f7Navbar(title = "f7Swiper"),
 #'      f7Swiper(
-#'      id = "my-swiper",
-#'      f7Slide(
-#'       timeline
-#'      ),
-#'      f7Slide(
-#'       f7Toggle(
-#'        inputId = "toggle",
-#'        label = "My toggle",
-#'        color = "pink",
-#'        checked = TRUE
+#'       id = "my-swiper",
+#'       f7Slide(
+#'        timeline
 #'       ),
-#'       verbatimTextOutput("test")
+#'       f7Slide(
+#'        f7Toggle(
+#'         inputId = "toggle",
+#'         label = "My toggle",
+#'         color = "pink",
+#'         checked = TRUE
+#'        ),
+#'        verbatimTextOutput("test")
+#'       ),
+#'       f7Slide(
+#'        f7Slider(
+#'         inputId = "obs",
+#'         label = "Number of observations",
+#'         max = 1000,
+#'         min = 0,
+#'         value = 100,
+#'         scaleSteps = 5,
+#'         scaleSubSteps = 3,
+#'         scale = TRUE,
+#'         color = "orange",
+#'         labels = tagList(
+#'           f7Icon("circle"),
+#'           f7Icon("circle_fill")
+#'         )
+#'        ),
+#'        plotOutput("distPlot")
+#'       )
 #'      )
-#'     )
 #'     )
 #'    ),
 #'    server = function(input, output) {
 #'     output$test <- renderPrint(input$toggle)
+#'     output$distPlot <- renderPlot({
+#'     hist(rnorm(input$obs))
+#'    })
 #'    }
 #'  )
 #' }
@@ -78,17 +100,20 @@ f7Swiper <- function(
   id,
   options = list(
     speed = 400,
+    loop = FALSE,
     spaceBetween = 50,
     slidesPerView = "auto",
     centeredSlides = TRUE,
-    pagination = TRUE
+    navigation = list(
+      nextEl = ".swiper-button-next",
+      prevEl = ".swiper-button-prev"
+    ),
+    pagination = list(el = ".swiper-pagination"),
+    scrollbar = list(el = ".swiper-scrollbar")
   )
 ) {
   # swiper class
-  swiperCl <- "swiper swiper-container demo-swiper"
-  if (!is.null(options$slidePerView)) {
-    if (options$slidePerView == "auto") swiperCl <- paste0(swiperCl, " demo-swiper-auto")
-  }
+  swiperCl <- "swiper swiper-container"
 
   swiper_config <- shiny::tags$script(
     type = "application/json",
@@ -104,11 +129,18 @@ f7Swiper <- function(
   shiny::tags$div(
     class = swiperCl,
     id = id,
-    shiny::tags$div(class = paste0("swiper-pagination")),
     shiny::tags$div(
       class = "swiper-wrapper",
       ...
     ),
+    if (!is.null(options$pagination)) shiny::tags$div(class = "swiper-pagination"),
+    if (!is.null(options$navigation)) {
+      list(
+        shiny::tags$div(class ="swiper-button-prev"),
+        shiny::tags$div(class ="swiper-button-next")
+      )
+    },
+    if (!is.null(options$scrollbar)) shiny::tags$div(class = "swiper-scrollbar"),
     swiper_config
   )
 }

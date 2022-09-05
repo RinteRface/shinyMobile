@@ -76,3 +76,17 @@ Extra borders for main view and left panel for iOS theme when it behaves as pane
 .popup {
   overflow-y: auto;
 }
+
+.swiper {
+  margin-top: 20px;
+  width: 90%;
+}
+
+.theme-dark .swiper-slide {
+  background-color: #1c1c1d;
+}
+
+.light .swiper-slide {
+  background-color: white;
+  min-height: 400px;
+}
