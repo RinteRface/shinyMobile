@@ -10,7 +10,7 @@ $(function() {
         icon: '<i class="icon f7-icons">bolt_fill</i>',
         position: "center",
         text:
-          'Oups... disconnected </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
+          'Disconnected ... </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
       })
       .open();
 
@@ -57,9 +57,6 @@ $(function() {
     }
   }
 
-  // fix standalone tabs height issue
-  $(".tabs-standalone").css("height", "auto");
-
   // Fix messagebar send icon issue when filled is TRUE. It is not
   // visible because it takes the same color as the messagebar background ...
   // To detect if the layout is filled, we search in the body class since the
@@ -69,6 +66,34 @@ $(function() {
       .find("i")
       .addClass("color-white");
   }
+
+  // Skeleton effect at each output recalculation
+  const skeletonClass = 'skeleton-text skeleton-effect-fade';
+  // When recalculation starts
+  $(document).on('shiny:outputinvalidated', function(e) {
+    $('#' + e.target.id).addClass(skeletonClass)
+  });
+  // When calculation is over
+  $(document).on('shiny:value', function(e) {
+    $('#' + e.target.id).removeClass(skeletonClass)
+  });
+
+  // Skeleton preloader
+  window.ran = false;
+  const skeletonTargets = [".page-content", ".navbar", ".toolbar"];
+  $(document).on('shiny:connected', function(event) {
+    for (target of skeletonTargets) {
+      $(target).addClass(skeletonClass);
+    }
+  });
+  $(document).on('shiny:idle', function(event){
+    if(!window.ran) {
+      for (target of skeletonTargets) {
+        $(target).removeClass(skeletonClass);
+      }
+    }
+    window.ran = true;
+  });
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background
@@ -85,28 +110,9 @@ $(function() {
       }
     }
     $(".appbar").addClass("theme-dark");
-    $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
-    $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
-    $(".fab-label").css("color", "var(--f7-fab-text-color)");
-
-    // fix black accordion text in dark mode
-    $(".accordion-item .item-content .item-inner").css("color", "white");
-    $(".accordion-item .accordion-item-content").css("color", "white");
-
-    // below the sidebar id #f7-sidebar-view ensures that we do not
-    // screw up the classic f7Panel style in dark mode
-    // The sidebar background has to be slightly lighter than the main background
-    var sidebarPanel = $("#f7-sidebar-view").find(".page-content");
-    $(sidebarPanel).css("background-color", "#1e1e1e");
-    // we also need to darken sidebar items in the sidebar menu
-    // the default color does not contrast enough with the
-    // new sidebar background
-    var sidebarItems = $("#f7-sidebar-view").find("li");
-    $(sidebarItems).css("background-color", "#171717");
   } else {
     // Required to apply correct CSS in shinyMobile.css
     $("body").addClass("light");
-
     // Fix panel color in splitlayout
     if (isSplitLayout) {
       if ($(".panel-left").hasClass("theme-dark")) {

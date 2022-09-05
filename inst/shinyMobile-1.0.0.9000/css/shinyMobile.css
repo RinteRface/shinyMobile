@@ -47,9 +47,9 @@
   display: none;
 }
 
-      /*
-        Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
-      */
+/*
+Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
+*/
 .ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
 .ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
   position: absolute;
@@ -61,3 +61,15 @@
   content: "";
   z-index: 6000;
 }
+
+/* FAB label in dark mode */
+.theme-dark .fab-label {
+  background-color: #333;
+  color: white;
+}
+
+/* Tabs standalone issue */
+.tabs-standalone {
+  height: auto;
+}
+

@@ -161,11 +161,10 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
   headerTag <- shiny::tags$div(
     class = "card-header",
     shiny::tags$div(
-      class = "demo-facebook-avatar",
       shiny::img(src = image, width = "34", height = "34")
     ),
-    shiny::tags$div(class = "demo-facebook-name", author),
-    shiny::tags$div(class = "demo-facebook-date", date)
+    shiny::tags$div(author),
+    shiny::tags$div(date)
   )
   contentTag <- shiny::tags$div(
     class = "card-content card-content-padding",
@@ -175,7 +174,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
   footerTag <- if (!is.null(footer)) shiny::tags$div(class = "card-footer", footer)
 
   shiny::tags$div(
-    class = "card demo-facebook-card",
+    class = "card",
     headerTag,
     contentTag,
     footerTag

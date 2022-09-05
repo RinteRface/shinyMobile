@@ -6,6 +6,9 @@
 Tabs will have to be manually renamed by end users.
 
 ## Bug fixes and improvements
+- New skeleton effect on load (automatic): applied grey background on elements loading.
+Ends when shiny is idle.
+- New skeleton effect on output recalculation. 
 - Fix issue in `f7Navbar()`: hard-coded css style causing white text on white
 background.
 - Fix #151: Issue in navbar/toolbar scroll. See [here](https://github.com/RinteRface/shinyMobile/issues/151).
