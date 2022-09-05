@@ -71,6 +71,11 @@ $((function() {
 }));
 
 $((function() {
+    function shinyInputsReset() {
+        Shiny.unbindAll();
+        Shiny.initializeInputs();
+        Shiny.bindAll();
+    }
     $(document).on("shiny:disconnected", (function(event) {
         $("#ss-connect-dialog").hide();
         $("#ss-overlay").hide();
@@ -168,7 +173,7 @@ $((function() {
         app.data[instanceFamily][message.id] = newInstance;
     }));
     const uiWidgets = [ "gauge", "swiper", "searchbar" ];
-    const serverWidgets = [ "toast", "photoBrowser", "notification" ];
+    const serverWidgets = [ "toast", "photoBrowser", "notification", "popup" ];
     const widgets = uiWidgets.concat(serverWidgets);
     activateWidget = function(widget) {
         if (uiWidgets.indexOf(widget) > -1) {
@@ -183,9 +188,14 @@ $((function() {
             Shiny.addCustomMessageHandler(widget, (function(message) {
                 message.on = {
                     open: function(target) {
+                        if (message.id !== undefined) Shiny.setInputValue(message.id, true);
                         if (target.app.params.dark) {
                             $(target.el).addClass("theme-dark");
                         }
+                        shinyInputsReset();
+                    },
+                    close: function() {
+                        if (message.id !== undefined) Shiny.setInputValue(message.id, false);
                     }
                 };
                 app[widget].create(message).open();

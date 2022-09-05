@@ -14,13 +14,15 @@ f7Popup(
   animate = TRUE,
   swipeToClose = FALSE,
   fullsize = FALSE,
-  closeButton = TRUE
+  closeButton = TRUE,
+  session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
 \item{...}{UI elements for the body of the popup window.}
 
-\item{id}{Popup unique id.}
+\item{id}{Popup unique id. Useful if you want to access the popup state.
+input$<id> is TRUE when the popup is opened and inversely.}
 
 \item{title}{Title for the popup window, use \code{NULL} for no title.}
 
@@ -44,6 +46,8 @@ Default to \code{FALSE}.}
 
 \item{closeButton}{Add or not a button to easily close the popup.
 Default to \code{TRUE}.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 \code{f7Popup} creates a popup window with any UI content that pops up over App's main content.
@@ -62,13 +66,7 @@ if (interactive()) {
         hairline = FALSE,
         shadow = TRUE
       ),
-      f7Button("togglePopup", "Toggle Popup"),
-      f7Popup(
-       id = "popup1",
-       title = "My first popup",
-       f7Text("text", "Popup content", "This is my first popup ever, I swear!"),
-       verbatimTextOutput("popupContent")
-      )
+      f7Button("togglePopup", "Toggle Popup")
      )
    ),
    server = function(input, output, session) {
@@ -76,7 +74,12 @@ if (interactive()) {
     output$popupContent <- renderPrint(input$text)
 
     observeEvent(input$togglePopup, {
-     updateF7Popup(id = "popup1")
+     f7Popup(
+       id = "popup1",
+       title = "My first popup",
+       f7Text("text", "Popup content", "This is my first popup ever, I swear!"),
+       verbatimTextOutput("popupContent")
+      )
     })
 
     observeEvent(input$popup1, {

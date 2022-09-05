@@ -4,7 +4,8 @@
 #' Popup as all other overlays is part of so called "Temporary Views".
 #'
 #' @param ... UI elements for the body of the popup window.
-#' @param id Popup unique id.
+#' @param id Popup unique id. Useful if you want to access the popup state.
+#' input$<id> is TRUE when the popup is opened and inversely.
 #' @param title Title for the popup window, use \code{NULL} for no title.
 #' @param backdrop Enables Popup backdrop (dark semi transparent layer behind).
 #'  Default to \code{TRUE}.
@@ -20,9 +21,9 @@
 #' @param fullsize Open popup in full width or not. Default to \code{FALSE}.
 #' @param closeButton Add or not a button to easily close the popup.
 #'  Default to \code{TRUE}.
+#' @param session Shiny session object.
 #'
 #' @export
-#' @rdname popup
 #'
 #' @examples
 #' if (interactive()) {
@@ -37,13 +38,7 @@
 #'         hairline = FALSE,
 #'         shadow = TRUE
 #'       ),
-#'       f7Button("togglePopup", "Toggle Popup"),
-#'       f7Popup(
-#'        id = "popup1",
-#'        title = "My first popup",
-#'        f7Text("text", "Popup content", "This is my first popup ever, I swear!"),
-#'        verbatimTextOutput("popupContent")
-#'       )
+#'       f7Button("togglePopup", "Toggle Popup")
 #'      )
 #'    ),
 #'    server = function(input, output, session) {
@@ -51,7 +46,12 @@
 #'     output$popupContent <- renderPrint(input$text)
 #'
 #'     observeEvent(input$togglePopup, {
-#'      updateF7Popup(id = "popup1")
+#'      f7Popup(
+#'        id = "popup1",
+#'        title = "My first popup",
+#'        f7Text("text", "Popup content", "This is my first popup ever, I swear!"),
+#'        verbatimTextOutput("popupContent")
+#'       )
 #'     })
 #'
 #'     observeEvent(input$popup1, {
@@ -73,15 +73,19 @@ f7Popup <- function(..., id, title = NULL,
                     animate = TRUE,
                     swipeToClose = FALSE,
                     fullsize = FALSE,
-                    closeButton = TRUE) {
+                    closeButton = TRUE,
+                    session = shiny::getDefaultReactiveDomain()) {
 
-  config <- dropNulls(list(
-    backdrop = backdrop,
-    closeByBackdropClick = closeByBackdropClick,
-    closeOnEscape = closeOnEscape,
-    animate = animate,
-    swipeToClose = swipeToClose
-  ))
+  message <- dropNulls(
+    list(
+      id = session$ns(id),
+      backdrop = backdrop,
+      closeByBackdropClick = closeByBackdropClick,
+      closeOnEscape = closeOnEscape,
+      animate = animate,
+      swipeToClose = swipeToClose
+    )
+  )
 
   content <- shiny::tags$div(
     class = "block",
@@ -89,7 +93,7 @@ f7Popup <- function(..., id, title = NULL,
     ...
   )
 
-  if (isTRUE(closeButton)) {
+  if (closeButton) {
     content <- htmltools::tagAppendChild(
       content,
       shiny::tags$a(
@@ -101,60 +105,22 @@ f7Popup <- function(..., id, title = NULL,
     )
   }
 
-  shiny::tags$div(
-    id = id,
+  popup_tag <- shiny::tags$div(
     class = "popup",
-    class = if (isTRUE(fullsize)) "popup-tablet-fullscreen",
+    class = if (fullsize) "popup-tablet-fullscreen",
     style = "overflow-y: auto;",
-    content,
-    shiny::tags$script(
-      type = "application/json",
-      `data-for` = id,
-      jsonlite::toJSON(
-        x = config,
+    content
+  )
+
+  message$content <- as.character(popup_tag)
+
+    # see my-app.js function
+    session$sendCustomMessage(
+      type = "popup",
+      message = jsonlite::toJSON(
+        message,
         auto_unbox = TRUE,
         json_verbatim = TRUE
       )
     )
-  )
-}
-
-
-
-#' Updates Framework7 popup
-#'
-#' \code{updateF7Popup} toggles an \link{f7Popup} from the server.
-#' Use \link{updateF7Popup} instead
-#'
-#' @param id Popup id.
-#' @param session Shiny session.
-#' @rdname f7-deprecated
-#'
-#' @export
-updateF7Popup <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  session$sendInputMessage(id, message = NULL)
-}
-
-
-
-#' Toggle Framework7 popup
-#'
-#' \code{f7TogglePopup} toggles an \link{f7Popup} from the server.
-#' Use \link{updateF7Popup} instead
-#'
-#' @inheritParams updateF7Popup
-#' @rdname f7-deprecated
-#' @keywords internal
-#'
-#' @export
-f7TogglePopup <-  function(id,
-           session = shiny::getDefaultReactiveDomain()) {
-    .Deprecated(
-      "updateF7Popup",
-      package = "shinyMobile",
-      "f7TogglePopup will be removed in future release. Please use
-    updateF7Popup instead.",
-      old = as.character(sys.call(sys.parent()))[1L]
-    )
-  session$sendInputMessage(id, message = NULL)
 }

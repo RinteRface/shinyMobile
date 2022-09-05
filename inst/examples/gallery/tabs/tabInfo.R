@@ -18,15 +18,7 @@ tabInfo <- f7Tab(
 
   # popup
   f7BlockTitle(title = "f7Popup") %>% f7Align(side = "center"),
-  f7Block(
-    f7Button("togglePopup", "Toggle Popup"),
-    f7Popup(
-      id = "popup1",
-      title = "My first popup",
-      f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
-      verbatimTextOutput("popupContent")
-    )
-  ),
+  f7Block(f7Button("togglePopup", "Toggle Popup")),
   br(),
 
 

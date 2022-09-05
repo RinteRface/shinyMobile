@@ -1,4 +1,12 @@
 $(function() {
+  // utility to reset the input system
+  // whenever elements are added on the fly to the UI
+  function shinyInputsReset() {
+    Shiny.unbindAll();
+    Shiny.initializeInputs();
+    Shiny.bindAll();
+  }
+
   // show reconnect notification
   $(document).on("shiny:disconnected", function(event) {
     // remove shiny server stuff
@@ -172,7 +180,7 @@ $(function() {
   * Instantiate all widgets: gauges, swiper, searchbar
   */
   const uiWidgets = ["gauge", "swiper", "searchbar"];
-  const serverWidgets = ["toast", "photoBrowser", "notification"];
+  const serverWidgets = ["toast", "photoBrowser", "notification", "popup"];
 
   const widgets = uiWidgets.concat(serverWidgets);
 
@@ -200,9 +208,14 @@ $(function() {
         // Handle dark mode
         message.on = {
           open: function(target) {
+            if (message.id !== undefined) Shiny.setInputValue(message.id, true);
             if (target.app.params.dark) {
               $(target.el).addClass("theme-dark");
             }
+            shinyInputsReset();
+          },
+          close: function() {
+            if (message.id !== undefined) Shiny.setInputValue(message.id, false)
           }
         };
         app[widget].create(message).open();

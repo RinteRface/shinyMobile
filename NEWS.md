@@ -4,8 +4,11 @@
 - __panels__ becomes __panel__ in `f7SplitLayout()` for consistency reasons.
 - `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
 Tabs will have to be manually renamed by end users.
+- `f7Popup()` is now generated on the server side like `f7Notif()`. Remove `updateF7Popup()`,
+`f7TogglePopup`.
 
 ## Bug fixes and improvements
+- Fix issue in `updateF7Popup()` documentation (showed as deprecated by mistake).
 - New skeleton effect on load (automatic): applied grey background on elements loading.
 Ends when shiny is idle.
 - New skeleton effect on output recalculation. 
