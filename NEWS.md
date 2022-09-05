@@ -8,6 +8,7 @@ Tabs will have to be manually renamed by end users.
 `f7TogglePopup`.
 
 ## Bug fixes and improvements
+- Fix #226: `f7PhotoBrowser()` just works with two or more pictures. Fix issue in JSON conversion.
 - Fix issue in `updateF7Popup()` documentation (showed as deprecated by mistake).
 - New skeleton effect on load (automatic): applied grey background on elements loading.
 Ends when shiny is idle.

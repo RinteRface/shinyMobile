@@ -52,7 +52,7 @@ f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
   options <- dropNulls(
     list(
       theme = theme,
-      photos = photos,
+      photos = I(photos),
       pageBackLinkText = pageBackLinkText,
       type = type,
       ...
