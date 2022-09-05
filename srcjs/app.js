@@ -75,6 +75,11 @@ $(function() {
       .addClass("color-white");
   }
 
+  // chip label remove
+  $('.chip-delete').on('click', function() {
+    $(this).closest('.chip').remove();
+  });
+
   // Skeleton effect at each output recalculation
   const skeletonClass = 'skeleton-text skeleton-effect-fade';
   // When recalculation starts

@@ -106,6 +106,9 @@ $((function() {
     if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
         $(".demo-send-message-link").find("i").addClass("color-white");
     }
+    $(".chip-delete").on("click", (function() {
+        $(this).closest(".chip").remove();
+    }));
     const skeletonClass = "skeleton-text skeleton-effect-fade";
     $(document).on("shiny:outputinvalidated", (function(e) {
         $("#" + e.target.id).addClass(skeletonClass);

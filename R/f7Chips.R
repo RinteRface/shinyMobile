@@ -46,20 +46,6 @@ f7Chip <- function(label = NULL, image = NULL, icon = NULL, outline = FALSE,
   if (outline) chipCl <- paste0(chipCl, " chip-outline")
   if (!is.null(status)) chipCl <- paste0(chipCl, " color-", status)
 
-  # JS code to enable chip deletion
-  chipJS <- shiny::singleton(
-    shiny::tags$head(
-      shiny::tags$script(
-        "$(function() {
-          $('.chip-delete').on('click', function() {
-           $(this).closest('.chip').remove();
-          });
-         });
-        "
-      )
-    )
-  )
-
   iconTag <- if (!is.null(icon)) {
     shiny::tags$div(
       class = if (!is.null(iconStatus)) {
@@ -78,7 +64,7 @@ f7Chip <- function(label = NULL, image = NULL, icon = NULL, outline = FALSE,
     )
   }
 
-  chipTag <- shiny::tags$div(
+  shiny::tags$div(
     class = chipCl,
     if (!is.null(image)) imageTag,
     if (!is.null(icon)) iconTag,
@@ -88,7 +74,4 @@ f7Chip <- function(label = NULL, image = NULL, icon = NULL, outline = FALSE,
     ),
     if (closable) shiny::a(href = "#", class = "chip-delete")
   )
-
-  shiny::tagList(chipJS, chipTag)
-
 }
