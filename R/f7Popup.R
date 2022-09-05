@@ -106,9 +106,7 @@ f7Popup <- function(..., id, title = NULL,
   }
 
   popup_tag <- shiny::tags$div(
-    class = "popup",
-    class = if (fullsize) "popup-tablet-fullscreen",
-    style = "overflow-y: auto;",
+    class = paste0("popup", if (fullsize) "popup-tablet-fullscreen"),
     content
   )
 

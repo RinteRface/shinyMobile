@@ -73,3 +73,6 @@ Extra borders for main view and left panel for iOS theme when it behaves as pane
   height: auto;
 }
 
+.popup {
+  overflow-y: auto;
+}
