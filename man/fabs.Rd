@@ -138,7 +138,7 @@ if (interactive()) {
        navbar = f7Navbar(title = "f7Fabs Morph"),
        toolbar = f7Toolbar(
          position = "bottom",
-         lapply(1:3, function(i) f7Link(href = i) \%>\% f7FabClose())
+         lapply(1:3, function(i) f7Link(label = i, href = "#") \%>\% f7FabClose())
        ) \%>\% f7FabMorphTarget(),
        # put an empty f7Fabs container
        f7Fabs(
