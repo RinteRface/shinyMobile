@@ -81,7 +81,7 @@ $(function() {
   // Skeleton preloader
   window.ran = false;
   const skeletonTargets = [".page-content", ".navbar", ".toolbar"];
-  $(document).on('shiny:connected', function(event) {
+  $(document).on('shiny:busy', function(event) {
     for (target of skeletonTargets) {
       $(target).addClass(skeletonClass);
     }
