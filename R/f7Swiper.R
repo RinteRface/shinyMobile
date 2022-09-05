@@ -108,8 +108,8 @@ f7Swiper <- function(
       nextEl = ".swiper-button-next",
       prevEl = ".swiper-button-prev"
     ),
-    pagination = list(el = ".swiper-pagination"),
-    scrollbar = list(el = ".swiper-scrollbar")
+    pagination = list(el = ".swiper-pagination", clickable = TRUE),
+    scrollbar = list(el = ".swiper-scrollbar", draggable = TRUE)
   )
 ) {
   # swiper class

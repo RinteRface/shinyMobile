@@ -9,8 +9,8 @@ f7Swiper(
   id,
   options = list(speed = 400, loop = FALSE, spaceBetween = 50, slidesPerView = "auto",
     centeredSlides = TRUE, navigation = list(nextEl = ".swiper-button-next", prevEl =
-    ".swiper-button-prev"), pagination = list(el = ".swiper-pagination"), scrollbar =
-    list(el = ".swiper-scrollbar"))
+    ".swiper-button-prev"), pagination = list(el = ".swiper-pagination", clickable =
+    TRUE), scrollbar = list(el = ".swiper-scrollbar", draggable = TRUE))
 )
 }
 \arguments{
