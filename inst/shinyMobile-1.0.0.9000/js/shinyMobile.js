@@ -110,10 +110,14 @@ $((function() {
     }));
     window.ran = false;
     const skeletonTargets = [ ".page-content", ".navbar", ".toolbar" ];
-    $(document).on("shiny:busy", (function(event) {
-        for (target of skeletonTargets) {
-            $(target).addClass(skeletonClass);
-        }
+    $(document).on("shiny:connected", (function(event) {
+        setTimeout((function() {
+            if ($("html").hasClass("shiny-busy")) {
+                for (target of skeletonTargets) {
+                    $(target).addClass(skeletonClass);
+                }
+            }
+        }), 50);
     }));
     $(document).on("shiny:idle", (function(event) {
         if (!window.ran) {
