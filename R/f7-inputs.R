@@ -910,13 +910,12 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
   inputTag <- shiny::tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  shiny::tags$label(
-    class = "item-checkbox item-content shiny-input-container",
-    inputTag,
-    shiny::tags$i(class = "icon icon-checkbox"),
-    shiny::tags$div(
-      class = "item-inner",
-      shiny::tags$div(class = "item-title", label)
+  shiny::tagList(
+    shiny::tags$span(label),
+    shiny::tags$label(
+      class = "checkbox",
+      inputTag,
+      shiny::tags$i(class = "icon-checkbox"),
     )
   )
 }
