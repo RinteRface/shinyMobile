@@ -58,5 +58,5 @@ f7Shadow <- function(tag, intensity, hover = FALSE, pressed = FALSE) {
   }
 
   tag$attribs$class <- paste(tag$attribs$class, shadowCl)
-  return(tag)
+  tag
 }

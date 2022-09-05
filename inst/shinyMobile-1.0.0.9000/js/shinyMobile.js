@@ -1430,51 +1430,6 @@ $.extend(f7PickerBinding, {
 
 Shiny.inputBindings.register(f7PickerBinding, "f7.picker");
 
-var f7PopupBinding = new Shiny.InputBinding;
-
-$.extend(f7PopupBinding, {
-    initialize: function(el) {
-        var config = $(el).find("script[data-for='" + el.id + "']");
-        config = JSON.parse(config.html());
-        config.el = el;
-        config.on = {
-            open: function(target) {
-                if (target.app.params.dark) {
-                    $(target.el).addClass("theme-dark");
-                }
-            },
-            opened: function() {
-                $(el).trigger("shown");
-            }
-        };
-        var p = app.popup.create(config);
-    },
-    find: function(scope) {
-        return $(scope).find(".popup");
-    },
-    getValue: function(el) {
-        return app.popup.get($(el)).opened;
-    },
-    receiveMessage: function(el, data) {
-        var p = app.popup.get($(el));
-        if (p.opened) {
-            p.close();
-        } else {
-            p.open();
-        }
-    },
-    subscribe: function(el, callback) {
-        $(el).on("popup:opened.f7PopupBinding popup:closed.f7PopupBinding", (function(e) {
-            callback();
-        }));
-    },
-    unsubscribe: function(el) {
-        $(el).off(".f7PopupBinding");
-    }
-});
-
-Shiny.inputBindings.register(f7PopupBinding, "f7.popup");
-
 let $escape = Shiny.$escape;
 
 function updateLabel(labelTxt, labelNode) {
