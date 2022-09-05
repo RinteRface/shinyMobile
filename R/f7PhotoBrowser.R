@@ -28,7 +28,7 @@
 #'      f7PhotoBrowser(
 #'          id = "photobrowser1",
 #'          label = "Open",
-#'          theme = "light",
+#'          theme = "dark",
 #'          type = "standalone",
 #'          photos = c(
 #'            "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",

@@ -8,6 +8,7 @@ Tabs will have to be manually renamed by end users.
 `f7TogglePopup`.
 
 ## Bug fixes and improvements
+- Fix issue in `f7PhotoBrowser()` example: wrong default theme ...
 - `f7CheckBox()`: better layout.
 - Fix issue in `f7FabMorphTarget()` example.
 - Fix #226: `f7PhotoBrowser()` just works with two or more pictures. Fix issue in JSON conversion.
