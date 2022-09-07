@@ -176,7 +176,7 @@ $((function() {
         app.data[instanceFamily][message.id] = newInstance;
     }));
     const uiWidgets = [ "gauge", "swiper", "searchbar" ];
-    const serverWidgets = [ "toast", "photoBrowser", "notification", "popup" ];
+    const serverWidgets = [ "toast", "photoBrowser", "notification", "popup", "listIndex" ];
     const widgets = uiWidgets.concat(serverWidgets);
     activateWidget = function(widget) {
         if (uiWidgets.indexOf(widget) > -1) {
@@ -189,6 +189,9 @@ $((function() {
             }));
         } else {
             Shiny.addCustomMessageHandler(widget, (function(message) {
+                if (widget === "listIndex") {
+                    $('<div class="list-index" id="' + message.el + '"></div>').insertAfter($(".navbar"));
+                }
                 message.on = {
                     open: function(target) {
                         if (message.id !== undefined) Shiny.setInputValue(message.id, true);
@@ -201,7 +204,12 @@ $((function() {
                         if (message.id !== undefined) Shiny.setInputValue(message.id, false);
                     }
                 };
-                app[widget].create(message).open();
+                if (widget === "listIndex") {
+                    message.el = "#" + message.el;
+                    app[widget].create(message);
+                } else {
+                    app[widget].create(message).open();
+                }
             }));
         }
     };

@@ -86,7 +86,11 @@ Extra borders for main view and left panel for iOS theme when it behaves as pane
   background-color: #1c1c1d;
 }
 
+.swiper-slide {
+  border-radius: var(--f7-card-border-radius);
+  min-height: 400px;
+}
+
 .light .swiper-slide {
   background-color: white;
-  min-height: 400px;
 }

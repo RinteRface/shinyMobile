@@ -185,7 +185,7 @@ $(function() {
   * Instantiate all widgets: gauges, swiper, searchbar
   */
   const uiWidgets = ["gauge", "swiper", "searchbar"];
-  const serverWidgets = ["toast", "photoBrowser", "notification", "popup"];
+  const serverWidgets = ["toast", "photoBrowser", "notification", "popup", "listIndex"];
 
   const widgets = uiWidgets.concat(serverWidgets);
 
@@ -210,6 +210,11 @@ $(function() {
       // that don't have any UI element in the DOM before creating
       // the widget instance.
       Shiny.addCustomMessageHandler(widget, function(message) {
+        if (widget === "listIndex") {
+          // We first insert the HTML before the page content div.
+          $('<div class=\"list-index\" id=\"' + message.el + '\"></div>')
+            .insertAfter($('.navbar'));
+        }
         // Handle dark mode
         message.on = {
           open: function(target) {
@@ -223,7 +228,12 @@ $(function() {
             if (message.id !== undefined) Shiny.setInputValue(message.id, false)
           }
         };
-        app[widget].create(message).open();
+        if (widget === "listIndex") {
+          message.el = "#" + message.el;
+          app[widget].create(message);
+        } else {
+          app[widget].create(message).open()
+        }
       });
     }
   };

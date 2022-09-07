@@ -4,15 +4,19 @@
 \alias{f7ListIndex}
 \title{Create a Framework 7 list index}
 \usage{
-f7ListIndex(..., id)
+f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{...}{Slot for \link{f7ListGroup}.}
-
 \item{id}{Unique id.}
+
+\item{target}{Related list element. CSS selector like .class, #id, ...}
+
+\item{...}{Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).}
+
+\item{session}{Shiny session object.}
 }
 \description{
-Create a Framework 7 list index
+List index must be attached to an existing list view.
 }
 \note{
 For some reason, unable to get more than 1 list index working. See
@@ -33,37 +37,37 @@ if (interactive()) {
        ),
        f7Tabs(
          f7Tab(
-           tabName = "List 1",
-           f7ListIndex(
-             id = "listIndex1",
-             lapply(seq_along(LETTERS), function(i) {
-               f7ListGroup(
-                 title = LETTERS[i],
-                 lapply(1:3, function(j) {
-                   f7ListIndexItem(letters[j])
-                 })
-               )
-             })
+           tabName = "List1",
+           f7List(
+            mode = "contacts",
+            lapply(1:26, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(1:26, function(j) f7ListItem(letters[j]))
+              )
+            })
            )
          ),
          f7Tab(
-           tabName = "List 2",
-           f7ListIndex(
-             id = "listIndex2",
-             lapply(seq_along(LETTERS), function(i) {
-               f7ListGroup(
-                 title = LETTERS[i],
-                 lapply(1:3, function(j) {
-                   f7ListIndexItem(letters[j])
-                 })
-               )
-             })
+           tabName = "List2",
+           f7List(
+            mode = "contacts",
+            lapply(1:26, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(1:26, function(j) f7ListItem(letters[j]))
+              )
+            })
            )
          )
        )
      )
    ),
-   server = function(input, output) {}
+   server = function(input, output, session) {
+    observeEvent(TRUE, {
+     f7ListIndex(id = "list-index-1", target = ".list")
+    }, once = TRUE)
+   }
  )
 }
 }

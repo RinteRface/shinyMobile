@@ -6,6 +6,8 @@
 Tabs will have to be manually renamed by end users.
 - `f7Popup()` is now generated on the server side like `f7Notif()`. Remove `updateF7Popup()`,
 `f7TogglePopup`.
+- Reworked `f7listIndex()`: remove `f7ListIndexItem()`. `f7ListIndex()` is generated from
+the server side.
 
 ## Bug fixes and improvements
 - Improve `f7Swiper()`: better CSS, pagination, navigation, scrollbar, ...
