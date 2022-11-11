@@ -45,7 +45,7 @@ shinyApp(
       sidebar = f7Panel(
         title = "Sidebar",
         side = "left",
-        theme = "light",
+        theme = "dark",
         f7PanelMenu(
           id = "menu",
           f7PanelItem(

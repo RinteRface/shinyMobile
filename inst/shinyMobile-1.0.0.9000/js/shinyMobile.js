@@ -91,6 +91,17 @@ $((function() {
     $(document).on("shiny:sessioninitialized", (function(event) {
         Shiny.setInputValue("shinyInfo", Shiny.shinyapp.config);
     }));
+    $(document).on("shiny:inputchanged", (function(event) {
+        var type;
+        if (event.binding !== null) {
+            type = event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA";
+            Shiny.setInputValue("lastInputChanged", {
+                name: event.name,
+                value: event.value,
+                type: type
+            });
+        }
+    }));
     $(document).on("shiny:connected", (function(event) {
         Shiny.setInputValue("deviceInfo", Framework7.device);
     }));
@@ -110,31 +121,52 @@ $((function() {
         $(this).closest(".chip").remove();
     }));
     const skeletonClass = "skeleton-text skeleton-effect-fade";
-    $(document).on("shiny:outputinvalidated", (function(e) {
-        $("#" + e.target.id).addClass(skeletonClass);
-    }));
-    $(document).on("shiny:value", (function(e) {
-        $("#" + e.target.id).removeClass(skeletonClass);
+    Shiny.addCustomMessageHandler("add_skeleton", (function(message) {
+        var cl = "skeleton-text skeleton-effect-" + message.effect;
+        $(message.target).addClass(cl);
+        if (message.duration !== undefined) {
+            setTimeout((function() {
+                $(message.target).removeClass(cl);
+            }), message.duration * 1e3);
+        } else {
+            $(document).on("shiny:idle", (function() {
+                $(message.target).removeClass(cl);
+            }));
+        }
     }));
     window.ran = false;
-    const skeletonTargets = [ ".page-content", ".navbar", ".toolbar" ];
-    $(document).on("shiny:connected", (function(event) {
-        setTimeout((function() {
-            if ($("html").hasClass("shiny-busy")) {
+    if (app.params.skeletonsOnLoad) {
+        const skeletonTargets = [ ".page-content", ".navbar", ".toolbar" ];
+        $(document).on("shiny:connected", (function(event) {
+            setTimeout((function() {
+                if ($("html").hasClass("shiny-busy")) {
+                    for (target of skeletonTargets) {
+                        $(target).addClass(skeletonClass);
+                    }
+                }
+            }), 50);
+        }));
+        $(document).on("shiny:idle", (function(event) {
+            if (!window.ran) {
                 for (target of skeletonTargets) {
-                    $(target).addClass(skeletonClass);
+                    $(target).removeClass(skeletonClass);
                 }
             }
-        }), 50);
-    }));
-    $(document).on("shiny:idle", (function(event) {
-        if (!window.ran) {
-            for (target of skeletonTargets) {
-                $(target).removeClass(skeletonClass);
-            }
+            window.ran = true;
+        }));
+    }
+    if (app.params.preloader) {
+        const preloader = app.dialog.preloader();
+        if (app.params.dark) {
+            $(preloader.el).addClass("theme-dark");
         }
-        window.ran = true;
-    }));
+        $(document).on("shiny:idle", (function(event) {
+            if (!window.ran) {
+                app.dialog.close();
+            }
+            window.ran = true;
+        }));
+    }
     isSplitLayout = $("#app").hasClass("split-layout");
     if (app.params.dark) {
         $("body").addClass("dark");

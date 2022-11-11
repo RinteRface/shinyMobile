@@ -35,21 +35,17 @@ $(function() {
   });
 
   // Returns the last input changed (name, value, type, ...)
-  //$(document).on("shiny:inputchanged", function(event) {
-//
-  //  var type;
-  //  if (event.binding !== null) {
-  //    type = (event.binding.name !== undefined) ? event.binding.name.split(".")[1] : 'NA'
-  //  } else {
-  //    type = 'NA'
-  //  }
-//
-  //  Shiny.setInputValue("lastInputChanged", {
-  //    name: event.name,
-  //    value: event.value,
-  //    type: type
-  //  });
-  //});
+  $(document).on("shiny:inputchanged", function(event) {
+    var type;
+    if (event.binding !== null) {
+      type = (event.binding.name !== undefined) ? event.binding.name.split(".")[1] : 'NA'
+      Shiny.setInputValue("lastInputChanged", {
+        name: event.name,
+        value: event.value,
+        type: type
+      });
+    }
+  });
 
   // Framework7.device is extremely useful to set up custom design
   $(document).on("shiny:connected", function(event) {
@@ -83,34 +79,66 @@ $(function() {
   // Skeleton effect at each output recalculation
   const skeletonClass = 'skeleton-text skeleton-effect-fade';
   // When recalculation starts
-  $(document).on('shiny:outputinvalidated', function(e) {
-    $('#' + e.target.id).addClass(skeletonClass)
-  });
-  // When calculation is over
-  $(document).on('shiny:value', function(e) {
-    $('#' + e.target.id).removeClass(skeletonClass)
-  });
+  //$(document).on('shiny:outputinvalidated', function(e) {
+  //  $('#' + e.target.id).addClass(skeletonClass)
+  //});
+  //// When calculation is over
+  //$(document).on('shiny:value', function(e) {
+  //  $('#' + e.target.id).removeClass(skeletonClass)
+  //});
 
+  Shiny.addCustomMessageHandler('add_skeleton', function(message) {
+    var cl = 'skeleton-text skeleton-effect-' + message.effect
+    $(message.target).addClass(cl);
+    if (message.duration !== undefined) {
+      setTimeout(function() {
+        $(message.target).removeClass(cl);
+      }, message.duration * 1000)
+    } else {
+      $(document).on('shiny:idle', function() {
+        $(message.target).removeClass(cl);
+      });
+    }
+
+  });
   // Skeleton preloader
   window.ran = false;
-  const skeletonTargets = [".page-content", ".navbar", ".toolbar"];
-  $(document).on('shiny:connected', function(event) {
-    setTimeout(function() {
-      if ($("html").hasClass('shiny-busy')) {
+  if (app.params.skeletonsOnLoad) {
+    const skeletonTargets = [".page-content", ".navbar", ".toolbar"];
+    $(document).on('shiny:connected', function(event) {
+      setTimeout(function() {
+        if ($("html").hasClass('shiny-busy')) {
+          for (target of skeletonTargets) {
+            $(target).addClass(skeletonClass);
+          }
+        }
+      }, 50);
+    });
+    $(document).on('shiny:idle', function(event){
+      if(!window.ran) {
         for (target of skeletonTargets) {
-          $(target).addClass(skeletonClass);
+          $(target).removeClass(skeletonClass);
         }
       }
-    }, 50);
-  });
-  $(document).on('shiny:idle', function(event){
-    if(!window.ran) {
-      for (target of skeletonTargets) {
-        $(target).removeClass(skeletonClass);
-      }
+      window.ran = true;
+    });
+  }
+
+  // Classic preloader
+  if (app.params.preloader) {
+    const preloader = app.dialog.preloader();
+    // Handle dark mode
+    if (app.params.dark) {
+      $(preloader.el).addClass("theme-dark");
     }
-    window.ran = true;
-  });
+    $(document).on('shiny:idle', function(event){
+      if(!window.ran){
+        app.dialog.close();
+      }
+      window.ran = true;
+    });
+  }
+
 
   // handle background for dark mode
   // need to remove the custom gainsboro color background

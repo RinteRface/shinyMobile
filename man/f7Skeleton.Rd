@@ -4,14 +4,26 @@
 \alias{f7Skeleton}
 \title{Framework 7 skeleton effect}
 \usage{
-f7Skeleton(tag, effect = "fade", duration = 2)
+f7Skeleton(
+  target = ".card",
+  effect = c("fade", "blink", "pulse"),
+  duration = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
-\item{tag}{Tag to be modified.}
+\item{target}{CSS selector on which to apply the effect.
+In general, you apply the effect on a wrapper such as a card,
+such that all nested elements receive the skeleton.}
 
 \item{effect}{Choose between "fade", "blink" or "pulse".}
 
-\item{duration}{Effect duration: 2s by default.}
+\item{duration}{Effect duration. NULL by default. If you know
+exactly how much time your most time consuming output takes
+to render, you can pass an explicit duration. In other cases,
+leave it to NULL.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Nice loading overlay for UI elements.
@@ -35,21 +47,25 @@ if (interactive()) {
            f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
            f7Badge("Badge", color = "green")
          )
-       ) \%>\% f7Skeleton(),
+       ),
 
         f7List(
          f7ListItem(
            href = "https://www.google.com",
            title = "Item 1"
-         ) \%>\% f7Skeleton(effect = "pulse", duration = 5) ,
+         ),
          f7ListItem(
            href = "https://www.google.com",
            title = "Item 2"
-         ) \%>\% f7Skeleton(effect = "pulse", duration = 5)
+         )
         )
      )
    ),
-   server = function(input, output) {}
+   server = function(input, output, session) {
+     observeEvent(TRUE, {
+       f7Skeleton(".card", "fade", 2)
+     }, once = TRUE)
+   }
  )
 }
 }

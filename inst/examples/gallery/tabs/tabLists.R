@@ -1,3 +1,18 @@
+#contacts_list <- f7List(
+#  mode = "contacts",
+#  lapply(seq_along(LETTERS), function(i) {
+#    f7ListGroup(
+#      title = LETTERS[i],
+#      lapply(seq_along(LETTERS), function(j) {
+#        f7ListItem(letters[j])
+#      })
+#    )
+#  })
+#)
+#
+#contacts_list$attribs$id <- "list-index-target"
+
+
 tabLists <- f7Tab(
   tabName = "Lists",
   icon = f7Icon("list_dash", f7Badge("New", color = "red")),
@@ -108,18 +123,8 @@ tabLists <- f7Tab(
     })
   )#,
   #br(),
-  #
+
   ## list index
   #f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
-  #f7ListIndex(
-  #  id = "listIndex1",
-  #  lapply(seq_along(LETTERS), function(i) {
-  #    f7ListGroup(
-  #      title = LETTERS[i],
-  #      lapply(1:3, function(j) {
-  #        f7ListIndexItem(letters[j])
-  #      })
-  #    )
-  #  })
-  #)
+  #contacts_list
 )

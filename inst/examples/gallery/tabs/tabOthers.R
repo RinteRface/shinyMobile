@@ -44,9 +44,10 @@ tabOthers <- f7Tab(
   # skeletons
   f7BlockTitle(title = "f7Skeleton") %>% f7Align(side = "center"),
   f7List(
+    class = "skeleton-list",
     f7ListItem(title = "Item 1"),
     f7ListItem(title = "Item 2")
-  ) %>% f7Skeleton(duration = 5000),
+  ),
 
   br(),
 

@@ -1,13 +1,19 @@
 # shinyMobile 1.0.0.9000
 
+## New
+- Added `skeletonsOnLoad` to `f7Page()` options (not compatible) with `preloader`.
+
 ## Breaking change
+- `preloader` is moved to `f7Page()` options list. 
+- Removed `loading_duration` from `f7Page()`. Now the preloader will automatically disappear when shiny is idle like in `{bs4Dash}`.
 - __panels__ becomes __panel__ in `f7SplitLayout()` for consistency reasons.
 - `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
-Tabs will have to be manually renamed by end users.
+Tabs will have to be manually renamed.
 - `f7Popup()` is now generated on the server side like `f7Notif()`. Remove `updateF7Popup()`,
-`f7TogglePopup`.
+`f7TogglePopup()`.
 - Reworked `f7listIndex()`: remove `f7ListIndexItem()`. `f7ListIndex()` is generated from
 the server side.
+- Reworked `f7Skeleton()`: triggered from server side. See examples.
 
 ## Bug fixes and improvements
 - Improve `f7Swiper()`: better CSS, pagination, navigation, scrollbar, ...

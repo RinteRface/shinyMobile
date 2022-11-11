@@ -5,14 +5,14 @@
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param title Page title.
-#' @param preloader Whether to display a preloader before the app starts.
-#' FALSE by default.
-#' @param loading_duration Preloader duration.
 #' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
 #' notable options. General options:
 #' \itemize{
 #'  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
 #'  \item \code{dark}: Dark layout. TRUE or FALSE.
+#'  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
+#'  This is a preloading effect. Not compatible with preloader.
+#'  \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
 #'  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #'  the current selected color. FALSE by default.
 #'  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
@@ -55,11 +55,12 @@ f7Page <- function(
     ...,
     title = NULL,
     preloader = FALSE,
-    loading_duration = 3,
     # default options
     options = list(
       theme = c("auto", "ios", "md", "aurora"),
       dark = TRUE,
+      skeletonsOnLoad = FALSE,
+      preloader = FALSE,
       filled = FALSE,
       color = "#007aff",
       touch = list(
@@ -96,6 +97,12 @@ f7Page <- function(
 
   # fallback to auto
   if (length(options$theme) > 1) options$theme <- "auto"
+
+  if (!is.null(options$skeletonsOnLoad) && !is.null(options$preloader)) {
+    if (options$skeletonsOnLoad && options$preloader) {
+      stop("Choose either skeletonsOnLoad or preloader.")
+    }
+  }
 
   if (!is.null(options$theme) && !is.null(options$filled) && !is.null(options$color)) {
     if (options$theme == "dark" && options$filled == TRUE &&
@@ -135,20 +142,6 @@ f7Page <- function(
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
     `data-ptr`= dataPTR,
-    # preloader
-    onLoad = if (preloader) {
-      duration <- loading_duration * 1000
-      paste0(
-        "$(function() {
-          // Preloader
-          app.dialog.preloader();
-          setTimeout(function () {
-           app.dialog.close();
-           }, ", duration, ");
-        });
-        "
-      )
-    },
     shiny::tags$div(
       id = "app",
       class = layout,
