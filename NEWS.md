@@ -1,4 +1,4 @@
-# shinyMobile 1.0.0.9000
+# shinyMobile 1.0.0
 
 ## New
 - Added `skeletonsOnLoad` to `f7Page()` options (not compatible) with `preloader`.
