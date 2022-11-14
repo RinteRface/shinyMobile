@@ -17,7 +17,7 @@
 #'  the current selected color. FALSE by default.
 #'  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
 #'  Expect a name like blue, red or hex code like `#FF0000`. If NULL, use the default color.
-#'  If a name is specified it must be accepted either by \link[grDevices]{colo2rgb} or
+#'  If a name is specified it must be accepted either by \link[gplots]{col2hex} or
 #'  \link{getF7Colors} (valid Framework 7 color names).
 #'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
 #'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
