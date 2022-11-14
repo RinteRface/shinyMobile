@@ -2023,8 +2023,8 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
   labels <- if (!is.null(labels)) {
     lapply(seq_along(labels), function(i) {
-      isF7Icon <- (grep(x = labels[[i]]$attribs$class, pattern = "f7-icons") == 1)
-      if (class(labels[[i]]) != "shiny.tag" || !isF7Icon) {
+      isF7Icon <- grepl(x = labels[[i]]$attribs$class, pattern = "f7-icons")
+      if (!inherits(labels[[i]], "shiny.tag") || !isF7Icon) {
         stop("Label must be a f7Icon.")
       }
       shiny::tags$div(
