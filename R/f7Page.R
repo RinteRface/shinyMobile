@@ -54,7 +54,6 @@
 f7Page <- function(
     ...,
     title = NULL,
-    preloader = FALSE,
     # default options
     options = list(
       theme = c("auto", "ios", "md", "aurora"),

@@ -7,13 +7,11 @@
 f7Page(
   ...,
   title = NULL,
-  preloader = FALSE,
-  loading_duration = 3,
-  options = list(theme = c("auto", "ios", "md", "aurora"), dark = TRUE, filled = FALSE,
-    color = "#007aff", touch = list(tapHold = TRUE, tapHoldDelay = 750, iosTouchRipple =
-    FALSE), iosTranslucentBars = FALSE, navbar = list(iosCenterTitle = TRUE,
-    hideOnPageScroll = TRUE), toolbar = list(hideOnPageScroll = FALSE), pullToRefresh =
-    FALSE),
+  options = list(theme = c("auto", "ios", "md", "aurora"), dark = TRUE, skeletonsOnLoad =
+    FALSE, preloader = FALSE, filled = FALSE, color = "#007aff", touch = list(tapHold =
+    TRUE, tapHoldDelay = 750, iosTouchRipple = FALSE), iosTranslucentBars = FALSE, navbar
+    = list(iosCenterTitle = TRUE, hideOnPageScroll = TRUE), toolbar =
+    list(hideOnPageScroll = FALSE), pullToRefresh = FALSE),
   allowPWA = FALSE
 )
 }
@@ -23,16 +21,14 @@ f7Page(
 
 \item{title}{Page title.}
 
-\item{preloader}{Whether to display a preloader before the app starts.
-FALSE by default.}
-
-\item{loading_duration}{Preloader duration.}
-
 \item{options}{shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
 notable options. General options:
 \itemize{
  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
  \item \code{dark}: Dark layout. TRUE or FALSE.
+ \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
+ This is a preloading effect. Not compatible with preloader.
+ \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
  the current selected color. FALSE by default.
  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
