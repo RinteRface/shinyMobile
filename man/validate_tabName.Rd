@@ -15,3 +15,4 @@ An error if a wrong pattern is found
 \description{
 TO avoid JS issues: avoid punctuation and space
 }
+\keyword{internal}

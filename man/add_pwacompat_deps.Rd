@@ -12,3 +12,4 @@ add_pwacompat_deps(tag)
 \description{
 This function attaches pwacompat. dependencies to the given tag
 }
+\keyword{internal}

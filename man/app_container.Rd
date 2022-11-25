@@ -25,3 +25,4 @@ galaxyS5 (black, white).}
 \description{
 Create an iframe container for app demo
 }
+\keyword{internal}

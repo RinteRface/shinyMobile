@@ -12,3 +12,4 @@ add_pwa_deps(tag)
 \description{
 This function attaches PWA manifest and icons to the given tag
 }
+\keyword{internal}

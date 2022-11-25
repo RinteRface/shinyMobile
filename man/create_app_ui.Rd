@@ -18,4 +18,4 @@ create_app_ui(iframe, device, color, landscape)
 \description{
 Create the app UI
 }
-\keyword{Internal}
+\keyword{internal}

@@ -106,12 +106,11 @@ set_app_height <- function(device, landscape) {
 
 #' Create the app UI
 #'
-#' @keywords Internal
-#'
 #' @param iframe iframe tag designed by \link{preview_mobile}.
 #' @param device See \link{preview_mobile} input.
 #' @param color See \link{preview_mobile} input.
 #' @param landscape See \link{preview_mobile} input.
+#' @keywords internal
 create_app_ui <- function(iframe, device, color, landscape) {
 
   # should never change!
@@ -142,7 +141,7 @@ create_app_ui <- function(iframe, device, color, landscape) {
 
 }
 
-
+#' @keywords internal
 create_app_container <- function(..., skin, color = NULL, landscape) {
 
   phoneCl <- "marvel-device"

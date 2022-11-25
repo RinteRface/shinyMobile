@@ -5,7 +5,7 @@
 #' @param tag Element to attach the dependencies.
 #'
 #' @importFrom htmltools tagList htmlDependency
-#' @export
+#' @keywords internal
 add_pwacompat_deps <- function(tag) {
  pwacompat_deps <- htmlDependency(
   name = "pwacompat",
@@ -16,4 +16,4 @@ add_pwacompat_deps <- function(tag) {
  )
  tagList(tag, pwacompat_deps)
 }
-    
+

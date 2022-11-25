@@ -5,7 +5,7 @@
 #' @param tag Element to attach the dependencies.
 #'
 #' @importFrom htmltools tagList htmlDependency
-#' @export
+#' @keywords internal
 add_f7icons_deps <- function(tag) {
   icon_deps <- htmlDependency(
     name = "f7-icons",

@@ -12,3 +12,4 @@ add_framework7_deps(tag)
 \description{
 This function attaches framework7. dependencies to the given tag
 }
+\keyword{internal}

@@ -5,7 +5,7 @@
 #' @param tag Element to attach the dependencies.
 #'
 #' @importFrom htmltools tagList htmlDependency
-#' @export
+#' @keywords internal
 add_framework7_deps <- function(tag) {
  framework7_deps <- htmlDependency(
   name = "framework7",
@@ -17,4 +17,4 @@ add_framework7_deps <- function(tag) {
  )
  tagList(tag, framework7_deps)
 }
-    
+

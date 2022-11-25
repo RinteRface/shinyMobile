@@ -6,7 +6,7 @@
 #'
 #' @importFrom utils packageVersion
 #' @importFrom htmltools tagList htmlDependency
-#' @export
+#' @keywords internal
 add_pwa_deps <- function(tag) {
  pwa_deps <- htmlDependency(
   name = "pwa-utils",

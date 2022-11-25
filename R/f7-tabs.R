@@ -334,6 +334,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
 #' @param tabName Tab to validate.
 #'
 #' @return An error if a wrong pattern is found
+#' @keywords internal
 validate_tabName <- function(tabName) {
   forbidden <- "(?!_)[[:punct:]]|[[:space:]]"
   wrong_selector <- grepl(forbidden, tabName, perl = TRUE)

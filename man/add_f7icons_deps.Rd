@@ -12,3 +12,4 @@ add_f7icons_deps(tag)
 \description{
 This function attaches icon dependencies to the given tag.
 }
+\keyword{internal}

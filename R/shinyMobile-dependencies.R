@@ -6,7 +6,7 @@
 #'
 #' @importFrom utils packageVersion
 #' @importFrom htmltools tagList htmlDependency
-#' @export
+#' @keywords internal
 add_shinyMobile_deps <- function(tag) {
  shinyMobile_deps <- htmlDependency(
   name = "shinyMobile",

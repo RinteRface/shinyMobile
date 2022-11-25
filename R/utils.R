@@ -90,7 +90,7 @@ shinyInputLabel <- function(inputId, label = NULL) {
 #' @param tag Tag to attach the dependencies.
 #' @param deps Dependencies to add. Expect a vector of names. If NULL, all dependencies
 #' are added.
-#' @export
+#' @keywords internal
 add_dependencies <- function(tag, deps = NULL) {
   if (is.null(deps)) {
     temp_names <- list.files("./R", pattern = "dependencies.R$")
@@ -158,6 +158,7 @@ processDeps <- function (tags, session) {
 #' iphone5c (white,red , yellow, green, blue), iphone4s (black, silver), ipadMini (black, silver) and
 #' galaxyS5 (black, white).
 #' @param landscape Whether to put the device wrapper in landscape mode. Default to FALSE.
+#' @keywords internal
 app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FALSE) {
 
   # test app availability

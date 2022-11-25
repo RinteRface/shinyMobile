@@ -16,3 +16,4 @@ are added.}
 This function only works if there are existing dependencies. Otherwise,
 an error is raised.
 }
+\keyword{internal}

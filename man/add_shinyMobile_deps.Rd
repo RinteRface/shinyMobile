@@ -12,3 +12,4 @@ add_shinyMobile_deps(tag)
 \description{
 This function attaches shinyMobile dependencies to the given tag
 }
+\keyword{internal}
