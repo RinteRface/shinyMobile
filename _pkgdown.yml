@@ -100,8 +100,6 @@ reference:
   - '`updateF7Navbar`'
   - '`f7RemoveTab`'
   - '`removeF7Tab`'
-  - '`f7TogglePopup`'
-  - '`updateF7Popup`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
   - '`updateF7Button`'
