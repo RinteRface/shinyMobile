@@ -1,8 +1,13 @@
 ## Test environments
-* local OS X install, R 3.6.1
-* `rhub::check_for_cran()`
-* Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.1 (2017-01-27)
-* win-builder (devel and release)
+* RStudio Workbench, R-4.2.1.
+* `rhub::check_for_cran()`.
+* win-builder (devel and release).
+
+## R CMD check results
+There were no ERRORs or WARNINGs or NOTEs.
 
 ## Note
-This version 0.9.1 fixes issue blocking Shiny 1.7.0 to be [released](https://github.com/rstudio/shiny/issues/3500). 
+This is a re-submission: 
+Reverse dependency LFApp appears to be broken, which was not initially 
+captured by revdepcheck package during the first submission. A pull request was proposed: https://github.com/fpaskali/LFApp/pull/4 to fix the issue. However the package does
+not seem active anymore since about 2 years and the authors did not answer my mail.

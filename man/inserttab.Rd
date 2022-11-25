@@ -7,7 +7,7 @@
 insertF7Tab(
   id,
   tab,
-  target,
+  target = NULL,
   position = c("before", "after"),
   select = FALSE,
   session = shiny::getDefaultReactiveDomain()
@@ -31,6 +31,7 @@ insertF7Tab(
 }
 \examples{
 if (interactive()) {
+ # Insert after
  library(shiny)
  library(shinyMobile)
  shinyApp(
@@ -38,7 +39,7 @@ if (interactive()) {
      title = "Insert a tab Before the target",
      f7TabLayout(
        navbar = f7Navbar(
-         title = "Tabs",
+         title = "insertF7Tab",
          hairline = FALSE,
          shadow = TRUE,
          leftPanel = TRUE,
@@ -48,14 +49,14 @@ if (interactive()) {
          animated = TRUE,
          id = "tabs",
          f7Tab(
-           tabName = "Tab 1",
+           tabName = "Tab1",
            icon = f7Icon("airplane"),
            active = TRUE,
            "Tab 1",
            f7Button(inputId = "add", label = "Add tabs")
          ),
          f7Tab(
-           tabName = "Tab 2",
+           tabName = "Tab2",
            icon = f7Icon("today"),
            active = FALSE,
            f7Button(inputId="stay", label = "Stay"),
@@ -72,13 +73,13 @@ if (interactive()) {
        insertF7Tab(
          id = "tabs",
          position = "after",
-         target = "Tab 1",
+         target = "Tab1",
          tab = f7Tab (
            # Use multiple elements to test for accessor function
-           f7Button(inputId = "add_dynamic", label = "Add dyn"),
            f7Text(inputId = "my_text", label ="Enter something", placeholder = "What?"),
            f7Text(inputId = "my_other", label ="Else:", placeholder = "Else ?"),
-           tabName = paste0("tabx_", input$go), "Test2",
+           tabName = paste0("tabx_", input$go),
+           "Test2",
            icon = f7Icon("app_badge")
          ),
          select = TRUE
@@ -86,6 +87,25 @@ if (interactive()) {
      })
    }
  )
+ # Insert in an empty tabsetpanel
+ library(shiny)
+ ui <- f7Page(
+   f7SingleLayout(
+     navbar = f7Navbar(),
+     f7Button("add", "Add 'Dynamic' tab"),
+     br(),
+     f7Tabs(id = "tabs"),
+   )
+ )
+ server <- function(input, output, session) {
+   observeEvent(input$add, {
+     insertF7Tab(
+       id = "tabs",
+       f7Tab(title = "Dynamic", tabName = "Dynamic", "This a dynamically-added tab"),
+       target = NULL
+     )
+   })
+ }
+ shinyApp(ui, server)
 }
-
 }

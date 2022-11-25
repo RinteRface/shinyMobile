@@ -9,7 +9,7 @@ f7SplitLayout(
   navbar,
   sidebar,
   toolbar = NULL,
-  panels = NULL,
+  panel = NULL,
   appbar = NULL
 )
 }
@@ -23,7 +23,7 @@ f7SplitLayout(
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
 
-\item{panels}{Slot for \link{f7Panel}. Expect only a right panel, for instance:
+\item{panel}{Slot for \link{f7Panel}. Expect only a right panel, for instance:
 \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}}
 
 \item{appbar}{Slot for \link{f7Appbar}.}

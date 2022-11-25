@@ -5,18 +5,20 @@
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param title Page title.
-#' @param preloader Whether to display a preloader before the app starts.
-#' FALSE by default.
-#' @param loading_duration Preloader duration.
 #' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
 #' notable options. General options:
 #' \itemize{
 #'  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
 #'  \item \code{dark}: Dark layout. TRUE or FALSE.
+#'  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
+#'  This is a preloading effect. Not compatible with preloader.
+#'  \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
 #'  \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
 #'  the current selected color. FALSE by default.
 #'  \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
-#'  Expect a name like blue or red. If NULL, use the default color.
+#'  Expect a name like blue, red or hex code like `#FF0000`. If NULL, use the default color.
+#'  If a name is specified it must be accepted either by \link[gplots]{col2hex} or
+#'  \link{getF7Colors} (valid Framework 7 color names).
 #'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
 #'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
 #'  \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
@@ -50,36 +52,56 @@
 #'
 #' @export
 f7Page <- function(
-  ...,
-  title = NULL,
-  preloader = FALSE,
-  loading_duration = 3,
-  # default options
-  options = list(
-    theme = c("ios", "md", "auto", "aurora"),
-    dark = TRUE,
-    filled = FALSE,
-    color = "#007aff",
-    touch = list(
-      tapHold = TRUE,
-      tapHoldDelay = 750,
-      iosTouchRipple = FALSE
+    ...,
+    title = NULL,
+    # default options
+    options = list(
+      theme = c("auto", "ios", "md", "aurora"),
+      dark = TRUE,
+      skeletonsOnLoad = FALSE,
+      preloader = FALSE,
+      filled = FALSE,
+      color = "#007aff",
+      touch = list(
+        tapHold = TRUE,
+        tapHoldDelay = 750,
+        iosTouchRipple = FALSE
+      ),
+      iosTranslucentBars = FALSE,
+      navbar = list(
+        iosCenterTitle = TRUE,
+        hideOnPageScroll = TRUE
+      ),
+      toolbar = list(
+        hideOnPageScroll = FALSE
+      ),
+      pullToRefresh = FALSE
     ),
-    iosTranslucentBars = FALSE,
-    navbar = list(
-      iosCenterTitle = TRUE,
-      hideOnPageScroll = TRUE
-    ),
-    toolbar = list(
-      hideOnPageScroll = FALSE
-    ),
-    pullToRefresh = FALSE
-  ),
-  allowPWA = FALSE
+    allowPWA = FALSE
 ) {
+
+  # Color must be converted to HEX before going to JavaScript
+  if (!is.null(options$color)) {
+    # If color is a name
+    if (!grepl("#", options$color)) {
+      # Color belongs to Framework7 valid colors
+      if (options$color %in% getF7Colors()) {
+        options$color <- colorToHex(options$color)
+      } else {
+        # If not we use gplots and internal R colors
+        options$color <- gplots::col2hex(options$color)
+      }
+    }
+  }
 
   # fallback to auto
   if (length(options$theme) > 1) options$theme <- "auto"
+
+  if (!is.null(options$skeletonsOnLoad) && !is.null(options$preloader)) {
+    if (options$skeletonsOnLoad && options$preloader) {
+      stop("Choose either skeletonsOnLoad or preloader.")
+    }
+  }
 
   if (!is.null(options$theme) && !is.null(options$filled) && !is.null(options$color)) {
     if (options$theme == "dark" && options$filled == TRUE &&
@@ -106,26 +128,23 @@ f7Page <- function(
     )
   )
 
+  # Can also contain app bar
+  items <- list(...)
+  # Find current layout stored in attribute
+  layout <- unlist(lapply(items, function(item) {
+    is_layout <- inherits(item, "shiny.tag.list")
+    if (is_layout) {
+      attributes(item)$layout
+    }
+  }))
+
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
     `data-ptr`= dataPTR,
-    # preloader
-    onLoad = if (preloader) {
-      duration <- loading_duration * 1000
-      paste0(
-        "$(function() {
-          // Preloader
-          app.dialog.preloader();
-          setTimeout(function () {
-           app.dialog.close();
-           }, ", duration, ");
-        });
-        "
-      )
-    },
     shiny::tags$div(
       id = "app",
-      ...
+      class = layout,
+      items
     ),
     configTag
   )
@@ -157,7 +176,8 @@ f7Page <- function(
       deps = c(
         "framework7",
         "shinyMobile",
-        pwaDeps
+        pwaDeps,
+        "f7icons"
       ),
       bodyTag
     )
@@ -226,7 +246,7 @@ f7Page <- function(
 f7SingleLayout <- function(..., navbar, toolbar = NULL,
                            panels = NULL, appbar = NULL) {
 
-  shiny::tagList(
+  single_layout_tag <- shiny::tagList(
     # appbar goes here
     appbar,
     # panels go here
@@ -241,13 +261,15 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
         toolbar,
         shiny::tags$div(
           class= "page-content",
-          style = "background-color: gainsboro;",
           # page content
           ...
         )
       )
     )
   )
+
+  attr(single_layout_tag, "layout") <- "single-layout"
+  single_layout_tag
 }
 
 
@@ -300,7 +322,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'          animated = FALSE,
 #'          swipeable = TRUE,
 #'          f7Tab(
-#'            tabName = "Tab 1",
+#'            tabName = "Tab1",
 #'            icon = f7Icon("envelope"),
 #'            active = TRUE,
 #'            f7Shadow(
@@ -325,7 +347,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 2",
+#'            tabName = "Tab2",
 #'            icon = f7Icon("today"),
 #'            active = FALSE,
 #'            f7Shadow(
@@ -352,7 +374,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "Tab 3",
+#'            tabName = "Tab3",
 #'            icon = f7Icon("cloud_upload"),
 #'            active = FALSE,
 #'            f7Shadow(
@@ -411,7 +433,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @export
 f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL) {
 
-  shiny::tagList(
+  tab_layout_tag <- shiny::tagList(
     # appbar goes here
     appbar,
     # panels go here
@@ -433,6 +455,9 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
       )
     )
   )
+
+  attr(tab_layout_tag, "layout") <- "tab-layout"
+  tab_layout_tag
 }
 
 
@@ -450,7 +475,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
 #' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}
 #' @param toolbar Slot for \link{f7Toolbar}.
-#' @param panels Slot for \link{f7Panel}. Expect only a right panel, for instance:
+#' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
 #' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
 #' @param appbar Slot for \link{f7Appbar}.
 #'
@@ -514,7 +539,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
-                          panels = NULL, appbar = NULL) {
+                          panel = NULL, appbar = NULL) {
 
   # add margins
   items <- shiny::div(...) %>% f7Margin(side = "left") %>% f7Margin(side = "right")
@@ -522,7 +547,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
   # this trick to prevent to select the panel view in the following
   # javascript code
-  sidebar$children[[1]]$attribs$id <- "f7-sidebar-view"
+  sidebar$children[[1]]$attribs$class <- "panel-visible-by-breakpoint"
 
   splitSkeleton <- f7SingleLayout(
     items,
@@ -530,61 +555,19 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     toolbar = toolbar,
     panels = shiny::tagList(
       sidebar,
-      panels
+      panel
     ),
     appbar = appbar
   )
 
-  splitTemplateCSS <- shiny::singleton(
-    shiny::tags$style(
-      '/* Left Panel right border when it is visible by breakpoint */
-      .panel-left.panel-visible-by-breakpoint:before {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: rgba(0,0,0,0.1);
-        content: "";
-        z-index: 6000;
-      }
-
-      /* Hide navbar link which opens left panel when it is visible by breakpoint */
-      .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
-        display: none;
-      }
-
-      /*
-        Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
-      */
-      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
-      .ios .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 1px;
-        background: rgba(0,0,0,0.1);
-        content: "";
-        z-index: 6000;
-      }
-      '
-    )
+  # Customize class
+  splitSkeleton[[3]] <- tagAppendAttributes(
+    splitSkeleton[[3]],
+    class = "safe-areas"
   )
 
-  splitTemplateJS <- shiny::singleton(
-    shiny::tags$script(
-      "$(function() {
-        $('#f7-sidebar').addClass('panel-visible-by-breakpoint');
-        $('.view:not(\"#f7-sidebar-view\")').addClass('safe-areas');
-        $('.view:not(\"#f7-sidebar-view\")').css('margin-left', '260px');
-      });
-      "
-    )
-  )
-
-  shiny::tagList(splitTemplateCSS, splitTemplateJS, splitSkeleton)
-
+  attr(splitSkeleton, "layout") <- "split-layout"
+  splitSkeleton
 }
 
 
@@ -600,15 +583,15 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
 #'
 #' @export
 f7Items <- function(...){
-  shiny::tags$div(
-    class = "tabs-animated-wrap",
+  #shiny::tags$div(
+    #class = "tabs-animated-wrap",
     shiny::tags$div(
       # ios-edges necessary to have
       # the good ios rendering
       class = "tabs ios-edges",
       ...
     )
-  )
+  #)
 }
 
 
@@ -628,7 +611,6 @@ f7Item <- function(..., tabName) {
     class = "page-content tab",
     id = tabName,
     `data-value` = tabName,
-    style = "background-color: gainsboro;",
     ...
   )
 }

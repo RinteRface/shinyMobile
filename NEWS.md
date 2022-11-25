@@ -1,3 +1,51 @@
+# shinyMobile 1.0.0
+
+## New
+- Added `skeletonsOnLoad` to `f7Page()` options (not compatible) with `preloader`.
+
+## Breaking change
+- `preloader` is moved to `f7Page()` options list. 
+- Removed `loading_duration` from `f7Page()`. Now the preloader will automatically disappear when shiny is idle like in `{bs4Dash}`.
+- __panels__ becomes __panel__ in `f7SplitLayout()` for consistency reasons.
+- `f7Tab()` uses `validate_tabName` so that `Tab 1` is not valid anymore but `Tab1` yes.
+Tabs will have to be manually renamed.
+- `f7Popup()` is now generated on the server side like `f7Notif()`. Remove `updateF7Popup()`,
+`f7TogglePopup()`.
+- Reworked `f7listIndex()`: remove `f7ListIndexItem()`. `f7ListIndex()` is generated from
+the server side.
+- Reworked `f7Skeleton()`: triggered from server side. See examples.
+
+## Bug fixes and improvements
+- Improve `f7Swiper()`: better CSS, pagination, navigation, scrollbar, ...
+- Fix issue in `f7PhotoBrowser()` example: wrong default theme ...
+- `f7CheckBox()`: better layout.
+- Fix issue in `f7FabMorphTarget()` example.
+- Fix #226: `f7PhotoBrowser()` just works with two or more pictures. Fix issue in JSON conversion.
+- Fix issue in `updateF7Popup()` documentation (showed as deprecated by mistake).
+- New skeleton effect on load (automatic): applied grey background on elements loading.
+Ends when shiny is idle.
+- New skeleton effect on output recalculation. 
+- Fix issue in `f7Navbar()`: hard-coded css style causing white text on white
+background.
+- Fix #151: Issue in navbar/toolbar scroll. See [here](https://github.com/RinteRface/shinyMobile/issues/151).
+- Fix #165: Setting separate theme for panels does not work.
+- Fix #181: Adding dynamic tab to an empty panel.
+- Related to #220. A new __title__ parameter is available for `f7Tab()` so as to pass any
+name, as oposed to __tabName__. 
+- Fix #228: Vignette Example doesn't show graphs. Breaking change in shiny 1.7.2.
+- Issue in `f7SmartSelect()` with __openIn__ param (failed when not provided).
+- Fix #219: Avoid using inline CSS so that users can easily override {shinyMobile} defaults.
+- Fix #220: `f7Tab()` can create duplicate IDs which in turn break the page. Now we use `validate_tabName` internally
+to check whether the tab is valid (avoid JS issues with jQuery selectors)...
+- Fix #224: `updateF7AutoComplete()` accepts __choices__.
+- Fixes #217: `f7SmartSelect()` interfering NS for server-side module.
+- Fixes #215: Icon not displayed in reconnect / reload toaster. Add f7Icon deps anyway.
+- Fixes #204: issue with `f7DatePicker()` and DST. 
+- Update CI/CD setup.
+- Fix [issue](https://github.com/RinteRface/shinyMobile/issues/165#issuecomment-1226581561) where `f7Page()` does not accept anymore color by its name. Now, and like in earlier versions, `f7Page()` accepts either hex code or color name. 
+- Fixes #222: `f7Slider()` code updated to work with the fix for #215 above. 
+
+
 # shinyMobile 0.9.1
 This release only fixes an issue with Shiny 1.7.0 with a failing unit [test](https://github.com/RinteRface/shinyMobile/pull/211). Thanks @schloerke
 

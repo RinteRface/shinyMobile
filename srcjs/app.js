@@ -1,4 +1,12 @@
 $(function() {
+  // utility to reset the input system
+  // whenever elements are added on the fly to the UI
+  function shinyInputsReset() {
+    Shiny.unbindAll();
+    Shiny.initializeInputs();
+    Shiny.bindAll();
+  }
+
   // show reconnect notification
   $(document).on("shiny:disconnected", function(event) {
     // remove shiny server stuff
@@ -10,7 +18,7 @@ $(function() {
         icon: '<i class="icon f7-icons">bolt_fill</i>',
         position: "center",
         text:
-          'Oups... disconnected </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
+          'Disconnected ... </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
       })
       .open();
 
@@ -28,11 +36,15 @@ $(function() {
 
   // Returns the last input changed (name, value, type, ...)
   $(document).on("shiny:inputchanged", function(event) {
-    Shiny.setInputValue("lastInputChanged", {
-      name: event.name,
-      value: event.value,
-      type: event.binding.name !== undefined ? event.binding.name.split(".")[1] : 'NA'
-    });
+    var type;
+    if (event.binding !== null) {
+      type = (event.binding.name !== undefined) ? event.binding.name.split(".")[1] : 'NA'
+      Shiny.setInputValue("lastInputChanged", {
+        name: event.name,
+        value: event.value,
+        type: type
+      });
+    }
   });
 
   // Framework7.device is extremely useful to set up custom design
@@ -49,11 +61,8 @@ $(function() {
     }
   }
 
-  // fix standalone tabs height issue
-  $(".tabs-standalone").css("height", "auto");
-
   // Fix messagebar send icon issue when filled is TRUE. It is not
-  // visible because it takes the same color has the messagebar background ...
+  // visible because it takes the same color as the messagebar background ...
   // To detect if the layout is filled, we search in the body class since the
   // global color is hosted here.
   if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
@@ -62,50 +71,101 @@ $(function() {
       .addClass("color-white");
   }
 
+  // chip label remove
+  $('.chip-delete').on('click', function() {
+    $(this).closest('.chip').remove();
+  });
+
+  // Skeleton effect at each output recalculation
+  const skeletonClass = 'skeleton-text skeleton-effect-fade';
+  // When recalculation starts
+  //$(document).on('shiny:outputinvalidated', function(e) {
+  //  $('#' + e.target.id).addClass(skeletonClass)
+  //});
+  //// When calculation is over
+  //$(document).on('shiny:value', function(e) {
+  //  $('#' + e.target.id).removeClass(skeletonClass)
+  //});
+
+  Shiny.addCustomMessageHandler('add_skeleton', function(message) {
+    var cl = 'skeleton-text skeleton-effect-' + message.effect
+    $(message.target).addClass(cl);
+    if (message.duration !== undefined) {
+      setTimeout(function() {
+        $(message.target).removeClass(cl);
+      }, message.duration * 1000)
+    } else {
+      $(document).on('shiny:idle', function() {
+        $(message.target).removeClass(cl);
+      });
+    }
+
+  });
+  // Skeleton preloader
+  window.ran = false;
+  if (app.params.skeletonsOnLoad) {
+    const skeletonTargets = [".page-content", ".navbar", ".toolbar"];
+    $(document).on('shiny:connected', function(event) {
+      setTimeout(function() {
+        if ($("html").hasClass('shiny-busy')) {
+          for (target of skeletonTargets) {
+            $(target).addClass(skeletonClass);
+          }
+        }
+      }, 50);
+    });
+    $(document).on('shiny:idle', function(event){
+      if(!window.ran) {
+        for (target of skeletonTargets) {
+          $(target).removeClass(skeletonClass);
+        }
+      }
+      window.ran = true;
+    });
+  }
+
+  // Classic preloader
+  if (app.params.preloader) {
+    const preloader = app.dialog.preloader();
+    // Handle dark mode
+    if (app.params.dark) {
+      $(preloader.el).addClass("theme-dark");
+    }
+    $(document).on('shiny:idle', function(event){
+      if(!window.ran){
+        app.dialog.close();
+      }
+      window.ran = true;
+    });
+  }
+
+
   // handle background for dark mode
   // need to remove the custom gainsboro color background
+  isSplitLayout = $("#app").hasClass("split-layout");
   if (app.params.dark) {
-    $(".page-content").css("background-color", "");
-    $(".page-content.tab, .tab").css("background-color", "");
-    $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
-    $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
-    $(".popup").css("background-color", "#1b1b1d");
-    $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
-    $(".fab-label").css("color", "var(--f7-fab-text-color)");
-
-    // fix black accordion text in dark mode
-    $(".accordion-item .item-content .item-inner").css("color", "white");
-    $(".accordion-item .accordion-item-content").css("color", "white");
-
-    // below the sidebar id #f7-sidebar-view ensures that we do not
-    // screw up the classic f7Panel style in dark mode
-    // The sidebar background has to be slightly lighter than the main background
-    var sidebarPanel = $("#f7-sidebar-view").find(".page-content");
-    $(sidebarPanel).css("background-color", "#1e1e1e");
-    // we also need to darken sidebar items in the sidebar menu
-    // the default color does not contrast enough with the
-    // new sidebar background
-    var sidebarItems = $("#f7-sidebar-view").find("li");
-    $(sidebarItems).css("background-color", "#171717");
+    // Required to apply correct CSS in shinyMobile.css
+    $("body").addClass("dark");
+    // Fix panel color in splitlayout
+    if (isSplitLayout) {
+      if ($(".panel-left").hasClass("theme-light")) {
+        $(".panel-left")
+          .removeClass("theme-light")
+          .addClass("theme-dark");
+      }
+    }
+    $(".appbar").addClass("theme-dark");
   } else {
-    $("div.messages").css("background-color", "gainsboro");
-    // fix photo browser links issue
-    $("a").on("click", function() {
-      setTimeout(function() {
-        // we recover the body class that contains the page
-        // color we set up in f7Init
-        var linkColors = $("body").attr("class");
-        $(".navbar-photo-browser .navbar-inner .title").css("color", "black");
-        $(".navbar-photo-browser .navbar-inner .right .popup-close").css(
-          "color",
-          linkColors
-        );
-        $(".photo-browser-page .toolbar .toolbar-inner a").css(
-          "color",
-          linkColors
-        );
-      }, 100);
-    });
+    // Required to apply correct CSS in shinyMobile.css
+    $("body").addClass("light");
+    // Fix panel color in splitlayout
+    if (isSplitLayout) {
+      if ($(".panel-left").hasClass("theme-dark")) {
+        $(".panel-left")
+          .removeClass("theme-dark")
+          .addClass("theme-light");
+      }
+    }
   }
 
   // allow for subnavbar. If a subnavbar if provided in the navbar
@@ -153,7 +213,7 @@ $(function() {
   * Instantiate all widgets: gauges, swiper, searchbar
   */
   const uiWidgets = ["gauge", "swiper", "searchbar"];
-  const serverWidgets = ["toast", "photoBrowser", "notification"];
+  const serverWidgets = ["toast", "photoBrowser", "notification", "popup", "listIndex"];
 
   const widgets = uiWidgets.concat(serverWidgets);
 
@@ -178,7 +238,30 @@ $(function() {
       // that don't have any UI element in the DOM before creating
       // the widget instance.
       Shiny.addCustomMessageHandler(widget, function(message) {
-        app[widget].create(message).open();
+        if (widget === "listIndex") {
+          // We first insert the HTML before the page content div.
+          $('<div class=\"list-index\" id=\"' + message.el + '\"></div>')
+            .insertAfter($('.navbar'));
+        }
+        // Handle dark mode
+        message.on = {
+          open: function(target) {
+            if (message.id !== undefined) Shiny.setInputValue(message.id, true);
+            if (target.app.params.dark) {
+              $(target.el).addClass("theme-dark");
+            }
+            shinyInputsReset();
+          },
+          close: function() {
+            if (message.id !== undefined) Shiny.setInputValue(message.id, false)
+          }
+        };
+        if (widget === "listIndex") {
+          message.el = "#" + message.el;
+          app[widget].create(message);
+        } else {
+          app[widget].create(message).open()
+        }
       });
     }
   };
@@ -203,6 +286,14 @@ $(function() {
 
   popoverIds.forEach(function(index) {
     Shiny.addCustomMessageHandler(index, function(message) {
+      // Handle dark mode
+      message.on = {
+        open: function(target) {
+          if (target.app.params.dark) {
+            $(target.el).addClass("theme-dark");
+          }
+        }
+      };
       var popover = app.popover.create({
         targetEl: '[data-popover = "' + index + '"]',
         content:
@@ -237,6 +328,15 @@ $(function() {
           </div>
         </div>
         `;
+
+        // Handle dark mode
+        message.on = {
+          open: function(target) {
+            if (target.app.params.dark) {
+              $(target.el).addClass("theme-dark");
+            }
+          }
+        };
 
         // create instance
         var p = app.popover.create(message);
@@ -308,12 +408,13 @@ $(function() {
     // decide to lock the vertical size so that
     // people don't need to manually add overflow.
     var text = `<div style="max-height: 300px; overflow-y: scroll;">${message.text}</div>`
+    var dialog;
     switch (type) {
       case "alert":
-        var dialog = app.dialog.alert(text, message.title);
+        dialog = app.dialog.alert(text, message.title, message.on);
         break;
       case "confirm":
-        var confirm = app.dialog
+        dialog = app.dialog
           .confirm(
             (text = text),
             (title = message.title),
@@ -328,7 +429,7 @@ $(function() {
         //confirm.closed(Shiny.setInputValue(message.id, null));
         break;
       case "prompt":
-        var prompt = app.dialog
+        dialog =  app.dialog
           .prompt(
             (text = text),
             (title = message.title),
@@ -342,8 +443,7 @@ $(function() {
           .open(Shiny.setInputValue(message.id, null));
         break;
       case "login":
-        console.log(login);
-        var login = app.dialog
+        dialog = app.dialog
           .login(
             (text = text),
             (title = message.title),
@@ -361,6 +461,10 @@ $(function() {
         break;
       default:
         console.log("");
+    }
+    // Handle dark mode
+    if (app.params.dark) {
+      $(dialog.el).addClass("theme-dark");
     }
   });
 
@@ -421,7 +525,13 @@ $(function() {
   tabIds.forEach(function(index) {
     var id = "insert_" + index;
     Shiny.addCustomMessageHandler(id, function(message) {
-      var tabId = $('#' + message.ns + '-' + message.target);
+      // Handle when message.target is null
+      var tabId;
+      if (message.target === undefined) {
+        tabId = $('#' + message.ns); // target the parent tabset
+      } else {
+        tabId = $('#' + message.ns + '-' + message.target);
+      }
 
       var tab = $(message.value.html);
 
@@ -443,31 +553,36 @@ $(function() {
         if (message.select === "true") {
           $(newTab).addClass("swiper-slide-active");
         }
-        if (app.params.dark) $(newTab).css("background-color", "");
       } else {
-        // remove white background for tab in dark mode
         newTab = $(tab);
-        if (app.params.dark) $(newTab).css("background-color", "");
       }
 
-      if (message.position === "after") {
-        // insert after the targeted tag in the tab-panel div
-        $(newTab).insertAfter($(tabId));
-        // we also need to insert an item in the navigation
-        $(message.link).insertAfter(
-          $(
-            '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
-          )
-        );
-      } else if (message.position === "before") {
-        // insert before the targeted tag in the tab-panel div
-        $(newTab).insertBefore($(tabId));
-        // we also need to insert an item in the navigation
-        $(message.link).insertBefore(
-          $(
-            '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
-          )
-        );
+      // Ignore position if target is not defined
+      if (message.target === undefined) {
+        // Insert tab content
+        $(tabId).append(newTab);
+        // Insert tab link in tabset toolbar
+        $('.tabLinks .toolbar-inner').prepend(message.link);
+      } else {
+        if (message.position === "after") {
+          // insert after the targeted tag in the tab-panel div
+          $(newTab).insertAfter($(tabId));
+          // we also need to insert an item in the navigation
+          $(message.link).insertAfter(
+            $(
+              '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
+            )
+          );
+        } else if (message.position === "before") {
+          // insert before the targeted tag in the tab-panel div
+          $(newTab).insertBefore($(tabId));
+          // we also need to insert an item in the navigation
+          $(message.link).insertBefore(
+            $(
+              '.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'
+            )
+          );
+        }
       }
 
       // needed to render input/output in newly added tab. It takes the possible
@@ -688,6 +803,11 @@ $(function() {
 
       // Callbacks for shiny inputs
       message.on = {
+        open: function(target) {
+          if (target.app.params.dark) {
+            $(target.el).addClass("theme-dark");
+          }
+        },
         opened: function() {
           Shiny.setInputValue(message.id, true);
         },

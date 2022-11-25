@@ -17,7 +17,7 @@ sapply(
 # shiny app
 shinyApp(
   ui = f7Page(
-    allowPWA = TRUE,
+    allowPWA = TRUE, options = list(dark = TRUE, filled = FALSE, preloader = TRUE),
     f7TabLayout(
       appbar = f7Appbar(
         f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
@@ -199,7 +199,12 @@ shinyApp(
     output$popupContent <- renderPrint(input$popupText)
 
     observeEvent(input$togglePopup, {
-      updateF7Popup(id = "popup1")
+      f7Popup(
+        id = "popup1",
+        title = "My first popup",
+        f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
+        verbatimTextOutput("popupContent")
+      )
     })
 
     observeEvent(input$popup1, {
@@ -448,6 +453,21 @@ shinyApp(
     observeEvent(input$menuItem1, {
       f7Notif(text = "Well done!")
     })
+
+    # skeleton
+    observe({
+      invalidateLater(4000)
+      f7Skeleton(".skeleton-list", "fade", 2)
+    })
+
+    # List index
+    #observeEvent(TRUE, {
+    #  f7ListIndex(
+    #    id = "list-index-1",
+    #    target = "#list-index-target",
+    #    label = TRUE
+    #  )
+    #}, once = TRUE)
 
     # pull to refresh
     # observeEvent(input$ptr, {

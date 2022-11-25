@@ -9,7 +9,8 @@ tabOthers <- f7Tab(
     animated = TRUE,
     swipeable = FALSE,
     f7Tab(
-      tabName = "Tab 1",
+      title = "Tab 1",
+      tabName = "Tab1",
       active = TRUE,
       f7Block(
         strong = TRUE,
@@ -19,7 +20,8 @@ tabOthers <- f7Tab(
       )
     ),
     f7Tab(
-      tabName = "Tab 2",
+      title = "Tab 2",
+      tabName = "Tab2",
       f7Block(
         strong = TRUE,
         f7BlockHeader(text = "Header"),
@@ -28,7 +30,8 @@ tabOthers <- f7Tab(
       )
     ),
     f7Tab(
-      tabName = "Tab 3",
+      title = "Tab 3",
+      tabName = "Tab3",
       f7Block(
         strong = TRUE,
         f7BlockHeader(text = "Header"),
@@ -41,9 +44,10 @@ tabOthers <- f7Tab(
   # skeletons
   f7BlockTitle(title = "f7Skeleton") %>% f7Align(side = "center"),
   f7List(
+    class = "skeleton-list",
     f7ListItem(title = "Item 1"),
     f7ListItem(title = "Item 2")
-  ) %>% f7Skeleton(duration = 5000),
+  ),
 
   br(),
 

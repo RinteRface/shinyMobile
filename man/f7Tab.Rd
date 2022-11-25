@@ -4,12 +4,14 @@
 \alias{f7Tab}
 \title{Create a Framework7 tab item}
 \usage{
-f7Tab(..., tabName, icon = NULL, active = FALSE, hidden = FALSE)
+f7Tab(..., title = NULL, tabName, icon = NULL, active = FALSE, hidden = FALSE)
 }
 \arguments{
 \item{...}{Item content.}
 
-\item{tabName}{Item id. Must be unique.}
+\item{title}{Tab title (name).}
+
+\item{tabName}{Item id. Must be unique, without space nor punctuation symbols.}
 
 \item{icon}{Item icon. Expect \link{f7Icon} function with the suitable lib argument
 (either md or ios or NULL for native f7 icons).}

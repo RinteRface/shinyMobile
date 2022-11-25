@@ -4,11 +4,18 @@ var f7SmartSelectBinding = new Shiny.InputBinding();
 $.extend(f7SmartSelectBinding, {
 
   initialize: function(el) {
-    var id = $(el).children().eq(0).attr('id');
+    var id = $(el).attr('id');
     var config = $(el).children().eq(2);
     config = JSON.parse(config.html());
     config.el = '#' + id;
     // feed the create method
+    config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.$containerEl).addClass("theme-dark");
+        }
+      }
+    }
     var ss = app.smartSelect.create(config);
     this["smart-select-" + el.id] = ss;
   },
@@ -30,9 +37,16 @@ $.extend(f7SmartSelectBinding, {
   // see updateF7SmartSelect
   receiveMessage: function(el, data) {
     // update config
+    data.config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.$containerEl).addClass("theme-dark");
+        }
+      }
+    }
     if (data.hasOwnProperty("config")) {
       this["smart-select-" + el.id].destroy();
-      data.config.el = '#' + $(el).children().eq(0).attr('id');
+      data.config.el = '#' + $(el).attr('id');
       this["smart-select-" + el.id] = app.smartSelect.create(data.config);
     }
 
@@ -42,7 +56,7 @@ $.extend(f7SmartSelectBinding, {
       if (data.multiple) {
         this["smart-select-" + el.id].destroy();
         $(el).find('select').attr('multiple', '');
-        data.config.el = '#' + $(el).children().eq(0).attr('id');
+        data.config.el = '#' + $(el).attr('id');
         this["smart-select-" + el.id] = app.smartSelect.create(data.config);
       }
     }
@@ -51,7 +65,7 @@ $.extend(f7SmartSelectBinding, {
     if (data.hasOwnProperty("maxLength")) {
       this["smart-select-" + el.id].destroy();
       $(el).find('select').attr('maxLength', data.maxLength);
-      data.config.el = '#' + $(el).children().eq(0).attr('id');
+      data.config.el = '#' + $(el).attr('id');
       this["smart-select-" + el.id] = app.smartSelect.create(data.config);
     }
 

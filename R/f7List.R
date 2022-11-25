@@ -218,6 +218,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     shiny::tags$a(
       class = "item-link item-content external",
       href = href,
+      target = "_blank",
       itemContent
     )
   }
@@ -230,7 +231,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
 
 #' Create a framework 7 group of contacts
 #'
-#' @param ... slot for \link{f7ListIndexItem}.
+#' @param ... slot for \link{f7ListItem}.
 #' @param title Group title.
 #' @export
 f7ListGroup <- function(..., title) {
@@ -247,8 +248,12 @@ f7ListGroup <- function(..., title) {
 
 #' Create a Framework 7 list index
 #'
-#' @param ... Slot for \link{f7ListGroup}.
+#' List index must be attached to an existing list view.
+#'
 #' @param id Unique id.
+#' @param target Related list element. CSS selector like .class, #id, ...
+#' @param ... Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).
+#' @param session Shiny session object.
 #' @export
 #'
 #' @note For some reason, unable to get more than 1 list index working. See
@@ -269,93 +274,43 @@ f7ListGroup <- function(..., title) {
 #'        ),
 #'        f7Tabs(
 #'          f7Tab(
-#'            tabName = "List 1",
-#'            f7ListIndex(
-#'              id = "listIndex1",
-#'              lapply(seq_along(LETTERS), function(i) {
-#'                f7ListGroup(
-#'                  title = LETTERS[i],
-#'                  lapply(1:3, function(j) {
-#'                    f7ListIndexItem(letters[j])
-#'                  })
-#'                )
-#'              })
+#'            tabName = "List1",
+#'            f7List(
+#'             mode = "contacts",
+#'             lapply(1:26, function(i) {
+#'               f7ListGroup(
+#'                 title = LETTERS[i],
+#'                 lapply(1:26, function(j) f7ListItem(letters[j]))
+#'               )
+#'             })
 #'            )
 #'          ),
 #'          f7Tab(
-#'            tabName = "List 2",
-#'            f7ListIndex(
-#'              id = "listIndex2",
-#'              lapply(seq_along(LETTERS), function(i) {
-#'                f7ListGroup(
-#'                  title = LETTERS[i],
-#'                  lapply(1:3, function(j) {
-#'                    f7ListIndexItem(letters[j])
-#'                  })
-#'                )
-#'              })
+#'            tabName = "List2",
+#'            f7List(
+#'             mode = "contacts",
+#'             lapply(1:26, function(i) {
+#'               f7ListGroup(
+#'                 title = LETTERS[i],
+#'                 lapply(1:26, function(j) f7ListItem(letters[j]))
+#'               )
+#'             })
 #'            )
 #'          )
 #'        )
 #'      )
 #'    ),
-#'    server = function(input, output) {}
+#'    server = function(input, output, session) {
+#'     observeEvent(TRUE, {
+#'      f7ListIndex(id = "list-index-1", target = ".list")
+#'     }, once = TRUE)
+#'    }
 #'  )
 #' }
-f7ListIndex <- function(..., id) {
-
-  listIndexJS <- shiny::singleton(
-    shiny::tags$script(
-      shiny::HTML(
-        paste0(
-          "$(function() {
-          // We first insert the HTML <div class=\"list-index\"></div> before
-          // the page content div.
-          $('<div class=\"list-index\" id=\"", id, "\"></div>').insertAfter($('.navbar'));
-
-          // init the listIndex once we inserted the
-          app.listIndex.create({
-            // '.list-index' element
-            el: '#", id, "',
-            // List el where to look indexes and scroll for
-            listEl: '#", id, "_contacts-list',
-            // Generate indexes automatically based on '.list-group-title' and '.item-divider'
-            indexes: 'auto',
-            // Scroll list on indexes click and touchmove
-            scrollList: true,
-            // Enable bubble label when swiping over indexes
-            label: true,
-          });
-        });
-        "
-        )
-      )
-    )
-  )
-
-  listIndexTag <- shiny::tags$div(
-    class = "list simple-list contacts-list",
-    # listEl
-    id = paste0(id, "_contacts-list"),
-    ...
-  )
-
-  shiny::tagList(listIndexJS, listIndexTag)
-
+f7ListIndex <- function(id, target, ..., session = shiny::getDefaultReactiveDomain()) {
+  message <- list(el = id, listEl = target, ...)
+  sendCustomMessage("listIndex", message, session)
 }
-
-
-
-#' Create a Framework 7 list index item
-#'
-#' @param ... Item content.
-#'
-#' @export
-f7ListIndexItem <- function(...) {
-  htmltools::tags$li(...)
-}
-
-
 
 
 #' Framework7 virtual list

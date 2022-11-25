@@ -15,7 +15,7 @@ updateF7Fab(inputId, label = NULL, session = shiny::getDefaultReactiveDomain())
 \item{label}{The label to set for the input object.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'};
-see \code{\link[shiny:reexports]{validateCssUnit()}}.}
+see \code{\link[shiny:validateCssUnit]{validateCssUnit()}}.}
 
 \item{...}{Named attributes to be applied to the button or link.}
 

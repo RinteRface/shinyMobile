@@ -11,6 +11,11 @@ $.extend(f7LoginBinding, {
     // a significant delay before the modal shows up
     data.animate = false;
     data.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.el).addClass("theme-dark");
+        }
+      },
       opened: function () {
         $(el).trigger('shown');
       }

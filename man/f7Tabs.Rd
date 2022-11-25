@@ -51,7 +51,8 @@ if (interactive()) {
         swipeable = TRUE,
         animated = FALSE,
         f7Tab(
-         tabName = "Tab 1",
+         title = "Tab 1",
+         tabName = "Tab1",
          f7Sheet(
           id = "sheet",
           label = "More",
@@ -64,8 +65,8 @@ if (interactive()) {
           scelerisque est, at porta justo cursus ac"
          )
         ),
-        f7Tab(tabName = "Tab 2", "tab 2 text"),
-        f7Tab(tabName = "Tab 3", "tab 3 text"),
+        f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
+        f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
         .items = f7TabLink(
          icon = f7Icon("bolt_fill"),
          label = "Toggle Sheet",
@@ -95,7 +96,7 @@ if (interactive()) {
          id = "tabs",
          style = "strong", animated = FALSE, swipeable = TRUE,
          f7Tab(
-           tabName = "Tab 1",
+           tabName = "Tab1",
            icon = f7Icon("envelope"),
            active = TRUE,
            f7Shadow(
@@ -116,9 +117,8 @@ if (interactive()) {
            )
          ),
          f7Tab(
-           tabName = "Tab 2",
+           tabName = "Tab2",
            icon = f7Icon("today"),
-           active = FALSE,
            f7Shadow(
              intensity = 10,
              hover = TRUE,
@@ -139,9 +139,8 @@ if (interactive()) {
            )
          ),
          f7Tab(
-           tabName = "Tab 3",
+           tabName = "Tab3",
            icon = f7Icon("cloud_upload"),
-           active = FALSE,
            f7Shadow(
              intensity = 10,
              hover = TRUE,

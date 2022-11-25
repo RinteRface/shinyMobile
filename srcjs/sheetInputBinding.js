@@ -25,6 +25,11 @@ $.extend(f7SheetBinding, {
 
     // this is to show shiny outputs in the sheet
     data.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          $(target.el).addClass("theme-dark");
+        }
+      },
       opened: function () {
         $(el).trigger('shown');
       }

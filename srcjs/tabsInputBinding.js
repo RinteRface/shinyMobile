@@ -24,7 +24,7 @@ $.extend(f7TabsBinding, {
     } else {
       $('.tab-link-highlight').show();
     }
-    return $(activeTab).attr("data-value");
+    return $(activeTab).attr("data-value") !== undefined ? $(activeTab).attr("data-value"): null;
   },
 
   // see updateF7Tabs

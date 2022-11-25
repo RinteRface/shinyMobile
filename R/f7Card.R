@@ -161,11 +161,10 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
   headerTag <- shiny::tags$div(
     class = "card-header",
     shiny::tags$div(
-      class = "demo-facebook-avatar",
       shiny::img(src = image, width = "34", height = "34")
     ),
-    shiny::tags$div(class = "demo-facebook-name", author),
-    shiny::tags$div(class = "demo-facebook-date", date)
+    shiny::tags$div(author),
+    shiny::tags$div(date)
   )
   contentTag <- shiny::tags$div(
     class = "card-content card-content-padding",
@@ -175,7 +174,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
   footerTag <- if (!is.null(footer)) shiny::tags$div(class = "card-footer", footer)
 
   shiny::tags$div(
-    class = "card demo-facebook-card",
+    class = "card",
     headerTag,
     contentTag,
     footerTag
@@ -386,7 +385,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'        f7ExpandableCard(
 #'          id = "card1",
 #'          title = "Expandable Card 1",
-#'          image = "http://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+#'          image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
 #'          "Framework7 - is a free and open source HTML mobile framework
 #'          to develop hybrid mobile apps or web apps with iOS or Android
 #'          native look and feel. It is also an indispensable prototyping apps tool
@@ -401,7 +400,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
 #'          id = "card2",
 #'          title = "Expandable Card 2",
 #'          fullBackground = TRUE,
-#'          image = "http://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+#'          image = "https://cdn.pixabay.com/photo/2017/10/03/18/55/mountain-2813667_960_720.png",
 #'          "Framework7 - is a free and open source HTML mobile framework
 #'                to develop hybrid mobile apps or web apps with iOS or Android
 #'                native look and feel. It is also an indispensable prototyping apps tool

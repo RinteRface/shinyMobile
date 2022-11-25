@@ -39,7 +39,7 @@
 #'  shinyApp(ui, server)
 #' }
 f7DownloadButton <- function (outputId, label = "Download", class = NULL, ...) {
-  aTag <- shiny::tags$a(
+  shiny::tags$a(
     id = outputId,
     class = paste("button button-fill external shiny-download-link", class),
     href = "", target = "_blank",

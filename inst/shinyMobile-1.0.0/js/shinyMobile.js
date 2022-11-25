@@ -12,8 +12,8 @@ $((function() {
     config.methods = {
         toggleDarkTheme: function() {
             var self = this;
-            var $html = self.$("html");
-            $html.toggleClass("theme-dark");
+            var $view = self.$(".view-main");
+            $view.toggleClass("theme-dark");
         }
     };
     config.data = function() {
@@ -71,13 +71,18 @@ $((function() {
 }));
 
 $((function() {
+    function shinyInputsReset() {
+        Shiny.unbindAll();
+        Shiny.initializeInputs();
+        Shiny.bindAll();
+    }
     $(document).on("shiny:disconnected", (function(event) {
         $("#ss-connect-dialog").hide();
         $("#ss-overlay").hide();
         var reconnectToast = app.toast.create({
             icon: '<i class="icon f7-icons">bolt_fill</i>',
             position: "center",
-            text: 'Oups... disconnected </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
+            text: 'Disconnected ... </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
         }).open();
         $(".toast-button").on("click", (function() {
             reconnectToast.close();
@@ -87,11 +92,15 @@ $((function() {
         Shiny.setInputValue("shinyInfo", Shiny.shinyapp.config);
     }));
     $(document).on("shiny:inputchanged", (function(event) {
-        Shiny.setInputValue("lastInputChanged", {
-            name: event.name,
-            value: event.value,
-            type: event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA"
-        });
+        var type;
+        if (event.binding !== null) {
+            type = event.binding.name !== undefined ? event.binding.name.split(".")[1] : "NA";
+            Shiny.setInputValue("lastInputChanged", {
+                name: event.name,
+                value: event.value,
+                type: type
+            });
+        }
     }));
     $(document).on("shiny:connected", (function(event) {
         Shiny.setInputValue("deviceInfo", Framework7.device);
@@ -105,34 +114,75 @@ $((function() {
             $(".toolbar").css("margin-bottom", "20px");
         }
     }
-    $(".tabs-standalone").css("height", "auto");
     if (app.params.filled && app.params.dark && $("body").attr("class") !== "#ffffff") {
         $(".demo-send-message-link").find("i").addClass("color-white");
     }
-    if (app.params.dark) {
-        $(".page-content").css("background-color", "");
-        $(".page-content.tab, .tab").css("background-color", "");
-        $(".demo-facebook-card .card-footer").css("background-color", "#1c1c1d");
-        $(".sheet-modal, .swipe-handler").css("background-color", "#1b1b1d");
-        $(".popup").css("background-color", "#1b1b1d");
-        $(".fab-label").css("background-color", "var(--f7-fab-label-text-color)");
-        $(".fab-label").css("color", "var(--f7-fab-text-color)");
-        $(".accordion-item .item-content .item-inner").css("color", "white");
-        $(".accordion-item .accordion-item-content").css("color", "white");
-        var sidebarPanel = $("#f7-sidebar-view").find(".page-content");
-        $(sidebarPanel).css("background-color", "#1e1e1e");
-        var sidebarItems = $("#f7-sidebar-view").find("li");
-        $(sidebarItems).css("background-color", "#171717");
-    } else {
-        $("div.messages").css("background-color", "gainsboro");
-        $("a").on("click", (function() {
+    $(".chip-delete").on("click", (function() {
+        $(this).closest(".chip").remove();
+    }));
+    const skeletonClass = "skeleton-text skeleton-effect-fade";
+    Shiny.addCustomMessageHandler("add_skeleton", (function(message) {
+        var cl = "skeleton-text skeleton-effect-" + message.effect;
+        $(message.target).addClass(cl);
+        if (message.duration !== undefined) {
             setTimeout((function() {
-                var linkColors = $("body").attr("class");
-                $(".navbar-photo-browser .navbar-inner .title").css("color", "black");
-                $(".navbar-photo-browser .navbar-inner .right .popup-close").css("color", linkColors);
-                $(".photo-browser-page .toolbar .toolbar-inner a").css("color", linkColors);
-            }), 100);
+                $(message.target).removeClass(cl);
+            }), message.duration * 1e3);
+        } else {
+            $(document).on("shiny:idle", (function() {
+                $(message.target).removeClass(cl);
+            }));
+        }
+    }));
+    window.ran = false;
+    if (app.params.skeletonsOnLoad) {
+        const skeletonTargets = [ ".page-content", ".navbar", ".toolbar" ];
+        $(document).on("shiny:connected", (function(event) {
+            setTimeout((function() {
+                if ($("html").hasClass("shiny-busy")) {
+                    for (target of skeletonTargets) {
+                        $(target).addClass(skeletonClass);
+                    }
+                }
+            }), 50);
         }));
+        $(document).on("shiny:idle", (function(event) {
+            if (!window.ran) {
+                for (target of skeletonTargets) {
+                    $(target).removeClass(skeletonClass);
+                }
+            }
+            window.ran = true;
+        }));
+    }
+    if (app.params.preloader) {
+        const preloader = app.dialog.preloader();
+        if (app.params.dark) {
+            $(preloader.el).addClass("theme-dark");
+        }
+        $(document).on("shiny:idle", (function(event) {
+            if (!window.ran) {
+                app.dialog.close();
+            }
+            window.ran = true;
+        }));
+    }
+    isSplitLayout = $("#app").hasClass("split-layout");
+    if (app.params.dark) {
+        $("body").addClass("dark");
+        if (isSplitLayout) {
+            if ($(".panel-left").hasClass("theme-light")) {
+                $(".panel-left").removeClass("theme-light").addClass("theme-dark");
+            }
+        }
+        $(".appbar").addClass("theme-dark");
+    } else {
+        $("body").addClass("light");
+        if (isSplitLayout) {
+            if ($(".panel-left").hasClass("theme-dark")) {
+                $(".panel-left").removeClass("theme-dark").addClass("theme-light");
+            }
+        }
     }
     var subnavbar = $(".subnavbar");
     if (subnavbar.length == 1) {
@@ -158,7 +208,7 @@ $((function() {
         app.data[instanceFamily][message.id] = newInstance;
     }));
     const uiWidgets = [ "gauge", "swiper", "searchbar" ];
-    const serverWidgets = [ "toast", "photoBrowser", "notification" ];
+    const serverWidgets = [ "toast", "photoBrowser", "notification", "popup", "listIndex" ];
     const widgets = uiWidgets.concat(serverWidgets);
     activateWidget = function(widget) {
         if (uiWidgets.indexOf(widget) > -1) {
@@ -171,7 +221,27 @@ $((function() {
             }));
         } else {
             Shiny.addCustomMessageHandler(widget, (function(message) {
-                app[widget].create(message).open();
+                if (widget === "listIndex") {
+                    $('<div class="list-index" id="' + message.el + '"></div>').insertAfter($(".navbar"));
+                }
+                message.on = {
+                    open: function(target) {
+                        if (message.id !== undefined) Shiny.setInputValue(message.id, true);
+                        if (target.app.params.dark) {
+                            $(target.el).addClass("theme-dark");
+                        }
+                        shinyInputsReset();
+                    },
+                    close: function() {
+                        if (message.id !== undefined) Shiny.setInputValue(message.id, false);
+                    }
+                };
+                if (widget === "listIndex") {
+                    message.el = "#" + message.el;
+                    app[widget].create(message);
+                } else {
+                    app[widget].create(message).open();
+                }
             }));
         }
     };
@@ -187,6 +257,13 @@ $((function() {
     getAllPopoverIds();
     popoverIds.forEach((function(index) {
         Shiny.addCustomMessageHandler(index, (function(message) {
+            message.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.el).addClass("theme-dark");
+                    }
+                }
+            };
             var popover = app.popover.create({
                 targetEl: '[data-popover = "' + index + '"]',
                 content: '<div class="popover">' + '<div class="popover-inner">' + '<div class="block">' + message.content + "</div>" + "</div>" + "</div>"
@@ -200,6 +277,13 @@ $((function() {
         if (app.data.popovers[message.targetEl] === undefined) {
             if (!$(message.targetEl).hasClass("popover-disabled")) {
                 message.content = `\n        <div class="popover">\n          <div class="popover-angle"></div>\n          <div class="popover-inner">\n            <div class="block">${message.content}</div>\n          </div>\n        </div>\n        `;
+                message.on = {
+                    open: function(target) {
+                        if (target.app.params.dark) {
+                            $(target.el).addClass("theme-dark");
+                        }
+                    }
+                };
                 var p = app.popover.create(message);
                 p.open();
                 app.data.popovers[message.targetEl] = p;
@@ -243,13 +327,14 @@ $((function() {
     Shiny.addCustomMessageHandler("dialog", (function(message) {
         var type = message.type;
         var text = `<div style="max-height: 300px; overflow-y: scroll;">${message.text}</div>`;
+        var dialog;
         switch (type) {
           case "alert":
-            var dialog = app.dialog.alert(text, message.title);
+            dialog = app.dialog.alert(text, message.title, message.on);
             break;
 
           case "confirm":
-            var confirm = app.dialog.confirm(text = text, title = message.title, callbackOk = function() {
+            dialog = app.dialog.confirm(text = text, title = message.title, callbackOk = function() {
                 Shiny.setInputValue(message.id, true);
             }, callbackCancel = function() {
                 Shiny.setInputValue(message.id, false);
@@ -257,7 +342,7 @@ $((function() {
             break;
 
           case "prompt":
-            var prompt = app.dialog.prompt(text = text, title = message.title, callbackOk = function(value) {
+            dialog = app.dialog.prompt(text = text, title = message.title, callbackOk = function(value) {
                 Shiny.setInputValue(message.id, value);
             }, callbackCancel = function() {
                 Shiny.setInputValue(message.id, null);
@@ -265,8 +350,7 @@ $((function() {
             break;
 
           case "login":
-            console.log(login);
-            var login = app.dialog.login(text = text, title = message.title, callbackOk = function(username, password) {
+            dialog = app.dialog.login(text = text, title = message.title, callbackOk = function(username, password) {
                 Shiny.setInputValue(message.id, {
                     user: username,
                     password: password
@@ -278,6 +362,9 @@ $((function() {
 
           default:
             console.log("");
+        }
+        if (app.params.dark) {
+            $(dialog.el).addClass("theme-dark");
         }
     }));
     Shiny.addCustomMessageHandler("tapHold", (function(message) {
@@ -313,7 +400,12 @@ $((function() {
     tabIds.forEach((function(index) {
         var id = "insert_" + index;
         Shiny.addCustomMessageHandler(id, (function(message) {
-            var tabId = $("#" + message.ns + "-" + message.target);
+            var tabId;
+            if (message.target === undefined) {
+                tabId = $("#" + message.ns);
+            } else {
+                tabId = $("#" + message.ns + "-" + message.target);
+            }
             var tab = $(message.value.html);
             var newTab;
             if ($(tabId).hasClass("swiper-slide")) {
@@ -324,17 +416,20 @@ $((function() {
                 if (message.select === "true") {
                     $(newTab).addClass("swiper-slide-active");
                 }
-                if (app.params.dark) $(newTab).css("background-color", "");
             } else {
                 newTab = $(tab);
-                if (app.params.dark) $(newTab).css("background-color", "");
             }
-            if (message.position === "after") {
-                $(newTab).insertAfter($(tabId));
-                $(message.link).insertAfter($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
-            } else if (message.position === "before") {
-                $(newTab).insertBefore($(tabId));
-                $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+            if (message.target === undefined) {
+                $(tabId).append(newTab);
+                $(".tabLinks .toolbar-inner").prepend(message.link);
+            } else {
+                if (message.position === "after") {
+                    $(newTab).insertAfter($(tabId));
+                    $(message.link).insertAfter($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+                } else if (message.position === "before") {
+                    $(newTab).insertBefore($(tabId));
+                    $(message.link).insertBefore($('.tabLinks [data-tab ="#' + message.ns + "-" + message.target + '"]'));
+                }
             }
             Shiny.renderContent(tab[0], {
                 html: tab.html(),
@@ -442,6 +537,11 @@ $((function() {
             }
             message.buttons.forEach(setOnClick);
             message.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.el).addClass("theme-dark");
+                    }
+                },
                 opened: function() {
                     Shiny.setInputValue(message.id, true);
                 },
@@ -522,6 +622,20 @@ $.extend(f7ActionSheetBinding, {
 
 Shiny.inputBindings.register(f7ActionSheetBinding);
 
+function setSource(query, render) {
+    var results = [];
+    if (query.length === 0) {
+        render(results);
+        return;
+    }
+    for (var i = 0; i < vals.length; i++) {
+        if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) {
+            results.push(vals[i]);
+        }
+    }
+    render(results);
+}
+
 var f7AutoCompleteBinding = new Shiny.InputBinding;
 
 $.extend(f7AutoCompleteBinding, {
@@ -541,20 +655,13 @@ $.extend(f7AutoCompleteBinding, {
                 }
             }
         }));
-        var vals = JSON.parse(data.choices);
         data.value = JSON.parse(data.value);
         if (data.openIn == "dropdown") {
             data.inputEl = "#" + id;
         } else {
             data.openerEl = "#" + id;
         }
-        data.on = {
-            change: function(value) {
-                $("#" + id).find(".item-after").text(value[0]);
-                $("#" + id).find("input").val(value[0]);
-                $("#" + id).trigger("change");
-            }
-        };
+        var vals = JSON.parse(data.choices);
         data.source = function(query, render) {
             var results = [];
             if (query.length === 0) {
@@ -568,6 +675,11 @@ $.extend(f7AutoCompleteBinding, {
             }
             render(results);
         };
+        data.on = {
+            change: function(value) {
+                $("#" + id).trigger("change");
+            }
+        };
         app.autocomplete.create(data);
     },
     find: function(scope) {
@@ -575,18 +687,27 @@ $.extend(f7AutoCompleteBinding, {
     },
     getValue: function(el) {
         var a = app.autocomplete.get($(el));
+        $(a.params.inputEl).val(a.value);
         return a.value;
     },
     setValue: function(el, value) {
-        var a = app.autocomplete.get($(el));
-        a.value = value;
-        a.$inputEl[0].value = value;
-        $(el).trigger("change");
+        el.value = value;
+        el.params.value = value;
+        $(el.params.inputEl).val(el.value);
+    },
+    _setChoices: function(el, choices) {
+        vals = choices;
+        el.params.source = setSource;
     },
     receiveMessage: function(el, data) {
-        if (data.hasOwnProperty("value")) {
-            this.setValue(el, data.value);
+        var a = app.autocomplete.get($(el));
+        if (data.hasOwnProperty("choices")) {
+            this._setChoices(a, data.choices);
         }
+        if (data.hasOwnProperty("value")) {
+            this.setValue(a, data.value);
+        }
+        $(el).trigger("change");
     },
     subscribe: function(el, callback) {
         $(el).on("change.f7AutoCompleteBinding", (function(e) {
@@ -796,6 +917,13 @@ $.extend(f7ColorPickerBinding, {
             palette: colorPickerPalettes,
             value: {
                 hex: colorPickerValue
+            },
+            on: {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        target.$el.closest(".modal-in").addClass("theme-dark");
+                    }
+                }
             }
         });
     },
@@ -868,6 +996,13 @@ $.extend(f7DatePickerBinding, {
             }
         }
         config.inputEl = inputEl;
+        config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    target.$el.closest(".modal-in").addClass("theme-dark");
+                }
+            }
+        };
         var calendar = app.calendar.create(config);
         this["calendar-" + el.id] = calendar;
     },
@@ -878,7 +1013,21 @@ $.extend(f7DatePickerBinding, {
         return "f7DatePicker.date";
     },
     getValue: function(el) {
-        return this["calendar-" + el.id].getValue();
+        var val = this["calendar-" + el.id].getValue();
+        var tmpDate;
+        if (val.length == 1) {
+            var tmpDate = new Date(this["calendar-" + el.id].getValue());
+            tmpDate = Date.UTC(tmpDate.getFullYear(), tmpDate.getMonth(), tmpDate.getDate(), tmpDate.getHours(), tmpDate.getMinutes(), tmpDate.getSeconds());
+            return new Date(tmpDate);
+        } else {
+            var dates = [];
+            for (var i = 0; i < val.length; i++) {
+                dates[i] = new Date(val[i]);
+                dates[i] = Date.UTC(dates[i].getFullYear(), dates[i].getMonth(), dates[i].getDate(), dates[i].getHours(), dates[i].getMinutes(), dates[i].getSeconds());
+                dates[i] = new Date(dates[i]);
+            }
+            return dates;
+        }
     },
     setValue: function(el, value) {
         this["calendar-" + el.id].setValue(value);
@@ -887,6 +1036,13 @@ $.extend(f7DatePickerBinding, {
         if (data.hasOwnProperty("config")) {
             this["calendar-" + el.id].destroy();
             data.config.inputEl = el;
+            data.config.on = {
+                open: function(target) {
+                    if (target.app.params.dark) {
+                        $(target.$el).addClass("theme-dark");
+                    }
+                }
+            };
             this["calendar-" + el.id] = app.calendar.create(data.config);
         }
         if (data.hasOwnProperty("value")) {
@@ -943,6 +1099,11 @@ $.extend(f7LoginBinding, {
         data.el = "#" + $(el).attr("id");
         data.animate = false;
         data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.el).addClass("theme-dark");
+                }
+            },
             opened: function() {
                 $(el).trigger("shown");
             }
@@ -1175,6 +1336,50 @@ $.extend(f7PanelBinding, {
 
 Shiny.inputBindings.register(f7PanelBinding, "f7.panel");
 
+var f7PanelMenuBinding = new Shiny.InputBinding;
+
+$.extend(f7PanelMenuBinding, {
+    find: function(scope) {
+        return $(scope).find(".panel-menu");
+    },
+    initialize: function(el) {
+        var firstPanelId = $(el).find("a").first().data("tab");
+        var panelActiveId = $(el).find("a.tab-link-active").data("tab");
+        if (panelActiveId !== undefined) {
+            app.tab.show(panelActiveId);
+        } else {
+            app.tab.show(firstPanelId);
+        }
+    },
+    getValue: function(el) {
+        var activeTab = $(el).find("a.tab-link-active").data("tab");
+        if (activeTab !== undefined) {
+            return activeTab.split("#")[1];
+        } else {
+            return null;
+        }
+    },
+    receiveMessage: function(el, data) {
+        if (data.hasOwnProperty("selected")) {
+            app.tab.show("#" + data.ns + "-" + data.selected);
+        }
+    },
+    subscribe: function(el, callback) {
+        $(el).find("a").on("click.f7PanelMenuBinding", (function(e) {
+            $($(this).data("tab")).trigger("shown").trigger("shown");
+            callback(false);
+        }));
+        app.on("tabShow.f7PanelMenuBinding", (function(tab) {
+            callback(false);
+        }));
+    },
+    unsubscribe: function(el) {
+        $(el).off(".f7PanelMenuBinding");
+    }
+});
+
+Shiny.inputBindings.register(f7PanelMenuBinding, "f7.tabsMenu");
+
 var f7PickerBinding = new Shiny.InputBinding;
 
 $.extend(f7PickerBinding, {
@@ -1200,6 +1405,13 @@ $.extend(f7PickerBinding, {
             textAlign: "center",
             values: JSON.parse(data.choices)
         } ];
+        data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    target.$el.closest(".modal-in").addClass("theme-dark");
+                }
+            }
+        };
         var p = app.picker.create(data);
         inputEl.f7Picker = p;
     },
@@ -1260,46 +1472,6 @@ $.extend(f7PickerBinding, {
 });
 
 Shiny.inputBindings.register(f7PickerBinding, "f7.picker");
-
-var f7PopupBinding = new Shiny.InputBinding;
-
-$.extend(f7PopupBinding, {
-    initialize: function(el) {
-        var config = $(el).find("script[data-for='" + el.id + "']");
-        config = JSON.parse(config.html());
-        config.el = el;
-        config.on = {
-            opened: function() {
-                $(el).trigger("shown");
-            }
-        };
-        var p = app.popup.create(config);
-    },
-    find: function(scope) {
-        return $(scope).find(".popup");
-    },
-    getValue: function(el) {
-        return app.popup.get($(el)).opened;
-    },
-    receiveMessage: function(el, data) {
-        var p = app.popup.get($(el));
-        if (p.opened) {
-            p.close();
-        } else {
-            p.open();
-        }
-    },
-    subscribe: function(el, callback) {
-        $(el).on("popup:opened.f7PopupBinding popup:closed.f7PopupBinding", (function(e) {
-            callback();
-        }));
-    },
-    unsubscribe: function(el) {
-        $(el).off(".f7PopupBinding");
-    }
-});
-
-Shiny.inputBindings.register(f7PopupBinding, "f7.popup");
 
 let $escape = Shiny.$escape;
 
@@ -1436,6 +1608,11 @@ $.extend(f7SheetBinding, {
         }));
         data.el = "#" + id;
         data.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.el).addClass("theme-dark");
+                }
+            },
             opened: function() {
                 $(el).trigger("shown");
             }
@@ -1564,10 +1741,17 @@ var f7SmartSelectBinding = new Shiny.InputBinding;
 
 $.extend(f7SmartSelectBinding, {
     initialize: function(el) {
-        var id = $(el).children().eq(0).attr("id");
+        var id = $(el).attr("id");
         var config = $(el).children().eq(2);
         config = JSON.parse(config.html());
         config.el = "#" + id;
+        config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.$containerEl).addClass("theme-dark");
+                }
+            }
+        };
         var ss = app.smartSelect.create(config);
         this["smart-select-" + el.id] = ss;
     },
@@ -1581,23 +1765,30 @@ $.extend(f7SmartSelectBinding, {
         this["smart-select-" + el.id].setValue(value);
     },
     receiveMessage: function(el, data) {
+        data.config.on = {
+            open: function(target) {
+                if (target.app.params.dark) {
+                    $(target.$containerEl).addClass("theme-dark");
+                }
+            }
+        };
         if (data.hasOwnProperty("config")) {
             this["smart-select-" + el.id].destroy();
-            data.config.el = "#" + $(el).children().eq(0).attr("id");
+            data.config.el = "#" + $(el).attr("id");
             this["smart-select-" + el.id] = app.smartSelect.create(data.config);
         }
         if (data.hasOwnProperty("multiple")) {
             if (data.multiple) {
                 this["smart-select-" + el.id].destroy();
                 $(el).find("select").attr("multiple", "");
-                data.config.el = "#" + $(el).children().eq(0).attr("id");
+                data.config.el = "#" + $(el).attr("id");
                 this["smart-select-" + el.id] = app.smartSelect.create(data.config);
             }
         }
         if (data.hasOwnProperty("maxLength")) {
             this["smart-select-" + el.id].destroy();
             $(el).find("select").attr("maxLength", data.maxLength);
-            data.config.el = "#" + $(el).children().eq(0).attr("id");
+            data.config.el = "#" + $(el).attr("id");
             this["smart-select-" + el.id] = app.smartSelect.create(data.config);
         }
         var setOption = function(value) {
@@ -1786,7 +1977,7 @@ $.extend(f7TabsBinding, {
         } else {
             $(".tab-link-highlight").show();
         }
-        return $(activeTab).attr("data-value");
+        return $(activeTab).attr("data-value") !== undefined ? $(activeTab).attr("data-value") : null;
     },
     receiveMessage: function(el, data) {
         if (data.hasOwnProperty("selected")) {

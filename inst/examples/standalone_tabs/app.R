@@ -3,7 +3,7 @@ library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Standalone tabs",
     options = list(
       theme = "auto",
       dark = TRUE,
@@ -36,8 +36,8 @@ shinyApp(
         id = "tabs",
         style = "strong", animated = FALSE, swipeable = TRUE,
         f7Tab(
-          tabName = "Tab 1",
-          icon = f7Icon("email"),
+          tabName = "Tab1",
+          icon = f7Icon("folder"),
           active = TRUE,
           f7Shadow(
             intensity = 10,
@@ -57,7 +57,7 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 2",
+          tabName = "Tab2",
           icon = f7Icon("today"),
           active = FALSE,
           f7Shadow(
@@ -80,7 +80,7 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 3",
+          tabName = "Tab3",
           icon = f7Icon("cloud_upload"),
           active = FALSE,
           f7Shadow(
@@ -121,9 +121,9 @@ shinyApp(
     # remove tab
     observeEvent(input$removeTab, {
       req(randomTab())
-      f7RemoveTab(
+      removeF7Tab(
         id = "tabs",
-        target = paste("Tab", randomTab())
+        target = paste0("Tab", randomTab())
       )
       n$tabs <- n$tabs[-randomTab()]
 
@@ -131,17 +131,17 @@ shinyApp(
 
     # add new tab
     observeEvent(input$ptr,{
-      f7InsertTab(
+      insertF7Tab(
         id = "tabs",
         tab = f7Tab(
-          tabName = paste("Tab", length(n$tabs) + 1),
+          tabName = paste0("Tab", length(n$tabs) + 1),
           f7Block(
             paste("New tab", length(n$tabs) + 1),
             strong = TRUE,
             inset = TRUE
           )
         ),
-        target = paste("Tab", length(n$tabs)),
+        target = paste0("Tab", length(n$tabs)),
         position = "after",
         select = TRUE
       )
@@ -153,7 +153,7 @@ shinyApp(
     observeEvent(input$updateTab, {
       updateF7Tabs(
         id = "tabs",
-        selected = paste("Tab", sample(n$tabs, 1))
+        selected = paste0("Tab", sample(n$tabs, 1))
       )
     })
 

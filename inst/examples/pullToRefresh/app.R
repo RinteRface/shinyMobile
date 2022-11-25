@@ -3,7 +3,7 @@ library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Pull to refresh",
     options = list(pullToRefresh = TRUE),
     f7SingleLayout(
       navbar = f7Navbar(

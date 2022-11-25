@@ -20,7 +20,7 @@ new_mtcars <- reshape(
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Split layout",
     options = list(
       theme = "aurora",
       dark = TRUE,
@@ -45,14 +45,13 @@ shinyApp(
       sidebar = f7Panel(
         title = "Sidebar",
         side = "left",
-        theme = "light",
+        theme = "dark",
         f7PanelMenu(
           id = "menu",
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
-            icon = f7Icon("equal_circle"),
-            active = TRUE
+            icon = f7Icon("equal_circle")
           ),
           f7PanelItem(
             tabName = "tab2",
@@ -124,8 +123,10 @@ shinyApp(
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
-          text = paste0("The slider value is only ", input$obs, ". Please
-                        increase it"),
+          text = paste0(
+            "The slider value is only ", input$obs, ". Please
+            increase it"
+          ),
           icon = f7Icon("bolt_fill"),
           title = "Alert",
           titleRightText = Sys.Date()

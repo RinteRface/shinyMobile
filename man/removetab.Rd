@@ -38,19 +38,20 @@ if (interactive()) {
    f7Tabs(
      id = "tabset1",
      f7Tab(
-       tabName = "Tab 1",
+       title = "Tab 1",
+       tabName = "Tab1",
        active = TRUE,
        p("Text 1"),
        f7Button("remove1","Remove tab 1")
      ),
      f7Tab(
-       tabName = "Tab 2",
-       active = FALSE,
+       title = "Tab 2",
+       tabName = "Tab2",
        p("Text 2")
      ),
      f7Tab(
-       tabName = "Tab 3",
-       active = FALSE,
+       title = "Tab 3",
+       tabName = "Tab3",
        p("Text 3")
      )
    )
@@ -62,7 +63,7 @@ if (interactive()) {
    observeEvent(input$remove1, {
      removeF7Tab(
        id = "tabset1",
-       target = "Tab 1"
+       target = "Tab1"
      )
    })
  }

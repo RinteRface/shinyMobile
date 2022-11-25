@@ -12,7 +12,7 @@ economics_long <- economics_long %>%
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Single layout",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",

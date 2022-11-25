@@ -159,7 +159,7 @@ tabCards <- f7Tab(
     id = "card3",
     title = "Expandable Card 3",
     fullBackground = TRUE,
-    image = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
+    image = "https://cdn.pixabay.com/photo/2017/10/03/18/55/mountain-2813667_960_720.png",
     "Framework7 - is a free and open source HTML mobile framework
     to develop hybrid mobile apps or web apps with iOS or Android
     native look and feel. It is also an indispensable prototyping apps tool

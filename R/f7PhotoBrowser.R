@@ -28,7 +28,7 @@
 #'      f7PhotoBrowser(
 #'          id = "photobrowser1",
 #'          label = "Open",
-#'          theme = "light",
+#'          theme = "dark",
 #'          type = "standalone",
 #'          photos = c(
 #'            "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
@@ -52,7 +52,7 @@ f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
   options <- dropNulls(
     list(
       theme = theme,
-      photos = photos,
+      photos = I(photos),
       pageBackLinkText = pageBackLinkText,
       type = type,
       ...

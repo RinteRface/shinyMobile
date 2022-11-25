@@ -176,6 +176,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #'
 #' @param inputId The id of the input object.
 #' @param value New value.
+#' @param choices New set of choices.
 #' @param session The Shiny session object.
 #'
 #' @note You cannot update choices yet.
@@ -218,17 +219,19 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #'     observeEvent(input$update, {
 #'       updateF7AutoComplete(
 #'         inputId = "myautocomplete",
-#'         value = "Banana"
+#'         value = "plip",
+#'         choices = c("plip", "plap", "ploup")
 #'       )
 #'     })
 #'   }
 #'  )
 #' }
-updateF7AutoComplete <- function(inputId, value =  NULL,
+updateF7AutoComplete <- function(inputId, value =  NULL, choices = NULL,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
-      value = I(value)
+      value = I(value),
+      choices = choices
     )
   )
   session$sendInputMessage(inputId, message)
@@ -907,13 +910,12 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
   inputTag <- shiny::tags$input(id = inputId, type = "checkbox")
   if (!is.null(value) && value)
     inputTag$attribs$checked <- "checked"
-  shiny::tags$label(
-    class = "item-checkbox item-content shiny-input-container",
-    inputTag,
-    shiny::tags$i(class = "icon icon-checkbox"),
-    shiny::tags$div(
-      class = "item-inner",
-      shiny::tags$div(class = "item-title", label)
+  shiny::tagList(
+    shiny::tags$span(label),
+    shiny::tags$label(
+      class = "checkbox",
+      inputTag,
+      shiny::tags$i(class = "icon-checkbox"),
     )
   )
 }
@@ -1387,7 +1389,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
   type <- match.arg(openIn)
 
   config <- dropNulls(list(
-    openIn = openIn,
+    openIn = type,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
     virtualList = virtualList,
@@ -1402,7 +1404,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
           class = "item-link smart-select",
           id = inputId,
           shiny::tags$select(
-            id = inputId,
             multiple = if (multiple) NA else NULL,
             maxlength = if (!is.null(maxlength)) maxlength else NULL,
             options
@@ -2022,8 +2023,8 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 
   labels <- if (!is.null(labels)) {
     lapply(seq_along(labels), function(i) {
-      isF7Icon <- (grep(x = labels[[i]][[1]]$attribs$class, pattern = "f7-icons") == 1)
-      if (class(labels[[i]][[1]]) != "shiny.tag" || !isF7Icon) {
+      isF7Icon <- grepl(x = labels[[i]]$attribs$class, pattern = "f7-icons")
+      if (!inherits(labels[[i]], "shiny.tag") || !isF7Icon) {
         stop("Label must be a f7Icon.")
       }
       shiny::tags$div(
