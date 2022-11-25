@@ -157,7 +157,6 @@ reference:
   - '`f7ListGroup`'
   - '`f7ListItem`'
   - '`f7ListIndex`'
-  - '`f7ListIndexItem`'
   - '`f7VirtualList`'
   - '`f7VirtualListItem`'
 
