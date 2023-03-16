@@ -33,7 +33,7 @@ $.extend(f7AutoCompleteBinding, {
           return $1.toUpperCase();
         });
         // convert "true" to true and "false" to false only for booleans
-        if (["openIn", "choices", "value", "dropdownPlaceholderText"].indexOf(camelCaseName) == -1) {
+        if (["openIn", "choices", "value", "dropdownPlaceholderText", "limit"].indexOf(camelCaseName) == -1) {
           var isTrueSet = (attr.value == 'true');
           data[camelCaseName] = isTrueSet;
         } else {
