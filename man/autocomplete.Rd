@@ -16,7 +16,8 @@ f7AutoComplete(
   expandInput = TRUE,
   closeOnSelect = FALSE,
   dropdownPlaceholderText = NULL,
-  multiple = FALSE
+  multiple = FALSE,
+  limit = NULL
 )
 
 updateF7AutoComplete(
@@ -56,6 +57,8 @@ Only if openIn is "dropdown".}
 
 \item{multiple}{Whether to allow multiple value selection. Only works
 when openIn is 'popup' or 'page'.}
+
+\item{limit}{Limit number of maximum displayed items in autocomplete per query}
 
 \item{session}{The Shiny session object.}
 }
