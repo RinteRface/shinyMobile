@@ -1,3 +1,8 @@
+# shinyMobile 1.0.1.9000
+
+## Minor change
+- Add `limit` to `f7AutoComplete()`. Thanks @bthieurmel.
+
 # shinyMobile 1.0.0
 
 ## New
