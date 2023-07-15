@@ -14,6 +14,7 @@
 
 
 tabLists <- f7Tab(
+  title = "Lists",
   tabName = "Lists",
   icon = f7Icon("list_dash", f7Badge("New", color = "red")),
   active = FALSE,

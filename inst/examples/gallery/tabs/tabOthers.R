@@ -1,4 +1,5 @@
 tabOthers <- f7Tab(
+  title = "Others",
   tabName = "Others",
   icon = f7Icon("plus_circle"),
 

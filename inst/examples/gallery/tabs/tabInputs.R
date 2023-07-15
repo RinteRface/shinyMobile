@@ -1,4 +1,5 @@
 tabInputs <- f7Tab(
+  title = "Inputs",
   tabName = "Inputs",
   icon = f7Icon("rocket_fill"),
   active = TRUE,
