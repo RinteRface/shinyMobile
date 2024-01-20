@@ -95,7 +95,8 @@
 
 
 
-
+<link href="Tabs-Layout_files/htmltools-fill-0.5.6.1/fill.css" rel="stylesheet">
+<script src="Tabs-Layout_files/bslib-webComponents-js-0.5.1/webComponents.min.js" type="module"></script><script src="Tabs-Layout_files/bslib-tag-require-0.5.1/tag-require.js"></script><script src="Tabs-Layout_files/bslib-card-js-0.5.1/card.min.js"></script><link href="Tabs-Layout_files/bslib-card-styles-0.5.1/card.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Tabs-Layout</h1>
@@ -112,21 +113,20 @@ Granjon</h4>
     
 <p>The second layout is the <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>, very similar to
 that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI</a>.</p>
-<link rel="stylesheet" href="/private/var/folders/pd/r5jk5d5x1rlbc61zz_8vsnh80000gn/T/Rtmp38gHfS/temp_libpath149972d303499/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
-<div class="marvel-device iphone8">
-<div class="top-bar"></div>
-<div class="sleep"></div>
-<div class="volume"></div>
-<div class="camera"></div>
-<div class="sensor"></div>
-<div class="speaker"></div>
-<div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Tabs" allowfullscreen="" frameborder="0" scrolling="yes" height="670"></iframe>
-</div>
-<div class="home"></div>
-<div class="bottom-bar"></div>
-</div>
+<p>The app below runs with specific options:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span></span>
+<span>  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dark <span class="op">=</span> <span class="cn">FALSE</span>, filled <span class="op">=</span> <span class="cn">FALSE</span>, theme <span class="op">=</span> <span class="st">"md"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5">
+<div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+<iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA&amp;h=0" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span>
+</bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+</div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dreamRs/apexcharter" class="external-link">apexcharter</a></span><span class="op">)</span></span>
@@ -138,6 +138,7 @@ that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span></span>
 <span>  ui <span class="op">=</span> <span class="fu"><a href="../reference/f7Page.html">f7Page</a></span><span class="op">(</span></span>
+<span>    options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dark <span class="op">=</span> <span class="cn">FALSE</span>, filled <span class="op">=</span> <span class="cn">FALSE</span>, theme <span class="op">=</span> <span class="st">"md"</span><span class="op">)</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"My app"</span>,</span>
 <span>    <span class="fu"><a href="../reference/f7TabLayout.html">f7TabLayout</a></span><span class="op">(</span></span>
 <span>      panels <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/tagList.html" class="external-link">tagList</a></span><span class="op">(</span></span>
@@ -155,59 +156,10 @@ that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI
 <span>        animated <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>        <span class="co">#swipeable = TRUE,</span></span>
 <span>        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span></span>
-<span>          tabName <span class="op">=</span> <span class="st">"Tab 1"</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Tab 1"</span>,</span>
+<span>          tabName <span class="op">=</span> <span class="st">"Tab1"</span>,</span>
 <span>          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"folder"</span><span class="op">)</span>,</span>
 <span>          active <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span></span>
-<span>          <span class="fu"><a href="../reference/f7Flex.html">f7Flex</a></span><span class="op">(</span></span>
-<span>            <span class="fu"><a href="https://dreamrs.github.io/shinyWidgets/reference/prettyRadioButtons.html" class="external-link">prettyRadioButtons</a></span><span class="op">(</span></span>
-<span>              inputId <span class="op">=</span> <span class="st">"theme"</span>,</span>
-<span>              label <span class="op">=</span> <span class="st">"Select a theme:"</span>,</span>
-<span>              thick <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>              inline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>              selected <span class="op">=</span> <span class="st">"md"</span>,</span>
-<span>              choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span><span class="op">)</span>,</span>
-<span>              animation <span class="op">=</span> <span class="st">"pulse"</span>,</span>
-<span>              status <span class="op">=</span> <span class="st">"info"</span></span>
-<span>            <span class="op">)</span>,</span>
-<span></span>
-<span>            <span class="fu"><a href="https://dreamrs.github.io/shinyWidgets/reference/prettyRadioButtons.html" class="external-link">prettyRadioButtons</a></span><span class="op">(</span></span>
-<span>              inputId <span class="op">=</span> <span class="st">"color"</span>,</span>
-<span>              label <span class="op">=</span> <span class="st">"Select a color:"</span>,</span>
-<span>              thick <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>              inline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>              selected <span class="op">=</span> <span class="st">"dark"</span>,</span>
-<span>              choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"light"</span>, <span class="st">"dark"</span><span class="op">)</span>,</span>
-<span>              animation <span class="op">=</span> <span class="st">"pulse"</span>,</span>
-<span>              status <span class="op">=</span> <span class="st">"info"</span></span>
-<span>            <span class="op">)</span></span>
-<span>          <span class="op">)</span>,</span>
-<span></span>
-<span>          <span class="va">tags</span><span class="op">$</span><span class="fu">head</span><span class="op">(</span></span>
-<span>            <span class="va">tags</span><span class="op">$</span><span class="fu">script</span><span class="op">(</span></span>
-<span>              <span class="st">'Shiny.addCustomMessageHandler("ui-tweak", function(message) {</span></span>
-<span><span class="st">                var os = message.os;</span></span>
-<span><span class="st">                var skin = message.skin;</span></span>
-<span><span class="st">                if (os === "md") {</span></span>
-<span><span class="st">                  $("html").addClass("md");</span></span>
-<span><span class="st">                  $("html").removeClass("ios");</span></span>
-<span><span class="st">                  $(".tab-link-highlight").show();</span></span>
-<span><span class="st">                } else if (os === "ios") {</span></span>
-<span><span class="st">                  $("html").addClass("ios");</span></span>
-<span><span class="st">                  $("html").removeClass("md");</span></span>
-<span><span class="st">                  $(".tab-link-highlight").hide();</span></span>
-<span><span class="st">                }</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">                if (skin === "dark") {</span></span>
-<span><span class="st">                 $("html").addClass("theme-dark");</span></span>
-<span><span class="st">                } else {</span></span>
-<span><span class="st">                  $("html").removeClass("theme-dark");</span></span>
-<span><span class="st">                }</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">               });</span></span>
-<span><span class="st">              '</span></span>
-<span>            <span class="op">)</span></span>
-<span>          <span class="op">)</span>,</span>
 <span></span>
 <span>          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span></span>
 <span>            intensity <span class="op">=</span> <span class="fl">10</span>,</span>
@@ -219,7 +171,8 @@ that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI
 <span>          <span class="op">)</span></span>
 <span>        <span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span></span>
-<span>          tabName <span class="op">=</span> <span class="st">"Tab 2"</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Tab 2"</span>,</span>
+<span>          tabName <span class="op">=</span> <span class="st">"Tab2"</span>,</span>
 <span>          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"keyboard"</span><span class="op">)</span>,</span>
 <span>          active <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span></span>
@@ -232,7 +185,8 @@ that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI
 <span>          <span class="op">)</span></span>
 <span>        <span class="op">)</span>,</span>
 <span>        <span class="fu"><a href="../reference/f7Tab.html">f7Tab</a></span><span class="op">(</span></span>
-<span>          tabName <span class="op">=</span> <span class="st">"Tab 3"</span>,</span>
+<span>          title <span class="op">=</span> <span class="st">"Tab 3"</span>,</span>
+<span>          tabName <span class="op">=</span> <span class="st">"Tab3"</span>,</span>
 <span>          icon <span class="op">=</span> <span class="fu"><a href="../reference/f7Icon.html">f7Icon</a></span><span class="op">(</span><span class="st">"layers_alt"</span><span class="op">)</span>,</span>
 <span>          active <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>          <span class="fu"><a href="../reference/f7Shadow.html">f7Shadow</a></span><span class="op">(</span></span>
@@ -285,15 +239,6 @@ that of <a href="https://github.com/rstudio/miniUI" class="external-link">miniUI
 <span>    <span class="va">output</span><span class="op">$</span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderTable.html" class="external-link">renderTable</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>      <span class="va">mtcars</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="va">input</span><span class="op">$</span><span class="va">variable</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
 <span>    <span class="op">}</span>, rownames <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span>    <span class="co"># send the theme to javascript</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observe.html" class="external-link">observe</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>      <span class="va">session</span><span class="op">$</span><span class="fu">sendCustomMessage</span><span class="op">(</span></span>
-<span>        type <span class="op">=</span> <span class="st">"ui-tweak"</span>,</span>
-<span>        message <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>os <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">theme</span>, skin <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">color</span><span class="op">)</span></span>
-<span>      <span class="op">)</span></span>
-<span>    <span class="op">}</span><span class="op">)</span></span>
-<span></span>
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

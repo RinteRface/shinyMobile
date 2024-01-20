@@ -11,11 +11,28 @@ vignette: >
 
 The second layout is the `f7TabLayout()`, very similar to that of [miniUI](https://github.com/rstudio/miniUI).
 
-```{r, echo=FALSE}
-shinyMobile:::app_container(
-  "https://dgranjon.shinyapps.io/miniUI2Tabs", 
-  deps = TRUE,
-  skin = "iphone8"
+
+```{r setup, echo=FALSE, message=FALSE}
+library(bslib)
+```
+
+The app below runs with specific options:
+
+```r
+f7Page(
+  options = list(dark = FALSE, filled = FALSE, theme = "md"),
+  ...
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA", #nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE
 )
 ```
 
@@ -31,6 +48,7 @@ poll <- data.frame(
 
 shinyApp(
   ui = f7Page(
+    options = list(dark = FALSE, filled = FALSE, theme = "md"),
     title = "My app",
     f7TabLayout(
       panels = tagList(
@@ -48,59 +66,10 @@ shinyApp(
         animated = TRUE,
         #swipeable = TRUE,
         f7Tab(
-          tabName = "Tab 1",
+          title = "Tab 1",
+          tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
-
-          f7Flex(
-            prettyRadioButtons(
-              inputId = "theme",
-              label = "Select a theme:",
-              thick = TRUE,
-              inline = TRUE,
-              selected = "md",
-              choices = c("ios", "md"),
-              animation = "pulse",
-              status = "info"
-            ),
-
-            prettyRadioButtons(
-              inputId = "color",
-              label = "Select a color:",
-              thick = TRUE,
-              inline = TRUE,
-              selected = "dark",
-              choices = c("light", "dark"),
-              animation = "pulse",
-              status = "info"
-            )
-          ),
-
-          tags$head(
-            tags$script(
-              'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
-                var os = message.os;
-                var skin = message.skin;
-                if (os === "md") {
-                  $("html").addClass("md");
-                  $("html").removeClass("ios");
-                  $(".tab-link-highlight").show();
-                } else if (os === "ios") {
-                  $("html").addClass("ios");
-                  $("html").removeClass("md");
-                  $(".tab-link-highlight").hide();
-                }
-
-                if (skin === "dark") {
-                 $("html").addClass("theme-dark");
-                } else {
-                  $("html").removeClass("theme-dark");
-                }
-
-               });
-              '
-            )
-          ),
 
           f7Shadow(
             intensity = 10,
@@ -112,7 +81,8 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 2",
+          title = "Tab 2",
+          tabName = "Tab2",
           icon = f7Icon("keyboard"),
           active = FALSE,
           f7Shadow(
@@ -125,7 +95,8 @@ shinyApp(
           )
         ),
         f7Tab(
-          tabName = "Tab 3",
+          title = "Tab 3",
+          tabName = "Tab3",
           icon = f7Icon("layers_alt"),
           active = FALSE,
           f7Shadow(
@@ -179,17 +150,6 @@ shinyApp(
     output$data <- renderTable({
       mtcars[, c("mpg", input$variable), drop = FALSE]
     }, rownames = TRUE)
-
-
-    # send the theme to javascript
-    observe({
-      session$sendCustomMessage(
-        type = "ui-tweak",
-        message = list(os = input$theme, skin = input$color)
-      )
-    })
-
   }
 )
-
 ```
