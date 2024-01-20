@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-`{shinyMobile}` is particularly well suited to build shiny gagdet. 
+`{shinyMobile}` is particularly well suited to build shiny __gagdets__. 
 To convert an existing app to a gadget, wrap it in the `shiny::runGadget()` function. 
 
 ```{r, eval = FALSE}
