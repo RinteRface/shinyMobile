@@ -12,11 +12,27 @@ vignette: >
 `{shinyMobile}` comes with 3 predefined layouts. `f7SingleLayout()` is dedicated to build simple, 
 one-page apps or gadgets.
 
-```{r, echo=FALSE}
-shinyMobile:::app_container(
-  "https://dgranjon.shinyapps.io/miniUI2Single", 
-  deps = TRUE,
-  skin = "iphone8"
+```{r setup, echo=FALSE, message=FALSE}
+library(bslib)
+```
+
+The app below runs with specific options:
+
+```r
+f7Page(
+  options = list(dark = FALSE, filled = FALSE, theme = "md"),
+  ...
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFWPUcAJqmqsjIkxPYBzB5aKkATCpFmopKOyFgcMQQRDC0BJwA+tQkDgEqQSSh4VExEA4ABAA8ALQZiSFhEdGxGQCkAHxlIhkZDoxEAK6okfQcAG4stFD0SgLlVTUZnHQEcOzsEOwCOQCMAAzzAohTAp4QIlL8AILo-hC1jbQZALwZAGYA7AAKUA7jQ7VEqKS0JJynGXScpOzejABrT4AMW2ABkAMoAUVwF0USjMIPB0NhpG4cHgnwCMDM8Vwjwyr1ISixYBkrAyaFQAXxB1qF0uEL4DiUYKgrCavwJtWg7XoLE+VwAclA+Sx9vTJYTaMS4KSmekSWyOY1SDTufT9LRGHQIHKzgAVLAAVRhGtqPCgZiIAHdPkbTRqBLSpYSiERqPzGILLgb3Z7xeaMqgiJwZW8DmcAvRXKRQuq6a6rmC+AD2NQenBqKSUxAgbMaRluIw4OdSdxSKRUJxEAB6Ws2xsYBzullwDDEGB4oPJ1PpzPZqNgXNAtyF4ul8uV6t1htNltENsd+NgFSu50agDEGRgUD4GWC5DIGquEP01ptEtdGT4R7DpApZ1mADYXdfuER2nBvYaTWbE1KVwAMIsGYV7XtKsqkiBjCIuiVrfgmEG1Fouj6IwpAAPKqqgqr+CgJZQEB6FqquQZrlKFG1BRG50pw35fj+FyNBABCvCQ7B8LhpCwpy3H9CABJ8aqAAkLBwERJHZHkJYQGY367DoegGOwgkAShqA6OBUreL4nwFMkxRpA4b6ug+mmkuJUBIdeu7oMynxQHAnDaa62ifLpcCmdej4ZJ01CNHA8yzN5Sbwp8nSMN0vRwORToDNU6n0lA2iRKwKW0C58kELQu7UJwACSEDAjEPifB4CUZNuECNDA9DfhkRBltluVQPlboZACcBwNSSUoalykYVwvgEF1iK-qa-SVIlEEpWlGUubu7lnAALKi4QAtsMBNGQnwrVRGQAL4UYdIgCGAh0ALpAA", #nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE
 )
 ```
 
@@ -36,6 +52,7 @@ economics_long <- economics_long %>%
 shinyApp(
   ui = f7Page(
     title = "My app",
+    options = list(dark = FALSE, filled = FALSE, theme = "md"),
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
