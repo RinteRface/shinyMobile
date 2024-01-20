@@ -288,10 +288,6 @@ template:
   bslib:
     info: "#E6F2FD"
     pkgdown-nav-height: 100px
-  includes:
-    in_header: >
-      <link href ="https://raw.githubusercontent.com/rstudio/bslib/main/inst/components/dist/components.min.js">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@latest/font/bootstrap-icons.css">
 
 navbar:
   bg: info

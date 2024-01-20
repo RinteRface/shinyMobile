@@ -1,5 +1,9 @@
 # shinyMobile 1.0.1.9000
 
+## New
+- Added webR to pkgdown infrastructure which allows to run shinylive
+apps in the documentation.
+
 ## Minor change
 - Add `limit` to `f7AutoComplete()`. Thanks @bthieurmel.
 
