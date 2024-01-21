@@ -288,6 +288,9 @@ template:
   bslib:
     info: "#E6F2FD"
     pkgdown-nav-height: 100px
+  includes:
+    in_header: >
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
 
 navbar:
   bg: info

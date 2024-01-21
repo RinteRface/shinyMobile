@@ -20,6 +20,30 @@ library(shinyMobile)
 
 ## Progressive Web App (PWA)
 
+The following book provides more in depth [review](https://unleash-shiny.rinterface.com/mobile-pwa) about PWA support.
+
+<div class="atropos atropos-book">
+<div class="atropos-scale">
+<div class="atropos-rotate">
+<div class="atropos-inner">
+<a href="https://www.routledge.com/Outstanding-User-Interfaces-with-Shiny/Granjon/p/book/9780367645267" target="_blank">
+<img class="img-fluid" src="https://user-images.githubusercontent.com/18291543/181491295-1a5b498c-e7ee-428c-a1af-c3ee22e35ef5.jpg">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.js"></script>
+
+<script>
+  const bookAtropos = Atropos({
+    el: '.atropos-book',
+    shadow: false
+    // rest of parameters
+  });
+</script>
+
 ### Configuration
 
 `{shinyMobile}` is PWA capable, meaning that it can be displayed full screen on many mobile
