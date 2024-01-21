@@ -7,6 +7,9 @@ apps in the documentation.
 ## Minor change
 - Add `limit` to `f7AutoComplete()`. Thanks @bthieurmel.
 
+## Bug fixes
+- Fix ignored __height__ in `f7Card()` (Typo).
+
 # shinyMobile 1.0.0
 
 ## New

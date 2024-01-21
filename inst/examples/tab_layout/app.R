@@ -27,6 +27,7 @@ shinyApp(
         animated = TRUE,
         #swipeable = TRUE,
         f7Tab(
+          title = "Tab 1",
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
@@ -91,6 +92,7 @@ shinyApp(
           )
         ),
         f7Tab(
+          title = "Tab 2",
           tabName = "Tab2",
           icon = f7Icon("keyboard"),
           f7Shadow(
@@ -103,6 +105,7 @@ shinyApp(
           )
         ),
         f7Tab(
+          title = "Tab 3",
           tabName = "Tab3",
           icon = f7Icon("layers_alt"),
           f7Shadow(
