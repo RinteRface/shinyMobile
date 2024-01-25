@@ -25,7 +25,7 @@ library(bslib)
   - Develop __progressive web shinyapps__ (PWA, similar to native apps).
   - Develop desktop shinyapps.
   
-# Custom skins
+## Custom skins
 
 `{shinyMobile}` offers 3 skins:
 
@@ -36,7 +36,7 @@ It automatically detects if the app is running with android or iOS and according
 
 `{shinyMobile}` also provides 2 themes, namely light and dark.
 
-# Layouts
+## Layouts
 
 `{shinyMobile}` brings 3 out of the box layouts:
 
@@ -44,8 +44,8 @@ It automatically detects if the app is running with android or iOS and according
   - `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
   - `f7SplitLayout()`: for __tablets__ and desktop with a sidebar, navbar and a main panel
 
-# UI elements
-## Inputs: brief comparison side by side with `{shiny}`
+## UI elements
+### Inputs: brief comparison side by side with `{shiny}`
 
 `{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android/aurora). Below we summarise all known shiny inputs and their
 equivalent with `{shinyMobile}`.
@@ -65,7 +65,7 @@ equivalent with `{shinyMobile}`.
 | Color | ❌ | `f7ColorPicker()`|
 | Download | `downloadButton()` | `f7DownloadButton()`|
 
-## Containers
+### Containers
   
 # Create your first App
 
@@ -170,7 +170,7 @@ f7Appbar(
 
 This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets and desktop apps.
 
-#### Simple Layout
+### Simple Layout
 
 `f7SingleLayout()` is dedicated to build simple, one-page apps or gadgets.
 
@@ -206,7 +206,13 @@ card(
   full_screen = TRUE
 )
 ```
+<div class="text-center">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#singleLayout" role="button" aria-expanded="false" aria-controls="singleLayout">
+  Code
+</a>
+</div>
 
+<div class="collapse" id="singleLayout">
 ```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
@@ -264,8 +270,9 @@ shinyApp(
   }
 )
 ```
+</div>
 
-#### Tabs Layout
+### Tabs Layout
 
 Choose this layout to develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
 
@@ -301,6 +308,13 @@ card(
 )
 ```
 
+<div class="text-center">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
+  Code
+</a>
+</div>
+
+<div class="collapse" id="tabLayout">
 ```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
@@ -418,8 +432,9 @@ shinyApp(
   }
 )
 ```
+</div>
 
-#### Split Layout
+### Split Layout
 
 `f7SplitLayout()` is the third layout introduced with `{shinyMobile}`, similar to `sidebarLayout` with {shiny}. This template is focused for 
 tablet/desktop use. It is composed of a sidebar, and a main panel.
@@ -468,6 +483,14 @@ card(
   full_screen = TRUE
 )
 ```
+
+<div class="text-center">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#splitLayout" role="button" aria-expanded="false" aria-controls="splitLayout">
+  Code
+</a>
+</div>
+
+<div class="collapse" id="splitLayout">
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -637,8 +660,9 @@ shinyApp(
   }
 )
 ```
+</div>
 
-## Options
+## App options
 
 This is where you can customize the global app behavior: 
 
@@ -669,7 +693,7 @@ As stated above, you may choose between 3 skins and 2 color themes. There is a t
 `{shinyMobile}` brings a lot of different colors. __hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
 Framework7 has many more [options](https://v5.framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter.
 
-## Gadgets
+# Gadgets
 
 `{shinyMobile}` is particularly well suited to build shiny __gagdets__. 
 To convert an existing app to a gadget, wrap it in the `shiny::runGadget()` function. 

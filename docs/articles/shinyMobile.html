@@ -121,10 +121,9 @@ different purposes:</p>
 native apps).</li>
 <li>Develop desktop shinyapps.</li>
 </ul>
-</div>
-<div class="section level2">
-<h2 id="custom-skins">Custom skins<a class="anchor" aria-label="anchor" href="#custom-skins"></a>
-</h2>
+<div class="section level3">
+<h3 id="custom-skins">Custom skins<a class="anchor" aria-label="anchor" href="#custom-skins"></a>
+</h3>
 <p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> offers 3 skins:</p>
 <ul>
 <li>
@@ -139,9 +138,9 @@ recommended.</p>
 <p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> also provides 2 themes, namely light and
 dark.</p>
 </div>
-<div class="section level2">
-<h2 id="layouts">Layouts<a class="anchor" aria-label="anchor" href="#layouts"></a>
-</h2>
+<div class="section level3">
+<h3 id="layouts">Layouts<a class="anchor" aria-label="anchor" href="#layouts"></a>
+</h3>
 <p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> brings 3 out of the box layouts:</p>
 <ul>
 <li>
@@ -156,12 +155,12 @@ Apps).</li>
 desktop with a sidebar, navbar and a main panel</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="ui-elements">UI elements<a class="anchor" aria-label="anchor" href="#ui-elements"></a>
-</h2>
 <div class="section level3">
-<h3 id="inputs-brief-comparison-side-by-side-with-shiny">Inputs: brief comparison side by side with <code>{shiny}</code><a class="anchor" aria-label="anchor" href="#inputs-brief-comparison-side-by-side-with-shiny"></a>
+<h3 id="ui-elements">UI elements<a class="anchor" aria-label="anchor" href="#ui-elements"></a>
 </h3>
+<div class="section level4">
+<h4 id="inputs-brief-comparison-side-by-side-with-shiny">Inputs: brief comparison side by side with <code>{shiny}</code><a class="anchor" aria-label="anchor" href="#inputs-brief-comparison-side-by-side-with-shiny"></a>
+</h4>
 <p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> has its own custom input widgets with
 unique design for each skin (iOS/android/aurora). Below we summarise all
 known shiny inputs and their equivalent with
@@ -261,9 +260,10 @@ known shiny inputs and their equivalent with
 </tbody>
 </table>
 </div>
-<div class="section level3">
-<h3 id="containers">Containers<a class="anchor" aria-label="anchor" href="#containers"></a>
-</h3>
+<div class="section level4">
+<h4 id="containers">Containers<a class="anchor" aria-label="anchor" href="#containers"></a>
+</h4>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -376,18 +376,19 @@ to set up the <code><a href="../reference/navbar.html">f7Navbar()</a></code> so 
 <span>  maximizable <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="select-a-template">Select a template<a class="anchor" aria-label="anchor" href="#select-a-template"></a>
-</h4>
+</div>
+<div class="section level3">
+<h3 id="select-a-template">Select a template<a class="anchor" aria-label="anchor" href="#select-a-template"></a>
+</h3>
 <p>This choice is crucial when you are developing an App. It depends on
 the complexity of your visualizations and content. If your plan is to
 develop a simple graph or table, you should go for the
 <code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> option. For more complex design, the best
 is <code><a href="../reference/f7TabLayout.html">f7TabLayout()</a></code>. <code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is specific
 for tablets and desktop apps.</p>
-<div class="section level5">
-<h5 id="simple-layout">Simple Layout<a class="anchor" aria-label="anchor" href="#simple-layout"></a>
-</h5>
+<div class="section level4">
+<h4 id="simple-layout">Simple Layout<a class="anchor" aria-label="anchor" href="#simple-layout"></a>
+</h4>
 <p><code><a href="../reference/f7SingleLayout.html">f7SingleLayout()</a></code> is dedicated to build simple, one-page
 apps or gadgets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -413,6 +414,11 @@ toolbar are optional for the <code><a href="../reference/f7SingleLayout.html">f7
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span>
 </bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
 </div>
+<div class="text-center">
+<p><a class="btn btn-primary" data-bs-toggle="collapse" href="#singleLayout" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code </a></p>
+</div>
+<div id="singleLayout" class="collapse">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a></span><span class="op">)</span></span>
@@ -470,9 +476,10 @@ toolbar are optional for the <code><a href="../reference/f7SingleLayout.html">f7
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level5">
-<h5 id="tabs-layout">Tabs Layout<a class="anchor" aria-label="anchor" href="#tabs-layout"></a>
-</h5>
+</div>
+<div class="section level4">
+<h4 id="tabs-layout">Tabs Layout<a class="anchor" aria-label="anchor" href="#tabs-layout"></a>
+</h4>
 <p>Choose this layout to develop complex <strong>multi-tabbed</strong>
 apps (best choice for iOS/android Apps).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -502,6 +509,11 @@ passed inside.</p>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span>
 </bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
 </div>
+<div class="text-center">
+<p><a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
+Code </a></p>
+</div>
+<div id="tabLayout" class="collapse">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a></span><span class="op">)</span></span>
@@ -618,9 +630,10 @@ passed inside.</p>
 <span>  <span class="op">}</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level5">
-<h5 id="split-layout">Split Layout<a class="anchor" aria-label="anchor" href="#split-layout"></a>
-</h5>
+</div>
+<div class="section level4">
+<h4 id="split-layout">Split Layout<a class="anchor" aria-label="anchor" href="#split-layout"></a>
+</h4>
 <p><code><a href="../reference/f7SplitLayout.html">f7SplitLayout()</a></code> is the third layout introduced with
 <a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a>, similar to <code>sidebarLayout</code> with
 {shiny}. This template is focused for tablet/desktop use. It is composed
@@ -670,6 +683,11 @@ must correspond.</p>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span>
 </bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
 </div>
+<div class="text-center">
+<p><a class="btn btn-primary" data-bs-toggle="collapse" href="#splitLayout" role="button" aria-expanded="false" aria-controls="splitLayout">
+Code </a></p>
+</div>
+<div id="splitLayout" class="collapse">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -839,10 +857,11 @@ must correspond.</p>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="options">Options<a class="anchor" aria-label="anchor" href="#options"></a>
-</h4>
-<p>This is probably the most important element of the template:</p>
+</div>
+<div class="section level3">
+<h3 id="app-options">App options<a class="anchor" aria-label="anchor" href="#app-options"></a>
+</h3>
+<p>This is where you can customize the global app behavior:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">options</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    theme <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ios"</span>, <span class="st">"md"</span>, <span class="st">"auto"</span>, <span class="st">"aurora"</span><span class="op">)</span>,</span>
@@ -875,7 +894,6 @@ the navbar and toolbar which is useful to focus on the content. The
 is activated. <strong>preloader</strong> is useful in case you want to
 display a loading screen. Framework7 has many more <a href="https://v5.framework7.io/docs/app#app-parameters" class="external-link">options</a>
 which can be passed through this <strong>options</strong> parameter.</p>
-</div>
 </div>
 </div>
 <div class="section level2">
