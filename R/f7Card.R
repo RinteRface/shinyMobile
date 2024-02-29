@@ -64,7 +64,7 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 
   cardStyle <- NULL
   if (!is.null(height)) {
-    style <- paste0("height: ", shiny::validateCssUnit(height), " overflow-y: auto;")
+    cardStyle <- paste0("height: ", shiny::validateCssUnit(height), "; overflow-y: auto;")
   }
 
   # content

@@ -34,15 +34,16 @@ shinyApp(
       iosTranslucentBars = FALSE,
       navbar = list(
         iosCenterTitle = TRUE,
-        hideNavOnPageScroll = TRUE
+        hideOnPageScroll = TRUE
       ),
       toolbar = list(
-        hideNavOnPageScroll = FALSE
+        hideOnPageScroll = FALSE
       ),
       pullToRefresh = FALSE
     ),
     f7SplitLayout(
       sidebar = f7Panel(
+        id = "sidebar",
         title = "Sidebar",
         side = "left",
         theme = "dark",
@@ -51,7 +52,8 @@ shinyApp(
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
-            icon = f7Icon("equal_circle")
+            icon = f7Icon("equal_circle"),
+            active = TRUE
           ),
           f7PanelItem(
             tabName = "tab2",
@@ -64,8 +66,7 @@ shinyApp(
             icon = f7Icon("equal_circle")
           )
         ),
-        uiOutput("selected_tab"),
-        effect = "reveal"
+        uiOutput("selected_tab")
       ),
       navbar = f7Navbar(
         title = "Split Layout",

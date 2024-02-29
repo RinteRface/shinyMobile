@@ -17,10 +17,10 @@ shinyApp(
       iosTranslucentBars = FALSE,
       navbar = list(
         iosCenterTitle = TRUE,
-        hideNavOnPageScroll = TRUE
+        hideOnPageScroll = TRUE
       ),
       toolbar = list(
-        hideNavOnPageScroll = FALSE
+        hideOnPageScroll = FALSE
       ),
       pullToRefresh = TRUE
     ),
@@ -36,6 +36,7 @@ shinyApp(
         id = "tabs",
         style = "strong", animated = FALSE, swipeable = TRUE,
         f7Tab(
+          title = "Tab 1",
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
@@ -57,6 +58,7 @@ shinyApp(
           )
         ),
         f7Tab(
+          title = "Tab 2",
           tabName = "Tab2",
           icon = f7Icon("today"),
           active = FALSE,
@@ -80,6 +82,7 @@ shinyApp(
           )
         ),
         f7Tab(
+          title = "Tab 3",
           tabName = "Tab3",
           icon = f7Icon("cloud_upload"),
           active = FALSE,

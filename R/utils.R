@@ -201,3 +201,36 @@ get_args <- function(level) {
   cl <- match.call(definition=f, call=cl)
   as.list(cl)[-1]
 }
+
+#' Create shinylive iframe
+#'
+#' @param app_code base64 app code. You can create it from https://shinylive.io/r
+#' by writing code and click on share and copy the link. The code is located at
+#' the end of the url.
+#' @param mode How to display the shinylive app. Default to app mode.
+#' @param header Whether to display the shinylive header. Default to TRUE.
+#'
+#' @keywords internal
+create_app_link <- function(app_code, mode = c("app", "editor"), header = TRUE) {
+  mode <- match.arg(mode)
+
+  app_url <- sprintf(
+    "https://shinylive.io/r/%s/#code=%s", mode, app_code
+  )
+
+  if (!header) {
+    app_url <- paste0(app_url, "&h=0")
+  }
+
+  shiny::tags$iframe(
+    # To allow the content to fill the full screen card
+    class = "html-fill-item",
+    src = app_url,
+    height = "700",
+    width = "100%",
+    style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;",
+    allowfullscreen = "",
+    allow = "autoplay",
+    `data-external` = "1"
+  )
+}

@@ -1,7 +1,14 @@
 # shinyMobile 1.0.1.9000
 
+## New
+- Added webR to pkgdown infrastructure which allows to run shinylive
+apps in the documentation.
+
 ## Minor change
 - Add `limit` to `f7AutoComplete()`. Thanks @bthieurmel.
+
+## Bug fixes
+- Fix ignored __height__ in `f7Card()` (Typo).
 
 # shinyMobile 1.0.0
 

@@ -1,0 +1,92 @@
+---
+title: "Progressive web app support"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Progressive web app support}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, echo=FALSE}
+library(shinyMobile)
+```
+
+## Progressive Web App (PWA)
+
+The following book provides more in depth [review](https://unleash-shiny.rinterface.com/mobile-pwa) about PWA support.
+
+<div class="atropos atropos-book">
+<div class="atropos-scale">
+<div class="atropos-rotate">
+<div class="atropos-inner">
+<a href="https://www.routledge.com/Outstanding-User-Interfaces-with-Shiny/Granjon/p/book/9780367645267" target="_blank">
+<img class="img-fluid" src="https://user-images.githubusercontent.com/18291543/181491295-1a5b498c-e7ee-428c-a1af-c3ee22e35ef5.jpg">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.js"></script>
+
+<script>
+  const bookAtropos = Atropos({
+    el: '.atropos-book',
+    shadow: false
+    // rest of parameters
+  });
+</script>
+
+### Configuration
+
+`{shinyMobile}` is PWA capable, meaning that it can be displayed full screen on many mobile
+devices. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE` (it leverages the Google PWA compatibility
+[script](https://github.com/GoogleChromeLabs/pwacompat)). 
+
+To setup the necessary assets for your PWA, you may run:
+
+```r
+remotes::install_github("RinteRface/charpente")
+library(charpente)
+set_pwa(APP_PATH, ...)
+```
+
+where `APP_PATH` is the app location. It only works if the app is inside a package like with
+{golem}. Alternatively, you may copy the `www` folder of the gallery [app](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www), which provides:
+
+- A valid service worker.
+- A valid `offline.html` fallback.
+- A valid web manifest. Don't forget to change the `start_url` property to the path of your app.
+For instance, the following app hosted at https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/, has the `/rstudio-global-2021-calendar/` path.
+- A valid set of icons. There are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
+those custom icons and splash screens, if you need to.
+
+It is really easier with `{charpente}`, the reason why we strongly recommend to develop your app
+inside a package.
+
+### Add the PWA to your desktop Apps
+
+Copy the url of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app, with top and bottom ugly navigation bars.
+
+- Select the share button located in the bottom bar of your Iphone/Ipad. For Android,
+you may do something similar. Importantly, Chrome for iOS does not support this feature, that's why I recommend using Safari.
+- Click on "Add to Home Screen"
+- Choose a relevant name and click on OK. 
+- The app will be added to your IOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.
+
+<div class="row">
+<div class="card">
+<a href="#" target="_blank"><img src="figures/f7PWA.png"></a>
+</div>
+</div>
+
+### Limitations
+It is actually quite complex to guarantee that all mobile platforms are supported.
+The PWA compatibility script will work in most of the case. If not, please open an issue [here](https://github.com/GoogleChromeLabs/pwacompat/issues), to help improving it!
