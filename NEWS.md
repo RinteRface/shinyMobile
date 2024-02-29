@@ -9,6 +9,7 @@ apps in the documentation.
 
 ## Bug fixes
 - Fix ignored __height__ in `f7Card()` (Typo).
+- Fix CRAN note.
 
 # shinyMobile 1.0.0
 
