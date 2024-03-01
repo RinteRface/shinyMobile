@@ -4,7 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Develop outstanding shiny apps for iOS, Android, desktop as well as beautiful shiny gadgets.
+    shinyMobile is built on top of the latest Framework7 template &lt;https://framework7.io&gt;.
+    Discover 14 new input widgets (sliders, vertical sliders, stepper, 
+    grouped action buttons, toggles, picker, smart select, ...), 2 themes (light and dark), 
+    12 new widgets (expandable cards, badges, chips, timelines, gauges, progress bars, ...) 
+    combined with the power of server-side notifications such as alerts, modals, toasts,
+    action sheets, sheets (and more) as well as 3 layouts (single, tabs and split).">
 <title>Mobile Ready shiny Apps with Standalone Capabilities • shinyMobile</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -12,13 +19,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/readable/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="Mobile Ready shiny Apps with Standalone Capabilities">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<script src="extra.js"></script><meta property="og:title" content="Mobile Ready shiny Apps with Standalone Capabilities">
 <meta property="og:description" content="Develop outstanding shiny apps for iOS, Android, desktop as well as beautiful shiny gadgets.
     shinyMobile is built on top of the latest Framework7 template &lt;https://framework7.io&gt;.
     Discover 14 new input widgets (sliders, vertical sliders, stepper, 
@@ -30,107 +36,93 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">shinyMobile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-info"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">shinyMobile</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="articles/shinyMobile.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/shinyMobile.html">Get started</a>
 </li>
-<li>
-  <a href="reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/Gadgets.html">Gadgets</a>
-    </li>
-    <li>
-      <a href="articles/Single-Layout.html">Single-Layout</a>
-    </li>
-    <li>
-      <a href="articles/Split-Layout.html">Split-Layout</a>
-    </li>
-    <li>
-      <a href="articles/Tabs-Layout.html">Tabs-Layout</a>
-    </li>
-    <li>
-      <a href="articles/shinyMobile_tools.html">shinyMobile Tools</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    News
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">Releases</li>
-    <li class="dropdown-header">shinyMobile 1.0.0</li>
-    <li class="dropdown-header">shinyMobile 0.9.1</li>
-    <li class="dropdown-header">shinyMobile 0.9.0</li>
-    <li class="dropdown-header">shinyMobile 0.8.0</li>
-    <li class="dropdown-header">shinyMobile 0.7.0</li>
-    <li class="dropdown-header">shinyMobile 0.1.0</li>
-    <li class="divider">
-    </li>
-<li>
-      <a href="news/index.html">Changelog</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/RinteRface/shinyMobile/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/pwa.html">Progressive web app support</a>
+    <a class="dropdown-item" href="articles/shinyMobile-tools.html">shinyMobile Tools</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-news">
+    <h6 class="dropdown-header" data-toc-skip>Releases</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.0</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.8.0</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.7.0</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.1.0</h6>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="news/index.html">Changelog</a>
+  </div>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/RinteRface/shinyMobile/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="shinymobile-">shinyMobile <img src="reference/figures/logo.png" width="200px" align="right"><a class="anchor" aria-label="anchor" href="#shinymobile-"></a>
-</h1></div>
+    
+  </div>
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="shinymobile-">shinyMobile <a class="anchor" aria-label="anchor" href="#shinymobile-"></a>
+</h1>
+</div>
 <blockquote>
 <p>Develop outstanding {shiny} apps for iOS, Android, desktop as well as beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest <a href="https://framework7.io" class="external-link">Framework7</a> template.</p>
 </blockquote>
 <p><a href="https://github.com/RinteRface/shinyMobile/actions" class="external-link"><img src="https://github.com/RinteRface/shinyMobile/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg" alt="lifecycle"></a> <a href="https://www.repostatus.org/#wip" class="external-link"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status"></a> <a href="https://cran.r-project.org/package=shinyMobile" class="external-link"><img src="https://www.r-pkg.org/badges/version/shinyMobile" alt="CRAN status"></a></p>
+<div class="section level2">
+<h2 id="sandbox">Sandbox<a class="anchor" aria-label="anchor" href="#sandbox"></a>
+</h2>
+<p>You can play with the below sandbox.</p>
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init="" data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5">
+<div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
+<iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRaVAH0iqUpwAEAHgC0eup1LsRe63tLc48PQF49QsLSKc3uKzYAmLADWznoAYgCCADIAygCiPhA2egBmikp+IREx8b7WxNREjCFuAMQADGUA7FDJyd65tkQArgTcIWYWDdakaAASRNQZLgAqWACqOYlJtn0DfgAicNRQrCGVAKxlCdN6HpzDza1YtOhKmVFxDQLbNnvDzBCc1C0UpABCLPouWXE31tAAN3oLHatHMlimST2AGFXnBGMNaKQziNxpMdrw-HAAPIQAAKUAA5nBogRGANqCFRhMrn9GgNgUUXB0IRjaFjcQTiaTydRKd8LrFaQ1UE0+QcsHBkow4DxztlfCoRFJ+OF0Ky9E1aCFkpUuXANdZtKQPI8QuotDpOHSTci4MUwCrZPJFPbolAIH56EQAB71SEpSrDKD0SIrZqdAPWVAepZfGaEyJgyM7ay6gkQJbsW0o1xgSJS0h6DNLbx6Tjs+0uNxKZKkMt2BxVvN0Qncet4PNvZb0ZZlqXJOAEIvVwhEAHwtzXLo2dOx6jZpG5tzHNtFkvUMsVrEOxi0NcN+yOUcBRiBMtubshvudgdDkd54gTxhTmfTqN6QGMnWVAByUCBFhDWmHNmzcJ05AUM53U9b0-TwGdrG4KBaEYOhMypNE6SSHgoD8IgAHdMImbCbFrUgN2I9FUz3NdKNRGkP3fHZdWDehOGApIPVoGAoHIIY9GpaidhKTgCJOOBr2bITSLTIMQ04kClzAsA2L0ABGf1UxsHp6H-Y88zYzSEI-KFiESFxdQASXMywwGSOZJzAZjtL0KBh1oCcqISRCyPUagOHUxAAGYtkDaEWD8FRtJclj5PoRSklAh01IAJi01zdP0lS2PSkzXN2cyfxskg7MCOBWG9SKp1k2dKmiZD8IIxLpj4chHiRVYXHUrZfKSbhx3hby+rqiLGD8FqdmS0cxoyew8Kc2qdjccI9AIaqwBG6xotcnadli6ZWIUkbpsMkM9GCjLtKy2AcpDS78tc2gissyoSogOzllYeFOA0KBqA7A64oavDCMm24yAoCtSC6jTetM6YBufYaEaSXVZvBpLlIdWa9HmrEX0egq5OiXjGFIaIlnvTHpjcAEWFoKSruJ6w3AANQZqT9FIIhywGgjEGZlmCDs6FWHQgmvDAB0CHFoWWcMh5OBgMEKxINwHVgeWWbcABxSTGClh1iRYGqtumbQKCsiy8x4OA4A7JbUxgMUTVQXMhPN7anaSqTsSaUhRU6MAAh6V9UZsPbUyjpIY70KOdpczh4WRyymggDzSr4IPcD0CMc-LWU1YgAQ9BABoSj0UO+KZgN84DgASavDBMGVPXhNilHYcuPxgUh1sN4Bc5FtwYFQQky2zxv6b3KTrir8lUHlOIAF0GgAX1z8kCOgeB4yEnb15EFQwHXlegA" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen allow="autoplay" data-external="1">
+</iframe>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span> </bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+</div>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -141,15 +133,10 @@
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"RinteRface/shinyMobile"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="cheatsheet">Cheatsheet<a class="anchor" aria-label="anchor" href="#cheatsheet"></a>
-</h2>
-<p><a href="https://github.com/RinteRface/cheatsheets/tree/master/shinyMobile" class="external-link"><img src="https://raw.githubusercontent.com/rinterface/cheatsheets/master/shinyMobile/png/shinyMobile1.png" width="630" height="487" style="max-width:100%;"></a></p>
-</div>
-<div class="section level2">
 <h2 id="demo">Demo<a class="anchor" aria-label="anchor" href="#demo"></a>
 </h2>
-<p>A running demo is on <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="external-link">shinyapps.io</a>. Left side: android demo, right side: iOS demo</p>
-<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/3.6/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
+<p>Android demo:</p>
+<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/4.2/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
 <div class="marvel-device note8">
 <div class="inner">
 
@@ -178,11 +165,12 @@
 
 </div>
 <div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2DemoMd" allowfullscreen frameborder="0" scrolling="yes" height="822">
+<iframe width="100%" src="https://shinylive.io/r/app/#h=0&amp;code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRAYgAEnIgFdGBOBphEAJjqWcRhgDwBaDRQButRiXhl2K1FFLcNdrVZOchgMADNFOHYhMDgAD1hUCwB6AHMoaiU2ZNIoek5kmNwNbwIAayhUwwBeDRipfjkFJRiVTjQkjhENDTpg8MjOaIgenu9fXG7RvgJqHRM4DBMXTg1agDEAQQAZAGUAUUmR0fHyRhHamOwiqZ7aVIgiRkWCKE4ajQAVLABVfamBEcemEdBACKRaCR2GEBBoQFpdPoohElBhxtx2OjijDitQiK9qGsHLCAL4iFTqLS8fgaDoiBqsTboYY9HS0IlhADsAAVKlFbrTMkQAO7cgDqmyJ3z+xSIqAhJFWtT6pHYJhYZSJWz2hw0KKUJi1OwOxVQzzxUAWjClv32gIFXM+eW2UFYulVAp6HXoLA5nKZqB9jBZo1DXPWSji0M5ACEoOV2LlGFVSABJQ2XMC5fJwUitbGcgBy8VVSZT6aJMWz7zzYAE9uOoeBnN2cBYBG4QfYtAzdTA73b3AAjEUNHw6BAPtLdUl43BuERqFbK2BPmwjIYSBpfIYACy+bd5ACErU9GgbTY3nHaVSDfpkcGvfLjwb4qB0ad7MRgrHgT9vLCjrOBgLkucDWpmD7-nA+Znt4k7UEqh6pNstDBCGl5cryCEYZeY5fmA8FwNQ2xwGEtZAnhPQQqQSgrqR5EaNhxE3I2eGcD2HwxEo5GsVR1HcHA8ArnQqTcBRZ6hjEMbUHksl8fxZFhHA4Irs8jhttQMSSeelGYTyUA4Tp1G0LRXFgFg9ziUxhksXgxlaJxalWRJbGXjuwmZuqjBlApVHSbJ9DyfZblNkpKmkCuxAaYw2mhT0KiXheTbQI4d61FyhZQGlLC4aGNF0ZmDJNJEflNpwOj0AV5lhE8Gi7NSrBlaG3BQC4E5Traenla1JgijaMo6TxpDMYStTTt1oaMC5o0DYcOkKKkVQQV8XU6aQzAQJw3jPGQRo6meyVhpy2xEKkfB5dMBF4udEC8lUzWjNVK4AJq6BozwZNQrDbtSmpujoGivCMqREBognPAA-I9wJEEQZwrp8vCrO84KQiMHEwOYPiPrSIxQB+glkLQrwKiMZr4o+nAYF8EMwfFY6rPGpA6F9P2PBoOjvNahmGt417Ck8hrqtmbyLExH4aMKrXkDFGgA1LhmRfQH46X1EAAOSRUo2WGEFhllCeIVUcELCkAA8qgFD7Sah2TRomjPNF4G-YYxB4taqAk2ULtvpLvOc6gIuGDu24lhoPrlKkrigiYZ6aO7dXxsQjDLBAqTfRgZ65KknAACScAQ03ypdPQxHn0KgmjUKwiADkNdIGCWiYADCXOkEQMBQTecAABK81k7BayWtiJ4wGvYlXZPsH+Pe1w5PQVxrahj9y3vgQAahkGsCBgBDXkPkdlNHugQCYo+Lk8E9XnPADcDkkgI9+qAzPQ1qmZDgY4GSV2C0-z6-UYS9aAwFSDvJupANpDyLkQa8Tx7h8GvhrQyJBfy6E4DvZ+-ENAkmKAAVgAAwEIpIA5IyRtxnQzoYWefII6+h9O8Q0W5Q4ED0LtWiP13hKHBHAQ02Z66NSbiYVu7dO7dz5P3M+g8taUKUOIgC49J5-3RjPKmfIAHYLuGEDQqjoJrGqLUDWHYfA7zhAvIBQ81A-hoQo8BPARSeCwZoxeQ8MAd0XEGNxzo+BlAwbvXgCxHHmJJA4RChg66ANDEvKxv41G2P8ZxIJkSLEazcXDagnjsyoQgL4uxC5hRJOcWSQBj8nGXlKTpOKSV7aOjyEMHSPYVzVlzDDPGICca9m1LbBmnBhS0CtnJTqg0GbZg-u+UgnB7bUTyDGUgW0pmHnoC3FgJhJnrW8cENZIy8ifBLAs0ZEBar7LyObHcjBLChUSqMI625TKFT7MVeQpUwAAkotzOWGUp4qL9qQWUH5xnFHeNedGACBSaB+Rob+dARbowFPId5UQImXihT2HG6xORjI-N2CA4yKyZnIHECiY5Dlg0zGKGWcAYqnlCii4O6LMUegZj8vFfZ+a9KFq0044ELh9mAAQ2wABOAAugAKlaeBVwK0Yjm1EOzHQMB6DgVWEkNs7wjaHQFI-EQYKKFLTojYvWLBEBUl0EuDQJBvoR0MMsTgslWC8KlkTc1IxQ4GtWPwti8Kv5wH2BpDwPy87NN+WY0KQKOIkALhQERwQxFxKiKQVgVsmmyLgPIuAQZRwBqDVcnoWqX6hk0FzF27wz4aEnMKG+fI4U5kYBpX1FBVQ-OAMAb8sToJBlsCWuOYAhVCuKEipsOgg5os5Gm+pTKCLWLjZYY2eEVSl1GFyNNC78rh1qAGqd7aWALNDNATyfYAAi2UeytPyom8yJbXLOMEpaF2kE40aF7m2K0p7F1wwRvevR6x33gVfdREsT7b1StXOHQDL7Z3YIJaQb98M719igxoGDZw-20m-kmFc4lSCoE4IgMhBATAQHCMweAgsfKcgwJCZIwF5yLitFRuAcolC2CHEQuILH+XkYAFaoFSFU-iOamwCYSpqkhBa9RQB9hQj6Kk4C0A0h9XmndK1VAuaGL1tbEVnj4LSnGLozjsEIUQoTZbYC4wCAQaIYAN4kw7rFPAfYABSRBuCqDrGePdNh7DtBgCq9gHnJkaCHKJwdw7yDorHQuxpmZN09xnQs+dDkl1xpXU9NdfY00oY80SDzO6nrnrUjJuTvCUPZR8L6TMmHsO4eSPhwjYRiNwFI2UcjlHqOgTo1bRjcBmOsfY4KjA3HeMvMAcZ4TlyRParYpoDa9xlp6jqjdPgAoZtLRdgET6aMNLsAHVNOAABHbF4zA11NzPovsxjawCbzWJxbGNvXWmMGYFobECTUDkE9-koUuSnVuq2DTjB7ZRb7Ld+6MEIPTAeE8OAH9TJzXtitubtQEe-rYsFno7ojscRGOtqN4FuR4lVEkeGXA+DFFsF7YoAAmEVXt6xwv+R+POxBVg47PnjgnmIOfM7JxTjQ1Pado-NQz0ggbw6s6tNyaa-qcWM6gwJjHjO2WkcNOLvHUvG0y5F0roW8vhei8JSwNs-h7C7Ql+rw7suSyG6gLrrDjPbWcWtKrxgku+Aa8x9C8CtuPeO6wIZKoxvpNs5d+bgNDurR+-TsoenduRfBDgOgNbJvcch7dxbuP5BE+MG94zjsKlNTO9d9Lo7efyg55F6X4+MdUCB9N2rtPAbK8nyHeXvOzBlhg0L6HzXbfLSQlbx3PVnmg9m4bz3wfVDW9cIirXlPRf3f2+IhFVvULZ-B-n+nvOKtIEkEp1PmAZsRZQDX1aJ0QVNOhRvSYGepBXjnOAMUCz34eOZp75wA-jAJnEUBBoEwrga8bDGj7BCpXbFCuDCj+ZzRT5L7ghHrkAn717F6M7Byt4EwdzEA+ZKCywZAIGp5IEi4-hoH4idwqrkCC6yToDfTsBDiIBDiU5KLVwQDdgaJNgK6kDNr8zkAEKWbPBxZjgCC9q4G7KEqYhvBcGWYxgfgdyubFDsiTBgCMx9iyGa4cFiFwDcExBVQyH8G9p05sTXajBsF5xezlBfw4HO7CEL4EGJrrzZ4x4l6Xwu62FbyEgWElib4-hjwmE+x2H5qjCaBdquxAyOElC2HErjJSYOa7DVoIr1r4F5yeGOHeHgT9pnhhroyRpnxtwxpdzJYJpJr4ojxjyjgGpEgbqsBeG2FXYkI6qoByhDr2GK71GoAtwkDkB7Rd5j5HZ1HvioCWGC7qZ1p+pWGBoprcjNGpFfY8jNGRYEQ9FDojjg75R3LmQyA-QRDnKRTzGoCtKOjuExDbGWGjgxDjG9HBGfxkDHGrjIyKE-h6grBbHNEOAxTFCphaDChtiMBGw3KhgxQ+gQgwCWHmzC6WbbGtEXGXYar6EDE1pDENqb7bFDiTGXi0DaKb5BpnYnHNEzosGXjbG7C5Asws72Cok6IBqImwgxBygUDFYKHETvDnZ4iMJ8b6SfBEBiEpZ1EcRkzJo7FLFNgIa1CcH8hgCnFDqMxATNEEk+BcyjbnhnjFKhh5o6o8BwCnZE55iep66qm5j47wy4F6mqg7ajDIyqjnBPAwCb46kWz5B6FKkwmxHDHokpoNRqnBrGmsihZwDoqum5jdgETWmLHVGTZiaPAQgRCkzoyqajAUGdDUGIAADMDB08tAuJhhsJPqTpTawAwpGhYAoMhY8MqJmaAhfaESDSxA2OJJaJ7IAApLWXzmdsQnqBipWZZvQIuKQAAPr6itChIMmFg-DbDbAhl4SZRFlhApaCnwaPhXr8QkxbjrqVm5bPRClqGWaFnhkkw+Cwr2apm5YVRVQrEriSiHnVSvrVSWRiSkCWFlE6TGYGG5qC6aAHq0AZBnTRk9CaBhmonblkyfm9AdBUE0FJl6hfJQipkhqXiDGZnwnZm5mWagyvnvlDayGlmTENI1lnZBZQX8RcjIU3QpYmRmQrgEVnS3JmQobTkxBIxoSKGGSCjgSRTLAoUsl4RykhL0mGCkndhnZ764VUT4VvmEXmJA4xCVkbEwBkWoXmKrmHrCXkXnn8nuT5aZgSUuAwBUVpY0U3F0UMXqWMAwC-4KVDYOQcX9ncVYUGIaAJlpn6TSVEX4QrgUw+akDSVUXHmZjSUUUtDKUCmqWsquCuVaWEqIy6VMwlBBXyjGWsXDbYIcUKnBl+Ho4ZlxEjEGVSUmXIlNiOjsnoTTnCmWabBZCRQQpoSICv4OGHIaXSV2mjDKlamx7GFRUbRmbJ7B4-CpjbZaY1nUwQDmDUAIktW1V2WLqxh4jlCfArGJieV9gtx0DlDOoxU3QRxSFbgJnUrlJnhcgyT4hlBTVmQzUkXro94uXyi1UTbJUOwlByhEAxQAUwVpUIm3UxSSE74QDZWhjNzoqnF3XgSzHOUvXgRvXSGtJyj-lEjzqVntGRSZi0WrB6Utkg0kCbWCaXU6odxiEPWpVZnj55XunbWchskck6RcmmTowrgdk76aV+XUVgBvGwC0gUJiE0z7A+AbjqrjbQmjlfm0iMFUhukxHepPUBqgybCMG+kE1THi1kyS0LrRxA4TQNIETMzoyLELLb7SFIQJaAI63OJ02bm-mRko1+WhgLk8pciphtkxB8C1SwTJJjxEiDnDlmW5Z62aJ03uWm3TCVl+hW1QjcQuQqwZI9mKBaR1i5Y9CO21DO0jkjb3lQn2k83mo41wU96q0kBDhdma0kCfXTA1np2MFZ050XC1A4UeljWG2TkOR01vSAyzDrxMIuqCT3GbGrXvWvrm1+3W1gAdnUDdm9kR012zUxBV1-m7krkrFXniS3mZiPDChsWhgPkWVjgF1HYZ0QDF1rWl186jXNgOUORiUoAS2CS5he2T3HVzULWajCQdyAVVx+DH7E3BBGwrkBXiUkCSUXnaVgB11AzX0OrMIt2owkCGgl2L3XIKno2eqp3xG9L9JwAy3ozZ3b151aJklv59JWxIMkAoPvXYV70tlV1Tk-1-0N2mFN1BEbHBDt2g3e1d0ZStkB292dmh2ZD22QYj1gBj3G0yHD1mTT03k-3z0QNjblIr08Vh5YOIOMF4PSF8WENCUoUpZH0b2S3n38P3IxDzXewbhSayQP1M3P2kCv013v2ECf0aXf2hWZhkMAOUOhwgOlrgNxXsVQPc1XWPW43r0n1unSVoMtnGOJhpaFUxDFVMXhGSzlWVWM5qOn1uUmV1VPnJ2FpemRVnS8GrAZowOOlp1HZDrBw8ZIkCWjAFMjqS4ZNUz+nOWpDq2QoZA6AfABplOZ61NJU6otOGDpA6APQ5PC3eOM6dPdNVDFMV2dPooADiBMVQ1T0WrAwzcAdTUKjTZRPeQz0ziz7TU2DgcQ8Ehod+hoG1fTGmItPeoMyyqcAT4znIFz1+R9BzG1bmHjGNKafNKcHenjsDIxYtBA7z6MVzXp6K4tfzAdE6K4ycQsatrS0+PCvYI4XNSdV1qTwcJQtkWkxzcJ8RoMo0ALdKBkOER9REJEZEkJzz2z8DnWqsGLsFcD0jVdAT454ZC6dN5AwQrSDDLZ-tTBmhrDg9PxT0XDPDO5JtCyZ5XDp5lUSl+yU9Lks9fYIjrjS90DamXzVp0j4Tn+DLnIB9IyXD3lUr60P98N9F+MJVy1Z0EDWzKruTtLCDODEAktWr9rctOkCtvYStYLRU6rjBrSJd2taEjK2C7tkGP9QrZMKGHLltPdttRAHDmi0dGgsdrtDkwb-EntJlEbvtjDXLlmok4kwd9AbD4d-Ll4CbSb8dDMxmVr-hkVxE7JVo2NNrIx9iwop0QGATLbP15o9b-1ZYp2mYagZodbQGhpo4CbmhcwYOxmuwQQGAtqapqA7Ae+Z4AS3pPI3bQGiYLAKYK4g7G7EuBOqNyTjV3R+77O+pheHOFdpp7A5phl1BRm1bvNqAC4d9TAIo3MQtJzAzIuE+Sg3Ir7RAWrAH8MRAMY4B3MzLgk+6MQ3kvktN5jpsZ875k4nKgHSET+gCMQlWOGeGBGRGpmTWLWRAVGskIEtG4EyQ20TwEyPWlOu4bGBC9HzGA2L+3t2HkCVWeHdWDWRHFGJHbWFHjAVHdRn+nAdHDHLGzHlOrHMlWHYAOH1WtWBHJGTwzW-HpHc47WlH1HYnEnjHzHCZsnoj8pCL9Vz5GgD4-Vjb-TeTsuKaVnOguLI6jnB6-+fUEBlm7gOgQZyr6ZTbHhFAOgqYIQozhNxDdNYoxEhI6scA3xfnvNnAPsWBKN1L3VoU2mGQqK5Aem-1u4RCxChNuwyXuYzDc7JX0htgKoVxYQt6o4y7ZLYmqENDfACwcQYKXj8JE0JTmgLZzXaYbOUYOqV0IkAbtgrX8QzGZUvX0yyY-bfYagKo43g3tgfbc5vNMZeQxEc0w3AmaguCzqBgUBKTJQA1Umzw9Wj43AOqnX8R8oAOPXw3JQG00pRJgekjp1G0lJYAJtYKT3SjIl2zq6NjqL8eQ893jM1893r3sp3UM31E5jGQTFbFM3e3OCwWxSKgYAJIQqQAA" allowfullscreen frameborder="0" scrolling="yes" height="822">
 </iframe>
 </div>
 </div>
-<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/3.6/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
+<p>iOS demo:</p>
+<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/4.2/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css">
 <div class="marvel-device black iphone8">
 <div class="top-bar">
 
@@ -203,7 +191,7 @@
 
 </div>
 <div class="screen">
-<iframe width="100%" src="https://dgranjon.shinyapps.io/miniUI2Demo" allowfullscreen frameborder="0" scrolling="yes" height="670">
+<iframe width="100%" src="https://shinylive.io/r/app/#h=0&amp;code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRAYgAEnIgFdGBOBphEAJjqWcRhgDwBaDRQButRiXhl2K1FFLcNdrVZOchgMADNFOHYhMDgAD1hUCwB6AHMoaiU2ZNIoek5kmNwNbwIAayhUwwBeDRipfjkFJRiVTjQkjhENDTpg8MjOaIgenu9fXG7RvgJqHRM4DBMXTg1agDEAQQAZAGUAUUmR0fHyRhHamOwiqZ7aVIgiRkWCKE4ajQAVLABVfamBEcemEdBACKRaCR2GEBBoQFpdPoohElBhxtx2OjijDitQiK9qGsHLCAL4iFTqLS8fgaDoiBqsTboYY9HS0IlhADsAAVKlFbrTMkQAO7cgDqmyJ3z+xSIqAhJFWtT6pHYJhYZSJWz2hw0KKUJi1OwOxVQzzxUAWjClv11vjg8CJMUhljAgIFXM+eW2UFYulVAp6HXoLA5nKZqBDjBZo1jXPWSji0M5ACEoOV2LlGFVSABJQ2XMC5fJwUitbGcgBy8VVWZz+adRby7zLbvdx1jwM5uzgLAI3Cj7FoBbqYHefe4AEYiho+HQIB9pbqkum4NwiNQrY3PmwjIYSBp7RoACy+Q95ACErUDGnbnb3nHaVSjYZkcEffLT0b4qB0eZHMQwKw8Afs+LAziuBjrpucDWoWb6gXA5Y3t4C7UEq56pNstDBDG95cryaF4fes4AWAqFwNQ2xwGErZAiRPQQqQSiNtRtEaIRlE3B2JGcMOHwxEotHcQxjHcA6Ak0Pc3B0TesYxCm1B5EpImiTRYRwOCjbPI4vbUDEcm3vR+E8lARGGYxtDMZJWDSaQHFmVxeAWVo-HaXZqkMfajqFuqjBlJ5JEKUp9Aqc5PH3upmn2YWxC6YwBkRaMKj3nenbQI4L61FylZQJlLDEbGTEsYWDJNJEgWxpwOj0MVklhE8Gi7NSrCVaM3BQC486LraxmdjwloijaMqGUJpCcYStRLn1saMHZE3DYchkKKkVRwV8vWGaQzAQJw3jPGQRo6jeaVxpy2xEKkfCFdMZF4ldEC8lUbWWdZjYAJq6BozwZNQrCHtSmp+joGivCMqREBo4nPAA-C9epEEQZzbrwqzvOCkIjHxMDmD4760iMUB-uJZC0K8CojGa+LvpwGBfNDSFJXcqzpqQOi-f9jwaDo7zWmZhreI+wpPIa6rFm8iwcX+GjCh15DxRowMy2Z9n0H+hkmCQADk9lKHlhihWZZRXuFDHBCwpAAPKoBQR0midM0aJozxxbBAOGMQeLWqgZNlG7P7S-z3OoGLhhHuQcSq+mZSpK4oImDemie416bEIwywQKkf0YDeuSpJwAAknAEHN8o3T0MQF9CoIY1CsIgC5zXSBglomAAwjzpBEDACFPnAAAS-NZOwOs1rYyeMFr2I1xT7AgX39cuT0Vda2oE-cr7sEAGoZFrAgYAQj4jyG5Sx7oEAmOPG5PFPD4LwA3C5JICI-qhM6MLa5mQsGOBk1dgrPRe79Ywr1oDAVIe8W6kG2iPEuRBHxPHuHwW+WszIkGAroTge9X6iQ0CSYoABWAADEQikwCNDJGSIeS6WdDDzz5BoF8IZ3iGgPEeAgegDrMX+u8JQ4I4CGmLI3FqLcTDt07t3XufJB4X2HjrGhSgpFgUntPABmM540z5EA3BdwwgaA0YhNY1Raha37D4PecIl6jBXmoIC9DlGQJ4CKTwOCdHLxHhgLuG4oyeO9HwMoWD968AWC4qxJIHDoUMA3chICR62OApohxQT+KhJidYjxXjqA+OLNhCAATHHrmFKktxZJyHP1cfecphlEqpUdp6Zs5dSKNmLC2eGZkwF4xHNqe279ODCloDbZSPURrv2LF-X8pBOCO0YnkFMpBdrTPPPQNuLATBTK2n44I6zRl5E+DWRZYyIANQOXkS29pGCWCSilZKfU6qNjKvICqYAAT0V5grbKM91EB1ILKP8EzijvEfJjIBApNDfI0L-OgYtMYCnkG8qI0T7yQuHHjdYnJxl-iHBACZDZCwRzorOI5kNCxijlnAeK14krItDmijFAZ37fNxaOQWfSRbw1OLBC4o5gBENsAATgALoACp4awVcOtGIltRCcx0DAegsFVhJF7O8E2J0BTPxEKC6hq0WL2INiwRAVJdCbg0CQP6jDDDLE4EpVgAiZYk1NSMI8erVhCJ4nCn+cB9i6Q8N8guLTSzFERf1GmmMi4UHEcESRiSoikFYDbZpCi4BKLgFGGcfqA2kGuT0DVb9YyaB5m7d4F8NALmFHfPksKSyMF0t6igqpvnAGAIBBJiEoy2GLQnMAAqBVBpvDoEOqLOQpqGIZYcjY7ExtdIslUjSuwprnaMfFRI-WTrbSwRZsZoA+VHAAETysOeGRV42SWLbJNJ4lLRu3gjGjQ-dexWiPaMBqSNr2jhTRodYiMzhPsYjWe9V6JVgD2ZHO9D7YK-sPDWL9r6gPLpgz+02Oi8o+FDIWGSpBUCcEQJQggJgIDhGYPAYW-lOQYEhMkSCa4NxWko3AOUShbCThIXEZjvKyMACtUCpBqaJbNnZ+M9H47mrVYQoB+2od9TScBaC6W+vzbuFaqiXNjB6mtCKbx8GpXjH0Zx2DEJIYJ0tsB8YBAINEMAW8yZdwSngUcAApIg3BVBuhvNumw9h2gwCVewdzUyNCTjIfeAdNLh1TsaeOwsa6+7TtGjheluCuQLqscum9iFIPuaJO5zdS6T3aWk7JgRkGUNZkbBhrDOHkh4YI2EIjcASNlDIxRqj0FaM2wY3AJjLG2P8owFxnjzzyFGaE2qniImeKaG2vcNaCNrT3T4AKKbq03YBB+hjXS7Bg2zTgAARyxRM-1zZSxGNHGY1swn+OaHm1jT11pjBmBaDxAk1A5APf5ElLkF0Ho9nU4wR2kXRzXaekhJDsZ7iPGeF-Kyi1HZLZm7UOHEGeJBdGP6A7fERirYjbBbkeJVRJCRlwPgxRbA+2KAAJiFT7AQ-G0d-gLsQVYWOL447x5iNnjOSdk40JT6nKOeh09IP6ms-h7AHStNyOavrsX0-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-TpzUtXz6iStjYTz6cmMathk0+-CI404HNtzKNBaCz3JaEYRHTgt9OEME0JzCz71jkPVZTuLbEwJcLWqfSUj-oKLeznT7u6DI9PjVYg5W0n9o556DE055tjDPdfdIdbDnlZ9nD2Z3D49ELNUHD+5IrRFJtdU-Dgjo4wjTjsYDTrzN1iBpL8DhVdLSjoyfLblErByn90NqwqlhMhVc1l0C9irSdqLKr6DmDJAYtdLtrEAYtjS8tI4itDK7pNrDB8MhdWtupOt-retn9XDRtkhVibLPtndjBVtDUPLuCdttQDtMdUVOWrtOi7taVkGEbDDXddAZ5pAgd9ALDodztJECbGgSbTtcdsLNVMpZolEjJVoGN6TRphSF0gG2dTiwoRTDbgGmYLAOYjYag9bFoEueOM45bahcwIORmuwQQGA1qcpqA7Au+N4wScAPbo7X1dYx2hYw75ojbrOSMiNOauhB7gG6p9kLRWpa7up+pKVVBhmFrqzqA64ujTAIovMFLbzGTDzcA3Ib7RAdLAHSMRAKYYBvMjS3kkkfkAUkrJj5sF8z5C47KgHGEj+5CMQ5W2GuG+GhGJmDWTWRAlGSkUENGsEyQe0TwkyXW5Ox4rGRCdHTGfWz+tDo42HlW1W+HxGTwjW5GxHLW5HjAlHFRH+nAtH9HzGTH5OLH8FLkWH0CFWuHNWdWhH-HJHq4rWFHVHYnEnDHTHkZsnIjRmz7p1b4XVzbVrv7Sa5nOgWLoWtnu6f+ms4BFm7gOgXpKz8VVnJhFAOguYIQfTa19L5dJFYolEhImsC4rxXnqNnAfsmBCNSrbVSUWmGQKK5AumX1x4JCpCwXuwCXpYXdC7hXEhtgKoJxYmCwM4q7xLMp2EVDfACwcQoK11MD00eTqNtZDXeYLOSYWqt0jYKotgTX8QTGgUmgS6A7u7o4agw3o3cQtgO7LLqzoZeQlEi0A3l2+CjqBgkBdzmgv4mQkmzwtW743AWqbXVLWu20GVagA3JQ20wpOJxuqD+120sIMQxtoKD3FlcFxEk3S6ldeVWs8o1oOEt8YPz3opfUgPjEJjGQVFdFgPl2eCKOpSKgYAJIAqQAA" allowfullscreen frameborder="0" scrolling="yes" height="670">
 </iframe>
 </div>
 <div class="home">
@@ -212,49 +200,6 @@
 <div class="bottom-bar">
 
 </div>
-</div>
-</div>
-<div class="section level2">
-<h2 id="progressive-web-app-pwa">Progressive Web App (PWA)<a class="anchor" aria-label="anchor" href="#progressive-web-app-pwa"></a>
-</h2>
-<div class="section level3">
-<h3 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
-</h3>
-<p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> is PWA capable, meaning that it can be displayed full screen on many mobile devices. This feature is automatically handled by <code><a href="reference/f7Page.html">f7Page()</a></code> if <code>allowPWA</code> is <code>TRUE</code> (it leverages the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat" class="external-link">script</a>).</p>
-<p>To setup the necessary assets for your PWA, you may run:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"RinteRface/charpente"</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">charpente</span><span class="op">)</span></span>
-<span><span class="fu">set_pwa</span><span class="op">(</span><span class="va">APP_PATH</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
-<p>where <code>APP_PATH</code> is the app location. It only works if the app is inside a package like with {golem}. Alternatively, you may copy the <code>www</code> folder of the gallery <a href="https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www" class="external-link">app</a>, which provides:</p>
-<ul>
-<li>A valid service worker.</li>
-<li>A valid <code>offline.html</code> fallback.</li>
-<li>A valid web manifest. Don’t forget to change the <code>start_url</code> property to the path of your app. For instance, the following app hosted at <a href="https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/" class="external-link uri">https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/</a>, has the <code>/rstudio-global-2021-calendar/</code> path.</li>
-<li>A valid set of icons. There are tools such as <a href="https://appsco.pe/developer/splash-screens" class="external-link">appsco</a> and <a href="https://app-manifest.firebaseapp.com" class="external-link">app-manifest</a>, to create those custom icons and splash screens, if you need to.</li>
-</ul>
-<p>It is really easier with <code>{charpente}</code>, the reason why we strongly recommend to develop your app inside a package.</p>
-</div>
-<div class="section level3">
-<h3 id="add-the-pwa-to-your-desktop-apps">Add the PWA to your desktop Apps<a class="anchor" aria-label="anchor" href="#add-the-pwa-to-your-desktop-apps"></a>
-</h3>
-<p>Copy the url of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="external-link uri">https://dgranjon.shinyapps.io/miniUI2Demo/</a>. It opens like a classic web app, with top and bottom ugly navigation bars.</p>
-<ul>
-<li>Select the share button located in the bottom bar of your Iphone/Ipad. For Android, you may do something similar. Importantly, Chrome for iOS does not support this feature, that’s why I recommend using Safari.</li>
-<li>Click on “Add to Home Screen”</li>
-<li>Choose a relevant name and click on OK.</li>
-<li>The app will be added to your IOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.</li>
-</ul>
-<div class="row">
-<div class="card">
-<p><a href="#" target="_blank"><img src="reference/figures/f7PWA.png"></a></p>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
-</h3>
-<p>It is actually quite complex to guarantee that all mobile platforms are supported. The PWA compatibility script will work in most of the case. If not, please open an issue <a href="https://github.com/GoogleChromeLabs/pwacompat/issues" class="external-link">here</a>, to help improving it!</p>
 </div>
 </div>
 <div class="section level2">
@@ -268,10 +213,7 @@
 <p>Please note that the shinyMobile project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=shinyMobile" class="external-link">View on CRAN</a></li>
@@ -313,25 +255,24 @@
 
 
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by David Granjon, Victor Perrier, Isabelle Rudolf.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

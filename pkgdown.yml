@@ -1,12 +1,9 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: 3.1.11
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  Gadgets: Gadgets.html
-  Single-Layout: Single-Layout.html
-  Split-Layout: Split-Layout.html
-  Tabs-Layout: Tabs-Layout.html
+  pwa: pwa.html
+  shinyMobile-tools: shinyMobile-tools.html
   shinyMobile: shinyMobile.html
-  shinyMobile_tools: shinyMobile_tools.html
-last_built: 2022-11-25T18:43Z
+last_built: 2024-03-01T07:21Z
 
