@@ -1,4 +1,4 @@
-# shinyMobile 1.0.1.9000
+# shinyMobile 1.0.1
 
 ## New
 - Added webR to pkgdown infrastructure which allows to run shinylive
