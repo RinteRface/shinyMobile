@@ -1,4 +1,5 @@
 tabCards <- f7Tab(
+  title = "Cards",
   tabName = "Cards",
   icon = f7Icon("rectangle_stack", f7Badge(8, color = "green")),
   active = FALSE,

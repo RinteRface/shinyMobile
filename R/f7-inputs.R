@@ -21,6 +21,7 @@
 #' Only if openIn is "dropdown".
 #' @param multiple Whether to allow multiple value selection. Only works
 #' when openIn is 'popup' or 'page'.
+#' @param limit Limit number of maximum displayed items in autocomplete per query
 #'
 #' @rdname autocomplete
 #'
@@ -75,7 +76,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
                            value = choices[1], choices,
                            openIn = c("popup", "page", "dropdown"),
                            typeahead = TRUE, expandInput = TRUE, closeOnSelect = FALSE,
-                           dropdownPlaceholderText = NULL, multiple = FALSE) {
+                           dropdownPlaceholderText = NULL, multiple = FALSE, limit = NULL) {
 
   type <- match.arg(openIn)
 
@@ -90,7 +91,8 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
     class = "autocomplete-input",
     `data-choices` = choices,
     `data-value` = value,
-    `data-open-in` = type
+    `data-open-in` = type,
+    `data-limit` = limit
   )
 
   # specific props

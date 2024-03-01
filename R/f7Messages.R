@@ -279,7 +279,7 @@ f7Message <- function(text, name, type = c("sent", "received"),
 #'
 #' \code{updateF7Messages} add messages to an \link{f7Messages} container.
 #'
-#' @param id Reference to link{f7Messages} container.
+#' @param id Reference to \link{f7Messages} container.
 #' @param showTyping Show typing when a new message comes. Default to FALSE.
 #' Does not work yet...
 #' @param messages List of \link{f7Messages}.

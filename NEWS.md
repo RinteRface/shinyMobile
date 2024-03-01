@@ -1,3 +1,16 @@
+# shinyMobile 1.0.1.9000
+
+## New
+- Added webR to pkgdown infrastructure which allows to run shinylive
+apps in the documentation.
+
+## Minor change
+- Add `limit` to `f7AutoComplete()`. Thanks @bthieurmel.
+
+## Bug fixes
+- Fix ignored __height__ in `f7Card()` (Typo).
+- Fix CRAN note.
+
 # shinyMobile 1.0.0
 
 ## New
@@ -52,7 +65,7 @@ This release only fixes an issue with Shiny 1.7.0 with a failing unit [test](htt
 
 # shinyMobile 0.9.0
 
-This release also fixes an issue with R CMD check and [htmltools](https://github.com/RinteRface/shinyMobile/runs/3133178817?check_suite_focus=true#step:10:119)
+This release also fixes an issue with R CMD check and htmltools.
 
 ## Breaking change
 - `f7Link()` __icon__ now expects `f7Icon()`. __label__ is not mandatory anymore.

@@ -1,4 +1,5 @@
 tabInfo <- f7Tab(
+  title = "Info",
   tabName = "Popups",
   icon = f7Icon("info_round_fill"),
 

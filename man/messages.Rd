@@ -37,7 +37,7 @@ updateF7Messages(
 )
 }
 \arguments{
-\item{id}{Reference to link{f7Messages} container.}
+\item{id}{Reference to \link{f7Messages} container.}
 
 \item{title}{Optional messages title.}
 

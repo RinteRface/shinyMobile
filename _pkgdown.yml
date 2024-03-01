@@ -284,13 +284,21 @@ reference:
 
 
 template:
-  params:
-    bootswatch: readable
+  bootstrap: 5
+  bslib:
+    info: "#E6F2FD"
+    pkgdown-nav-height: 100px
+  includes:
+    in_header: >
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
 
-
+navbar:
+  bg: info
+  type: light
 
 news:
  releases:
+ - text: "shinyMobile 1.0.1"
  - text: "shinyMobile 1.0.0"
  - text: "shinyMobile 0.9.1"
  - text: "shinyMobile 0.9.0"
