@@ -14,3 +14,9 @@
 ^tools$
 ^index\.Rmd$
 ^CRAN-SUBMISSION$
+^node_modules$
+^package\.json$
+^package-lock\.json$
+^styles$
+^esbuild\.dev\.json$
+^esbuild\.prod\.json$

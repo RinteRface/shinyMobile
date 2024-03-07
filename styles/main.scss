@@ -1,0 +1,97 @@
+/* Below is the code necessary to handle
+   the sheet modal swipe handler when the
+   sheet is open
+*/
+.swipe-handler:after {
+    content: '';
+    width: 36px;
+    height: 6px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -18px;
+    margin-top: -3px;
+    border-radius: 3px;
+    background: #121212;
+  }
+  
+  .light .split-layout .page-content:not(.login-screen-content, .panel-content),
+  .light .single-layout .page-content:not(.login-screen-content, .panel-content),
+  .light .tab-layout .page-content:not(.login-screen-content, .panel-content),
+  .light div.messages {
+    background-color: gainsboro;
+  }
+  
+  .panel.theme-dark {
+    --f7-panel-bg-color: #000;
+  }
+  
+  .split-layout .view-main {
+    margin-left: 260px;
+  }
+  
+  /* Left Panel right border when it is visible by breakpoint */
+  .split-layout .panel-left.panel-visible-by-breakpoint:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(0,0,0,0.1);
+    content: "";
+    z-index: 6000;
+  }
+  
+  /* Hide navbar link which opens left panel when it is visible by breakpoint */
+  .split-layout .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
+    display: none;
+  }
+  
+  /*
+  Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
+  */
+  .ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
+  .ios .split-layout .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(0,0,0,0.1);
+    content: "";
+    z-index: 6000;
+  }
+  
+  /* FAB label in dark mode */
+  .theme-dark .fab-label {
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Tabs standalone issue */
+  .tabs-standalone {
+    height: auto;
+  }
+  
+  .popup {
+    overflow-y: auto;
+  }
+  
+  .swiper {
+    margin-top: 20px;
+    width: 90%;
+  }
+  
+  .theme-dark .swiper-slide {
+    background-color: #1c1c1d;
+  }
+  
+  .swiper-slide {
+    border-radius: var(--f7-card-border-radius);
+    min-height: 400px;
+  }
+  
+  .light .swiper-slide {
+    background-color: white;
+  }
+  
