@@ -1,4 +1,6 @@
-import "../styles/main.scss";
+import '../node_modules/framework7/framework7-bundle.min.css';
+import '../styles/main.scss';
+
 import './init-new.js';
 // To do: update and add app.js
 import './bindings/actionSheetInputBinding.js';

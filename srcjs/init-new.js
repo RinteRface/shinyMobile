@@ -1,4 +1,5 @@
 // Import helper functions
+import Framework7 from 'framework7/bundle'
 import { setConfig } from './helpers/helpers-config.js';
 import { initTheme } from './helpers/helpers-theme.js';
 import { setPWA } from './helpers/helpers-pwa.js';

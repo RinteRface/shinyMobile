@@ -174,7 +174,6 @@ f7Page <- function(
     # Body
     add_dependencies(
       deps = c(
-        "framework7",
         "shinyMobile",
         pwaDeps,
         "f7icons"
