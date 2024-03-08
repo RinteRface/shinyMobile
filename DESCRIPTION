@@ -35,5 +35,6 @@ Suggests:
     apexcharter,
     ggplot2,
     dplyr,
-    bslib
+    bslib,
+    shinytest2
 VignetteBuilder: knitr

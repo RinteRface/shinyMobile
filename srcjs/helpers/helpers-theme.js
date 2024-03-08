@@ -1,6 +1,7 @@
  
 // Style for touch plugin
 const setTouchStyle = (config) => {
+    // TO DO: check whether we still need this ...
     if (config.hasOwnProperty("touch")) {
       if (config.touch.tapHold) {
         $("<style>")

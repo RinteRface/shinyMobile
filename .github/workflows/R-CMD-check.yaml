@@ -43,6 +43,7 @@ jobs:
         with:
           extra-packages: |
             rcmdcheck
+            local::.
 
       - uses: r-lib/actions/check-r-package@v2
 

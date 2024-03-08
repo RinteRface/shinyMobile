@@ -1,0 +1,15 @@
+{
+  "input": {
+    "go": 1,
+    "myaccordion1": {
+      "state": true,
+      "value": "Item 2"
+    }
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}

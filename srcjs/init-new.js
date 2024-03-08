@@ -17,25 +17,4 @@ $( document ).ready(function() {
   setCustomDisconnect(app);
   // PWA setup
   setPWA(app);
-
-  app.notification.create({
-    text: 'Hello, how are you?',
-    on: {
-      opened: function () {
-        console.log('Notification opened');
-      }
-    }
-  }).open();
-
-  // equivalent to setTimeout ...
-  app.utils.nextTick(function() {
-    app.notification.create({
-      text: 'You look great!'
-    }).open();
-  }, 2000);
-
-  // taphold test
-  $('#mybutton').on('taphold', function () {
-    app.dialog.alert('Tap hold fired!');
-  });
 });

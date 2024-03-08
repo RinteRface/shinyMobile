@@ -8,39 +8,7 @@
 #'
 #' @rdname accordion
 #'
-#' @examples
-#' # Accordion
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Accordions",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar("Accordions"),
-#'         f7Accordion(
-#'           id = "myaccordion1",
-#'           f7AccordionItem(
-#'             title = "Item 1",
-#'             f7Block("Item 1 content"),
-#'             open = TRUE
-#'           ),
-#'           f7AccordionItem(
-#'             title = "Item 2",
-#'             f7Block("Item 2 content")
-#'           )
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       observe({
-#'         print(input$myaccordion1)
-#'       })
-#'     }
-#'   )
-#' }
-#'
+#' @example inst/examples/accordion/app.R
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -59,8 +27,6 @@ f7Accordion <- function(..., id = NULL, side = c("right", "left")) {
     class = "collapsible"
   )
 }
-
-
 
 #' Framework7 accordion item
 #'
@@ -93,10 +59,6 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
   )
 }
 
-
-
-
-
 #' Update Framework 7 accordion
 #'
 #' \link{updateF7Accordion} toggles an \link{f7Accordion} on the client.
@@ -107,49 +69,6 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #'
 #' @export
 #' @rdname accordion
-#'
-#' @examples
-#' # Update accordion
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Accordions",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar("Accordions"),
-#'         f7Button(inputId = "go", "Go"),
-#'         f7Accordion(
-#'           id = "myaccordion1",
-#'           f7AccordionItem(
-#'             title = "Item 1",
-#'             f7Block("Item 1 content"),
-#'             open = TRUE
-#'           ),
-#'           f7AccordionItem(
-#'             title = "Item 2",
-#'             f7Block("Item 2 content")
-#'           )
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       observeEvent(input$go, {
-#'         updateF7Accordion(id = "myaccordion1", selected = 2)
-#'       })
-#'
-#'       observe({
-#'         print(
-#'           list(
-#'             accordion1_state = input$myaccordion1$state,
-#'             accordion1_values = unlist(input$myaccordion1$value)
-#'           )
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Accordion <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <- list(selected = selected)
   session$sendInputMessage(id, message)

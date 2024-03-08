@@ -53,3 +53,21 @@ test_that("update", {
   expect_equal(result$message$selected, 1)
   expect_equal(result$id, "accordion")
 })
+
+library(shinytest2)
+test_that("accordion works as expected", {
+  # Don't run these tests on the CRAN build servers
+  skip_on_cran()
+  shiny_app_path <-
+    system.file("examples/accordion/app.R", package = "shinyMobile")
+  app <- AppDriver$new(
+    shiny_app_path,
+    name = "accordion-app",
+    variant = platform_variant(),
+  )
+  app$expect_values()
+  app$click(selector = "#go")
+  # Animation/transition takes a bit of time
+  app$wait_for_idle(1000)
+  app$expect_values()
+})
