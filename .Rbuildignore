@@ -11,7 +11,6 @@
 ^\.github$
 ^CODE_OF_CONDUCT\.md$
 ^srcjs$
-^tools$
 ^index\.Rmd$
 ^CRAN-SUBMISSION$
 ^node_modules$
