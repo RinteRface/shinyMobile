@@ -8,7 +8,7 @@
 #' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
 #' notable options. General options:
 #' \itemize{
-#'  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
+#'  \item \code{theme}: App skin: "ios", "md", or "auto".
 #'  \item \code{dark}: Dark layout. TRUE or FALSE.
 #'  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
 #'  This is a preloading effect. Not compatible with preloader.
@@ -56,7 +56,7 @@ f7Page <- function(
     title = NULL,
     # default options
     options = list(
-      theme = c("auto", "ios", "md", "aurora"),
+      theme = c("auto", "ios", "md"),
       dark = TRUE,
       skeletonsOnLoad = FALSE,
       preloader = FALSE,

@@ -22,7 +22,7 @@ shinyApp(
   ui = f7Page(
     title = "Split layout",
     options = list(
-      theme = "aurora",
+      theme = "auto",
       dark = TRUE,
       filled = FALSE,
       color = "#007aff",

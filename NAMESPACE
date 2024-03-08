@@ -3,6 +3,8 @@
 export("%>%")
 export(addF7Popover)
 export(addF7Tooltip)
+export(add_framework7_deps)
+export(add_shinyMobile_deps)
 export(create_manifest)
 export(f7Accordion)
 export(f7AccordionItem)

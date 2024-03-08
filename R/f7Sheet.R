@@ -11,8 +11,7 @@
 #' @param swipeToStep If TRUE then sheet will be opened partially,
 #' and with swipe it can be further expanded.
 #' @param backdrop Enables Sheet backdrop (dark semi transparent layer
-#' behind). By default it is TRUE for MD and Aurora themes and
-#' FALSE for iOS theme.
+#' behind). By default it is true for MD theme and false for iOS theme.
 #' @param closeByOutsideClick When enabled, sheet will be closed on
 #' when click outside of it.
 #' @param swipeHandler Whether to display a swipe handler. TRUE by default.

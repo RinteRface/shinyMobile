@@ -35,8 +35,7 @@ swipeToStep is TRUE. Default to NULL.}
 and with swipe it can be further expanded.}
 
 \item{backdrop}{Enables Sheet backdrop (dark semi transparent layer
-behind). By default it is TRUE for MD and Aurora themes and
-FALSE for iOS theme.}
+behind). By default it is true for MD theme and false for iOS theme.}
 
 \item{closeByOutsideClick}{When enabled, sheet will be closed on
 when click outside of it.}

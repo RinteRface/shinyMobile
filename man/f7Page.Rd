@@ -7,11 +7,11 @@
 f7Page(
   ...,
   title = NULL,
-  options = list(theme = c("auto", "ios", "md", "aurora"), dark = TRUE, skeletonsOnLoad =
-    FALSE, preloader = FALSE, filled = FALSE, color = "#007aff", touch = list(tapHold =
-    TRUE, tapHoldDelay = 750, iosTouchRipple = FALSE), iosTranslucentBars = FALSE, navbar
-    = list(iosCenterTitle = TRUE, hideOnPageScroll = TRUE), toolbar =
-    list(hideOnPageScroll = FALSE), pullToRefresh = FALSE),
+  options = list(theme = c("auto", "ios", "md"), dark = TRUE, skeletonsOnLoad = FALSE,
+    preloader = FALSE, filled = FALSE, color = "#007aff", touch = list(tapHold = TRUE,
+    tapHoldDelay = 750, iosTouchRipple = FALSE), iosTranslucentBars = FALSE, navbar =
+    list(iosCenterTitle = TRUE, hideOnPageScroll = TRUE), toolbar = list(hideOnPageScroll
+    = FALSE), pullToRefresh = FALSE),
   allowPWA = FALSE
 )
 }
@@ -24,7 +24,7 @@ f7Page(
 \item{options}{shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
 notable options. General options:
 \itemize{
- \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
+ \item \code{theme}: App skin: "ios", "md", or "auto".
  \item \code{dark}: Dark layout. TRUE or FALSE.
  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
  This is a preloading effect. Not compatible with preloader.

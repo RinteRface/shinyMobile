@@ -27,12 +27,12 @@ library(bslib)
   
 ## Custom skins
 
-`{shinyMobile}` offers 3 skins:
+`{shinyMobile}` offers 2 skins:
 
-  - __aurora__ for desktop apps.
-  - __ios__ and __md__ for mobile apps.
+  - __ios__ 
+  - __md__ 
 
-It automatically detects if the app is running with android or iOS and accordingly adapts the layout. It is of course possible to apply the iOS skin on an android device and inversely, although not recommended.
+It automatically detects if the app is running with android or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS skin on an android device and inversely, although not recommended.
 
 `{shinyMobile}` also provides 2 themes, namely light and dark.
 
@@ -47,7 +47,7 @@ It automatically detects if the app is running with android or iOS and according
 ## UI elements
 ### Inputs: brief comparison side by side with `{shiny}`
 
-`{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android/aurora). Below we summarise all known shiny inputs and their
+`{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android). Below we summarise all known shiny inputs and their
 equivalent with `{shinyMobile}`.
 
 |  Features (sample)  |      shiny      |  shinyMobile |
@@ -520,7 +520,7 @@ shinyApp(
   ui = f7Page(
     title = "My app",
     options = list(
-      theme = "aurora",
+      theme = "auto",
       dark = TRUE,
       filled = FALSE,
       color = "#007aff",
@@ -668,7 +668,7 @@ This is where you can customize the global app behavior:
 
 ```{r, eval=FALSE}
 options = list(
-    theme = c("ios", "md", "auto", "aurora"),
+    theme = c("ios", "md", "auto"),
     dark = TRUE,
     filled = FALSE,
     color = "#007aff",
