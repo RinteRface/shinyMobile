@@ -1,3 +1,10 @@
+# shinyMobile 1.1.0
+## New
+- Update framework7 from 5.7.14 to 8.3.2
+
+## Breaking changes
+- The aurora theme has been removed. Supported themes are now: ios, md and auto. In case of auto it will use iOS theme for iOS devices and MD theme for all other devices.
+
 # shinyMobile 1.0.1
 
 ## New
