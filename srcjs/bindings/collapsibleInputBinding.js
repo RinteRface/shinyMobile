@@ -34,7 +34,7 @@ $.extend(f7CollapsibleBinding, {
       var accordionId = $($(el)[0]).attr('id');
       var items = $('#' + accordionId + ' .accordion-item');
       var idx = data.selected - 1;
-      var target = $(items[idx]);
+      var target = $(items[idx])[0];
       app.accordion.toggle(target);
     }
   },
