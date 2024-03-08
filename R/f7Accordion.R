@@ -4,83 +4,60 @@
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
 #' @param id Optional id to recover the state of the accordion.
-#' @param multiCollapse Whether to open multiple items at the same time. FALSE
-#' by default.
+#' @param side Accordion collapse toggle side. Default to right.
 #'
 #' @rdname accordion
 #'
 #' @examples
 #' # Accordion
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Accordions",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar("Accordions"),
-#'      f7Accordion(
-#'       id = "myaccordion1",
-#'       f7AccordionItem(
-#'        title = "Item 1",
-#'        f7Block("Item 1 content"),
-#'        open = TRUE
-#'       ),
-#'       f7AccordionItem(
-#'        title = "Item 2",
-#'        f7Block("Item 2 content")
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Accordions",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar("Accordions"),
+#'         f7Accordion(
+#'           id = "myaccordion1",
+#'           f7AccordionItem(
+#'             title = "Item 1",
+#'             f7Block("Item 1 content"),
+#'             open = TRUE
+#'           ),
+#'           f7AccordionItem(
+#'             title = "Item 2",
+#'             f7Block("Item 2 content")
+#'           )
+#'         )
 #'       )
-#'      ),
-#'      f7Accordion(
-#'       multiCollapse = TRUE,
-#'       inputId = "myaccordion2",
-#'       f7AccordionItem(
-#'        title = "Item 1",
-#'        f7Block("Item 1 content")
-#'       ),
-#'       f7AccordionItem(
-#'        title = "Item 2",
-#'        f7Block("Item 2 content")
-#'       )
-#'      )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'    observe({
-#'     print(
-#'      list(
-#'       accordion1 = input$myaccordion1,
-#'       accordion2 = input$myaccordion2
-#'      )
-#'     )
-#'    })
-#'   }
-#'  )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observe({
+#'         print(input$myaccordion1)
+#'       })
+#'     }
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Accordion <- function(..., id = NULL, multiCollapse = FALSE) {
+f7Accordion <- function(..., id = NULL, side = c("right", "left")) {
+  side <- match.arg(side)
+  cl <- "list list-strong list-outline-ios list-dividers-ios inset-md accordion-list"
+  if (side == "left") cl <- sprintf("%s accordion-opposite", cl)
+  accordionTag <- shiny::tags$div(
+    class = cl,
+    shiny::tags$ul(...)
+  )
 
-  accordionTag <- if (multiCollapse) {
-    shiny::tags$div(
-      class = "list",
-      shiny::tags$ul(...)
-    )
-  } else {
-    shiny::tags$div(
-      class = "list accordion-list",
-      shiny::tags$ul(...)
-    )
-  }
-
- tagAppendAttributes(
-   accordionTag,
-   id = id,
-   class = "collapsible"
- )
+  tagAppendAttributes(
+    accordionTag,
+    id = id,
+    class = "collapsible"
+  )
 }
 
 
@@ -96,7 +73,6 @@ f7Accordion <- function(..., id = NULL, multiCollapse = FALSE) {
 #' @export
 #' @rdname accordion
 f7AccordionItem <- function(..., title = NULL, open = FALSE) {
-
   accordionCl <- "accordion-item"
   if (open) accordionCl <- paste0(accordionCl, " accordion-item-opened")
 
@@ -104,7 +80,6 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
   shiny::tags$li(
     class = accordionCl,
     shiny::tags$a(
-      href = "#",
       class = "item-content item-link",
       shiny::tags$div(
         class = "item-inner",
@@ -136,47 +111,46 @@ f7AccordionItem <- function(..., title = NULL, open = FALSE) {
 #' @examples
 #' # Update accordion
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Accordions",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar("Accordions"),
-#'        f7Button(inputId = "go", "Go"),
-#'        f7Accordion(
-#'          id = "myaccordion1",
-#'          f7AccordionItem(
-#'            title = "Item 1",
-#'            f7Block("Item 1 content"),
-#'            open = TRUE
-#'          ),
-#'          f7AccordionItem(
-#'            title = "Item 2",
-#'            f7Block("Item 2 content")
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Accordions",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar("Accordions"),
+#'         f7Button(inputId = "go", "Go"),
+#'         f7Accordion(
+#'           id = "myaccordion1",
+#'           f7AccordionItem(
+#'             title = "Item 1",
+#'             f7Block("Item 1 content"),
+#'             open = TRUE
+#'           ),
+#'           f7AccordionItem(
+#'             title = "Item 2",
+#'             f7Block("Item 2 content")
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$go, {
+#'         updateF7Accordion(id = "myaccordion1", selected = 2)
+#'       })
 #'
-#'      observeEvent(input$go, {
-#'        updateF7Accordion(id = "myaccordion1", selected = 2)
-#'      })
-#'
-#'      observe({
-#'        print(
-#'          list(
-#'            accordion1_state = input$myaccordion1$state,
-#'            accordion1_values = unlist(input$myaccordion1$value)
-#'          )
-#'        )
-#'      })
-#'    }
-#'  )
+#'       observe({
+#'         print(
+#'           list(
+#'             accordion1_state = input$myaccordion1$state,
+#'             accordion1_values = unlist(input$myaccordion1$value)
+#'           )
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Accordion <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
-  message <-list(selected = selected)
+  message <- list(selected = selected)
   session$sendInputMessage(id, message)
 }
