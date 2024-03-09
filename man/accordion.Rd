@@ -6,7 +6,7 @@
 \alias{updateF7Accordion}
 \title{Framework7 accordion container}
 \usage{
-f7Accordion(..., id = NULL, side = c("right", "left"))
+f7Accordion(..., id = NULL, multiCollapse = FALSE, side = c("right", "left"))
 
 f7AccordionItem(..., title = NULL, open = FALSE)
 
@@ -20,6 +20,9 @@ updateF7Accordion(
 \item{...}{Item content such as \link{f7Block} or any f7 element.}
 
 \item{id}{Accordion instance.}
+
+\item{multiCollapse}{`r lifecycle::badge("deprecated")`:
+removed from Framework7.}
 
 \item{side}{Accordion collapse toggle side. Default to right.}
 
@@ -39,79 +42,37 @@ updateF7Accordion(
 \link{updateF7Accordion} toggles an \link{f7Accordion} on the client.
 }
 \examples{
-# Accordion
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "Accordions",
-      f7SingleLayout(
-        navbar = f7Navbar("Accordions"),
-        f7Accordion(
-          id = "myaccordion1",
-          f7AccordionItem(
-            title = "Item 1",
-            f7Block("Item 1 content"),
-            open = TRUE
-          ),
-          f7AccordionItem(
-            title = "Item 2",
-            f7Block("Item 2 content")
-          )
+app <- shinyApp(
+  ui = f7Page(
+    title = "Accordions",
+    f7SingleLayout(
+      navbar = f7Navbar("Accordions"),
+      f7Segment(f7Button(inputId = "go", "Go")),
+      f7Accordion(
+        id = "myaccordion1",
+        f7AccordionItem(
+          title = "Item 1",
+          f7Block("Item 1 content"),
+          open = TRUE
+        ),
+        f7AccordionItem(
+          title = "Item 2",
+          f7Block("Item 2 content")
         )
       )
-    ),
-    server = function(input, output, session) {
-      observe({
-        print(input$myaccordion1)
-      })
-    }
-  )
-}
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$go, {
+      updateF7Accordion(id = "myaccordion1", selected = 2)
+    })
+  }
+)
 
-# Update accordion
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-
-  shinyApp(
-    ui = f7Page(
-      title = "Accordions",
-      f7SingleLayout(
-        navbar = f7Navbar("Accordions"),
-        f7Button(inputId = "go", "Go"),
-        f7Accordion(
-          id = "myaccordion1",
-          f7AccordionItem(
-            title = "Item 1",
-            f7Block("Item 1 content"),
-            open = TRUE
-          ),
-          f7AccordionItem(
-            title = "Item 2",
-            f7Block("Item 2 content")
-          )
-        )
-      )
-    ),
-    server = function(input, output, session) {
-      observeEvent(input$go, {
-        updateF7Accordion(id = "myaccordion1", selected = 2)
-      })
-
-      observe({
-        print(
-          list(
-            accordion1_state = input$myaccordion1$state,
-            accordion1_values = unlist(input$myaccordion1$value)
-          )
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

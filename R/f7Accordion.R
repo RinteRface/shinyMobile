@@ -4,6 +4,8 @@
 #'
 #' @param ... Slot for \link{f7AccordionItem}.
 #' @param id Optional id to recover the state of the accordion.
+#' @param multiCollapse `r lifecycle::badge("deprecated")`:
+#' removed from Framework7.
 #' @param side Accordion collapse toggle side. Default to right.
 #'
 #' @rdname accordion
@@ -12,7 +14,16 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Accordion <- function(..., id = NULL, side = c("right", "left")) {
+#' @importFrom lifecycle deprecated
+f7Accordion <- function(..., id = NULL, multiCollapse = deprecated(), side = c("right", "left")) {
+  lifecycle::deprecate_warn(
+    when = "1.1.0",
+    what = "f7Accordion(multiCollapse)",
+    details = "multiCollapse has been
+    removed from Framework7 and will be removed from shinyMobile
+    in the next release."
+  )
+
   side <- match.arg(side)
   cl <- "list list-strong list-outline-ios list-dividers-ios inset-md accordion-list"
   if (side == "left") cl <- sprintf("%s accordion-opposite", cl)

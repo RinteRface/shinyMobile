@@ -1,7 +1,7 @@
 library(shiny)
 library(shinyMobile)
 
-shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Accordions",
     f7SingleLayout(
@@ -27,3 +27,5 @@ shinyApp(
     })
   }
 )
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
