@@ -68,7 +68,7 @@ when user is on top/bottom of the messages view.}
 
 \item{textFooter}{Message text footer.}
 
-\item{image}{Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.}
+\item{image}{Message image HTML string, e.g. \if{html}{\out{<img src="path/to/image">}}. Can be used instead of imageSrc parameter.}
 
 \item{imageSrc}{Message image URL string. Can be used instead of image parameter.}
 

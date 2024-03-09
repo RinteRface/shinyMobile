@@ -14,7 +14,6 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-#' @importFrom lifecycle deprecated
 f7Accordion <- function(..., id = NULL, multiCollapse = deprecated(), side = c("right", "left")) {
   lifecycle::deprecate_warn(
     when = "1.1.0",

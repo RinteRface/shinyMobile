@@ -22,7 +22,7 @@ new icons from now. This parameter will be removed in a future release.}
 }
 \description{
 Use Framework7 icons in shiny applications,
- see complete list of icons here : \url{https://framework7.io/icons/}.
+see complete list of icons here : \url{https://framework7.io/icons/}.
 }
 \examples{
 if(interactive()){

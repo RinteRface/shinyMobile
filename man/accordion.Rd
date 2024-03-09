@@ -6,7 +6,12 @@
 \alias{updateF7Accordion}
 \title{Framework7 accordion container}
 \usage{
-f7Accordion(..., id = NULL, multiCollapse = FALSE, side = c("right", "left"))
+f7Accordion(
+  ...,
+  id = NULL,
+  multiCollapse = deprecated(),
+  side = c("right", "left")
+)
 
 f7AccordionItem(..., title = NULL, open = FALSE)
 
@@ -21,7 +26,7 @@ updateF7Accordion(
 
 \item{id}{Accordion instance.}
 
-\item{multiCollapse}{`r lifecycle::badge("deprecated")`:
+\item{multiCollapse}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 removed from Framework7.}
 
 \item{side}{Accordion collapse toggle side. Default to right.}

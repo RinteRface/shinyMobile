@@ -38,3 +38,4 @@ Suggests:
     bslib,
     shinytest2
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

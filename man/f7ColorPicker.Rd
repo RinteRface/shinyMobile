@@ -36,14 +36,14 @@ of color vectors, each value specified as HEX string.}
 
 \item{sliderValue}{When enabled, it will display sliders values.}
 
-\item{sliderValueEditable}{When enabled, it will display sliders values as <input>
+\item{sliderValueEditable}{When enabled, it will display sliders values as \if{html}{\out{<input>}}
 elements to edit directly.}
 
 \item{sliderLabel}{When enabled, it will display sliders labels with text.}
 
 \item{hexLabel}{When enabled, it will display HEX module label text, e.g. HEX.}
 
-\item{hexValueEditable}{When enabled, it will display HEX module value as <input> element to edit directly.}
+\item{hexValueEditable}{When enabled, it will display HEX module value as \if{html}{\out{<input>}} element to edit directly.}
 
 \item{groupedModules}{When enabled it will add more exposure
 to sliders modules to make them look more separated.}

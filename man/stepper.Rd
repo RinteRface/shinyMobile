@@ -51,7 +51,7 @@ updateF7Stepper(
 
 \item{max}{Stepper maximum value.}
 
-\item{value}{Stepper value. Must belong to \[min, max\].}
+\item{value}{Stepper value. Must belong to [min, max].}
 
 \item{step}{increment step. 1 by default.}
 
