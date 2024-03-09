@@ -1,39 +1,39 @@
 #' File Upload Control
 #'
 #' Create a file upload control that can be used
-#'to upload one or more files.
+#' to upload one or more files.
 #'
 #' @param inputId The input slot that will be used to access the value.
 #' @param label Display label for the control, or NULL for no label.
 #' @param multiple Whether the user should be allowed to select and
 #' upload multiple files at once. Does not work on older browsers, including Internet Explorer 9 and earlier.
 #' @param accept A character vector of MIME types; gives the browser a hint of what kind of files the server is expecting.
-#' @param width The width of the input, e.g. 400px, or 100\%.
+#' @param width The width of the input, e.g. 400px.
 #' @param buttonLabel The label used on the button. Can be text or an HTML tag object.
 #' @param placeholder The text to show before a file has been uploaded.
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  ui = f7Page(
-#'    f7SingleLayout(
-#'      navbar = f7Navbar(title = "File handling"),
-#'      f7File("up", "Upload!")
-#'    )
-#'  )
+#'   ui <- f7Page(
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "File handling"),
+#'       f7File("up", "Upload!")
+#'     )
+#'   )
 #'
-#'  server = function(input, output) {
-#'    data <- reactive(input$up)
-#'    observe(print(data()))
-#'  }
+#'   server <- function(input, output) {
+#'     data <- reactive(input$up)
+#'     observe(print(data()))
+#'   }
 #'
-#'  shinyApp(ui, server)
+#'   shinyApp(ui, server)
 #' }
 f7File <- function(inputId, label, multiple = FALSE, accept = NULL, width = NULL,
-                      buttonLabel = "Browse...", placeholder = "No file selected") {
+                   buttonLabel = "Browse...", placeholder = "No file selected") {
   restoredValue <- shiny::restoreInput(id = inputId, default = NULL)
   if (!is.null(restoredValue) && !is.data.frame(restoredValue)) {
     warning("Restored value for ", inputId, " has incorrect format.")
@@ -73,4 +73,3 @@ f7File <- function(inputId, label, multiple = FALSE, accept = NULL, width = NULL
     ), class = "shiny-file-input-progress"
   ))
 }
-
