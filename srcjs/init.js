@@ -4,6 +4,7 @@ import { setConfig } from './helpers/helpers-config.js';
 import { initTheme } from './helpers/helpers-theme.js';
 import { setPWA } from './helpers/helpers-pwa.js';
 import { setCustomDisconnect } from './helpers/helpers-disconnect.js';
+import { setStyles } from './helpers/helpers-styles.js';
 
 let appInstance;
 
@@ -19,6 +20,8 @@ $( document ).ready(function() {
   setCustomDisconnect(app);
   // PWA setup
   setPWA(app);
+  // Set styles
+  setStyles(app);
 });
 
 export function getAppInstance() {
