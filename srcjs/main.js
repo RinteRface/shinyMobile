@@ -1,8 +1,9 @@
 import '../node_modules/framework7/framework7-bundle.min.css';
 import '../styles/main.scss';
 
-import './init-new.js';
-// To do: update and add app.js
+import './init.js';
+// TODO: modularize app.js
+import './app.js';
 import './bindings/actionSheetInputBinding.js';
 import './bindings/autoCompleteInputBinding.js';
 import './bindings/buttonInputBinding.js';

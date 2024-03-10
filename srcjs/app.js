@@ -1,4 +1,10 @@
+import Framework7 from 'framework7/bundle'
+import { getAppInstance } from './init.js'
+
 $(function() {
+
+  const app = getAppInstance();
+
   // utility to reset the input system
   // whenever elements are added on the fly to the UI
   function shinyInputsReset() {
@@ -185,15 +191,15 @@ $(function() {
     // Recover in which array is stored the given instance.
     // Uniqueness is ensured since HTML id are supposed to be unique.
     var instanceFamily;
-    for (const property in app.data) {
-      for (const e in app.data[property]) {
+    for (const property in app.store.state) {
+      for (const e in app.store.state[property]) {
         if (e === message.id) {
           instanceFamily = property;
         }
       }
     }
 
-    var oldInstance = app.data[instanceFamily][message.id];
+    var oldInstance = app.store.state[instanceFamily][message.id];
     var oldConfig = oldInstance.params;
     var newConfig = app.utils.extend(oldConfig,  message.options);
 
@@ -202,7 +208,7 @@ $(function() {
     // Create new config
     var newInstance = app[instanceFamily].create(newConfig);
     // Update app data
-    app.data[instanceFamily][message.id] = newInstance;
+    app.store.state[instanceFamily][message.id] = newInstance;
   });
 
 
@@ -316,7 +322,7 @@ $(function() {
   Shiny.addCustomMessageHandler('add_popover', function(message) {
     // We store all created instances in app data so that we don't
     // recreate them later if they exist ...
-    if (app.data.popovers[message.targetEl] === undefined) {
+    if (app.store.state.popovers[message.targetEl] === undefined) {
       // Only create if popover is enable for the current targetEl
       if (!$(message.targetEl).hasClass('popover-disabled')) {
         // popover HTML layout
@@ -343,12 +349,12 @@ $(function() {
         // Open popover
         p.open();
         // Storage in app data (popovers array)
-        app.data.popovers[message.targetEl] = p;
+        app.store.state.popovers[message.targetEl] = p;
         }
     } else {
       // Only show if popover is enable for the current targetEl
       if (!$(message.targetEl).hasClass('popover-disabled')) {
-        app.data.popovers[message.targetEl].open();
+        app.store.state.popovers[message.targetEl].open();
       }
     }
   });
@@ -364,18 +370,18 @@ $(function() {
   Shiny.addCustomMessageHandler('add_tooltip', function(message) {
     // We store all created instances in app data so that we don't
     // recreate them later if they exist ...
-    if (app.data.tooltips[message.targetEl] === undefined) {
+    if (app.store.state.tooltips[message.targetEl] === undefined) {
       // create instance
       var t = app.tooltip.create(message);
       // Open tooltip
       t.show();
       // Storage in app data (tooltips array)
-      app.data.tooltips[message.targetEl] = t;
+      app.store.state.tooltips[message.targetEl] = t;
     }
   });
 
   Shiny.addCustomMessageHandler('update_tooltip', function(message) {
-    if (app.data.tooltips[message.targetEl] !== undefined) {
+    if (app.store.state.tooltips[message.targetEl] !== undefined) {
       // Try to get the instance
       var t = app.tooltip.get(message.targetEl);
       if (message.action === "update") {
@@ -387,15 +393,15 @@ $(function() {
           // create copy that won't be modified if t is destroyed!
           var cachedTooltip = Object.assign({}, t);
           // save copy to replace the deleted one in the app data
-          app.data.tooltips[message.targetEl] = cachedTooltip;
+          app.store.state.tooltips[message.targetEl] = cachedTooltip;
           // destroy current instance
           t.destroy();
         } else {
           // Parameters
-          var pars = app.data.tooltips[message.targetEl].params;
+          var pars = app.store.state.tooltips[message.targetEl].params;
           // recreate the tooltip based on the copy configuration
           t = app.tooltip.create(pars);
-          app.data.tooltips[message.targetEl] = t;
+          app.store.state.tooltips[message.targetEl] = t;
         }
       }
     }
@@ -780,7 +786,7 @@ $(function() {
   // handle action sheet
   Shiny.addCustomMessageHandler("action-sheet", function(message) {
     // Only create action sheet whenever necessary
-    if (app.data.actions[message.id] === undefined) {
+    if (app.store.state.actions[message.id] === undefined) {
       var buttonsId = message.id + "_button";
 
       // define function that set an inputvalue those name depends on an index
@@ -822,21 +828,21 @@ $(function() {
       var a = app.actions.create(message)
       a.open();
       // save action sheet to app data to update it later
-      app.data.actions[message.id] = a;
+      app.store.state.actions[message.id] = a;
 
     } else {
-      app.data.actions[message.id].open();
+      app.store.state.actions[message.id].open();
     }
   });
 
 
   Shiny.addCustomMessageHandler("update-action-sheet", function(message) {
     // Destroy old instance
-    app.data.actions[message.id].destroy();
+    app.store.state.actions[message.id].destroy();
     // Create new config
     var a = app.actions.create(message);
     // Update app data
-    app.data.actions[message.id] = a;
+    app.store.state.actions[message.id] = a;
   });
 
 
