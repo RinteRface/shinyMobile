@@ -65,9 +65,9 @@ test_that("accordion works as expected", {
     name = "accordion-app",
     variant = platform_variant(),
   )
-  app$expect_values()
+  app$expect_values(input = "myaccordion1")
   app$click(selector = "#go")
   # Animation/transition takes a bit of time
   app$wait_for_idle(1000)
-  app$expect_values()
+  app$expect_values(input = "myaccordion1")
 })
