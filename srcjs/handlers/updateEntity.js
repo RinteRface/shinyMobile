@@ -3,6 +3,7 @@ import { getAppInstance } from "../init.js";
 $(function() {
   const app = getAppInstance();
 
+    // Update configuration (see updateF7Entity)
     Shiny.addCustomMessageHandler('update-entity', function(message) {
     // Recover in which array is stored the given instance.
     // Uniqueness is ensured since HTML id are supposed to be unique.
