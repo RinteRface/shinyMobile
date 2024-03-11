@@ -7,6 +7,7 @@ import './navbar.js';
 import './popover.js';
 import './preloader.js';
 import './progress.js';
+import './pullToRefresh.js';
 import './skeleton.js';
 import './subNavbar.js';
 import './swipeout.js';
