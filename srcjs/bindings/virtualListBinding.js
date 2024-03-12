@@ -1,80 +1,111 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7VirtualListBinding = new Shiny.InputBinding();
 
 $.extend(f7VirtualListBinding, {
-
   // decode html so that images tag are converted to strings
-  decodeHTML: function (html) {
-    var txt = document.createElement('textarea');
-	  txt.innerHTML = html;
-	  return txt.value;
+  decodeHTML: function(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
   },
 
   initialize: function(el) {
-    var id = $(el).attr('id');
+    const app = getAppInstance();
+    var id = $(el).attr("id");
     var config = $(el).find("script[data-for='" + id + "']");
     config = JSON.parse(config.html());
 
-    config.el = '#' + id;
+    config.el = "#" + id;
+
+    var self = this; // Store reference to 'this'
 
     // treat all item images
     for (var item of config.items) {
       if (item.media.length > 0) {
-        item.media = '<div class="item-media">' + this.decodeHTML(item.media) + '</div>';
+        item.media =
+          '<div class="item-media">' + self.decodeHTML(item.media) + "</div>";
       }
     }
 
-    var template;
-    if (config.items[0].url === undefined) {
-        template = '<li>' +
-  '<div class="item-content">' +
-    '{{media}}' +
-    '<div class="item-inner">' +
-      '<div class="item-title-row">' +
+    // Function to render each item
+    function renderItem(item) {
+      var media =
+        item.media.length > 0
+          ? '<div class="item-media">' + item.media + "</div>"
+          : "";
+      var template =
+        '<div class="item-content">' +
+        media +
+        '<div class="item-inner">' +
+        '<div class="item-title-row">' +
         '<div class="item-title">' +
-          '<div class="item-header">{{header}}</div>' +
-          '{{title}}' +
-          '<div class="item-footer">{{footer}}</div>' +
-        '</div>' +
-        '<div class="item-after">{{right}}</div>' +
-      '</div>' +
-      '<div class="item-subtitle">{{subtitle}}</div>' +
-      '<div class="item-text">{{content}}</div>' +
-    '</div>' +
-  '</div>' +
-'</li>';
+        '<div class="item-header">' +
+        item.header +
+        "</div>" +
+        item.title +
+        '<div class="item-footer">' +
+        item.footer +
+        "</div>" +
+        "</div>" +
+        '<div class="item-after">' +
+        item.right +
+        "</div>" +
+        "</div>" +
+        '<div class="item-subtitle">' +
+        item.subtitle +
+        "</div>" +
+        '<div class="item-text">' +
+        item.content +
+        "</div>" +
+        "</div>" +
+        "</div>";
+      if (item.url === undefined) {
+        return "<li>" + template + "</li>";
       } else {
-        template = '<li>' +
-  '<a class="item-link item-content external" href="url" target="_blank">' +
-    '{{media}}' +
-    '<div class="item-inner">' +
-      '<div class="item-title-row">' +
-        '<div class="item-title">' +
-          '<div class="item-header">{{header}}</div>' +
-          '{{title}}' +
-          '<div class="item-footer">{{footer}}</div>' +
-        '</div>' +
-        '<div class="item-after">{{right}}</div>' +
-      '</div>' +
-      '<div class="item-subtitle">{{subtitle}}</div>' +
-      '<div class="item-text">{{content}}</div>' +
-    '</div>' +
-  '</a>' +
-'</li>';
+        return (
+          "<li>" +
+          '<a class="item-link item-content external" href="' +
+          item.url +
+          '" target="_blank">' +
+          template +
+          "</a>" +
+          "</li>"
+        );
       }
-    config.itemTemplate = template;
+    }
+
+    config.renderItem = renderItem;
 
     // Custom search function for searchbar
-    config.searchAll = function (query, items) {
+    config.searchAll = function(query, items) {
       var found = [];
       for (var i = 0; i < items.length; i++) {
-        if (items[i].title.toLowerCase().indexOf(query.toLowerCase()) >= 0 || query.trim() === '') found.push(i);
+        if (
+          items[i].title.toLowerCase().indexOf(query.toLowerCase()) >= 0 ||
+          query.trim() === ""
+        )
+          found.push(i);
       }
       return found; //return array with mathced indexes
     };
 
     // Item height
-    config.height = config.items[0].media !== undefined ? app.theme === 'ios' ? 112 : (app.theme === 'md' ? 132 : 78) : (app.theme === 'ios' ? 63 : (app.theme === 'md' ? 73 : 46));
+    config.height =
+      config.items[0].media !== undefined
+        ? app.theme === "ios"
+          ? 112
+          : app.theme === "md"
+          ? 132
+          : 78
+        : app.theme === "ios"
+        ? 63
+        : app.theme === "md"
+        ? 73
+        : 46;
+
+    console.log(config);
 
     // feed the create method
     app.virtualList.create(config);
@@ -112,51 +143,51 @@ $.extend(f7VirtualListBinding, {
           items[i].media = temp;
         }
       }
-      return(items);
+      return items;
     };
 
     switch (value.action) {
-      case 'appendItem':
+      case "appendItem":
         vl.appendItem(addImageWrapper(value.item));
         break;
-      case 'prependItem':
+      case "prependItem":
         vl.prependItem(addImageWrapper(value.item));
         break;
-      case 'appendItems':
+      case "appendItems":
         vl.appendItems(addImageWrapper(value.items));
         break;
-      case 'prependItems':
+      case "prependItems":
         vl.prependItems(addImageWrapper(value.items));
         break;
-      case 'replaceItem':
+      case "replaceItem":
         vl.replaceItem(value.index, value.item);
         break;
-      case 'replaceAllItems':
+      case "replaceAllItems":
         vl.replaceAllItems(value.items);
         break;
-      case 'moveItem':
+      case "moveItem":
         vl.moveItem(value.oldIndex, value.newIndex);
         break;
-      case 'insertItemBefore':
+      case "insertItemBefore":
         vl.insertItemBefore(value.index, addImageWrapper(value.item));
         break;
-      case 'filterItems':
-         vl.filterItems(value.indexes);
+      case "filterItems":
+        vl.filterItems(value.indexes);
         break;
-      case 'deleteItem':
+      case "deleteItem":
         vl.deleteItem(value.index);
         break;
-      case 'deleteAllItems':
+      case "deleteAllItems":
         vl.deleteAllItems(value.indexes);
         break;
-      case 'scrollToItem':
+      case "scrollToItem":
         vl.scrollToItem(value.index);
         break;
       default:
-        //console.log('');
+      //console.log('');
     }
 
-    $(el).trigger('change');
+    $(el).trigger("change");
   },
 
   // see updateF7VirtualList
@@ -175,4 +206,5 @@ $.extend(f7VirtualListBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7VirtualListBinding, 'f7.virtuallist');
+Shiny.inputBindings.register(f7VirtualListBinding, "f7.virtuallist");
+
