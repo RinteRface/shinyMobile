@@ -52,7 +52,7 @@ $.extend(f7StepperBinding, {
   // Given the DOM element for the input, return the value
   getValue: function(el) {
     this.app = getAppInstance();
-    return this.app.stepper.get($(el)[0]).value;
+    return this.app.stepper.getValue($(el)[0]);
   },
 
   // see updateF7Stepper
@@ -173,13 +173,13 @@ $.extend(f7StepperBinding, {
   },
 
   subscribe: function(el, callback) {
-    this.app = getAppInstance();
     $(el).on('stepper:change.f7StepperBinding', function(e) {
+      this.app = getAppInstance();
       // no need to debounce here
       // except if autorepeat is set
       // then we send the value once
       // the + or - buttons is released
-      var s = this.app.stepper.get($(el));
+      var s = this.app.stepper.get($(el)[0]);
       if (s.params.autorepeat) {
         callback(true);
       } else {
