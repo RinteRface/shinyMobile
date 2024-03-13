@@ -4,6 +4,8 @@ import { getAppInstance } from "../init.js";
 var f7VirtualListBinding = new Shiny.InputBinding();
 
 $.extend(f7VirtualListBinding, {
+  app: null,
+
   // decode html so that images tag are converted to strings
   decodeHTML: function(html) {
     var txt = document.createElement("textarea");
@@ -12,7 +14,7 @@ $.extend(f7VirtualListBinding, {
   },
 
   initialize: function(el) {
-    const app = getAppInstance();
+    this.app = getAppInstance();
     var id = $(el).attr("id");
     var config = $(el).find("script[data-for='" + id + "']");
     config = JSON.parse(config.html());
@@ -94,21 +96,21 @@ $.extend(f7VirtualListBinding, {
     // Item height
     config.height =
       config.items[0].media !== undefined
-        ? app.theme === "ios"
+        ? this.app.theme === "ios"
           ? 112
-          : app.theme === "md"
+          : this.app.theme === "md"
           ? 132
           : 78
-        : app.theme === "ios"
+        : this.app.theme === "ios"
         ? 63
-        : app.theme === "md"
+        : this.app.theme === "md"
         ? 73
         : 46;
 
     console.log(config);
 
     // feed the create method
-    app.virtualList.create(config);
+    this.app.virtualList.create(config);
   },
 
   find: function(scope) {
@@ -117,7 +119,8 @@ $.extend(f7VirtualListBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var vl = app.virtualList.get($(el));
+    this.app = getAppInstance();
+    var vl = this.app.virtualList.get($(el)[0]);
     return {
       length: vl.items.length,
       current_from: vl.currentFromIndex + 1,
@@ -128,7 +131,8 @@ $.extend(f7VirtualListBinding, {
 
   // see updateF7VirtualList
   setValue: function(el, value) {
-    var vl = app.virtualList.get($(el));
+    this.app = getAppInstance();
+    var vl = this.app.virtualList.get($(el)[0]);
     vl.resetFilter();
 
     var addImageWrapper = function(items) {
@@ -184,7 +188,6 @@ $.extend(f7VirtualListBinding, {
         vl.scrollToItem(value.index);
         break;
       default:
-      //console.log('');
     }
 
     $(el).trigger("change");
