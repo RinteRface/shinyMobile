@@ -44,19 +44,19 @@ $.extend(f7VirtualListBinding, {
         '<div class="item-title-row">' +
         '<div class="item-title">' +
         '<div class="item-header">' +
-        item.header +
+        (item.header === undefined ? "" : item.header) +
         "</div>" +
-        item.title +
+        (item.title === undefined ? "" : item.title) +
         '<div class="item-footer">' +
-        item.footer +
+        (item.footer === undefined ? "" : item.footer) +
         "</div>" +
         "</div>" +
         '<div class="item-after">' +
-        item.right +
+        (item.right === undefined ? "" : item.right) +
         "</div>" +
         "</div>" +
         '<div class="item-subtitle">' +
-        item.subtitle +
+        (item.subtitle === undefined ? "" : item.subtitle) +
         "</div>" +
         '<div class="item-text">' +
         item.content +

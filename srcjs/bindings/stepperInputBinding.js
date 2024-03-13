@@ -1,9 +1,14 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7StepperBinding = new Shiny.InputBinding();
 
 $.extend(f7StepperBinding, {
+  app: null,
 
   initialize: function(el) {
+
+    this.app = getAppInstance();
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
@@ -30,7 +35,7 @@ $.extend(f7StepperBinding, {
     data.el = '#' + id;
 
     // feed the create method
-    var s = app.stepper.create(data);
+    var s = this.app.stepper.create(data);
 
     // add readonly attr if the stepper is initially
     // not in manual mode
@@ -46,28 +51,33 @@ $.extend(f7StepperBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.stepper.get($(el)).value;
+    this.app = getAppInstance();
+    return this.app.stepper.get($(el)[0]).value;
   },
 
   // see updateF7Stepper
   setValue: function(el, value) {
-    app.stepper.setValue(el, value);
+    this.app = getAppInstance();
+    this.app.stepper.setValue(el, value);
   },
 
   // the 2 methods below are needed by incrementF7Stepper
   // and decrementF7Stepper
   increment: function() {
-    app.stepper.increment();
+    this.app = getAppInstance();
+    this.app.stepper.increment();
   },
 
   decrement: function() {
-    app.stepper.decrement();
+    this.app = getAppInstance();
+    this.app.stepper.decrement();
   },
 
   // see updateF7Stepper
   receiveMessage: function(el, data) {
+    this.app = getAppInstance();
     // create a variable to update the stepper
-    var s = app.stepper.get($(el));
+    var s = this.app.stepper.get($(el));
 
     // for some reason, we need to update both
     // min and params.min fields
@@ -163,12 +173,13 @@ $.extend(f7StepperBinding, {
   },
 
   subscribe: function(el, callback) {
+    this.app = getAppInstance();
     $(el).on('stepper:change.f7StepperBinding', function(e) {
       // no need to debounce here
       // except if autorepeat is set
       // then we send the value once
       // the + or - buttons is released
-      var s = app.stepper.get($(el));
+      var s = this.app.stepper.get($(el));
       if (s.params.autorepeat) {
         callback(true);
       } else {
