@@ -1,9 +1,14 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7SliderBinding = new Shiny.InputBinding();
 
 $.extend(f7SliderBinding, {
+  app: null,
 
   initialize: function(el) {
+
+    this.app = getAppInstance();
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
@@ -32,7 +37,7 @@ $.extend(f7SliderBinding, {
     data.el = '#' + id;
 
     // feed the create method
-    var r = app.range.create(data);
+    var r = this.app.range.create(data);
 
   },
 
@@ -42,18 +47,21 @@ $.extend(f7SliderBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.range.get("#" + el.id).value;
+    this.app = getAppInstance();
+    return this.app.range.getValue($(el)[0]);
   },
 
   // see updateF7Slider
   setValue: function(el, value) {
-    app.range.setValue(el, value);
+    this.app = getAppInstance();
+    this.app.range.setValue($(el)[0], value);
   },
 
   // see updateF7Slider
   receiveMessage: function(el, data) {
+    this.app = getAppInstance();
     // create a variable to update the range
-    var r = app.range.get(el.id);
+    var r = this.app.range.get(el.id);
     if (data.hasOwnProperty('min')) {
       r.min = data.min;
       // re render the scale

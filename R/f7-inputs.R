@@ -2283,9 +2283,11 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
   # main wrapper
   shiny::tagList(
-    # stepper tag
-    shiny::tags$small(label),
-    stepperTag
+    shiny::tags$div(style = "display: flex; align-items: center;",
+                    # stepper tag
+                    shiny::tags$small(label,
+                                      style = "padding: 5px"),
+                    stepperTag),
   )
 }
 
