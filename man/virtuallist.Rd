@@ -60,10 +60,10 @@ Use if you have too many components in \link{f7List}.
 \code{f7VirtualListItem} is an item component for \link{f7VirtualList}.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "Virtual List",
     f7SingleLayout(
@@ -72,12 +72,34 @@ if (interactive()) {
         hairline = FALSE,
         shadow = TRUE
       ),
+      # controls
+      f7Segment(
+        container = "segment",
+
+        f7Button(inputId = "appendItem", "Append Item"),
+        f7Button(inputId = "prependItems", "Prepend Items"),
+        f7Button(inputId = "insertBefore", "Insert before"),
+        f7Button(inputId = "replaceItem", "Replace Item")
+      ),
+      f7Segment(
+        container = "segment",
+        f7Button(inputId = "deleteAllItems", "Remove All"),
+        f7Button(inputId = "moveItem", "Move Item"),
+        f7Button(inputId = "filterItems", "Filter Items")
+      ),
+      f7Flex(
+        uiOutput("itemIndexUI"),
+        uiOutput("itemNewIndexUI"),
+        uiOutput("itemsFilterUI")
+      ),
+      # searchbar
+      f7Searchbar(id = "search1"),
       # main content
       f7VirtualList(
         id = "vlist",
         rowsBefore = 2,
         rowsAfter = 2,
-        items = lapply(1:2000, function(i) {
+        items = lapply(1:1000, function(i) {
           f7VirtualListItem(
             title = paste("Title", i),
             subtitle = paste("Subtitle", i),
@@ -93,37 +115,127 @@ if (interactive()) {
   ),
   server = function(input, output) {
 
-  }
- )
+    output$itemIndexUI <- renderUI({
+      req(input$vlist$length > 2)
+      f7Stepper(
+        inputId = "itemIndex",
+        label = "Index",
+        min = 1,
+        value = 2,
+        max = input$vlist$length
+      )
+    })
 
- # below example will not load with classic f7List
- #shinyApp(
- #  ui = f7Page(
- #    title = "My app",
- #    f7SingleLayout(
- #      navbar = f7Navbar(
- #        title = "Virtual Lists",
- #        hairline = FALSE,
- #        shadow = TRUE
- #      ),
- #      # main content
- #      f7List(
- #        lapply(1:20000, function(i) {
- #          f7ListItem(
- #            title = paste("Title", i),
- #            subtitle = paste("Subtitle", i),
- #            header = paste("Header", i),
- #            footer = paste("Footer", i),
- #            right = paste("Right", i),
- #            content = i
- #          )
- #        })
- #      )
- #    )
- #  ),
- #  server = function(input, output) {
- #
- #  }
- #)
-}
+    output$itemNewIndexUI <- renderUI({
+      req(input$vlist$length > 2)
+      f7Stepper(
+        inputId = "itemNewIndex",
+        label = "New Index",
+        min = 1,
+        value = 1,
+        max = input$vlist$length
+      )
+    })
+
+    output$itemsFilterUI <- renderUI({
+      input$appendItem
+      input$prependItems
+      input$insertBefore
+      input$replaceItem
+      input$deleteAllItems
+      input$moveItem
+      isolate({
+        req(input$vlist$length > 2)
+        f7Slider(
+          inputId = "itemsFilter",
+          label = "Items to Filter",
+          min = 1,
+          max = input$vlist$length,
+          value = c(1, input$vlist$length)
+        )
+      })
+    })
+
+    observeEvent(input$appendItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "appendItem",
+        item = f7VirtualListItem(
+          title = "New Item Title",
+          right = "New Item Right",
+          content = "New Item Content",
+          media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
+        )
+      )
+    })
+
+    observeEvent(input$prependItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "prependItems",
+        items = lapply(1:5, function(i) {
+          f7VirtualListItem(
+            title = paste("Title", i),
+            right = paste("Right", i),
+            content = i,
+            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-2.jpg")
+          )
+        })
+      )
+    })
+
+    observeEvent(input$insertBefore, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "insertItemBefore",
+        index = input$itemIndex,
+        item = f7VirtualListItem(
+          title = "New Item Title",
+          content = "New Item Content",
+          media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-2.jpg")
+        )
+      )
+    })
+
+    observeEvent(input$replaceItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "replaceItem",
+        index = input$itemIndex,
+        item = f7VirtualListItem(
+          title = "Replacement",
+          content = "Replacement Content",
+          media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-2.jpg")
+        )
+      )
+    })
+
+    observeEvent(input$deleteAllItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "deleteAllItems"
+      )
+    })
+
+    observeEvent(input$moveItem, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "moveItem",
+        oldIndex = input$itemIndex,
+        newIndex = input$itemNewIndex
+      )
+    })
+
+    observeEvent(input$filterItems, {
+      updateF7VirtualList(
+        id = "vlist",
+        action = "filterItems",
+        indexes = input$itemsFilter[1]:input$itemsFilter[2]
+      )
+    })
+
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
