@@ -12,6 +12,9 @@ test_that("virtualList works as expected", {
   # Animation/transition takes a bit of time
   app$wait_for_idle(1000)
   app$expect_values(input = "vlist")
+  app$click(selector = "#prependItems")
+  app$click(selector = "#moveItem")
+  app$expect_values(input = "vlist")
   # Set search bar value
   app$wait_for_js("var searchbarEl = document.getElementById('search1'); app.searchbar.search(searchbarEl, 'Title 1000')")
   app$wait_for_idle(1000)

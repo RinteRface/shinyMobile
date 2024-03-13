@@ -1,5 +1,5 @@
 library(shiny)
-# library(shinyMobile)
+library(shinyMobile)
 
 app <- shinyApp(
   ui = f7Page(
@@ -153,10 +153,6 @@ app <- shinyApp(
         id = "vlist",
         action = "deleteAllItems"
       )
-    })
-
-    observe({
-      print(input$itemNewIndex)
     })
 
     observeEvent(input$moveItem, {
