@@ -167,12 +167,16 @@ $.extend(f7StepperBinding, {
   },
 
   subscribe: function(el, callback) {
+    // lexical scoping
+    // 'this' changes within the context of the event listener callback
+    // so we need to capture the outer 'this'
+    var self = this;
     $(el).on('stepper:change.f7StepperBinding', function(e) {
       // no need to debounce here
       // except if autorepeat is set
       // then we send the value once
       // the + or - buttons is released
-      var s = this.app.stepper.get(el);
+      var s = self.app.stepper.get(el);
       if (s.params.autorepeat) {
         callback(true);
       } else {
