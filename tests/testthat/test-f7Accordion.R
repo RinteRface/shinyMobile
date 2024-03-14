@@ -63,7 +63,7 @@ test_that("accordion works as expected", {
   app <- AppDriver$new(
     shiny_app_path,
     name = "accordion-app",
-    variant = platform_variant(),
+    variant = platform_variant()
   )
   app$expect_values(input = "myaccordion1")
   app$click(selector = "#go")

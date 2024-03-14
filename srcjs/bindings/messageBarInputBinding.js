@@ -1,10 +1,13 @@
 // Input binding
+import { getAppInstance } from "../init.js";
+
 var f7MessageBarBinding = new Shiny.InputBinding();
 
 $.extend(f7MessageBarBinding, {
 
   initialize: function(el) {
-    app.messagebar.create({
+    this.app = getAppInstance();
+    this.app.messagebar.create({
       el: '#' + $(el).attr('id')
     });
   },
@@ -14,7 +17,7 @@ $.extend(f7MessageBarBinding, {
   // send button based on the current value.
   // It also returns the text area value
   setState: function(el) {
-    var val = app.messagebar.get($(el)).getValue();
+    var val = this.app.messagebar.get(el).getValue();
     var sendLink = $(el).find('#' + el.id + '-send');
     if (!val.length) {
       $(sendLink).addClass('disabled');
@@ -35,11 +38,11 @@ $.extend(f7MessageBarBinding, {
 
   // see updatef7MessageBar
   setValue: function(el, value) {
-    app.messagebar.get($(el)).setValue(value);
+    this.app.messagebar.get(el).setValue(value);
   },
 
   setPlaceholder: function(el, value) {
-    app.messagebar.get($(el)).setPlaceholder(value);
+    this.app.messagebar.get(el).setPlaceholder(value);
   },
 
   // see updatef7MessageBar
@@ -61,7 +64,7 @@ $.extend(f7MessageBarBinding, {
         // Needed to give time so that f7Messages receives
         // the textarea input value before it is cleared.
         setTimeout(function() {
-          app.messagebar.get($(el)).clear().focus();
+          this.app.messagebar.get(el).clear().focus();
         }, 1000);
       });
       callback(true);

@@ -1,9 +1,12 @@
 // Input binding
+import { getAppInstance } from "../init.js";
+
 var f7MessagesBinding = new Shiny.InputBinding();
 
 $.extend(f7MessagesBinding, {
 
   initialize: function(el) {
+    this.app = getAppInstance();
     // for a proper layout!
     $('.page-content').addClass('messages-content');
 
@@ -53,7 +56,7 @@ $.extend(f7MessagesBinding, {
   };
 
     // feed the create method
-    app.messages.create(config);
+    this.app.messages.create(config);
   },
 
   find: function(scope) {
@@ -62,38 +65,36 @@ $.extend(f7MessagesBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.messages.get($(el)).messages;
+    var messages = this.app.messages.get(el).messages;
+    // Ignore the first message as it is set by the template
+    messages = messages.slice(1);
+    // Return an object of objects: will be a list of lists in R
+    return messages.length > 0 ? { ...messages } : null;
   },
 
   // see updatef7Messages
   setValue: function(el, value) {
-    responseInProgress = true;
-    var messages = app.messages.get($(el));
-
+    var messages = this.app.messages.get(el);
+    var message = value.value;
+    // TO DO: does not work if TRUE
     if (value.showTyping) {
       // Show typing indicator
-      var who = value.value.pop().name;
+      var who = message.pop().name;
+      messages.showTyping({
+        header: who + ' is typing'
+      });
       setTimeout(function () {
-        messages.showTyping({
-          header: who + ' is typing'
-        });
-
-        setTimeout(function () {
-          messages.addMessages(value.value);
-          // Hide typing indicator
-          messages.hideTyping();
-          responseInProgress = false;
-        }, 1000);
-      }, 500);
+        messages.addMessages(message);
+        // Hide typing indicator
+        messages.hideTyping();
+      }, 1000);
     } else {
-      messages.addMessages(value.value);
+      messages.addMessages(message);
     }
   },
 
   // see updatef7Messages
   receiveMessage: function(el, data) {
-    var responseInProgress = false;
-    if (responseInProgress) return;
     this.setValue(el, data);
     $(el).trigger('change');
   },

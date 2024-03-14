@@ -1,0 +1,12 @@
+{
+  "input": {
+    "mymessages": {
+      "0": {
+        "text": "Some message",
+        "name": "Victor",
+        "avatar": "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
+        "type": "received"
+      }
+    }
+  }
+}
