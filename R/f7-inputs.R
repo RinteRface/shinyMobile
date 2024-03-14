@@ -1560,7 +1560,7 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
 #' }
 f7Text <- function(inputId, label, value = "", placeholder = NULL#,
                    #style = NULL, inset = FALSE, icon = NULL
-                   ) {
+) {
 
   # possible styles c("inline", "floating", "outline")
 
@@ -2030,7 +2030,6 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
         stop("Label must be a f7Icon.")
       }
       shiny::tags$div(
-        class = "item-cell width-auto flex-shrink-0",
         labels[[i]]
       )
     })
@@ -2044,11 +2043,12 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
     if (!is.null(label)) shiny::tags$div(class = "block-title", label),
     if (!is.null(labels)) {
       shiny::tags$div(
-        class = "list simple-list",
+        class = "list simple-list list-strong-ios list-outline-ios",
         shiny::tags$ul(
           shiny::tags$li(
             labels[[1]],
-            shiny::tags$div(class = "item-cell flex-shrink-3", rangeTag),
+            shiny::tags$div(style = "width: 100%; margin: 0 16px",
+                            rangeTag),
             labels[[2]]
           )
         )
