@@ -110,7 +110,6 @@ reference:
   - '`updateF7Fabs`'
   - '`updateF7Gauge`'
   - '`updateF7Login`'
-  - '`f7AddMessages`'
   - '`updateF7Messages`'
   - '`updateF7MessageBar`'
   - '`updateF7Panel`'
