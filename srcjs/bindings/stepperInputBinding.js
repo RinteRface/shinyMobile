@@ -50,7 +50,7 @@ $.extend(f7StepperBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return this.app.stepper.getValue($(el)[0]);
+    return this.app.stepper.getValue(el);
   },
 
   // see updateF7Stepper
@@ -172,7 +172,7 @@ $.extend(f7StepperBinding, {
       // except if autorepeat is set
       // then we send the value once
       // the + or - buttons is released
-      var s = this.app.stepper.get($(el)[0]);
+      var s = this.app.stepper.get(el);
       if (s.params.autorepeat) {
         callback(true);
       } else {

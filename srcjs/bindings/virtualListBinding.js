@@ -118,7 +118,7 @@ $.extend(f7VirtualListBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var vl = this.app.virtualList.get($(el)[0]);
+    var vl = this.app.virtualList.get(el);
     return {
       length: vl.items.length,
       current_from: vl.currentFromIndex + 1,
@@ -129,7 +129,7 @@ $.extend(f7VirtualListBinding, {
 
   // see updateF7VirtualList
   setValue: function(el, value) {
-    var vl = this.app.virtualList.get($(el)[0]);
+    var vl = this.app.virtualList.get(el);
     vl.resetFilter();
 
     var addImageWrapper = function(items) {

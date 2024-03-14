@@ -46,18 +46,19 @@ $.extend(f7SliderBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return this.app.range.getValue($(el)[0]);
+    debugger;
+    return this.app.range.getValue(el);
   },
 
   // see updateF7Slider
   setValue: function(el, value) {
-    this.app.range.setValue($(el)[0], value);
+    this.app.range.setValue(el, value);
   },
 
   // see updateF7Slider
   receiveMessage: function(el, data) {
     // create a variable to update the range
-    var r = this.app.range.get(el.id);
+    var r = this.app.range.get(el);
     if (data.hasOwnProperty('min')) {
       r.min = data.min;
       // re render the scale
