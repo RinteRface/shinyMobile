@@ -4,7 +4,6 @@ import { getAppInstance } from "../init.js";
 var f7SliderBinding = new Shiny.InputBinding();
 
 $.extend(f7SliderBinding, {
-  app: null,
 
   initialize: function(el) {
 
@@ -47,19 +46,16 @@ $.extend(f7SliderBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    this.app = getAppInstance();
     return this.app.range.getValue($(el)[0]);
   },
 
   // see updateF7Slider
   setValue: function(el, value) {
-    this.app = getAppInstance();
     this.app.range.setValue($(el)[0], value);
   },
 
   // see updateF7Slider
   receiveMessage: function(el, data) {
-    this.app = getAppInstance();
     // create a variable to update the range
     var r = this.app.range.get(el.id);
     if (data.hasOwnProperty('min')) {

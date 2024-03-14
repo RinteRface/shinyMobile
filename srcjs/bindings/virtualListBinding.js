@@ -4,7 +4,6 @@ import { getAppInstance } from "../init.js";
 var f7VirtualListBinding = new Shiny.InputBinding();
 
 $.extend(f7VirtualListBinding, {
-  app: null,
 
   // decode html so that images tag are converted to strings
   decodeHTML: function(html) {
@@ -119,7 +118,6 @@ $.extend(f7VirtualListBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    this.app = getAppInstance();
     var vl = this.app.virtualList.get($(el)[0]);
     return {
       length: vl.items.length,
@@ -131,7 +129,6 @@ $.extend(f7VirtualListBinding, {
 
   // see updateF7VirtualList
   setValue: function(el, value) {
-    this.app = getAppInstance();
     var vl = this.app.virtualList.get($(el)[0]);
     vl.resetFilter();
 

@@ -4,7 +4,6 @@ import { getAppInstance } from "../init.js";
 var f7StepperBinding = new Shiny.InputBinding();
 
 $.extend(f7StepperBinding, {
-  app: null,
 
   initialize: function(el) {
 
@@ -51,31 +50,26 @@ $.extend(f7StepperBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    this.app = getAppInstance();
     return this.app.stepper.getValue($(el)[0]);
   },
 
   // see updateF7Stepper
   setValue: function(el, value) {
-    this.app = getAppInstance();
     this.app.stepper.setValue(el, value);
   },
 
   // the 2 methods below are needed by incrementF7Stepper
   // and decrementF7Stepper
   increment: function() {
-    this.app = getAppInstance();
     this.app.stepper.increment();
   },
 
   decrement: function() {
-    this.app = getAppInstance();
     this.app.stepper.decrement();
   },
 
   // see updateF7Stepper
   receiveMessage: function(el, data) {
-    this.app = getAppInstance();
     // create a variable to update the stepper
     var s = this.app.stepper.get($(el));
 
@@ -174,7 +168,6 @@ $.extend(f7StepperBinding, {
 
   subscribe: function(el, callback) {
     $(el).on('stepper:change.f7StepperBinding', function(e) {
-      this.app = getAppInstance();
       // no need to debounce here
       // except if autorepeat is set
       // then we send the value once
