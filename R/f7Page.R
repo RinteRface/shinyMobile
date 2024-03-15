@@ -247,7 +247,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
     shiny::tags$div(
       class = "view view-main",
       shiny::tags$div(
-        class = "page",
+        class = setPageCl(navbar),
         # top navbar goes here
         navbar,
         # toolbar goes here
@@ -265,7 +265,21 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
   single_layout_tag
 }
 
+#' @keywords internal
+setPageCl <- function(navbar) {
+  page_cl <- "page"
 
+  if (!is.null(navbar)) {
+    has_subnavbar <- length(
+      htmltools::tagQuery(navbar)$
+        find(".subnavbar")$
+        selectedTags()
+    ) > 0
+    if (has_subnavbar) page_cl <- sprintf("%s page-with-subnavbar", page_cl)
+  }
+
+  page_cl
+}
 
 
 #' Framework7 tab layout
@@ -439,7 +453,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
       # apply the dark mode
       messagebar,
       shiny::tags$div(
-        class = "page",
+        class = setPageCl(navbar),
         # top navbar goes here
         navbar,
         # f7Tabs go here. The toolbar is

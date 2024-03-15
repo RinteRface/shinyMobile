@@ -15,54 +15,70 @@ f7SubNavbar(...)
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-     title = "Sub Navbar",
-     f7TabLayout(
+  shinyApp(
+    ui = f7Page(
+      title = "Sub Navbar",
+      f7TabLayout(
         panels = tagList(
-         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+          f7Panel(
+            title = "Left Panel",
+            side = "left",
+            theme = "light",
+            "Blabla",
+            style = "cover"
+          ),
+          f7Panel(
+            title = "Right Panel",
+            side = "right",
+            theme = "dark",
+            "Blabla",
+            style = "cover"
+          )
         ),
         navbar = f7Navbar(
-           title = "SubNavbar",
-           hairline = FALSE,
-           shadow = TRUE,
-           leftPanel = TRUE,
-           rightPanel = TRUE,
-           subNavbar = f7SubNavbar(
-              f7Button(label = "My button"),
-              f7Button(label = "My button"),
-              f7Button(label = "My button")
-           )
+          subNavbar = f7SubNavbar(
+            f7Button(label = "My button", tonal = TRUE),
+            f7Button(label = "My button", tonal = TRUE),
+            f7Button(label = "My button", tonal = TRUE)
+          ),
+          title = "SubNavbar",
+          hairline = FALSE,
+          transparent = TRUE,
+          bigger = TRUE,
+          leftPanel = TRUE,
+          rightPanel = TRUE
         ),
         f7Tabs(
-           animated = TRUE,
-           #swipeable = TRUE,
-           f7Tab(
-              tabName = "Tab 1",
-              icon = f7Icon("envelope"),
-              active = TRUE,
-              "Tab 1"
-           ),
-           f7Tab(
-              tabName = "Tab 2",
-              icon = f7Icon("today"),
-              active = FALSE,
-              "Tab 2"
-           ),
-           f7Tab(
-              tabName = "Tab 3",
-              icon = f7Icon("cloud_upload"),
-              active = FALSE,
-              "Tab 3"
-           )
+          animated = TRUE,
+          # swipeable = TRUE,
+          f7Tab(
+            title = "Tab 1",
+            tabName = "Tab1",
+            icon = f7Icon("envelope"),
+            active = TRUE,
+            "Tab 1"
+          ),
+          f7Tab(
+            title = "Tab 2",
+            tabName = "Tab2",
+            icon = f7Icon("today"),
+            active = FALSE,
+            "Tab 2"
+          ),
+          f7Tab(
+            title = "Tab 3",
+            tabName = "Tab3",
+            icon = f7Icon("cloud_upload"),
+            active = FALSE,
+            "Tab 3"
+          )
         )
-     )
-  ),
-  server = function(input, output) {}
- )
+      )
+    ),
+    server = function(input, output) {}
+  )
 }
 }

@@ -31,14 +31,17 @@ updateF7Navbar(
 
 \item{title}{Navbar title.}
 
-\item{subtitle}{Navbar subtitle. Not compatible with bigger.}
+\item{subtitle}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
-\item{hairline}{Whether to display a thin border on the top of the navbar. TRUE by default.}
+\item{hairline}{Whether to display a thin border on the top of the navbar. TRUE by default,
+for ios.}
 
-\item{shadow}{Whether to display a shadow. TRUE by default.}
+\item{shadow}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
-\item{bigger}{Whether to display bigger title. FALSE by default. Not
-compatible with subtitle.}
+\item{bigger}{Whether to display bigger title. FALSE by default. Title
+becomes smaller when scrolling down the page.}
 
 \item{transparent}{Whether the navbar should be transparent. FALSE by default.
 Only works if bigger is TRUE.}
@@ -64,27 +67,63 @@ Build a navbar layout element to insert in \link{f7SingleLayout},
 Currently, bigger parameters does mess with the CSS.
 }
 \examples{
-# Toggle f7Navbar
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-    ui = f7Page(
-       title = "Show navbar",
-       f7SingleLayout(
-          navbar = f7Navbar("Hide/Show navbar"),
-          f7Button(inputId = "toggle", "Toggle navbar", color = "red")
-       )
+app <- shinyApp(
+  ui = f7Page(
+    title = "Sub Navbar",
+    options = list(
+      dark = FALSE,
+      navbar = list(
+        hideOnPageScroll = TRUE,
+        mdCenterTitle = TRUE
+      )
     ),
-    server = function(input, output, session) {
+    f7SingleLayout(
+      panels = tagList(
+        f7Panel(
+          title = "Left Panel",
+          side = "left",
+          theme = "light",
+          "Blabla",
+          style = "cover"
+        ),
+        f7Panel(
+          title = "Right Panel",
+          side = "right",
+          theme = "dark",
+          "Blabla",
+          style = "cover"
+        )
+      ),
+      navbar = f7Navbar(
+        # subNavbar = f7SubNavbar(
+        #  f7Button(label = "My button", tonal = TRUE),
+        #  f7Button(label = "My button", tonal = TRUE),
+        #  f7Button(label = "My button", tonal = TRUE)
+        # ),
+        title = "Title",
+        hairline = TRUE,
+        # bigger = TRUE,
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      f7Block(f7Button(inputId = "toggle", "Toggle navbar")),
+      f7Block(
+        lapply(1:20, f7Card)
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$toggle, {
+      updateF7Navbar()
+    })
+  }
+)
 
-       observeEvent(input$toggle, {
-          updateF7Navbar()
-       })
-    }
- )
-}
+app
+# if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
