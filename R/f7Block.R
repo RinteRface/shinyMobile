@@ -3,7 +3,8 @@
 #' \code{f7Block} creates a block container.
 #'
 #' @param ... Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.
-#' @param hairlines Whether to allow hairlines. TRUE by default.
+#' @param hairlines `r lifecycle::badge("deprecated")`:
+#' removed from Framework7.
 #' @param strong Add white background so that text is highlighted. FALSE by default.
 #' @param inset Whether to set block inset. FALSE by default. Works only if strong is TRUE.
 #' @param tablet Whether to make block inset only on large screens. FALSE by default.
@@ -127,8 +128,6 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
   )
 }
 
-
-
 #' Framework7 block title
 #'
 #' \code{f7BlockTitle} creates a title for \link{f7Block}.
@@ -139,6 +138,7 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
+#' @rdname block
 f7BlockTitle <- function(title, size = NULL) {
   titleCl <- "block-title"
   if (!is.null(size)) {
@@ -153,20 +153,16 @@ f7BlockTitle <- function(title, size = NULL) {
   shiny::tags$div(class = titleCl, title)
 }
 
-
-
 #' Framework7 block header
 #'
 #' \code{f7BlockHeader} creates a header content for \link{f7Block}.
 #'
 #' @param text Any text.
-#' @rdname block
-#'
 #' @export
+#' @rdname block
 f7BlockHeader <- function(text) {
   shiny::tags$div(class = "block-header", text)
 }
-
 
 #' Framework7 block footer
 #'
@@ -177,6 +173,7 @@ f7BlockHeader <- function(text) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
+#' @rdname block
 f7BlockFooter <- function(text) {
   shiny::tags$div(class = "block-footer", text)
 }

@@ -3,6 +3,7 @@
 \name{f7Button}
 \alias{f7Button}
 \alias{updateF7Button}
+\alias{f7Segment}
 \title{Framework7 action button}
 \usage{
 f7Button(
@@ -15,7 +16,8 @@ f7Button(
   shadow = FALSE,
   rounded = FALSE,
   size = NULL,
-  active = FALSE
+  active = FALSE,
+  tonal = FALSE
 )
 
 updateF7Button(
@@ -27,7 +29,16 @@ updateF7Button(
   shadow = NULL,
   rounded = NULL,
   size = NULL,
+  tonal = NULL,
   session = shiny::getDefaultReactiveDomain()
+)
+
+f7Segment(
+  ...,
+  container = c("segment", "row"),
+  shadow = FALSE,
+  rounded = FALSE,
+  strong = FALSE
 )
 }
 \arguments{
@@ -54,52 +65,123 @@ See here for valid colors \url{https://framework7.io/docs/badge.html}.}
 \item{active}{Button active state. Default to FALSE. This is useful when
 used in \link{f7Segment} with the strong parameter set to TRUE.}
 
+\item{tonal}{Button tonal style. Default to FALSE}
+
 \item{session}{The Shiny session object, usually the default value will suffice.}
+
+\item{...}{Slot for \link{f7Button}.}
+
+\item{container}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 }
 \description{
 \code{f7Button} generates a Framework7 action button.
 
 \code{updateF7Button} updates an \link{f7Button}.
+
+A Framework7 segmented button container for \link{f7Button}.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shiny::shinyApp(
+app <- shiny::shinyApp(
   ui = f7Page(
     title = "Update f7Button",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7Button"),
-      f7Button(
-        "test",
-        "Test",
-        color = "orange",
-        outline = FALSE,
-        fill = TRUE,
-        shadow = FALSE,
-        rounded = FALSE,
-        size = NULL),
-      f7Toggle("prout", "Update Button")
+      f7Block(f7Button("update", "Update Button")),
+      f7Block(
+        f7Button(
+          "button",
+          "My button",
+          color = "orange",
+          outline = FALSE,
+          fill = TRUE,
+          shadow = FALSE,
+          rounded = FALSE
+        )
+      )
     )
   ),
   server = function(input, output, session) {
-    observe(print(input$test))
-    observeEvent(input$prout, {
-      if (input$prout) {
-        updateF7Button(
-          inputId = "test",
-          label = "Updated",
-          color = "purple",
-          shadow = TRUE,
-          rounded = TRUE,
-          size = "large"
-        )
-      }
+    observeEvent(input$update, {
+      updateF7Button(
+        inputId = "button",
+        label = "Updated label",
+        color = "purple",
+        shadow = TRUE,
+        rounded = TRUE,
+        outline = TRUE,
+        fill = FALSE,
+        tonal = TRUE,
+        size = "large"
+      )
     })
   }
- )
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
+
+  shinyApp(
+    ui = f7Page(
+      title = "Button Segments",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Segment, f7Button"),
+        f7BlockTitle(title = "Simple Buttons in a segment"),
+        f7Segment(
+          f7Button(color = "blue", label = "My button", fill = FALSE),
+          f7Button(color = "green", label = "My button", fill = FALSE),
+          f7Button(color = "yellow", label = "My button", fill = FALSE)
+        ),
+        f7BlockTitle(title = "Tonal buttons"),
+        f7Segment(
+          f7Button(color = "blue", label = "My button", tonal = TRUE),
+          f7Button(color = "green", label = "My button", tonal = TRUE),
+          f7Button(color = "yellow", label = "My button", tonal = TRUE)
+        ),
+        f7BlockTitle(title = "Filled Buttons in a segment/rounded container"),
+        f7Segment(
+          rounded = TRUE,
+          f7Button(color = "black", label = "My button"),
+          f7Button(color = "green", label = "My button"),
+          f7Button(color = "yellow", label = "My button")
+        ),
+        f7BlockTitle(title = "Outline Buttons in a segment/shadow container"),
+        f7Segment(
+          shadow = TRUE,
+          f7Button(label = "My button", outline = TRUE, fill = FALSE),
+          f7Button(label = "My button", outline = TRUE, fill = FALSE),
+          f7Button(label = "My button", outline = TRUE, fill = FALSE)
+        ),
+        f7BlockTitle(title = "Buttons in a segment/strong container"),
+        f7Segment(
+          strong = TRUE,
+          f7Button(label = "My button", fill = FALSE),
+          f7Button(label = "My button", fill = FALSE),
+          f7Button(label = "My button", fill = FALSE, active = TRUE)
+        ),
+        f7BlockTitle(title = "Rounded Buttons in a segment container"),
+        f7Segment(
+          f7Button(color = "blue", label = "My button", rounded = TRUE),
+          f7Button(color = "green", label = "My button", rounded = TRUE),
+          f7Button(color = "yellow", label = "My button", rounded = TRUE)
+        ),
+        f7BlockTitle(title = "Raised buttons in a segment container"),
+        f7Segment(
+          f7Button(color = "blue", label = "My button", shadow = TRUE),
+          f7Button(color = "green", label = "My button", shadow = TRUE),
+          f7Button(color = "yellow", label = "My button", shadow = TRUE)
+        )
+      )
+    ),
+    server = function(input, output) {}
+  )
 }
+
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

@@ -19,3 +19,4 @@
 ^styles$
 ^esbuild\.dev\.js$
 ^esbuild\.prod\.js$
+^codecov\.yml$

@@ -1,4 +1,7 @@
 var f7ButtonInputBinding = new Shiny.InputBinding();
+
+const btnStyle = ["tonal", "raised", "round", "fill", "outline"];
+
 $.extend(f7ButtonInputBinding, {
   find: function(scope) {
     return $(scope).find(".f7-action-button");
@@ -11,15 +14,6 @@ $.extend(f7ButtonInputBinding, {
   },
   getType: function(el) {
     return 'shiny.action';
-  },
-  subscribe: function(el, callback) {
-    $(el).on("click.f7ButtonInputBinding", function(e) {
-      var $el = $(this);
-      var val = $el.data('val') || 0;
-      $el.data('val', val + 1);
-
-      callback();
-    });
   },
   getState: function(el) {
     return { value: this.getValue(el) };
@@ -35,61 +29,26 @@ $.extend(f7ButtonInputBinding, {
       $(el).addClass("color-" + data.color);
     }
 
-    // update fill
-    if (data.hasOwnProperty("fill")) {
-      var isFilled = $(el).hasClass("button-fill");
-      if (data.fill) {
-        if (!isFilled) $(el).addClass("button-fill");
-      } else {
-        if (isFilled) $(el).removeClass("button-fill");
-      }
-    }
-
-    // update outline
-    if (data.hasOwnProperty("outline")) {
-      var isOutline = $(el).hasClass("button-outline");
-      if (data.outline) {
-        if (!isOutline) $(el).addClass("button-outline");
-      } else {
-        if (isOutline) $(el).removeClass("button-outline");
-      }
-    }
-
-    // update raided
-    if (data.hasOwnProperty("shadow")) {
-      var isRaised = $(el).hasClass("button-raised");
-      if (data.shadow) {
-        if (!isRaised) $(el).addClass("button-raised");
-      } else {
-        if (isRaised) $(el).removeClass("button-raised");
-      }
-    }
-
-    // update rounded
-    if (data.hasOwnProperty("rounded")) {
-      var isRounded = $(el).hasClass("button-round");
-      if (data.rounded) {
-        if (!isRounded) $(el).addClass("button-round");
-      } else {
-        if (isRounded) $(el).removeClass("button-round");
-      }
-    }
+    // update style props
+    var self = this;
+    btnStyle.map((s) => {
+      self._updateStyleProp(el, data, s);
+    })
 
     // update size
     if (data.hasOwnProperty("size")) {
       var isLarge = $(el).hasClass("button-large");
       var isSmall = $(el).hasClass("button-small");
-      if (!isLarge & !isSmall) $(el).addClass("button-" + data.size);
-      if (!isLarge & isSmall) {
+      if (!isLarge && !isSmall) $(el).addClass("button-" + data.size);
+      if (!isLarge && isSmall) {
         $(el).removeClass("button-small");
         $(el).addClass("button-" + data.size);
       }
-      if (isLarge & !isSmall) {
+      if (isLarge && !isSmall) {
         $(el).removeClass("button-large");
         $(el).addClass("button-" + data.size);
       }
     }
-
 
     // retrieve current label and icon
     var label = $el.text();
@@ -99,12 +58,32 @@ $.extend(f7ButtonInputBinding, {
     // produce new html
     $el.html(label);
   },
+  subscribe: function(el, callback) {
+    $(el).on("click.f7ButtonInputBinding", function(e) {
+      var $el = $(this);
+      var val = $el.data('val') || 0;
+      $el.data('val', val + 1);
+
+      callback();
+    });
+  },
   unsubscribe: function(el) {
     $(el).off(".f7ButtonInputBinding");
+  },
+  // Internal method to update button prop
+  _updateStyleProp: function(el, data, prop) {
+    if (data.hasOwnProperty(prop)) {
+      var cl = "button-" + prop;
+      var cond = $(el).hasClass(cl);
+      if (data[prop]) {
+        if (!cond) $(el).addClass(cl);
+      } else {
+        if (cond) $(el).removeClass(cl);
+      }
+    }
   }
 });
 Shiny.inputBindings.register(f7ButtonInputBinding, 'f7.button');
-
 
 $(document).on('click', 'a.f7-action-button', function(e) {
   e.preventDefault();

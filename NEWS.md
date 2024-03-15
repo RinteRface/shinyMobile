@@ -1,21 +1,26 @@
 # shinyMobile 1.1.0
-## New
+## Major change
 - Update Framework7 from 5.7.14 to 8.3.2
 
 ## Breaking changes
 - The aurora theme has been removed. Supported themes are now: ios, md and auto. In case of auto it will use iOS theme for iOS devices and MD theme for all other devices.
+- `f7AddMessages()` is definitely removed. Deprecated from previous releases.
+- `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
+
+## Deprecation
 - `f7Accordion()`:
     - `multiCollapse` has been removed in Framework7.
-- `f7AddMessages()` is definitely removed. Deprecated from other releases.
-- `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
 - `f7Block()`:
     - `hairlines` is deprecated since removed from Framework7.
+- `f7Segment()`:
+    - `container` is deprecated, removed from Framework7.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item
 being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R.
 We now return an object of objects which becomes a list of lists.
 - `f7Block()` gains an `outline` parameter (add grey border).
+- `f7Button()` get a new `tonal` style.
 
 # shinyMobile 1.0.1
 
