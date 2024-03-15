@@ -7,7 +7,7 @@ $.extend(f7MessageBarBinding, {
 
   initialize: function(el) {
     this.app = getAppInstance();
-    this.app.messagebar.create({
+    this.instance = this.app.messagebar.create({
       el: '#' + $(el).attr('id')
     });
   },
@@ -17,7 +17,7 @@ $.extend(f7MessageBarBinding, {
   // send button based on the current value.
   // It also returns the text area value
   setState: function(el) {
-    var val = this.app.messagebar.get(el).getValue();
+    var val = this.instance.getValue();
     var sendLink = $(el).find('#' + el.id + '-send');
     if (!val.length) {
       $(sendLink).addClass('disabled');
@@ -38,11 +38,11 @@ $.extend(f7MessageBarBinding, {
 
   // see updatef7MessageBar
   setValue: function(el, value) {
-    this.app.messagebar.get(el).setValue(value);
+    this.instance.setValue(value);
   },
 
   setPlaceholder: function(el, value) {
-    this.app.messagebar.get(el).setPlaceholder(value);
+    this.instance.setPlaceholder(value);
   },
 
   // see updatef7MessageBar
@@ -57,6 +57,7 @@ $.extend(f7MessageBarBinding, {
   },
 
   subscribe: function(el, callback) {
+    var self = this;
     $(el).on("input.f7MessageBarBinding change.f7MessageBarBinding focus.f7MessageBarBinding blur.f7MessageBarBinding", function(e) {
       // reset message bar textarea content when click on it
       $(el).find('#' + el.id + '-send').on('click', function() {
@@ -64,7 +65,7 @@ $.extend(f7MessageBarBinding, {
         // Needed to give time so that f7Messages receives
         // the textarea input value before it is cleared.
         setTimeout(function() {
-          this.app.messagebar.get(el).clear().focus();
+          self.instance.clear().focus();
         }, 1000);
       });
       callback(true);

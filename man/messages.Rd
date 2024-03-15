@@ -74,7 +74,7 @@ when user is on top/bottom of the messages view.}
 
 \item{cssClass}{Additional CSS class to set on message HTML element.}
 
-\item{messages}{List of \link{f7Messages}.}
+\item{messages}{List of \link{f7Message}.}
 
 \item{showTyping}{Show typing when a new message comes. Default to FALSE.
 Does not work yet...}
@@ -88,7 +88,7 @@ to include multiple \link{f7Message}.
 \code{f7Message} creates a message item to be inserted in
 \link{f7Messages} with \link{updateF7Messages}.
 
-\code{updateF7Messages} add messages to an \link{f7Messages} container.
+\code{updateF7Messages} add messages to a \link{f7Messages} container.
 }
 \examples{
 library(shiny)
@@ -109,9 +109,6 @@ app <- shinyApp(
     )
   ),
   server = function(input, output, session) {
-    observe({
-      print(input$mymessages)
-    })
     # Send a message
     observeEvent(input[["mymessagebar-send"]], {
       updateF7Messages(

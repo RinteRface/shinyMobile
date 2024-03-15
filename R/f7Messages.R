@@ -45,9 +45,6 @@ f7Messages <- function(id, title = NULL, autoLayout = TRUE, newMessagesFirst = F
   )
 }
 
-
-
-
 #' Framework7 message bar.
 #'
 #' \code{f7MessageBar} creates a message text container to type new messages.
@@ -84,9 +81,6 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
   )
 }
 
-
-
-
 #' Update Framework7 message bar
 #'
 #' \code{updateF7MessageBar} updates message bar content on the server side.
@@ -98,59 +92,7 @@ f7MessageBar <- function(inputId, placeholder = "Message") {
 #'
 #' @rdname messagebar
 #' @export
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Update message bar",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(
-#'           title = "Message bar",
-#'           hairline = FALSE,
-#'           shadow = TRUE
-#'         ),
-#'         toolbar = f7Toolbar(
-#'           position = "bottom",
-#'           f7Link(label = "Link 1", href = "https://www.google.com"),
-#'           f7Link(label = "Link 2", href = "https://www.google.com")
-#'         ),
-#'         # main content
-#'         f7Segment(
-#'           container = "segment",
-#'           f7Button("updateMessageBar", "Update value"),
-#'           f7Button("updateMessageBarPlaceholder", "Update placeholder")
-#'         ),
-#'         f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
-#'         uiOutput("messageContent")
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$messageContent <- renderUI({
-#'         req(input$mymessagebar)
-#'         tagList(
-#'           f7BlockTitle("Message Content", size = "large"),
-#'           f7Block(strong = TRUE, inset = TRUE, input$mymessagebar)
-#'         )
-#'       })
-#'
-#'       observeEvent(input$updateMessageBar, {
-#'         updateF7MessageBar(
-#'           inputId = "mymessagebar",
-#'           value = "sjsjsj"
-#'         )
-#'       })
-#'
-#'       observeEvent(input$updateMessageBarPlaceholder, {
-#'         updateF7MessageBar(
-#'           inputId = "mymessagebar",
-#'           placeholder = "Enter your message"
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
+#' @example inst/examples/messagebar/app.R
 updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
                                session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
@@ -162,10 +104,6 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
 
 #' Framework7 message element
 #'
@@ -206,16 +144,14 @@ f7Message <- function(text, name, type = c("sent", "received"),
   )
 }
 
-
-
 #' Update Framework7 message container
 #'
-#' \code{updateF7Messages} add messages to an \link{f7Messages} container.
+#' \code{updateF7Messages} add messages to a \link{f7Messages} container.
 #'
 #' @param id Reference to \link{f7Messages} container.
 #' @param showTyping Show typing when a new message comes. Default to FALSE.
 #' Does not work yet...
-#' @param messages List of \link{f7Messages}.
+#' @param messages List of \link{f7Message}.
 #' @param session Shiny session object
 #'
 #'

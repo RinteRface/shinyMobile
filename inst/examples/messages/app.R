@@ -16,9 +16,6 @@ app <- shinyApp(
     )
   ),
   server = function(input, output, session) {
-    observe({
-      print(input$mymessages)
-    })
     # Send a message
     observeEvent(input[["mymessagebar-send"]], {
       updateF7Messages(
