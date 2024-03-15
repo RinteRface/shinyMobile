@@ -98,6 +98,7 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #' @param container `r lifecycle::badge("deprecated")`:
 #' removed from Framework7.
 #' @inheritParams f7Button
+#' @inheritParams f7Block
 #'
 #' @rdname button
 #'

@@ -73,6 +73,8 @@ used in \link{f7Segment} with the strong parameter set to TRUE.}
 
 \item{container}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
 removed from Framework7.}
+
+\item{strong}{Add white background so that text is highlighted. FALSE by default.}
 }
 \description{
 \code{f7Button} generates a Framework7 action button.
