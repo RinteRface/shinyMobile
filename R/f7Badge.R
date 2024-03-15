@@ -6,27 +6,28 @@
 #' @param color Badge color: see here for valid colors \url{https://framework7.io/docs/badge.html}.
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  colors <- getF7Colors()
+#'   colors <- getF7Colors()
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Badges",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Badge"),
-#'        f7Block(
-#'          strong = TRUE,
-#'          lapply(seq_along(colors), function(i) {
-#'            f7Badge(colors[[i]], color = colors[[i]])
-#'          })
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Badges",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Badge"),
+#'         f7Block(
+#'           strong = TRUE,
+#'           f7Badge("Default"),
+#'           lapply(seq_along(colors), function(i) {
+#'             f7Badge(colors[[i]], color = colors[[i]])
+#'           })
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
