@@ -4,7 +4,7 @@
 \alias{f7BlockTitle}
 \title{Framework7 block title}
 \usage{
-f7BlockTitle(title = NULL, size = NULL)
+f7BlockTitle(title, size = NULL)
 }
 \arguments{
 \item{title}{Block title.}

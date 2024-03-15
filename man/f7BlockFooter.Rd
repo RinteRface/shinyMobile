@@ -4,7 +4,7 @@
 \alias{f7BlockFooter}
 \title{Framework7 block footer}
 \usage{
-f7BlockFooter(text = NULL)
+f7BlockFooter(text)
 }
 \arguments{
 \item{text}{Any text.}

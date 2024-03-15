@@ -8,11 +8,14 @@
     - `multiCollapse` has been removed in Framework7.
 - `f7AddMessages()` is definitely removed. Deprecated from other releases.
 - `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
+- `f7Block()`:
+    - `hairlines` is deprecated since removed from Framework7.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item
 being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R.
 We now return an object of objects which becomes a list of lists.
+- `f7Block()` gains an `outline` parameter (add grey border).
 
 # shinyMobile 1.0.1
 

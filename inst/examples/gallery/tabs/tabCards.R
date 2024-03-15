@@ -3,7 +3,6 @@ tabCards <- f7Tab(
   tabName = "Cards",
   icon = f7Icon("rectangle_stack", f7Badge(8, color = "green")),
   active = FALSE,
-
   f7BlockTitle(title = "f7Block") %>% f7Align(side = "center"),
   f7Block(
     f7BlockHeader(text = "Header"),
@@ -16,7 +15,6 @@ tabCards <- f7Tab(
     f7BlockFooter(text = "Footer")
   ),
   br(),
-
   f7BlockTitle(title = "f7Block with wrapper") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -30,11 +28,11 @@ tabCards <- f7Tab(
     f7BlockFooter(text = "Footer")
   ),
   br(),
-
   f7BlockTitle(title = "f7Block with wrapper and inset") %>% f7Align(side = "center"),
   f7Block(
     inset = TRUE,
     strong = TRUE,
+    outline = TRUE,
     f7BlockHeader(text = "Header"),
     "Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
@@ -44,7 +42,6 @@ tabCards <- f7Tab(
      turpis vel, sagittis felis.",
     f7BlockFooter(text = "Footer")
   ),
-
   br(),
 
   # classic card without header nor footer
@@ -111,7 +108,6 @@ tabCards <- f7Tab(
   f7BlockTitle(title = "f7MediaCard") %>% f7Align(side = "center"),
   f7Card(
     title = "A card with media:",
-
     f7List(
       mode = "media",
       lapply(1:2, function(j) {
