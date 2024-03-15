@@ -29,3 +29,9 @@ $(function() {
     Shiny.setInputValue("deviceInfo", Framework7.device);
   });
 });
+
+export function shinyInputsReset() {
+  Shiny.unbindAll();
+  Shiny.initializeInputs();
+  Shiny.bindAll();
+}

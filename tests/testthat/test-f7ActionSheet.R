@@ -1,4 +1,5 @@
 context("f7ActionSheet")
+library(shinytest2)
 
 test_that("send custom message", {
   session <- as.environment(list(
@@ -36,3 +37,34 @@ test_that("send custom message", {
   expect_equal(res$message$id, "action")
 })
 
+test_that("actionSheet work as expected", {
+  # Don't run these tests on the CRAN build servers
+  skip_on_cran()
+  shiny_app_path <-
+    system.file("examples/actionsheet/app.R", package = "shinyMobile")
+  app <- AppDriver$new(
+    shiny_app_path,
+    name = "actionsheet-app",
+    variant = platform_variant()
+  )
+
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(1000)
+  app$expect_values(input = c("sheet1-action1"))
+
+  app$click(selector = ".actions-button:first-child")
+  app$wait_for_idle(1000)
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(1000)
+  app$click(selector = ".actions-button:nth-child(2)")
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "#sheet1-update")
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(1000)
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+})

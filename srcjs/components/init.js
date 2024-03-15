@@ -1,4 +1,5 @@
 import { getAppInstance } from "../init.js";
+import { shinyInputsReset } from "../utils/shinyUtils.js";
 
 $(function() {
   const app = getAppInstance();
