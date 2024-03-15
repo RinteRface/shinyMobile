@@ -92,8 +92,6 @@ reference:
   contents:
   - '`f7InsertTab`'
   - '`insertF7Tab`'
-  - '`f7HideNavbar`'
-  - '`f7ShowNavbar`'
   - '`updateF7Navbar`'
   - '`f7RemoveTab`'
   - '`removeF7Tab`'
