@@ -9,9 +9,9 @@ f7Navbar(
   ...,
   subNavbar = NULL,
   title = NULL,
-  subtitle = NULL,
+  subtitle = deprecated(),
   hairline = TRUE,
-  shadow = TRUE,
+  shadow = deprecated(),
   bigger = FALSE,
   transparent = FALSE,
   leftPanel = FALSE,
@@ -122,8 +122,7 @@ app <- shinyApp(
   }
 )
 
-app
-# if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

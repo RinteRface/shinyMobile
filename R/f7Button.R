@@ -167,15 +167,17 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'
 #' @export
 f7Segment <- function(
-    ..., container = c("segment", "row"),
+    ..., container = deprecated(),
     shadow = FALSE, rounded = FALSE, strong = FALSE) {
-  lifecycle::deprecate_warn(
-    when = "1.1.0",
-    what = "f7Segment(container)",
-    details = "container has been
-    removed from Framework7 and will be removed from shinyMobile
-    in the next release."
-  )
+  if (lifecycle::is_present(subtitle)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Segment(container)",
+      details = "container has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
 
   containerCl <- "segmented"
 

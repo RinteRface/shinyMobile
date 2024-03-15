@@ -93,17 +93,19 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
+f7Block <- function(..., hairlines = deprecated(), strong = FALSE, inset = FALSE,
                     tablet = FALSE, outline = FALSE) {
   blockCl <- "block"
 
-  lifecycle::deprecate_warn(
-    when = "1.1.0",
-    what = "f7Block(hairlines)",
-    details = "hairlines has been
-    removed from Framework7 and will be removed from shinyMobile
-    in the next release."
-  )
+  if (lifecycle::is_present(hairlines)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Block(hairlines)",
+      details = "hairlines has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
 
   if (!inset && tablet) {
     stop("inset must be TRUE when tablet is TRUE")

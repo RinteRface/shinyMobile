@@ -27,16 +27,29 @@
 #' @example inst/examples/navbar/app.R
 #'
 #' @export
-f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = NULL, hairline = TRUE,
-                     shadow = TRUE, bigger = FALSE, transparent = FALSE, leftPanel = FALSE,
+#' @importFrom lifecycle deprecated
+f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = deprecated(), hairline = TRUE,
+                     shadow = deprecated(), bigger = FALSE, transparent = FALSE, leftPanel = FALSE,
                      rightPanel = FALSE) {
-  lifecycle::deprecate_warn(
-    when = "1.1.0",
-    what = "f7Navbar(subtitle)",
-    details = "subtitle has been
-    removed from Framework7 and will be removed from shinyMobile
-    in the next release."
-  )
+  if (lifecycle::is_present(subtitle)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Navbar(subtitle)",
+      details = "subtitle has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
+
+  if (lifecycle::is_present(shadow)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Navbar(shadow)",
+      details = "shadow has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
 
   navbarClass <- "navbar"
   if (transparent) navbarClass <- sprintf("%s navbar-transparent", navbarClass)

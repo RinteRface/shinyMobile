@@ -35,7 +35,7 @@ updateF7Button(
 
 f7Segment(
   ...,
-  container = c("segment", "row"),
+  container = deprecated(),
   shadow = FALSE,
   rounded = FALSE,
   strong = FALSE

@@ -9,7 +9,7 @@
 \usage{
 f7Block(
   ...,
-  hairlines = TRUE,
+  hairlines = deprecated(),
   strong = FALSE,
   inset = FALSE,
   tablet = FALSE,

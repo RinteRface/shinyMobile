@@ -15,13 +15,15 @@
 #'
 #' @export
 f7Accordion <- function(..., id = NULL, multiCollapse = deprecated(), side = c("right", "left")) {
-  lifecycle::deprecate_warn(
-    when = "1.1.0",
-    what = "f7Accordion(multiCollapse)",
-    details = "multiCollapse has been
-    removed from Framework7 and will be removed from shinyMobile
-    in the next release."
-  )
+  if (lifecycle::is_present(multiCollapse)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Accordion(multiCollapse)",
+      details = "multiCollapse has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
 
   side <- match.arg(side)
   cl <- "list list-strong list-outline-ios list-dividers-ios inset-md accordion-list"
