@@ -21,158 +21,161 @@
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  # tabs as toolbar
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     title = "Tab Layout",
-#'     f7TabLayout(
-#'       navbar = f7Navbar(title = HTML(paste("Currently selected:", textOutput("selected")))),
-#'       f7Tabs(
-#'         id = "tabdemo",
-#'         swipeable = TRUE,
-#'         animated = FALSE,
-#'         f7Tab(
-#'          title = "Tab 1",
-#'          tabName = "Tab1",
-#'          f7Sheet(
-#'           id = "sheet",
-#'           label = "More",
-#'           orientation = "bottom",
-#'           swipeToClose = TRUE,
-#'           swipeToStep = TRUE,
-#'           backdrop = TRUE,
-#'           "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#'   # tabs as toolbar
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shiny::shinyApp(
+#'     ui = f7Page(
+#'       title = "Tab Layout",
+#'       f7TabLayout(
+#'         navbar = f7Navbar(title = HTML(paste("Currently selected:", textOutput("selected")))),
+#'         f7Tabs(
+#'           id = "tabdemo",
+#'           swipeable = TRUE,
+#'           animated = FALSE,
+#'           f7Tab(
+#'             title = "Tab 1",
+#'             tabName = "Tab1",
+#'             f7Sheet(
+#'               id = "sheet",
+#'               label = "More",
+#'               orientation = "bottom",
+#'               swipeToClose = TRUE,
+#'               swipeToStep = TRUE,
+#'               backdrop = TRUE,
+#'               "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 #'           Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
 #'           scelerisque est, at porta justo cursus ac"
-#'          )
-#'         ),
-#'         f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
-#'         f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
-#'         .items = f7TabLink(
-#'          icon = f7Icon("bolt_fill"),
-#'          label = "Toggle Sheet",
-#'          `data-sheet` = "#sheet",
-#'          class = "sheet-open"
+#'             )
+#'           ),
+#'           f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
+#'           f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
+#'           .items = f7TabLink(
+#'             icon = f7Icon("bolt_fill"),
+#'             label = "Toggle Sheet",
+#'             `data-sheet` = "#sheet",
+#'             class = "sheet-open"
+#'           )
 #'         )
 #'       )
-#'     )
-#'   ),
-#'   server = function(input, output) {
-#'     output$selected <- renderText(input$tabdemo)
-#'   }
-#'  )
-#'  # standalone tabs
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shiny::shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "Standalone tabs",
-#'          hairline = FALSE,
-#'          shadow = TRUE
-#'        ),
-#'        f7Tabs(
-#'          id = "tabs",
-#'          style = "strong", animated = FALSE, swipeable = TRUE,
-#'          f7Tab(
-#'            tabName = "Tab1",
-#'            icon = f7Icon("envelope"),
-#'            active = TRUE,
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7Stepper(
-#'                  "obs1",
-#'                  "Number of observations",
-#'                  min = 0,
-#'                  max = 1000,
-#'                  value = 500,
-#'                  step = 100
-#'                ),
-#'                plotOutput("distPlot")
-#'              )
-#'            )
-#'          ),
-#'          f7Tab(
-#'            tabName = "Tab2",
-#'            icon = f7Icon("today"),
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7Select(
-#'                  inputId = "obs2",
-#'                  label = "Distribution type:",
-#'                  choices = c(
-#'                    "Normal" = "norm",
-#'                    "Uniform" = "unif",
-#'                    "Log-normal" = "lnorm",
-#'                    "Exponential" = "exp"
-#'                  )
-#'                ),
-#'                plotOutput("distPlot2")
-#'              )
-#'            )
-#'          ),
-#'          f7Tab(
-#'            tabName = "Tab3",
-#'            icon = f7Icon("cloud_upload"),
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7SmartSelect(
-#'                  inputId = "variable",
-#'                  label = "Variables to show:",
-#'                  c("Cylinders" = "cyl",
-#'                    "Transmission" = "am",
-#'                    "Gears" = "gear"),
-#'                  multiple = TRUE,
-#'                  selected = "cyl"
-#'                ),
-#'                tableOutput("data")
-#'              )
-#'            )
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$distPlot <- renderPlot({
-#'        dist <- rnorm(input$obs1)
-#'        hist(dist)
-#'      })
+#'     ),
+#'     server = function(input, output) {
+#'       output$selected <- renderText(input$tabdemo)
+#'     }
+#'   )
+#'   # standalone tabs
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shiny::shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(
+#'           title = "Standalone tabs",
+#'           hairline = FALSE,
+#'           shadow = TRUE
+#'         ),
+#'         f7Tabs(
+#'           id = "tabs",
+#'           style = "strong", animated = FALSE, swipeable = TRUE,
+#'           f7Tab(
+#'             tabName = "Tab1",
+#'             icon = f7Icon("envelope"),
+#'             active = TRUE,
+#'             f7Shadow(
+#'               intensity = 10,
+#'               hover = TRUE,
+#'               f7Card(
+#'                 title = "Card header",
+#'                 f7Stepper(
+#'                   "obs1",
+#'                   "Number of observations",
+#'                   min = 0,
+#'                   max = 1000,
+#'                   value = 500,
+#'                   step = 100
+#'                 ),
+#'                 plotOutput("distPlot")
+#'               )
+#'             )
+#'           ),
+#'           f7Tab(
+#'             tabName = "Tab2",
+#'             icon = f7Icon("today"),
+#'             f7Shadow(
+#'               intensity = 10,
+#'               hover = TRUE,
+#'               f7Card(
+#'                 title = "Card header",
+#'                 f7Select(
+#'                   inputId = "obs2",
+#'                   label = "Distribution type:",
+#'                   choices = c(
+#'                     "Normal" = "norm",
+#'                     "Uniform" = "unif",
+#'                     "Log-normal" = "lnorm",
+#'                     "Exponential" = "exp"
+#'                   )
+#'                 ),
+#'                 plotOutput("distPlot2")
+#'               )
+#'             )
+#'           ),
+#'           f7Tab(
+#'             tabName = "Tab3",
+#'             icon = f7Icon("cloud_upload"),
+#'             f7Shadow(
+#'               intensity = 10,
+#'               hover = TRUE,
+#'               f7Card(
+#'                 title = "Card header",
+#'                 f7SmartSelect(
+#'                   inputId = "variable",
+#'                   label = "Variables to show:",
+#'                   c(
+#'                     "Cylinders" = "cyl",
+#'                     "Transmission" = "am",
+#'                     "Gears" = "gear"
+#'                   ),
+#'                   multiple = TRUE,
+#'                   selected = "cyl"
+#'                 ),
+#'                 tableOutput("data")
+#'               )
+#'             )
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$distPlot <- renderPlot({
+#'         dist <- rnorm(input$obs1)
+#'         hist(dist)
+#'       })
 #'
-#'      output$distPlot2 <- renderPlot({
-#'        dist <- switch(
-#'          input$obs2,
-#'          norm = rnorm,
-#'          unif = runif,
-#'          lnorm = rlnorm,
-#'          exp = rexp,
-#'          rnorm
-#'        )
+#'       output$distPlot2 <- renderPlot({
+#'         dist <- switch(input$obs2,
+#'           norm = rnorm,
+#'           unif = runif,
+#'           lnorm = rlnorm,
+#'           exp = rexp,
+#'           rnorm
+#'         )
 #'
-#'        hist(dist(500))
-#'      })
+#'         hist(dist(500))
+#'       })
 #'
-#'      output$data <- renderTable({
-#'        mtcars[, c("mpg", input$variable), drop = FALSE]
-#'      }, rownames = TRUE)
-#'    }
-#'  )
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
+#'     }
+#'   )
 #' }
 f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = TRUE,
                    style = c("toolbar", "segmented", "strong")) {
-
   style <- match.arg(style)
   if (swipeable && animated) stop("Cannot use two effects at the same time")
   if (is.null(id)) id <- paste0("tabs_", round(stats::runif(1, min = 0, max = 1e9)))
@@ -181,7 +184,6 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   found_active <- FALSE
 
   tabItems <- lapply(seq_along(items), FUN = function(i) {
-
     item <- items[[i]][[1]]
     itemIcon <- items[[i]][[2]]
     itemName <- items[[i]][[5]] # May be NULL
@@ -226,7 +228,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
             `data-tab` = paste0("#", ns(itemId)),
             if (!is.null(itemName)) itemName
           )
-        } else if (style == "toolbar"){
+        } else if (style == "toolbar") {
           shiny::a(
             `data-tab` = paste0("#", ns(itemId)),
             class = if (active) "tab-link tab-link-active" else "tab-link",
@@ -323,7 +325,6 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   }
 
   shiny::tagList(tabLinksTag, contentTag)
-
 }
 
 
@@ -368,7 +369,6 @@ validate_tabName <- function(tabName) {
 #'
 #' @export
 f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidden = FALSE) {
-
   # Tab name validation
   validate_tabName(tabName)
 
@@ -424,122 +424,121 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  subtabs_ui <- function(id) {
-#'    ns <- NS(id)
+#'   subtabs_ui <- function(id) {
+#'     ns <- NS(id)
 #'
-#'    tagList(
-#'      f7Toggle(inputId = ns("updateSubTab"), label = "Update SubTab", checked = FALSE),
-#'      f7Tabs(
-#'        id = ns("subtabdemo"),
-#'        style = "strong",
-#'        animated = FALSE,
-#'        f7Tab(title = "Subtab 1", tabName = "SubTab1", "SubTab 1"),
-#'        f7Tab(title = "Subtab 2", tabName = "SubTab2", "SubTab 2", active = TRUE),
-#'        f7Tab(title = "Subtab 3", tabName = "SubTab3", "SubTab 3")
-#'      )
-#'    )
-#'  }
-#'
-#'  subtabs <- function(input, output, session) {
-#'    observeEvent(input$updateSubTab, {
-#'      selected <- ifelse(input$updateSubTab, "SubTab1", "SubTab2")
-#'      updateF7Tabs(session, id = "subtabdemo", selected = selected)
-#'    })
-#'    return(reactive(input$subtabdemo))
-#'  }
-#'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Tab Layout",
-#'      f7TabLayout(
-#'        navbar = f7Navbar(
-#'          title =
-#'            f7Flex(
-#'              HTML(paste("Selected Tab:", textOutput("selectedTab"))),
-#'              HTML(paste("Selected Subtab:", textOutput("selectedSubTab")))
-#'            )
-#'          ,
-#'          subNavbar = f7SubNavbar(
-#'            f7Flex(
-#'              f7Toggle(inputId = "updateTab", label = "Update Tab", checked = TRUE),
-#'              subtabs_ui("subtabs1")[[1]]
-#'            )
-#'          )
-#'        ),
-#'        f7Tabs(
-#'          id = "tabdemo",
-#'          swipeable = TRUE,
-#'          animated = FALSE,
-#'          f7Tab(
-#'            title = "Tab 1",
-#'            tabName = "Tab1",
-#'            subtabs_ui("subtabs1")[[2]]
-#'          ),
-#'          f7Tab(title = "Tab 2", tabName = "Tab2", "Tab 2"),
-#'          f7Tab(title = "Tab 3", tabName = "Tab3", "Tab 3")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      output$selectedTab <- renderText(input$tabdemo)
-#'      observeEvent(input$updateTab, {
-#'        selected <- ifelse(input$updateTab, "Tab1", "Tab2")
-#'        updateF7Tabs(id = "tabdemo", selected = selected)
-#'      })
-#'      subtab <- callModule(subtabs, "subtabs1")
-#'      output$selectedSubTab <- renderText(subtab())
-#'    }
-#'  )
-#'  # with hidden tabs
-#'  shinyApp(
-#'   ui <- f7Page(
-#'     title = "shinyMobile",
-#'     f7TabLayout(
-#'       navbar = f7Navbar(
-#'         title = "Update Tabs with hidden tab",
-#'         subtitle = "",
-#'         hairline = TRUE,
-#'         shadow = TRUE,
-#'         bigger = FALSE,
-#'         transparent = TRUE
-#'       ),
+#'     tagList(
+#'       f7Toggle(inputId = ns("updateSubTab"), label = "Update SubTab", checked = FALSE),
 #'       f7Tabs(
-#'         id = 'tabs',
-#'         animated = TRUE,
-#'         f7Tab(
-#'           active = TRUE,
-#'           title = "Main tab",
-#'           tabName = "Tab1",
-#'           icon = f7Icon("doc_text"),
-#'           h1("This is the first tab."),
-#'           f7Button(inputId = "goto", label = "Go to hidden tab")
-#'         ),
-#'         f7Tab(
-#'           title = "Second tab",
-#'           tabName = "Tab2",
-#'           icon = f7Icon("bolt_horizontal"),
-#'           h1("This is the second tab.")
-#'         ),
-#'         f7Tab(
-#'           title = "Hidden tab",
-#'           tabName = "Tab3",
-#'           hidden = TRUE,
-#'           h1("This is a tab that does not appear in the tab menu.
-#'           Yet, you can still access it.")
-#'         )
+#'         id = ns("subtabdemo"),
+#'         style = "strong",
+#'         animated = FALSE,
+#'         f7Tab(title = "Subtab 1", tabName = "SubTab1", "SubTab 1"),
+#'         f7Tab(title = "Subtab 2", tabName = "SubTab2", "SubTab 2", active = TRUE),
+#'         f7Tab(title = "Subtab 3", tabName = "SubTab3", "SubTab 3")
 #'       )
 #'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     observe(print(input$tabs))
-#'     observeEvent(input$goto, {
-#'       updateF7Tabs(session = session, id = "tabs", selected = "Tab3")
-#'     })
 #'   }
-#'  )
+#'
+#'   subtabs <- function(input, output, session) {
+#'     observeEvent(input$updateSubTab, {
+#'       selected <- ifelse(input$updateSubTab, "SubTab1", "SubTab2")
+#'       updateF7Tabs(session, id = "subtabdemo", selected = selected)
+#'     })
+#'     return(reactive(input$subtabdemo))
+#'   }
+#'
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Tab Layout",
+#'       f7TabLayout(
+#'         navbar = f7Navbar(
+#'           title =
+#'             f7Flex(
+#'               HTML(paste("Selected Tab:", textOutput("selectedTab"))),
+#'               HTML(paste("Selected Subtab:", textOutput("selectedSubTab")))
+#'             ),
+#'           subNavbar = f7SubNavbar(
+#'             f7Flex(
+#'               f7Toggle(inputId = "updateTab", label = "Update Tab", checked = TRUE),
+#'               subtabs_ui("subtabs1")[[1]]
+#'             )
+#'           )
+#'         ),
+#'         f7Tabs(
+#'           id = "tabdemo",
+#'           swipeable = TRUE,
+#'           animated = FALSE,
+#'           f7Tab(
+#'             title = "Tab 1",
+#'             tabName = "Tab1",
+#'             subtabs_ui("subtabs1")[[2]]
+#'           ),
+#'           f7Tab(title = "Tab 2", tabName = "Tab2", "Tab 2"),
+#'           f7Tab(title = "Tab 3", tabName = "Tab3", "Tab 3")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$selectedTab <- renderText(input$tabdemo)
+#'       observeEvent(input$updateTab, {
+#'         selected <- ifelse(input$updateTab, "Tab1", "Tab2")
+#'         updateF7Tabs(id = "tabdemo", selected = selected)
+#'       })
+#'       subtab <- callModule(subtabs, "subtabs1")
+#'       output$selectedSubTab <- renderText(subtab())
+#'     }
+#'   )
+#'   # with hidden tabs
+#'   shinyApp(
+#'     ui <- f7Page(
+#'       title = "shinyMobile",
+#'       f7TabLayout(
+#'         navbar = f7Navbar(
+#'           title = "Update Tabs with hidden tab",
+#'           subtitle = "",
+#'           hairline = TRUE,
+#'           shadow = TRUE,
+#'           bigger = FALSE,
+#'           transparent = TRUE
+#'         ),
+#'         f7Tabs(
+#'           id = "tabs",
+#'           animated = TRUE,
+#'           f7Tab(
+#'             active = TRUE,
+#'             title = "Main tab",
+#'             tabName = "Tab1",
+#'             icon = f7Icon("doc_text"),
+#'             h1("This is the first tab."),
+#'             f7Button(inputId = "goto", label = "Go to hidden tab")
+#'           ),
+#'           f7Tab(
+#'             title = "Second tab",
+#'             tabName = "Tab2",
+#'             icon = f7Icon("bolt_horizontal"),
+#'             h1("This is the second tab.")
+#'           ),
+#'           f7Tab(
+#'             title = "Hidden tab",
+#'             tabName = "Tab3",
+#'             hidden = TRUE,
+#'             h1("This is a tab that does not appear in the tab menu.
+#'           Yet, you can still access it.")
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observe(print(input$tabs))
+#'       observeEvent(input$goto, {
+#'         updateF7Tabs(session = session, id = "tabs", selected = "Tab3")
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiveDomain()) {
   # remove the space in the tab name
@@ -565,86 +564,85 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  # Insert after
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Insert a tab Before the target",
-#'      f7TabLayout(
-#'        navbar = f7Navbar(
-#'          title = "insertF7Tab",
-#'          hairline = FALSE,
-#'          shadow = TRUE,
-#'          leftPanel = TRUE,
-#'          rightPanel = TRUE
-#'        ),
-#'        f7Tabs(
-#'          animated = TRUE,
-#'          id = "tabs",
-#'          f7Tab(
-#'            tabName = "Tab1",
-#'            icon = f7Icon("airplane"),
-#'            active = TRUE,
-#'            "Tab 1",
-#'            f7Button(inputId = "add", label = "Add tabs")
-#'          ),
-#'          f7Tab(
-#'            tabName = "Tab2",
-#'            icon = f7Icon("today"),
-#'            active = FALSE,
-#'            f7Button(inputId="stay", label = "Stay"),
-#'            "Tab 2"
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      observeEvent(input$stay, {
-#'        f7Toast("Please stay")
-#'      })
-#'      observeEvent(input$add, {
-#'        insertF7Tab(
-#'          id = "tabs",
-#'          position = "after",
-#'          target = "Tab1",
-#'          tab = f7Tab (
-#'            # Use multiple elements to test for accessor function
-#'            f7Text(inputId = "my_text", label ="Enter something", placeholder = "What?"),
-#'            f7Text(inputId = "my_other", label ="Else:", placeholder = "Else ?"),
-#'            tabName = paste0("tabx_", input$go),
-#'            "Test2",
-#'            icon = f7Icon("app_badge")
-#'          ),
-#'          select = TRUE
-#'        )
-#'      })
-#'    }
-#'  )
-#'  # Insert in an empty tabsetpanel
-#'  library(shiny)
-#'  ui <- f7Page(
-#'    f7SingleLayout(
-#'      navbar = f7Navbar(),
-#'      f7Button("add", "Add 'Dynamic' tab"),
-#'      br(),
-#'      f7Tabs(id = "tabs"),
-#'    )
-#'  )
-#'  server <- function(input, output, session) {
-#'    observeEvent(input$add, {
-#'      insertF7Tab(
-#'        id = "tabs",
-#'        f7Tab(title = "Dynamic", tabName = "Dynamic", "This a dynamically-added tab"),
-#'        target = NULL
-#'      )
-#'    })
-#'  }
-#'  shinyApp(ui, server)
+#'   # Insert after
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Insert a tab Before the target",
+#'       f7TabLayout(
+#'         navbar = f7Navbar(
+#'           title = "insertF7Tab",
+#'           hairline = FALSE,
+#'           shadow = TRUE,
+#'           leftPanel = TRUE,
+#'           rightPanel = TRUE
+#'         ),
+#'         f7Tabs(
+#'           animated = TRUE,
+#'           id = "tabs",
+#'           f7Tab(
+#'             tabName = "Tab1",
+#'             icon = f7Icon("airplane"),
+#'             active = TRUE,
+#'             "Tab 1",
+#'             f7Button(inputId = "add", label = "Add tabs")
+#'           ),
+#'           f7Tab(
+#'             tabName = "Tab2",
+#'             icon = f7Icon("today"),
+#'             active = FALSE,
+#'             f7Button(inputId = "stay", label = "Stay"),
+#'             "Tab 2"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$stay, {
+#'         f7Toast("Please stay")
+#'       })
+#'       observeEvent(input$add, {
+#'         insertF7Tab(
+#'           id = "tabs",
+#'           position = "after",
+#'           target = "Tab1",
+#'           tab = f7Tab(
+#'             # Use multiple elements to test for accessor function
+#'             f7Text(inputId = "my_text", label = "Enter something", placeholder = "What?"),
+#'             f7Text(inputId = "my_other", label = "Else:", placeholder = "Else ?"),
+#'             tabName = paste0("tabx_", input$go),
+#'             "Test2",
+#'             icon = f7Icon("app_badge")
+#'           ),
+#'           select = TRUE
+#'         )
+#'       })
+#'     }
+#'   )
+#'   # Insert in an empty tabsetpanel
+#'   library(shiny)
+#'   ui <- f7Page(
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(),
+#'       f7Button("add", "Add 'Dynamic' tab"),
+#'       br(),
+#'       f7Tabs(id = "tabs"),
+#'     )
+#'   )
+#'   server <- function(input, output, session) {
+#'     observeEvent(input$add, {
+#'       insertF7Tab(
+#'         id = "tabs",
+#'         f7Tab(title = "Dynamic", tabName = "Dynamic", "This a dynamically-added tab"),
+#'         target = NULL
+#'       )
+#'     })
+#'   }
+#'   shinyApp(ui, server)
 #' }
 insertF7Tab <- function(id, tab, target = NULL, position = c("before", "after"),
                         select = FALSE, session = shiny::getDefaultReactiveDomain()) {
-
   # in shinyMobile, f7Tab returns a list of 5 elements:
   # - 1 is the tag\
   # - 2 is the icon name
@@ -653,7 +651,7 @@ insertF7Tab <- function(id, tab, target = NULL, position = c("before", "after"),
   # - 5 is the title
 
   # Below we check if the tag is really a shiny tag...
-  if (!(class(tab[[1]]) %in% c("shiny.tag" , "shiny.tag.list"))) {
+  if (!(class(tab[[1]]) %in% c("shiny.tag", "shiny.tag.list"))) {
     stop("tab must be a shiny tag")
   }
 
@@ -661,7 +659,7 @@ insertF7Tab <- function(id, tab, target = NULL, position = c("before", "after"),
   position <- match.arg(position)
   # create the corresponding tab-link
   tabId <- nsWrapper(tab[[1]]$attribs$id)
-  children = tab[[1]]$children
+  children <- tab[[1]]$children
   tabLink <- shiny::a(
     class = if (select) "tab-link tab-link-active" else "tab-link",
     `data-tab` = paste0("#", nsWrapper(tab[[1]]$attribs$id)),
@@ -726,59 +724,58 @@ f7InsertTab <- function(id, tab, target, position = c("before", "after"),
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  ui <- f7Page(
-#'   title = "Remove a tab",
-#'   f7TabLayout(
-#'    panels = tagList(
-#'      f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-#'      f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
-#'    ),
-#'    navbar = f7Navbar(
-#'      title = "Tabs",
-#'      hairline = FALSE,
-#'      shadow = TRUE,
-#'      leftPanel = TRUE,
-#'      rightPanel = TRUE
-#'    ),
-#'    f7Tabs(
-#'      id = "tabset1",
-#'      f7Tab(
-#'        title = "Tab 1",
-#'        tabName = "Tab1",
-#'        active = TRUE,
-#'        p("Text 1"),
-#'        f7Button("remove1","Remove tab 1")
-#'      ),
-#'      f7Tab(
-#'        title = "Tab 2",
-#'        tabName = "Tab2",
-#'        p("Text 2")
-#'      ),
-#'      f7Tab(
-#'        title = "Tab 3",
-#'        tabName = "Tab3",
-#'        p("Text 3")
-#'      )
-#'    )
+#'   ui <- f7Page(
+#'     title = "Remove a tab",
+#'     f7TabLayout(
+#'       panels = tagList(
+#'         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+#'         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+#'       ),
+#'       navbar = f7Navbar(
+#'         title = "Tabs",
+#'         hairline = FALSE,
+#'         shadow = TRUE,
+#'         leftPanel = TRUE,
+#'         rightPanel = TRUE
+#'       ),
+#'       f7Tabs(
+#'         id = "tabset1",
+#'         f7Tab(
+#'           title = "Tab 1",
+#'           tabName = "Tab1",
+#'           active = TRUE,
+#'           p("Text 1"),
+#'           f7Button("remove1", "Remove tab 1")
+#'         ),
+#'         f7Tab(
+#'           title = "Tab 2",
+#'           tabName = "Tab2",
+#'           p("Text 2")
+#'         ),
+#'         f7Tab(
+#'           title = "Tab 3",
+#'           tabName = "Tab3",
+#'           p("Text 3")
+#'         )
+#'       )
+#'     )
 #'   )
-#'  )
 #'
-#'  server <- function(input, output, session) {
-#'    observe(print(input$tabset1))
-#'    observeEvent(input$remove1, {
-#'      removeF7Tab(
-#'        id = "tabset1",
-#'        target = "Tab1"
-#'      )
-#'    })
-#'  }
-#'  shinyApp(ui, server)
+#'   server <- function(input, output, session) {
+#'     observe(print(input$tabset1))
+#'     observeEvent(input$remove1, {
+#'       removeF7Tab(
+#'         id = "tabset1",
+#'         target = "Tab1"
+#'       )
+#'     })
+#'   }
+#'   shinyApp(ui, server)
 #' }
 removeF7Tab <- function(id, target, session = shiny::getDefaultReactiveDomain()) {
-
   # tabsetpanel namespace
   ns <- id
 
@@ -793,7 +790,6 @@ removeF7Tab <- function(id, target, session = shiny::getDefaultReactiveDomain())
     )
   )
   session$sendCustomMessage(type = id, message = message)
-
 }
 
 
@@ -814,4 +810,104 @@ f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain())
       removeF7Tab instead."
   )
   removeF7Tab(id, target, session)
+}
+
+#' Framework7 back button
+#'
+#' \link{f7Back} is a button to go back in \link{f7Tabs}.
+#'
+#' @param targetId \link{f7Tabs} id.
+#' @rdname appbar
+#' @export
+f7Back <- function(targetId) {
+  backJS <- shiny::singleton(
+    shiny::tags$script(
+      shiny::HTML(
+        paste0(
+          "$(function() {
+            var firstTabId =  $('#", targetId, " div:eq(0)').attr('id');
+            var currentTab = null;
+            var currentTabId = null;
+            // need to update the current tab on each click
+            $(window).on('click', function() {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('data-value');
+            });
+            $('#back_", targetId, "').on('click', function(e) {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('id');
+              // if the first tab is already active, we cannot go back
+              if (currentTabId !== firstTabId) {
+                var backTab = $(currentTab).prev();
+                var backTabId = $(backTab).attr('id');
+                app.tab.show('#' + backTabId);
+              }
+            });
+          });
+          "
+        )
+      )
+    )
+  )
+
+  backTag <- shiny::tags$a(
+    href = "#",
+    id = paste0("back_", targetId),
+    class = "button button-small display-flex margin-left-half",
+    f7Icon("arrowshape_turn_up_left_fill")
+  )
+
+  shiny::tagList(backJS, backTag)
+}
+
+
+
+
+
+#' Framework7 next button
+#'
+#' \link{f7Next} is a button to go next in \link{f7Tabs}.
+#'
+#' @param targetId \link{f7Tabs} id.
+#' @rdname appbar
+#' @export
+f7Next <- function(targetId) {
+  nextJS <- shiny::singleton(
+    shiny::tags$script(
+      shiny::HTML(
+        paste0(
+          "$(function() {
+            var lastTabId =  $('#", targetId, " div:last-child').attr('id');
+            var currentTab = null;
+            var currentTabId = null;
+            // need to update the current tab on each click
+            $(window).on('click', function() {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('data-value');
+            });
+            $('#next_", targetId, "').on('click', function(e) {
+              currentTab = $('#", targetId, "').find('.tab-active');
+              currentTabId = $(currentTab).attr('id');
+              // if the first tab is already active, we cannot go back
+              if (currentTabId !== lastTabId) {
+                var backTab = $(currentTab).next();
+                var backTabId = $(backTab).attr('id');
+                app.tab.show('#' + backTabId);
+              }
+            });
+          });
+          "
+        )
+      )
+    )
+  )
+
+  nextTag <- shiny::tags$a(
+    href = "#",
+    id = paste0("next_", targetId),
+    class = "button button-small display-flex margin-left-half",
+    f7Icon("arrowshape_turn_up_right_fill")
+  )
+
+  shiny::tagList(nextJS, nextTag)
 }

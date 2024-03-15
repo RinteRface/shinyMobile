@@ -20,7 +20,7 @@ f7Searchbar(
 \item{expandable}{Whether to enable the searchbar with a target link,
 in the navbar. See \link{f7SearchbarTrigger}.}
 
-\item{inline}{Useful to add an \link{f7Searchbar} in an \link{f7Appbar}.
+\item{inline}{Useful to add an \link{f7Searchbar} in a navbar.
 Notice that utilities like \link{f7HideOnSearch} and \link{f7NotFound} are not
 compatible with this mode.}
 
@@ -35,96 +35,69 @@ Searchbar to filter elements in a page.
 }
 \examples{
 if (interactive()) {
-library(shiny)
-library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
-cars <- rownames(mtcars)
+  cars <- rownames(mtcars)
 
-shinyApp(
-  ui = f7Page(
-    title = "Simple searchbar",
-    f7SingleLayout(
-      navbar = f7Navbar(
-        title = "f7Searchbar",
-        hairline = FALSE,
-        shadow = TRUE,
-        subNavbar = f7SubNavbar(
-          f7Searchbar(id = "search1")
-        )
-      ),
-      f7Block(
-        "This block will be hidden on search.
+  shinyApp(
+    ui = f7Page(
+      title = "Simple searchbar",
+      f7SingleLayout(
+        navbar = f7Navbar(
+          title = "f7Searchbar",
+          hairline = FALSE,
+          shadow = TRUE,
+          subNavbar = f7SubNavbar(
+            f7Searchbar(id = "search1")
+          )
+        ),
+        f7Block(
+          "This block will be hidden on search.
         Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      ) \%>\% f7HideOnSearch(),
-      f7List(
-        lapply(seq_along(cars), function(i) {
-          f7ListItem(cars[i])
-        })
-      ) \%>\% f7Found(),
-
-      f7Block(
-        p("Nothing found")
-      ) \%>\% f7NotFound()
-
-    )
-  ),
-  server = function(input, output) {}
- )
-
- # Expandable searchbar with trigger
- cities <- names(precip)
-
- shinyApp(
-   ui = f7Page(
-     title = "Expandable searchbar",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "f7Searchbar with trigger",
-         hairline = FALSE,
-         shadow = TRUE,
-         subNavbar = f7SubNavbar(
-           f7Searchbar(id = "search1", expandable = TRUE)
-         )
-       ),
-       f7Block(
-         f7SearchbarTrigger(targetId = "search1")
-       ) \%>\% f7HideOnSearch(),
-       f7List(
-         lapply(seq_along(cities), function(i) {
-           f7ListItem(cities[i])
-         })
-       ) \%>\% f7Found(),
-
-       f7Block(
-         p("Nothing found")
-       ) \%>\% f7NotFound()
-
-     )
-   ),
-   server = function(input, output) {}
- )
-
- # Searchbar in \link{f7Appbar}
- shinyApp(
-  ui = f7Page(
-    title = "Searchbar in appbar",
-    f7Appbar(
-      f7Searchbar(id = "search1", inline = TRUE)
+        ) \%>\% f7HideOnSearch(),
+        f7List(
+          lapply(seq_along(cars), function(i) {
+            f7ListItem(cars[i])
+          })
+        ) \%>\% f7Found(),
+        f7Block(
+          p("Nothing found")
+        ) \%>\% f7NotFound()
+      )
     ),
-    f7SingleLayout(
-      navbar = f7Navbar(
-        title = "f7Searchbar in f7Appbar",
-        hairline = FALSE,
-        shadow = TRUE
-      ),
-      f7List(
-        lapply(seq_along(cities), function(i) {
-          f7ListItem(cities[i])
-        })
-      ) \%>\% f7Found()
-    )
-  ),
-  server = function(input, output) {}
- )
+    server = function(input, output) {}
+  )
+
+  # Expandable searchbar with trigger
+  cities <- names(precip)
+
+  shinyApp(
+    ui = f7Page(
+      title = "Expandable searchbar",
+      f7SingleLayout(
+        navbar = f7Navbar(
+          title = "f7Searchbar with trigger",
+          hairline = FALSE,
+          shadow = TRUE,
+          subNavbar = f7SubNavbar(
+            f7Searchbar(id = "search1", expandable = TRUE)
+          )
+        ),
+        f7Block(
+          f7SearchbarTrigger(targetId = "search1")
+        ) \%>\% f7HideOnSearch(),
+        f7List(
+          lapply(seq_along(cities), function(i) {
+            f7ListItem(cities[i])
+          })
+        ) \%>\% f7Found(),
+        f7Block(
+          p("Nothing found")
+        ) \%>\% f7NotFound()
+      )
+    ),
+    server = function(input, output) {}
+  )
 }
 }

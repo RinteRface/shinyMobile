@@ -18,55 +18,55 @@ removeF7Tab(id, target, session = shiny::getDefaultReactiveDomain())
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- ui <- f7Page(
-  title = "Remove a tab",
-  f7TabLayout(
-   panels = tagList(
-     f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-     f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
-   ),
-   navbar = f7Navbar(
-     title = "Tabs",
-     hairline = FALSE,
-     shadow = TRUE,
-     leftPanel = TRUE,
-     rightPanel = TRUE
-   ),
-   f7Tabs(
-     id = "tabset1",
-     f7Tab(
-       title = "Tab 1",
-       tabName = "Tab1",
-       active = TRUE,
-       p("Text 1"),
-       f7Button("remove1","Remove tab 1")
-     ),
-     f7Tab(
-       title = "Tab 2",
-       tabName = "Tab2",
-       p("Text 2")
-     ),
-     f7Tab(
-       title = "Tab 3",
-       tabName = "Tab3",
-       p("Text 3")
-     )
-   )
+  ui <- f7Page(
+    title = "Remove a tab",
+    f7TabLayout(
+      panels = tagList(
+        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
+        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+      ),
+      navbar = f7Navbar(
+        title = "Tabs",
+        hairline = FALSE,
+        shadow = TRUE,
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      f7Tabs(
+        id = "tabset1",
+        f7Tab(
+          title = "Tab 1",
+          tabName = "Tab1",
+          active = TRUE,
+          p("Text 1"),
+          f7Button("remove1", "Remove tab 1")
+        ),
+        f7Tab(
+          title = "Tab 2",
+          tabName = "Tab2",
+          p("Text 2")
+        ),
+        f7Tab(
+          title = "Tab 3",
+          tabName = "Tab3",
+          p("Text 3")
+        )
+      )
+    )
   )
- )
 
- server <- function(input, output, session) {
-   observe(print(input$tabset1))
-   observeEvent(input$remove1, {
-     removeF7Tab(
-       id = "tabset1",
-       target = "Tab1"
-     )
-   })
- }
- shinyApp(ui, server)
+  server <- function(input, output, session) {
+    observe(print(input$tabset1))
+    observeEvent(input$remove1, {
+      removeF7Tab(
+        id = "tabset1",
+        target = "Tab1"
+      )
+    })
+  }
+  shinyApp(ui, server)
 }
 }

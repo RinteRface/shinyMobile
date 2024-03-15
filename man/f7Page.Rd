@@ -16,7 +16,7 @@ f7Page(
 )
 }
 \arguments{
-\item{...}{Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+\item{...}{Slot for shinyMobile skeleton elements: \link{f7SingleLayout},
 \link{f7TabLayout}, \link{f7SplitLayout}.}
 
 \item{title}{Page title.}

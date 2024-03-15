@@ -7,6 +7,7 @@
 - `f7Accordion()`:
     - `multiCollapse` has been removed in Framework7.
 - `f7AddMessages()` is definitely removed. Deprecated from other releases.
+- `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item

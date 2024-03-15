@@ -74,7 +74,7 @@ It is the main template skeleton.
 
 ```{r, eval=FALSE}
 f7Page(
-  ..., 
+  ...,
   options = list(...),
   title = NULL,
   allowPWA = FALSE
@@ -89,15 +89,15 @@ It contains a title, a subtitle and triggers for both right and left panels (`f7
 
 ```{r, eval=FALSE}
 f7Navbar(
-  ..., 
-  subNavbar = NULL, 
-  title = NULL, 
+  ...,
+  subNavbar = NULL,
+  title = NULL,
   subtitle = NULL,
-  hairline = TRUE, 
-  shadow = TRUE, 
+  hairline = TRUE,
+  shadow = TRUE,
   bigger = FALSE,
   transparent = FALSE,
-  leftPanel = FALSE, 
+  leftPanel = FALSE,
   rightPanel = FALSE
 )
 ```
@@ -111,11 +111,11 @@ right place to add `f7Button()`, `f7Link()`, `f7Badge()`... Its location is cont
 
 ```{r, eval=FALSE}
 f7Toolbar(
-  ..., 
-  position = c("top", "bottom"), 
+  ...,
+  position = c("top", "bottom"),
   hairline = TRUE,
-  shadow = TRUE, 
-  icons = FALSE, 
+  shadow = TRUE,
+  icons = FALSE,
   scrollable = FALSE
 )
 ```
@@ -128,11 +128,11 @@ Panels are also called sidebars, `f7Panel()` being the corresponding function.
 
 ```{r, eval=FALSE}
 f7Panel(
-  ..., 
+  ...,
   id = NULL,
-  title = NULL, 
+  title = NULL,
   side = c("left", "right"),
-  theme = c("dark", "light"), 
+  theme = c("dark", "light"),
   effect = c("reveal", "cover"),
   resizable = FALSE
 )
@@ -152,20 +152,6 @@ Note that for the moment, there is no option to control the width of each panel.
 As stated previously for the `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`.
 Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
 
-### The appbar
-
-`f7Appbar()` is displayed on top of the `f7Navbar()`. It is a best choice to embed
-`f7Searchbar()`. `f7Appbar()` may also trigger `f7Panel()`. 
-
-```{r, eval=FALSE}
-f7Appbar(
-  ..., 
-  leftPanel = FALSE, 
-  rightPanel = FALSE,
-  maximizable = FALSE
-)
-```
-
 ## Select a template
 
 This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets and desktop apps.
@@ -176,11 +162,10 @@ This choice is crucial when you are developing an App. It depends on the complex
 
 ```{r, eval=FALSE}
 f7SingleLayout(
-  ..., 
-  navbar, 
-  toolbar = NULL, 
-  panels = NULL,
-  appbar = NULL
+  ...,
+  navbar,
+  toolbar = NULL,
+  panels = NULL
 )
 ```
 
@@ -199,7 +184,7 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFWPUcAJqmqsjIkxPYBzB5aKkATCpFmopKOyFgcMQQRDC0BJwA+tQkDgEqQSSh4VExEA4ABAA8ALQZiSFhEdGxGQCkAHxlIhkZDoxEAK6okfQcAG4stFD0SgLlVTUZnHQEcOzsEOwCOQCMAAzzAohTAp4QIlL8AILo-hC1jbQZALwZAGYA7AAKUA7jQ7VEqKS0JJynGXScpOzejABrT4AMW2ABkAMoAUVwF0USjMIPB0NhpG4cHgnwCMDM8Vwjwyr1ISixYBkrAyaFQAXxB1qF0uEL4DiUYKgrCavwJtWg7XoLE+VwAclA+Sx9vTJYTaMS4KSmekSWyOY1SDTufT9LRGHQIHKzgAVLAAVRhGtqPCgZiIAHdPkbTRqBLSpYSiERqPzGILLgb3Z7xeaMqgiJwZW8DmcAvRXKRQuq6a6rmC+AD2NQenBqKSUxAgbMaRluIw4OdSdxSKRUJxEAB6Ws2xsYBzullwDDEGB4oPJ1PpzPZqNgXNAtyF4ul8uV6t1htNltENsd+NgFSu50agDEGRgUD4GWC5DIGquEP01ptEtdGT4R7DpApZ1mADYXdfuER2nBvYaTWbE1KVwAMIsGYV7XtKsqkiBjCIuiVrfgmEG1Fouj6IwpAAPKqqgqr+CgJZQEB6FqquQZrlKFG1BRG50pw35fj+FyNBABCvCQ7B8LhpCwpy3H9CABJ8aqAAkLBwERJHZHkJYQGY367DoegGOwgkAShqA6OBUreL4nwFMkxRpA4b6ug+mmkuJUBIdeu7oMynxQHAnDaa62ifLpcCmdej4ZJ01CNHA8yzN5Sbwp8nSMN0vRwORToDNU6n0lA2iRKwKW0C58kELQu7UJwACSEDAjEPifB4CUZNuECNDA9DfhkRBltluVQPlboZACcBwNSSUoalykYVwvgEF1iK-qa-SVIlEEpWlGUubu7lnAALKi4QAtsMBNGQnwrVRGQAL4UYdIgCGAh0ALpAA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFWPUcAJqmqsjIkxPYBzB5aKkATCpFmopKOyFgcMQQRDC0BJwA+tQkDgEqQSSh4VExEA4ABAA8ALQZiSFhEdGxGQCkAHxlIhkZDoxEAK6okfQcAG4stFD0SgLlVTUZnHQEcOzsEOwCOQCMAAzzAohTAp4QIlL8AILo-hC1jbQZALwZAGYA7AAKUA7jQ7VEqKS0JJynGXScpOzejABrT4AMW2ABkAMoAUVwF0USjMIPB0NhpG4cHgnwCMDM8Vwjwyr1ISixYBkrAyaFQAXxB1qF0uEL4DiUYKgrCavwJtWg7XoLE+VwAclA+Sx9vTJYTaMS4KSmekSWyOY1SDTufT9LRGHQIHKzgAVLAAVRhGtqPCgZiIAHdPkbTRqBLSpYSiERqPzGILLgb3Z7xeaMqgiJwZW8DmcAvRXKRQuq6a6rmC+AD2NQenBqKSUxAgbMaRluIw4OdSdxSKRUJxEAB6Ws2xsYBzullwDDEGB4oPJ1PpzPZqNgXNAtyF4ul8uV6t1htNltENsd+NgFSu50agDEGRgUD4GWC5DIGquEP01ptEtdGT4R7DpApZ1mADYXdfuER2nBvYaTWbE1KVwAMIsGYV7XtKsqkiBjCIuiVrfgmEG1Fouj6IwpAAPKqqgqr+CgJZQEB6FqquQZrlKFG1BRG50pw35fj+FyNBABCvCQ7B8LhpCwpy3H9CABJ8aqAAkLBwERJHZHkJYQGY367DoegGOwgkAShqA6OBUreL4nwFMkxRpA4b6ug+mmkuJUBIdeu7oMynxQHAnDaa62ifLpcCmdej4ZJ01CNHA8yzN5Sbwp8nSMN0vRwORToDNU6n0lA2iRKwKW0C58kELQu7UJwACSEDAjEPifB4CUZNuECNDA9DfhkRBltluVQPlboZACcBwNSSUoalykYVwvgEF1iK-qa-SVIlEEpWlGUubu7lnAALKi4QAtsMBNGQnwrVRGQAL4UYdIgCGAh0ALpAA", # nolint
     "app",
     header = FALSE
   ),
@@ -223,7 +208,7 @@ library(ggplot2)
 data("economics_long")
 economics_long <- economics_long %>%
   group_by(variable) %>%
-  slice((n()-100):n())
+  slice((n() - 100):n())
 
 
 shinyApp(
@@ -278,11 +263,10 @@ Choose this layout to develop complex __multi-tabbed__ apps (best choice for iOS
 
 ```{r, eval=FALSE}
 f7TabLayout(
-  ..., 
+  ...,
   navbar,
   messagebar = NULL,
-  panels = NULL, 
-  appbar = NULL
+  panels = NULL
 )
 ```
   
@@ -300,7 +284,7 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA", # nolint
     "app",
     header = FALSE
   ),
@@ -343,13 +327,12 @@ shinyApp(
       ),
       f7Tabs(
         animated = TRUE,
-        #swipeable = TRUE,
+        # swipeable = TRUE,
         f7Tab(
           title = "Tab 1",
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
-
           f7Shadow(
             intensity = 10,
             hover = TRUE,
@@ -386,9 +369,11 @@ shinyApp(
               f7SmartSelect(
                 "variable",
                 "Variables to show:",
-                c("Cylinders" = "cyl",
+                c(
+                  "Cylinders" = "cyl",
                   "Transmission" = "am",
-                  "Gears" = "gear"),
+                  "Gears" = "gear"
+                ),
                 openIn = "sheet",
                 multiple = TRUE
               ),
@@ -400,7 +385,6 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     # river plot
     dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
 
@@ -426,9 +410,12 @@ shinyApp(
 
 
     # datatable
-    output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-    }, rownames = TRUE)
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$variable), drop = FALSE]
+      },
+      rownames = TRUE
+    )
   }
 )
 ```
@@ -441,12 +428,11 @@ tablet/desktop use. It is composed of a sidebar, and a main panel.
 
 ```{r, eval=FALSE}
 f7SplitLayout(
-  ..., 
-  navbar, 
-  sidebar, 
-  toolbar = NULL, 
-  panels = NULL,
-  appbar = NULL
+  ...,
+  navbar,
+  sidebar,
+  toolbar = NULL,
+  panels = NULL
 )
 ```
 
@@ -456,14 +442,14 @@ The main content goes in the __...__ parameter. Navigation items are gathered in
 f7PanelMenu(
   id = "menu",
   f7PanelItem(
-    tabName = "tab1", 
-    title = "Tab 1", 
-    icon = f7Icon("email"), 
+    tabName = "tab1",
+    title = "Tab 1",
+    icon = f7Icon("email"),
     active = TRUE
   ),
   f7PanelItem(
-    tabName = "tab2", 
-    title = "Tab 2", 
+    tabName = "tab2",
+    title = "Tab 2",
     icon = f7Icon("home")
   )
 )
@@ -476,7 +462,7 @@ will be `input$menu` in that example, with `tab1` for value since the first tab 
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw4BzSampFSAJmGiGzNl178AskXq1qcZWLUc0cAB4FuLcoyOqJ7UtzgwopWgWUiAZowCutKScAAQAPAC0IQAm7lAYfrBw7CIhIdDwIQC8IQTsAOQAgugGnPm4IfkA8swQknBlFfkAQlDQ0I2VzXCMjLQN+QK4qSEAblDU-nDZuewALHMVAKxLFQBsAOwVABwAzMreZC5uHgQA+jx8HD4kpDNCKP6kRA+HEHAA7mcwpAQsoZEQowGtZUMkRrFSFAZi4oNF2D8-oxOEMRrRouNGPcwDAiNE4NQHsMIGlMaw+JIZnROKR2HkHtFmKQiSEHh9mWABKiSSEPPBQjl6WBGe4WWyOdy0tFaMCCB4SNi5HUiSNRhgMg1seNJnAVTzGURUDMhTBUJIxYRWIS8KywNxUBbpTSLQBHThwAgW0acC2wC31FgWpH0V4iQ6XfjFVApHmBGY+DYABSg9RjaTSHlIBmxWlYITQDrwIzShvlEAFIWptOL6ecrmmOQeUH8jCIzD16fTsUYAGsZgAVLAAVQAosTO2kfPoDNEZgAxQoAGQAymOa2liHIsY2wABiAAM+42UB8Pg7E+e-isVNoNLTE4zaAAEkRqLOcoPR+OH7zn6-ogAIgSUB5jkGxLPu34PrQRCcP2RBXtwWC0CUDYhAuK4juuISShOMFwbUnCTAQFCkK0yLzkuq5Qem0CjPQLA3ne2FpPhADCpE9P2QTZh+w5rjyD68PiAByUCjFUEDJvUy4EK21DUAO-HYbhnbPK+DHbpWt7VoJE7CXAYkSVJKZwLJ8mKTkGGripNFpKg-gKfBWBwH4IKUZhNaqSECbLrIQSLiBCG6Q+nDonAmnxkmbQEveD6ZrxtrLuFmnnqF4WKq5HJ2bWxxoQ8dCSNw2UsT50XvNQWgUP4cU-ui2LwBA-hpT+CbJhVACS5AwLVP6-vQYmZDuUL0AAjC1fUJflYD9lA9AhONRZ6X1ngKjkCYdcQEApGAcAuv4ExnAQMoEAYrw5Q+UByrQoxoZ+WHLRO3kPm1MXUF1ri9T+I2DdNI0KBN308dNs3zQDS19Z2q0kutGybSQO17Qd1BHSdZ2cqVaTPROr2dd1X3xXNv3YiNuyA-FwPYqDIRkxDkOsVtUXw9tDxI4dx2MKduoY49nbKH12NpIEVRPA51ZgO6BhynA0RnCN52la5PgencO7ArdEwPLZ2F0ZFsNGZpBO8pTO5+XQdyBawwXkyE1gynQ7wedRpU8HCRAfEpo7a496nUHrZXwRpLBG6gsFBDBMO2vQ8jPDANsJoufA9uw1BzQS2KJxAfaLRU3DAj42LFaQqCcIgAD0ZcfFXGCSEQRCSAYGDEHHnIXWVmfJ6n9DpzuHchODuf54XpDF6XFdVx8Nd1w3cBN0QLf809OW7iEbh8LktykdhG3dZwRs759mP9cTw1zTnR8Js0TzPCzYDPNIBjLi4cDZbaiZyHcqAsEktg+q3F8bCfnAF+RsobvltDwYBpBz68wnF3Hub8P4hGTMweAv8badjbP0Mg7gI7YmjiPeeGD0ycA+ChOA8E2JyHdJ7AS9M0gMQID2A0Ro+JfiPpOQBdB8SMFAROB4ug-5twfA8ES-gYDdyxEQAugiejjDLKXYhnYYDrxyJBVeUBzAzFGoeSCHD0zaimDMCC+59GLwFsIkITB2CC3TLIeQIti5PB2k6Ug795ChlgbYg+PUj4-SSCTOaA8j5mEsNYRgpBHFix2swbsniLGlR8Xw-xQ1bSk2IQmeCD9wSwKhhAMWHVwEPHsaQC43B3ZKMrGnSySVyke3caQAA-JUqwHoewy1oUfWxaRQlWBsFE5xDwYCOQ8GcWJtBNY8wFipLyIxcLukYLdLSPh-AQGugjPgYsKjBS2SEd0nAwokAECEEAIgayyMWXAEct0yDsE2U8AAJPfGeQCX4VFOY9fwqBIRwDnIA5+tJ6o7kgS-Ra5iQgAF9DiYPoAs261zSJ3PyY8wR7zsK0ALkisWDzBHhBCCY45Hy+oJhEvIDFySLCqxCF-GkcB9w7X7C4PZ3CehjAmEY28IQSDUDzCye5pAcWwoqA8DAyCDBQHdPo+hIQ+ByTgBK6YQQFa5JlYzWGzMdrR2oKUqcCllX0ymtiQoBgInEKmshIqpB+yUpmMuVgnAMAAXcMkcFfNsIQprFCs5ekdmPNiYxQEwIIA8OKBYPpET2BEonKEo2kJoQ5HeF8RE-w26kFYGCbE-rGA2zcOgCkMwoAND4VonIuJ8TUEsaBNlOpLGSFbF8mYfJDAzL0l6iA5zRaPMlirGWcs5rhCiEGnhQ4OqRuwk+fsWhFzsBpeQelDxCgEBIgc3kTKCAtiDVmPM3bpazhGogW0FQaStjqFix5jV-BcnBW2jtTiBWuIaQOoEFAeENLHY9VxT7GAQDbD1flgqUTYV4HeVx17oXpl9QK4Z2raBjLhBMxSgaX09FDWEmw77oKYv-SUsp7tCWlRjXG+MAQgicAqGmjNat4MTHIiyXNqB805ELXvEt6QkgVCrYYwwrrIWevAx6iAAgwAQoALpAA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw4BzSampFSAJmGiGzNl178AskXq1qcZWLUc0cAB4FuLcoyOqJ7UtzgwopWgWUiAZowCutKScAAQAPAC0IQAm7lAYfrBw7CIhIdDwIQC8IQTsAOQAgugGnPm4IfkA8swQknBlFfkAQlDQ0I2VzXCMjLQN+QK4qSEAblDU-nDZuewALHMVAKxLFQBsAOwVABwAzMreZC5uHgQA+jx8HD4kpDNCKP6kRA+HEHAA7mcwpAQsoZEQowGtZUMkRrFSFAZi4oNF2D8-oxOEMRrRouNGPcwDAiNE4NQHsMIGlMaw+JIZnROKR2HkHtFmKQiSEHh9mWABKiSSEPPBQjl6WBGe4WWyOdy0tFaMCCB4SNi5HUiSNRhgMg1seNJnAVTzGURUDMhTBUJIxYRWIS8KywNxUBbpTSLQBHThwAgW0acC2wC31FgWpH0V4iQ6XfjFVApHmBGY+DYABSg9RjaTSHlIBmxWlYITQDrwIzShvlEAFIWptOL6ecrmmOQeUH8jCIzD16fTsUYAGsZgAVLAAVQAosTO2kfPoDNEZgAxQoAGQAymOa2liHIsY2wABiAAM+42UB8Pg7E+e-isVNoNLTE4zaAAEkRqLOcoPR+OH7zn6-ogAIgSUB5jkGxLPu34PrQRCcP2RBXtwWC0CUDYhAuK4juuISShOMFwbUnCTAQFCkK0yLzkuq5Qem0CjPQLA3ne2FpPhADCpE9P2QTZh+w5rjyD68PiAByUCjFUEDJvUy4EK21DUAO-HYbhnbPK+DHbpWt7VoJE7CXAYkSVJKZwLJ8mKTkGGripNFpKg-gKfBWBwH4IKUZhNaqSECbLrIQSLiBCG6Q+nDonAmnxkmbQEveD6ZrxtrLuFmnnqF4WKq5HJ2bWxxoQ8dCSNw2UsT50XvNQWgUP4cU-ui2LwBA-hpT+CbJhVACS5AwLVP6-vQYmZDuUL0AAjC1fUJflYD9lA9AhONRZ6X1ngKjkCYdcQEApGAcAuv4ExnAQMoEAYrw5Q+UByrQoxoZ+WHLRO3kPm1MXUF1ri9T+I2DdNI0KBN308dNs3zQDS19Z2q0kutGybSQO17Qd1BHSdZ2cqVaTPROr2dd1X3xXNv3YiNuyA-FwPYqDIRkxDkOsVtUXw9tDxI4dx2MKduoY49nbKH12NpIEVRPA51ZgO6BhynA0RnCN52la5PgencO7ArdEwPLZ2F0ZFsNGZpBO8pTO5+XQdyBawwXkyE1gynQ7wedRpU8HCRAfEpo7a496nUHrZXwRpLBG6gsFBDBMO2vQ8jPDANsJoufA9uw1BzQS2KJxAfaLRU3DAj42LFaQqCcIgAD0ZcfFXGCSEQRCSAYGDEHHnIXWVmfJ6n9DpzuHchODuf54XpDF6XFdVx8Nd1w3cBN0QLf809OW7iEbh8LktykdhG3dZwRs759mP9cTw1zTnR8Js0TzPCzYDPNIBjLi4cDZbaiZyHcqAsEktg+q3F8bCfnAF+RsobvltDwYBpBz68wnF3Hub8P4hGTMweAv8badjbP0Mg7gI7YmjiPeeGD0ycA+ChOA8E2JyHdJ7AS9M0gMQID2A0Ro+JfiPpOQBdB8SMFAROB4ug-5twfA8ES-gYDdyxEQAugiejjDLKXYhnYYDrxyJBVeUBzAzFGoeSCHD0zaimDMCC+59GLwFsIkITB2CC3TLIeQIti5PB2k6Ug795ChlgbYg+PUj4-SSCTOaA8j5mEsNYRgpBHFix2swbsniLGlR8Xw-xQ1bSk2IQmeCD9wSwKhhAMWHVwEPHsaQC43B3ZKMrGnSySVyke3caQAA-JUqwHoewy1oUfWxaRQlWBsFE5xDwYCOQ8GcWJtBNY8wFipLyIxcLukYLdLSPh-AQGugjPgYsKjBS2SEd0nAwokAECEEAIgayyMWXAEct0yDsE2U8AAJPfGeQCX4VFOY9fwqBIRwDnIA5+tJ6o7kgS-Ra5iQgAF9DiYPoAs261zSJ3PyY8wR7zsK0ALkisWDzBHhBCCY45Hy+oJhEvIDFySLCqxCF-GkcB9w7X7C4PZ3CehjAmEY28IQSDUDzCye5pAcWwoqA8DAyCDBQHdPo+hIQ+ByTgBK6YQQFa5JlYzWGzMdrR2oKUqcCllX0ymtiQoBgInEKmshIqpB+yUpmMuVgnAMAAXcMkcFfNsIQprFCs5ekdmPNiYxQEwIIA8OKBYPpET2BEonKEo2kJoQ5HeF8RE-w26kFYGCbE-rGA2zcOgCkMwoAND4VonIuJ8TUEsaBNlOpLGSFbF8mYfJDAzL0l6iA5zRaPMlirGWcs5rhCiEGnhQ4OqRuwk+fsWhFzsBpeQelDxCgEBIgc3kTKCAtiDVmPM3bpazhGogW0FQaStjqFix5jV-BcnBW2jtTiBWuIaQOoEFAeENLHY9VxT7GAQDbD1flgqUTYV4HeVx17oXpl9QK4Z2raBjLhBMxSgaX09FDWEmw77oKYv-SUsp7tCWlRjXG+MAQgicAqGmjNat4MTHIiyXNqB805ELXvEt6QkgVCrYYwwrrIWevAx6iAAgwAQoALpAA", # nolint
     "app",
     header = FALSE
   ),
@@ -500,7 +486,7 @@ library(apexcharter)
 library(thematic)
 
 fruits <- data.frame(
-  name = c('Apples', 'Oranges', 'Bananas', 'Berries'),
+  name = c("Apples", "Oranges", "Bananas", "Berries"),
   value = c(44, 55, 67, 83)
 )
 
@@ -614,7 +600,6 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
@@ -638,7 +623,8 @@ shinyApp(
         mapping = aes(
           x = model,
           y = value,
-          group = time)
+          group = time
+        )
       )
     })
 
@@ -656,7 +642,6 @@ shinyApp(
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
       }
     })
-
   }
 )
 ```
@@ -667,26 +652,26 @@ shinyApp(
 This is where you can customize the global app behavior: 
 
 ```{r, eval=FALSE}
-options = list(
-    theme = c("ios", "md", "auto"),
-    dark = TRUE,
-    filled = FALSE,
-    color = "#007aff",
-    touch = list(
-      tapHold = TRUE,
-      tapHoldDelay = 750,
-      iosTouchRipple = FALSE
-    ),
-    iosTranslucentBars = FALSE,
-    navbar = list(
-      iosCenterTitle = TRUE,
-      hideOnPageScroll = TRUE
-    ),
-    toolbar = list(
-      hideOnPageScroll = FALSE
-    ),
-    pullToRefresh = FALSE
-  )
+options <- list(
+  theme = c("ios", "md", "auto"),
+  dark = TRUE,
+  filled = FALSE,
+  color = "#007aff",
+  touch = list(
+    tapHold = TRUE,
+    tapHoldDelay = 750,
+    iosTouchRipple = FALSE
+  ),
+  iosTranslucentBars = FALSE,
+  navbar = list(
+    iosCenterTitle = TRUE,
+    hideOnPageScroll = TRUE
+  ),
+  toolbar = list(
+    hideOnPageScroll = FALSE
+  ),
+  pullToRefresh = FALSE
+)
 ```
 
 As stated above, you may choose between 3 skins and 2 color themes. There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, ... 

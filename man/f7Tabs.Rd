@@ -38,154 +38,158 @@ styles.
 }
 \examples{
 if (interactive()) {
- # tabs as toolbar
- library(shiny)
- library(shinyMobile)
- shiny::shinyApp(
-  ui = f7Page(
-    title = "Tab Layout",
-    f7TabLayout(
-      navbar = f7Navbar(title = HTML(paste("Currently selected:", textOutput("selected")))),
-      f7Tabs(
-        id = "tabdemo",
-        swipeable = TRUE,
-        animated = FALSE,
-        f7Tab(
-         title = "Tab 1",
-         tabName = "Tab1",
-         f7Sheet(
-          id = "sheet",
-          label = "More",
-          orientation = "bottom",
-          swipeToClose = TRUE,
-          swipeToStep = TRUE,
-          backdrop = TRUE,
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  # tabs as toolbar
+  library(shiny)
+  library(shinyMobile)
+  shiny::shinyApp(
+    ui = f7Page(
+      title = "Tab Layout",
+      f7TabLayout(
+        navbar = f7Navbar(title = HTML(paste("Currently selected:", textOutput("selected")))),
+        f7Tabs(
+          id = "tabdemo",
+          swipeable = TRUE,
+          animated = FALSE,
+          f7Tab(
+            title = "Tab 1",
+            tabName = "Tab1",
+            f7Sheet(
+              id = "sheet",
+              label = "More",
+              orientation = "bottom",
+              swipeToClose = TRUE,
+              swipeToStep = TRUE,
+              backdrop = TRUE,
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
           scelerisque est, at porta justo cursus ac"
-         )
-        ),
-        f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
-        f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
-        .items = f7TabLink(
-         icon = f7Icon("bolt_fill"),
-         label = "Toggle Sheet",
-         `data-sheet` = "#sheet",
-         class = "sheet-open"
+            )
+          ),
+          f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
+          f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
+          .items = f7TabLink(
+            icon = f7Icon("bolt_fill"),
+            label = "Toggle Sheet",
+            `data-sheet` = "#sheet",
+            class = "sheet-open"
+          )
         )
       )
-    )
-  ),
-  server = function(input, output) {
-    output$selected <- renderText(input$tabdemo)
-  }
- )
- # standalone tabs
- library(shiny)
- library(shinyMobile)
- shiny::shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "Standalone tabs",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7Tabs(
-         id = "tabs",
-         style = "strong", animated = FALSE, swipeable = TRUE,
-         f7Tab(
-           tabName = "Tab1",
-           icon = f7Icon("envelope"),
-           active = TRUE,
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7Stepper(
-                 "obs1",
-                 "Number of observations",
-                 min = 0,
-                 max = 1000,
-                 value = 500,
-                 step = 100
-               ),
-               plotOutput("distPlot")
-             )
-           )
-         ),
-         f7Tab(
-           tabName = "Tab2",
-           icon = f7Icon("today"),
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7Select(
-                 inputId = "obs2",
-                 label = "Distribution type:",
-                 choices = c(
-                   "Normal" = "norm",
-                   "Uniform" = "unif",
-                   "Log-normal" = "lnorm",
-                   "Exponential" = "exp"
-                 )
-               ),
-               plotOutput("distPlot2")
-             )
-           )
-         ),
-         f7Tab(
-           tabName = "Tab3",
-           icon = f7Icon("cloud_upload"),
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7SmartSelect(
-                 inputId = "variable",
-                 label = "Variables to show:",
-                 c("Cylinders" = "cyl",
-                   "Transmission" = "am",
-                   "Gears" = "gear"),
-                 multiple = TRUE,
-                 selected = "cyl"
-               ),
-               tableOutput("data")
-             )
-           )
-         )
-       )
-     )
-   ),
-   server = function(input, output) {
-     output$distPlot <- renderPlot({
-       dist <- rnorm(input$obs1)
-       hist(dist)
-     })
+    ),
+    server = function(input, output) {
+      output$selected <- renderText(input$tabdemo)
+    }
+  )
+  # standalone tabs
+  library(shiny)
+  library(shinyMobile)
+  shiny::shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(
+          title = "Standalone tabs",
+          hairline = FALSE,
+          shadow = TRUE
+        ),
+        f7Tabs(
+          id = "tabs",
+          style = "strong", animated = FALSE, swipeable = TRUE,
+          f7Tab(
+            tabName = "Tab1",
+            icon = f7Icon("envelope"),
+            active = TRUE,
+            f7Shadow(
+              intensity = 10,
+              hover = TRUE,
+              f7Card(
+                title = "Card header",
+                f7Stepper(
+                  "obs1",
+                  "Number of observations",
+                  min = 0,
+                  max = 1000,
+                  value = 500,
+                  step = 100
+                ),
+                plotOutput("distPlot")
+              )
+            )
+          ),
+          f7Tab(
+            tabName = "Tab2",
+            icon = f7Icon("today"),
+            f7Shadow(
+              intensity = 10,
+              hover = TRUE,
+              f7Card(
+                title = "Card header",
+                f7Select(
+                  inputId = "obs2",
+                  label = "Distribution type:",
+                  choices = c(
+                    "Normal" = "norm",
+                    "Uniform" = "unif",
+                    "Log-normal" = "lnorm",
+                    "Exponential" = "exp"
+                  )
+                ),
+                plotOutput("distPlot2")
+              )
+            )
+          ),
+          f7Tab(
+            tabName = "Tab3",
+            icon = f7Icon("cloud_upload"),
+            f7Shadow(
+              intensity = 10,
+              hover = TRUE,
+              f7Card(
+                title = "Card header",
+                f7SmartSelect(
+                  inputId = "variable",
+                  label = "Variables to show:",
+                  c(
+                    "Cylinders" = "cyl",
+                    "Transmission" = "am",
+                    "Gears" = "gear"
+                  ),
+                  multiple = TRUE,
+                  selected = "cyl"
+                ),
+                tableOutput("data")
+              )
+            )
+          )
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$distPlot <- renderPlot({
+        dist <- rnorm(input$obs1)
+        hist(dist)
+      })
 
-     output$distPlot2 <- renderPlot({
-       dist <- switch(
-         input$obs2,
-         norm = rnorm,
-         unif = runif,
-         lnorm = rlnorm,
-         exp = rexp,
-         rnorm
-       )
+      output$distPlot2 <- renderPlot({
+        dist <- switch(input$obs2,
+          norm = rnorm,
+          unif = runif,
+          lnorm = rlnorm,
+          exp = rexp,
+          rnorm
+        )
 
-       hist(dist(500))
-     })
+        hist(dist(500))
+      })
 
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-   }
- )
+      output$data <- renderTable(
+        {
+          mtcars[, c("mpg", input$variable), drop = FALSE]
+        },
+        rownames = TRUE
+      )
+    }
+  )
 }
 }
 \author{

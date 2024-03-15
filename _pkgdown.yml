@@ -2,7 +2,6 @@ reference:
 - title: Basic functions
   desc: Page skeleton functions
   contents:
-  - '`f7Appbar`'
   - '`f7Item`'
   - '`f7Items`'
   - '`f7Navbar`'
@@ -43,14 +42,6 @@ reference:
   - '`f7Flex`'
   - '`f7Row`'
 
-
-- title: Tab Navigation
-  desc: Next, back
-  contents:
-  - '`f7Back`'
-  - '`f7Next`'
-
-
 - title: Layouts
   desc: Functions that create layouts
   contents:
@@ -65,6 +56,12 @@ reference:
   - '`f7DownloadButton`'
   - '`f7File`'
 
+
+- title: Tab Navigation
+  desc: Next, back
+  contents:
+  - '`f7Back`'
+  - '`f7Next`'
 
 
 - title: Inputs
