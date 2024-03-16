@@ -38,9 +38,7 @@ reference:
 - title: Grid functions
   desc: Rows, columns, flex, ...
   contents:
-  - '`f7Col`'
-  - '`f7Flex`'
-  - '`f7Row`'
+  - '`f7Grid`'
 
 - title: Layouts
   desc: Functions that create layouts
