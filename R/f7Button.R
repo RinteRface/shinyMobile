@@ -169,7 +169,7 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 f7Segment <- function(
     ..., container = deprecated(),
     shadow = FALSE, rounded = FALSE, strong = FALSE) {
-  if (lifecycle::is_present(subtitle)) {
+  if (lifecycle::is_present(container)) {
     lifecycle::deprecate_warn(
       when = "1.1.0",
       what = "f7Segment(container)",
