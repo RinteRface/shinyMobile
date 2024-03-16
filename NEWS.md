@@ -17,6 +17,7 @@
     - `container` is deprecated, removed from Framework7.
 - `f7Navbar()`:
     - `shadow` and `subtitle` have been removed in Framework7.
+- `f7SocialCard()` is deprecated as the same result can be achieved with `f7Card()`.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item
@@ -24,6 +25,7 @@ being a single `f7Message()`. The previous setting was not optimal R,the JS bind
 We now return an object of objects which becomes a list of lists.
 - `f7Block()` gains an `outline` parameter (add grey border).
 - `f7Button()` get a new `tonal` style.
+- `f7Card()` get a new `raised` and `divider` parameters.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

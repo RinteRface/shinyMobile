@@ -15,7 +15,7 @@ $.extend(f7CardBinding, {
 
   // see updateF7Card
   receiveMessage: function(el, data) {
-    app.card.toggle($(el));
+    app.card.toggle(el);
   },
 
   subscribe: function(el, callback) {

@@ -61,6 +61,9 @@ tabCards <- f7Tab(
       "Card with header and footer",
       f7Icon("card", f7Badge("Hi!", color = "red"))
     ),
+    divider = TRUE,
+    outline = TRUE,
+    raised = TRUE,
     "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
@@ -85,24 +88,6 @@ tabCards <- f7Tab(
     )
   ),
   br(),
-
-
-  # social card
-  f7BlockTitle(title = "f7SocialCard") %>% f7Align(side = "center"),
-  f7SocialCard(
-    image = "https://cdn.framework7.io/placeholder/people-68x68-1.jpg",
-    author = "A social Card",
-    date = "Monday at 3:47 PM",
-    "What a nice photo i took yesterday!",
-    img(src = "https://cdn.framework7.io/placeholder/nature-1000x700-8.jpg", width = "100%"),
-    footer = tagList(
-      f7Badge("1", color = "yellow"),
-      f7Badge("2", color = "green"),
-      f7Badge("3", color = "blue")
-    )
-  ),
-  br(),
-
 
   # media card
   f7BlockTitle(title = "f7MediaCard") %>% f7Align(side = "center"),

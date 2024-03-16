@@ -94,4 +94,20 @@
   .light .swiper-slide {
     background-color: white;
   }
-  
+
+  /* Cards Demo */
+.demo-card-header-pic .card-header {
+  height: 40vw;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.md .demo-card-header-pic .card-header {
+  margin: 0 16px 16px;
+  border-radius: 16px;
+  position: relative;
+  top: 16px;
+}
+.demo-card-header-pic .card-content-padding .date {
+  color: #8e8e93;
+}
