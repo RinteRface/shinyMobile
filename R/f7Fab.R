@@ -135,33 +135,6 @@ updateF7Fab <- function(inputId, label = NULL,
 #'
 #' @param tag Target tag.
 #' @export
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Fabs Morph"),
-#'         toolbar = f7Toolbar(
-#'           position = "bottom",
-#'           lapply(1:3, function(i) f7Link(label = i, href = "#") %>% f7FabClose())
-#'         ) %>% f7FabMorphTarget(),
-#'         # put an empty f7Fabs container
-#'         f7Fabs(
-#'           extended = TRUE,
-#'           label = "Open",
-#'           position = "center-top",
-#'           color = "yellow",
-#'           sideOpen = "right",
-#'           morphTarget = ".toolbar"
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output) {}
-#'   )
-#' }
 f7FabMorphTarget <- function(tag) {
   shiny::tagAppendAttributes(tag, class = "fab-morph-target")
 }

@@ -101,32 +101,6 @@ app <- shinyApp(
 )
 
 if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-
-  shinyApp(
-    ui = f7Page(
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Fabs Morph"),
-        toolbar = f7Toolbar(
-          position = "bottom",
-          lapply(1:3, function(i) f7Link(label = i, href = "#") \%>\% f7FabClose())
-        ) \%>\% f7FabMorphTarget(),
-        # put an empty f7Fabs container
-        f7Fabs(
-          extended = TRUE,
-          label = "Open",
-          position = "center-top",
-          color = "yellow",
-          sideOpen = "right",
-          morphTarget = ".toolbar"
-        )
-      )
-    ),
-    server = function(input, output) {}
-  )
-}
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
