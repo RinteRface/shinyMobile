@@ -93,94 +93,94 @@ While updating, the autorepeat field does not work correctly.
 }
 \examples{
 # Stepper input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Stepper"),
-     f7Stepper(
-      inputId = "stepper",
-      label = "My stepper",
-      min = 0,
-      max = 10,
-      value = 4
-     ),
-     verbatimTextOutput("test"),
-     f7Stepper(
-      inputId = "stepper2",
-      label = "My stepper 2",
-      min = 0,
-      max = 10,
-      value = 4,
-      color = "orange",
-      raised = TRUE,
-      fill = TRUE,
-      rounded = TRUE
-     ),
-     verbatimTextOutput("test2")
-    )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint(input$stepper)
-    output$test2 <- renderPrint(input$stepper2)
-   }
- )
-}
-# Update stepper input
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-      navbar = f7Navbar(title = "updateF7Stepper"),
-      f7Card(
-        f7Button(inputId = "update", label = "Update stepper"),
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Stepper"),
         f7Stepper(
           inputId = "stepper",
           label = "My stepper",
           min = 0,
           max = 10,
-          size = "small",
-          value = 4,
-          wraps = TRUE,
-          autorepeat = TRUE,
-          rounded = FALSE,
-          raised = FALSE,
-          manual = FALSE
+          value = 4
         ),
-        verbatimTextOutput("test")
+        verbatimTextOutput("test"),
+        f7Stepper(
+          inputId = "stepper2",
+          label = "My stepper 2",
+          min = 0,
+          max = 10,
+          value = 4,
+          color = "orange",
+          raised = TRUE,
+          fill = TRUE,
+          rounded = TRUE
+        ),
+        verbatimTextOutput("test2")
       )
-    )
-  ),
-  server = function(input, output, session) {
+    ),
+    server = function(input, output) {
+      output$test <- renderPrint(input$stepper)
+      output$test2 <- renderPrint(input$stepper2)
+    }
+  )
+}
+#
+# Update stepper input
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
-    output$test <- renderPrint(input$stepper)
-
-    observeEvent(input$update, {
-      updateF7Stepper(
-        inputId = "stepper",
-        value = 0.1,
-        step = 0.01,
-        size = "large",
-        min = 0,
-        max = 1,
-        wraps = FALSE,
-        autorepeat = FALSE,
-        rounded = TRUE,
-        raised = TRUE,
-        color = "pink",
-        manual = TRUE,
-        decimalPoint = 2
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "updateF7Stepper"),
+        f7Card(
+          f7Button(inputId = "update", label = "Update stepper"),
+          f7Stepper(
+            inputId = "stepper",
+            label = "My stepper",
+            min = 0,
+            max = 10,
+            size = "small",
+            value = 4,
+            wraps = TRUE,
+            autorepeat = TRUE,
+            rounded = FALSE,
+            raised = FALSE,
+            manual = FALSE
+          ),
+          verbatimTextOutput("test")
+        )
       )
-    })
-  }
- )
+    ),
+    server = function(input, output, session) {
+      output$test <- renderPrint(input$stepper)
+
+      observeEvent(input$update, {
+        updateF7Stepper(
+          inputId = "stepper",
+          value = 0.1,
+          step = 0.01,
+          size = "large",
+          min = 0,
+          max = 1,
+          wraps = FALSE,
+          autorepeat = FALSE,
+          rounded = TRUE,
+          raised = TRUE,
+          color = "pink",
+          manual = TRUE,
+          decimalPoint = 2
+        )
+      })
+    }
+  )
 }
 }

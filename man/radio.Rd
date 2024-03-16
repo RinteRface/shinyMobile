@@ -33,63 +33,63 @@ updateF7Radio(
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Radio"),
-     f7Radio(
-      inputId = "radio",
-      label = "Choose a fruit:",
-      choices = c("banana", "apple", "peach"),
-      selected = "apple"
-     ),
-     plotOutput("plot")
-    )
-   ),
-   server = function(input, output) {
-    output$plot <- renderPlot({
-     if (input$radio == "apple") hist(mtcars[, "mpg"])
-    })
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Radio"),
+        f7Radio(
+          inputId = "radio",
+          label = "Choose a fruit:",
+          choices = c("banana", "apple", "peach"),
+          selected = "apple"
+        ),
+        plotOutput("plot")
+      )
+    ),
+    server = function(input, output) {
+      output$plot <- renderPlot({
+        if (input$radio == "apple") hist(mtcars[, "mpg"])
+      })
+    }
+  )
 }
 # Update radio
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "Update radio",
-    f7SingleLayout(
-      navbar = f7Navbar(title = "Update f7Radio"),
-      f7Button("go", "Update radio"),
-      f7Radio(
-        inputId = "radio",
-        label = "Choose a fruit:",
-        choices = c("banana", "apple", "peach"),
-        selected = "apple"
-      ),
-      textOutput("radio_value")
-    )
-  ),
-  server = function(input, output, session) {
-    output$radio_value <- renderText(input$radio)
-
-    observeEvent(input$go, {
-      updateF7Radio(
-        session,
-        inputId = "radio",
-        label = "New label",
-        choices = colnames(mtcars),
-        selected = colnames(mtcars)[1]
+  shinyApp(
+    ui = f7Page(
+      title = "Update radio",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "Update f7Radio"),
+        f7Button("go", "Update radio"),
+        f7Radio(
+          inputId = "radio",
+          label = "Choose a fruit:",
+          choices = c("banana", "apple", "peach"),
+          selected = "apple"
+        ),
+        textOutput("radio_value")
       )
-    })
-  }
- )
+    ),
+    server = function(input, output, session) {
+      output$radio_value <- renderText(input$radio)
+
+      observeEvent(input$go, {
+        updateF7Radio(
+          session,
+          inputId = "radio",
+          label = "New label",
+          choices = colnames(mtcars),
+          selected = colnames(mtcars)[1]
+        )
+      })
+    }
+  )
 }
 }

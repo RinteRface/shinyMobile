@@ -32,69 +32,71 @@ updateF7Toggle(
 }
 \examples{
 # f7Toggle
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Toggle"),
-     f7Toggle(
-      inputId = "toggle",
-      label = "My toggle",
-      color = "pink",
-      checked = TRUE
-     ),
-     verbatimTextOutput("test"),
-     f7Toggle(
-      inputId = "toggle2",
-      label = "My toggle 2"
-     ),
-     verbatimTextOutput("test2")
-    )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint(input$toggle)
-    output$test2 <- renderPrint(input$toggle2)
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Toggle"),
+        f7Toggle(
+          inputId = "toggle",
+          label = "My toggle",
+          color = "pink",
+          checked = TRUE
+        ),
+        verbatimTextOutput("test"),
+        f7Toggle(
+          inputId = "toggle2",
+          label = "My toggle 2"
+        ),
+        verbatimTextOutput("test2")
+      )
+    ),
+    server = function(input, output) {
+      output$test <- renderPrint(input$toggle)
+      output$test2 <- renderPrint(input$toggle2)
+    }
+  )
 }
+#
 # Update f7Toggle
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "updateF7Toggle"),
-       f7Card(
-         f7Button(inputId = "update", label = "Update toggle"),
-         f7Toggle(
-           inputId = "toggle",
-           label = "My toggle",
-           color = "pink",
-           checked = FALSE
-         ),
-         verbatimTextOutput("test")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "updateF7Toggle"),
+        f7Card(
+          f7Button(inputId = "update", label = "Update toggle"),
+          f7Toggle(
+            inputId = "toggle",
+            label = "My toggle",
+            color = "pink",
+            checked = FALSE
+          ),
+          verbatimTextOutput("test")
+        )
+      )
+    ),
+    server = function(input, output, session) {
+      output$test <- renderPrint({
+        input$toggle
+      })
 
-     output$test <- renderPrint({input$toggle})
-
-     observeEvent(input$update, {
-       updateF7Toggle(
-         inputId = "toggle",
-         checked = TRUE,
-         color = "green"
-       )
-     })
-   }
- )
+      observeEvent(input$update, {
+        updateF7Toggle(
+          inputId = "toggle",
+          checked = TRUE,
+          color = "green"
+        )
+      })
+    }
+  )
 }
 }

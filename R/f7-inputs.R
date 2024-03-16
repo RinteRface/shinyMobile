@@ -11,9 +11,8 @@
 #' can be page or popup (for Standalone) or dropdown.
 #' @param typeahead Enables type ahead, will prefill input
 #' value with first item in match. Only if openIn is "dropdown".
-#' @param expandInput If TRUE then input which is used as
-#' item-input in List View will be expanded to full
-#' screen wide during dropdown visible. Only if openIn is "dropdown".
+#' @param expandInput `r lifecycle::badge("deprecated")`:
+#' removed from Framework7.
 #' @param closeOnSelect Set to true and autocomplete will be closed when user picks value.
 #' Not available if multiple is enabled. Only works
 #' when openIn is 'popup' or 'page'.
@@ -21,52 +20,56 @@
 #' Only if openIn is "dropdown".
 #' @param multiple Whether to allow multiple value selection. Only works
 #' when openIn is 'popup' or 'page'.
-#' @param limit Limit number of maximum displayed items in autocomplete per query
+#' @param limit Limit number of maximum displayed items in autocomplete per query.
 #'
 #' @rdname autocomplete
 #'
 #' @examples
 #' # Autocomplete input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7AutoComplete"),
-#'      f7AutoComplete(
-#'       inputId = "myautocomplete1",
-#'       placeholder = "Some text here!",
-#'       dropdownPlaceholderText = "Try to type Apple",
-#'       label = "Type a fruit name",
-#'       openIn = "dropdown",
-#'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-#'        'Orange', 'Peach', 'Pear', 'Pineapple')
-#'      ),
-#'      textOutput("autocompleteval1"),
-#'      f7AutoComplete(
-#'       inputId = "myautocomplete2",
-#'       placeholder = "Some text here!",
-#'       openIn = "popup",
-#'       multiple = TRUE,
-#'       label = "Type a fruit name",
-#'       choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-#'                   'Orange', 'Peach', 'Pear', 'Pineapple')
-#'      ),
-#'      verbatimTextOutput("autocompleteval2")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     observe({
-#'      print(input$myautocomplete1)
-#'      print(input$myautocomplete2)
-#'     })
-#'     output$autocompleteval1 <- renderText(input$myautocomplete1)
-#'     output$autocompleteval2 <- renderPrint(input$myautocomplete2)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7AutoComplete"),
+#'         f7AutoComplete(
+#'           inputId = "myautocomplete1",
+#'           placeholder = "Some text here!",
+#'           dropdownPlaceholderText = "Try to type Apple",
+#'           label = "Type a fruit name",
+#'           openIn = "dropdown",
+#'           choices = c(
+#'             "Apple", "Apricot", "Avocado", "Banana", "Melon",
+#'             "Orange", "Peach", "Pear", "Pineapple"
+#'           )
+#'         ),
+#'         textOutput("autocompleteval1"),
+#'         f7AutoComplete(
+#'           inputId = "myautocomplete2",
+#'           placeholder = "Some text here!",
+#'           openIn = "popup",
+#'           multiple = TRUE,
+#'           label = "Type a fruit name",
+#'           choices = c(
+#'             "Apple", "Apricot", "Avocado", "Banana", "Melon",
+#'             "Orange", "Peach", "Pear", "Pineapple"
+#'           )
+#'         ),
+#'         verbatimTextOutput("autocompleteval2")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       observe({
+#'         print(input$myautocomplete1)
+#'         print(input$myautocomplete2)
+#'       })
+#'       output$autocompleteval1 <- renderText(input$myautocomplete1)
+#'       output$autocompleteval2 <- renderPrint(input$myautocomplete2)
+#'     }
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
@@ -75,12 +78,20 @@
 f7AutoComplete <- function(inputId, label, placeholder = NULL,
                            value = choices[1], choices,
                            openIn = c("popup", "page", "dropdown"),
-                           typeahead = TRUE, expandInput = TRUE, closeOnSelect = FALSE,
+                           typeahead = TRUE, expandInput = deprecated(), closeOnSelect = FALSE,
                            dropdownPlaceholderText = NULL, multiple = FALSE, limit = NULL) {
-
+  if (lifecycle::is_present(expandInput)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7AutoComplete(expandInput)",
+      details = "expandInput has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
   type <- match.arg(openIn)
 
-  if(is.null(value)) value <- character()
+  if (is.null(value)) value <- character()
 
   value <- jsonlite::toJSON(value)
   choices <- jsonlite::toJSON(choices)
@@ -101,7 +112,6 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
       type = "text",
       placeholder = placeholder,
       `data-typeahead` = typeahead,
-      `data-expand-input` = expandInput,
       `data-dropdown-placeholder-text` = dropdownPlaceholderText
     )
   } else {
@@ -121,9 +131,13 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 
   # replace TRUE and FALSE by true and false for javascript
   autoCompleteProps <- lapply(autoCompleteProps, function(x) {
-    if (identical(x, TRUE)) "true"
-    else if (identical(x, FALSE)) "false"
-    else x
+    if (identical(x, TRUE)) {
+      "true"
+    } else if (identical(x, FALSE)) {
+      "false"
+    } else {
+      x
+    }
   })
 
   # wrap props
@@ -147,7 +161,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   # input tag + label wrapper
   if (!(type %in% c("page", "popup"))) {
     shiny::tags$div(
-      class = "list no-hairlines-md",
+      class = "list list-strong-ios list-outline-ios",
       shiny::tags$ul(
         shiny::tags$li(
           class = "item-content item-input inline-label",
@@ -165,7 +179,7 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
       )
     )
   } else {
-    shiny::tags$div(class = "list", shiny::tags$ul(autoCompleteProps))
+    shiny::tags$div(class = "list list-strong list-outline-ios", shiny::tags$ul(autoCompleteProps))
   }
 }
 
@@ -189,46 +203,47 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #' @examples
 #' # Update autocomplete
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update autocomplete"),
-#'       f7Card(
-#'         f7Button(inputId = "update", label = "Update autocomplete"),
-#'         f7AutoComplete(
-#'          inputId = "myautocomplete",
-#'          placeholder = "Some text here!",
-#'          openIn = "dropdown",
-#'          label = "Type a fruit name",
-#'          choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-#'                      'Orange', 'Peach', 'Pear', 'Pineapple')
-#'         ),
-#'         verbatimTextOutput("autocompleteval")
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update autocomplete"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update autocomplete"),
+#'           f7AutoComplete(
+#'             inputId = "myautocomplete",
+#'             placeholder = "Some text here!",
+#'             openIn = "dropdown",
+#'             label = "Type a fruit name",
+#'             choices = c(
+#'               "Apple", "Apricot", "Avocado", "Banana", "Melon",
+#'               "Orange", "Peach", "Pear", "Pineapple"
+#'             )
+#'           ),
+#'           verbatimTextOutput("autocompleteval")
+#'         )
 #'       )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
+#'     ),
+#'     server = function(input, output, session) {
+#'       observe({
+#'         print(input$myautocomplete)
+#'       })
 #'
-#'     observe({
-#'      print(input$myautocomplete)
-#'     })
+#'       output$autocompleteval <- renderText(input$myautocomplete)
 #'
-#'     output$autocompleteval <- renderText(input$myautocomplete)
-#'
-#'     observeEvent(input$update, {
-#'       updateF7AutoComplete(
-#'         inputId = "myautocomplete",
-#'         value = "plip",
-#'         choices = c("plip", "plap", "ploup")
-#'       )
-#'     })
-#'   }
-#'  )
+#'       observeEvent(input$update, {
+#'         updateF7AutoComplete(
+#'           inputId = "myautocomplete",
+#'           value = "plip",
+#'           choices = c("plip", "plap", "ploup")
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
-updateF7AutoComplete <- function(inputId, value =  NULL, choices = NULL,
+updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
@@ -267,38 +282,37 @@ updateF7AutoComplete <- function(inputId, value =  NULL, choices = NULL,
 #' @rdname picker
 #' @examples
 #' # Picker input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Picker"),
-#'      f7Picker(
-#'       inputId = "mypicker",
-#'       placeholder = "Some text here!",
-#'       label = "Picker Input",
-#'       choices = c('a', 'b', 'c')
-#'      ),
-#'      textOutput("pickerval")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$pickerval <- renderText(input$mypicker)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Picker"),
+#'         f7Picker(
+#'           inputId = "mypicker",
+#'           placeholder = "Some text here!",
+#'           label = "Picker Input",
+#'           choices = c("a", "b", "c")
+#'         ),
+#'         textOutput("pickerval")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$pickerval <- renderText(input$mypicker)
+#'     }
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choices,
-                    rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
-                    closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
-                    sheetSwipeToClose = FALSE) {
-
+f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], choices,
+                     rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
+                     closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
+                     sheetSwipeToClose = FALSE) {
   # for JS
   if (is.null(value)) stop("value cannot be NULL.")
   value <- jsonlite::toJSON(value)
@@ -325,9 +339,13 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
 
   # replace TRUE and FALSE by true and false for javascript
   pickerProps <- lapply(pickerProps, function(x) {
-    if (identical(x, TRUE)) "true"
-    else if (identical(x, FALSE)) "false"
-    else x
+    if (identical(x, TRUE)) {
+      "true"
+    } else if (identical(x, FALSE)) {
+      "false"
+    } else {
+      x
+    }
   })
 
   # wrap props
@@ -392,54 +410,52 @@ f7Picker<- function(inputId, label, placeholder = NULL, value = choices[1], choi
 #' @examples
 #' # Update picker input
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update picker"),
-#'       f7Card(
-#'         f7Button(inputId = "update", label = "Update picker"),
-#'         f7Picker(
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update picker"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update picker"),
+#'           f7Picker(
+#'             inputId = "mypicker",
+#'             placeholder = "Some text here!",
+#'             label = "Picker Input",
+#'             choices = c("a", "b", "c")
+#'           ),
+#'           verbatimTextOutput("pickerval"),
+#'           br(),
+#'           f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$pickerval <- renderText(input$mypicker)
+#'
+#'       observeEvent(input$update, {
+#'         updateF7Picker(
 #'           inputId = "mypicker",
-#'           placeholder = "Some text here!",
-#'           label = "Picker Input",
-#'           choices = c('a', 'b', 'c')
-#'         ),
-#'         verbatimTextOutput("pickerval"),
-#'         br(),
-#'         f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
-#'       )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
+#'           value = "b",
+#'           choices = letters,
+#'           openIn = "sheet",
+#'           toolbarCloseText = "Prout",
+#'           sheetSwipeToClose = TRUE
+#'         )
+#'       })
 #'
-#'     output$pickerval <- renderText(input$mypicker)
-#'
-#'     observeEvent(input$update, {
-#'       updateF7Picker(
-#'         inputId = "mypicker",
-#'         value = "b",
-#'         choices = letters,
-#'         openIn = "sheet",
-#'         toolbarCloseText = "Prout",
-#'         sheetSwipeToClose = TRUE
-#'       )
-#'     })
-#'
-#'     observeEvent(input$removeToolbar, {
-#'       updateF7Picker(
-#'         inputId = "mypicker",
-#'         value = "b",
-#'         choices = letters,
-#'         openIn = "sheet",
-#'         toolbar = FALSE
-#'       )
-#'     })
-#'
-#'   }
-#'  )
+#'       observeEvent(input$removeToolbar, {
+#'         updateF7Picker(
+#'           inputId = "mypicker",
+#'           value = "b",
+#'           choices = letters,
+#'           openIn = "sheet",
+#'           toolbar = FALSE
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Picker <- function(inputId, value = NULL, choices = NULL,
                            rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
@@ -464,38 +480,54 @@ updateF7Picker <- function(inputId, value = NULL, choices = NULL,
 
 
 f7ColorPickerPalettes <- list(
-  c('#FFEBEE', '#FFCDD2', '#EF9A9A',
-    '#E57373', '#EF5350', '#F44336',
-    '#E53935', '#D32F2F', '#C62828',
-    '#B71C1C'),
-  c('#F3E5F5', '#E1BEE7', '#CE93D8',
-    '#BA68C8', '#AB47BC', '#9C27B0',
-    '#8E24AA', '#7B1FA2', '#6A1B9A',
-    '#4A148C'),
-  c('#E8EAF6', '#C5CAE9', '#9FA8DA',
-    '#7986CB', '#5C6BC0', '#3F51B5',
-    '#3949AB', '#303F9F', '#283593',
-    '#1A237E'),
-  c('#E1F5FE', '#B3E5FC', '#81D4FA',
-    '#4FC3F7', '#29B6F6', '#03A9F4',
-    '#039BE5', '#0288D1', '#0277BD',
-    '#01579B'),
-  c('#E0F2F1', '#B2DFDB', '#80CBC4',
-    '#4DB6AC', '#26A69A', '#009688',
-    '#00897B', '#00796B', '#00695C',
-    '#004D40'),
-  c('#F1F8E9', '#DCEDC8', '#C5E1A5',
-    '#AED581', '#9CCC65', '#8BC34A',
-    '#7CB342', '#689F38', '#558B2F',
-    '#33691E'),
-  c('#FFFDE7', '#FFF9C4', '#FFF59D',
-    '#FFF176', '#FFEE58', '#FFEB3B',
-    '#FDD835', '#FBC02D', '#F9A825',
-    '#F57F17'),
-  c('#FFF3E0', '#FFE0B2', '#FFCC80',
-    '#FFB74D', '#FFA726', '#FF9800',
-    '#FB8C00', '#F57C00', '#EF6C00',
-    '#E65100')
+  c(
+    "#FFEBEE", "#FFCDD2", "#EF9A9A",
+    "#E57373", "#EF5350", "#F44336",
+    "#E53935", "#D32F2F", "#C62828",
+    "#B71C1C"
+  ),
+  c(
+    "#F3E5F5", "#E1BEE7", "#CE93D8",
+    "#BA68C8", "#AB47BC", "#9C27B0",
+    "#8E24AA", "#7B1FA2", "#6A1B9A",
+    "#4A148C"
+  ),
+  c(
+    "#E8EAF6", "#C5CAE9", "#9FA8DA",
+    "#7986CB", "#5C6BC0", "#3F51B5",
+    "#3949AB", "#303F9F", "#283593",
+    "#1A237E"
+  ),
+  c(
+    "#E1F5FE", "#B3E5FC", "#81D4FA",
+    "#4FC3F7", "#29B6F6", "#03A9F4",
+    "#039BE5", "#0288D1", "#0277BD",
+    "#01579B"
+  ),
+  c(
+    "#E0F2F1", "#B2DFDB", "#80CBC4",
+    "#4DB6AC", "#26A69A", "#009688",
+    "#00897B", "#00796B", "#00695C",
+    "#004D40"
+  ),
+  c(
+    "#F1F8E9", "#DCEDC8", "#C5E1A5",
+    "#AED581", "#9CCC65", "#8BC34A",
+    "#7CB342", "#689F38", "#558B2F",
+    "#33691E"
+  ),
+  c(
+    "#FFFDE7", "#FFF9C4", "#FFF59D",
+    "#FFF176", "#FFEE58", "#FFEB3B",
+    "#FDD835", "#FBC02D", "#F9A825",
+    "#F57F17"
+  ),
+  c(
+    "#FFF3E0", "#FFE0B2", "#FFCC80",
+    "#FFB74D", "#FFA726", "#FF9800",
+    "#FB8C00", "#F57C00", "#EF6C00",
+    "#E65100"
+  )
 )
 
 f7ColorPickerModules <- c(
@@ -534,34 +566,33 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7ColorPicker"),
-#'        f7ColorPicker(
-#'          inputId = "mycolorpicker",
-#'          placeholder = "Some text here!",
-#'          label = "Select a color"
-#'        ),
-#'        "The picker value is:",
-#'        textOutput("colorPickerVal")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$colorPickerVal <- renderText(input$mycolorpicker)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7ColorPicker"),
+#'         f7ColorPicker(
+#'           inputId = "mycolorpicker",
+#'           placeholder = "Some text here!",
+#'           label = "Select a color"
+#'         ),
+#'         "The picker value is:",
+#'         textOutput("colorPickerVal")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$colorPickerVal <- renderText(input$mycolorpicker)
+#'     }
+#'   )
 #' }
 f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
-                          sliderValue =  TRUE, sliderValueEditable = TRUE,
+                          sliderValue = TRUE, sliderValueEditable = TRUE,
                           sliderLabel = TRUE, hexLabel = TRUE,
                           hexValueEditable = TRUE, groupedModules = TRUE) {
-
   # if the value is provided as a rgb, hsl, hsb, rgba or hsla
   if (is.numeric(value) & length(value) > 1) value <- jsonlite::toJSON(value)
 
@@ -571,16 +602,16 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
   # reused in the pickerInputBinding.js
   pickerProps <- shiny::tags$script(
     paste0(
-      'var colorPickerModules = ', modules, ';
-       var colorPickerPalettes = ', palettes, ';
+      "var colorPickerModules = ", modules, ";
+       var colorPickerPalettes = ", palettes, ';
        var colorPickerValue = "', value, '";
-       var colorPickerSliderValue = ', tolower(sliderValue), ';
-       var colorPickerSliderValueEditable = ', tolower(sliderValueEditable), ';
-       var colorPickerSliderLabel = ', tolower(sliderLabel), ';
-       var colorPickerHexLabel = ', tolower(hexLabel), ';
-       var colorPickerHexValueEditable = ', tolower(hexValueEditable), ';
-       var colorPickerGroupedModules = ', tolower(groupedModules), ';
-      '
+       var colorPickerSliderValue = ', tolower(sliderValue), ";
+       var colorPickerSliderValueEditable = ", tolower(sliderValueEditable), ";
+       var colorPickerSliderLabel = ", tolower(sliderLabel), ";
+       var colorPickerHexLabel = ", tolower(hexLabel), ";
+       var colorPickerHexValueEditable = ", tolower(hexValueEditable), ";
+       var colorPickerGroupedModules = ", tolower(groupedModules), ";
+      "
     )
   )
 
@@ -623,7 +654,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
     labelTag,
     wrapperTag
   )
-
 }
 
 
@@ -694,11 +724,9 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'
 #'       output$selectDate <- renderPrint(input$date)
 #'       output$selectMultipleDates <- renderPrint(input$multipleDates)
 #'       output$selectDefault <- renderPrint(input$default)
-#'
 #'     }
 #'   )
 #' }
@@ -708,7 +736,6 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
                          scrollToInput = FALSE, closeByOutsideClick = TRUE,
                          toolbar = TRUE, toolbarCloseText = "Done", header = FALSE,
                          headerPlaceholder = "Select date") {
-
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
@@ -819,7 +846,6 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'
 #'       output$pickerval <- renderPrint(input$mypicker)
 #'
 #'       observeEvent(input$selectToday, {
@@ -844,7 +870,6 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
 #'           dateFormat = "yyyy-mm-dd" # preserve date format
 #'         )
 #'       })
-#'
 #'     }
 #'   )
 #' }
@@ -858,8 +883,9 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
     }
   }
   config <- dropNulls(list(...))
-  if (length(config) == 0)
+  if (length(config) == 0) {
     config <- NULL
+  }
   message <- dropNulls(list(
     value = value,
     config = config
@@ -880,38 +906,40 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #'
 #' @rdname checkbox
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Checkbox"),
-#'      f7Card(
-#'       f7Checkbox(
-#'        inputId = "check",
-#'        label = "Checkbox",
-#'        value = FALSE
-#'       ),
-#'       verbatimTextOutput("test")
-#'      )
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$test <- renderPrint({input$check})
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Checkbox"),
+#'         f7Card(
+#'           f7Checkbox(
+#'             inputId = "check",
+#'             label = "Checkbox",
+#'             value = FALSE
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$test <- renderPrint({
+#'         input$check
+#'       })
+#'     }
+#'   )
 #' }
-#
+#' #
 #' @export
 f7Checkbox <- function(inputId, label, value = FALSE) {
-
   value <- shiny::restoreInput(id = inputId, default = value)
   inputTag <- shiny::tags$input(id = inputId, type = "checkbox")
-  if (!is.null(value) && value)
+  if (!is.null(value) && value) {
     inputTag$attribs$checked <- "checked"
+  }
   shiny::tagList(
     shiny::tags$span(label),
     shiny::tags$label(
@@ -932,14 +960,14 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
 #' @inheritParams f7checkBoxGroup
 #' @keywords internal
 #' @export
-f7checkBox <- function(inputId, label, value = FALSE){
-
+f7checkBox <- function(inputId, label, value = FALSE) {
   .Deprecated(
     "f7Checkbox",
     package = "shinyMobile",
     "f7checkBox will be removed in future release. Please use
       f7Checkbox instead.",
-    old = as.character(sys.call(sys.parent()))[1L])
+    old = as.character(sys.call(sys.parent()))[1L]
+  )
   f7Checkbox(inputId, label, value)
 }
 
@@ -958,53 +986,53 @@ f7checkBox <- function(inputId, label, value = FALSE){
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  ui <- f7Page(
-#'    f7SingleLayout(
-#'     navbar = f7Navbar(title = "updateF7CheckBox"),
-#'     f7Slider(
-#'      inputId = "controller",
-#'      label = "Number of observations",
-#'      max = 10,
-#'      min = 0,
-#'      value = 1,
-#'      step = 1,
-#'      scale = TRUE
-#'     ),
-#'     f7checkBox(
-#'      inputId = "check",
-#'      label = "Checkbox"
-#'     )
-#'    )
-#'  )
-#'
-#'  server <- function(input, output, session) {
-#'    observe({
-#'      # TRUE if input$controller is odd, FALSE if even.
-#'      x_even <- input$controller %% 2 == 1
-#'
-#'      if (x_even) {
-#'       showNotification(
-#'        id = "notif",
-#'        paste("The slider is ", input$controller, "and the checkbox is", input$check),
-#'        duration = NULL,
-#'        type = "warning"
+#'   ui <- f7Page(
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "updateF7CheckBox"),
+#'       f7Slider(
+#'         inputId = "controller",
+#'         label = "Number of observations",
+#'         max = 10,
+#'         min = 0,
+#'         value = 1,
+#'         step = 1,
+#'         scale = TRUE
+#'       ),
+#'       f7checkBox(
+#'         inputId = "check",
+#'         label = "Checkbox"
 #'       )
-#'      } else {
-#'       removeNotification("notif")
-#'      }
+#'     )
+#'   )
 #'
-#'      updateF7Checkbox("check", value = x_even)
-#'    })
-#'  }
+#'   server <- function(input, output, session) {
+#'     observe({
+#'       # TRUE if input$controller is odd, FALSE if even.
+#'       x_even <- input$controller %% 2 == 1
 #'
-#' shinyApp(ui, server)
+#'       if (x_even) {
+#'         showNotification(
+#'           id = "notif",
+#'           paste("The slider is ", input$controller, "and the checkbox is", input$check),
+#'           duration = NULL,
+#'           type = "warning"
+#'         )
+#'       } else {
+#'         removeNotification("notif")
+#'       }
+#'
+#'       updateF7Checkbox("check", value = x_even)
+#'     })
+#'   }
+#'
+#'   shinyApp(ui, server)
 #' }
 updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
-  message <- dropNulls(list(label=label, value=value))
+  message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
 
@@ -1024,33 +1052,35 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #' @rdname checkboxgroup
 #'
 #' @examples
-#' if(interactive()){
+#' if (interactive()) {
 #'   library(shiny)
 #'   library(shinyMobile)
 #'
 #'   shiny::shinyApp(
 #'     ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7CheckboxGroup"),
-#'       f7CheckboxGroup(
-#'        inputId = "variable",
-#'        label = "Choose a variable:",
-#'        choices = colnames(mtcars)[-1],
-#'        selected = NULL
-#'       ),
-#'       tableOutput("data")
-#'      )
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7CheckboxGroup"),
+#'         f7CheckboxGroup(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           choices = colnames(mtcars)[-1],
+#'           selected = NULL
+#'         ),
+#'         tableOutput("data")
+#'       )
 #'     ),
 #'     server = function(input, output) {
-#'      output$data <- renderTable({
-#'       mtcars[, c("mpg", input$variable), drop = FALSE]
-#'       }, rownames = TRUE)
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
 #'     }
 #'   )
-#'  }
+#' }
 f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
-
   selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
 
   choicesTag <- lapply(X = seq_along(choices), function(i) {
@@ -1065,7 +1095,7 @@ f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
         shiny::tags$i(class = "icon icon-checkbox"),
         shiny::tags$div(
           class = "item-inner",
-          shiny::tags$div(class="item-title", choices[[i]])
+          shiny::tags$div(class = "item-title", choices[[i]])
         )
       )
     )
@@ -1086,7 +1116,6 @@ f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
       )
     )
   )
-
 }
 
 
@@ -1101,7 +1130,6 @@ f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
 #' @keywords internal
 #' @export
 f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
-
   .Deprecated(
     "f7CheckboxGroup",
     package = "shinyMobile",
@@ -1157,28 +1185,34 @@ createSelectOptions <- function(choices, selected) {
 choicesWithNames <- function(choices) {
   listify <- function(obj) {
     makeNamed <- function(x) {
-      if (is.null(names(x)))
+      if (is.null(names(x))) {
         names(x) <- character(length(x))
+      }
       x
     }
     res <- lapply(obj, function(val) {
-      if (is.list(val))
+      if (is.list(val)) {
         listify(val)
-      else if (length(val) == 1 && is.null(names(val)))
+      } else if (length(val) == 1 && is.null(names(val))) {
         val
-      else makeNamed(as.list(val))
+      } else {
+        makeNamed(as.list(val))
+      }
     })
     makeNamed(res)
   }
   choices <- listify(choices)
-  if (length(choices) == 0)
+  if (length(choices) == 0) {
     return(choices)
+  }
   choices <- mapply(choices, names(choices), FUN = function(choice,
                                                             name) {
-    if (!is.list(choice))
+    if (!is.list(choice)) {
       return(choice)
-    if (name == "")
+    }
+    if (name == "") {
       stop("All sub-lists in \"choices\" must be named.")
+    }
     choicesWithNames(choice)
   }, SIMPLIFY = FALSE)
   missing <- names(choices) == ""
@@ -1202,34 +1236,35 @@ choicesWithNames <- function(choices) {
 #'
 #' @examples
 #' # Select input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shiny::shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Select"),
-#'       f7Select(
-#'        inputId = "variable",
-#'        label = "Choose a variable:",
-#'        choices = colnames(mtcars)[-1],
-#'        selected = "hp"
-#'       ),
-#'       tableOutput("data")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$data <- renderTable({
-#'        mtcars[, c("mpg", input$variable), drop = FALSE]
-#'      }, rownames = TRUE)
-#'    }
-#'  )
+#'   shiny::shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Select"),
+#'         f7Select(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           choices = colnames(mtcars)[-1],
+#'           selected = "hp"
+#'         ),
+#'         tableOutput("data")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
+#'     }
+#'   )
 #' }
 f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
-
-
   options <- createSelectOptions(choices, selected)
 
   shiny::tags$div(
@@ -1241,7 +1276,6 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
         shiny::tags$div(
           class = "item-inner",
           shiny::tags$div(class = "item-title item-label", label),
-
           shiny::tags$div(
             class = "item-input-wrap input-dropdown-wrap",
             shiny::tags$select(
@@ -1274,39 +1308,38 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
 #' @examples
 #' # Update select input
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "updateF7Select"),
-#'        f7Card(
-#'          f7Button(inputId = "update", label = "Update select"),
-#'          br(),
-#'          f7Select(
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "updateF7Select"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update select"),
+#'           br(),
+#'           f7Select(
+#'             inputId = "variable",
+#'             label = "Choose a variable:",
+#'             choices = colnames(mtcars)[-1],
+#'             selected = "hp"
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$test <- renderPrint(input$variable)
+#'
+#'       observeEvent(input$update, {
+#'         updateF7Select(
 #'           inputId = "variable",
-#'           label = "Choose a variable:",
-#'           choices = colnames(mtcars)[-1],
-#'           selected = "hp"
-#'          ),
-#'          verbatimTextOutput("test")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'
-#'      output$test <- renderPrint(input$variable)
-#'
-#'      observeEvent(input$update, {
-#'        updateF7Select(
-#'          inputId = "variable",
-#'          selected = "gear"
-#'        )
-#'      })
-#'    }
-#'  )
+#'           selected = "gear"
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Select <- function(inputId, selected = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
@@ -1345,48 +1378,50 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @examples
 #' # Smart select input
 #' if (interactive()) {
-#' library(shiny)
-#' library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7SmartSelect"),
-#'        f7SmartSelect(
-#'          inputId = "variable",
-#'          label = "Choose a variable:",
-#'          selected = "drat",
-#'          choices = colnames(mtcars)[-1],
-#'          openIn = "popup"
-#'        ),
-#'        tableOutput("data"),
-#'        f7SmartSelect(
-#'          inputId = "variable2",
-#'          label = "Group variables:",
-#'          choices = list(
-#'           `East Coast` = list("NY", "NJ", "CT"),
-#'           `West Coast` = list("WA", "OR", "CA"),
-#'           `Midwest` = list("MN", "WI", "IA")
-#'          ),
-#'          openIn = "sheet"
-#'        ),
-#'        textOutput("var")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$var <- renderText(input$variable2)
-#'      output$data <- renderTable({
-#'        mtcars[, c("mpg", input$variable), drop = FALSE]
-#'      }, rownames = TRUE)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7SmartSelect"),
+#'         f7SmartSelect(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           selected = "drat",
+#'           choices = colnames(mtcars)[-1],
+#'           openIn = "popup"
+#'         ),
+#'         tableOutput("data"),
+#'         f7SmartSelect(
+#'           inputId = "variable2",
+#'           label = "Group variables:",
+#'           choices = list(
+#'             `East Coast` = list("NY", "NJ", "CT"),
+#'             `West Coast` = list("WA", "OR", "CA"),
+#'             `Midwest` = list("MN", "WI", "IA")
+#'           ),
+#'           openIn = "sheet"
+#'         ),
+#'         textOutput("var")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$var <- renderText(input$variable2)
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
+#'     }
+#'   )
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           openIn = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxlength = NULL,
                           virtualList = FALSE, ...) {
-
   options <- createSelectOptions(choices, selected)
   type <- match.arg(openIn)
 
@@ -1456,47 +1491,49 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #' @examples
 #' # Update smart select
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update f7SmartSelect"),
-#'       f7Button("updateSmartSelect", "Update Smart Select"),
-#'       f7SmartSelect(
-#'         inputId = "variable",
-#'         label = "Choose a variable:",
-#'         selected = "drat",
-#'         choices = colnames(mtcars)[-1],
-#'         openIn = "popup"
-#'       ),
-#'       tableOutput("data")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     output$data <- renderTable({
-#'       mtcars[, c("mpg", input$variable), drop = FALSE]
-#'     }, rownames = TRUE)
-#'
-#'     observeEvent(input$updateSmartSelect, {
-#'       updateF7SmartSelect(
-#'         inputId = "variable",
-#'         openIn = "sheet",
-#'         selected = "hp",
-#'         choices = c("hp", "gear"),
-#'         multiple = TRUE,
-#'         maxLength = 3
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update f7SmartSelect"),
+#'         f7Button("updateSmartSelect", "Update Smart Select"),
+#'         f7SmartSelect(
+#'           inputId = "variable",
+#'           label = "Choose a variable:",
+#'           selected = "drat",
+#'           choices = colnames(mtcars)[-1],
+#'           openIn = "popup"
+#'         ),
+#'         tableOutput("data")
 #'       )
-#'     })
-#'   }
-#'  )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$data <- renderTable(
+#'         {
+#'           mtcars[, c("mpg", input$variable), drop = FALSE]
+#'         },
+#'         rownames = TRUE
+#'       )
+#'
+#'       observeEvent(input$updateSmartSelect, {
+#'         updateF7SmartSelect(
+#'           inputId = "variable",
+#'           openIn = "sheet",
+#'           selected = "hp",
+#'           choices = c("hp", "gear"),
+#'           multiple = TRUE,
+#'           maxLength = 3
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multiple = NULL,
                                 maxLength = NULL, ...,
                                 session = shiny::getDefaultReactiveDomain()) {
-
   if (!is.null(selected)) {
     if (length(selected) == 1) {
       selected <- list(as.character(selected))
@@ -1505,8 +1542,9 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
     }
   }
   config <- dropNulls(list(...))
-  if (length(config) == 0)
+  if (length(config) == 0) {
     config <- NULL
+  }
   message <- dropNulls(list(
     selected = selected,
     choices = choices,
@@ -1535,46 +1573,47 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
 #'
 #' @examples
 #' # A text input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Text"),
-#'       f7Text(
-#'        inputId = "caption",
-#'        label = "Caption",
-#'        value = "Data Summary",
-#'        placeholder = "Your text here"
-#'       ),
-#'       verbatimTextOutput("value")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$value <- renderPrint({ input$caption })
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Text"),
+#'         f7Text(
+#'           inputId = "caption",
+#'           label = "Caption",
+#'           value = "Data Summary",
+#'           placeholder = "Your text here"
+#'         ),
+#'         verbatimTextOutput("value")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$value <- renderPrint({
+#'         input$caption
+#'       })
+#'     }
+#'   )
 #' }
-f7Text <- function(inputId, label, value = "", placeholder = NULL#,
-                   #style = NULL, inset = FALSE, icon = NULL
+f7Text <- function(inputId, label, value = "", placeholder = NULL # ,
+                   # style = NULL, inset = FALSE, icon = NULL
 ) {
-
   # possible styles c("inline", "floating", "outline")
 
   wrapperCl <- "list"
-  #if (inset) wrapperCl <- paste0(wrapperCl, " inset")
+  # if (inset) wrapperCl <- paste0(wrapperCl, " inset")
 
   itemCl <- "item-content item-input"
   itemLabelCl <- "item-title"
 
-  #if (!is.null(style)) {
+  # if (!is.null(style)) {
   #  if (style == "inline") wrapperCl <- paste0(wrapperCl, " inline-labels")
   #  if (style == "outline") itemCl <- paste0(itemCl, " item-input-outline")
   #  if (style == "floating") itemLabelCl <- paste0(itemLabelCl, " item-floating-label")
-  #}
+  # }
 
   inputTag <- shiny::tags$input(
     id = inputId,
@@ -1586,18 +1625,18 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 
   shiny::tags$div(
     class = wrapperCl,
-    #id = inputId,
+    # id = inputId,
     shiny::tags$ul(
       shiny::tags$li(
         class = itemCl,
-        #if (!is.null(icon)) shiny::tags$div(class = "item-media", icon),
+        # if (!is.null(icon)) shiny::tags$div(class = "item-media", icon),
         shiny::tags$div(
           class = "item-inner",
           shiny::tags$div(class = itemLabelCl, label),
           shiny::tags$div(
             class = "item-input-wrap",
             inputTag,
-            shiny::span(class="input-clear-button")
+            shiny::span(class = "input-clear-button")
           )
         )
       )
@@ -1623,33 +1662,33 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL#,
 #' @examples
 #' # Update text input
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  ui <- f7Page(
-#'    f7SingleLayout(
-#'     navbar = f7Navbar(title = "updateF7Text"),
-#'     f7Block(f7Button("trigger", "Click me")),
-#'     f7Text(
-#'      inputId = "text",
-#'      label = "Caption",
-#'      value = "Some text",
-#'      placeholder = "Your text here"
-#'     ),
-#'     verbatimTextOutput("value")
-#'    )
-#'  )
+#'   ui <- f7Page(
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "updateF7Text"),
+#'       f7Block(f7Button("trigger", "Click me")),
+#'       f7Text(
+#'         inputId = "text",
+#'         label = "Caption",
+#'         value = "Some text",
+#'         placeholder = "Your text here"
+#'       ),
+#'       verbatimTextOutput("value")
+#'     )
+#'   )
 #'
-#'  server <- function(input, output, session) {
-#'    output$value <- renderPrint(input$text)
-#'    observeEvent(input$trigger, {
-#'      updateF7Text("text", value = "Updated Text")
-#'    })
-#'  }
-#' shinyApp(ui, server)
+#'   server <- function(input, output, session) {
+#'     output$value <- renderPrint(input$text)
+#'     observeEvent(input$trigger, {
+#'       updateF7Text("text", value = "Updated Text")
+#'     })
+#'   }
+#'   shinyApp(ui, server)
 #' }
 updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL, session = shiny::getDefaultReactiveDomain()) {
-  message <- dropNulls(list(label=label, value=value, placeholder=placeholder))
+  message <- dropNulls(list(label = label, value = value, placeholder = placeholder))
   session$sendInputMessage(inputId, message)
 }
 
@@ -1725,32 +1764,33 @@ updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL
 #' @rdname textarea
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7TextArea(
-#'       inputId = "textarea",
-#'       label = "Text Area",
-#'       value = "Lorem ipsum dolor sit amet, consectetur
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7TextArea(
+#'         inputId = "textarea",
+#'         label = "Text Area",
+#'         value = "Lorem ipsum dolor sit amet, consectetur
 #'        adipiscing elit, sed do eiusmod tempor incididunt ut
 #'        labore et dolore magna aliqua",
-#'       placeholder = "Your text here",
-#'       resize = TRUE
-#'      ),
-#'      textOutput("value")
-#'    ),
-#'    server = function(input, output) {
-#'      output$value <- renderText({ input$textarea })
-#'    }
-#'  )
+#'         placeholder = "Your text here",
+#'         resize = TRUE
+#'       ),
+#'       textOutput("value")
+#'     ),
+#'     server = function(input, output) {
+#'       output$value <- renderText({
+#'         input$textarea
+#'       })
+#'     }
+#'   )
 #' }
 f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
                        resize = FALSE) {
-
   areaCl <- if (resize) "resizable" else NULL
 
   shiny::tags$div(
@@ -1789,33 +1829,33 @@ f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
 #' @export
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  ui <- f7Page(
-#'    f7SingleLayout(
-#'     navbar = f7Navbar(title = "updateF7TextArea"),
-#'     f7Block(f7Button("trigger", "Click me")),
-#'     f7TextArea(
-#'      inputId = "textarea",
-#'      label = "Text Area",
-#'      value = "Lorem ipsum dolor sit amet, consectetur
+#'   ui <- f7Page(
+#'     f7SingleLayout(
+#'       navbar = f7Navbar(title = "updateF7TextArea"),
+#'       f7Block(f7Button("trigger", "Click me")),
+#'       f7TextArea(
+#'         inputId = "textarea",
+#'         label = "Text Area",
+#'         value = "Lorem ipsum dolor sit amet, consectetur
 #'               adipiscing elit, sed do eiusmod tempor incididunt ut
 #'               labore et dolore magna aliqua",
-#'      placeholder = "Your text here",
-#'      resize = TRUE
-#'      ),
-#'     verbatimTextOutput("value")
-#'    )
-#'  )
+#'         placeholder = "Your text here",
+#'         resize = TRUE
+#'       ),
+#'       verbatimTextOutput("value")
+#'     )
+#'   )
 #'
-#'  server <- function(input, output, session) {
-#'    output$value <- renderPrint(input$textarea)
-#'    observeEvent(input$trigger, {
-#'      updateF7Text("textarea", value = "Updated Text")
-#'    })
-#'  }
-#' shinyApp(ui, server)
+#'   server <- function(input, output, session) {
+#'     output$value <- renderPrint(input$textarea)
+#'     observeEvent(input$trigger, {
+#'       updateF7Text("textarea", value = "Updated Text")
+#'     })
+#'   }
+#'   shinyApp(ui, server)
 #' }
 updateF7TextArea <- updateF7Text
 
@@ -1827,27 +1867,29 @@ updateF7TextArea <- updateF7Text
 #' @export
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Password"),
-#'       f7Password(
-#'        inputId = "password",
-#'        label = "Password:",
-#'        placeholder = "Your password here"
-#'       ),
-#'       verbatimTextOutput("value")
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$value <- renderPrint({ input$password })
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Password"),
+#'         f7Password(
+#'           inputId = "password",
+#'           label = "Password:",
+#'           placeholder = "Your password here"
+#'         ),
+#'         verbatimTextOutput("value")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$value <- renderPrint({
+#'         input$password
+#'       })
+#'     }
+#'   )
 #' }
 f7Password <- function(inputId, label, value = "", placeholder = NULL) {
   shiny::tags$div(
@@ -1906,79 +1948,82 @@ f7Password <- function(inputId, label, value = "", placeholder = NULL) {
 #'
 #' @examples
 #' # Slider input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Slider"),
-#'      f7Card(
-#'       f7Slider(
-#'        inputId = "obs",
-#'        label = "Number of observations",
-#'        max = 1000,
-#'        min = 0,
-#'        value = 100,
-#'        scaleSteps = 5,
-#'        scaleSubSteps = 3,
-#'        scale = TRUE,
-#'        color = "orange",
-#'        labels = tagList(
-#'         f7Icon("circle"),
-#'         f7Icon("circle_fill")
-#'        )
-#'       ),
-#'       verbatimTextOutput("test")
-#'      ),
-#'      plotOutput("distPlot")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$test <- renderPrint({input$obs})
-#'     output$distPlot <- renderPlot({
-#'      hist(rnorm(input$obs))
-#'     })
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Slider"),
+#'         f7Card(
+#'           f7Slider(
+#'             inputId = "obs",
+#'             label = "Number of observations",
+#'             max = 1000,
+#'             min = 0,
+#'             value = 100,
+#'             scaleSteps = 5,
+#'             scaleSubSteps = 3,
+#'             scale = TRUE,
+#'             color = "orange",
+#'             labels = tagList(
+#'               f7Icon("circle"),
+#'               f7Icon("circle_fill")
+#'             )
+#'           ),
+#'           verbatimTextOutput("test")
+#'         ),
+#'         plotOutput("distPlot")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$test <- renderPrint({
+#'         input$obs
+#'       })
+#'       output$distPlot <- renderPlot({
+#'         hist(rnorm(input$obs))
+#'       })
+#'     }
+#'   )
 #' }
 #'
 #' # Create a range
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Slider Range"),
-#'      f7Card(
-#'       f7Slider(
-#'        inputId = "obs",
-#'        label = "Range values",
-#'        max = 500,
-#'        min = 0,
-#'        value = c(50, 100),
-#'        scale = FALSE
-#'       ),
-#'       verbatimTextOutput("test")
-#'      )
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$test <- renderPrint({input$obs})
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Slider Range"),
+#'         f7Card(
+#'           f7Slider(
+#'             inputId = "obs",
+#'             label = "Range values",
+#'             max = 500,
+#'             min = 0,
+#'             value = c(50, 100),
+#'             scale = FALSE
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$test <- renderPrint({
+#'         input$obs
+#'       })
+#'     }
+#'   )
 #' }
 #'
 f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
                      scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
                      verticalReversed = FALSE, labels = NULL, color = NULL,
                      noSwipping = TRUE) {
-
   if (!is.null(labels)) {
     if (length(labels) < 2) stop("labels must be a tagList with 2 elements.")
   }
@@ -2004,17 +2049,17 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
         NULL
       },
       `data-dual` = if (length(value) == 2) "true" else NULL,
-      `data-min`= min,
-      `data-max`= max,
+      `data-min` = min,
+      `data-max` = max,
       `data-vertical` = tolower(vertical),
       `data-vertical-reversed` = if (vertical) tolower(verticalReversed) else NULL,
-      `data-label`= "true",
-      `data-step`= step,
-      `data-value`= if (length(value) == 1) value else NULL,
+      `data-label` = "true",
+      `data-step` = step,
+      `data-value` = if (length(value) == 1) value else NULL,
       `data-value-left` = if (length(value) == 2) value[1] else NULL,
       `data-value-right` = if (length(value) == 2) value[2] else NULL,
-      `data-scale`= tolower(scale),
-      `data-scale-steps`= scaleSteps,
+      `data-scale` = tolower(scale),
+      `data-scale-steps` = scaleSteps,
       `data-scale-sub-steps` = scaleSubSteps
     )
   )
@@ -2047,8 +2092,10 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
         shiny::tags$ul(
           shiny::tags$li(
             labels[[1]],
-            shiny::tags$div(style = "width: 100%; margin: 0 16px",
-                            rangeTag),
+            shiny::tags$div(
+              style = "width: 100%; margin: 0 16px",
+              rangeTag
+            ),
             labels[[2]]
           )
         )
@@ -2084,48 +2131,49 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
 #'
 #' @examples
 #' # Update f7Slider
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "updateF7Slider"),
-#'        f7Card(
-#'          f7Button(inputId = "update", label = "Update slider"),
-#'          f7Slider(
-#'            inputId = "obs",
-#'            label = "Range values",
-#'            max = 500,
-#'            min = 0,
-#'            step = 1,
-#'            color = "deeppurple",
-#'            value = c(50, 100)
-#'          ),
-#'          verbatimTextOutput("test")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "updateF7Slider"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update slider"),
+#'           f7Slider(
+#'             inputId = "obs",
+#'             label = "Range values",
+#'             max = 500,
+#'             min = 0,
+#'             step = 1,
+#'             color = "deeppurple",
+#'             value = c(50, 100)
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$test <- renderPrint({
+#'         input$obs
+#'       })
 #'
-#'      output$test <- renderPrint({input$obs})
-#'
-#'      observeEvent(input$update, {
-#'        updateF7Slider(
-#'          inputId = "obs",
-#'          value = c(1, 5),
-#'          min = 0,
-#'          scaleSteps = 10,
-#'          scaleSubSteps = 5,
-#'          step = 0.1,
-#'          max = 10,
-#'          color = "teal"
-#'        )
-#'      })
-#'    }
-#'  )
+#'       observeEvent(input$update, {
+#'         updateF7Slider(
+#'           inputId = "obs",
+#'           value = c(1, 5),
+#'           min = 0,
+#'           scaleSteps = 10,
+#'           scaleSubSteps = 5,
+#'           step = 0.1,
+#'           max = 10,
+#'           color = "teal"
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
                            scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL,
@@ -2178,50 +2226,49 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
 #' @rdname stepper
 #' @examples
 #' # Stepper input
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Stepper"),
-#'      f7Stepper(
-#'       inputId = "stepper",
-#'       label = "My stepper",
-#'       min = 0,
-#'       max = 10,
-#'       value = 4
-#'      ),
-#'      verbatimTextOutput("test"),
-#'      f7Stepper(
-#'       inputId = "stepper2",
-#'       label = "My stepper 2",
-#'       min = 0,
-#'       max = 10,
-#'       value = 4,
-#'       color = "orange",
-#'       raised = TRUE,
-#'       fill = TRUE,
-#'       rounded = TRUE
-#'      ),
-#'      verbatimTextOutput("test2")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$test <- renderPrint(input$stepper)
-#'     output$test2 <- renderPrint(input$stepper2)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Stepper"),
+#'         f7Stepper(
+#'           inputId = "stepper",
+#'           label = "My stepper",
+#'           min = 0,
+#'           max = 10,
+#'           value = 4
+#'         ),
+#'         verbatimTextOutput("test"),
+#'         f7Stepper(
+#'           inputId = "stepper2",
+#'           label = "My stepper 2",
+#'           min = 0,
+#'           max = 10,
+#'           value = 4,
+#'           color = "orange",
+#'           raised = TRUE,
+#'           fill = TRUE,
+#'           rounded = TRUE
+#'         ),
+#'         verbatimTextOutput("test2")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$test <- renderPrint(input$stepper)
+#'       output$test2 <- renderPrint(input$stepper2)
+#'     }
+#'   )
 #' }
-#
+#' #
 #' @export
 f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       fill = FALSE, rounded = FALSE, raised = FALSE, size = NULL,
                       color = NULL, wraps = FALSE, autorepeat = TRUE, manual = FALSE,
                       decimalPoint = 4, buttonsEndInputMode = TRUE) {
-
   stepperCl <- "stepper"
   if (fill) stepperCl <- paste0(stepperCl, " stepper-fill")
   if (rounded) stepperCl <- paste0(stepperCl, " stepper-round")
@@ -2257,9 +2304,13 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
   # replace TRUE and FALSE by true and false for javascript
   stepperProps <- lapply(stepperProps, function(x) {
-    if (identical(x, TRUE)) "true"
-    else if (identical(x, FALSE)) "false"
-    else x
+    if (identical(x, TRUE)) {
+      "true"
+    } else if (identical(x, FALSE)) {
+      "false"
+    } else {
+      x
+    }
   })
 
   # wrap props
@@ -2283,11 +2334,14 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
   # main wrapper
   shiny::tagList(
-    shiny::tags$div(style = "display: flex; align-items: center;",
-                    # stepper tag
-                    shiny::tags$small(label,
-                                      style = "padding: 5px"),
-                    stepperTag),
+    shiny::tags$div(
+      style = "display: flex; align-items: center;",
+      # stepper tag
+      shiny::tags$small(label,
+        style = "padding: 5px"
+      ),
+      stepperTag
+    ),
   )
 }
 
@@ -2329,56 +2383,55 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #' @examples
 #' # Update stepper input
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "updateF7Stepper"),
-#'       f7Card(
-#'         f7Button(inputId = "update", label = "Update stepper"),
-#'         f7Stepper(
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "updateF7Stepper"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update stepper"),
+#'           f7Stepper(
+#'             inputId = "stepper",
+#'             label = "My stepper",
+#'             min = 0,
+#'             max = 10,
+#'             size = "small",
+#'             value = 4,
+#'             wraps = TRUE,
+#'             autorepeat = TRUE,
+#'             rounded = FALSE,
+#'             raised = FALSE,
+#'             manual = FALSE
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$test <- renderPrint(input$stepper)
+#'
+#'       observeEvent(input$update, {
+#'         updateF7Stepper(
 #'           inputId = "stepper",
-#'           label = "My stepper",
+#'           value = 0.1,
+#'           step = 0.01,
+#'           size = "large",
 #'           min = 0,
-#'           max = 10,
-#'           size = "small",
-#'           value = 4,
-#'           wraps = TRUE,
-#'           autorepeat = TRUE,
-#'           rounded = FALSE,
-#'           raised = FALSE,
-#'           manual = FALSE
-#'         ),
-#'         verbatimTextOutput("test")
-#'       )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'
-#'     output$test <- renderPrint(input$stepper)
-#'
-#'     observeEvent(input$update, {
-#'       updateF7Stepper(
-#'         inputId = "stepper",
-#'         value = 0.1,
-#'         step = 0.01,
-#'         size = "large",
-#'         min = 0,
-#'         max = 1,
-#'         wraps = FALSE,
-#'         autorepeat = FALSE,
-#'         rounded = TRUE,
-#'         raised = TRUE,
-#'         color = "pink",
-#'         manual = TRUE,
-#'         decimalPoint = 2
-#'       )
-#'     })
-#'   }
-#'  )
+#'           max = 1,
+#'           wraps = FALSE,
+#'           autorepeat = FALSE,
+#'           rounded = TRUE,
+#'           raised = TRUE,
+#'           color = "pink",
+#'           manual = TRUE,
+#'           decimalPoint = 2
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Stepper <- function(inputId, min = NULL, max = NULL,
                             value = NULL, step = NULL, fill = NULL,
@@ -2420,39 +2473,38 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 #' @rdname toggle
 #' @examples
 #' # f7Toggle
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Toggle"),
-#'      f7Toggle(
-#'       inputId = "toggle",
-#'       label = "My toggle",
-#'       color = "pink",
-#'       checked = TRUE
-#'      ),
-#'      verbatimTextOutput("test"),
-#'      f7Toggle(
-#'       inputId = "toggle2",
-#'       label = "My toggle 2"
-#'      ),
-#'      verbatimTextOutput("test2")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$test <- renderPrint(input$toggle)
-#'     output$test2 <- renderPrint(input$toggle2)
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Toggle"),
+#'         f7Toggle(
+#'           inputId = "toggle",
+#'           label = "My toggle",
+#'           color = "pink",
+#'           checked = TRUE
+#'         ),
+#'         verbatimTextOutput("test"),
+#'         f7Toggle(
+#'           inputId = "toggle2",
+#'           label = "My toggle 2"
+#'         ),
+#'         verbatimTextOutput("test2")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$test <- renderPrint(input$toggle)
+#'       output$test2 <- renderPrint(input$toggle2)
+#'     }
+#'   )
 #' }
-#
+#' #
 #' @export
 f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
-
   toggleCl <- "toggle"
   if (!is.null(color)) toggleCl <- paste0(toggleCl, " color-", color)
 
@@ -2490,39 +2542,40 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #' @examples
 #' # Update f7Toggle
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "My app",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "updateF7Toggle"),
-#'        f7Card(
-#'          f7Button(inputId = "update", label = "Update toggle"),
-#'          f7Toggle(
-#'            inputId = "toggle",
-#'            label = "My toggle",
-#'            color = "pink",
-#'            checked = FALSE
-#'          ),
-#'          verbatimTextOutput("test")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "updateF7Toggle"),
+#'         f7Card(
+#'           f7Button(inputId = "update", label = "Update toggle"),
+#'           f7Toggle(
+#'             inputId = "toggle",
+#'             label = "My toggle",
+#'             color = "pink",
+#'             checked = FALSE
+#'           ),
+#'           verbatimTextOutput("test")
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$test <- renderPrint({
+#'         input$toggle
+#'       })
 #'
-#'      output$test <- renderPrint({input$toggle})
-#'
-#'      observeEvent(input$update, {
-#'        updateF7Toggle(
-#'          inputId = "toggle",
-#'          checked = TRUE,
-#'          color = "green"
-#'        )
-#'      })
-#'    }
-#'  )
+#'       observeEvent(input$update, {
+#'         updateF7Toggle(
+#'           inputId = "toggle",
+#'           checked = TRUE,
+#'           color = "green"
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
@@ -2550,32 +2603,31 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Radio"),
-#'      f7Radio(
-#'       inputId = "radio",
-#'       label = "Choose a fruit:",
-#'       choices = c("banana", "apple", "peach"),
-#'       selected = "apple"
-#'      ),
-#'      plotOutput("plot")
-#'     )
-#'    ),
-#'    server = function(input, output) {
-#'     output$plot <- renderPlot({
-#'      if (input$radio == "apple") hist(mtcars[, "mpg"])
-#'     })
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Radio"),
+#'         f7Radio(
+#'           inputId = "radio",
+#'           label = "Choose a fruit:",
+#'           choices = c("banana", "apple", "peach"),
+#'           selected = "apple"
+#'         ),
+#'         plotOutput("plot")
+#'       )
+#'     ),
+#'     server = function(input, output) {
+#'       output$plot <- renderPlot({
+#'         if (input$radio == "apple") hist(mtcars[, "mpg"])
+#'       })
+#'     }
+#'   )
 #' }
 f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
-
   shiny::tagList(
     shiny::tags$div(
       class = "block-title",
@@ -2587,7 +2639,6 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
       createRadioOptions(choices, selected, inputId)
     )
   )
-
 }
 
 
@@ -2610,45 +2661,45 @@ f7Radio <- function(inputId, label, choices = NULL, selected = NULL) {
 #' @examples
 #' # Update radio
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Update radio",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "Update f7Radio"),
-#'       f7Button("go", "Update radio"),
-#'       f7Radio(
-#'         inputId = "radio",
-#'         label = "Choose a fruit:",
-#'         choices = c("banana", "apple", "peach"),
-#'         selected = "apple"
-#'       ),
-#'       textOutput("radio_value")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     output$radio_value <- renderText(input$radio)
-#'
-#'     observeEvent(input$go, {
-#'       updateF7Radio(
-#'         session,
-#'         inputId = "radio",
-#'         label = "New label",
-#'         choices = colnames(mtcars),
-#'         selected = colnames(mtcars)[1]
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Update radio",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update f7Radio"),
+#'         f7Button("go", "Update radio"),
+#'         f7Radio(
+#'           inputId = "radio",
+#'           label = "Choose a fruit:",
+#'           choices = c("banana", "apple", "peach"),
+#'           selected = "apple"
+#'         ),
+#'         textOutput("radio_value")
 #'       )
-#'     })
-#'   }
-#'  )
+#'     ),
+#'     server = function(input, output, session) {
+#'       output$radio_value <- renderText(input$radio)
+#'
+#'       observeEvent(input$go, {
+#'         updateF7Radio(
+#'           session,
+#'           inputId = "radio",
+#'           label = "New label",
+#'           choices = colnames(mtcars),
+#'           selected = colnames(mtcars)[1]
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
-updateF7Radio <- function (inputId, label = NULL, choices = NULL,
-                           selected = NULL, session = shiny::getDefaultReactiveDomain()) {
-
+updateF7Radio <- function(inputId, label = NULL, choices = NULL,
+                          selected = NULL, session = shiny::getDefaultReactiveDomain()) {
   if (is.null(selected)) {
-    if (!is.null(choices))
+    if (!is.null(choices)) {
       selected <- choices[[1]]
+    }
   }
 
   message <- dropNulls(
@@ -2685,7 +2736,7 @@ createRadioOptions <- function(choices, selected, inputId) {
         shiny::tags$i(class = "icon icon-radio"),
         shiny::tags$div(
           class = "item-inner",
-          shiny::tags$div(class="item-title", choices[[i]])
+          shiny::tags$div(class = "item-title", choices[[i]])
         )
       )
     )

@@ -33,65 +33,67 @@ updateF7Select(
 }
 \examples{
 # Select input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shiny::shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-      navbar = f7Navbar(title = "f7Select"),
-      f7Select(
-       inputId = "variable",
-       label = "Choose a variable:",
-       choices = colnames(mtcars)[-1],
-       selected = "hp"
-      ),
-      tableOutput("data")
-     )
-   ),
-   server = function(input, output) {
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-   }
- )
-}
-# Update select input
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "updateF7Select"),
-       f7Card(
-         f7Button(inputId = "update", label = "Update select"),
-         br(),
-         f7Select(
+  shiny::shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Select"),
+        f7Select(
           inputId = "variable",
           label = "Choose a variable:",
           choices = colnames(mtcars)[-1],
           selected = "hp"
-         ),
-         verbatimTextOutput("test")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+        ),
+        tableOutput("data")
+      )
+    ),
+    server = function(input, output) {
+      output$data <- renderTable(
+        {
+          mtcars[, c("mpg", input$variable), drop = FALSE]
+        },
+        rownames = TRUE
+      )
+    }
+  )
+}
+# Update select input
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
-     output$test <- renderPrint(input$variable)
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "updateF7Select"),
+        f7Card(
+          f7Button(inputId = "update", label = "Update select"),
+          br(),
+          f7Select(
+            inputId = "variable",
+            label = "Choose a variable:",
+            choices = colnames(mtcars)[-1],
+            selected = "hp"
+          ),
+          verbatimTextOutput("test")
+        )
+      )
+    ),
+    server = function(input, output, session) {
+      output$test <- renderPrint(input$variable)
 
-     observeEvent(input$update, {
-       updateF7Select(
-         inputId = "variable",
-         selected = "gear"
-       )
-     })
-   }
- )
+      observeEvent(input$update, {
+        updateF7Select(
+          inputId = "variable",
+          selected = "gear"
+        )
+      })
+    }
+  )
 }
 }

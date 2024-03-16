@@ -18,7 +18,8 @@ function setSource(query, render) {
 var f7AutoCompleteBinding = new Shiny.InputBinding();
 
 $.extend(f7AutoCompleteBinding, {
-
+  // Store all widgets here
+  instances: [],
   initialize: function(el) {
 
     // recover the inputId passed in the R function
@@ -77,7 +78,9 @@ $.extend(f7AutoCompleteBinding, {
       }
     };
 
-    app.autocomplete.create(data);
+    data.popupPush = true;
+
+    this.instances[id] = app.autocomplete.create(data);
   },
 
   find: function(scope) {
@@ -86,7 +89,7 @@ $.extend(f7AutoCompleteBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var a = app.autocomplete.get($(el));
+    var a = this.instances[el.id];
     // Set value in placeholder
     $(a.params.inputEl).val(a.value);
     return a.value;
@@ -108,7 +111,7 @@ $.extend(f7AutoCompleteBinding, {
 
   // see updateF7AutoComplete
   receiveMessage: function(el, data) {
-    var a = app.autocomplete.get($(el));
+    var a = this.instances[el.id];
     // update choices
     if (data.hasOwnProperty('choices')) {
       this._setChoices(a, data.choices);

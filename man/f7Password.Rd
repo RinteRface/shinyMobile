@@ -19,26 +19,28 @@ f7Password(inputId, label, value = "", placeholder = NULL)
 Create an f7 password input
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-      navbar = f7Navbar(title = "f7Password"),
-      f7Password(
-       inputId = "password",
-       label = "Password:",
-       placeholder = "Your password here"
-      ),
-      verbatimTextOutput("value")
-     )
-   ),
-   server = function(input, output) {
-     output$value <- renderPrint({ input$password })
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Password"),
+        f7Password(
+          inputId = "password",
+          label = "Password:",
+          placeholder = "Your password here"
+        ),
+        verbatimTextOutput("value")
+      )
+    ),
+    server = function(input, output) {
+      output$value <- renderPrint({
+        input$password
+      })
+    }
+  )
 }
 }

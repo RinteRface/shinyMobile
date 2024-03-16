@@ -29,73 +29,76 @@ updateF7Checkbox(
 \code{updateF7Checkbox} changes the value of a checkbox input on the client.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Checkbox"),
-     f7Card(
-      f7Checkbox(
-       inputId = "check",
-       label = "Checkbox",
-       value = FALSE
-      ),
-      verbatimTextOutput("test")
-     )
-    )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint({input$check})
-   }
- )
-}
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- ui <- f7Page(
-   f7SingleLayout(
-    navbar = f7Navbar(title = "updateF7CheckBox"),
-    f7Slider(
-     inputId = "controller",
-     label = "Number of observations",
-     max = 10,
-     min = 0,
-     value = 1,
-     step = 1,
-     scale = TRUE
-    ),
-    f7checkBox(
-     inputId = "check",
-     label = "Checkbox"
-    )
-   )
- )
-
- server <- function(input, output, session) {
-   observe({
-     # TRUE if input$controller is odd, FALSE if even.
-     x_even <- input$controller \%\% 2 == 1
-
-     if (x_even) {
-      showNotification(
-       id = "notif",
-       paste("The slider is ", input$controller, "and the checkbox is", input$check),
-       duration = NULL,
-       type = "warning"
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Checkbox"),
+        f7Card(
+          f7Checkbox(
+            inputId = "check",
+            label = "Checkbox",
+            value = FALSE
+          ),
+          verbatimTextOutput("test")
+        )
       )
-     } else {
-      removeNotification("notif")
-     }
+    ),
+    server = function(input, output) {
+      output$test <- renderPrint({
+        input$check
+      })
+    }
+  )
+}
+#
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
-     updateF7Checkbox("check", value = x_even)
-   })
- }
+  ui <- f7Page(
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7CheckBox"),
+      f7Slider(
+        inputId = "controller",
+        label = "Number of observations",
+        max = 10,
+        min = 0,
+        value = 1,
+        step = 1,
+        scale = TRUE
+      ),
+      f7checkBox(
+        inputId = "check",
+        label = "Checkbox"
+      )
+    )
+  )
 
-shinyApp(ui, server)
+  server <- function(input, output, session) {
+    observe({
+      # TRUE if input$controller is odd, FALSE if even.
+      x_even <- input$controller \%\% 2 == 1
+
+      if (x_even) {
+        showNotification(
+          id = "notif",
+          paste("The slider is ", input$controller, "and the checkbox is", input$check),
+          duration = NULL,
+          type = "warning"
+        )
+      } else {
+        removeNotification("notif")
+      }
+
+      updateF7Checkbox("check", value = x_even)
+    })
+  }
+
+  shinyApp(ui, server)
 }
 }

@@ -13,7 +13,7 @@ f7AutoComplete(
   choices,
   openIn = c("popup", "page", "dropdown"),
   typeahead = TRUE,
-  expandInput = TRUE,
+  expandInput = deprecated(),
   closeOnSelect = FALSE,
   dropdownPlaceholderText = NULL,
   multiple = FALSE,
@@ -44,9 +44,8 @@ can be page or popup (for Standalone) or dropdown.}
 \item{typeahead}{Enables type ahead, will prefill input
 value with first item in match. Only if openIn is "dropdown".}
 
-\item{expandInput}{If TRUE then input which is used as
-item-input in List View will be expanded to full
-screen wide during dropdown visible. Only if openIn is "dropdown".}
+\item{expandInput}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
 \item{closeOnSelect}{Set to true and autocomplete will be closed when user picks value.
 Not available if multiple is enabled. Only works
@@ -58,7 +57,7 @@ Only if openIn is "dropdown".}
 \item{multiple}{Whether to allow multiple value selection. Only works
 when openIn is 'popup' or 'page'.}
 
-\item{limit}{Limit number of maximum displayed items in autocomplete per query}
+\item{limit}{Limit number of maximum displayed items in autocomplete per query.}
 
 \item{session}{The Shiny session object.}
 }
@@ -72,88 +71,93 @@ You cannot update choices yet.
 }
 \examples{
 # Autocomplete input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7AutoComplete"),
-     f7AutoComplete(
-      inputId = "myautocomplete1",
-      placeholder = "Some text here!",
-      dropdownPlaceholderText = "Try to type Apple",
-      label = "Type a fruit name",
-      openIn = "dropdown",
-      choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-       'Orange', 'Peach', 'Pear', 'Pineapple')
-     ),
-     textOutput("autocompleteval1"),
-     f7AutoComplete(
-      inputId = "myautocomplete2",
-      placeholder = "Some text here!",
-      openIn = "popup",
-      multiple = TRUE,
-      label = "Type a fruit name",
-      choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-                  'Orange', 'Peach', 'Pear', 'Pineapple')
-     ),
-     verbatimTextOutput("autocompleteval2")
-    )
-   ),
-   server = function(input, output) {
-    observe({
-     print(input$myautocomplete1)
-     print(input$myautocomplete2)
-    })
-    output$autocompleteval1 <- renderText(input$myautocomplete1)
-    output$autocompleteval2 <- renderPrint(input$myautocomplete2)
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7AutoComplete"),
+        f7AutoComplete(
+          inputId = "myautocomplete1",
+          placeholder = "Some text here!",
+          dropdownPlaceholderText = "Try to type Apple",
+          label = "Type a fruit name",
+          openIn = "dropdown",
+          choices = c(
+            "Apple", "Apricot", "Avocado", "Banana", "Melon",
+            "Orange", "Peach", "Pear", "Pineapple"
+          )
+        ),
+        textOutput("autocompleteval1"),
+        f7AutoComplete(
+          inputId = "myautocomplete2",
+          placeholder = "Some text here!",
+          openIn = "popup",
+          multiple = TRUE,
+          label = "Type a fruit name",
+          choices = c(
+            "Apple", "Apricot", "Avocado", "Banana", "Melon",
+            "Orange", "Peach", "Pear", "Pineapple"
+          )
+        ),
+        verbatimTextOutput("autocompleteval2")
+      )
+    ),
+    server = function(input, output) {
+      observe({
+        print(input$myautocomplete1)
+        print(input$myautocomplete2)
+      })
+      output$autocompleteval1 <- renderText(input$myautocomplete1)
+      output$autocompleteval2 <- renderPrint(input$myautocomplete2)
+    }
+  )
 }
 
 # Update autocomplete
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-  ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-      navbar = f7Navbar(title = "Update autocomplete"),
-      f7Card(
-        f7Button(inputId = "update", label = "Update autocomplete"),
-        f7AutoComplete(
-         inputId = "myautocomplete",
-         placeholder = "Some text here!",
-         openIn = "dropdown",
-         label = "Type a fruit name",
-         choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-                     'Orange', 'Peach', 'Pear', 'Pineapple')
-        ),
-        verbatimTextOutput("autocompleteval")
+  library(shiny)
+  library(shinyMobile)
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "Update autocomplete"),
+        f7Card(
+          f7Button(inputId = "update", label = "Update autocomplete"),
+          f7AutoComplete(
+            inputId = "myautocomplete",
+            placeholder = "Some text here!",
+            openIn = "dropdown",
+            label = "Type a fruit name",
+            choices = c(
+              "Apple", "Apricot", "Avocado", "Banana", "Melon",
+              "Orange", "Peach", "Pear", "Pineapple"
+            )
+          ),
+          verbatimTextOutput("autocompleteval")
+        )
       )
-    )
-  ),
-  server = function(input, output, session) {
+    ),
+    server = function(input, output, session) {
+      observe({
+        print(input$myautocomplete)
+      })
 
-    observe({
-     print(input$myautocomplete)
-    })
+      output$autocompleteval <- renderText(input$myautocomplete)
 
-    output$autocompleteval <- renderText(input$myautocomplete)
-
-    observeEvent(input$update, {
-      updateF7AutoComplete(
-        inputId = "myautocomplete",
-        value = "plip",
-        choices = c("plip", "plap", "ploup")
-      )
-    })
-  }
- )
+      observeEvent(input$update, {
+        updateF7AutoComplete(
+          inputId = "myautocomplete",
+          value = "plip",
+          choices = c("plip", "plap", "ploup")
+        )
+      })
+    }
+  )
 }
 }
 \author{

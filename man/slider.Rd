@@ -80,116 +80,121 @@ Important: you cannot transform a range slider into a simple slider and inversel
 }
 \examples{
 # Slider input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Slider"),
-     f7Card(
-      f7Slider(
-       inputId = "obs",
-       label = "Number of observations",
-       max = 1000,
-       min = 0,
-       value = 100,
-       scaleSteps = 5,
-       scaleSubSteps = 3,
-       scale = TRUE,
-       color = "orange",
-       labels = tagList(
-        f7Icon("circle"),
-        f7Icon("circle_fill")
-       )
-      ),
-      verbatimTextOutput("test")
-     ),
-     plotOutput("distPlot")
-    )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint({input$obs})
-    output$distPlot <- renderPlot({
-     hist(rnorm(input$obs))
-    })
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Slider"),
+        f7Card(
+          f7Slider(
+            inputId = "obs",
+            label = "Number of observations",
+            max = 1000,
+            min = 0,
+            value = 100,
+            scaleSteps = 5,
+            scaleSubSteps = 3,
+            scale = TRUE,
+            color = "orange",
+            labels = tagList(
+              f7Icon("circle"),
+              f7Icon("circle_fill")
+            )
+          ),
+          verbatimTextOutput("test")
+        ),
+        plotOutput("distPlot")
+      )
+    ),
+    server = function(input, output) {
+      output$test <- renderPrint({
+        input$obs
+      })
+      output$distPlot <- renderPlot({
+        hist(rnorm(input$obs))
+      })
+    }
+  )
 }
 
 # Create a range
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Slider Range"),
-     f7Card(
-      f7Slider(
-       inputId = "obs",
-       label = "Range values",
-       max = 500,
-       min = 0,
-       value = c(50, 100),
-       scale = FALSE
-      ),
-      verbatimTextOutput("test")
-     )
-    )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint({input$obs})
-   }
- )
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Slider Range"),
+        f7Card(
+          f7Slider(
+            inputId = "obs",
+            label = "Range values",
+            max = 500,
+            min = 0,
+            value = c(50, 100),
+            scale = FALSE
+          ),
+          verbatimTextOutput("test")
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$test <- renderPrint({
+        input$obs
+      })
+    }
+  )
 }
 
 # Update f7Slider
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "updateF7Slider"),
-       f7Card(
-         f7Button(inputId = "update", label = "Update slider"),
-         f7Slider(
-           inputId = "obs",
-           label = "Range values",
-           max = 500,
-           min = 0,
-           step = 1,
-           color = "deeppurple",
-           value = c(50, 100)
-         ),
-         verbatimTextOutput("test")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "updateF7Slider"),
+        f7Card(
+          f7Button(inputId = "update", label = "Update slider"),
+          f7Slider(
+            inputId = "obs",
+            label = "Range values",
+            max = 500,
+            min = 0,
+            step = 1,
+            color = "deeppurple",
+            value = c(50, 100)
+          ),
+          verbatimTextOutput("test")
+        )
+      )
+    ),
+    server = function(input, output, session) {
+      output$test <- renderPrint({
+        input$obs
+      })
 
-     output$test <- renderPrint({input$obs})
-
-     observeEvent(input$update, {
-       updateF7Slider(
-         inputId = "obs",
-         value = c(1, 5),
-         min = 0,
-         scaleSteps = 10,
-         scaleSubSteps = 5,
-         step = 0.1,
-         max = 10,
-         color = "teal"
-       )
-     })
-   }
- )
+      observeEvent(input$update, {
+        updateF7Slider(
+          inputId = "obs",
+          value = c(1, 5),
+          min = 0,
+          scaleSteps = 10,
+          scaleSubSteps = 5,
+          step = 0.1,
+          max = 10,
+          color = "teal"
+        )
+      })
+    }
+  )
 }
 }

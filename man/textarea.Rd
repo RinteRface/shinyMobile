@@ -34,56 +34,58 @@ updateF7TextArea(
 \code{updateF7TextArea} changes the value of a text area input on the client.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7TextArea(
-      inputId = "textarea",
-      label = "Text Area",
-      value = "Lorem ipsum dolor sit amet, consectetur
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7TextArea(
+        inputId = "textarea",
+        label = "Text Area",
+        value = "Lorem ipsum dolor sit amet, consectetur
        adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua",
-      placeholder = "Your text here",
-      resize = TRUE
-     ),
-     textOutput("value")
-   ),
-   server = function(input, output) {
-     output$value <- renderText({ input$textarea })
-   }
- )
+        placeholder = "Your text here",
+        resize = TRUE
+      ),
+      textOutput("value")
+    ),
+    server = function(input, output) {
+      output$value <- renderText({
+        input$textarea
+      })
+    }
+  )
 }
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- ui <- f7Page(
-   f7SingleLayout(
-    navbar = f7Navbar(title = "updateF7TextArea"),
-    f7Block(f7Button("trigger", "Click me")),
-    f7TextArea(
-     inputId = "textarea",
-     label = "Text Area",
-     value = "Lorem ipsum dolor sit amet, consectetur
+  ui <- f7Page(
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7TextArea"),
+      f7Block(f7Button("trigger", "Click me")),
+      f7TextArea(
+        inputId = "textarea",
+        label = "Text Area",
+        value = "Lorem ipsum dolor sit amet, consectetur
               adipiscing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua",
-     placeholder = "Your text here",
-     resize = TRUE
-     ),
-    verbatimTextOutput("value")
-   )
- )
+        placeholder = "Your text here",
+        resize = TRUE
+      ),
+      verbatimTextOutput("value")
+    )
+  )
 
- server <- function(input, output, session) {
-   output$value <- renderPrint(input$textarea)
-   observeEvent(input$trigger, {
-     updateF7Text("textarea", value = "Updated Text")
-   })
- }
-shinyApp(ui, server)
+  server <- function(input, output, session) {
+    output$value <- renderPrint(input$textarea)
+    observeEvent(input$trigger, {
+      updateF7Text("textarea", value = "Updated Text")
+    })
+  }
+  shinyApp(ui, server)
 }
 }

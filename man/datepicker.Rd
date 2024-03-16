@@ -112,11 +112,9 @@ if (interactive()) {
       )
     ),
     server = function(input, output, session) {
-
       output$selectDate <- renderPrint(input$date)
       output$selectMultipleDates <- renderPrint(input$multipleDates)
       output$selectDefault <- renderPrint(input$default)
-
     }
   )
 }
@@ -146,7 +144,6 @@ if (interactive()) {
       )
     ),
     server = function(input, output, session) {
-
       output$pickerval <- renderPrint(input$mypicker)
 
       observeEvent(input$selectToday, {
@@ -171,7 +168,6 @@ if (interactive()) {
           dateFormat = "yyyy-mm-dd" # preserve date format
         )
       })
-
     }
   )
 }

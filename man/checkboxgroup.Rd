@@ -19,29 +19,32 @@ f7CheckboxGroup(inputId, label, choices = NULL, selected = NULL)
 \code{f7CheckboxGroup} creates a checkbox group input
 }
 \examples{
-if(interactive()){
+if (interactive()) {
   library(shiny)
   library(shinyMobile)
 
   shiny::shinyApp(
     ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-      navbar = f7Navbar(title = "f7CheckboxGroup"),
-      f7CheckboxGroup(
-       inputId = "variable",
-       label = "Choose a variable:",
-       choices = colnames(mtcars)[-1],
-       selected = NULL
-      ),
-      tableOutput("data")
-     )
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7CheckboxGroup"),
+        f7CheckboxGroup(
+          inputId = "variable",
+          label = "Choose a variable:",
+          choices = colnames(mtcars)[-1],
+          selected = NULL
+        ),
+        tableOutput("data")
+      )
     ),
     server = function(input, output) {
-     output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-      }, rownames = TRUE)
+      output$data <- renderTable(
+        {
+          mtcars[, c("mpg", input$variable), drop = FALSE]
+        },
+        rownames = TRUE
+      )
     }
   )
- }
+}
 }
