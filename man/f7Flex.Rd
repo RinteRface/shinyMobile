@@ -10,30 +10,10 @@ f7Flex(...)
 \item{...}{Items.}
 }
 \description{
-Build a Framework7 flex container
-}
-\examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-    title = "Align",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Flex"),
-     f7Flex(
-      f7Block(strong = TRUE),
-      f7Block(strong = TRUE),
-      f7Block(strong = TRUE)
-     )
-    )
-   ),
-   server = function(input, output) {}
- )
-}
-
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\link{f7Grid} is a replacement
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\keyword{internal}

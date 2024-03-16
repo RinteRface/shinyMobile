@@ -20,6 +20,7 @@
     - `shadow` and `subtitle` have been removed in Framework7.
 - `f7SocialCard()` is deprecated as the same result can be achieved with `f7Card()`.
 - `f7AutoComplete()`: `expandInput` is deprecated, removed from Framework7.
+- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item

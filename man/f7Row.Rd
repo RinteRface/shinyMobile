@@ -12,46 +12,10 @@ f7Row(..., gap = TRUE)
 \item{gap}{Whether to display gap between columns. TRUE by default.}
 }
 \description{
-Build a Framework7 row container
-}
-\examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-  ui = f7Page(
-    title = "Grid",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Row, f7Col"),
-     f7Row(
-     f7Col(
-      f7Card(
-       "This is a simple card with plain text,
-       but cards can also contain their own header,
-       footer, list view, image, or any other element."
-      )
-     ),
-     f7Col(
-      f7Card(
-       title = "Card header",
-       "This is a simple card with plain text,
-        but cards can also contain their own header,
-        footer, list view, image, or any other element.",
-       footer = tagList(
-        f7Button(color = "blue", label = "My button"),
-        f7Badge("Badge", color = "green")
-       )
-      )
-     )
-    )
-    )
-  ),
-  server = function(input, output) {}
- )
-}
-
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\link{f7Grid} is a replacement
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\keyword{internal}

@@ -932,6 +932,7 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
 #' @param label The label to set for the input object. Does not work.
 #' @param value The value to set for the input object.
 #' @param session The Shiny session object.
+#' @export
 updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label = label, value = value))

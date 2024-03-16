@@ -11,7 +11,8 @@ f7Col(...)
 on the number of columns.}
 }
 \description{
-Build a Framework7 column container
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\link{f7Grid} is a replacement
 }
 \note{
 The dark theme does not work for items embedded in a column. Use \link{f7Flex}
@@ -20,3 +21,4 @@ instead.
 \author{
 David Granjon, \email{dgranjon@ymail.com}
 }
+\keyword{internal}

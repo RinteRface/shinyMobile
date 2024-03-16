@@ -119,9 +119,10 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #' @param footer Footer content, if any. Must be wrapped in a tagList.
 #'
 #' @keywords internal
+#' @export
 f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
                          footer = NULL) {
-  lifecycle::deprecate_warn("1.1.0", "f7SocialCard", "f7Card()")
+  lifecycle::deprecate_warn("1.1.0", "f7SocialCard()", "f7Card()")
 
   headerTag <- shiny::tags$div(
     class = "card-header",
