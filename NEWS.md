@@ -7,6 +7,7 @@
 - `f7AddMessages()` is definitely removed. Deprecated from previous releases.
 - `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
 - `f7ShowNavbar()` and `f7HideNavbar()` are removed, as long time deprecated.
+- `f7checkBox()` and `f7checkBoxGroup()` are removed, as long time deprecated.
 
 ## Deprecation
 - `f7Accordion()`:
@@ -27,6 +28,8 @@ We now return an object of objects which becomes a list of lists.
 - `f7Block()` gains an `outline` parameter (add grey border).
 - `f7Button()` get a new `tonal` style.
 - `f7Card()` get a new `raised` and `divider` parameters.
+- `f7CheckboxGroup()` has a new `position` parameter to control
+the check icon position. Default to left.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

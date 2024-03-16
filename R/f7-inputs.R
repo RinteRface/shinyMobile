@@ -905,34 +905,7 @@ updateF7DatePicker <- function(inputId, value = NULL, ...,
 #' @param value Initial value (TRUE or FALSE).
 #'
 #' @rdname checkbox
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Checkbox"),
-#'         f7Card(
-#'           f7Checkbox(
-#'             inputId = "check",
-#'             label = "Checkbox",
-#'             value = FALSE
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$test <- renderPrint({
-#'         input$check
-#'       })
-#'     }
-#'   )
-#' }
-#' #
+#' @example inst/examples/checkbox/app.R
 #' @export
 f7Checkbox <- function(inputId, label, value = FALSE) {
   value <- shiny::restoreInput(id = inputId, default = value)
@@ -950,94 +923,20 @@ f7Checkbox <- function(inputId, label, value = FALSE) {
   )
 }
 
-
-
-#' Deprecated functions
-#'
-#' \code{f7checkBox} creates a checkbox input. Use \link{f7Checkbox} instead.
-#'
-#' @rdname f7-deprecated
-#' @inheritParams f7checkBoxGroup
-#' @keywords internal
-#' @export
-f7checkBox <- function(inputId, label, value = FALSE) {
-  .Deprecated(
-    "f7Checkbox",
-    package = "shinyMobile",
-    "f7checkBox will be removed in future release. Please use
-      f7Checkbox instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
-  f7Checkbox(inputId, label, value)
-}
-
-
 #' Update Framework7 checkbox
 #'
 #' \code{updateF7Checkbox} changes the value of a checkbox input on the client.
 #'
 #' @rdname checkbox
 #' @param inputId The id of the input object.
-#' @param label The label to set for the input object.
+#' @param label The label to set for the input object. Does not work.
 #' @param value The value to set for the input object.
 #' @param session The Shiny session object.
-#'
-#' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   ui <- f7Page(
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "updateF7CheckBox"),
-#'       f7Slider(
-#'         inputId = "controller",
-#'         label = "Number of observations",
-#'         max = 10,
-#'         min = 0,
-#'         value = 1,
-#'         step = 1,
-#'         scale = TRUE
-#'       ),
-#'       f7checkBox(
-#'         inputId = "check",
-#'         label = "Checkbox"
-#'       )
-#'     )
-#'   )
-#'
-#'   server <- function(input, output, session) {
-#'     observe({
-#'       # TRUE if input$controller is odd, FALSE if even.
-#'       x_even <- input$controller %% 2 == 1
-#'
-#'       if (x_even) {
-#'         showNotification(
-#'           id = "notif",
-#'           paste("The slider is ", input$controller, "and the checkbox is", input$check),
-#'           duration = NULL,
-#'           type = "warning"
-#'         )
-#'       } else {
-#'         removeNotification("notif")
-#'       }
-#'
-#'       updateF7Checkbox("check", value = x_even)
-#'     })
-#'   }
-#'
-#'   shinyApp(ui, server)
-#' }
 updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label = label, value = value))
   session$sendInputMessage(inputId, message)
 }
-
-
-
 
 #' Framework7 checkbox group
 #'
@@ -1047,50 +946,33 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #' @param label Checkbox group label.
 #' @param choices Checkbox group choices.
 #' @param selected Checkbox group selected value.
+#' @param position Check mark position.
+#' \code{"left"} or \code{"right"}.
 #'
 #' @export
 #' @rdname checkboxgroup
 #'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shiny::shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7CheckboxGroup"),
-#'         f7CheckboxGroup(
-#'           inputId = "variable",
-#'           label = "Choose a variable:",
-#'           choices = colnames(mtcars)[-1],
-#'           selected = NULL
-#'         ),
-#'         tableOutput("data")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$data <- renderTable(
-#'         {
-#'           mtcars[, c("mpg", input$variable), drop = FALSE]
-#'         },
-#'         rownames = TRUE
-#'       )
-#'     }
-#'   )
-#' }
-f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
+#' @example inst/examples/checkboxgroup/app.R
+f7CheckboxGroup <- function(
+    inputId, label, choices = NULL, selected = NULL,
+    position = c("left", "right")) {
+  position <- match.arg(position)
+  position <- switch(position,
+    "left" = "start",
+    "right" = "end"
+  )
   selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
-
   choicesTag <- lapply(X = seq_along(choices), function(i) {
     shiny::tags$li(
       shiny::tags$label(
-        class = "item-checkbox item-content",
+        class = sprintf("item-checkbox item-checkbox-icon-%s item-content", position),
         shiny::tags$input(
           type = "checkbox",
           name = inputId,
-          value = choices[[i]]
+          value = choices[[i]],
+          checked = if (!is.null(selectedPosition)) {
+            if (i == selectedPosition) NA
+          }
         ),
         shiny::tags$i(class = "icon icon-checkbox"),
         shiny::tags$div(
@@ -1101,15 +983,13 @@ f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
     )
   })
 
-  if (!is.null(selected)) choicesTag[[selectedPosition]]$children[[1]]$children[[1]]$attribs[["checked"]] <- NA
-
   shiny::tagList(
     shiny::tags$div(
       class = "block-title",
       label
     ),
     shiny::tags$div(
-      class = "list shiny-input-checkboxgroup",
+      class = "list list-strong-ios list-outline-ios list-dividers-ios shiny-input-checkboxgroup",
       id = inputId,
       shiny::tags$ul(
         choicesTag
@@ -1117,32 +997,6 @@ f7CheckboxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
     )
   )
 }
-
-
-
-#' Deprecated functions
-#'
-#' \code{f7checkBoxGroup} creates a checkbox group input.
-#' Use \link{f7CheckboxGroup} instead
-#'
-#' @rdname f7-deprecated
-#' @inheritParams f7checkBoxGroup
-#' @keywords internal
-#' @export
-f7checkBoxGroup <- function(inputId, label, choices = NULL, selected = NULL) {
-  .Deprecated(
-    "f7CheckboxGroup",
-    package = "shinyMobile",
-    "f7checkBoxGroup will be removed in future release. Please use
-    f7CheckboxGroup instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
-
-  f7CheckboxGroup(inputId, label, choices, selected)
-}
-
-
-
 
 #' Create option html tag based on choice input
 #'

@@ -68,9 +68,7 @@ reference:
   desc: slider, radio, checkboxes, ...
   contents:
   - '`f7AutoComplete`'
-  - '`f7checkBox`'
   - '`f7Checkbox`'
-  - '`f7checkBoxGroup`'
   - '`f7CheckboxGroup`'
   - '`f7ColorPicker`'
   - '`f7DatePicker`'
