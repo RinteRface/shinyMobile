@@ -1,3 +1,5 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7FabsBinding = new Shiny.InputBinding();
 
@@ -16,7 +18,7 @@ $.extend(f7FabsBinding, {
   // see updateF7Fabs
   receiveMessage: function(el, data) {
     // update Fabs
-    app.fab.toggle('#' + $(el).attr('id'));
+    getAppInstance().fab.toggle('#' + $(el).attr('id'));
   },
 
   subscribe: function(el, callback) {

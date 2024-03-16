@@ -1,3 +1,5 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7CardBinding = new Shiny.InputBinding();
 
@@ -15,7 +17,7 @@ $.extend(f7CardBinding, {
 
   // see updateF7Card
   receiveMessage: function(el, data) {
-    app.card.toggle(el);
+    getAppInstance().card.toggle(el);
   },
 
   subscribe: function(el, callback) {

@@ -1,3 +1,5 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7CollapsibleBinding = new Shiny.InputBinding();
 
@@ -35,7 +37,7 @@ $.extend(f7CollapsibleBinding, {
       var items = $('#' + accordionId + ' .accordion-item');
       var idx = data.selected - 1;
       var target = $(items[idx])[0];
-      app.accordion.toggle(target);
+      getAppInstance().accordion.toggle(target);
     }
   },
 

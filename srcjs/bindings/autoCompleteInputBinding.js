@@ -1,3 +1,5 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 function setSource(query, render) {
   var results = [];
@@ -21,7 +23,7 @@ $.extend(f7AutoCompleteBinding, {
   // Store all widgets here
   instances: [],
   initialize: function(el) {
-
+    this.app = getAppInstance();
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
 
@@ -80,7 +82,7 @@ $.extend(f7AutoCompleteBinding, {
 
     data.popupPush = true;
 
-    this.instances[id] = app.autocomplete.create(data);
+    this.instances[id] = this.app.autocomplete.create(data);
   },
 
   find: function(scope) {

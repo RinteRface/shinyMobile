@@ -15,7 +15,7 @@ f7Fabs(
   extended = FALSE,
   label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center"),
-  morph = FALSE,
+  morph = deprecated(),
   morphTarget = NULL
 )
 
@@ -26,7 +26,7 @@ f7FabMorphTarget(tag)
 \arguments{
 \item{...}{Slot for \link{f7Fab}.}
 
-\item{id}{The id of the input object.}
+\item{id}{Optional: access the current state of the \link{f7Fabs} container.}
 
 \item{position}{Container position.}
 
@@ -38,7 +38,8 @@ f7FabMorphTarget(tag)
 
 \item{sideOpen}{When the container is pressed, indicate where buttons are displayed.}
 
-\item{morph}{Whether to allow the FAB to transofrm into another UI element.}
+\item{morph}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
 \item{morphTarget}{CSS selector of the morph target: \code{".toolbar"} for instance.}
 
@@ -59,102 +60,72 @@ The background color might be an issue depending on the parent container. Consid
 it experimental.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "Floating action buttons",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Fabs"),
-     f7Fabs(
-      extended = TRUE,
-      label = "Menu",
-      position = "center-top",
-      color = "yellow",
-      sideOpen = "right",
-      lapply(1:4, function(i) f7Fab(paste0("btn", i), i))
-    ),
-    lapply(1:4, function(i) verbatimTextOutput(paste0("res", i))),
-
-    f7Fabs(
-      position = "center-center",
-      color = "purple",
-      sideOpen = "center",
-      lapply(5:8, function(i) f7Fab(paste0("btn", i), i))
-    ),
-    lapply(5:8, function(i) verbatimTextOutput(paste0("res", i))),
-
-    f7Fabs(
-      position = "left-bottom",
-      color = "pink",
-      sideOpen = "top",
-      lapply(9:12, function(i) f7Fab(paste0("btn", i), i))
-    )
-    )
-
-  ),
-  server = function(input, output) {
-    lapply(1:12, function(i) {
-      output[[paste0("res", i)]] <- renderPrint(input[[paste0("btn", i)]])
-    })
-  }
- )
-}
-
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Update f7Fabs",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7Fabs"),
-      f7Button(inputId = "toggleFabs", label = "Toggle Fabs"),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        lapply(1:3, function(i) f7Link(label = i, href = "#") |> f7FabClose())
+      ) |> f7FabMorphTarget(),
+      # put an empty f7Fabs container
+      f7Fabs(
+        id = "fabsMorph",
+        extended = TRUE,
+        label = "Open",
+        position = "center-bottom",
+        color = "yellow",
+        sideOpen = "right",
+        morphTarget = ".toolbar"
+      ),
+      f7Block(f7Button(inputId = "toggle", label = "Toggle Fabs")),
       f7Fabs(
         position = "center-center",
         id = "fabs",
         lapply(1:3, function(i) f7Fab(inputId = i, label = i))
-      )
+      ),
+      textOutput("res")
     )
   ),
   server = function(input, output, session) {
-    observe(print(input$fabs))
-    observeEvent(input$toggleFabs, {
+    output$res <- renderText(input[["1"]])
+
+    observeEvent(input$toggle, {
       updateF7Fabs(id = "fabs")
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Fabs Morph"),
-       toolbar = f7Toolbar(
-         position = "bottom",
-         lapply(1:3, function(i) f7Link(label = i, href = "#") \%>\% f7FabClose())
-       ) \%>\% f7FabMorphTarget(),
-       # put an empty f7Fabs container
-       f7Fabs(
-         extended = TRUE,
-         label = "Open",
-         position = "center-top",
-         color = "yellow",
-         sideOpen = "right",
-         morph = TRUE,
-         morphTarget = ".toolbar"
-       )
-     )
-
-   ),
-   server = function(input, output) {}
- )
+  shinyApp(
+    ui = f7Page(
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Fabs Morph"),
+        toolbar = f7Toolbar(
+          position = "bottom",
+          lapply(1:3, function(i) f7Link(label = i, href = "#") \%>\% f7FabClose())
+        ) \%>\% f7FabMorphTarget(),
+        # put an empty f7Fabs container
+        f7Fabs(
+          extended = TRUE,
+          label = "Open",
+          position = "center-top",
+          color = "yellow",
+          sideOpen = "right",
+          morphTarget = ".toolbar"
+        )
+      )
+    ),
+    server = function(input, output) {}
+  )
 }
 }
 \author{
