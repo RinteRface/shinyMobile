@@ -1,5 +1,6 @@
 {
   "input": {
-    "checkboxgroup": "disp"
+    "checkboxgroup": "disp",
+    "checkboxgroup2": "2"
   }
 }

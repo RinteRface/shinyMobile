@@ -45,6 +45,41 @@ test_that("checkboxgroup tag", {
     selectedTag()
 
   expect_length(items, length(colnames(mtcars)) - 1)
+
+  # With f7CheckboxChoice
+  expect_error(
+    f7CheckboxGroup(
+      inputId = "checkboxgroup2",
+      label = "Custom choices",
+      choices = list(
+        f7CheckboxChoice(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nulla sagittis tellus ut turpis condimentum,
+        ut dignissim lacus tincidunt",
+          title = "Choice 1",
+          subtitle = "David",
+          after = "March 16, 2024"
+        )
+      ),
+      selected = 2
+    )
+  )
+  checkbox_group <- f7CheckboxGroup(
+    inputId = "checkboxgroup2",
+    label = "Custom choices",
+    choices = list(
+      f7CheckboxChoice(
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nulla sagittis tellus ut turpis condimentum,
+        ut dignissim lacus tincidunt",
+        title = "Choice 1",
+        subtitle = "David",
+        after = "March 16, 2024"
+      )
+    )
+  )
+
+  expect_true(grepl("media-list", checkbox_group[[2]]$attribs$class))
 })
 
 library(shinytest2)
@@ -58,7 +93,7 @@ test_that("checkboxgroup works as expected", {
     name = "checkboxgroup-app",
     variant = platform_variant()
   )
-  app$expect_values(input = "checkboxgroup")
-  app$set_inputs("checkboxgroup" = "wt")
-  app$expect_values(input = "checkboxgroup")
+  app$expect_values(input = c("checkboxgroup", "checkboxgroup2"))
+  app$set_inputs("checkboxgroup" = "wt", "checkboxgroup2" = "1")
+  app$expect_values(input = c("checkboxgroup", "checkboxgroup2"))
 })

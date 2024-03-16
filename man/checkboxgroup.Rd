@@ -2,6 +2,7 @@
 % Please edit documentation in R/f7-inputs.R
 \name{f7CheckboxGroup}
 \alias{f7CheckboxGroup}
+\alias{f7CheckboxChoice}
 \title{Framework7 checkbox group}
 \usage{
 f7CheckboxGroup(
@@ -11,21 +12,36 @@ f7CheckboxGroup(
   selected = NULL,
   position = c("left", "right")
 )
+
+f7CheckboxChoice(..., title, subtitle = NULL, after = NULL)
 }
 \arguments{
 \item{inputId}{Checkbox group input.}
 
 \item{label}{Checkbox group label.}
 
-\item{choices}{Checkbox group choices.}
+\item{choices}{Checkbox group choices. Can be a simple
+vector or named list or a list of \link{f7CheckboxChoice}.}
 
-\item{selected}{Checkbox group selected value.}
+\item{selected}{Checkbox group selected value. If you pass
+\link{f7CheckboxChoice} in choices, selected must be a numeric
+value corresponding to the element to select.}
 
 \item{position}{Check mark position.
 \code{"left"} or \code{"right"}.}
+
+\item{...}{Choice content. Text is striped if too long.}
+
+\item{title}{Item title.}
+
+\item{subtitle}{Item subtitle.}
+
+\item{after}{Display at the right of title.}
 }
 \description{
 \code{f7CheckboxGroup} creates a checkbox group input
+
+Custom choice item for \link{f7CheckboxGroup}.
 }
 \examples{
 library(shiny)
@@ -36,6 +52,7 @@ app <- shinyApp(
     title = "My app",
     f7SingleLayout(
       navbar = f7Navbar(title = "f7CheckboxGroup"),
+      f7BlockTitle("Simple choices", size = "large"),
       f7CheckboxGroup(
         inputId = "checkboxgroup",
         label = "Choose a variable:",
@@ -43,7 +60,33 @@ app <- shinyApp(
         selected = "disp",
         position = "right"
       ),
-      tableOutput("data")
+      tableOutput("data"),
+      f7BlockTitle("Custom choices: f7CheckboxChoice", size = "large"),
+      f7CheckboxGroup(
+        inputId = "checkboxgroup2",
+        label = "Custom choices",
+        choices = list(
+          f7CheckboxChoice(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum,
+            ut dignissim lacus tincidunt",
+            title = "Choice 1",
+            subtitle = "David",
+            after = "March 16, 2024"
+          ),
+          f7CheckboxChoice(
+            "Cras dolor metus, ultrices condimentum sodales sit
+            amet, pharetra sodales eros. Phasellus vel felis tellus.
+            Mauris rutrum ligula nec dapibus feugiat",
+            title = "Choice 2",
+            subtitle = "Veerle",
+            after = "March 17, 2024"
+          )
+        ),
+        selected = 2,
+        position = "right"
+      ),
+      textOutput("selected")
     )
   ),
   server = function(input, output) {
@@ -53,6 +96,7 @@ app <- shinyApp(
       },
       rownames = TRUE
     )
+    output$selected <- renderText(input$checkboxgroup2)
   }
 )
 

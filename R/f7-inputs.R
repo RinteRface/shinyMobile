@@ -944,8 +944,11 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'
 #' @param inputId Checkbox group input.
 #' @param label Checkbox group label.
-#' @param choices Checkbox group choices.
-#' @param selected Checkbox group selected value.
+#' @param choices Checkbox group choices. Can be a simple
+#' vector or named list or a list of \link{f7CheckboxChoice}.
+#' @param selected Checkbox group selected value. If you pass
+#' \link{f7CheckboxChoice} in choices, selected must be a numeric
+#' value corresponding to the element to select.
 #' @param position Check mark position.
 #' \code{"left"} or \code{"right"}.
 #'
@@ -961,7 +964,23 @@ f7CheckboxGroup <- function(
     "left" = "start",
     "right" = "end"
   )
-  selectedPosition <- if (!is.null(selected)) match(selected, choices) else NULL
+
+  has_media_list <- inherits(choices[[1]], "custom_choice")
+  if (has_media_list) position <- "start"
+
+  selectedPosition <- NULL
+  selectedPosition <- if (!is.null(selected)) {
+    if (has_media_list) {
+      if (!is.numeric(selected) || selected > length(choices)) {
+        stop("When using f7CheckboxChoice, selected must be a numeric
+        value of the choice to select. selected can't be higher than
+        the total number of choices.")
+      }
+      selected
+    } else {
+      match(selected, choices)
+    }
+  }
   choicesTag <- lapply(X = seq_along(choices), function(i) {
     shiny::tags$li(
       shiny::tags$label(
@@ -969,7 +988,11 @@ f7CheckboxGroup <- function(
         shiny::tags$input(
           type = "checkbox",
           name = inputId,
-          value = choices[[i]],
+          value = if (has_media_list) {
+            names(choices)[[i]] %OR% i
+          } else {
+            choices[[i]]
+          },
           checked = if (!is.null(selectedPosition)) {
             if (i == selectedPosition) NA
           }
@@ -977,11 +1000,18 @@ f7CheckboxGroup <- function(
         shiny::tags$i(class = "icon icon-checkbox"),
         shiny::tags$div(
           class = "item-inner",
-          shiny::tags$div(class = "item-title", choices[[i]])
+          if (has_media_list) {
+            choices[[i]]
+          } else {
+            shiny::tags$div(class = "item-title", choices[[i]])
+          }
         )
       )
     )
   })
+
+  mainCl <- "list list-strong-ios list-outline-ios list-dividers-ios shiny-input-checkboxgroup"
+  if (has_media_list) mainCl <- paste(mainCl, "media-list")
 
   shiny::tagList(
     shiny::tags$div(
@@ -989,12 +1019,45 @@ f7CheckboxGroup <- function(
       label
     ),
     shiny::tags$div(
-      class = "list list-strong-ios list-outline-ios list-dividers-ios shiny-input-checkboxgroup",
+      class = mainCl,
       id = inputId,
       shiny::tags$ul(
         choicesTag
       )
     )
+  )
+}
+
+#' Framework7 checkbox group custom choice
+#'
+#' Custom choice item for \link{f7CheckboxGroup}.
+#'
+#' @param ... Choice content. Text is striped if too long.
+#' @param title Item title.
+#' @param subtitle Item subtitle.
+#' @param after Display at the right of title.
+#'
+#' @export
+#' @rdname checkboxgroup
+f7CheckboxChoice <- function(..., title, subtitle = NULL, after = NULL) {
+  structure(
+    tagList(
+      shiny::tags$div(
+        class = "item-title-row",
+        shiny::tags$div(class = "item-title", title),
+        if (!is.null(after)) {
+          shiny::tags$div(
+            class = "item-after",
+            after
+          )
+        }
+      ),
+      if (!is.null(subtitle)) {
+        shiny::tags$div(class = "item-subtitle", subtitle)
+      },
+      shiny::tags$div(class = "item-text", ...)
+    ),
+    class = "custom_choice"
   )
 }
 

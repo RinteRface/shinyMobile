@@ -30,6 +30,8 @@ We now return an object of objects which becomes a list of lists.
 - `f7Card()` get a new `raised` and `divider` parameters.
 - `f7CheckboxGroup()` has a new `position` parameter to control
 the check icon position. Default to left.
+- `f7CheckboxChoice()`: new function to pass inside `choices` in a
+`f7CheckboxGroup()`. Improved choice with title, subtitle, ...
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1
