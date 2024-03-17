@@ -29,6 +29,8 @@ $.extend(f7TreeviewBinding, {
         $targetEl
           .closest(".treeview-item-selectable")
           .addClass("treeview-item-selected");
+        // trigger change so value gets updated
+        $(el).trigger("change");
       });
     }
 
@@ -73,7 +75,8 @@ $.extend(f7TreeviewBinding, {
     }
 
     if (this.config[id].withCheckbox) {
-      var checked = $(el).find("input[type='checkbox']:checked");
+      // only return values of checked (under treeview-item-childern class)
+      var checked = $(el).find(".treeview-item-children input[type='checkbox']:checked");
       var values = [];
       checked.each(function() {
         values.push($(this).closest(".treeview-item-content").find(".treeview-item-label").text());
@@ -91,7 +94,7 @@ $.extend(f7TreeviewBinding, {
   },
 
   subscribe: function(el, callback) {
-    $(el).on("click.treeview", function(e) {
+    $(el).on("change.treeview", function(e) {
       callback();
     });
   },
