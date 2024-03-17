@@ -5,9 +5,15 @@ $.extend(f7TreeviewBinding, {
   initialize: function(el) {
     var id = $(el).attr("id");
     var config = $(el).find("script[data-for='" + id + "']");
-    this.config = JSON.parse(config.html());
 
-    if (this.config.selectable) {
+    // init config so we can store config for each treeview
+    if (!this.config) {
+      this.config = {};
+    }
+
+    this.config[id] = JSON.parse(config.html());
+
+    if (this.config[id].selectable) {
       // add class to treeview-item-root
       $(el).find(".treeview-item-root").addClass("treeview-item-selectable");
 
@@ -25,6 +31,31 @@ $.extend(f7TreeviewBinding, {
           .addClass("treeview-item-selected");
       });
     }
+
+    if (this.config[id].withCheckbox) {
+      $(el).find(".treeview-item-content").each(function() {
+        var checkbox = $("<label class='checkbox'><input type='checkbox'><i class='icon-checkbox'></i></label>");
+        $(this).prepend(checkbox);
+      });
+
+        // make sure child elements are automatically checked/unchecked
+      $(el).find('input[type="checkbox"]').on('change', function (e) {
+        var $rootEl = $(e.target).closest('.treeview-item-root');
+        var $itemEl = $rootEl.parent('.treeview-item');
+        var $childrenCheckboxes = $itemEl.find('.treeview-item-children input[type="checkbox"]');
+        var $parentItemEl = $itemEl.parents('.treeview-item');
+        var $parentCheckbox = $parentItemEl.children('.treeview-item-root').find('input[type="checkbox"]');
+        if ($childrenCheckboxes.length) {
+          $childrenCheckboxes.prop('checked', e.target.checked);
+        }
+        if ($parentItemEl) {
+          var checkedChildren = $parentItemEl.find('.treeview-item-children input[type="checkbox"]:checked').length;
+          $parentCheckbox.prop('checked', checkedChildren > 0);
+          $parentCheckbox.prop('indeterminate', checkedChildren === 1);
+        }
+      });
+    }
+
   },
 
   find: function(scope) {
@@ -32,11 +63,22 @@ $.extend(f7TreeviewBinding, {
   },
 
   getValue: function(el) {
-    if (this.config.selectable) {
+    var id = $(el).attr("id");
+
+    if (this.config[id].selectable) {
       var selected = $(el).find(".treeview-item-selected");
       if (selected.length) {
         return selected.find(".treeview-item-label").text();
       }
+    }
+
+    if (this.config[id].withCheckbox) {
+      var checked = $(el).find("input[type='checkbox']:checked");
+      var values = [];
+      checked.each(function() {
+        values.push($(this).closest(".treeview-item-content").find(".treeview-item-label").text());
+      });
+      return values;
     }
   },
 
