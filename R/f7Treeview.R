@@ -66,7 +66,7 @@ f7TreeviewItem <- function(label, icon = NULL, href = NULL) {
     )
   } else {
     shiny::tags$a(
-      class = "treeview-item-root",
+      class = "treeview-item-root item-link external",
       href = href,
       target = "_blank",
       itemContent

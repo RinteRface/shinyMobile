@@ -74,10 +74,54 @@ app <- shinyApp(
                                                    icon = f7Icon("photo_fill")))
           )
         )
+      ),
+
+      # group treeview with checkbox items
+      f7BlockTitle("Checkbox"),
+      f7Block(
+        f7Treeview(
+          id = "checkbox",
+          withCheckbox = TRUE,
+          f7TreeviewGroup(
+            title = "Selected images",
+            icon = f7Icon("folder_fill"),
+            itemToggle = TRUE,
+            lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                                   icon = f7Icon("photo_fill")))
+          )
+        )
+      ),
+
+      # group treeview with checkbox items
+      f7BlockTitle("With links"),
+      f7Block(
+        f7Treeview(
+          id = "links",
+          f7TreeviewGroup(
+            title = "Links",
+            icon = f7Icon("link"),
+            itemToggle = TRUE,
+            f7TreeviewItem(label = "GitHub",
+                           icon = f7Icon("logo_github"),
+                           href = "https:://github.com/"),
+            f7TreeviewItem(label = "CRAN",
+                           icon = f7Icon("link"),
+                           href = "https://cran.r-project.org/")),
+        )
       )
     )
   ),
-  server = function(input, output) {}
+  server = function(input, output) {
+
+    observe({
+      print(input$selectable)
+    })
+
+    observe({
+      print(input$checkbox)
+    })
+
+  }
 )
 
 if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app

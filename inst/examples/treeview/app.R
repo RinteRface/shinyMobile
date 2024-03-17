@@ -71,16 +71,36 @@ app <- shinyApp(
                                                    icon = f7Icon("photo_fill")))
           )
         )
+      ),
+
+      # group treeview with checkbox items
+      f7BlockTitle("With links"),
+      f7Block(
+        f7Treeview(
+          id = "links",
+          f7TreeviewGroup(
+            title = "Links",
+            icon = f7Icon("link"),
+            itemToggle = TRUE,
+            f7TreeviewItem(label = "GitHub",
+                           icon = f7Icon("logo_github"),
+                           href = "https://github.com/"),
+            f7TreeviewItem(label = "CRAN",
+                           icon = f7Icon("link"),
+                           href = "https://cran.r-project.org/")),
+        )
       )
     )
   ),
   server = function(input, output) {
 
     observe({
+      req(input$selectable)
       print(input$selectable)
     })
 
     observe({
+      req(input$checkbox)
       print(input$checkbox)
     })
 

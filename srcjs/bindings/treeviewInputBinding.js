@@ -75,7 +75,7 @@ $.extend(f7TreeviewBinding, {
     }
 
     if (this.config[id].withCheckbox) {
-      // only return values of checked (under treeview-item-childern class)
+      // only return values of checked children (under treeview-item-children class)
       var checked = $(el).find(".treeview-item-children input[type='checkbox']:checked");
       var values = [];
       checked.each(function() {
