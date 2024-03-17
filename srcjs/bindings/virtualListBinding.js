@@ -106,8 +106,6 @@ $.extend(f7VirtualListBinding, {
         ? 73
         : 46;
 
-    console.log(config);
-
     // feed the create method
     this.app.virtualList.create(config);
   },

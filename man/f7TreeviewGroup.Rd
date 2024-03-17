@@ -2,9 +2,9 @@
 % Please edit documentation in R/f7Treeview.R
 \name{f7TreeviewGroup}
 \alias{f7TreeviewGroup}
-\title{Create a Framework 7 group Treeview items}
+\title{Create a Framework 7 group for treeview items}
 \usage{
-f7TreeviewGroup(..., title, icon)
+f7TreeviewGroup(..., title, icon, toggleButton = TRUE, itemToggle = FALSE)
 }
 \arguments{
 \item{...}{slot for \link{f7TreeviewItem}.}
@@ -12,7 +12,14 @@ f7TreeviewGroup(..., title, icon)
 \item{title}{Group title.}
 
 \item{icon}{Expect \link{f7Icon}.}
+
+\item{toggleButton}{Whether or not to display a toggle button. Could be set to \code{FALSE} if \code{itemToggle} is \code{TRUE}.}
+
+\item{itemToggle}{In addition to (or instead of) a toggle button, the whole group can work like a toggle.
+By default this behaviour is disabled.
+
+@example inst/examples/treeview/app.R}
 }
 \description{
-Create a Framework 7 group Treeview items
+Create a Framework 7 group for treeview items
 }

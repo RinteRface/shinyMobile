@@ -4,10 +4,16 @@
 \alias{f7Treeview}
 \title{Create a Framework 7 Treeview layout}
 \usage{
-f7Treeview(...)
+f7Treeview(..., id, selectable = FALSE, withCheckbox = FALSE)
 }
 \arguments{
-\item{...}{Slot for \link{f7TreeviewItem}.}
+\item{...}{Slot for \link{f7TreeviewGroup} or \link{f7TreeviewItem}.}
+
+\item{id}{Treeview unique id.}
+
+\item{selectable}{Make treeview items selectable. Default is \code{FALSE}.}
+
+\item{withCheckbox}{Add a checkbox to each item. Default is \code{FALSE}.}
 }
 \description{
 Create a Framework 7 Treeview layout
@@ -23,23 +29,52 @@ app <- shinyApp(
       navbar = f7Navbar(title = "f7Treeview"),
 
       # simple treeview
-      f7Treeview(
-        lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i])))
+      f7BlockTitle("Simple"),
+      f7Block(
+        f7Treeview(
+          id = "simple",
+          lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i])))
+        )
       ),
 
       # simple treeview with icons
-      f7Treeview(
-        lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i]),
-                                               icon = f7Icon("folder_fill")))
+      f7BlockTitle("Icons"),
+      f7Block(
+        f7Treeview(
+          id = "icons",
+          lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i]),
+                                                 icon = f7Icon("folder_fill")))
+        )
       ),
 
       # group treeview with icons
-      f7Treeview(
-        f7TreeviewGroup(
-          title = "Images",
-          icon = f7Icon("folder_fill"),
-          lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
-                                                 icon = f7Icon("photo_fill")))
+      f7BlockTitle("Group"),
+      f7Block(
+        f7Treeview(
+          id = "group",
+          f7TreeviewGroup(
+            title = "Images",
+            icon = f7Icon("folder_fill"),
+            toggleButton = TRUE,
+            lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                                   icon = f7Icon("photo_fill")))
+          )
+        )
+      ),
+
+      # group treeview with selectable items
+      f7BlockTitle("Selectable items"),
+      f7Block(
+        f7Treeview(
+          id = "selectable",
+          selectable = TRUE,
+          f7TreeviewGroup(
+            title = "Selected images",
+            icon = f7Icon("folder_fill"),
+            itemToggle = TRUE,
+            lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                                   icon = f7Icon("photo_fill")))
+          )
         )
       )
     )

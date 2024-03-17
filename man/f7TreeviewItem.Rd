@@ -16,3 +16,69 @@ f7TreeviewItem(label, icon = NULL, href = NULL)
 \description{
 Create a Framework 7 Treeview item
 }
+\examples{
+library(shiny)
+# library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7Treeview"),
+
+      # simple treeview
+      f7BlockTitle("Simple"),
+      f7Block(
+        f7Treeview(
+          id = "simple",
+          lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i])))
+        )
+      ),
+
+      # simple treeview with icons
+      f7BlockTitle("Icons"),
+      f7Block(
+        f7Treeview(
+          id = "icons",
+          lapply(1:3, function(i) f7TreeviewItem(label = paste0("Item ", letters[i]),
+                                                 icon = f7Icon("folder_fill")))
+        )
+      ),
+
+      # group treeview with icons
+      f7BlockTitle("Group"),
+      f7Block(
+        f7Treeview(
+          id = "group",
+          f7TreeviewGroup(
+            title = "Images",
+            icon = f7Icon("folder_fill"),
+            toggleButton = TRUE,
+            lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                                   icon = f7Icon("photo_fill")))
+          )
+        )
+      ),
+
+      # group treeview with selectable items
+      f7BlockTitle("Selectable items"),
+      f7Block(
+        f7Treeview(
+          id = "selectable",
+          selectable = TRUE,
+          f7TreeviewGroup(
+            title = "Selected images",
+            icon = f7Icon("folder_fill"),
+            itemToggle = TRUE,
+            lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                                   icon = f7Icon("photo_fill")))
+          )
+        )
+      )
+    )
+  ),
+  server = function(input, output) {}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
+}
