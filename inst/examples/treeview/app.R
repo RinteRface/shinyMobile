@@ -58,7 +58,13 @@ app <- shinyApp(
       )
     )
   ),
-  server = function(input, output) {}
+  server = function(input, output) {
+
+    observe({
+      print(input$selectable)
+    })
+
+  }
 )
 
 if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
