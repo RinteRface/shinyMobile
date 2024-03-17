@@ -38,8 +38,8 @@ test_that("gauge e2e", {
     variant = platform_variant()
   )
 
-  app$expect_values()
+  app$expect_values(input = "update")
   app$click(selector = "#update")
   app$wait_for_idle(1000)
-  app$expect_values()
+  app$expect_values(input = "update")
 })
