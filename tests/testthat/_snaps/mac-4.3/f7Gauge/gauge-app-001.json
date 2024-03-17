@@ -1,0 +1,38 @@
+{
+  "input": {
+    "deviceInfo": {
+      "ios": false,
+      "android": false,
+      "androidChrome": false,
+      "desktop": true,
+      "iphone": false,
+      "ipod": false,
+      "ipad": false,
+      "edge": false,
+      "ie": false,
+      "firefox": false,
+      "macos": true,
+      "windows": false,
+      "cordova": false,
+      "electron": false,
+      "capacitor": false,
+      "nwjs": false,
+      "webView": false,
+      "webview": false,
+      "standalone": false,
+      "os": "macos",
+      "pixelRatio": 2
+    },
+    "shinyInfo": {
+      "workerId": "",
+      "sessionId": "f8f2eebb378d0ae284b2fc39eae8d11a"
+    },
+    "update": 0
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}
