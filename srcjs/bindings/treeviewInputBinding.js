@@ -1,8 +1,13 @@
+import { getAppInstance } from "../init.js";
+
 var f7TreeviewBinding = new Shiny.InputBinding();
 
 $.extend(f7TreeviewBinding, {
 
   initialize: function(el) {
+
+    this.app = getAppInstance();
+
     var id = $(el).attr("id");
     var config = $(el).find("script[data-for='" + id + "']");
 
@@ -56,6 +61,15 @@ $.extend(f7TreeviewBinding, {
           $parentCheckbox.prop('indeterminate', checkedChildren === 1);
         }
       });
+    }
+
+    // lexical scoping
+    var self = this;
+    if (this.config[id].startExpanded) {
+      // open all treeview-item elements
+        $(el).find(".treeview-item").each(function() {
+          self.app.treeview.open(this);
+        });
     }
 
   },

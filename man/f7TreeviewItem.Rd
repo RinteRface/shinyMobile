@@ -18,7 +18,7 @@ Create a Framework 7 Treeview item
 }
 \examples{
 library(shiny)
-# library(shinyMobile)
+library(shinyMobile)
 
 app <- shinyApp(
   ui = f7Page(
@@ -50,6 +50,7 @@ app <- shinyApp(
       f7Block(
         f7Treeview(
           id = "group",
+          startExpanded = TRUE,
           f7TreeviewGroup(
             title = "Images",
             icon = f7Icon("folder_fill"),
@@ -103,7 +104,7 @@ app <- shinyApp(
             itemToggle = TRUE,
             f7TreeviewItem(label = "GitHub",
                            icon = f7Icon("logo_github"),
-                           href = "https:://github.com/"),
+                           href = "https://github.com/"),
             f7TreeviewItem(label = "CRAN",
                            icon = f7Icon("link"),
                            href = "https://cran.r-project.org/")),
@@ -114,10 +115,12 @@ app <- shinyApp(
   server = function(input, output) {
 
     observe({
+      req(input$selectable)
       print(input$selectable)
     })
 
     observe({
+      req(input$checkbox)
       print(input$checkbox)
     })
 

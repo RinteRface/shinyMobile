@@ -4,7 +4,13 @@
 \alias{f7Treeview}
 \title{Create a Framework 7 Treeview layout}
 \usage{
-f7Treeview(..., id, selectable = FALSE, withCheckbox = FALSE)
+f7Treeview(
+  ...,
+  id,
+  selectable = FALSE,
+  withCheckbox = FALSE,
+  startExpanded = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7TreeviewGroup} or \link{f7TreeviewItem}.}
@@ -14,13 +20,15 @@ f7Treeview(..., id, selectable = FALSE, withCheckbox = FALSE)
 \item{selectable}{Make treeview items selectable. Default is \code{FALSE}.}
 
 \item{withCheckbox}{Add a checkbox to each item. Default is \code{FALSE}.}
+
+\item{startExpanded}{Whether to expand the treeview at start.}
 }
 \description{
 Create a Framework 7 Treeview layout
 }
 \examples{
 library(shiny)
-# library(shinyMobile)
+library(shinyMobile)
 
 app <- shinyApp(
   ui = f7Page(
@@ -52,6 +60,7 @@ app <- shinyApp(
       f7Block(
         f7Treeview(
           id = "group",
+          startExpanded = TRUE,
           f7TreeviewGroup(
             title = "Images",
             icon = f7Icon("folder_fill"),
@@ -105,7 +114,7 @@ app <- shinyApp(
             itemToggle = TRUE,
             f7TreeviewItem(label = "GitHub",
                            icon = f7Icon("logo_github"),
-                           href = "https:://github.com/"),
+                           href = "https://github.com/"),
             f7TreeviewItem(label = "CRAN",
                            icon = f7Icon("link"),
                            href = "https://cran.r-project.org/")),
@@ -116,10 +125,12 @@ app <- shinyApp(
   server = function(input, output) {
 
     observe({
+      req(input$selectable)
       print(input$selectable)
     })
 
     observe({
+      req(input$checkbox)
       print(input$checkbox)
     })
 

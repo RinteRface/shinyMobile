@@ -4,17 +4,19 @@
 #' @param id Treeview unique id.
 #' @param selectable Make treeview items selectable. Default is `FALSE`.
 #' @param withCheckbox Add a checkbox to each item. Default is `FALSE`.
+#' @param startExpanded Whether to expand the treeview at start.
 #'
 #' @example inst/examples/treeview/app.R
 #'
 #' @export
 
-f7Treeview <- function(..., id, selectable = FALSE, withCheckbox = FALSE) {
+f7Treeview <- function(..., id, selectable = FALSE, withCheckbox = FALSE, startExpanded = FALSE) {
 
   config <- dropNulls(
     list(
       selectable = selectable,
-      withCheckbox = withCheckbox
+      withCheckbox = withCheckbox,
+      startExpanded = startExpanded
     )
   )
 

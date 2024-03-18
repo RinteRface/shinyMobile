@@ -31,6 +31,7 @@ app <- shinyApp(
       f7Block(
         f7Treeview(
           id = "group",
+          startExpanded = TRUE,
           f7TreeviewGroup(
             title = "Images",
             icon = f7Icon("folder_fill"),
