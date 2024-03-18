@@ -25,6 +25,7 @@
 - `f/Icon()`: remove deprecated parameter `old`.
 
 ## Minor change
+- New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
 - `f7Messages()`: the corresponding input is now a list of lists, each item
 being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R.
 We now return an object of objects which becomes a list of lists.

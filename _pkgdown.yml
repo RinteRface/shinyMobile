@@ -148,6 +148,9 @@ reference:
   - '`f7ListIndex`'
   - '`f7VirtualList`'
   - '`f7VirtualListItem`'
+  - '`f7Treeview`'
+  - '`f7TreeviewItem`'
+  - '`f7TreeviewGroup`'
 
 
 

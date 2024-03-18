@@ -24,3 +24,4 @@ import './stepperInputBinding.js';
 import './tabsInputBinding.js';
 import './toggleInputBinding.js';
 import './virtualListBinding.js';
+import './treeviewInputBinding.js';
