@@ -4,63 +4,58 @@
 #'  see complete list of icons here : \url{https://framework7.io/icons/}.
 #'
 #' @param ... Icon name and \link{f7Badge}.
-#' @param lib Library to use: NULL, "ios" or "md". Leave \code{NULL} by default. Specify, md or ios
-#'  if you want to hide/show icons on specific devices.
+#' @param lib Library to use: NULL, "ios" or "md".
+#' Leave \code{NULL} by default. Specify, md or ios
+#'  if you want to hide/show icons on specific devices. If you choose
+#' "md" be sure to include the corresponding fonts
+#' as they are not provided by shinyMobile. You can get them
+#' at \url{https://github.com/marella/material-icons/}.
 #' @param color Icon color, if any.
 #' @param style CSS styles to be applied on icon, for example
 #'  use \code{font-size: 56px;} to have a bigger icon.
-#' @param old Deprecated. This was to handle old and new icons but shinyMobile only uses
-#' new icons from now. This parameter will be removed in a future release.
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Icons",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "icons"),
-#'      f7List(
-#'       f7ListItem(
-#'         title = tagList(
-#'          f7Icon("envelope")
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Icons",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "icons"),
+#'         f7List(
+#'           f7ListItem(
+#'             title = tagList(
+#'               f7Icon("envelope")
+#'             )
+#'           ),
+#'           f7ListItem(
+#'             title = tagList(
+#'               f7Icon("envelope_fill", color = "green")
+#'             )
+#'           ),
+#'           f7ListItem(
+#'             title = f7Icon("house", f7Badge("1", color = "red"))
+#'           ),
+#'           f7ListItem(
+#'             title = f7Icon("home", lib = "md"),
+#'             "Only for material design"
+#'           )
 #'         )
-#'       ),
-#'       f7ListItem(
-#'         title = tagList(
-#'          f7Icon("envelope_fill", color = "green")
-#'         )
-#'       ),
-#'       f7ListItem(
-#'         title = f7Icon("home", f7Badge("1", color = "red"))
-#'       ),
-#'       f7ListItem(
-#'         title = f7Icon("envelope", lib = "md"),
-#'         "This will not appear since only for material design"
 #'       )
-#'      )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
-#'  )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = NULL) {
-  call_ <- as.list(match.call())
-  if (!is.null(call_$old)) {
-    warning(
-      "Deprecated. This was to handle old and new icons. ",
-      "This parameter will be removed in a future release."
-    )
-  }
+f7Icon <- function(..., lib = NULL, color = NULL, style = NULL) {
   if (!is.null(lib)) {
     if (identical(lib, "ios")) {
-      iconCl <- "icon f7-icons ios-only"
+      iconCl <- "icon f7-icons if-not-md"
     }
     if (identical(lib, "md")) {
       iconCl <- "icon material-icons md-only"
@@ -78,4 +73,3 @@ f7Icon <- function(..., lib = NULL, color = NULL, style = NULL, old = NULL) {
   iconTag <- shiny::tags$i(class = iconCl, style = style, ...)
   htmltools::browsable(iconTag)
 }
-

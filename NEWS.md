@@ -22,6 +22,7 @@
 - `f7AutoComplete()`: `expandInput` is deprecated, removed from Framework7.
 - `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7.
 - `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
+- `f/Icon()`: remove deprecated parameter `old`.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item
