@@ -1,5 +1,5 @@
 library(shiny)
-# library(shinyMobile)
+library(shinyMobile)
 
 app <- shinyApp(
   ui = f7Page(
