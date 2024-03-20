@@ -2431,7 +2431,8 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 
   shiny::tagList(
     # toggle tag
-    shiny::tags$span(label),
+    shiny::tags$span(label,
+                     style = "padding: 5px"),
     shiny::tags$label(
       class = toggleCl,
       id = inputId,
