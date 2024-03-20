@@ -21,7 +21,9 @@ updateF7Toggle(
 
 \item{checked}{Whether the toggle is TRUE or FALSE.}
 
-\item{color}{Toggle color.}
+\item{color}{Toggle color: NULL or "primary", "red", "green", "blue",
+"pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
+"teal, "lime", "deeporange", "gray", "white", "black".}
 
 \item{session}{The Shiny session object.}
 }

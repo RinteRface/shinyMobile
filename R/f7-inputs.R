@@ -2386,7 +2386,10 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 #' @param inputId Toggle input id.
 #' @param label Toggle label.
 #' @param checked Whether to check the toggle. FALSE by default.
-#' @param color Toggle color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
+#' @param color
+#' Toggle color: NULL or "primary", "red", "green", "blue",
+#' "pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
+#' "teal, "lime", "deeporange", "gray", "white", "black".
 #'
 #' @rdname toggle
 #' @examples
@@ -2451,7 +2454,10 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'
 #' @param inputId The id of the input object.
 #' @param checked Whether the toggle is TRUE or FALSE.
-#' @param color Toggle color.
+#' @param color
+#' Toggle color: NULL or "primary", "red", "green", "blue",
+#' "pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
+#' "teal, "lime", "deeporange", "gray", "white", "black".
 #' @param session The Shiny session object.
 #'
 #' @export

@@ -1,10 +1,13 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7ToggleBinding = new Shiny.InputBinding();
 
 $.extend(f7ToggleBinding, {
 
   initialize: function(el) {
-    app.toggle.create({el: el});
+    this.app = getAppInstance();
+    this.app.toggle.create({el: el});
   },
 
   find: function(scope) {
@@ -13,12 +16,12 @@ $.extend(f7ToggleBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return app.toggle.get($(el)).checked;
+    return this.app.toggle.get(el).checked;
   },
 
   // see updateF7Toggle
   setValue: function(el, value) {
-    var t = app.toggle.get($(el));
+    var t = this.app.toggle.get(el);
     t.checked = value;
   },
 
