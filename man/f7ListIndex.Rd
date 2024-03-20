@@ -24,50 +24,53 @@ example below. The second list does not work.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "List Index",
-     f7TabLayout(
-       navbar = f7Navbar(
-         title = "f7ListIndex",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7Tabs(
-         f7Tab(
-           tabName = "List1",
-           f7List(
-            mode = "contacts",
-            lapply(1:26, function(i) {
-              f7ListGroup(
-                title = LETTERS[i],
-                lapply(1:26, function(j) f7ListItem(letters[j]))
-              )
-            })
-           )
-         ),
-         f7Tab(
-           tabName = "List2",
-           f7List(
-            mode = "contacts",
-            lapply(1:26, function(i) {
-              f7ListGroup(
-                title = LETTERS[i],
-                lapply(1:26, function(j) f7ListItem(letters[j]))
-              )
-            })
-           )
-         )
-       )
-     )
-   ),
-   server = function(input, output, session) {
-    observeEvent(TRUE, {
-     f7ListIndex(id = "list-index-1", target = ".list")
-    }, once = TRUE)
-   }
- )
+  library(shiny)
+  library(shinyMobile)
+  shinyApp(
+    ui = f7Page(
+      title = "List Index",
+      f7TabLayout(
+        navbar = f7Navbar(
+          title = "f7ListIndex",
+          hairline = FALSE,
+          shadow = TRUE
+        ),
+        f7Tabs(
+          f7Tab(
+            tabName = "List1",
+            f7List(
+              mode = "contacts",
+              lapply(1:26, function(i) {
+                f7ListGroup(
+                  title = LETTERS[i],
+                  lapply(1:26, function(j) f7ListItem(letters[j]))
+                )
+              })
+            )
+          ),
+          f7Tab(
+            tabName = "List2",
+            f7List(
+              mode = "contacts",
+              lapply(1:26, function(i) {
+                f7ListGroup(
+                  title = LETTERS[i],
+                  lapply(1:26, function(j) f7ListItem(letters[j]))
+                )
+              })
+            )
+          )
+        )
+      )
+    ),
+    server = function(input, output, session) {
+      observeEvent(TRUE,
+        {
+          f7ListIndex(id = "list-index-1", target = ".list")
+        },
+        once = TRUE
+      )
+    }
+  )
 }
 }

@@ -36,6 +36,7 @@ We now return an object of objects which becomes a list of lists.
 the check icon position. Default to left.
 - `f7CheckboxChoice()`: new function to pass inside `choices` in a
 `f7CheckboxGroup()`. Improved choice with title, subtitle, ...
+- `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

@@ -2,92 +2,112 @@
 % Please edit documentation in R/f7List.R
 \name{f7List}
 \alias{f7List}
-\title{Create a framework 7 contact list}
+\title{Create a framework 7 list view}
 \usage{
-f7List(..., mode = NULL, inset = FALSE)
+f7List(
+  ...,
+  mode = NULL,
+  inset = FALSE,
+  outline = FALSE,
+  dividers = FALSE,
+  strong = FALSE
+)
 }
 \arguments{
 \item{...}{Slot for \link{f7ListGroup} or \link{f7ListItem}.}
 
-\item{mode}{List mode. NULL or "media" or "contacts".}
+\item{mode}{List mode. NULL, "simple", "links", "media" or "contacts".}
 
 \item{inset}{Whether to display a card border. FALSE by default.}
+
+\item{outline}{Outline style. Default to FALSE.}
+
+\item{dividers}{Dividers style. Default to FALSE.}
+
+\item{strong}{Strong style. Default to FALSE.}
 }
 \description{
-Create a framework 7 contact list
+Create a framework 7 list view
 }
 \examples{
 if (interactive()) {
-library(shiny)
-library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
-shinyApp(
-  ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-      navbar = f7Navbar(title = "f7List"),
+  shinyApp(
+    ui = f7Page(
+      title = "My app",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7List"),
 
-      # simple list
-      f7List(
-        lapply(1:3, function(j) f7ListItem(letters[j]))
-      ),
+        # simple list
+        f7List(
+          mode = "simple",
+          lapply(1:3, function(j) tags$li(letters[j]))
+        ),
 
-      # list with complex items
-      f7List(
-        lapply(1:3, function(j) {
-          f7ListItem(
-            letters[j],
-            media = f7Icon("alarm_fill"),
-            right = "Right Text",
-            header = "Header",
-            footer = "Footer"
-          )
-        })
-      ),
+        # list with complex items
+        f7List(
+          strong = TRUE,
+          outline = TRUE,
+          inset = TRUE,
+          lapply(1:3, function(j) {
+            f7ListItem(
+              letters[j],
+              media = f7Icon("alarm_fill"),
+              right = "Right Text",
+              header = "Header",
+              footer = "Footer"
+            )
+          })
+        ),
 
-      # list with complex items
-      f7List(
-        mode = "media",
-        lapply(1:3, function(j) {
-          f7ListItem(
-            title = letters[j],
-            subtitle = "subtitle",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        # list with complex items
+        f7List(
+          mode = "media",
+          lapply(1:3, function(j) {
+            f7ListItem(
+              title = letters[j],
+              subtitle = "subtitle",
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Nulla sagittis tellus ut turpis condimentum, ut dignissim
             lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
             sit amet, pharetra sodales eros. Phasellus vel felis tellus.
             Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
             commodo augue id, pulvinar lacus.",
-            media = tags$img(
-             src = paste0(
-             "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
-             )
-            ),
-            right = "Right Text"
-          )
-        })
-      ),
+              media = tags$img(
+                src = paste0(
+                  "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
+                )
+              ),
+              right = "Right Text"
+            )
+          })
+        ),
 
-      # list with links
-      f7List(
-        lapply(1:3, function(j) {
-          f7ListItem(url = "https://google.com", letters[j])
-        })
-      ),
+        # list with links
+        f7List(
+          mode = "links",
+          lapply(1:3, function(j) {
+            tags$li(
+              f7Link(label = letters[j], href = "https://google.com")
+            )
+          })
+        ),
 
-      # grouped lists
-      f7List(
-        mode = "contacts",
-        lapply(1:3, function(i) {
-          f7ListGroup(
-            title = LETTERS[i],
-            lapply(1:3, function(j) f7ListItem(letters[j]))
-          )
-        })
+        # grouped lists
+        f7List(
+          mode = "contacts",
+          lapply(1:3, function(i) {
+            f7ListGroup(
+              title = LETTERS[i],
+              lapply(1:3, function(j) f7ListItem(letters[j]))
+            )
+          })
+        )
       )
-    )
-  ),
-  server = function(input, output) {}
- )
+    ),
+    server = function(input, output) {}
+  )
 }
 }
