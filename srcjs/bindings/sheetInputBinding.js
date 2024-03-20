@@ -1,9 +1,13 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7SheetBinding = new Shiny.InputBinding();
 
 $.extend(f7SheetBinding, {
 
   initialize: function(el) {
+
+    this.app = getAppInstance();
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
@@ -23,10 +27,12 @@ $.extend(f7SheetBinding, {
     // add the id
     data.el = '#' + id;
 
+    var self = this; // Store reference to 'this'
+
     // this is to show shiny outputs in the sheet
     data.on = {
       open: function(target) {
-        if (target.app.params.dark) {
+        if (target.self.app.params.dark) {
           $(target.el).addClass("theme-dark");
         }
       },
@@ -45,13 +51,13 @@ $.extend(f7SheetBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var s = app.sheet.get($(el));
+    var s = this.app.sheet.get(el);
     return s.opened;
   },
 
   // see updateF7Sheet
   receiveMessage: function(el, data) {
-    var s = app.sheet.get($(el));
+    var s = this.app.sheet.get(el);
     if (s.opened) {
       s.close();
     } else {
