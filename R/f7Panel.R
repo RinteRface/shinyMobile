@@ -39,8 +39,6 @@
 #'        toolbar = f7Toolbar(
 #'          position = "bottom",
 #'          icons = TRUE,
-#'          hairline = FALSE,
-#'          shadow = FALSE,
 #'          f7Link(label = "Link 1", href = "https://www.google.com"),
 #'          f7Link(label = "Link 2", href = "https://www.google.com")
 #'        ),

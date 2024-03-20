@@ -260,8 +260,6 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   } else if (style == "toolbar") {
     f7Toolbar(
       position = "bottom",
-      hairline = TRUE,
-      shadow = TRUE,
       icons = TRUE,
       scrollable = FALSE,
       tabItems,
