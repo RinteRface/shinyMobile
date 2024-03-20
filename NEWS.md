@@ -23,6 +23,9 @@
 - `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7.
 - `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
 - `f/Icon()`: remove deprecated parameter `old`.
+- `f7Toolbar()`:
+    - `hairline` and `shadow` are deprecated, removed from Framework7.
+
 
 ## Minor change
 - New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
