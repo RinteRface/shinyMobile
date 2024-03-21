@@ -22,11 +22,20 @@ test_that("list item works", {
     header = "Header",
     footer = "Footer",
     href = "https://www.google.com",
-    media = tags$img(
+    media = shiny::tags$img(
       src = "https://cdn.framework7.io/placeholder/people-160x160-1.jpg"
     ),
     right = "After item",
     "Item content"
   )
   expect_identical(list_item$name, "li")
+})
+
+test_that("list group works", {
+  expect_s3_class(f7ListGroup(title = "plop"), "shiny.tag")
+  list_group <- f7ListGroup(
+    title = "test",
+    lapply(1:3, \(x) f7ListItem(x))
+  )
+  expect_identical(list_group$attribs$class, "list-group")
 })
