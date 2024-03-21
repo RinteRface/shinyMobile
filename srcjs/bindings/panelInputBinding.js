@@ -9,13 +9,11 @@ $.extend(f7PanelBinding, {
     this.app = getAppInstance();
     var id = $(el).attr('id');
     var config = {};
-    if (id !== undefined) {
-      config = JSON.parse($(el)
-        .find("script[data-for='" + id + "']")
-        .html());
-      // add id
-      config.el = '#' + id;
-    }
+    config = JSON.parse($(el)
+      .find("script[data-for='" + id + "']")
+      .html());
+    // add id
+    config.el = '#' + id;
 
     // this is to show shiny outputs in the sheet
     config.on = {

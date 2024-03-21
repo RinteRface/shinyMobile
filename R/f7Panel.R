@@ -41,6 +41,13 @@ f7Panel <- function(..., id = NULL, title = NULL,
   panelCl <- sprintf("panel panel-%s panel-%s", side, effect)
   if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
+  if (is.null(id)) {
+    id <- sprintf(
+      "panel_%s",
+      round(stats::runif(1, min = 0, max = 1e9))
+    )
+  }
+
   options[["effect"]] <- effect
 
   shiny::tags$div(
