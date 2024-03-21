@@ -2,6 +2,7 @@
 % Please edit documentation in R/f7Preloader.R
 \name{showF7Preloader}
 \alias{showF7Preloader}
+\alias{hideF7Preloader}
 \title{Framework7 preloader}
 \usage{
 showF7Preloader(
@@ -9,6 +10,8 @@ showF7Preloader(
   color = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
+
+hideF7Preloader(target = NULL, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{target}{Element where preloader overlay will be added.}
@@ -19,6 +22,8 @@ showF7Preloader(
 }
 \description{
 \code{showF7Preloader} shows a preloader.
+
+\code{hideF7Preloader} hides a preloader.
 }
 \examples{
 if (interactive()) {
@@ -96,7 +101,7 @@ if (interactive()) {
       observeEvent(input$obs, {
         showF7Preloader(target = "#distPlot", color = "red")
         Sys.sleep(2)
-        f7HidePreloader()
+        hideF7Preloader()
       })
     }
   )

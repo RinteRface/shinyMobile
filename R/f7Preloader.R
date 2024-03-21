@@ -83,7 +83,7 @@
 #'       observeEvent(input$obs, {
 #'         showF7Preloader(target = "#distPlot", color = "red")
 #'         Sys.sleep(2)
-#'         f7HidePreloader()
+#'         hideF7Preloader()
 #'       })
 #'     }
 #'   )
@@ -97,10 +97,8 @@ showF7Preloader <- function(target = NULL, color = NULL,
 #' Framework7 preloader
 #'
 #' \code{hideF7Preloader} hides a preloader.
-#' Use \link{f7HidePreloader} instead
 #'
-#' @inheritParams hideF7Preloader
-#' @keywords internal
+#' @rdname preloader
 #' @export
 hideF7Preloader <- function(target = NULL,
                             session = shiny::getDefaultReactiveDomain()) {

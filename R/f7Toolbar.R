@@ -21,7 +21,6 @@
 #' @export
 f7Toolbar <- function(..., position = c("top", "bottom"), hairline = deprecated(), shadow = deprecated(),
                       icons = FALSE, scrollable = FALSE) {
-
   if (lifecycle::is_present(hairline)) {
     lifecycle::deprecate_warn(
       when = "1.1.0",
@@ -42,17 +41,17 @@ f7Toolbar <- function(..., position = c("top", "bottom"), hairline = deprecated(
     )
   }
 
-   position <- match.arg(position)
+  position <- match.arg(position)
 
-   toolbarCl <- if (icons)  "toolbar tabbar tabbar-icons" else "toolbar"
-   if (scrollable) toolbarCl <- paste0(toolbarCl, " tabbar-scrollable")
-   toolbarCl <- paste0(toolbarCl, " toolbar-", position)
+  toolbarCl <- if (icons) "toolbar tabbar tabbar-icons" else "toolbar"
+  if (scrollable) toolbarCl <- paste0(toolbarCl, " tabbar-scrollable")
+  toolbarCl <- paste0(toolbarCl, " toolbar-", position)
 
-   shiny::tags$div(
-      class = toolbarCl,
-      shiny::tags$div(
-         class = "toolbar-inner",
-         ...
-      )
-   )
+  shiny::tags$div(
+    class = toolbarCl,
+    shiny::tags$div(
+      class = "toolbar-inner",
+      ...
+    )
+  )
 }

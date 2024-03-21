@@ -25,13 +25,11 @@ reference:
 - title: Toward progressive web app
   desc: Tools to build a progressive web app
   contents:
-  - '`create_manifest`'
   - '`preview_mobile`'
 
 - title: Inputs validation
   desc: Provide feedback when an input is missing, ...
   contents:
-  - '`f7ValidateInput`'
   - '`validateF7Input`'
 
 
@@ -86,10 +84,8 @@ reference:
 - title: Update inputs
   desc: slider, radio, checkboxes, ...
   contents:
-  - '`f7InsertTab`'
   - '`insertF7Tab`'
   - '`updateF7Navbar`'
-  - '`f7RemoveTab`'
   - '`removeF7Tab`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
@@ -171,7 +167,6 @@ reference:
   - '`f7Fab`'
   - '`f7Fabs`'
   - '`f7Link`'
-  - '`f7Menu`'
   - '`f7Segment`'
   - '`f7TabLink`'
 
@@ -191,9 +186,8 @@ reference:
   - '`f7ActionSheet`'
   - '`f7Dialog`'
   - '`f7Notif`'
-  - '`f7Popover`'
-  - '`f7PopoverTarget`'
   - '`addF7Popover`'
+  - '`toggleF7Popover`'
   - '`f7Popup`'
   - '`f7Sheet`'
   - '`f7Swipeout`'
