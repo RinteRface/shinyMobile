@@ -8,8 +8,14 @@
 - `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
 - `f7ShowNavbar()` and `f7HideNavbar()` are removed, as long time deprecated.
 - `f7checkBox()` and `f7checkBoxGroup()` are removed, as long time deprecated.
+- Remove `f7InsertTab()`, `f7RemoveTab()` as long time deprecated.
+- Remove `f7ValidateInput()` as long time deprecated.
+- Remove `f7Popover()` and `f7PopoverTarget()` as long time deprecated.
+- Remove `f7ShowPreloader()` and `f7HidePreloader()` as long time deprecated.
+- `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `updateF7MenuDropdown()` are totally removed from Framework7. We have no alternative to replace it.
+- `f7Icon()`: remove deprecated parameter `old`.
 
-## Deprecation
+## Soft deprecation
 - `f7Accordion()`:
     - `multiCollapse` has been removed in Framework7.
 - `f7Block()`:
@@ -20,12 +26,10 @@
     - `shadow` and `subtitle` have been removed in Framework7.
 - `f7SocialCard()` is deprecated as the same result can be achieved with `f7Card()`.
 - `f7AutoComplete()`: `expandInput` is deprecated, removed from Framework7.
-- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7.
+- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7 8.3.2
 - `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
-- `f/Icon()`: remove deprecated parameter `old`.
 - `f7Toolbar()`:
     - `hairline` and `shadow` are deprecated, removed from Framework7.
-
 
 ## Minor change
 - New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 

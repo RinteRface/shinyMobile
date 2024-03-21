@@ -325,7 +325,6 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   shiny::tagList(tabLinksTag, contentTag)
 }
 
-
 #' Validate a tab name
 #'
 #' TO avoid JS issues: avoid punctuation and space
@@ -346,8 +345,6 @@ validate_tabName <- function(tabName) {
     )
   }
 }
-
-
 
 #' Create a Framework7 tab item
 #'
@@ -385,9 +382,6 @@ f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidde
   return(list(itemTag, icon, tabName, hidden, title))
 }
 
-
-
-
 #' Special button/link to insert in the tabbar
 #'
 #' Use in the .items slot of \link{f7Tabs}.
@@ -406,9 +400,6 @@ f7TabLink <- function(..., icon = NULL, label = NULL) {
     shiny::span(class = "tabbar-label", label)
   )
 }
-
-
-
 
 #' Update a Framework 7 tabsetPanel
 #'
@@ -543,9 +534,6 @@ updateF7Tabs <- function(id, selected = NULL, session = shiny::getDefaultReactiv
   message <- dropNulls(list(selected = selected, ns = session$ns(id)))
   session$sendInputMessage(id, message)
 }
-
-
-
 
 #' Framework7 tab insertion
 #'
@@ -688,26 +676,6 @@ insertF7Tab <- function(id, tab, target = NULL, position = c("before", "after"),
   session$sendCustomMessage(type = id, message)
 }
 
-
-#' Framework7 tab insertion
-#'
-#' @rdname f7-deprecated
-#' @inheritParams insertF7Tab
-#' @keywords internal
-#' @export
-f7InsertTab <- function(id, tab, target, position = c("before", "after"),
-                        select = FALSE, session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "insertF7Tab",
-    package = "shinyMobile",
-    "f7InsertTab will be removed in future release. Please use
-      insertF7Tab instead."
-  )
-  insertF7Tab(id, tab, target, position, select, session)
-}
-
-
-
 #' Framework7 tab deletion
 #'
 #' \code{removeF7Tab} removes an \link{f7Tab} in a \link{f7Tabs}.
@@ -790,32 +758,11 @@ removeF7Tab <- function(id, target, session = shiny::getDefaultReactiveDomain())
   session$sendCustomMessage(type = id, message = message)
 }
 
-
-#' Deprecated functions
-#'
-#' \code{removeF7Tab} removes an \link{f7Tab} in an \link{f7Tabs}.
-#' Use \link{removeF7Tab} instead
-
-#' @rdname f7-deprecated
-#' @inheritParams removeF7Tab
-#' @keywords internal
-#' @export
-f7RemoveTab <- function(id, target, session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "removeF7Tab",
-    package = "shinyMobile",
-    "f7RemoveTab will be removed in future release. Please use
-      removeF7Tab instead."
-  )
-  removeF7Tab(id, target, session)
-}
-
 #' Framework7 back button
 #'
 #' \link{f7Back} is a button to go back in \link{f7Tabs}.
 #'
 #' @param targetId \link{f7Tabs} id.
-#' @rdname appbar
 #' @export
 f7Back <- function(targetId) {
   backJS <- shiny::singleton(
@@ -858,16 +805,11 @@ f7Back <- function(targetId) {
   shiny::tagList(backJS, backTag)
 }
 
-
-
-
-
 #' Framework7 next button
 #'
 #' \link{f7Next} is a button to go next in \link{f7Tabs}.
 #'
 #' @param targetId \link{f7Tabs} id.
-#' @rdname appbar
 #' @export
 f7Next <- function(targetId) {
   nextJS <- shiny::singleton(

@@ -15,40 +15,42 @@
 #' @rdname validation
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Validate inputs",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "validateF7Input"),
-#'        f7Text(
-#'          inputId = "caption",
-#'          label = "Caption",
-#'          value = "Data Summary"
-#'        ),
-#'        verbatimTextOutput("value"),
-#'        hr(),
-#'        f7Text(
-#'          inputId = "caption2",
-#'          label = "Enter a number",
-#'          value = 1
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      observe({
-#'        validateF7Input(inputId = "caption", info = "Whatever")
-#'        validateF7Input(
-#'          inputId = "caption2",
-#'          pattern = "[0-9]*",
-#'          error = "Only numbers please!"
-#'        )
-#'      })
-#'      output$value <- renderPrint({ input$caption })
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Validate inputs",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "validateF7Input"),
+#'         f7Text(
+#'           inputId = "caption",
+#'           label = "Caption",
+#'           value = "Data Summary"
+#'         ),
+#'         verbatimTextOutput("value"),
+#'         hr(),
+#'         f7Text(
+#'           inputId = "caption2",
+#'           label = "Enter a number",
+#'           value = 1
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observe({
+#'         validateF7Input(inputId = "caption", info = "Whatever")
+#'         validateF7Input(
+#'           inputId = "caption2",
+#'           pattern = "[0-9]*",
+#'           error = "Only numbers please!"
+#'         )
+#'       })
+#'       output$value <- renderPrint({
+#'         input$caption
+#'       })
+#'     }
+#'   )
 #' }
 validateF7Input <- function(inputId, info = NULL, pattern = NULL, error = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
@@ -61,27 +63,4 @@ validateF7Input <- function(inputId, info = NULL, pattern = NULL, error = NULL,
     )
   )
   session$sendCustomMessage(type = "validate-input", message)
-}
-
-
-#' Framework7 input validation
-#'
-#' \code{f7ValidateInput} validates a given shinyMobile input.
-#' Use \link{validateF7Input} instead
-#'
-#' @inheritParams validateF7Input
-#' @rdname f7-deprecated
-#' @keywords internal
-#' @export
-f7ValidateInput <- function(inputId, info = NULL, pattern = NULL, error = NULL,
-                            session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "validateF7Input",
-    package = "shinyMobile",
-    "f7ValidateInput will be removed in future release. Please use
-    validateF7Input instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
-  )
-  validateF7Input(inputId, info, pattern, error, session)
-
 }

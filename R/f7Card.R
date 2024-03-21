@@ -107,46 +107,6 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
   )
 }
 
-#' Framework7 social card
-#'
-#' `r lifecycle::badge("deprecated")`.
-#' \code{f7SocialCard} is a special card for social content.
-#'
-#' @param ... Card content.
-#' @param image Author img.
-#' @param author Author.
-#' @param date Date.
-#' @param footer Footer content, if any. Must be wrapped in a tagList.
-#'
-#' @keywords internal
-#' @export
-f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
-                         footer = NULL) {
-  lifecycle::deprecate_warn("1.1.0", "f7SocialCard()", "f7Card()")
-
-  headerTag <- shiny::tags$div(
-    class = "card-header",
-    shiny::tags$div(
-      shiny::img(src = image, width = "34", height = "34")
-    ),
-    shiny::tags$div(author),
-    shiny::tags$div(date)
-  )
-  contentTag <- shiny::tags$div(
-    class = "card-content card-content-padding",
-    ...
-  )
-
-  footerTag <- if (!is.null(footer)) shiny::tags$div(class = "card-footer", footer)
-
-  shiny::tags$div(
-    class = "card",
-    headerTag,
-    contentTag,
-    footerTag
-  )
-}
-
 #' Framework7 expandable card
 #'
 #' \code{f7ExpandableCard} is a card that can expand. Ideal for a

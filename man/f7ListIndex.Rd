@@ -31,9 +31,7 @@ if (interactive()) {
       title = "List Index",
       f7TabLayout(
         navbar = f7Navbar(
-          title = "f7ListIndex",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "f7ListIndex"
         ),
         f7Tabs(
           f7Tab(

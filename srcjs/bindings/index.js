@@ -9,7 +9,6 @@ import './datePickerInputBinding.js';
 import './fabsInputBinding.js';
 import './fabsInputBinding.js';
 import './loginInputBinding.js';
-import './menuInputBinding.js';
 import './messageBarInputBinding.js';
 import './messagesInputBinding.js';
 import './panelInputBinding.js';
