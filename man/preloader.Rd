@@ -36,20 +36,14 @@ if (interactive()) {
       title = "Preloader",
       f7SingleLayout(
         navbar = f7Navbar(
-          title = "Preloader",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "Preloader"
         ),
         # main content
         f7Button("showLoader", "Show loader"),
-        f7Shadow(
-          intensity = 10,
-          hover = TRUE,
-          f7Card(
-            title = "Card header",
-            f7Slider("obs", "Number of observations", 0, 1000, 500),
-            plotOutput("distPlot")
-          )
+        f7Card(
+          title = "Card header",
+          f7Slider("obs", "Number of observations", 0, 1000, 500),
+          plotOutput("distPlot")
         )
       )
     ),
@@ -73,19 +67,13 @@ if (interactive()) {
       title = "Preloader in container",
       f7SingleLayout(
         navbar = f7Navbar(
-          title = "Preloader in container",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "Preloader in container"
         ),
         # main content
-        f7Shadow(
-          intensity = 10,
-          hover = TRUE,
-          f7Card(
-            title = "Card header",
-            f7Slider("obs", "Number of observations", 0, 1000, 500),
-            plotOutput("distPlot")
-          )
+        f7Card(
+          title = "Card header",
+          f7Slider("obs", "Number of observations", 0, 1000, 500),
+          plotOutput("distPlot")
         ),
         f7Card("This is a simple card with plain text,
        but cards can also contain their own header,

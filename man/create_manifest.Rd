@@ -45,28 +45,11 @@ This function creates a www folder for your shiny app. Must specify the path.
 It creates 1 folders to contain icons and the manifest.json file.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.
 \code{create_manifest} creates a manifest for your shiny App. Please use this workflow instead:
 \url{https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools}.
 }
 \note{
 See \url{https://developer.mozilla.org/en-US/docs/Web/Manifest} for more informations.
-}
-\examples{
-create_manifest(
-  path = tempdir(),
-  name = "My App",
-  shortName = "My App",
-  description = "What it does!",
-  lang = "en-US",
-  startUrl = "https://www.google.com/",
-  display = "standalone",
-  background_color = "#3367D6",
-  theme_color = "#3367D6",
-  icon = data.frame(
-    src = "icons/128x128.png",
-    sizes = "128x128", 10,
-    types = "image/png"
-  )
-)
 }
 \keyword{internal}

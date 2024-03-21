@@ -88,9 +88,7 @@ if (interactive()) {
       title = "My app",
       f7SingleLayout(
         navbar = f7Navbar(
-          title = "Standalone tabs",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "Standalone tabs"
         ),
         f7Tabs(
           id = "tabs",
@@ -99,66 +97,54 @@ if (interactive()) {
             tabName = "Tab1",
             icon = f7Icon("envelope"),
             active = TRUE,
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7Stepper(
-                  "obs1",
-                  "Number of observations",
-                  min = 0,
-                  max = 1000,
-                  value = 500,
-                  step = 100
-                ),
-                plotOutput("distPlot")
-              )
+            f7Card(
+              title = "Card header",
+              f7Stepper(
+                "obs1",
+                "Number of observations",
+                min = 0,
+                max = 1000,
+                value = 500,
+                step = 100
+              ),
+              plotOutput("distPlot")
             )
           ),
           f7Tab(
             tabName = "Tab2",
             icon = f7Icon("today"),
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7Select(
-                  inputId = "obs2",
-                  label = "Distribution type:",
-                  choices = c(
-                    "Normal" = "norm",
-                    "Uniform" = "unif",
-                    "Log-normal" = "lnorm",
-                    "Exponential" = "exp"
-                  )
-                ),
-                plotOutput("distPlot2")
-              )
+            f7Card(
+              title = "Card header",
+              f7Select(
+                inputId = "obs2",
+                label = "Distribution type:",
+                choices = c(
+                  "Normal" = "norm",
+                  "Uniform" = "unif",
+                  "Log-normal" = "lnorm",
+                  "Exponential" = "exp"
+                )
+              ),
+              plotOutput("distPlot2")
             )
           ),
           f7Tab(
             tabName = "Tab3",
             icon = f7Icon("cloud_upload"),
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7SmartSelect(
-                  inputId = "variable",
-                  label = "Variables to show:",
-                  c(
-                    "Cylinders" = "cyl",
-                    "Transmission" = "am",
-                    "Gears" = "gear"
-                  ),
-                  multiple = TRUE,
-                  selected = "cyl"
+            f7Card(
+              title = "Card header",
+              f7SmartSelect(
+                inputId = "variable",
+                label = "Variables to show:",
+                c(
+                  "Cylinders" = "cyl",
+                  "Transmission" = "am",
+                  "Gears" = "gear"
                 ),
-                tableOutput("data")
-              )
+                multiple = TRUE,
+                selected = "cyl"
+              ),
+              tableOutput("data")
             )
           )
         )

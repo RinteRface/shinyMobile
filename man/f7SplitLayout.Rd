@@ -35,7 +35,6 @@ if (interactive()) {
           id = "sidebar",
           title = "Sidebar",
           side = "left",
-          theme = "dark",
           f7PanelMenu(
             id = "menu",
             f7PanelItem(
@@ -53,9 +52,7 @@ if (interactive()) {
           uiOutput("selected_tab")
         ),
         navbar = f7Navbar(
-          title = "Split Layout",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "Split Layout"
         ),
         toolbar = f7Toolbar(
           position = "bottom",

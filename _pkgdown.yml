@@ -243,16 +243,12 @@ reference:
 - title: Loaders
   desc: Loading screens
   contents:
-  - '`f7ShowPreloader`'
   - '`showF7Preloader`'
-  - '`f7HidePreloader`'
   - '`hideF7Preloader`'
-
 
 - title: CSS effects
   desc: shadows, ...
   contents:
-  - '`f7Shadow`'
   - '`f7Skeleton`'
 
 

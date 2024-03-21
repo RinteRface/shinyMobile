@@ -41,13 +41,21 @@ if (interactive()) {
           )
         ),
         panels = tagList(
-          f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-          f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+          f7Panel(
+            title = "Left Panel",
+            side = "left",
+            "Blabla",
+            effect = "cover"
+          ),
+          f7Panel(
+            title = "Right Panel",
+            side = "right",
+            "Blabla",
+            effect = "cover"
+          )
         ),
         navbar = f7Navbar(
           title = "Tabs",
-          hairline = FALSE,
-          shadow = TRUE,
           leftPanel = TRUE,
           rightPanel = TRUE
         ),
@@ -58,24 +66,20 @@ if (interactive()) {
             tabName = "Tab1",
             icon = f7Icon("envelope"),
             active = TRUE,
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7Stepper(
-                  "obs1",
-                  "Number of observations",
-                  min = 0,
-                  max = 1000,
-                  value = 500,
-                  step = 100
-                ),
-                plotOutput("distPlot1"),
-                footer = tagList(
-                  f7Button(inputId = "tapHold", label = "My button"),
-                  f7Badge("Badge", color = "green")
-                )
+            f7Card(
+              title = "Card header",
+              f7Stepper(
+                "obs1",
+                "Number of observations",
+                min = 0,
+                max = 1000,
+                value = 500,
+                step = 100
+              ),
+              plotOutput("distPlot1"),
+              footer = tagList(
+                f7Button(inputId = "tapHold", label = "My button"),
+                f7Badge("Badge", color = "green")
               )
             )
           ),
@@ -83,26 +87,25 @@ if (interactive()) {
             tabName = "Tab2",
             icon = f7Icon("today"),
             active = FALSE,
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7Select(
-                  inputId = "obs2",
-                  label = "Distribution type:",
-                  choices = c(
-                    "Normal" = "norm",
-                    "Uniform" = "unif",
-                    "Log-normal" = "lnorm",
-                    "Exponential" = "exp"
-                  )
-                ),
-                plotOutput("distPlot2"),
-                footer = tagList(
-                  f7Button(label = "My button", href = "https://www.google.com"),
-                  f7Badge("Badge", color = "orange")
+            f7Card(
+              title = "Card header",
+              f7Select(
+                inputId = "obs2",
+                label = "Distribution type:",
+                choices = c(
+                  "Normal" = "norm",
+                  "Uniform" = "unif",
+                  "Log-normal" = "lnorm",
+                  "Exponential" = "exp"
                 )
+              ),
+              plotOutput("distPlot2"),
+              footer = tagList(
+                f7Button(
+                  label = "My button",
+                  href = "https://www.google.com"
+                ),
+                f7Badge("Badge", color = "orange")
               )
             )
           ),
@@ -110,27 +113,26 @@ if (interactive()) {
             tabName = "Tab3",
             icon = f7Icon("cloud_upload"),
             active = FALSE,
-            f7Shadow(
-              intensity = 10,
-              hover = TRUE,
-              f7Card(
-                title = "Card header",
-                f7SmartSelect(
-                  inputId = "variable",
-                  label = "Variables to show:",
-                  c(
-                    "Cylinders" = "cyl",
-                    "Transmission" = "am",
-                    "Gears" = "gear"
-                  ),
-                  multiple = TRUE,
-                  selected = "cyl"
+            f7Card(
+              title = "Card header",
+              f7SmartSelect(
+                inputId = "variable",
+                label = "Variables to show:",
+                c(
+                  "Cylinders" = "cyl",
+                  "Transmission" = "am",
+                  "Gears" = "gear"
                 ),
-                tableOutput("data"),
-                footer = tagList(
-                  f7Button(label = "My button", href = "https://www.google.com"),
-                  f7Badge("Badge", color = "green")
-                )
+                multiple = TRUE,
+                selected = "cyl"
+              ),
+              tableOutput("data"),
+              footer = tagList(
+                f7Button(
+                  label = "My button",
+                  href = "https://www.google.com"
+                ),
+                f7Badge("Badge", color = "green")
               )
             )
           )

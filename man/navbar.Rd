@@ -85,16 +85,14 @@ app <- shinyApp(
         f7Panel(
           title = "Left Panel",
           side = "left",
-          theme = "light",
-          "Blabla",
-          style = "cover"
+          f7Block("Blabla"),
+          effect = "cover"
         ),
         f7Panel(
           title = "Right Panel",
           side = "right",
-          theme = "dark",
-          "Blabla",
-          style = "cover"
+          f7Block("Blabla"),
+          effect = "cover"
         )
       ),
       navbar = f7Navbar(
@@ -104,8 +102,6 @@ app <- shinyApp(
         #  f7Button(label = "My button", tonal = TRUE)
         # ),
         title = "Title",
-        hairline = TRUE,
-        # bigger = TRUE,
         leftPanel = TRUE,
         rightPanel = TRUE
       ),

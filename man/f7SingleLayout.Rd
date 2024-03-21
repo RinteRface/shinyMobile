@@ -28,9 +28,7 @@ if (interactive()) {
       title = "Single layout",
       f7SingleLayout(
         navbar = f7Navbar(
-          title = "Single Layout",
-          hairline = FALSE,
-          shadow = TRUE
+          title = "Single Layout"
         ),
         toolbar = f7Toolbar(
           position = "bottom",
@@ -38,17 +36,17 @@ if (interactive()) {
           f7Link(label = "Link 2", href = "https://www.google.com")
         ),
         # main content
-        f7Shadow(
-          intensity = 10,
-          hover = TRUE,
-          f7Card(
-            title = "Card header",
-            f7Slider("obs", "Number of observations", 0, 1000, 500),
-            plotOutput("distPlot"),
-            footer = tagList(
-              f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
-              f7Badge("Badge", color = "green")
-            )
+        f7Card(
+          title = "Card header",
+          f7Slider("obs", "Number of observations", 0, 1000, 500),
+          plotOutput("distPlot"),
+          footer = tagList(
+            f7Button(
+              color = "blue",
+              label = "My button",
+              href = "https://www.google.com"
+            ),
+            f7Badge("Badge", color = "green")
           )
         )
       )

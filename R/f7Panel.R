@@ -9,99 +9,60 @@
 #' state, namely open or closed.
 #' @param title Panel title.
 #' @param side Panel side: "left" or "right".
-#' @param theme Panel background color: "dark" or "light".
-#' @param effect Whether the panel should behave when opened: "cover" or "reveal".
+#' @param theme `r lifecycle::badge("deprecated")`:
+#' removed from Framework7.
+#' @param effect Whether the panel should behave
+#' when opened: "cover", "reveal", "floating" or "push".
 #' @param resizable Whether to enable panel resize. FALSE by default.
+#' @param options Other panel options.
+#' See \url{https://framework7.io/docs/panel#panel-parameters}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @rdname panel
 #'
 #' @export
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Panels",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "Single Layout",
-#'          hairline = FALSE,
-#'          shadow = TRUE,
-#'          leftPanel = TRUE,
-#'          rightPanel = TRUE
-#'        ),
-#'        panels = tagList(
-#'          f7Panel(side = "left", id = "mypanel1"),
-#'          f7Panel(side = "right", id = "mypanel2")
-#'        ),
-#'        toolbar = f7Toolbar(
-#'          position = "bottom",
-#'          icons = TRUE,
-#'          f7Link(label = "Link 1", href = "https://www.google.com"),
-#'          f7Link(label = "Link 2", href = "https://www.google.com")
-#'        ),
-#'        # main content
-#'        f7Shadow(
-#'          intensity = 10,
-#'          hover = TRUE,
-#'          f7Card(
-#'            title = "Card header",
-#'            sliderInput("obs", "Number of observations", 0, 1000, 500),
-#'            h1("You only see me by opening the left panel"),
-#'            plotOutput("distPlot"),
-#'            footer = tagList(
-#'              f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
-#'              f7Badge("Badge", color = "green")
-#'            )
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'
-#'      observeEvent(input$mypanel2, {
-#'
-#'        state <- if (input$mypanel2) "open" else "closed"
-#'
-#'        f7Toast(
-#'          text = paste0("Right panel is ", state),
-#'          position = "center",
-#'          closeTimeout = 1000,
-#'          closeButton = FALSE
-#'        )
-#'      })
-#'
-#'      output$distPlot <- renderPlot({
-#'        if (input$mypanel1) {
-#'          dist <- rnorm(input$obs)
-#'          hist(dist)
-#'        }
-#'      })
-#'    }
-#'  )
-#' }
+#' @example inst/examples/panel/app.R
 f7Panel <- function(..., id = NULL, title = NULL,
-                    side = c("left", "right"), theme = c("dark", "light"),
-                    effect = c("reveal", "cover"), resizable = FALSE) {
-
+                    side = c("left", "right"), theme = deprecated(),
+                    effect = c("reveal", "cover", "push", "floating"),
+                    resizable = FALSE,
+                    options = list()) {
+  if (lifecycle::is_present(theme)) {
+    lifecycle::deprecate_warn(
+      when = "1.1.0",
+      what = "f7Panel(theme)",
+      details = "theme has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
   side <- match.arg(side)
   effect <- match.arg(effect)
-  theme <- match.arg(theme)
-  panelCl <- sprintf("panel panel-%s panel-%s theme-%s", side, effect, theme)
+  panelCl <- sprintf("panel panel-%s panel-%s", side, effect)
   if (resizable) panelCl <- paste0(panelCl, " panel-resizable")
 
-  panelTag <- shiny::tags$div(
+  options[["effect"]] <- effect
+
+  shiny::tags$div(
     class = panelCl,
     id = id,
+    shiny::tags$script(
+      type = "application/json",
+      `data-for` = id,
+      jsonlite::toJSON(
+        x = options,
+        auto_unbox = TRUE,
+        json_verbatim = TRUE
+      )
+    ),
     shiny::tags$div(
       class = "page",
       # Panel Header
       shiny::tags$div(
         class = "navbar",
+        shiny::tags$div(class = "navbar-bg"),
         shiny::tags$div(
-          class = "navbar-inner",
+          class = "navbar-inner sliding",
           shiny::tags$div(class = "title", title)
         )
       ),
@@ -112,12 +73,7 @@ f7Panel <- function(..., id = NULL, title = NULL,
       )
     )
   )
-
-  f7Shadow(panelTag, intensity = 24)
-
 }
-
-
 
 #' Framework7 sidebar menu
 #'
@@ -133,7 +89,6 @@ f7Panel <- function(..., id = NULL, title = NULL,
 #'
 #' @export
 f7PanelMenu <- function(..., id = NULL) {
-
   if (is.null(id)) {
     id <- paste0("panelMenu_", round(stats::runif(1, min = 0, max = 1e9)))
   }
@@ -141,15 +96,12 @@ f7PanelMenu <- function(..., id = NULL) {
   shiny::tags$div(
     class = "list links-list",
     shiny::tags$ul(
-      class ="panel-menu ",
+      class = "panel-menu ",
       ...,
       id = id
     )
   )
 }
-
-
-
 
 #' Framework7 sidebar menu item
 #'
@@ -169,7 +121,7 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
     # generate the link
     if (!is.null(icon)) {
       shiny::a(
-        `data-tab`= paste0("#", tabName),
+        `data-tab` = paste0("#", tabName),
         class = if (active) "tab-link tab-link-active" else "tab-link",
         icon,
         shiny::span(class = "tabbar-label", title)
@@ -184,10 +136,6 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
   )
 }
 
-
-
-
-
 #' Update Framework7 panel
 #'
 #' \code{updateF7Panel} toggles an \link{f7Panel} from the server.
@@ -197,56 +145,6 @@ f7PanelItem <- function(title, tabName, icon = NULL, active = FALSE) {
 #' @rdname panel
 #'
 #' @export
-#'
-#' @examples
-#' # Toggle panel
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Update panel menu",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "Single Layout",
-#'          hairline = FALSE,
-#'          shadow = TRUE,
-#'          leftPanel = TRUE,
-#'          rightPanel = TRUE
-#'        ),
-#'        panels = tagList(
-#'          f7Panel(side = "left", id = "mypanel1", theme = "light", effect = "cover"),
-#'          f7Panel(side = "right", id = "mypanel2", theme = "light")
-#'        ),
-#'        toolbar = f7Toolbar(
-#'          position = "bottom",
-#'          icons = TRUE,
-#'          hairline = FALSE,
-#'          shadow = FALSE,
-#'          f7Link(label = "Link 1", href = "https://www.google.com"),
-#'          f7Link(label = "Link 2", href = "https://www.google.com")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'
-#'      observe({
-#'        print(
-#'          list(
-#'            panel1 = input$mypanel1,
-#'            panel2 = input$mypanel2
-#'          )
-#'        )
-#'      })
-#'
-#'      observe({
-#'        invalidateLater(2000)
-#'        updateF7Panel(id = "mypanel1")
-#'      })
-#'
-#'    }
-#'  )
-#' }
 updateF7Panel <- function(id, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, NULL)
 }

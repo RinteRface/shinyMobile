@@ -32,6 +32,7 @@ updateF7MenuDropdown(id, session = shiny::getDefaultReactiveDomain())
 \item{session}{Shiny session object.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.
 \code{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
 
 \code{f7MenuItem} creates a special action button for \link{f7Menu}.

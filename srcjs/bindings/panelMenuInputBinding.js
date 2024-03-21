@@ -1,3 +1,5 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7PanelMenuBinding = new Shiny.InputBinding();
 
@@ -12,12 +14,13 @@ $.extend(f7PanelMenuBinding, {
   // We then trigger the show function on that tab.
   // If no tab is active at start, the first tab is shown by default.
   initialize: function(el) {
+    this.app = getAppInstance();
     var firstPanelId = $(el).find("a").first().data('tab');
     var panelActiveId = $(el).find("a.tab-link-active").data('tab');
     if (panelActiveId !== undefined) {
-      app.tab.show(panelActiveId);
+      this.app.tab.show(panelActiveId);
     } else {
-      app.tab.show(firstPanelId);
+      this.app.tab.show(firstPanelId);
     }
   },
 
@@ -38,7 +41,7 @@ $.extend(f7PanelMenuBinding, {
   receiveMessage: function(el, data) {
     // update the active tab
     if (data.hasOwnProperty('selected')) {
-      app.tab.show('#' + data.ns + '-' + data.selected);
+      this.app.tab.show('#' + data.ns + '-' + data.selected);
     }
   },
 
@@ -48,7 +51,7 @@ $.extend(f7PanelMenuBinding, {
         callback(false);
     });
 
-    app.on("tabShow.f7PanelMenuBinding", function(tab) {
+    this.app.on("tabShow.f7PanelMenuBinding", function(tab) {
       callback(false);
     });
   },

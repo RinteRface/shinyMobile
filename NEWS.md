@@ -30,6 +30,7 @@
 - `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
 - `f7Toolbar()`:
     - `hairline` and `shadow` are deprecated, removed from Framework7.
+- `f7Shadow()`removed from Framework7. No replacement. Will be removed in a future release.
 
 ## Minor change
 - New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
@@ -44,6 +45,8 @@ the check icon position. Default to left.
 - `f7CheckboxChoice()`: new function to pass inside `choices` in a
 `f7CheckboxGroup()`. Improved choice with title, subtitle, ...
 - `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
+- `f7Panel()` has new "floating"/"push" effets as well as a new `options` parameter
+to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

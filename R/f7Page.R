@@ -202,9 +202,7 @@ f7Page <- function(
 #'       title = "Single layout",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(
-#'           title = "Single Layout",
-#'           hairline = FALSE,
-#'           shadow = TRUE
+#'           title = "Single Layout"
 #'         ),
 #'         toolbar = f7Toolbar(
 #'           position = "bottom",
@@ -212,17 +210,17 @@ f7Page <- function(
 #'           f7Link(label = "Link 2", href = "https://www.google.com")
 #'         ),
 #'         # main content
-#'         f7Shadow(
-#'           intensity = 10,
-#'           hover = TRUE,
-#'           f7Card(
-#'             title = "Card header",
-#'             f7Slider("obs", "Number of observations", 0, 1000, 500),
-#'             plotOutput("distPlot"),
-#'             footer = tagList(
-#'               f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
-#'               f7Badge("Badge", color = "green")
-#'             )
+#'         f7Card(
+#'           title = "Card header",
+#'           f7Slider("obs", "Number of observations", 0, 1000, 500),
+#'           plotOutput("distPlot"),
+#'           footer = tagList(
+#'             f7Button(
+#'               color = "blue",
+#'               label = "My button",
+#'               href = "https://www.google.com"
+#'             ),
+#'             f7Badge("Badge", color = "green")
 #'           )
 #'         )
 #'       )
@@ -297,13 +295,21 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'           )
 #'         ),
 #'         panels = tagList(
-#'           f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-#'           f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+#'           f7Panel(
+#'             title = "Left Panel",
+#'             side = "left",
+#'             "Blabla",
+#'             effect = "cover"
+#'           ),
+#'           f7Panel(
+#'             title = "Right Panel",
+#'             side = "right",
+#'             "Blabla",
+#'             effect = "cover"
+#'           )
 #'         ),
 #'         navbar = f7Navbar(
 #'           title = "Tabs",
-#'           hairline = FALSE,
-#'           shadow = TRUE,
 #'           leftPanel = TRUE,
 #'           rightPanel = TRUE
 #'         ),
@@ -314,24 +320,20 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'             tabName = "Tab1",
 #'             icon = f7Icon("envelope"),
 #'             active = TRUE,
-#'             f7Shadow(
-#'               intensity = 10,
-#'               hover = TRUE,
-#'               f7Card(
-#'                 title = "Card header",
-#'                 f7Stepper(
-#'                   "obs1",
-#'                   "Number of observations",
-#'                   min = 0,
-#'                   max = 1000,
-#'                   value = 500,
-#'                   step = 100
-#'                 ),
-#'                 plotOutput("distPlot1"),
-#'                 footer = tagList(
-#'                   f7Button(inputId = "tapHold", label = "My button"),
-#'                   f7Badge("Badge", color = "green")
-#'                 )
+#'             f7Card(
+#'               title = "Card header",
+#'               f7Stepper(
+#'                 "obs1",
+#'                 "Number of observations",
+#'                 min = 0,
+#'                 max = 1000,
+#'                 value = 500,
+#'                 step = 100
+#'               ),
+#'               plotOutput("distPlot1"),
+#'               footer = tagList(
+#'                 f7Button(inputId = "tapHold", label = "My button"),
+#'                 f7Badge("Badge", color = "green")
 #'               )
 #'             )
 #'           ),
@@ -339,26 +341,25 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'             tabName = "Tab2",
 #'             icon = f7Icon("today"),
 #'             active = FALSE,
-#'             f7Shadow(
-#'               intensity = 10,
-#'               hover = TRUE,
-#'               f7Card(
-#'                 title = "Card header",
-#'                 f7Select(
-#'                   inputId = "obs2",
-#'                   label = "Distribution type:",
-#'                   choices = c(
-#'                     "Normal" = "norm",
-#'                     "Uniform" = "unif",
-#'                     "Log-normal" = "lnorm",
-#'                     "Exponential" = "exp"
-#'                   )
-#'                 ),
-#'                 plotOutput("distPlot2"),
-#'                 footer = tagList(
-#'                   f7Button(label = "My button", href = "https://www.google.com"),
-#'                   f7Badge("Badge", color = "orange")
+#'             f7Card(
+#'               title = "Card header",
+#'               f7Select(
+#'                 inputId = "obs2",
+#'                 label = "Distribution type:",
+#'                 choices = c(
+#'                   "Normal" = "norm",
+#'                   "Uniform" = "unif",
+#'                   "Log-normal" = "lnorm",
+#'                   "Exponential" = "exp"
 #'                 )
+#'               ),
+#'               plotOutput("distPlot2"),
+#'               footer = tagList(
+#'                 f7Button(
+#'                   label = "My button",
+#'                   href = "https://www.google.com"
+#'                 ),
+#'                 f7Badge("Badge", color = "orange")
 #'               )
 #'             )
 #'           ),
@@ -366,27 +367,26 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #'             tabName = "Tab3",
 #'             icon = f7Icon("cloud_upload"),
 #'             active = FALSE,
-#'             f7Shadow(
-#'               intensity = 10,
-#'               hover = TRUE,
-#'               f7Card(
-#'                 title = "Card header",
-#'                 f7SmartSelect(
-#'                   inputId = "variable",
-#'                   label = "Variables to show:",
-#'                   c(
-#'                     "Cylinders" = "cyl",
-#'                     "Transmission" = "am",
-#'                     "Gears" = "gear"
-#'                   ),
-#'                   multiple = TRUE,
-#'                   selected = "cyl"
+#'             f7Card(
+#'               title = "Card header",
+#'               f7SmartSelect(
+#'                 inputId = "variable",
+#'                 label = "Variables to show:",
+#'                 c(
+#'                   "Cylinders" = "cyl",
+#'                   "Transmission" = "am",
+#'                   "Gears" = "gear"
 #'                 ),
-#'                 tableOutput("data"),
-#'                 footer = tagList(
-#'                   f7Button(label = "My button", href = "https://www.google.com"),
-#'                   f7Badge("Badge", color = "green")
-#'                 )
+#'                 multiple = TRUE,
+#'                 selected = "cyl"
+#'               ),
+#'               tableOutput("data"),
+#'               footer = tagList(
+#'                 f7Button(
+#'                   label = "My button",
+#'                   href = "https://www.google.com"
+#'                 ),
+#'                 f7Badge("Badge", color = "green")
 #'               )
 #'             )
 #'           )
@@ -450,11 +450,6 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
   tab_layout_tag
 }
 
-
-
-
-
-
 #' Framework7 split layout
 #'
 #' This is a modified version of the \link{f7SingleLayout}.
@@ -480,7 +475,6 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #'           id = "sidebar",
 #'           title = "Sidebar",
 #'           side = "left",
-#'           theme = "dark",
 #'           f7PanelMenu(
 #'             id = "menu",
 #'             f7PanelItem(
@@ -498,9 +492,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #'           uiOutput("selected_tab")
 #'         ),
 #'         navbar = f7Navbar(
-#'           title = "Split Layout",
-#'           hairline = FALSE,
-#'           shadow = TRUE
+#'           title = "Split Layout"
 #'         ),
 #'         toolbar = f7Toolbar(
 #'           position = "bottom",
@@ -567,9 +559,6 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   splitSkeleton
 }
 
-
-
-
 #' Framework7 item container
 #'
 #' Build a Framework7 wrapper for \link{f7Item}
@@ -590,9 +579,6 @@ f7Items <- function(...) {
   )
   # )
 }
-
-
-
 
 #' Framework7 body item
 #'

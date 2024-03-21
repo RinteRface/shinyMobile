@@ -10,9 +10,10 @@ f7Panel(
   id = NULL,
   title = NULL,
   side = c("left", "right"),
-  theme = c("dark", "light"),
-  effect = c("reveal", "cover"),
-  resizable = FALSE
+  theme = deprecated(),
+  effect = c("reveal", "cover", "push", "floating"),
+  resizable = FALSE,
+  options = list()
 )
 
 updateF7Panel(id, session = shiny::getDefaultReactiveDomain())
@@ -26,11 +27,16 @@ updateF7Panel(id, session = shiny::getDefaultReactiveDomain())
 
 \item{side}{Panel side: "left" or "right".}
 
-\item{theme}{Panel background color: "dark" or "light".}
+\item{theme}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
-\item{effect}{Whether the panel should behave when opened: "cover" or "reveal".}
+\item{effect}{Whether the panel should behave
+when opened: "cover", "reveal", "floating" or "push".}
 
 \item{resizable}{Whether to enable panel resize. FALSE by default.}
+
+\item{options}{Other panel options.
+See \url{https://framework7.io/docs/panel#panel-parameters}.}
 
 \item{session}{Shiny session object.}
 }
@@ -42,118 +48,97 @@ sidebar or as a container for \link{f7PanelMenu} in case of
 \code{updateF7Panel} toggles an \link{f7Panel} from the server.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Panels",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "Single Layout",
-         hairline = FALSE,
-         shadow = TRUE,
-         leftPanel = TRUE,
-         rightPanel = TRUE
-       ),
-       panels = tagList(
-         f7Panel(side = "left", id = "mypanel1"),
-         f7Panel(side = "right", id = "mypanel2")
-       ),
-       toolbar = f7Toolbar(
-         position = "bottom",
-         icons = TRUE,
-         f7Link(label = "Link 1", href = "https://www.google.com"),
-         f7Link(label = "Link 2", href = "https://www.google.com")
-       ),
-       # main content
-       f7Shadow(
-         intensity = 10,
-         hover = TRUE,
-         f7Card(
-           title = "Card header",
-           sliderInput("obs", "Number of observations", 0, 1000, 500),
-           h1("You only see me by opening the left panel"),
-           plotOutput("distPlot"),
-           footer = tagList(
-             f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
-             f7Badge("Badge", color = "green")
-           )
-         )
-       )
-     )
-   ),
-   server = function(input, output, session) {
+library(shiny)
+library(shinyMobile)
 
-     observeEvent(input$mypanel2, {
+app <- shinyApp(
+  ui = f7Page(
+    title = "Panels",
+    options = list(dark = FALSE),
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "f7Panel",
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      panels = tagList(
+        f7Panel(
+          id = "mypanel1",
+          side = "left",
+          effect = "push",
+          title = "Left panel",
+          resizable = TRUE,
+          f7Block("A panel with push effect"),
+          f7PanelMenu(
+            id = "panelmenu",
+            f7PanelItem(
+              tabName = "tab1",
+              title = "Tab 1",
+              icon = f7Icon("envelope"),
+              active = TRUE
+            ),
+            f7PanelItem(
+              tabName = "tab2",
+              title = "Tab 2",
+              icon = f7Icon("house")
+            )
+          )
+        ),
+        f7Panel(
+          id = "mypanel2",
+          side = "right",
+          effect = "floating",
+          title = "Right panel",
+          f7Block(
+            "A panel with cover effect"
+          ),
+          options = list(swipe = TRUE)
+        )
+      ),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        icons = TRUE,
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
+      ),
+      # main content
+      f7Card(
+        title = "Card header",
+        f7Slider("obs", "Number of observations", 0, 1000, 500),
+        h1("You only see me by opening the left panel"),
+        plotOutput("distPlot"),
+        footer = f7Block(
+          f7Button(inputId = "toggle", "Toggle panel 1")
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$mypanel2, {
+      state <- if (input$mypanel2) "open" else "closed"
 
-       state <- if (input$mypanel2) "open" else "closed"
+      f7Toast(
+        text = paste0("Right panel is ", state),
+        position = "center",
+        closeTimeout = 1000,
+        closeButton = FALSE
+      )
+    })
 
-       f7Toast(
-         text = paste0("Right panel is ", state),
-         position = "center",
-         closeTimeout = 1000,
-         closeButton = FALSE
-       )
-     })
+    output$distPlot <- renderPlot({
+      if (input$mypanel1) {
+        dist <- rnorm(input$obs)
+        hist(dist)
+      }
+    })
 
-     output$distPlot <- renderPlot({
-       if (input$mypanel1) {
-         dist <- rnorm(input$obs)
-         hist(dist)
-       }
-     })
-   }
- )
-}
-# Toggle panel
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Update panel menu",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "Single Layout",
-         hairline = FALSE,
-         shadow = TRUE,
-         leftPanel = TRUE,
-         rightPanel = TRUE
-       ),
-       panels = tagList(
-         f7Panel(side = "left", id = "mypanel1", theme = "light", effect = "cover"),
-         f7Panel(side = "right", id = "mypanel2", theme = "light")
-       ),
-       toolbar = f7Toolbar(
-         position = "bottom",
-         icons = TRUE,
-         hairline = FALSE,
-         shadow = FALSE,
-         f7Link(label = "Link 1", href = "https://www.google.com"),
-         f7Link(label = "Link 2", href = "https://www.google.com")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+    observeEvent(input$toggle, {
+      updateF7Panel(id = "mypanel1")
+    })
+  }
+)
 
-     observe({
-       print(
-         list(
-           panel1 = input$mypanel1,
-           panel2 = input$mypanel2
-         )
-       )
-     })
-
-     observe({
-       invalidateLater(2000)
-       updateF7Panel(id = "mypanel1")
-     })
-
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

@@ -40,6 +40,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 
 #' Framework7 menu container
 #'
+#' `r lifecycle::badge("deprecated")`.
 #' \code{f7Menu} is a container for \link{f7MenuItem} and/or \link{f7MenuDropdown}.
 #'
 #' @param ... Slot for \link{f7MenuItem} or \link{f7MenuDropdown}.
@@ -221,6 +222,7 @@ f7Flex <- function(...) {
 
 #' Create a manifest for your shiny app
 #'
+#' `r lifecycle::badge("deprecated")`.
 #' \code{create_manifest} creates a manifest for your shiny App. Please use this workflow instead:
 #' \url{https://unleash-shiny.rinterface.com/mobile-pwa.html#charpente-and-pwa-tools}.
 #'
@@ -241,27 +243,8 @@ f7Flex <- function(...) {
 #' It creates 1 folders to contain icons and the manifest.json file.
 #'
 #' @note See \url{https://developer.mozilla.org/en-US/docs/Web/Manifest} for more informations.
-#' @rdname f7-deprecated
 #' @keywords internal
 #' @export
-#'
-#' @examples
-#' create_manifest(
-#'   path = tempdir(),
-#'   name = "My App",
-#'   shortName = "My App",
-#'   description = "What it does!",
-#'   lang = "en-US",
-#'   startUrl = "https://www.google.com/",
-#'   display = "standalone",
-#'   background_color = "#3367D6",
-#'   theme_color = "#3367D6",
-#'   icon = data.frame(
-#'     src = "icons/128x128.png",
-#'     sizes = "128x128", 10,
-#'     types = "image/png"
-#'   )
-#' )
 create_manifest <- function(path, name = "My App", shortName = "My App",
                             description = "What it does!", lang = "en-US",
                             startUrl, display = c("minimal-ui", "standalone", "fullscreen", "browser"),
@@ -296,4 +279,24 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
     dir.create(paste0(path, "/www/icons"))
   }
   jsonlite::write_json(manifest, path = paste0(path, "/www/manifest.json"))
+}
+
+#' Framework7 shadow effect
+#'
+#' `r lifecycle::badge("deprecated")`.
+#' Creates a shadow effect to apply on UI elements like \link{f7Card}.
+#'
+#' @param tag Tag to apply the shadow on.
+#' @param intensity Shadow intensity. Numeric between 1 and 24. 24 is the highest elevation.
+#' @param hover Whether to display the shadow on hover. FALSE by default.
+#' @param pressed Whether to display the shadow on click. FALSE by default.
+#'
+#' @keywords internal
+#' @export
+f7Shadow <- function(tag, intensity, hover = FALSE, pressed = FALSE) {
+  lifecycle::deprecate_warn(
+    when = "1.1.0",
+    what = "f7Shadow"
+  )
+  tag
 }

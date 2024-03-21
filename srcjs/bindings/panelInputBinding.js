@@ -1,19 +1,29 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7PanelBinding = new Shiny.InputBinding();
 
 $.extend(f7PanelBinding, {
-
+  instances: [],
   initialize: function(el) {
-    var data = {};
+    this.app = getAppInstance();
+    var id = $(el).attr('id');
+    var config = {};
+    if (id !== undefined) {
+      config = JSON.parse($(el)
+        .find("script[data-for='" + id + "']")
+        .html());
+    }
+
     // add id
-    data.el = '#' + $(el).attr('id');
+    config.el = '#' + id;
     // this is to show shiny outputs in the sheet
-    data.on = {
+    config.on = {
       opened: function () {
         $(el).trigger('shown');
       }
     };
-    app.panel.create(data);
+    this.instances[el.id] = this.app.panel.create(config);
   },
 
   find: function(scope) {
@@ -22,14 +32,13 @@ $.extend(f7PanelBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var p = app.panel.get($(el));
-    return p.opened;
+    return this.instances[el.id].opened;
   },
 
   // see updateF7Panel
   receiveMessage: function(el, data) {
     // create a variable to update the panel
-    var p = app.panel.get($(el));
+    var p = this.instances[el.id];
     p.toggle(p.side);
   },
 
