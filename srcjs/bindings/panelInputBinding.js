@@ -13,10 +13,10 @@ $.extend(f7PanelBinding, {
       config = JSON.parse($(el)
         .find("script[data-for='" + id + "']")
         .html());
+      // add id
+      config.el = '#' + id;
     }
 
-    // add id
-    config.el = '#' + id;
     // this is to show shiny outputs in the sheet
     config.on = {
       opened: function () {

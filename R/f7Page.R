@@ -550,8 +550,8 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
   )
 
   # Customize class
-  splitSkeleton[[3]] <- tagAppendAttributes(
-    splitSkeleton[[3]],
+  splitSkeleton[[2]] <- tagAppendAttributes(
+    splitSkeleton[[2]],
     class = "safe-areas"
   )
 
