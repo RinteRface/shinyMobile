@@ -12,38 +12,35 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "f7PhotoBrowser",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7PhotoBrowser"),
-#'        f7Button(inputId = "togglePhoto", "Open photo")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'     observeEvent(input$togglePhoto, {
-#'      f7PhotoBrowser(
-#'          id = "photobrowser1",
-#'          label = "Open",
-#'          theme = "dark",
-#'          type = "standalone",
-#'          photos = c(
-#'            "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
-#'            "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
-#'            "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
-#'          )
-#'        )
-#'     })
-#'
-#'    }
-#'  )
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "f7PhotoBrowser",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7PhotoBrowser"),
+#'         f7Button(inputId = "togglePhoto", "Open photo")
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$togglePhoto, {
+#'         f7PhotoBrowser(
+#'           id = "photobrowser1",
+#'           theme = "dark",
+#'           type = "standalone",
+#'           photos = c(
+#'             "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+#'             "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+#'             "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+#'           )
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
                            type = c("popup", "standalone", "page"), ..., session = shiny::getDefaultReactiveDomain()) {
-
   theme <- match.arg(theme)
   type <- match.arg(type)
   pageBackLinkText <- if (type == "page") "back" else NULL
@@ -67,5 +64,4 @@ f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
       json_verbatim = TRUE
     )
   )
-
 }

@@ -11,7 +11,7 @@ $(function() {
       if (!$(message.targetEl).hasClass("popover-disabled")) {
         // popover HTML layout
         message.content = `
-        <div class="popover">
+        <div class="popover" id=${message.targetEl}>
           <div class="popover-angle"></div>
           <div class="popover-inner">
             <div class="block">${message.content}</div>
