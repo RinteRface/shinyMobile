@@ -20,7 +20,8 @@ app <- shinyApp(
         f7Button(inputId = "moveItem", "Move Item"),
         f7Button(inputId = "filterItems", "Filter Items")
       ),
-      f7Flex(
+      f7Grid(
+        cols = 3,
         uiOutput("itemIndexUI"),
         uiOutput("itemNewIndexUI"),
         uiOutput("itemsFilterUI")
