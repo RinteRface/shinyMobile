@@ -198,7 +198,7 @@ f7Row <- function(..., gap = TRUE) {
 #' @keywords internal
 #' @export
 f7Col <- function(...) {
-  lifecycle::deprecate_warn("1.1.0", "f7Row()", "f7Grid()")
+  lifecycle::deprecate_warn("1.1.0", "f7Col()", "f7Grid()")
   shiny::tags$div(class = "col", ...)
 }
 
@@ -213,7 +213,7 @@ f7Col <- function(...) {
 #' @export
 #' @keywords internal
 f7Flex <- function(...) {
-  lifecycle::deprecate_warn("1.1.0", "f7Row()", "f7Grid()")
+  lifecycle::deprecate_warn("1.1.0", "f7Flex()", "f7Grid()")
   shiny::tags$div(
     class = "display-flex justify-content-space-between align-items-flex-start",
     ...
