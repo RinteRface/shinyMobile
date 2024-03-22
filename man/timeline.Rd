@@ -59,30 +59,18 @@ library(shiny)
 library(shinyMobile)
 
 items <- tagList(
-  f7TimelineItem(
-    "Another text",
-    date = "01 Dec",
-    card = FALSE,
-    time = "12:30",
-    title = "Title",
-    subtitle = "Subtitle",
-    side = "left"
-  ),
-  f7TimelineItem(
-    "Another text",
-    date = "02 Dec",
-    card = TRUE,
-    time = "13:00",
-    title = "Title",
-    subtitle = "Subtitle"
-  ),
-  f7TimelineItem(
-    "Another text",
-    date = "03 Dec",
-    card = FALSE,
-    time = "14:45",
-    title = "Title",
-    subtitle = "Subtitle"
+  lapply(1:5,
+         function(i) {
+           f7TimelineItem(
+             paste0("Another text ", i),
+             date = paste0(i, " Dec"),
+             card = i \%\% 2 == 0,
+             time = paste0(10 + i, ":30"),
+             title = paste0("Title", i),
+             subtitle = paste0("Subtitle", i),
+             side = ifelse(i \%\% 2 == 0, "left", "right")
+           )
+         }
   )
 )
 
