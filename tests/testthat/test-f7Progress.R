@@ -15,6 +15,14 @@ test_that("progress works", {
   app$expect_values(input = "obs")
 })
 
+test_that("f7Progress works", {
+  progress <- f7Progress(id = "progress", 100, "green")
+  expect_s3_class(progress, "shiny.tag")
+  expect_identical(progress$attribs$class, "progressbar color-green")
+  expect_identical(progress$attribs$id, "progress")
+  expect_identical(progress$attribs$`data-progress`, 100)
+})
+
 test_that("updateF7Progress function work", {
   session <- as.environment(list(
     ns = identity,
