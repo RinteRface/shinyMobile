@@ -21,9 +21,6 @@ addF7Popover <- function(id = NULL, selector = NULL, options, session = shiny::g
 #'
 #' \code{toggleF7Popover} toggles the visibility of popover. See example for use case.
 #'
-#' @param id Popover target id.
-#' @param selector jQuery selector. Allow more customization for the target (nested tags).
-#' @param session Shiny session object.
 #' @export
 #' @rdname popover
 toggleF7Popover <- function(id = NULL, selector = NULL, session = shiny::getDefaultReactiveDomain()) {
