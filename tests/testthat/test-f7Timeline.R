@@ -19,7 +19,7 @@ test_that("timeline works", {
   expect_identical(f7Timeline(items)$attribs$class, "timeline")
   expect_identical(
     f7Timeline(items, sides = TRUE)$attribs$class,
-    "timeline, timeline-sides"
+    "timeline timeline-sides"
   )
   expect_identical(
     f7Timeline(items, calendar = TRUE)$attribs$class,
