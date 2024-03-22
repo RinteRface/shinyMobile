@@ -41,10 +41,10 @@ Adding icon will hide the close button.}
 \code{f7Toast} creates a small toast notification from the server side.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "Toast",
     f7SingleLayout(
@@ -60,6 +60,8 @@ if (interactive()) {
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
+
 }
