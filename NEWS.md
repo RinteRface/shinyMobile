@@ -45,8 +45,9 @@ the check icon position. Default to left.
 - `f7CheckboxChoice()`: new function to pass inside `choices` in a
 `f7CheckboxGroup()`. Improved choice with title, subtitle, ...
 - `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
-- `f7Panel()` has new "floating"/"push" effets as well as a new `options` parameter
+- `f7Panel()` has new "floating"/"push" effects as well as a new `options` parameter
 to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
+- `f7VirtualList()` has new `outline`, `dividers` and `strong` styles. Additionally, `mode` was added with the following possible values: `simple`, `links`, `media` or `contacts`.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

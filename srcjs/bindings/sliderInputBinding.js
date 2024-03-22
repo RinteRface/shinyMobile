@@ -46,7 +46,6 @@ $.extend(f7SliderBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    debugger;
     return this.app.range.getValue(el);
   },
 
