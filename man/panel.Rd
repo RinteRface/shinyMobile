@@ -102,14 +102,8 @@ app <- shinyApp(
         f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
-      f7Card(
-        title = "Card header",
-        f7Slider("obs", "Number of observations", 0, 1000, 500),
-        h1("You only see me by opening the left panel"),
-        plotOutput("distPlot"),
-        footer = f7Block(
-          f7Button(inputId = "toggle", "Toggle panel 1")
-        )
+      f7Block(
+        f7Button(inputId = "toggle", "Toggle panel 1")
       )
     )
   ),
@@ -123,13 +117,6 @@ app <- shinyApp(
         closeTimeout = 1000,
         closeButton = FALSE
       )
-    })
-
-    output$distPlot <- renderPlot({
-      if (input$mypanel1) {
-        dist <- rnorm(input$obs)
-        hist(dist)
-      }
     })
 
     observeEvent(input$toggle, {

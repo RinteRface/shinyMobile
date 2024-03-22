@@ -101,7 +101,7 @@ f7PanelMenu <- function(..., id = NULL) {
   }
 
   shiny::tags$div(
-    class = "list links-list",
+    class = "list links-list list-dividers",
     shiny::tags$ul(
       class = "panel-menu ",
       ...,
