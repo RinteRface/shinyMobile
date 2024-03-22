@@ -6,21 +6,16 @@ app <- shinyApp(
     title = "Virtual List",
     f7SingleLayout(
       navbar = f7Navbar(
-        title = "Virtual Lists",
-        hairline = FALSE,
-        shadow = TRUE
+        title = "Virtual Lists"
       ),
       # controls
       f7Segment(
-        container = "segment",
-
         f7Button(inputId = "appendItem", "Append Item"),
         f7Button(inputId = "prependItems", "Prepend Items"),
         f7Button(inputId = "insertBefore", "Insert before"),
         f7Button(inputId = "replaceItem", "Replace Item")
       ),
       f7Segment(
-        container = "segment",
         f7Button(inputId = "deleteAllItems", "Remove All"),
         f7Button(inputId = "moveItem", "Move Item"),
         f7Button(inputId = "filterItems", "Filter Items")
@@ -37,6 +32,7 @@ app <- shinyApp(
         id = "vlist",
         rowsBefore = 2,
         rowsAfter = 2,
+        mode = "media",
         items = lapply(1:1000, function(i) {
           f7VirtualListItem(
             title = paste("Title", i),
@@ -44,8 +40,9 @@ app <- shinyApp(
             header = paste("Header", i),
             footer = paste("Footer", i),
             right = paste("Right", i),
-            content = i,
-            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
+            content = paste0("Content", i),
+            media = img(style = "border-radius: 8px",
+                        src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
           )
         })
       )

@@ -58,7 +58,7 @@ $.extend(f7VirtualListBinding, {
         (item.subtitle === undefined ? "" : item.subtitle) +
         "</div>" +
         '<div class="item-text">' +
-        item.content +
+        (item.content === undefined ? "" : item.content) +
         "</div>" +
         "</div>" +
         "</div>";
