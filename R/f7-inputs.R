@@ -2320,38 +2320,6 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 #' "teal, "lime", "deeporange", "gray", "white", "black".
 #'
 #' @rdname toggle
-#' @examples
-#' # f7Toggle
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Toggle"),
-#'         f7Toggle(
-#'           inputId = "toggle",
-#'           label = "My toggle",
-#'           color = "pink",
-#'           checked = TRUE
-#'         ),
-#'         verbatimTextOutput("test"),
-#'         f7Toggle(
-#'           inputId = "toggle2",
-#'           label = "My toggle 2"
-#'         ),
-#'         verbatimTextOutput("test2")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$test <- renderPrint(input$toggle)
-#'       output$test2 <- renderPrint(input$toggle2)
-#'     }
-#'   )
-#' }
-#' #
 #' @export
 f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   toggleCl <- "toggle"
@@ -2378,12 +2346,6 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'
 #' \code{updateF7Toggle} changes the value of a toggle input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param checked Whether the toggle is TRUE or FALSE.
-#' @param color
-#' Toggle color: NULL or "primary", "red", "green", "blue",
-#' "pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
-#' "teal, "lime", "deeporange", "gray", "white", "black".
 #' @param session The Shiny session object.
 #'
 #' @export
@@ -2420,7 +2382,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'       observeEvent(input$update, {
 #'         updateF7Toggle(
 #'           inputId = "toggle",
-#'           checked = TRUE,
+#'           checked = !input$toggle,
 #'           color = "green"
 #'         )
 #'       })

@@ -15,11 +15,11 @@ updateF7Toggle(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Toggle input id.}
 
 \item{label}{Toggle label.}
 
-\item{checked}{Whether the toggle is TRUE or FALSE.}
+\item{checked}{Whether to check the toggle. FALSE by default.}
 
 \item{color}{Toggle color: NULL or "primary", "red", "green", "blue",
 "pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
@@ -33,37 +33,6 @@ updateF7Toggle(
 \code{updateF7Toggle} changes the value of a toggle input on the client.
 }
 \examples{
-# f7Toggle
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Toggle"),
-        f7Toggle(
-          inputId = "toggle",
-          label = "My toggle",
-          color = "pink",
-          checked = TRUE
-        ),
-        verbatimTextOutput("test"),
-        f7Toggle(
-          inputId = "toggle2",
-          label = "My toggle 2"
-        ),
-        verbatimTextOutput("test2")
-      )
-    ),
-    server = function(input, output) {
-      output$test <- renderPrint(input$toggle)
-      output$test2 <- renderPrint(input$toggle2)
-    }
-  )
-}
-#
 # Update f7Toggle
 if (interactive()) {
   library(shiny)
@@ -94,7 +63,7 @@ if (interactive()) {
       observeEvent(input$update, {
         updateF7Toggle(
           inputId = "toggle",
-          checked = TRUE,
+          checked = !input$toggle,
           color = "green"
         )
       })

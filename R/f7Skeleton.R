@@ -16,53 +16,49 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Skeletons",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Skeleton"),
-#'        f7Card(
-#'          title = "Card header",
-#'          "This is a simple card with plain text,
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Skeletons",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Skeleton"),
+#'         f7Card(
+#'           title = "Card header",
+#'           "This is a simple card with plain text,
 #'       but cards can also contain their own header,
 #'       footer, list view, image, or any other element.",
-#'          footer = tagList(
-#'            f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
-#'            f7Badge("Badge", color = "green")
-#'          )
-#'        ),
-#'
+#'         ),
 #'         f7List(
-#'          f7ListItem(
-#'            href = "https://www.google.com",
-#'            title = "Item 1"
-#'          ),
-#'          f7ListItem(
-#'            href = "https://www.google.com",
-#'            title = "Item 2"
-#'          )
+#'           f7ListItem(
+#'             href = "https://www.google.com",
+#'             title = "Item 1"
+#'           ),
+#'           f7ListItem(
+#'             href = "https://www.google.com",
+#'             title = "Item 2"
+#'           )
 #'         )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      observeEvent(TRUE, {
-#'        f7Skeleton(".card", "fade", 2)
-#'      }, once = TRUE)
-#'    }
-#'  )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(TRUE,
+#'         {
+#'           f7Skeleton(".card", "fade", 2)
+#'         },
+#'         once = TRUE
+#'       )
+#'     }
+#'   )
 #' }
 f7Skeleton <- function(
     target = ".card",
     effect = c("fade", "blink", "pulse"),
     duration = NULL,
-    session = shiny::getDefaultReactiveDomain()
-) {
-
+    session = shiny::getDefaultReactiveDomain()) {
   effect <- match.arg(effect)
-  message <-dropNulls(
+  message <- dropNulls(
     list(
       target = target,
       effect = effect,
