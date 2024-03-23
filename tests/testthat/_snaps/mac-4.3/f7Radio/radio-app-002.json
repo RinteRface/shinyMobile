@@ -1,0 +1,10 @@
+{
+  "input": {
+    "radio": "mpg",
+    "radio2": "2"
+  },
+  "output": {
+    "res": "mpg",
+    "res2": "2"
+  }
+}

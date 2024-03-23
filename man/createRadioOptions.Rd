@@ -4,7 +4,13 @@
 \alias{createRadioOptions}
 \title{Generates a list of option for \link{f7Radio}}
 \usage{
-createRadioOptions(choices, selected, inputId)
+createRadioOptions(
+  choices,
+  selected,
+  inputId,
+  position = "left",
+  has_media_list = FALSE
+)
 }
 \arguments{
 \item{choices}{List of choices.}
@@ -12,6 +18,10 @@ createRadioOptions(choices, selected, inputId)
 \item{selected}{Selected value}
 
 \item{inputId}{Radio input id.}
+
+\item{position}{Check mark position.}
+
+\item{has_media_list}{For custom choices.}
 }
 \description{
 Generates a list of option for \link{f7Radio}

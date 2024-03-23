@@ -25,7 +25,7 @@ vector or named list or a list of \link{f7CheckboxChoice}.}
 
 \item{selected}{Checkbox group selected value. If you pass
 \link{f7CheckboxChoice} in choices, selected must be a numeric
-value corresponding to the element to select.}
+value corresponding to the index of the element to select.}
 
 \item{position}{Check mark position.
 \code{"left"} or \code{"right"}.}

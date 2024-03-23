@@ -49,6 +49,11 @@ the check icon position. Default to left.
 to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
 - `f7VirtualList()` has new `outline`, `dividers` and `strong` styles. Additionally, `mode` was added with the following possible values: `simple`, `links`, `media` or `contacts`.
 - `f7Popup()` has a new `push` effect (pushin the main view behind on opening).
+- `f7Radio()` has a new `position` parameter to control
+the check icon position. Default to left (like `f7CheckboxGroup()`).
+Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `outline`,`dividers`, `strong` for more styling option.
+- `f7RadioChoice()`: new function to pass inside `choices` in a
+`f7Radio()`. Improved choice with title, subtitle, ...
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

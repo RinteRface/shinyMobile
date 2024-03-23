@@ -15,11 +15,11 @@ updateF7Checkbox(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{The input slot that will be used to access the value.}
 
-\item{label}{The label to set for the input object. Does not work.}
+\item{label}{Display label for the control, or NULL for no label.}
 
-\item{value}{The value to set for the input object.}
+\item{value}{Initial value (TRUE or FALSE).}
 
 \item{session}{The Shiny session object.}
 }
