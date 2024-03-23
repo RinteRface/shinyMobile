@@ -10,25 +10,38 @@ f7CheckboxGroup(
   label,
   choices = NULL,
   selected = NULL,
-  position = c("left", "right")
+  position = c("left", "right"),
+  inset = FALSE,
+  outline = FALSE,
+  dividers = FALSE,
+  strong = FALSE
 )
 
 f7CheckboxChoice(..., title, subtitle = NULL, after = NULL)
 }
 \arguments{
-\item{inputId}{Checkbox group input.}
+\item{inputId}{Input id.}
 
-\item{label}{Checkbox group label.}
+\item{label}{Input label}
 
-\item{choices}{Checkbox group choices. Can be a simple
-vector or named list or a list of \link{f7CheckboxChoice}.}
+\item{choices}{List of choices. Can be a simple
+vector or named list or a list of \link{f7RadioChoice} or
+\link{f7CheckboxChoice}}
 
-\item{selected}{Checkbox group selected value. If you pass
-\link{f7CheckboxChoice} in choices, selected must be a numeric
-value corresponding to the index of the element to select.}
+\item{selected}{Selected element. NULL by default. If you pass
+\link{f7RadioChoice} or \link{f7CheckboxChoice} in choices,
+selected must be a numeric value corresponding to the index of the element to select.}
 
-\item{position}{Check mark position.
+\item{position}{Check mark side.
 \code{"left"} or \code{"right"}.}
+
+\item{inset}{Whether to display a card border. FALSE by default.}
+
+\item{outline}{Outline style. Default to FALSE.}
+
+\item{dividers}{Dividers style. Default to FALSE.}
+
+\item{strong}{Strong style. Default to FALSE.}
 
 \item{...}{Choice content. Text is striped if too long.}
 
@@ -83,8 +96,7 @@ app <- shinyApp(
             after = "March 17, 2024"
           )
         ),
-        selected = 2,
-        position = "right"
+        selected = 2
       ),
       textOutput("selected")
     )

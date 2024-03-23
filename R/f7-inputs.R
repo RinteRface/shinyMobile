@@ -937,15 +937,7 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #'
 #' \code{f7CheckboxGroup} creates a checkbox group input
 #'
-#' @param inputId Checkbox group input.
-#' @param label Checkbox group label.
-#' @param choices Checkbox group choices. Can be a simple
-#' vector or named list or a list of \link{f7CheckboxChoice}.
-#' @param selected Checkbox group selected value. If you pass
-#' \link{f7CheckboxChoice} in choices, selected must be a numeric
-#' value corresponding to the index of the element to select.
-#' @param position Check mark position.
-#' \code{"left"} or \code{"right"}.
+#' @inheritParams f7GroupInput
 #'
 #' @export
 #' @rdname checkboxgroup
@@ -953,73 +945,20 @@ updateF7Checkbox <- function(inputId, label = NULL, value = NULL,
 #' @example inst/examples/checkboxgroup/app.R
 f7CheckboxGroup <- function(
     inputId, label, choices = NULL, selected = NULL,
-    position = c("left", "right")) {
+    position = c("left", "right"), inset = FALSE,
+    outline = FALSE, dividers = FALSE, strong = FALSE) {
   position <- match.arg(position)
-  position <- switch(position,
-    "left" = "start",
-    "right" = "end"
-  )
-
-  has_media_list <- inherits(choices[[1]], "custom_choice")
-  if (has_media_list) position <- "start"
-
-  selectedPosition <- NULL
-  selectedPosition <- if (!is.null(selected)) {
-    if (has_media_list) {
-      if (!is.numeric(selected) || selected > length(choices)) {
-        stop("When using f7CheckboxChoice, selected must be a numeric
-        value of the choice to select. selected can't be higher than
-        the total number of choices.")
-      }
-      selected
-    } else {
-      match(selected, choices)
-    }
-  }
-  choicesTag <- lapply(X = seq_along(choices), function(i) {
-    shiny::tags$li(
-      shiny::tags$label(
-        class = sprintf("item-checkbox item-checkbox-icon-%s item-content", position),
-        shiny::tags$input(
-          type = "checkbox",
-          name = inputId,
-          value = if (has_media_list) {
-            names(choices)[[i]] %OR% i
-          } else {
-            choices[[i]]
-          },
-          checked = if (!is.null(selectedPosition)) {
-            if (i == selectedPosition) NA
-          }
-        ),
-        shiny::tags$i(class = "icon icon-checkbox"),
-        shiny::tags$div(
-          class = "item-inner",
-          if (has_media_list) {
-            choices[[i]]
-          } else {
-            shiny::tags$div(class = "item-title", choices[[i]])
-          }
-        )
-      )
-    )
-  })
-
-  mainCl <- "list list-strong-ios list-outline-ios list-dividers-ios shiny-input-checkboxgroup"
-  if (has_media_list) mainCl <- paste(mainCl, "media-list")
-
-  shiny::tagList(
-    shiny::tags$div(
-      class = "block-title",
-      label
-    ),
-    shiny::tags$div(
-      class = mainCl,
-      id = inputId,
-      shiny::tags$ul(
-        choicesTag
-      )
-    )
+  f7GroupInput(
+    type = "checkbox",
+    inputId = inputId,
+    label = label,
+    choices = choices,
+    selected = selected,
+    position = position,
+    inset = inset,
+    outline = outline,
+    dividers = dividers,
+    strong = strong
   )
 }
 
@@ -1063,7 +1002,7 @@ f7CheckboxChoice <- function(..., title, subtitle = NULL, after = NULL) {
 #' @keywords internal
 createSelectOptions <- function(choices, selected) {
   choices <- choicesWithNames(choices)
-  options <- lapply(X = seq_along(choices), function(i) {
+  lapply(X = seq_along(choices), function(i) {
     if (inherits(choices[[1]], "list")) {
       shiny::tags$optgroup(
         label = names(choices)[i],
@@ -1087,10 +1026,7 @@ createSelectOptions <- function(choices, selected) {
       )
     }
   })
-
-  return(options)
 }
-
 
 choicesWithNames <- function(choices) {
   listify <- function(obj) {
@@ -2504,52 +2440,27 @@ updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
 #'
 #' \code{f7Radio} creates a radio button input.
 #'
-#' @param inputId Radio input id.
-#' @param label Radio label
-#' @param choices List of choices. Can be a simple
-#' vector or named list or a list of \link{f7RadioChoice}.
-#' @param selected Selected element. NULL by default. If you pass
-#' \link{f7RadioChoice} in choices, selected must be a numeric
-#' value corresponding to the index of the element to select.
-#' @param position Check mark side.
-#' \code{"left"} or \code{"right"}.
-#' @inheritParams f7List
+#' @inheritParams f7GroupInput
 #'
 #' @export
 #' @rdname radio
-#'
 #' @example inst/examples/radio/app.R
 f7Radio <- function(
     inputId, label, choices = NULL, selected = NULL,
     position = c("left", "right"), inset = FALSE,
     outline = FALSE, dividers = FALSE, strong = FALSE) {
   position <- match.arg(position)
-
-  has_media_list <- inherits(choices[[1]], "custom_choice")
-
-  mainCl <- "shiny-input-radiogroup"
-
-  radioTag <- f7List(
-    mode = if (has_media_list) "media" else NULL,
+  f7GroupInput(
+    type = "radio",
+    inputId = inputId,
+    label = label,
+    choices = choices,
+    selected = selected,
+    position = position,
     inset = inset,
     outline = outline,
     dividers = dividers,
-    strong = strong,
-    createRadioOptions(choices, selected, inputId, position, has_media_list)
-  )
-
-  radioTag$attribs$id <- inputId
-  radioTag$attribs$class <- paste(
-    radioTag$attribs$class,
-    mainCl
-  )
-
-  shiny::tagList(
-    shiny::tags$div(
-      class = "block-title",
-      label
-    ),
-    radioTag
+    strong = strong
   )
 }
 
@@ -2571,7 +2482,11 @@ updateF7Radio <- function(inputId, label = NULL, choices = NULL,
 
   options <- NULL
   if (!is.null(choices)) {
-    options <- as.character(tags$ul(createRadioOptions(choices, selected, inputId)))
+    options <- as.character(
+      tags$ul(
+        createOptions(inputId, choices, selected, type = "radio")
+      )
+    )
   }
 
   message <- dropNulls(
@@ -2586,29 +2501,88 @@ updateF7Radio <- function(inputId, label = NULL, choices = NULL,
 }
 
 #' @export
+#' @rdname radio
 f7RadioChoice <- f7CheckboxChoice
 
-#' Generates a list of option for \link{f7Radio}
+#' Framework7 group input
 #'
-#' @param choices List of choices.
-#' @param selected Selected value
-#' @param inputId Radio input id.
-#' @param position Check mark position.
-#' @param has_media_list For custom choices.
+#' Useful to create \code{f7Radio} and \link{f7CheckboxGroup}.
+#'
+#' @param inputId Input id.
+#' @param label Input label
+#' @param choices List of choices. Can be a simple
+#' vector or named list or a list of \link{f7RadioChoice} or
+#' \link{f7CheckboxChoice}
+#' @param selected Selected element. NULL by default. If you pass
+#' \link{f7RadioChoice} or \link{f7CheckboxChoice} in choices,
+#' selected must be a numeric value corresponding to the index of the element to select.
+#' @param position Check mark side.
+#' \code{"left"} or \code{"right"}.
+#' @inheritParams f7List
 #'
 #' @keywords internal
-createRadioOptions <- function(
-    choices, selected, inputId,
-    position = "left", has_media_list = FALSE) {
+f7GroupInput <- function(
+    type, inputId, label, choices, selected,
+    position, inset, outline, dividers, strong) {
+  has_media_list <- inherits(choices[[1]], "custom_choice")
+
+  mainCl <- sprintf("shiny-input-%sgroup", type)
+
+  tmp <- f7List(
+    mode = if (has_media_list) "media" else NULL,
+    inset = inset,
+    outline = outline,
+    dividers = dividers,
+    strong = strong,
+    createOptions(
+      inputId,
+      choices,
+      selected,
+      position,
+      has_media_list,
+      type = type
+    )
+  )
+
+  tmp$attribs$id <- inputId
+  tmp$attribs$class <- paste(
+    tmp$attribs$class,
+    mainCl
+  )
+
+  shiny::tagList(
+    shiny::tags$div(
+      class = "block-title",
+      label
+    ),
+    tmp
+  )
+}
+
+#' Generates a list of option
+#'
+#' For \link{f7Radio} and \link{f7CheckboxGroup}
+#'
+#' @param inputId Radio input id.
+#' @param choices List of choices.
+#' @param selected Selected value
+#' @param position Check mark position.
+#' @param has_media_list For custom choices.
+#' @param type Choose either "checkbox" or "radio"
+#'
+#' @keywords internal
+createOptions <- function(
+    inputId, choices, selected,
+    position = "left", has_media_list = FALSE, type) {
   if (has_media_list) position <- "start"
 
   selectedPosition <- NULL
   selectedPosition <- if (!is.null(selected)) {
     if (has_media_list) {
       if (!is.numeric(selected) || selected > length(choices)) {
-        stop("When using f7RadioChoice, selected must be a numeric
-        value of the choice to select. selected can't be higher than
-        the total number of choices.")
+        stop("When using f7*Choice (Radio or Checkbox),
+        selected must be a numeric value of the choice to select.
+        selected can't be higher than the total number of choices.")
       }
       selected
     } else {
@@ -2620,11 +2594,13 @@ createRadioOptions <- function(
     shiny::tags$li(
       shiny::tags$label(
         class = sprintf(
-          "item-radio item-radio-icon-%s item-content",
+          "item-%s item-%s-icon-%s item-content",
+          type,
+          type,
           position
         ),
         shiny::tags$input(
-          type = "radio",
+          type = type,
           name = inputId,
           value = if (has_media_list) {
             names(choices)[[i]] %OR% i
@@ -2635,7 +2611,7 @@ createRadioOptions <- function(
             if (i == selectedPosition) NA
           }
         ),
-        shiny::tags$i(class = "icon icon-radio"),
+        shiny::tags$i(class = sprintf("icon icon-%s", type)),
         shiny::tags$div(
           class = "item-inner",
           if (has_media_list) {

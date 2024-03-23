@@ -3,6 +3,7 @@
 \name{f7Radio}
 \alias{f7Radio}
 \alias{updateF7Radio}
+\alias{f7RadioChoice}
 \title{Framework7 radio input}
 \usage{
 f7Radio(
@@ -24,18 +25,21 @@ updateF7Radio(
   selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
+
+f7RadioChoice(..., title, subtitle = NULL, after = NULL)
 }
 \arguments{
-\item{inputId}{Radio input id.}
+\item{inputId}{Input id.}
 
-\item{label}{Radio label}
+\item{label}{Input label}
 
 \item{choices}{List of choices. Can be a simple
-vector or named list or a list of \link{f7RadioChoice}.}
+vector or named list or a list of \link{f7RadioChoice} or
+\link{f7CheckboxChoice}}
 
 \item{selected}{Selected element. NULL by default. If you pass
-\link{f7RadioChoice} in choices, selected must be a numeric
-value corresponding to the index of the element to select.}
+\link{f7RadioChoice} or \link{f7CheckboxChoice} in choices,
+selected must be a numeric value corresponding to the index of the element to select.}
 
 \item{position}{Check mark side.
 \code{"left"} or \code{"right"}.}

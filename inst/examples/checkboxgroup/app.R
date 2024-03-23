@@ -37,8 +37,7 @@ app <- shinyApp(
             after = "March 17, 2024"
           )
         ),
-        selected = 2,
-        position = "right"
+        selected = 2
       ),
       textOutput("selected")
     )
