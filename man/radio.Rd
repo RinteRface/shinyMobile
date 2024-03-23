@@ -53,6 +53,14 @@ selected must be a numeric value corresponding to the index of the element to se
 \item{strong}{Strong style. Default to FALSE.}
 
 \item{session}{Shiny session object.}
+
+\item{...}{Choice content. Text is striped if too long.}
+
+\item{title}{Item title.}
+
+\item{subtitle}{Item subtitle.}
+
+\item{after}{Display at the right of title.}
 }
 \description{
 \code{f7Radio} creates a radio button input.
