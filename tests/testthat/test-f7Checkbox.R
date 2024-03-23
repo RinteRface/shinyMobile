@@ -36,7 +36,7 @@ test_that("checkboxgroup tag", {
   expect_identical(checkbox_group[[2]]$attribs$id, "checkboxgroup")
   expect_identical(
     checkbox_group[[2]]$attribs$class,
-    "list list-strong-ios list-outline-ios list-dividers-ios shiny-input-checkboxgroup"
+    "list chevron-center shiny-input-checkboxgroup"
   )
 
   # Test if items number match the choices param.
