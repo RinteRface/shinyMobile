@@ -1,7 +1,7 @@
 test_that("swipeout works", {
-  expect_error(f7Swipeout(tag = div()))
+  expect_error(f7Swipeout(tag = shiny::div()))
   swipeout <- f7Swipeout(
-    tag = div(class = "parent", div(class = "content")),
+    tag = shiny::div(class = "parent", shiny::div(class = "content")),
     left = f7SwipeoutItem(id = "1", "test"),
     right = f7SwipeoutItem(id = "2", "test2", color = "blue")
   )
