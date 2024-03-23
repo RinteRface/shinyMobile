@@ -25,10 +25,6 @@ $(function() {
     app.ptr.create(".ptr-content");
     var ptr = app.ptr.get(".ptr-content");
 
-    ptr.on("done", function(e) {
-      
-    });
-
     // Add 'refresh' listener on it
     ptr.on("refresh", function(e) {
       // Emulate 2s loading
