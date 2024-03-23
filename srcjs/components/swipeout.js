@@ -11,7 +11,7 @@ $(function() {
     $(this).on("click", function() {
       Shiny.setInputValue($(this).attr("id"), true, { priority: "event" });
       // close the swipeout element
-      app.swipeout.close($(this).closest(".swipeout"));
+      app.swipeout.close($(this).closest(".swipeout")[0]);
     });
   });
 });

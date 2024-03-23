@@ -31,6 +31,7 @@
 - `f7Toolbar()`:
     - `hairline` and `shadow` are deprecated, removed from Framework7.
 - `f7Shadow()`removed from Framework7. No replacement. Will be removed in a future release.
+- `f7Swipeout`: deprecate `side` parameter and `...`. Now use either `left`/`right` or both.
 
 ## Minor change
 - New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
