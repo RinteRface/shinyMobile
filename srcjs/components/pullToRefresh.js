@@ -24,21 +24,23 @@ $(function() {
     // is added after the page initialization
     app.ptr.create(".ptr-content");
     var ptr = app.ptr.get(".ptr-content");
+
+    ptr.on("done", function(e) {
+      
+    });
+
     // Add 'refresh' listener on it
     ptr.on("refresh", function(e) {
       // Emulate 2s loading
       Shiny.setInputValue("ptr", true);
       setTimeout(function() {
-        app.ptr.done();
+        app.ptr.done(".ptr-content");
+        // reset input. This will prevent observeEvent from
+        // always being fired since they ignore NULL by default.
+        // Therefore, instead of setting ptr to FALSE, we set it
+        // to null
+        Shiny.setInputValue("ptr", null);
       }, 2000);
-    });
-
-    // reset input. This will prevent observeEvent from
-    // always being fired since they ignore NULL by default.
-    // Therefore, instead of setting ptr to FALSE, we set it
-    // to null
-    ptr.on("done", function(e) {
-      Shiny.setInputValue("ptr", null);
     });
   }
 
