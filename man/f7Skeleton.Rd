@@ -5,7 +5,7 @@
 \title{Framework 7 skeleton effect}
 \usage{
 f7Skeleton(
-  target = ".card",
+  target,
   effect = c("fade", "blink", "pulse"),
   duration = NULL,
   session = shiny::getDefaultReactiveDomain()
@@ -26,7 +26,13 @@ leave it to NULL.}
 \item{session}{Shiny session object.}
 }
 \description{
-Nice loading overlay for UI elements.
+Nice loading overlay for UI elements. You
+can also set \code{skeletonsOnLoad} TRUE in the app
+main options (see example) to show skeletons on load.
+}
+\details{
+This function is expected to be called from an observeEvent,
+you may also have to increase the observer priority (see example).
 }
 \examples{
 if (interactive()) {
@@ -36,13 +42,15 @@ if (interactive()) {
   shinyApp(
     ui = f7Page(
       title = "Skeletons",
+      options = list(skeletonsOnLoad = TRUE),
       f7SingleLayout(
         navbar = f7Navbar(title = "f7Skeleton"),
+        f7Block(
+          f7Button("update", "Update card")
+        ),
         f7Card(
           title = "Card header",
-          "This is a simple card with plain text,
-      but cards can also contain their own header,
-      footer, list view, image, or any other element.",
+          textOutput("test"),
         ),
         f7List(
           f7ListItem(
@@ -57,11 +65,21 @@ if (interactive()) {
       )
     ),
     server = function(input, output, session) {
-      observeEvent(TRUE,
+      txt <- eventReactive(input$update,
         {
-          f7Skeleton(".card", "fade", 2)
+          Sys.sleep(3)
+          "This is a simple card with plain text,
+        but cards can also contain their own header,
+        footer, list view, image, or any other element."
         },
-        once = TRUE
+        ignoreNULL = FALSE
+      )
+      output$test <- renderText(txt())
+      observeEvent(input$update,
+        {
+          f7Skeleton(".card", "fade")
+        },
+        priority = 1000
       )
     }
   )
