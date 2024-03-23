@@ -6,7 +6,7 @@ $(function() {
   // Skeleton effect at each output recalculation
   const skeletonClass = "skeleton-text skeleton-effect-fade";
 
-  Shiny.addCustomMessageHandler("add_skeleton", function(message) {
+  Shiny.addCustomMessageHandler("add-skeleton", function(message) {
     var cl = "skeleton-text skeleton-effect-" + message.effect;
     $(message.target).addClass(cl);
     if (message.duration !== undefined) {

@@ -66,5 +66,5 @@ f7Skeleton <- function(
     )
   )
 
-  sendCustomMessage("add_skeleton", message, session)
+  sendCustomMessage("add-skeleton", message, session)
 }
