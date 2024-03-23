@@ -2483,7 +2483,7 @@ updateF7Radio <- function(inputId, label = NULL, choices = NULL,
   options <- NULL
   if (!is.null(choices)) {
     options <- as.character(
-      tags$ul(
+      shiny::tags$ul(
         createOptions(inputId, choices, selected, type = "radio")
       )
     )
@@ -2501,6 +2501,7 @@ updateF7Radio <- function(inputId, label = NULL, choices = NULL,
 }
 
 #' @export
+#' @inheritParams f7CheckboxChoice
 #' @rdname radio
 f7RadioChoice <- f7CheckboxChoice
 

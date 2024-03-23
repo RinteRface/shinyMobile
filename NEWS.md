@@ -54,6 +54,7 @@ the check icon position. Default to left (like `f7CheckboxGroup()`).
 Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `outline`,`dividers`, `strong` for more styling option.
 - `f7RadioChoice()`: new function to pass inside `choices` in a
 `f7Radio()`. Improved choice with title, subtitle, ...
+- `f7Sheet()` gains new `options` parameter to allow passing more configuration. See https://framework7.io/docs/sheet-modal#sheet-parameters.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

@@ -4,35 +4,24 @@ import { getAppInstance } from "../init.js";
 var f7SheetBinding = new Shiny.InputBinding();
 
 $.extend(f7SheetBinding, {
-
+  instances: [],
   initialize: function(el) {
 
     this.app = getAppInstance();
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
-
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false
-        var isTrueSet = (attr.value == "true");
-        data[camelCaseName] = isTrueSet;
-      }
-    });
+    var config = JSON.parse($(el)
+      .find("script[data-for='" + id + "']")
+      .html());
 
     // add the id
-    data.el = '#' + id;
-
-    var self = this; // Store reference to 'this'
+    config.el = '#' + id;
 
     // this is to show shiny outputs in the sheet
-    data.on = {
+    config.on = {
       open: function(target) {
-        if (target.self.app.params.dark) {
+        if (target.app.params.dark) {
           $(target.el).addClass("theme-dark");
         }
       },
@@ -42,7 +31,7 @@ $.extend(f7SheetBinding, {
     };
 
     // feed the create method
-    var s = app.sheet.create(data);
+    this.instances[el.id] = this.app.sheet.create(config);
   },
 
   find: function(scope) {
@@ -51,13 +40,12 @@ $.extend(f7SheetBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var s = this.app.sheet.get(el);
-    return s.opened;
+    return this.instances[el.id].opened;
   },
 
   // see updateF7Sheet
   receiveMessage: function(el, data) {
-    var s = this.app.sheet.get(el);
+    var s = this.instances[el.id];
     if (s.opened) {
       s.close();
     } else {

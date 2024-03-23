@@ -8,8 +8,7 @@ $.extend(f7PanelBinding, {
   initialize: function(el) {
     this.app = getAppInstance();
     var id = $(el).attr('id');
-    var config = {};
-    config = JSON.parse($(el)
+    var config = JSON.parse($(el)
       .find("script[data-for='" + id + "']")
       .html());
     // add id
