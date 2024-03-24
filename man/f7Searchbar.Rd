@@ -25,7 +25,7 @@ Notice that utilities like \link{f7HideOnSearch} and \link{f7NotFound} are not
 compatible with this mode.}
 
 \item{options}{Search bar options.
-See \url{https://v5.framework7.io/docs/searchbar.html#searchbar-parameters}.
+See \url{https://framework7.io/docs/searchbar.html#searchbar-parameters}.
 If no options are provided, the searchbar will search in list elements by
 item title. This may be changed by updating the default searchContainer and
 searchIn.}
@@ -78,8 +78,6 @@ if (interactive()) {
       f7SingleLayout(
         navbar = f7Navbar(
           title = "f7Searchbar with trigger",
-          hairline = FALSE,
-          shadow = TRUE,
           subNavbar = f7SubNavbar(
             f7Searchbar(id = "search1", expandable = TRUE)
           )

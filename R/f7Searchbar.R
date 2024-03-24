@@ -10,7 +10,7 @@
 #' Notice that utilities like \link{f7HideOnSearch} and \link{f7NotFound} are not
 #' compatible with this mode.
 #' @param options Search bar options.
-#' See \url{https://v5.framework7.io/docs/searchbar.html#searchbar-parameters}.
+#' See \url{https://framework7.io/docs/searchbar.html#searchbar-parameters}.
 #' If no options are provided, the searchbar will search in list elements by
 #' item title. This may be changed by updating the default searchContainer and
 #' searchIn.
@@ -61,8 +61,6 @@
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(
 #'           title = "f7Searchbar with trigger",
-#'           hairline = FALSE,
-#'           shadow = TRUE,
 #'           subNavbar = f7SubNavbar(
 #'             f7Searchbar(id = "search1", expandable = TRUE)
 #'           )
@@ -151,13 +149,9 @@ f7SearchbarTrigger <- function(targetId) {
   shiny::tags$a(
     class = "link icon-only searchbar-enable",
     `data-searchbar` = paste0("#", targetId),
-    shiny::tags$i(class = "icon f7-icons if-not-md", "search"),
-    shiny::tags$i(class = "icon material-icons md-only", "search")
+    shiny::tags$i(class = "icon f7-icons", "search")
   )
 }
-
-
-
 
 #' Utility to hide a given tag on search
 #'
@@ -166,12 +160,9 @@ f7SearchbarTrigger <- function(targetId) {
 #' @param tag tag to hide.
 #' @export
 f7HideOnSearch <- function(tag) {
-  tag$attribs$class <- paste0(tag$attribs$class, " searchbar-hide-on-search")
-  return(tag)
+  tag$attribs$class <- paste(tag$attribs$class, "searchbar-hide-on-search")
+  tag
 }
-
-
-
 
 #' Utility to hide a given tag when \link{f7Searchbar} is enabled.
 #'
@@ -180,12 +171,9 @@ f7HideOnSearch <- function(tag) {
 #' @param tag tag to hide.
 #' @export
 f7HideOnEnable <- function(tag) {
-  tag$attribs$class <- paste0(tag$attribs$class, " searchbar-hide-on-enable")
-  return(tag)
+  tag$attribs$class <- paste(tag$attribs$class, "searchbar-hide-on-enable")
+  tag
 }
-
-
-
 
 #' Utility to display an item when the search is unsuccessful.
 #'
@@ -194,13 +182,9 @@ f7HideOnEnable <- function(tag) {
 #' @param tag tag to use.
 #' @export
 f7NotFound <- function(tag) {
-  tag$attribs$class <- paste0(tag$attribs$class, " searchbar-not-found")
-  return(tag)
+  tag$attribs$class <- paste(tag$attribs$class, "searchbar-not-found")
+  tag
 }
-
-
-
-
 
 #' Utility to display an item when the search is successful.
 #'
@@ -210,13 +194,9 @@ f7NotFound <- function(tag) {
 #' wrap the items to search in inside \link{f7Found}.
 #' @export
 f7Found <- function(tag) {
-  tag$attribs$class <- paste0(tag$attribs$class, " searchbar-found")
-  return(tag)
+  tag$attribs$class <- paste(tag$attribs$class, "searchbar-found")
+  tag
 }
-
-
-
-
 
 #' Utility to ignore an item from search.
 #'
@@ -225,6 +205,6 @@ f7Found <- function(tag) {
 #' @param tag tag to ignore.
 #' @export
 f7SearchIgnore <- function(tag) {
-  tag$attribs$class <- paste0(tag$attribs$class, " searchbar-ignore")
-  return(tag)
+  tag$attribs$class <- paste(tag$attribs$class, "searchbar-ignore")
+  tag
 }
