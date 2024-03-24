@@ -43,26 +43,26 @@ test_that("searchbar trigger works", {
 })
 
 test_that("hide on search works", {
-  res <- f7HideOnSearch(tags$div())
+  res <- f7HideOnSearch(shiny::tags$div())
   expect_true(grepl("searchbar-hide-on-search", res$attribs$class))
 })
 
 test_that("hide on enable works", {
-  res <- f7HideOnEnable(tags$div())
+  res <- f7HideOnEnable(shiny::tags$div())
   expect_true(grepl("searchbar-hide-on-enable", res$attribs$class))
 })
 
 test_that("Not found works", {
-  res <- f7NotFound(tags$div())
+  res <- f7NotFound(shiny::tags$div())
   expect_true(grepl("searchbar-not-found", res$attribs$class))
 })
 
 test_that("Found works", {
-  res <- f7Found(tags$div())
+  res <- f7Found(shiny::tags$div())
   expect_true(grepl("searchbar-found", res$attribs$class))
 })
 
 test_that("Search ignore works", {
-  res <- f7SearchIgnore(tags$div())
+  res <- f7SearchIgnore(shiny::tags$div())
   expect_true(grepl("searchbar-ignore", res$attribs$class))
 })
