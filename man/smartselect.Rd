@@ -29,30 +29,27 @@ updateF7SmartSelect(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Select input id.}
 
 \item{label}{Select input label.}
 
-\item{choices}{The new choices.}
+\item{choices}{Select input choices.}
 
-\item{selected}{The new value for the input.}
+\item{selected}{Default selected item.}
 
 \item{openIn}{Smart select type: either \code{c("sheet", "popup", "popover")}.
 Note that the search bar is only available when the type is popup.}
 
 \item{searchbar}{Whether to enable the search bar. TRUE by default.}
 
-\item{multiple}{Whether to allow multiple values.}
+\item{multiple}{Whether to allow multiple values. FALSE by default.}
 
 \item{maxlength}{Maximum items to select when multiple is TRUE.}
 
 \item{virtualList}{Enable Virtual List for smart select if your select has a lot
 of options. Default to FALSE.}
 
-\item{...}{Parameters used to update the smart select,
-use same arguments as in \code{\link{f7SmartSelect}}.}
-
-\item{maxLength}{Maximum items to select when multiple is TRUE.}
+\item{...}{Other options. See \url{https://framework7.io/docs/smart-select#smart-select-parameters}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
