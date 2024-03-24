@@ -96,13 +96,13 @@ app <- shinyApp(
         )
       ),
       f7Picker(
-        inputId = "mypicker",
+        inputId = "picker",
         placeholder = "Some text here!",
         label = "Picker Input",
         choices = c("a", "b", "c"),
         options = list(sheetPush = TRUE)
       ),
-      verbatimTextOutput("pickerval")
+      f7Block(verbatimTextOutput("pickerval"))
     )
   ),
   server = function(input, output, session) {
@@ -110,7 +110,7 @@ app <- shinyApp(
 
     observeEvent(input$update, {
       updateF7Picker(
-        inputId = "mypicker",
+        inputId = "picker",
         value = "b",
         choices = letters,
         openIn = "sheet",
@@ -121,7 +121,7 @@ app <- shinyApp(
 
     observeEvent(input$removeToolbar, {
       updateF7Picker(
-        inputId = "mypicker",
+        inputId = "picker",
         value = "b",
         choices = letters,
         openIn = "sheet",

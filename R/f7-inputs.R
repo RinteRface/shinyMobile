@@ -189,6 +189,9 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
                      sheetSwipeToClose = FALSE, options = list()) {
   # for JS
   if (is.null(value)) stop("value cannot be NULL.")
+  if (!is.null(value) && length(value) == 1) {
+    value <- list(value)
+  }
 
   # TO DO: create helper function for sheet, picker, ...
   # since they're all the same ...
