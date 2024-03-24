@@ -872,10 +872,6 @@ updateF7Select <- function(inputId, selected = NULL,
   session$sendInputMessage(inputId, message)
 }
 
-
-
-
-
 #' Framework7 smart select
 #'
 #' \code{f7SmartSelect} is smarter than the classic \link{f7Select},
@@ -898,49 +894,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #'
 #' @export
 #'
-#' @examples
-#' # Smart select input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7SmartSelect"),
-#'         f7SmartSelect(
-#'           inputId = "variable",
-#'           label = "Choose a variable:",
-#'           selected = "drat",
-#'           choices = colnames(mtcars)[-1],
-#'           openIn = "popup"
-#'         ),
-#'         tableOutput("data"),
-#'         f7SmartSelect(
-#'           inputId = "variable2",
-#'           label = "Group variables:",
-#'           choices = list(
-#'             `East Coast` = list("NY", "NJ", "CT"),
-#'             `West Coast` = list("WA", "OR", "CA"),
-#'             `Midwest` = list("MN", "WI", "IA")
-#'           ),
-#'           openIn = "sheet"
-#'         ),
-#'         textOutput("var")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$var <- renderText(input$variable2)
-#'       output$data <- renderTable(
-#'         {
-#'           mtcars[, c("mpg", input$variable), drop = FALSE]
-#'         },
-#'         rownames = TRUE
-#'       )
-#'     }
-#'   )
-#' }
+#' @example inst/examples/smartselect/app.R
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           openIn = c("page", "sheet", "popup", "popover"),
                           searchbar = TRUE, multiple = FALSE, maxLength = NULL,
@@ -957,43 +911,25 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
     ...
   ))
 
-  shiny::tags$div(
-    class = "list",
-    shiny::tags$ul(
-      shiny::tags$li(
-        shiny::tags$a(
-          class = "item-link smart-select",
-          id = inputId,
-          shiny::tags$select(
-            multiple = if (multiple) NA else NULL,
-            options
-          ),
-          shiny::tags$div(
-            class = "item-content",
-            shiny::tags$div(
-              class = "item-inner",
-              shiny::tags$div(
-                class = "item-title", label
-              )
-            )
-          ),
-          shiny::tags$script(
-            type = "application/json",
-            `data-for` = inputId,
-            jsonlite::toJSON(
-              x = config,
-              auto_unbox = TRUE,
-              json_verbatim = TRUE
-            )
-          )
-        )
+  f7List(
+    shiny::tags$li(
+      shiny::tags$a(
+        class = "item-link smart-select",
+        id = inputId,
+        shiny::tags$select(
+          multiple = if (multiple) NA else NULL,
+          options
+        ),
+        htmltools::tagQuery(
+          f7ListItem(title = label)
+        )$
+          find(".item-content")$
+          selectedTags(),
+        buildConfig(inputId, config)
       )
     )
   )
 }
-
-
-
 
 #' Update Framework7 smart select
 #'
@@ -1003,50 +939,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'
 #' @rdname smartselect
 #' @export
-#'
-#' @examples
-#' # Update smart select
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "Update f7SmartSelect"),
-#'         f7Button("updateSmartSelect", "Update Smart Select"),
-#'         f7SmartSelect(
-#'           inputId = "variable",
-#'           label = "Choose a variable:",
-#'           selected = "drat",
-#'           choices = colnames(mtcars)[-1],
-#'           openIn = "popup"
-#'         ),
-#'         tableOutput("data")
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$data <- renderTable(
-#'         {
-#'           mtcars[, c("mpg", input$variable), drop = FALSE]
-#'         },
-#'         rownames = TRUE
-#'       )
-#'
-#'       observeEvent(input$updateSmartSelect, {
-#'         updateF7SmartSelect(
-#'           inputId = "variable",
-#'           openIn = "sheet",
-#'           selected = "hp",
-#'           choices = c("hp", "gear"),
-#'           multiple = TRUE,
-#'           maxLength = 3
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multiple = NULL,
                                 maxLength = NULL, ...,
                                 session = shiny::getDefaultReactiveDomain()) {
@@ -1070,9 +962,6 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
   ))
   session$sendInputMessage(inputId, message)
 }
-
-
-
 
 #' Framework7 text input
 #'

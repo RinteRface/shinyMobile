@@ -1,9 +1,12 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7SmartSelectBinding = new Shiny.InputBinding();
 
 $.extend(f7SmartSelectBinding, {
-
+  instances: [],
   initialize: function(el) {
+    this.app = getAppInstance();
     var id = $(el).attr('id');
     var config = $(el).children().eq(2);
     config = JSON.parse(config.html());
@@ -16,8 +19,7 @@ $.extend(f7SmartSelectBinding, {
         }
       }
     }
-    var ss = app.smartSelect.create(config);
-    this["smart-select-" + el.id] = ss;
+    this.instances[el.id] = this.app.smartSelect.create(config);
   },
 
   find: function(scope) {
@@ -26,12 +28,12 @@ $.extend(f7SmartSelectBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return this["smart-select-" + el.id].getValue();
+    return this.instances[el.id].getValue();
   },
 
   // see updateF7SmartSelect
   setValue: function(el, value) {
-    this["smart-select-" + el.id].setValue(value);
+    this.instances[el.id].setValue(value);
   },
 
   // see updateF7SmartSelect
@@ -45,28 +47,28 @@ $.extend(f7SmartSelectBinding, {
       }
     }
     if (data.hasOwnProperty("config")) {
-      this["smart-select-" + el.id].destroy();
+      this.instances[el.id].destroy();
       data.config.el = '#' + $(el).attr('id');
-      this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+      this.instances[el.id] = this.app.smartSelect.create(data.config);
     }
 
     // ad multiple property
     if (data.hasOwnProperty("multiple")) {
       // we need to destroy the input, modify the tag and create the instance
       if (data.multiple) {
-        this["smart-select-" + el.id].destroy();
+        this.instances[el.id].destroy();
         $(el).find('select').attr('multiple', '');
         data.config.el = '#' + $(el).attr('id');
-        this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+        this.instances[el.id] = this.app.smartSelect.create(data.config);
       }
     }
 
     // max length
     if (data.hasOwnProperty("maxLength")) {
-      this["smart-select-" + el.id].destroy();
+      this.instances[el.id].destroy();
       $(el).find('select').attr('maxLength', data.maxLength);
       data.config.el = '#' + $(el).attr('id');
-      this["smart-select-" + el.id] = app.smartSelect.create(data.config);
+      this.instances[el.id] = this.app.smartSelect.create(data.config);
     }
 
     // update choices

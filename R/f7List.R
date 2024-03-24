@@ -202,10 +202,12 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
           },
 
           # text
-          shiny::tags$div(
-            class = "item-text",
-            ...
-          )
+          if (length(list(...)) > 0) {
+            shiny::tags$div(
+              class = "item-text",
+              ...
+            )
+          }
         )
       }
     )
