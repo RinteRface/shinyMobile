@@ -1,3 +1,4 @@
+library(shinytest2)
 test_that("date picker works", {
   skip_on_cran()
   shiny_app_path <-

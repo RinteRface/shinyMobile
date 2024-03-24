@@ -530,7 +530,8 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
     toolbar = toolbar,
     toolbarCloseText = toolbarCloseText,
     header = header,
-    headerPlaceholder = headerPlaceholder
+    headerPlaceholder = headerPlaceholder,
+    ...
   ))
 
   buildPickerInput(

@@ -47,9 +47,10 @@ $.extend(f7DatePickerBinding, {
   getValue: function(el) {
     var val = this.instances[el.id].getValue();
     var tmpDate;
+    var getTime = this.instances[el.id].hasTimePicker;
     if (val.length == 1) {
-      var tmpDate = new Date(val);
-      tmpDate =  Date.UTC(
+      tmpDate = new Date(val);
+      tmpDate = Date.UTC(
         tmpDate.getFullYear(),
         tmpDate.getMonth(),
         tmpDate.getDate(),
@@ -57,7 +58,11 @@ $.extend(f7DatePickerBinding, {
         tmpDate.getMinutes(),
         tmpDate.getSeconds()
       );
-      return new Date(tmpDate);
+      if (!getTime) {
+        return new Date(tmpDate).toISOString().slice(0, 10);
+      } else {
+        return new Date(tmpDate);
+      }
     } else {
       var dates = [];
       for (var i = 0; i < val.length; i++) {
@@ -70,7 +75,11 @@ $.extend(f7DatePickerBinding, {
           dates[i].getMinutes(),
           dates[i].getSeconds()
         );
-        dates[i] = new Date(dates[i]);
+        if (!getTime) {
+          dates[i] = new Date(dates[i]).toISOString().slice(0, 10);
+        } else {
+          dates[i] = new Date(dates[i]);
+        }
       }
       return dates;
     }
