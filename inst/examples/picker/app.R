@@ -18,7 +18,8 @@ app <- shinyApp(
         inputId = "mypicker",
         placeholder = "Some text here!",
         label = "Picker Input",
-        choices = c("a", "b", "c")
+        choices = c("a", "b", "c"),
+        options = list(sheetPush = TRUE)
       ),
       verbatimTextOutput("pickerval")
     )

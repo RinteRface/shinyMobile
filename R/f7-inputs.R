@@ -179,32 +179,7 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
 #' \url{https://framework7.io/docs/picker#picker-parameters}.
 #'
 #' @rdname picker
-#' @examples
-#' # Picker input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Picker"),
-#'         f7Picker(
-#'           inputId = "mypicker",
-#'           placeholder = "Some text here!",
-#'           label = "Picker Input",
-#'           choices = c("a", "b", "c")
-#'         ),
-#'         textOutput("pickerval")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$pickerval <- renderText(input$mypicker)
-#'     }
-#'   )
-#' }
-#'
+#' @example inst/examples/picker/app.R
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -245,7 +220,7 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
     )
   )
 
-  # input tag
+  # input tag. TO DO (can we generalize this tag?)
   inputTag <- shiny::tags$li(
     shiny::tags$div(
       class = "item-content item-input",
@@ -285,57 +260,6 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
 #'
 #' @export
 #' @rdname picker
-#'
-#' @examples
-#' # Update picker input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "Update picker"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update picker"),
-#'           f7Picker(
-#'             inputId = "mypicker",
-#'             placeholder = "Some text here!",
-#'             label = "Picker Input",
-#'             choices = c("a", "b", "c")
-#'           ),
-#'           verbatimTextOutput("pickerval"),
-#'           br(),
-#'           f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$pickerval <- renderText(input$mypicker)
-#'
-#'       observeEvent(input$update, {
-#'         updateF7Picker(
-#'           inputId = "mypicker",
-#'           value = "b",
-#'           choices = letters,
-#'           openIn = "sheet",
-#'           toolbarCloseText = "Prout",
-#'           sheetSwipeToClose = TRUE
-#'         )
-#'       })
-#'
-#'       observeEvent(input$removeToolbar, {
-#'         updateF7Picker(
-#'           inputId = "mypicker",
-#'           value = "b",
-#'           choices = letters,
-#'           openIn = "sheet",
-#'           toolbar = FALSE
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Picker <- function(inputId, value = NULL, choices = NULL,
                            rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
                            closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,

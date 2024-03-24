@@ -79,80 +79,59 @@ Default to TRUE.}
 \code{updateF7Picker} changes the value of a picker input on the client.
 }
 \examples{
-# Picker input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Picker"),
-        f7Picker(
-          inputId = "mypicker",
-          placeholder = "Some text here!",
-          label = "Picker Input",
-          choices = c("a", "b", "c")
-        ),
-        textOutput("pickerval")
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update picker"),
+      f7Segment(
+        f7Button(inputId = "update", label = "Update picker"),
+        f7Button(
+          inputId = "removeToolbar",
+          label = "Remove picker toolbar",
+          color = "red"
+        )
+      ),
+      f7Picker(
+        inputId = "mypicker",
+        placeholder = "Some text here!",
+        label = "Picker Input",
+        choices = c("a", "b", "c"),
+        options = list(sheetPush = TRUE)
+      ),
+      verbatimTextOutput("pickerval")
+    )
+  ),
+  server = function(input, output, session) {
+    output$pickerval <- renderText(input$mypicker)
+
+    observeEvent(input$update, {
+      updateF7Picker(
+        inputId = "mypicker",
+        value = "b",
+        choices = letters,
+        openIn = "sheet",
+        toolbarCloseText = "Prout",
+        sheetSwipeToClose = TRUE
       )
-    ),
-    server = function(input, output) {
-      output$pickerval <- renderText(input$mypicker)
-    }
-  )
-}
+    })
 
-# Update picker input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "Update picker"),
-        f7Card(
-          f7Button(inputId = "update", label = "Update picker"),
-          f7Picker(
-            inputId = "mypicker",
-            placeholder = "Some text here!",
-            label = "Picker Input",
-            choices = c("a", "b", "c")
-          ),
-          verbatimTextOutput("pickerval"),
-          br(),
-          f7Button(inputId = "removeToolbar", label = "Remove picker toolbar", color = "red")
-        )
+    observeEvent(input$removeToolbar, {
+      updateF7Picker(
+        inputId = "mypicker",
+        value = "b",
+        choices = letters,
+        openIn = "sheet",
+        toolbar = FALSE
       )
-    ),
-    server = function(input, output, session) {
-      output$pickerval <- renderText(input$mypicker)
+    })
+  }
+)
 
-      observeEvent(input$update, {
-        updateF7Picker(
-          inputId = "mypicker",
-          value = "b",
-          choices = letters,
-          openIn = "sheet",
-          toolbarCloseText = "Prout",
-          sheetSwipeToClose = TRUE
-        )
-      })
-
-      observeEvent(input$removeToolbar, {
-        updateF7Picker(
-          inputId = "mypicker",
-          value = "b",
-          choices = letters,
-          openIn = "sheet",
-          toolbar = FALSE
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
