@@ -23,7 +23,7 @@ $.extend(f7PickerBinding, {
       }
     ];
     if (config.displayValues !== undefined) {
-      config.cols.displayValues = config.displayValues
+      config.cols.displayValues = config.displayValues;
     }
 
     config.on = {

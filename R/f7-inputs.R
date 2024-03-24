@@ -220,7 +220,7 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
   pickerProps <- dropNulls(
     c(
       list(
-        value = value,
+        value = list(value), # needed by JS (array)
         values = choices,
         displayValues = if (length(names(choices))) names(choices),
         rotateEffect = rotateEffect,
