@@ -16,7 +16,7 @@ test_that("picker works", {
   app$expect_values(input = "picker")
   app$click(select = "#update")
   app$click(selector = "#picker")
-  app$wait_for_idle(4000)
+  app$wait_for_idle(2000)
   app$expect_values(input = "picker")
 })
 

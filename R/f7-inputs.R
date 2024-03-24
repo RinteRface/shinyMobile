@@ -175,7 +175,7 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
 #' @param toolbar Enables picker toolbar. Default to TRUE.
 #' @param toolbarCloseText Text for Done/Close toolbar button.
 #' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
-#' @param options Other options to pass to the picker. See
+#' @param ... Other options to pass to the picker. See
 #' \url{https://framework7.io/docs/picker#picker-parameters}.
 #'
 #' @rdname picker
@@ -186,44 +186,39 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
 f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], choices,
                      rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
                      closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
-                     sheetSwipeToClose = FALSE, options = list()) {
-  # for JS
+                     sheetSwipeToClose = FALSE, ...) {
+  # For JS
   if (is.null(value)) stop("value cannot be NULL.")
   if (!is.null(value) && length(value) == 1) {
+    # needed by JS (array)
     value <- list(value)
   }
 
   # TO DO: create helper function for sheet, picker, ...
   # since they're all the same ...
-  pickerProps <- dropNulls(
-    c(
-      list(
-        value = list(value), # needed by JS (array)
-        values = choices,
-        displayValues = if (length(names(choices))) names(choices),
-        rotateEffect = rotateEffect,
-        openIn = openIn,
-        scrollToInput = scrollToInput,
-        closeByOutsideClick = closeByOutsideClick,
-        toolbar = toolbar,
-        toolbarCloseText = toolbarCloseText,
-        sheetSwipeToClose = sheetSwipeToClose
-      ),
-      options
+  config <- dropNulls(
+    list(
+      value = value,
+      values = choices,
+      displayValues = if (length(names(choices))) names(choices),
+      rotateEffect = rotateEffect,
+      openIn = openIn,
+      scrollToInput = scrollToInput,
+      closeByOutsideClick = closeByOutsideClick,
+      toolbar = toolbar,
+      toolbarCloseText = toolbarCloseText,
+      sheetSwipeToClose = sheetSwipeToClose,
+      ...
     )
   )
 
-  pickerConfig <- shiny::tags$script(
-    type = "application/json",
-    `data-for` = inputId,
-    jsonlite::toJSON(
-      x = pickerProps,
-      auto_unbox = TRUE,
-      json_verbatim = TRUE
-    )
-  )
+  buildPickerInput(inputId, label, config, "picker-input")
+}
 
-  # input tag. TO DO (can we generalize this tag?)
+#' Build input tag for picker elements
+#'
+#' @keywords internal
+buildPickerInput <- function(id, label, config, class) {
   inputTag <- shiny::tags$li(
     shiny::tags$div(
       class = "item-content item-input",
@@ -232,12 +227,11 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
         shiny::tags$div(
           class = "item-input-wrap",
           shiny::tags$input(
-            id = inputId,
-            class = "picker-input",
-            type = "text",
-            placeholder = placeholder
+            id = id,
+            class = class,
+            type = "text"
           ),
-          pickerConfig
+          buildConfig(id, config)
         )
       )
     )
@@ -253,12 +247,27 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
   )
 }
 
+#' Build config tag for JavaScript
+#'
+#' See \url{https://unleash-shiny.rinterface.com/shiny-input-system#boxes-on-steroids-more}
+#'
+#' @keywords internal
+buildConfig <- function(id, config) {
+  shiny::tags$script(
+    type = "application/json",
+    `data-for` = id,
+    jsonlite::toJSON(
+      x = config,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
+}
+
 #' Update Framework7 picker
 #'
 #' \code{updateF7Picker} changes the value of a picker input on the client.
 #'
-#' @param ... Other options to pass to picker. See
-#' \url{https://framework7.io/docs/picker#picker-parameters}.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
@@ -284,9 +293,6 @@ updateF7Picker <- function(inputId, value = NULL, choices = NULL,
   )
   session$sendInputMessage(inputId, message)
 }
-
-
-
 
 f7ColorPickerPalettes <- list(
   c(
@@ -347,8 +353,6 @@ f7ColorPickerModules <- c(
   "rgb-bars", "palette", "hex",
   "current-color", "initial-current-colors"
 )
-
-
 
 globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 
@@ -490,6 +494,8 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param toolbarCloseText Text for Done/Close toolbar button.
 #' @param header Enables calendar header.
 #' @param headerPlaceholder Default calendar header placeholder text.
+#' @param ... Other options to pass to the picker. See
+#' \url{https://framework7.io/docs/calendar#calendar-parameters}.
 #'
 #' @importFrom jsonlite toJSON
 #' @rdname datepicker
@@ -497,54 +503,13 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @return a \code{Date} vector.
 #'
 #' @export
-#' @examples
-#' # Date picker
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7DatePicker"),
-#'         f7DatePicker(
-#'           inputId = "date",
-#'           label = "Choose a date",
-#'           value = "2019-08-24"
-#'         ),
-#'         "The selected date is",
-#'         verbatimTextOutput("selectDate"),
-#'         f7DatePicker(
-#'           inputId = "multipleDates",
-#'           label = "Choose multiple dates",
-#'           value = Sys.Date() + 0:3,
-#'           multiple = TRUE
-#'         ),
-#'         "The selected date is",
-#'         verbatimTextOutput("selectMultipleDates"),
-#'         f7DatePicker(
-#'           inputId = "default",
-#'           label = "Choose a date",
-#'           value = NULL
-#'         ),
-#'         "The selected date is",
-#'         verbatimTextOutput("selectDefault")
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$selectDate <- renderPrint(input$date)
-#'       output$selectMultipleDates <- renderPrint(input$multipleDates)
-#'       output$selectDefault <- renderPrint(input$default)
-#'     }
-#'   )
-#' }
+#' @example inst/examples/datepicker/app.R
 f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, direction = c("horizontal", "vertical"),
                          minDate = NULL, maxDate = NULL, dateFormat = "yyyy-mm-dd",
                          openIn = c("auto", "popover", "sheet", "customModal"),
                          scrollToInput = FALSE, closeByOutsideClick = TRUE,
                          toolbar = TRUE, toolbarCloseText = "Done", header = FALSE,
-                         headerPlaceholder = "Select date") {
+                         headerPlaceholder = "Select date", ...) {
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
@@ -568,120 +533,23 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
     headerPlaceholder = headerPlaceholder
   ))
 
-  # date picker props
-  datePickerTag <- shiny::tags$input(
-    type = "text",
-    class = "calendar-input",
-    id = inputId
-  )
-
-  # label
-  labelTag <- shiny::tags$div(class = "block-title", label)
-
-  shiny::tagList(
-    if (!is.null(label)) labelTag,
-    # input tag
-    shiny::tags$div(
-      class = "list no-hairlines-md",
-      shiny::tags$ul(
-        shiny::tags$li(
-          shiny::tags$div(
-            class = "item-content item-input",
-            shiny::tags$div(
-              class = "item-inner",
-              shiny::tags$div(
-                class = "item-input-wrap",
-                datePickerTag,
-                shiny::tags$script(
-                  type = "application/json",
-                  `data-for` = inputId,
-                  jsonlite::toJSON(
-                    x = config,
-                    auto_unbox = TRUE,
-                    json_verbatim = TRUE
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
+  buildPickerInput(
+    inputId,
+    label,
+    config,
+    "calendar-input"
   )
 }
-
-
-
-
 
 #' Update Framework7 date picker
 #'
 #' \code{updateF7DatePicker} changes the value of a date picker input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param value The new value for the input.
-#' @param ... Parameters used to update the date picker,
-#'  use same arguments as in \code{\link{f7DatePicker}}.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
 #'
 #' @rdname datepicker
-#'
-#' @examples
-#' # Update date picker
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "Update date picker"),
-#'         f7Card(
-#'           f7Button(inputId = "selectToday", label = "Select today"),
-#'           f7Button(inputId = "rmToolbar", label = "Remove toolbar"),
-#'           f7Button(inputId = "addToolbar", label = "Add toolbar"),
-#'           f7DatePicker(
-#'             inputId = "mypicker",
-#'             label = "Choose a date",
-#'             value = Sys.Date() - 7,
-#'             openIn = "auto",
-#'             direction = "horizontal"
-#'           ),
-#'           verbatimTextOutput("pickerval")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$pickerval <- renderPrint(input$mypicker)
-#'
-#'       observeEvent(input$selectToday, {
-#'         updateF7DatePicker(
-#'           inputId = "mypicker",
-#'           value = Sys.Date()
-#'         )
-#'       })
-#'
-#'       observeEvent(input$rmToolbar, {
-#'         updateF7DatePicker(
-#'           inputId = "mypicker",
-#'           toolbar = FALSE,
-#'           dateFormat = "yyyy-mm-dd" # preserve date format
-#'         )
-#'       })
-#'
-#'       observeEvent(input$addToolbar, {
-#'         updateF7DatePicker(
-#'           inputId = "mypicker",
-#'           toolbar = TRUE,
-#'           dateFormat = "yyyy-mm-dd" # preserve date format
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7DatePicker <- function(inputId, value = NULL, ...,
                                session = shiny::getDefaultReactiveDomain()) {
   if (!is.null(value)) {

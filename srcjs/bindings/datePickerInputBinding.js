@@ -1,9 +1,11 @@
+import { getAppInstance } from "../init.js";
+
 var f7DatePickerBinding = new Shiny.InputBinding();
 
 $.extend(f7DatePickerBinding, {
-
+  instances: [],
   initialize: function(el) {
-
+    this.app = getAppInstance();
     var inputEl = $(el)[0];
 
     var config = $(el).parent().find("script[data-for='" + el.id + "']");
@@ -19,7 +21,6 @@ $.extend(f7DatePickerBinding, {
 
     config.inputEl = inputEl;
 
-    //data.timePicker = true;
     config.on = {
       open: function(target) {
         if (target.app.params.dark) {
@@ -32,8 +33,7 @@ $.extend(f7DatePickerBinding, {
     }
 
     // feed the create method
-    var calendar = app.calendar.create(config);
-    this["calendar-" + el.id] = calendar;
+    this.instances[el.id] = this.app.calendar.create(config);
   },
 
   find: function(scope) {
@@ -45,10 +45,10 @@ $.extend(f7DatePickerBinding, {
   },
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var val = this["calendar-" + el.id].getValue();
+    var val = this.instances[el.id].getValue();
     var tmpDate;
     if (val.length == 1) {
-      var tmpDate = new Date(this["calendar-" + el.id].getValue());
+      var tmpDate = new Date(val);
       tmpDate =  Date.UTC(
         tmpDate.getFullYear(),
         tmpDate.getMonth(),
@@ -78,13 +78,13 @@ $.extend(f7DatePickerBinding, {
 
   // see updateF7DatePicker
   setValue: function(el, value) {
-    this["calendar-" + el.id].setValue(value);
+    this.instances[el.id].setValue(value);
   },
 
   // see updateF7DatePicker
   receiveMessage: function(el, data) {
     if (data.hasOwnProperty("config")) {
-      this["calendar-" + el.id].destroy();
+      this.instances[el.id].destroy();
       data.config.inputEl = el;
       data.config.on = {
         open: function(target) {
@@ -93,7 +93,7 @@ $.extend(f7DatePickerBinding, {
           }
         }
       }
-      this["calendar-" + el.id] = app.calendar.create(data.config);
+      this.instances[el.id] = this.app.calendar.create(data.config);
     }
     if (data.hasOwnProperty("value")) {
       var tmpdate;

@@ -18,7 +18,7 @@ f7Picker(
   toolbar = TRUE,
   toolbarCloseText = "Done",
   sheetSwipeToClose = FALSE,
-  options = list()
+  ...
 )
 
 updateF7Picker(
@@ -65,10 +65,7 @@ Default to TRUE.}
 
 \item{sheetSwipeToClose}{Enables ability to close Picker sheet with swipe. Default to FALSE.}
 
-\item{options}{Other options to pass to the picker. See
-\url{https://framework7.io/docs/picker#picker-parameters}.}
-
-\item{...}{Other options to pass to picker. See
+\item{...}{Other options to pass to the picker. See
 \url{https://framework7.io/docs/picker#picker-parameters}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}

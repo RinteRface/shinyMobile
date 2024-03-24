@@ -20,7 +20,8 @@ f7DatePicker(
   toolbar = TRUE,
   toolbarCloseText = "Done",
   header = FALSE,
-  headerPlaceholder = "Select date"
+  headerPlaceholder = "Select date",
+  ...
 )
 
 updateF7DatePicker(
@@ -31,11 +32,11 @@ updateF7DatePicker(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Date input id.}
 
 \item{label}{Input label.}
 
-\item{value}{The new value for the input.}
+\item{value}{Array with initial selected dates. Each array item represents selected date.}
 
 \item{multiple}{If \code{TRUE} allow to select multiple dates.}
 
@@ -63,8 +64,8 @@ In case of auto will open in sheet modal on small screens and in popover on larg
 
 \item{headerPlaceholder}{Default calendar header placeholder text.}
 
-\item{...}{Parameters used to update the date picker,
-use same arguments as in \code{\link{f7DatePicker}}.}
+\item{...}{Other options to pass to the picker. See
+\url{https://framework7.io/docs/calendar#calendar-parameters}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -77,98 +78,57 @@ a \code{Date} vector.
 \code{updateF7DatePicker} changes the value of a date picker input on the client.
 }
 \examples{
-# Date picker
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7DatePicker"),
-        f7DatePicker(
-          inputId = "date",
-          label = "Choose a date",
-          value = "2019-08-24"
-        ),
-        "The selected date is",
-        verbatimTextOutput("selectDate"),
-        f7DatePicker(
-          inputId = "multipleDates",
-          label = "Choose multiple dates",
-          value = Sys.Date() + 0:3,
-          multiple = TRUE
-        ),
-        "The selected date is",
-        verbatimTextOutput("selectMultipleDates"),
-        f7DatePicker(
-          inputId = "default",
-          label = "Choose a date",
-          value = NULL
-        ),
-        "The selected date is",
-        verbatimTextOutput("selectDefault")
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update date picker"),
+      f7Segment(
+        f7Button(inputId = "update", label = "Update"),
+        f7Button(inputId = "rmToolbar", label = "Remove toolbar"),
+        f7Button(inputId = "addToolbar", label = "Add toolbar")
+      ),
+      f7DatePicker(
+        inputId = "picker",
+        label = "Choose a date",
+        value = Sys.Date() - 7,
+        openIn = "auto",
+        direction = "horizontal"
+      ),
+      f7Block(verbatimTextOutput("pickerval"))
+    )
+  ),
+  server = function(input, output, session) {
+    output$pickerval <- renderPrint(input$picker)
+
+    observeEvent(input$update, {
+      updateF7DatePicker(
+        inputId = "picker",
+        value = Sys.Date(),
+        multiple = TRUE
       )
-    ),
-    server = function(input, output, session) {
-      output$selectDate <- renderPrint(input$date)
-      output$selectMultipleDates <- renderPrint(input$multipleDates)
-      output$selectDefault <- renderPrint(input$default)
-    }
-  )
-}
-# Update date picker
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+    })
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "Update date picker"),
-        f7Card(
-          f7Button(inputId = "selectToday", label = "Select today"),
-          f7Button(inputId = "rmToolbar", label = "Remove toolbar"),
-          f7Button(inputId = "addToolbar", label = "Add toolbar"),
-          f7DatePicker(
-            inputId = "mypicker",
-            label = "Choose a date",
-            value = Sys.Date() - 7,
-            openIn = "auto",
-            direction = "horizontal"
-          ),
-          verbatimTextOutput("pickerval")
-        )
+    observeEvent(input$rmToolbar, {
+      updateF7DatePicker(
+        inputId = "picker",
+        toolbar = FALSE,
+        dateFormat = "yyyy-mm-dd" # preserve date format
       )
-    ),
-    server = function(input, output, session) {
-      output$pickerval <- renderPrint(input$mypicker)
+    })
 
-      observeEvent(input$selectToday, {
-        updateF7DatePicker(
-          inputId = "mypicker",
-          value = Sys.Date()
-        )
-      })
+    observeEvent(input$addToolbar, {
+      updateF7DatePicker(
+        inputId = "picker",
+        toolbar = TRUE,
+        dateFormat = "yyyy-mm-dd" # preserve date format
+      )
+    })
+  }
+)
 
-      observeEvent(input$rmToolbar, {
-        updateF7DatePicker(
-          inputId = "mypicker",
-          toolbar = FALSE,
-          dateFormat = "yyyy-mm-dd" # preserve date format
-        )
-      })
-
-      observeEvent(input$addToolbar, {
-        updateF7DatePicker(
-          inputId = "mypicker",
-          toolbar = TRUE,
-          dateFormat = "yyyy-mm-dd" # preserve date format
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

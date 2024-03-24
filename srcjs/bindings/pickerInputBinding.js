@@ -7,15 +7,14 @@ $.extend(f7PickerBinding, {
   instances: [],
   initialize: function(el) {
     this.app = getAppInstance();
-    var id = $(el).attr("id");
-    var config = JSON.parse(
-      $(el)
-      .parent()
-      .find(`script[data-for="${id}"]`)
-      .html());
+    var inputEl = $(el)[0];
+
+    var config = $(el).parent().find("script[data-for='" + el.id + "']");
+    config = JSON.parse(config.html());
 
     // add the id
-    config.inputEl = "#" + id;
+    config.inputEl = inputEl;
+    
     config.cols = [
       {
         textAlign: "center",
