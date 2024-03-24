@@ -1215,7 +1215,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param maxlength Maximum items to select when multiple is TRUE.
 #' @param virtualList Enable Virtual List for smart select if your select has a lot
 #' of options. Default to FALSE.
-#' @param ... Other options. See \url{https://v5.framework7.io/docs/smart-select.html#smart-select-parameters}.
+#' @param ... Other options. See \url{https://framework7.io/docs/smart-select#smart-select-parameters}.
 #'
 #' @rdname smartselect
 #'

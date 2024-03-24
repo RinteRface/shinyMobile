@@ -11,7 +11,7 @@ f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 
 \item{target}{Related list element. CSS selector like .class, #id, ...}
 
-\item{...}{Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).}
+\item{...}{Other options (see \url{https://framework7.io/docs/list-index#list-index-parameters}).}
 
 \item{session}{Shiny session object.}
 }

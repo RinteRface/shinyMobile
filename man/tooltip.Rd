@@ -34,7 +34,7 @@ See \url{https://framework7.io/docs/tooltip#tooltip-parameters}.}
 \item{selector}{jQuery selector. Allow more customization for the target (nested tags).}
 
 \item{options}{List of options to pass to the tooltip.
-See \url{https://v5.framework7.io/docs/tooltip.html#tooltip-parameters}.}
+See \url{https://framework7.io/docs/tooltip#tooltip-parameters}.}
 
 \item{session}{Shiny session object.}
 

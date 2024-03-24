@@ -249,7 +249,7 @@ f7ListGroup <- function(..., title) {
 #'
 #' @param id Unique id.
 #' @param target Related list element. CSS selector like .class, #id, ...
-#' @param ... Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).
+#' @param ... Other options (see \url{https://framework7.io/docs/list-index#list-index-parameters}).
 #' @param session Shiny session object.
 #' @export
 #'

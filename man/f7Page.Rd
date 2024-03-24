@@ -36,26 +36,25 @@ Expect a name like blue, red or hex code like \verb{#FF0000}. If NULL, use the d
 If a name is specified it must be accepted either by \link[gplots]{col2hex} or
 \link{getF7Colors} (valid Framework 7 color names).
 \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
-See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
+See \url{https://framework7.io/docs/pull-to-refresh#examples}.
 \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
 FALSE by default.
 }
-Touch module options \url{https://v5.framework7.io/docs/app.html#app-parameters}:
+Touch module options \url{https://framework7.io/docs/app#param-touch}:
 \itemize{
-\item \code{tapHold}:  It triggers (if enabled) after a sustained, complete touch event.
-By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
-so Fast Clicks should be also enabled.
+\item \code{tapHold}: It triggers (if enabled) after a sustained, complete touch event.
+By default it is enabled. See \link{f7TapHold} for usage.
 \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
 Default to 750 ms.
 \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
 }
-Navbar options \url{https://v5.framework7.io/docs/navbar.html#navbar-app-parameters}:
+Navbar options \url{https://framework7.io/docs/navbar#navbar-app-parameters}:
 \itemize{
 \item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
 title at the center in iOS theme. Sometime (with some custom design) it may not needed.
 \item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
 }
-Toolbar options \url{https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters}:
+Toolbar options \url{https://framework7.io/docs/toolbar-tabbar#toolbar-app-parameters}:
 \itemize{
 \item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
 }

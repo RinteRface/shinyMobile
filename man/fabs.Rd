@@ -53,7 +53,7 @@ removed from Framework7.}
 \code{updateF7Fabs} toggles \link{f7Fabs} on the server side.
 
 \code{f7FabMorphTarget} convert a tag into a target morphing.
-See \url{https://v5.framework7.io/docs/floating-action-button.html#fab-morph}.
+See \url{https://framework7.io/docs/floating-action-button#fab-morph}.
 }
 \note{
 The background color might be an issue depending on the parent container. Consider
