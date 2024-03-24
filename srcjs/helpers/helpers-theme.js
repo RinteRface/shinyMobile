@@ -1,7 +1,6 @@
- 
+
 // Style for touch plugin
 const setTouchStyle = (config) => {
-    // TO DO: check whether we still need this ...
     if (config.hasOwnProperty("touch")) {
       if (config.touch.tapHold) {
         $("<style>")
@@ -16,13 +15,13 @@ const setTouchStyle = (config) => {
       }
     }
   };
-  
+
   // Set dark mode
   const setDarkMode = (config, app) => {
     if (!config.hasOwnProperty('dark')) config.darkMode = false;
     app.setDarkMode(config.dark);
   };
-  
+
   export const initTheme = (config, app) => {
     setTouchStyle(config);
     setDarkMode(config, app);
