@@ -1018,7 +1018,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' Note that the search bar is only available when the type is popup.
 #' @param searchbar Whether to enable the search bar. TRUE by default.
 #' @param multiple Whether to allow multiple values. FALSE by default.
-#' @param maxlength Maximum items to select when multiple is TRUE.
+#' @param maxLength Maximum items to select when multiple is TRUE.
 #' @param virtualList Enable Virtual List for smart select if your select has a lot
 #' of options. Default to FALSE.
 #' @param ... Other options. See \url{https://framework7.io/docs/smart-select#smart-select-parameters}.
@@ -1072,7 +1072,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' }
 f7SmartSelect <- function(inputId, label, choices, selected = NULL,
                           openIn = c("page", "sheet", "popup", "popover"),
-                          searchbar = TRUE, multiple = FALSE, maxlength = NULL,
+                          searchbar = TRUE, multiple = FALSE, maxLength = NULL,
                           virtualList = FALSE, ...) {
   options <- createSelectOptions(choices, selected)
   type <- match.arg(openIn)
@@ -1082,6 +1082,7 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
     searchbar = searchbar,
     searchbarPlaceholder = "Search",
     virtualList = virtualList,
+    maxLength = maxLength,
     ...
   ))
 
@@ -1094,7 +1095,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
           id = inputId,
           shiny::tags$select(
             multiple = if (multiple) NA else NULL,
-            maxlength = if (!is.null(maxlength)) maxlength else NULL,
             options
           ),
           shiny::tags$div(

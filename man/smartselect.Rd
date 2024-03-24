@@ -13,7 +13,7 @@ f7SmartSelect(
   openIn = c("page", "sheet", "popup", "popover"),
   searchbar = TRUE,
   multiple = FALSE,
-  maxlength = NULL,
+  maxLength = NULL,
   virtualList = FALSE,
   ...
 )
@@ -44,7 +44,7 @@ Note that the search bar is only available when the type is popup.}
 
 \item{multiple}{Whether to allow multiple values. FALSE by default.}
 
-\item{maxlength}{Maximum items to select when multiple is TRUE.}
+\item{maxLength}{Maximum items to select when multiple is TRUE.}
 
 \item{virtualList}{Enable Virtual List for smart select if your select has a lot
 of options. Default to FALSE.}
