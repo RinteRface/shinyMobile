@@ -17,7 +17,7 @@ test_that("skeletons works", {
   res$message <- jsonlite::fromJSON(res$message)
   expect_length(res, 2)
   expect_equal(res$type, "add-skeleton")
-  expect_length(res$message$target, ".card")
+  expect_equal(res$message$target, ".card")
   expect_equal(res$message$effect, "fade")
   expect_equal(res$message$duration, 1L)
 })
