@@ -26,11 +26,15 @@
 #' }
 #' Touch module options \url{https://framework7.io/docs/app#param-touch}:
 #' \itemize{
+#'  \item \code{touchClicksDistanceThreshold}: Distance threshold (in px) to prevent short swipes.
+#'  So if tap/move distance is larger than this value then "click" will not be triggered.
 #'  \item \code{tapHold}: It triggers (if enabled) after a sustained, complete touch event.
 #'  By default it is enabled. See \link{f7TapHold} for usage.
 #'  \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
 #'  Default to 750 ms.
+#'  \item \code{tapHoldPreventClicks}: When enabled (by default), then click event will not be fired after tap hold event.
 #'  \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+#'  \item \code{mdTouchRipple}: Default to TRUE. Enables touch ripple effect for MD theme.
 #' }
 #' Navbar options \url{https://framework7.io/docs/navbar#navbar-app-parameters}:
 #' \itemize{
@@ -62,9 +66,12 @@ f7Page <- function(
       filled = FALSE,
       color = "#007aff",
       touch = list(
+        touchClicksDistanceThreshold = 5,
         tapHold = TRUE,
         tapHoldDelay = 750,
-        iosTouchRipple = FALSE
+        tapHoldPreventClicks = TRUE,
+        iosTouchRipple = FALSE,
+        mdTouchRipple = TRUE
       ),
       iosTranslucentBars = FALSE,
       navbar = list(
