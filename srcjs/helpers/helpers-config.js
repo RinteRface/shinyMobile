@@ -25,7 +25,8 @@ export const setConfig = () => {
       // any other widget type to cache ...
       popovers: [],
       tooltips: [],
-      actions: []
+      actions: [],
+      preloaders: []
     },
     actions: {
       //toggleDarkTheme: function() {

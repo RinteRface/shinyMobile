@@ -59,7 +59,10 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7Sheet()` gains new `options` parameter to allow passing more configuration. See https://framework7.io/docs/sheet-modal#sheet-parameters.
 - `f7Picker()` has new `...` parameter to pass custom options.
 - `f7DatePicker()` has new `...` parameter to pass custom options.
-- Added `tapHoldPreventClicks`, `touchClicksDistanceThreshold`, `mdTouchRipple` to `f7Page()` touch options 
+- Added `tapHoldPreventClicks`, `touchClicksDistanceThreshold`, `mdTouchRipple` to `f7Page()` touch options.
+- `showF7Preloader()` has new `type` parameter and a new modal dialog support (if `type` is passed). New `id` parameter that has to be set when `type` is not NULL.
+- `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
+- New `updateF7Preloader()` to be able to update a progress preloader from the server.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1
