@@ -1,41 +1,32 @@
+import { getAppInstance } from "../init.js";
+
 // Input binding
 var f7PickerBinding = new Shiny.InputBinding();
 
 $.extend(f7PickerBinding, {
-
+  instances: [],
   initialize: function(el) {
+    this.app = getAppInstance();
+    var id = $(el).attr("id");
+    var config = JSON.parse(
+      $(el)
+      .parent()
+      .find(`script[data-for="${id}"]`)
+      .html());
 
-    var inputEl = $(el)[0];
-
-    // convert data attributes to camelCase parameters
-    // necessary in the create method
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false only for booleans
-        if (["openIn", "toolbarCloseText", "choices", "value"].indexOf(camelCaseName) == -1) {
-          var isTrueSet = (attr.value == 'true');
-          data[camelCaseName] = isTrueSet;
-        } else {
-          data[camelCaseName] = attr.value;
-        }
-      }
-    });
-
-    // add the id, value and choices
-    data.inputEl = inputEl;
-    data.value = JSON.parse(data.value);
-    data.cols = [
+    // add the id
+    config.inputEl = "#" + id;
+    config.cols = [
       {
-        textAlign: 'center',
-        values: JSON.parse(data.choices)
+        textAlign: "center",
+        values: config.values
       }
     ];
+    if (config.displayValues !== undefined) {
+      config.cols.displayValues = config.displayValues
+    }
 
-    data.on = {
+    config.on = {
       open: function(target) {
         if (target.app.params.dark) {
           target
@@ -47,8 +38,7 @@ $.extend(f7PickerBinding, {
     }
 
     // feed the create method
-    var p = app.picker.create(data);
-    inputEl.f7Picker = p;
+    this.instances[el.id] = this.app.picker.create(config);
   },
 
   find: function(scope) {
@@ -57,13 +47,12 @@ $.extend(f7PickerBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var p = app.picker.get($(el));
-    return p.value;
+    return this.instances[el.id].value;
   },
 
   // see updateF7Picker
   setValue: function(el, value) {
-    var p = app.picker.get($(el));
+    var p = this.instances[el.id];
     p.value = value;
     p.displayValue = value;
     p.open();
@@ -72,35 +61,35 @@ $.extend(f7PickerBinding, {
 
   // see updateF7Picker
   receiveMessage: function(el, data) {
-    var p = app.picker.get($(el));
+    var p = this.instances[el.id];
     // Update value
-    if (data.hasOwnProperty('value')) {
+    if (data.hasOwnProperty("value")) {
       this.setValue(el, data.value);
     }
     // update choices
-    if (data.hasOwnProperty('choices')) {
+    if (data.hasOwnProperty("choices")) {
       p.cols[0].values = data.choices;
     }
     // update other properties
-    if (data.hasOwnProperty('rotateEffect')) {
+    if (data.hasOwnProperty("rotateEffect")) {
       p.params.rotateEffect = data.rotateEffect;
     }
-    if (data.hasOwnProperty('openIn')) {
+    if (data.hasOwnProperty("openIn")) {
       p.params.openIn = data.openIn;
     }
-    if (data.hasOwnProperty('scrollToInput')) {
+    if (data.hasOwnProperty("scrollToInput")) {
       p.params.scrollToInput = data.scrollToInput;
     }
-    if (data.hasOwnProperty('closeByOutsideClick')) {
+    if (data.hasOwnProperty("closeByOutsideClick")) {
       p.params.closeByOutsideClick = data.closeByOutsideClick;
     }
-    if (data.hasOwnProperty('toolbar')) {
+    if (data.hasOwnProperty("toolbar")) {
       p.params.toolbar = data.toolbar;
     }
-    if (data.hasOwnProperty('toolbarCloseText')) {
+    if (data.hasOwnProperty("toolbarCloseText")) {
       p.params.toolbarCloseText = data.toolbarCloseText;
     }
-    if (data.hasOwnProperty('sheetSwipeToClose')) {
+    if (data.hasOwnProperty("sheetSwipeToClose")) {
       p.params.sheetSwipeToClose = data.sheetSwipeToClose;
     }
   },
@@ -116,4 +105,4 @@ $.extend(f7PickerBinding, {
   }
 });
 
-Shiny.inputBindings.register(f7PickerBinding, 'f7.picker');
+Shiny.inputBindings.register(f7PickerBinding, "f7.picker");

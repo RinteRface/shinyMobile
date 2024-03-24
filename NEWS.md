@@ -56,6 +56,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7RadioChoice()`: new function to pass inside `choices` in a
 `f7Radio()`. Improved choice with title, subtitle, ...
 - `f7Sheet()` gains new `options` parameter to allow passing more configuration. See https://framework7.io/docs/sheet-modal#sheet-parameters.
+- `f7Picker()` has new `options` parameter.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

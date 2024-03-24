@@ -24,54 +24,7 @@
 #'
 #' @rdname autocomplete
 #'
-#' @examples
-#' # Autocomplete input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7AutoComplete"),
-#'         f7AutoComplete(
-#'           inputId = "myautocomplete1",
-#'           placeholder = "Some text here!",
-#'           dropdownPlaceholderText = "Try to type Apple",
-#'           label = "Type a fruit name",
-#'           openIn = "dropdown",
-#'           choices = c(
-#'             "Apple", "Apricot", "Avocado", "Banana", "Melon",
-#'             "Orange", "Peach", "Pear", "Pineapple"
-#'           )
-#'         ),
-#'         textOutput("autocompleteval1"),
-#'         f7AutoComplete(
-#'           inputId = "myautocomplete2",
-#'           placeholder = "Some text here!",
-#'           openIn = "popup",
-#'           multiple = TRUE,
-#'           label = "Type a fruit name",
-#'           choices = c(
-#'             "Apple", "Apricot", "Avocado", "Banana", "Melon",
-#'             "Orange", "Peach", "Pear", "Pineapple"
-#'           )
-#'         ),
-#'         verbatimTextOutput("autocompleteval2")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       observe({
-#'         print(input$myautocomplete1)
-#'         print(input$myautocomplete2)
-#'       })
-#'       output$autocompleteval1 <- renderText(input$myautocomplete1)
-#'       output$autocompleteval2 <- renderPrint(input$myautocomplete2)
-#'     }
-#'   )
-#' }
-#'
+#' @example inst/examples/autocomplete/app.R
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
@@ -183,66 +136,14 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   }
 }
 
-
-
-
 #' Update Framework7 autocomplete
 #'
 #' \code{updateF7AutoComplete} changes the value of an autocomplete input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param value New value.
-#' @param choices New set of choices.
 #' @param session The Shiny session object.
-#'
-#' @note You cannot update choices yet.
 #'
 #' @export
 #' @rdname autocomplete
-#'
-#' @examples
-#' # Update autocomplete
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "Update autocomplete"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update autocomplete"),
-#'           f7AutoComplete(
-#'             inputId = "myautocomplete",
-#'             placeholder = "Some text here!",
-#'             openIn = "dropdown",
-#'             label = "Type a fruit name",
-#'             choices = c(
-#'               "Apple", "Apricot", "Avocado", "Banana", "Melon",
-#'               "Orange", "Peach", "Pear", "Pineapple"
-#'             )
-#'           ),
-#'           verbatimTextOutput("autocompleteval")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       observe({
-#'         print(input$myautocomplete)
-#'       })
-#'
-#'       output$autocompleteval <- renderText(input$myautocomplete)
-#'
-#'       observeEvent(input$update, {
-#'         updateF7AutoComplete(
-#'           inputId = "myautocomplete",
-#'           value = "plip",
-#'           choices = c("plip", "plap", "ploup")
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
@@ -253,10 +154,6 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
   )
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
 
 #' Framework7 picker input
 #'
@@ -278,6 +175,8 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
 #' @param toolbar Enables picker toolbar. Default to TRUE.
 #' @param toolbarCloseText Text for Done/Close toolbar button.
 #' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#' @param options Other options to pass to the picker. See
+#' \url{https://framework7.io/docs/picker#picker-parameters}.
 #'
 #' @rdname picker
 #' @examples
@@ -312,57 +211,59 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
 f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], choices,
                      rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
                      closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
-                     sheetSwipeToClose = FALSE) {
+                     sheetSwipeToClose = FALSE, options = list()) {
   # for JS
   if (is.null(value)) stop("value cannot be NULL.")
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
 
-  # picker props
+  # TO DO: create helper function for sheet, picker, ...
+  # since they're all the same ...
   pickerProps <- dropNulls(
-    list(
-      id = inputId,
-      class = "picker-input",
-      type = "text",
-      placeholder = placeholder,
-      `data-choices` = choices,
-      `data-value` = value,
-      `data-rotate-effect` = rotateEffect,
-      `data-open-in` = openIn,
-      `data-scroll-to-input` = scrollToInput,
-      `data-close-by-outside-click` = closeByOutsideClick,
-      `data-toolbar` = toolbar,
-      `data-toolbar-close-text` = toolbarCloseText,
-      `data-sheet-swipe-to-close` = sheetSwipeToClose
+    c(
+      list(
+        value = value,
+        values = choices,
+        displayValues = if (length(names(choices))) names(choices),
+        rotateEffect = rotateEffect,
+        openIn = openIn,
+        scrollToInput = scrollToInput,
+        closeByOutsideClick = closeByOutsideClick,
+        toolbar = toolbar,
+        toolbarCloseText = toolbarCloseText,
+        sheetSwipeToClose = sheetSwipeToClose
+      ),
+      options
     )
   )
 
-  # replace TRUE and FALSE by true and false for javascript
-  pickerProps <- lapply(pickerProps, function(x) {
-    if (identical(x, TRUE)) {
-      "true"
-    } else if (identical(x, FALSE)) {
-      "false"
-    } else {
-      x
-    }
-  })
-
-  # wrap props
-  pickerProps <- do.call(shiny::tags$input, pickerProps)
+  pickerConfig <- shiny::tags$script(
+    type = "application/json",
+    `data-for` = inputId,
+    jsonlite::toJSON(
+      x = pickerProps,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
+    )
+  )
 
   # input tag
-  inputTag <- shiny::tags$div(
-    class = "item-content item-input",
+  inputTag <- shiny::tags$li(
     shiny::tags$div(
-      class = "item-inner",
+      class = "item-content item-input",
       shiny::tags$div(
-        class = "item-input-wrap",
-        pickerProps
+        class = "item-inner",
+        shiny::tags$div(
+          class = "item-input-wrap",
+          shiny::tags$input(
+            id = inputId,
+            class = "picker-input",
+            type = "text",
+            placeholder = placeholder
+          ),
+          pickerConfig
+        )
       )
     )
   )
-
 
   # tag wrapper
   shiny::tagList(
@@ -370,38 +271,16 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
       class = "block-title",
       label
     ),
-    shiny::tags$div(
-      class = "list no-hairlines-md",
-      shiny::tags$ul(
-        shiny::tags$li(
-          inputTag
-        )
-      )
-    )
+    f7List(inputTag)
   )
 }
-
-
-
 
 #' Update Framework7 picker
 #'
 #' \code{updateF7Picker} changes the value of a picker input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param value Picker initial value, if any.
-#' @param choices New picker choices.
-#' @param rotateEffect Enables 3D rotate effect. Default to TRUE.
-#' @param openIn Can be auto, popover (to open picker in popover), sheet (to open in sheet modal).
-#'  In case of auto will open in sheet modal on small screens and in popover on large screens. Default
-#'  to auto.
-#' @param scrollToInput Scroll viewport (page-content) to input when picker opened. Default
-#'  to FALSE.
-#' @param closeByOutsideClick If enabled, picker will be closed by clicking outside of picker or related input element.
-#'  Default to TRUE.
-#' @param toolbar Enables picker toolbar. Default to TRUE.
-#' @param toolbarCloseText Text for Done/Close toolbar button.
-#' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#' @param ... Other options to pass to picker. See
+#' \url{https://framework7.io/docs/picker#picker-parameters}.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
@@ -460,19 +339,22 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
 updateF7Picker <- function(inputId, value = NULL, choices = NULL,
                            rotateEffect = NULL, openIn = NULL, scrollToInput = NULL,
                            closeByOutsideClick = NULL, toolbar = NULL, toolbarCloseText = NULL,
-                           sheetSwipeToClose = NULL,
+                           sheetSwipeToClose = NULL, ...,
                            session = shiny::getDefaultReactiveDomain()) {
-  message <- dropNulls(list(
-    value = value,
-    choices = choices,
-    rotateEffect = rotateEffect,
-    openIn = openIn,
-    scrollToInput = scrollToInput,
-    closeByOutsideClick = closeByOutsideClick,
-    toolbar = toolbar,
-    toolbarCloseText = toolbarCloseText,
-    sheetSwipeToClose = sheetSwipeToClose
-  ))
+  message <- dropNulls(
+    list(
+      value = value,
+      choices = choices,
+      rotateEffect = rotateEffect,
+      openIn = openIn,
+      scrollToInput = scrollToInput,
+      closeByOutsideClick = closeByOutsideClick,
+      toolbar = toolbar,
+      toolbarCloseText = toolbarCloseText,
+      sheetSwipeToClose = sheetSwipeToClose,
+      ...
+    )
+  )
   session$sendInputMessage(inputId, message)
 }
 
@@ -1322,13 +1204,6 @@ f7SmartSelect <- function(inputId, label, choices, selected = NULL,
 #'
 #' \code{updateF7SmartSelect} changes the value of a smart select input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param selected The new value for the input.
-#' @param choices The new choices.
-#' @param ... Parameters used to update the smart select,
-#'  use same arguments as in \code{\link{f7SmartSelect}}.
-#' @param multiple Whether to allow multiple values.
-#' @param maxLength Maximum items to select when multiple is TRUE.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @rdname smartselect

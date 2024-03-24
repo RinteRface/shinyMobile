@@ -17,7 +17,8 @@ f7Picker(
   closeByOutsideClick = TRUE,
   toolbar = TRUE,
   toolbarCloseText = "Done",
-  sheetSwipeToClose = FALSE
+  sheetSwipeToClose = FALSE,
+  options = list()
 )
 
 updateF7Picker(
@@ -31,11 +32,12 @@ updateF7Picker(
   toolbar = NULL,
   toolbarCloseText = NULL,
   sheetSwipeToClose = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Picker input id.}
 
 \item{label}{Picker label.}
 
@@ -43,7 +45,7 @@ updateF7Picker(
 
 \item{value}{Picker initial value, if any.}
 
-\item{choices}{New picker choices.}
+\item{choices}{Picker choices.}
 
 \item{rotateEffect}{Enables 3D rotate effect. Default to TRUE.}
 
@@ -62,6 +64,12 @@ Default to TRUE.}
 \item{toolbarCloseText}{Text for Done/Close toolbar button.}
 
 \item{sheetSwipeToClose}{Enables ability to close Picker sheet with swipe. Default to FALSE.}
+
+\item{options}{Other options to pass to the picker. See
+\url{https://framework7.io/docs/picker#picker-parameters}.}
+
+\item{...}{Other options to pass to picker. See
+\url{https://framework7.io/docs/picker#picker-parameters}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
