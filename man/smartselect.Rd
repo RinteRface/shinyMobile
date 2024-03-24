@@ -60,88 +60,42 @@ allows for choices filtering, ...
 \code{updateF7SmartSelect} changes the value of a smart select input on the client.
 }
 \examples{
-# Smart select input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7SmartSelect"),
-        f7SmartSelect(
-          inputId = "variable",
-          label = "Choose a variable:",
-          selected = "drat",
-          choices = colnames(mtcars)[-1],
-          openIn = "popup"
-        ),
-        tableOutput("data"),
-        f7SmartSelect(
-          inputId = "variable2",
-          label = "Group variables:",
-          choices = list(
-            `East Coast` = list("NY", "NJ", "CT"),
-            `West Coast` = list("WA", "OR", "CA"),
-            `Midwest` = list("MN", "WI", "IA")
-          ),
-          openIn = "sheet"
-        ),
-        textOutput("var")
-      )
-    ),
-    server = function(input, output) {
-      output$var <- renderText(input$variable2)
-      output$data <- renderTable(
-        {
-          mtcars[, c("mpg", input$variable), drop = FALSE]
-        },
-        rownames = TRUE
-      )
-    }
-  )
-}
-# Update smart select
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+app <- shinyApp(
+  ui = f7Page(
+    title = "Update f7SmartSelect",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update f7SmartSelect"),
+      f7Block(f7Button("update", "Update Smart Select")),
+      f7SmartSelect(
+        inputId = "smartselect",
+        label = "Choose a variable:",
+        choices = split(colnames(mtcars[-1]), rep(1:5)),
+        openIn = "popup"
+      ),
+      tableOutput("data")
+    )
+  ),
+  server = function(input, output, session) {
+    output$data <- renderTable(
+      mtcars[, c("mpg", input$smartselect), drop = FALSE],
+      rownames = TRUE
+    )
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "Update f7SmartSelect"),
-        f7Button("updateSmartSelect", "Update Smart Select"),
-        f7SmartSelect(
-          inputId = "variable",
-          label = "Choose a variable:",
-          selected = "drat",
-          choices = colnames(mtcars)[-1],
-          openIn = "popup"
-        ),
-        tableOutput("data")
+    observeEvent(input$update, {
+      updateF7SmartSelect(
+        inputId = "smartselect",
+        openIn = "sheet",
+        selected = "hp",
+        choices = c("hp", "gear", "carb"),
+        multiple = TRUE,
+        maxLength = 2
       )
-    ),
-    server = function(input, output, session) {
-      output$data <- renderTable(
-        {
-          mtcars[, c("mpg", input$variable), drop = FALSE]
-        },
-        rownames = TRUE
-      )
+    })
+  }
+)
 
-      observeEvent(input$updateSmartSelect, {
-        updateF7SmartSelect(
-          inputId = "variable",
-          openIn = "sheet",
-          selected = "hp",
-          choices = c("hp", "gear"),
-          multiple = TRUE,
-          maxLength = 3
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

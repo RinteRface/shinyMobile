@@ -93,10 +93,11 @@ app <- shinyApp(
       ),
       f7DatePicker(
         inputId = "picker",
-        label = "Choose a date",
-        value = Sys.Date() - 7,
+        label = "Choose a date and time",
+        value = Sys.time() - 3600*24,
         openIn = "auto",
-        direction = "horizontal"
+        direction = "horizontal",
+        timePicker = TRUE
       ),
       f7Block(verbatimTextOutput("pickerval"))
     )
@@ -107,8 +108,8 @@ app <- shinyApp(
     observeEvent(input$update, {
       updateF7DatePicker(
         inputId = "picker",
-        value = Sys.Date(),
-        multiple = TRUE
+        value = Sys.time(),
+        timePicker = TRUE
       )
     })
 
