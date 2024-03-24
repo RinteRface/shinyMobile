@@ -17,71 +17,7 @@
 #' @export
 #' @rdname searchbar
 #'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   cars <- rownames(mtcars)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Simple searchbar",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(
-#'           title = "f7Searchbar",
-#'           hairline = FALSE,
-#'           shadow = TRUE,
-#'           subNavbar = f7SubNavbar(
-#'             f7Searchbar(id = "search1")
-#'           )
-#'         ),
-#'         f7Block(
-#'           "This block will be hidden on search.
-#'         Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-#'         ) %>% f7HideOnSearch(),
-#'         f7List(
-#'           lapply(seq_along(cars), function(i) {
-#'             f7ListItem(cars[i])
-#'           })
-#'         ) %>% f7Found(),
-#'         f7Block(
-#'           p("Nothing found")
-#'         ) %>% f7NotFound()
-#'       )
-#'     ),
-#'     server = function(input, output) {}
-#'   )
-#'
-#'   # Expandable searchbar with trigger
-#'   cities <- names(precip)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Expandable searchbar",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(
-#'           title = "f7Searchbar with trigger",
-#'           subNavbar = f7SubNavbar(
-#'             f7Searchbar(id = "search1", expandable = TRUE)
-#'           )
-#'         ),
-#'         f7Block(
-#'           f7SearchbarTrigger(targetId = "search1")
-#'         ) %>% f7HideOnSearch(),
-#'         f7List(
-#'           lapply(seq_along(cities), function(i) {
-#'             f7ListItem(cities[i])
-#'           })
-#'         ) %>% f7Found(),
-#'         f7Block(
-#'           p("Nothing found")
-#'         ) %>% f7NotFound()
-#'       )
-#'     ),
-#'     server = function(input, output) {}
-#'   )
-#' }
+#' @example inst/examples/searchbar/app.R
 f7Searchbar <- function(id, placeholder = "Search", expandable = FALSE, inline = FALSE,
                         options = NULL) {
   if (is.null(options)) {
@@ -177,7 +113,7 @@ f7HideOnEnable <- function(tag) {
 
 #' Utility to display an item when the search is unsuccessful.
 #'
-#' \link{f7SearchNotFound}: elements with such
+#' \link{f7NotFound}: elements with such
 #' class are hidden by default and become visible
 #' when there is not any search results
 #'
@@ -191,7 +127,7 @@ f7NotFound <- function(tag) {
 
 #' Utility to display an item when the search is successful.
 #'
-#' \link{f7SearchFound}: elements with such
+#' \link{f7Found}: elements with such
 #' class are visible by default and become hidden
 #' when there is not any search results.
 #'

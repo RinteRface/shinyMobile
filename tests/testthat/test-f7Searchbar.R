@@ -66,3 +66,24 @@ test_that("Search ignore works", {
   res <- f7SearchIgnore(shiny::tags$div())
   expect_true(grepl("searchbar-ignore", res$attribs$class))
 })
+
+library(shinytest2)
+test_that("searchbar works", {
+  skip_on_cran()
+  shiny_app_path <-
+    system.file("examples/searchbar/app.R", package = "shinyMobile")
+  app <- AppDriver$new(
+    shiny_app_path,
+    name = "searchbar-app",
+    variant = platform_variant()
+  )
+
+  # Open
+  app$click(selector = "[data-searchbar=\"#search1\"]")
+  app$run_js("app.searchbar.search('.searchbar', 'mobile')")
+  app$wait_for_idle(2000)
+  app$expect_values(input = "deviceInfo")
+  app$click(selector = ".input-clear-button")
+  app$wait_for_idle(2000)
+  app$expect_values(input = "deviceInfo")
+})

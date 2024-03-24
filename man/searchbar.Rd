@@ -64,11 +64,11 @@ on page will be hidden during search
 \link{f7HideOnEnable}: elements with such class
 on page will be hidden when searchbar is enabled
 
-\link{f7SearchNotFound}: elements with such
+\link{f7NotFound}: elements with such
 class are hidden by default and become visible
 when there is not any search results
 
-\link{f7SearchFound}: elements with such
+\link{f7Found}: elements with such
 class are visible by default and become hidden
 when there is not any search results.
 
@@ -76,68 +76,36 @@ when there is not any search results.
 consider this elements in search results.
 }
 \examples{
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  cars <- rownames(mtcars)
+cities <- names(precip)
 
-  shinyApp(
-    ui = f7Page(
-      title = "Simple searchbar",
-      f7SingleLayout(
-        navbar = f7Navbar(
-          title = "f7Searchbar",
-          hairline = FALSE,
-          shadow = TRUE,
-          subNavbar = f7SubNavbar(
-            f7Searchbar(id = "search1")
-          )
-        ),
-        f7Block(
-          "This block will be hidden on search.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        ) \%>\% f7HideOnSearch(),
-        f7List(
-          lapply(seq_along(cars), function(i) {
-            f7ListItem(cars[i])
-          })
-        ) \%>\% f7Found(),
-        f7Block(
-          p("Nothing found")
-        ) \%>\% f7NotFound()
-      )
-    ),
-    server = function(input, output) {}
-  )
+app <- shinyApp(
+  ui = f7Page(
+    title = "Expandable searchbar",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "f7Searchbar with trigger",
+        subNavbar = f7SubNavbar(
+          f7Searchbar(id = "search1", expandable = TRUE)
+        )
+      ),
+      f7Block(
+        f7SearchbarTrigger(targetId = "search1")
+      ) \%>\% f7HideOnSearch(),
+      f7List(
+        lapply(seq_along(cities), function(i) {
+          f7ListItem(cities[i])
+        })
+      ) \%>\% f7Found(),
+      f7Block(
+        p("Nothing found")
+      ) \%>\% f7NotFound()
+    )
+  ),
+  server = function(input, output) {}
+)
 
-  # Expandable searchbar with trigger
-  cities <- names(precip)
-
-  shinyApp(
-    ui = f7Page(
-      title = "Expandable searchbar",
-      f7SingleLayout(
-        navbar = f7Navbar(
-          title = "f7Searchbar with trigger",
-          subNavbar = f7SubNavbar(
-            f7Searchbar(id = "search1", expandable = TRUE)
-          )
-        ),
-        f7Block(
-          f7SearchbarTrigger(targetId = "search1")
-        ) \%>\% f7HideOnSearch(),
-        f7List(
-          lapply(seq_along(cities), function(i) {
-            f7ListItem(cities[i])
-          })
-        ) \%>\% f7Found(),
-        f7Block(
-          p("Nothing found")
-        ) \%>\% f7NotFound()
-      )
-    ),
-    server = function(input, output) {}
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
