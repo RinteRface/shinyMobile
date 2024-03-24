@@ -27,7 +27,7 @@ f7Tooltip <- function(tag, text) {
 #' @param id Tooltip target id.
 #' @param selector jQuery selector. Allow more customization for the target (nested tags).
 #' @param options List of options to pass to the tooltip.
-#' See \url{https://v5.framework7.io/docs/tooltip.html#tooltip-parameters}.
+#' See \url{https://framework7.io/docs/tooltip#tooltip-parameters}.
 #' @param session Shiny session object.
 #' @export
 #' @rdname tooltip

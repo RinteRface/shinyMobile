@@ -129,7 +129,7 @@ updateF7Fab <- function(inputId, label = NULL,
 #' Framework7 FAB morphing
 #'
 #' \code{f7FabMorphTarget} convert a tag into a target morphing.
-#' See \url{https://v5.framework7.io/docs/floating-action-button.html#fab-morph}.
+#' See \url{https://framework7.io/docs/floating-action-button#fab-morph}.
 #'
 #' @rdname fabs
 #'

@@ -15,29 +15,30 @@ such as "#id" or ".class", ".class1, .class2", "a"...}
 \item{session}{Shiny session object.}
 }
 \description{
-\link{f7TapHold} is triggered after long press on an element, from the server.
+Framework7 has a so called "tap hold" event. If tapHold is enabled in \link{f7Page}, it triggers
+after a sustained, complete touch event. \link{f7TapHold} is triggered from the server.
 }
 \examples{
-if (interactive()) {
 library(shiny)
 library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "Taphold",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7TapHold"),
-       f7Button(inputId = "pressme", label = "Press me")
-     )
-   ),
-   server = function(input, output, session) {
+app <- shinyApp(
+  ui = f7Page(
+    title = "Taphold",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7TapHold"),
+      f7Button(inputId = "pressme", label = "Press me")
+    )
+  ),
+  server = function(input, output, session) {
     observe({
       f7TapHold(
-       target = "#pressme",
-       callback = "app.dialog.alert('Tap hold fired!')"
+        target = "#pressme",
+        callback = "app.dialog.alert('Tap hold fired!')"
       )
     })
-   }
- )
-}
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

@@ -656,7 +656,7 @@ options <- list(
 
 As stated above, you may choose between 3 skins and 2 color themes. There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
 `{shinyMobile}` brings a lot of different colors. __hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
-Framework7 has many more [options](https://v5.framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter.
+Framework7 has many more [options](https://framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter.
 
 # Gadgets
 

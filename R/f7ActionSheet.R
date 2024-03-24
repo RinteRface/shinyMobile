@@ -24,7 +24,7 @@
 #' The currently selected button may be accessed via input$<sheet_id>_button. The value is
 #' numeric. When the action sheet is closed, input$<sheet_id>_button is NULL. This is useful
 #' when you want to trigger events after a specific button click.
-#' @param ... Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.
+#' @param ... Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.
 #' @param session Shiny session object.
 #'
 #' @rdname actionsheet
@@ -57,7 +57,7 @@ f7ActionSheet <- function(id, buttons, grid = FALSE, ..., session = shiny::getDe
 #' @param id Unique id. This gives the state of the action sheet. input$id is TRUE
 #' when opened and inversely. Importantly, if the action sheet has never been opened,
 #' input$id is NULL.
-#' @param options Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.
+#' @param options Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.
 #' @param session Shiny session object.
 #' @rdname actionsheet
 #' @export

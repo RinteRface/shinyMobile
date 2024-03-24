@@ -40,11 +40,11 @@ when you want to trigger events after a specific button click.}
 
 \item{grid}{Whether to display buttons on a grid. Default to FALSE.}
 
-\item{...}{Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.}
+\item{...}{Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.}
 
 \item{session}{Shiny session object.}
 
-\item{options}{Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.}
+\item{options}{Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.}
 }
 \description{
 \code{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
