@@ -187,8 +187,6 @@ f7Page <- function(
   )
 }
 
-
-
 #' Framework7 single layout
 #'
 #' \code{f7SingleLayout} provides a simple page layout.

@@ -36,6 +36,7 @@
 #'           f7Tab(
 #'             title = "Tab 1",
 #'             tabName = "Tab1",
+#'             icon = f7Icon("house_alt_fill"),
 #'             f7Sheet(
 #'               id = "sheet",
 #'               label = "More",
@@ -48,8 +49,17 @@
 #'           scelerisque est, at porta justo cursus ac"
 #'             )
 #'           ),
-#'           f7Tab(title = "Tab 2", tabName = "Tab2", "tab 2 text"),
-#'           f7Tab(title = "Tab 3", tabName = "Tab3", "tab 3 text"),
+#'           f7Tab(
+#'             title = "Tab 2",
+#'             tabName = "Tab2",
+#'             "tab 2 text",
+#'             icon = f7Icon("location_circle_fill")
+#'           ),
+#'           f7Tab(
+#'             title = "Tab 3",
+#'             tabName = "Tab3",
+#'             "tab 3 text", icon = f7Icon("pencil_circle_fill")
+#'           ),
 #'           .items = f7TabLink(
 #'             icon = f7Icon("bolt_fill"),
 #'             label = "Toggle Sheet",
@@ -365,7 +375,7 @@ f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidde
     `data-hidden` = tolower(hidden),
     ...
   )
-  return(list(itemTag, icon, tabName, hidden, title))
+  list(itemTag, icon, tabName, hidden, title)
 }
 
 #' Special button/link to insert in the tabbar
