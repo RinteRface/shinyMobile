@@ -66,7 +66,7 @@ app <- shinyApp(
     # Update
     observeEvent(input$update, {
       req(length(tabs()) > 0)
-      tab_id <- sample(tabs(), 1)
+      tab_id <- min(tabs())
       updateF7Tabs(
         id = "tabs",
         selected = tab_id

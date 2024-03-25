@@ -130,6 +130,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
       "tabs ios-edges"
     },
     lapply(seq_along(items), function(i) {
+      if (swipeable) items[[i]][[1]]$name <- "swiper-slide"
       items[[i]][[1]]$attribs$id <- ns(items[[i]][[1]]$attribs$id)
       if (style %in% c("segmented", "strong")) {
         items[[i]][[1]]$attribs$class <- strsplit(
@@ -148,13 +149,12 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   # only when standalone
   # handle swipeable tabs
   if (swipeable) {
-    contentTag <- shiny::tags$div(
+    contentTag <- swiperTag(
       class = if (style %in% c("segmented", "strong")) {
-        "tabs-standalone tabs-swipeable-wrap"
-      } else {
-        "tabs-swipeable-wrap"
+        "tabs-standalone"
       },
-      contentTag
+      id = contentTag$attribs$id,
+      contentTag$children
     )
   }
 
@@ -170,6 +170,26 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   }
 
   shiny::tagList(tabLinksTag, contentTag)
+}
+
+#' Needed for swipeable tabs
+#'
+#' See \url{https://framework7.io/docs/tabs#swipeable-tabs}.
+#'
+#' @keywords internal
+swiperTag <- function(...) {
+  htmltools::tag(
+    "swiper-container",
+    list(class = "tabs", ...)
+  )
+}
+
+#' @keywords internal
+swiperSlideTag <- function(..., active = FALSE) {
+  htmltools::tag(
+    "swiper-slide",
+    list(class = paste("tab", if (active) "tab-active"), ...)
+  )
 }
 
 #' Validate a tab name

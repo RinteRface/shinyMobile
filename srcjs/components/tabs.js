@@ -41,7 +41,7 @@ $(function() {
 
   var tabIds = [];
   getAllTabSetIds = function() {
-    $(".tabs.ios-edges").each(function() {
+    $(".tabs").each(function() {
       tabIds.push(this.id);
     });
   };
@@ -65,9 +65,16 @@ $(function() {
 
       // for swipeable tabs
       var newTab;
-      if ($(tabId).hasClass("swiper-slide")) {
+      if (tabId[0].tagName === "SWIPER-SLIDE") {
         // prepare the new slide
-        newTab = $(tab).addClass("swiper-slide");
+        newTab = `<swiper-slide 
+          class="page-content tab"
+          data-active=${tab.data("active")} 
+          id=${tab.attr("id")} 
+          data-value=${tab.data("value")} 
+          data-hidden=${tab.data("hidden")}
+        >${tab.html()}
+        </swiper-slide>`;
         // remove page content class for standalone tabs
         if (
           $(".tabLinks")
@@ -148,9 +155,9 @@ $(function() {
       }
 
       // update the swiper if needed
-      if ($(tabId).hasClass("swiper-slide")) {
+      if (tabId[0].tagName === "SWIPER-SLIDE") {
         // access the swiper container
-        var swiper = document.querySelector(".swiper-container").swiper;
+        var swiper = document.querySelector("swiper-container").swiper;
         swiper.update();
       }
 
@@ -181,7 +188,12 @@ $(function() {
 
       // important: prevent tab from translating which would lead to a
       // white screen
-      $(".tabs.ios-edges").css("transform", "");
+      if ($(".tabs.ios-edges").length > 0) {
+        $(".tabs.ios-edges").css("transform", "");
+      } else {
+        $(".tabs").css("transform", "");
+      }
+      
 
       // remove the tab link: if condition to handle the case
       // of standalone tabs vs toolbar tabs
@@ -228,9 +240,9 @@ $(function() {
       $("#" + message.ns + "-" + message.target).remove();
 
       // update the swiper if needed
-      if ($(tabToRemove).hasClass("swiper-slide")) {
+      if (tabToRemove[0].tagName === "SWIPER-SLIDE") {
         // access the swiper container
-        var swiper = document.querySelector(".swiper-container").swiper;
+        var swiper = document.querySelector("swiper-container").swiper;
         swiper.update();
       }
 
