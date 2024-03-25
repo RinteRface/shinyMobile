@@ -18,4 +18,8 @@ test_that("date picker works", {
   app$click(selector = "#picker")
   app$wait_for_idle(2000)
   app$expect_values(input = "picker")
+  app$click(select = "#removeTime")
+  app$click(selector = "#picker")
+  app$wait_for_idle(2000)
+  app$expect_values(input = "picker")
 })
