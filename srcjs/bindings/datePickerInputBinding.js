@@ -108,7 +108,18 @@ $.extend(f7DatePickerBinding, {
       var tmpdate;
       for (var i = 0; i < data.value.length; i++) {
         tmpdate = new Date(data.value[i]);
-        data.value[i] = new Date(tmpdate.getFullYear(), tmpdate.getMonth(), tmpdate.getDate());
+        if (this.instances[el.id].hasTimePicker) {
+          data.value[i] = new Date(tmpdate.getFullYear(),
+                                   tmpdate.getMonth(),
+                                   tmpdate.getDate(),
+                                   tmpdate.getHours(),
+                                   tmpdate.getMinutes(),
+                                   tmpdate.getSeconds());
+        } else {
+          data.value[i] = new Date(tmpdate.getFullYear(),
+                                   tmpdate.getMonth(),
+                                   tmpdate.getDate());
+        }
       }
       this.setValue(el, data.value);
     }
