@@ -44,5 +44,4 @@ app <- shiny::shinyApp(
   }
 )
 
-app
-# if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app

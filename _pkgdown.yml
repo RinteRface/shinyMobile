@@ -244,6 +244,7 @@ reference:
   desc: Loading screens
   contents:
   - '`showF7Preloader`'
+  - '`updateF7Preloader`'
   - '`hideF7Preloader`'
 
 - title: CSS effects

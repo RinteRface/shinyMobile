@@ -28,37 +28,35 @@
 #'           title = "Preloader in container"
 #'         ),
 #'         # main content
-#'         f7Card(
-#'           title = "Card header",
-#'           f7Slider("obs", "Number of observations", 0, 1000, 500),
-#'           plotOutput("distPlot")
+#'         f7Block(
+#'           f7Button("compute", "Compute")
 #'         ),
-#'         f7Card("This is a simple card with plain text,
-#'        but cards can also contain their own header,
-#'        footer, list view, image, or any other element.")
+#'         f7Block(textOutput("calc"))
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'       long_task <- eventReactive(input$obs, {
-#'         Sys.sleep(4)
-#'         input$obs
+#'       res <- reactiveVal(NULL)
+#'       progress <- reactiveVal(NULL)
+#'       output$calc <- renderText(res())
+#'
+#'       observeEvent(input$compute, {
+#'         res(NULL)
+#'         progress(0)
+#'         showF7Preloader(color = "red", type = "progress", id = "loader")
+#'         for (i in seq_along(1:100)) {
+#'           Sys.sleep(0.025)
+#'           progress(i)
+#'           updateF7Preloader(
+#'             id = "loader",
+#'             title = "Computing ...",
+#'             text = sprintf("Done: %s/100", progress()),
+#'             progress = progress()
+#'           )
+#'         }
+#'         res("Result!")
 #'       })
 #'
-#'       observeEvent(input$obs, {
-#'         showF7Preloader(color = "red", type = "dialog", id = "loader")
-#'         updateF7Preloader(
-#'           id = "loader",
-#'           title = "Computing ...",
-#'           text = "This may take some time"
-#'         )
-#'       })
-#'
-#'       output$distPlot <- renderPlot({
-#'         dist <- rnorm(long_task())
-#'         hist(dist)
-#'       })
-#'
-#'       observeEvent(long_task(), {
+#'       observeEvent(res(), {
 #'         hideF7Preloader(id = "loader")
 #'       })
 #'     }

@@ -25,7 +25,7 @@ $(function() {
       return
     }
     if (message.type === "progress") {
-      app.store.state.preloaders[message.id] = app.dialog.progress(color = message.color);
+      app.store.state.preloaders[message.id] = app.dialog.progress(0, color = message.color);
       return
     }
     if (typeof message.el !== "undefined") {
