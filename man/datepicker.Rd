@@ -36,7 +36,8 @@ updateF7DatePicker(
 
 \item{label}{Input label.}
 
-\item{value}{Array with initial selected dates. Each array item represents selected date.}
+\item{value}{Array with initial selected dates. Each array item represents selected date.
+If timePicker enabled, the value needs to be an object of type POSIXct.}
 
 \item{multiple}{If \code{TRUE} allow to select multiple dates.}
 
@@ -94,7 +95,7 @@ app <- shinyApp(
       f7DatePicker(
         inputId = "picker",
         label = "Choose a date and time",
-        value = Sys.time() - 3600*24,
+        value = as.POSIXct("2024-03-24 09:00:00 CET"),
         openIn = "auto",
         direction = "horizontal",
         timePicker = TRUE
@@ -108,14 +109,16 @@ app <- shinyApp(
     observeEvent(input$update, {
       updateF7DatePicker(
         inputId = "picker",
-        value = Sys.time(),
-        timePicker = TRUE
+        value = as.POSIXct("2024-03-23 09:00:00 CET"),
+        timePicker = TRUE,
+        dateFormat = "yyyy-mm-dd" # preserve date format
       )
     })
 
     observeEvent(input$rmToolbar, {
       updateF7DatePicker(
         inputId = "picker",
+        timePicker = TRUE,
         toolbar = FALSE,
         dateFormat = "yyyy-mm-dd" # preserve date format
       )
@@ -124,6 +127,7 @@ app <- shinyApp(
     observeEvent(input$addToolbar, {
       updateF7DatePicker(
         inputId = "picker",
+        timePicker = TRUE,
         toolbar = TRUE,
         dateFormat = "yyyy-mm-dd" # preserve date format
       )

@@ -480,6 +480,7 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param inputId Date input id.
 #' @param label Input label.
 #' @param value Array with initial selected dates. Each array item represents selected date.
+#' If timePicker enabled, the value needs to be an object of type POSIXct.
 #' @param multiple If \code{TRUE} allow to select multiple dates.
 #' @param direction Months layout direction, could be 'horizontal' or 'vertical'.
 #' @param minDate Minimum allowed date.
