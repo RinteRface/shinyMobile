@@ -4,7 +4,6 @@ import './buttonInputBinding.js';
 import './cardInputBinding.js';
 import './collapsibleInputBinding.js';
 import './colorPickerInputBinding.js';
-import './dateInputBinding.js';
 import './datePickerInputBinding.js';
 import './fabsInputBinding.js';
 import './fabsInputBinding.js';
