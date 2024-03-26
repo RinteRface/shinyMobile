@@ -8,7 +8,7 @@
 \usage{
 f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
 
-f7LoginServer(input, output, session, ignoreInit = FALSE, trigger = NULL)
+f7LoginServer(id, ignoreInit = FALSE, trigger = NULL)
 
 updateF7Login(
   id,
@@ -20,7 +20,8 @@ updateF7Login(
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
 
-\item{id}{\link{f7Login} unique id.}
+\item{id}{Login unique id. input$\if{html}{\out{<id>}} gives the status of the login page (
+either opened or closed).}
 
 \item{title}{Login page title.}
 
@@ -31,12 +32,6 @@ updateF7Login(
 \item{startOpen}{Whether to open the login page at start. Default to TRUE. There
 are some cases where it is interesting to set up to FALSE, for instance when you want
 to have authentication only in a specific tab of your app (See example 2).}
-
-\item{input}{Shiny input object.}
-
-\item{output}{Shiny output object.}
-
-\item{session}{Shiny session object.}
 
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),
@@ -58,8 +53,7 @@ Provide a template for authentication
 \code{updateF7Login} toggles a login page.
 }
 \details{
-This function does not provide the backend features. You would
-need to store credentials in a database for instance.
+This function does not provide any security check.
 }
 \note{
 There is an input associated with the login status, namely input$login.
@@ -70,160 +64,40 @@ the login page is closed only if the text and password inputs are filled. The
 \code{f7LoginServer} contains a piece of server logic that does this work for you.
 }
 \examples{
-if (interactive()) {
-  # global authentication
-  library(shiny)
-  library(shinyMobile)
-  shinyApp(
-    ui = f7Page(
-      title = "Login module",
-      f7SingleLayout(
-        navbar = f7Navbar(
-          title = "Login Example"
-        ),
-        toolbar = f7Toolbar(
-          position = "bottom",
-          f7Link(label = "Link 1", href = "https://www.google.com"),
-          f7Link(label = "Link 2", href = "https://www.google.com")
-        ),
-        f7Login(id = "loginPage", title = "Welcome"),
-        # main content
-        f7BlockTitle(
-          title = HTML(paste("Welcome", textOutput("user"))),
-          size = "large"
-        ) \%>\% f7Align("center")
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "Login module",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Login Example"
+      ),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
+      ),
+      f7Login(id = "login", title = "Welcome"),
+      # main content
+      f7BlockTitle(
+        title = HTML(paste("Welcome", textOutput("user"))),
+        size = "large"
       )
-    ),
-    server = function(input, output, session) {
-      loginData <- callModule(f7LoginServer, id = "loginPage")
+    )
+  ),
+  server = function(input, output, session) {
+    loginData <- f7LoginServer(id = "login")
 
-      output$user <- renderText({
-        req(loginData$user)
-        loginData$user()
-      })
-    }
-  )
+    exportTestValues(res = loginData)
 
-  # section specific authentication
-  library(shiny)
-  library(shinyMobile)
-  shinyApp(
-    ui = f7Page(
-      title = "Local access restriction",
-      f7TabLayout(
-        navbar = f7Navbar(
-          title = "Login Example for Specific Section"
-        ),
-        f7Tabs(
-          id = "tabs",
-          f7Tab(
-            title = "Tab 1",
-            tabName = "Tab1",
-            icon = f7Icon("lock_open_fill"),
-            "Without authentication"
-          ),
-          f7Tab(
-            title = "Restricted",
-            tabName = "Restricted",
-            icon = f7Icon("lock_fill"),
-            # main content
-            f7BlockTitle(
-              title = HTML(paste("Welcome", textOutput("user"))),
-              size = "large"
-            ) \%>\% f7Align("center")
-          )
-        ),
-        f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE)
-      )
-    ),
-    server = function(input, output, session) {
-      # trigger
-      trigger <- reactive({
-        req(input$tabs)
-      })
+    output$user <- renderText({
+      req(loginData$user)
+      loginData$user()
+    })
+  }
+)
 
-      # do not run first since the login page is not yet visible
-      loginData <- callModule(
-        f7LoginServer,
-        id = "loginPage",
-        ignoreInit = TRUE,
-        trigger = trigger
-      )
-
-      output$user <- renderText({
-        req(loginData$user)
-        loginData$user()
-      })
-    }
-  )
-
-  # with 2 different protected sections
-  library(shiny)
-  library(shinyMobile)
-  shinyApp(
-    ui = f7Page(
-      title = "Multiple restricted areas",
-      f7TabLayout(
-        navbar = f7Navbar(
-          title = "Login Example for 2 Specific Section"
-        ),
-        f7Tabs(
-          id = "tabs",
-          f7Tab(
-            title = "Tab 1",
-            tabName = "Tab1",
-            "Without authentication",
-            icon = f7Icon("lock_open_fill"),
-          ),
-          f7Tab(
-            title = "Restricted",
-            tabName = "Restricted",
-            icon = f7Icon("lock_fill"),
-            # main content
-            f7BlockTitle(
-              title = "1st restricted area",
-              size = "large"
-            ) \%>\% f7Align("center")
-          ),
-          f7Tab(
-            title = "Restricted 2",
-            tabName = "Restricted2",
-            icon = f7Icon("lock_fill"),
-            # main content
-            f7BlockTitle(
-              title = "2nd restricted area",
-              size = "large"
-            ) \%>\% f7Align("center")
-          )
-        ),
-        f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE),
-        f7Login(id = "loginPage2", title = "Welcome", startOpen = FALSE)
-      )
-    ),
-    server = function(input, output, session) {
-      trigger1 <- reactive({
-        req(input$tabs == "Restricted")
-      })
-
-      trigger2 <- reactive({
-        req(input$tabs == "Restricted2")
-      })
-
-      # do not run first since the login page is not yet visible
-      callModule(
-        f7LoginServer,
-        id = "loginPage",
-        ignoreInit = TRUE,
-        trigger = trigger1
-      )
-
-      callModule(
-        f7LoginServer,
-        id = "loginPage2",
-        ignoreInit = TRUE,
-        trigger = trigger2
-      )
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
