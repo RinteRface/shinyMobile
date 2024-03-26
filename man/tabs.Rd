@@ -37,7 +37,8 @@ may use them as standalone components if you specify a the segmented or strong
 styles.
 }
 \details{
-When there is no icons in the tabbar, a tiny horizontal highlight bar is displayed on top
+For md design, when there is no icons in the tabbar,
+a tiny horizontal highlight bar is displayed on top
 of the active tab. Whenever a tab with icon is included, the highlight bar is
 hidden and a round pill highlights the currently active tab.
 }
