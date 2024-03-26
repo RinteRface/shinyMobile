@@ -101,7 +101,11 @@ f7List <- function(
 
   shiny::tags$div(
     class = listCl,
-    shiny::tags$ul(...)
+    if (!is.null(mode) && mode == "contacts") {
+      shiny::tagList(...)
+    } else {
+      shiny::tags$ul(...)
+    }
   )
 }
 
