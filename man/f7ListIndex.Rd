@@ -19,8 +19,7 @@ f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 List index must be attached to an existing list view.
 }
 \note{
-For some reason, unable to get more than 1 list index working. See
-example below. The second list does not work.
+We disadvise to use multiple list index widget per app.
 }
 \examples{
 if (interactive()) {
@@ -29,45 +28,23 @@ if (interactive()) {
   shinyApp(
     ui = f7Page(
       title = "List Index",
-      f7TabLayout(
+      f7SingleLayout(
         navbar = f7Navbar(
           title = "f7ListIndex"
         ),
-        f7Tabs(
-          f7Tab(
-            tabName = "List1",
-            f7List(
-              mode = "contacts",
-              lapply(1:26, function(i) {
-                f7ListGroup(
-                  title = LETTERS[i],
-                  lapply(1:26, function(j) f7ListItem(letters[j]))
-                )
-              })
+        f7List(
+          mode = "contacts",
+          lapply(1:26, function(i) {
+            f7ListGroup(
+              title = LETTERS[i],
+              lapply(1:26, function(j) f7ListItem(letters[j]))
             )
-          ),
-          f7Tab(
-            tabName = "List2",
-            f7List(
-              mode = "contacts",
-              lapply(1:26, function(i) {
-                f7ListGroup(
-                  title = LETTERS[i],
-                  lapply(1:26, function(j) f7ListItem(letters[j]))
-                )
-              })
-            )
-          )
+          })
         )
       )
     ),
     server = function(input, output, session) {
-      observeEvent(TRUE,
-        {
-          f7ListIndex(id = "list-index-1", target = ".list")
-        },
-        once = TRUE
-      )
+      f7ListIndex(id = "mylist", target = ".list", label = TRUE)
     }
   )
 }
