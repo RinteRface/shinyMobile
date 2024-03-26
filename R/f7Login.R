@@ -90,7 +90,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 #' @export
 #' @rdname authentication
 f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
-  moduleServer(
+  shiny::moduleServer(
     id,
     function(input, output, session) {
       ns <- session$ns
@@ -147,6 +147,7 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
 #'
 #' @param user Value of the user input.
 #' @param password Value of the password input.
+#' @param session Shiny session object.
 #' @export
 #' @rdname authentication
 updateF7Login <- function(id, user = NULL, password = NULL, session = shiny::getDefaultReactiveDomain()) {

@@ -43,6 +43,8 @@ one wants to set up local authentication (for a specific section). See example 2
 \item{user}{Value of the user input.}
 
 \item{password}{Value of the password input.}
+
+\item{session}{Shiny session object.}
 }
 \description{
 Provide a template for authentication
