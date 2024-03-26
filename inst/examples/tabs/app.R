@@ -21,7 +21,6 @@ app <- shinyApp(
         f7Tab(
           title = "Tab 1",
           tabName = "Tab1",
-          active = TRUE,
           icon = f7Icon("house_alt_fill"),
           f7Block("Tab 1 content"),
           f7Sheet(
@@ -40,6 +39,7 @@ app <- shinyApp(
           tabName = "Tab2",
           icon = f7Icon("location_circle_fill"),
           f7Block("tab 2 text"),
+          active = TRUE
         ),
         f7Tab(
           title = "Tab 3",
@@ -60,8 +60,6 @@ app <- shinyApp(
     output$selected <- renderText(input$tabs)
 
     tabs <- reactiveVal(paste0("Tab", 1:3))
-
-    observe(print(tabs()))
 
     # Update
     observeEvent(input$update, {
