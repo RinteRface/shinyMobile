@@ -36,6 +36,11 @@ By default, \link{f7Tabs} are used within the \link{f7TabLayout}. However, you
 may use them as standalone components if you specify a the segmented or strong
 styles.
 }
+\details{
+When there is no icons in the tabbar, a tiny horizontal highlight bar is displayed on top
+of the active tab. Whenever a tab with icon is included, the highlight bar is
+hidden and a round pill highlights the currently active tab.
+}
 \examples{
 library(shiny)
 library(shinyMobile)
@@ -60,7 +65,6 @@ app <- shinyApp(
         f7Tab(
           title = "Tab 1",
           tabName = "Tab1",
-          active = TRUE,
           icon = f7Icon("house_alt_fill"),
           f7Block("Tab 1 content"),
           f7Sheet(
@@ -79,6 +83,7 @@ app <- shinyApp(
           tabName = "Tab2",
           icon = f7Icon("location_circle_fill"),
           f7Block("tab 2 text"),
+          active = TRUE
         ),
         f7Tab(
           title = "Tab 3",
@@ -100,12 +105,10 @@ app <- shinyApp(
 
     tabs <- reactiveVal(paste0("Tab", 1:3))
 
-    observe(print(tabs()))
-
     # Update
     observeEvent(input$update, {
       req(length(tabs()) > 0)
-      tab_id <- sample(tabs(), 1)
+      tab_id <- min(tabs())
       updateF7Tabs(
         id = "tabs",
         selected = tab_id

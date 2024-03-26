@@ -4,6 +4,10 @@
 #' may use them as standalone components if you specify a the segmented or strong
 #' styles.
 #'
+#' When there is no icons in the tabbar, a tiny horizontal highlight bar is displayed on top
+#' of the active tab. Whenever a tab with icon is included, the highlight bar is
+#' hidden and a round pill highlights the currently active tab.
+#'
 #' @param ... Slot for \link{f7Tab}.
 #' @param .items Slot for other items that could be part of the toolbar such as
 #' buttons or \link{f7TabLink}. This may be useful to open an \link{f7Sheet} from
@@ -29,6 +33,7 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
   ns <- shiny::NS(id)
   items <- list(...)
   found_active <- FALSE
+  has_icon <- FALSE
 
   tabItems <- lapply(seq_along(items), FUN = function(i) {
     item <- items[[i]][[1]]
@@ -36,6 +41,9 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
     itemName <- items[[i]][[5]] # May be NULL
     itemClass <- item$attribs$class
     itemId <- item$attribs$id
+
+    # To handle the tab highlight
+    if (!is.null(itemIcon) && !has_icon) has_icon <<- TRUE
 
     # whether the item is hidden
     itemHidden <- items[[i]][[4]]
@@ -105,14 +113,21 @@ f7Tabs <- function(..., .items = NULL, id = NULL, swipeable = FALSE, animated = 
       )
     )
   } else if (style == "toolbar") {
-    f7Toolbar(
+    toolbar <- f7Toolbar(
       position = "bottom",
-      icons = TRUE,
+      # To be able to see the tab highlight when no icons
+      # for md design
+      icons = if (has_icon) TRUE else FALSE,
       scrollable = FALSE,
       tabItems,
       # other items here
       .items
     )
+    toolbar$attribs$class <- paste(
+      toolbar$attribs$class,
+      "tabbar"
+    )
+    toolbar
   }
 
   # this is for the insertF7Tab and removeF7Tab functions
