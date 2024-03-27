@@ -14,20 +14,20 @@
     border-radius: 3px;
     background: #848c99;
   }
-  
+
   .light .split-layout .page-content:not(.login-screen-content, .panel-content),
   .light div.messages {
     background-color: gainsboro;
   }
-  
+
   .panel.theme-dark {
     --f7-panel-bg-color: #000;
   }
-  
+
   .split-layout .view-main {
     margin-left: 260px;
   }
-  
+
   /* Left Panel right border when it is visible by breakpoint */
   .split-layout .panel-left.panel-visible-by-breakpoint:before {
     position: absolute;
@@ -39,12 +39,12 @@
     content: "";
     z-index: 6000;
   }
-  
+
   /* Hide navbar link which opens left panel when it is visible by breakpoint */
   .split-layout .panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
     display: none;
   }
-  
+
   /*
   Extra borders for main view and left panel for iOS theme when it behaves as panel (before breakpoint size)
   */
@@ -59,38 +59,11 @@
     content: "";
     z-index: 6000;
   }
-  
+
   /* FAB label in dark mode */
   .theme-dark .fab-label {
     background-color: #333;
     color: white;
-  }
-  
-  /* Tabs standalone issue */
-  .tabs-standalone {
-    height: auto;
-  }
-  
-  .popup {
-    overflow-y: auto;
-  }
-  
-  .swiper {
-    margin-top: 20px;
-    width: 90%;
-  }
-  
-  .theme-dark .swiper-slide {
-    background-color: #1c1c1d;
-  }
-  
-  .swiper-slide {
-    border-radius: var(--f7-card-border-radius);
-    min-height: 400px;
-  }
-  
-  .light .swiper-slide {
-    background-color: white;
   }
 
   /* Cards Demo */

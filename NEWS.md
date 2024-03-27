@@ -63,7 +63,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `showF7Preloader()` has new `type` parameter and a new modal dialog support (if `type` is passed). New `id` parameter that has to be set when `type` is not NULL.
 - `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
 - New `updateF7Preloader()` to be able to update a progress preloader from the server.
-- `f7PhotoBrowser()` fixed the `pageBackLinkText` to `back` when type was set to `page`, but this has been removed. The Framework7 default is now used, or the `pageBackLinkText` can be set manually.
+- `f7PhotoBrowser()` fixed the `pageBackLinkText` to `back` when type was set to `page`, but this has been removed. The Framework7 default is now used, or the `pageBackLinkText` can be set manually (iOS only).
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1
