@@ -9,31 +9,35 @@ app <- shiny::shinyApp(
       f7Swiper(
         id = "swiper",
         f7Slide(
-          f7Toggle(
-            inputId = "toggle",
-            label = "My toggle",
-            color = "pink",
-            checked = TRUE
-          ),
-          verbatimTextOutput("test")
+          f7Card(
+            f7Toggle(
+              inputId = "toggle",
+              label = "My toggle",
+              color = "pink",
+              checked = TRUE
+            ),
+            verbatimTextOutput("test")
+          )
         ),
         f7Slide(
-          f7Slider(
-            inputId = "slider",
-            label = "Number of observations",
-            max = 1000,
-            min = 0,
-            value = 100,
-            scaleSteps = 5,
-            scaleSubSteps = 3,
-            scale = TRUE,
-            color = "orange",
-            labels = tagList(
-              f7Icon("circle"),
-              f7Icon("circle_fill")
-            )
+          f7Card(
+            f7Slider(
+              inputId = "slider",
+              label = "Number of observations",
+              max = 1000,
+              min = 0,
+              value = 100,
+              scaleSteps = 5,
+              scaleSubSteps = 3,
+              scale = TRUE,
+              color = "orange",
+              labels = tagList(
+                f7Icon("circle"),
+                f7Icon("circle_fill")
+              )
+            ),
+            textOutput("test2")
           ),
-          textOutput("test2")
         )
       )
     )
