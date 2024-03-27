@@ -33,41 +33,40 @@ updateF7Toggle(
 \code{updateF7Toggle} changes the value of a toggle input on the client.
 }
 \examples{
-# Update f7Toggle
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "updateF7Toggle"),
-        f7Card(
-          f7Button(inputId = "update", label = "Update toggle"),
-          f7Toggle(
-            inputId = "toggle",
-            label = "My toggle",
-            color = "pink",
-            checked = FALSE
-          ),
-          verbatimTextOutput("test")
-        )
-      )
-    ),
-    server = function(input, output, session) {
-      output$test <- renderPrint({
-        input$toggle
-      })
-
-      observeEvent(input$update, {
-        updateF7Toggle(
+app <- shinyApp(
+  ui = f7Page(
+    title = "f7Toggle",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7Toggle"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update toggle"),
+        f7Toggle(
           inputId = "toggle",
-          checked = !input$toggle,
-          color = "green"
-        )
-      })
-    }
-  )
-}
+          label = "My toggle",
+          color = "pink",
+          checked = FALSE
+        ),
+        verbatimTextOutput("test")
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$test <- renderPrint({
+      input$toggle
+    })
+
+    observeEvent(input$update, {
+      updateF7Toggle(
+        inputId = "toggle",
+        checked = !input$toggle,
+        color = "green"
+      )
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
