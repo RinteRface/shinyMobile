@@ -11,12 +11,15 @@ app <- shinyApp(
         placeholder = "Some text here!",
         label = "Select a color"
       ),
-      "The picker value is:",
-      textOutput("colorPickerVal")
+      "The picker hex value is:",
+      textOutput("colorPickerVal"),
+      "The picker rgb value is:",
+      textOutput("colorPickerValRgb")
     )
   ),
   server = function(input, output) {
-    output$colorPickerVal <- renderText(input$mycolorpicker)
+    output$colorPickerVal <- renderText(input$mycolorpicker$hex)
+    output$colorPickerValRgb <- renderText(unlist(paste(input$mycolorpicker$rgb, collapse = ",")))
   }
 )
 

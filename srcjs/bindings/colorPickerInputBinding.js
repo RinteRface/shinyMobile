@@ -1,44 +1,33 @@
-// Input binding
+import { getAppInstance } from "../init.js";
+
 var f7ColorPickerBinding = new Shiny.InputBinding();
 
 $.extend(f7ColorPickerBinding, {
-
+  instances: [],
   initialize: function(el) {
-    app.colorPicker.create({
-      inputEl: el,
-      targetEl: $(el).attr("id") + '-value',
-      targetElSetBackgroundColor: true,
-      modules: colorPickerModules,
-      // I keep openIn default to auto since
-      // it is better to be automatically optimized
-      // based on the currently selected device.
-      openIn: 'auto',
-      sliderValue: colorPickerSliderValue,
-      sliderValueEditable: colorPickerSliderValueEditable,
-      sliderLabel: colorPickerSliderLabel,
-      hexLabel: colorPickerHexLabel,
-      hexValueEditable: colorPickerHexValueEditable,
-      groupedModules: colorPickerGroupedModules,
-      // Same thing here. For now, we use predefined
-      // palettes. latter, maybe add user defined palettes
-      palette: colorPickerPalettes,
-      //formatValue: function (value) {
-      //  return 'rgba(' + value.rgba.join(', ') + ')';
-      //},
-      value: {
-        hex: colorPickerValue,
-      },
-      on : {
-        open: function(target) {
-          if (target.app.params.dark) {
-            target
-              .$el
-              .closest(".modal-in")
-              .addClass("theme-dark");
-          }
+    this.app = getAppInstance();
+    var inputEl = $(el)[0];
+
+    var config = $(el).parent().find("script[data-for='" + el.id + "']");
+    config = JSON.parse(config.html());
+
+    config.inputEl = el;
+    config.targetEl = "#" + $(el).attr("id") + '-value';
+
+    config.on = {
+      open: function(target) {
+        if (target.app.params.dark) {
+          target
+            .$el
+            .closest(".modal-in")
+            .addClass("theme-dark");
         }
       }
-    });
+    }
+
+    // feed the create method
+    this.instances[el.id] = this.app.colorPicker.create(config);
+
   },
 
   find: function(scope) {
@@ -47,10 +36,7 @@ $.extend(f7ColorPickerBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    var ID = $(el).attr("id");
-    // below we get the hidden value field using
-    // vanilla JS
-    return document.getElementById(ID).value;
+    return this.instances[el.id].getValue();
   },
 
   // see updateF7ColorPicker
