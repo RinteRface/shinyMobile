@@ -1822,6 +1822,7 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
 #' "teal, "lime", "deeporange", "gray", "white", "black".
 #'
 #' @rdname toggle
+#' @example inst/examples/toggle/app.R
 #' @export
 f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   toggleCl <- "toggle"
@@ -1852,45 +1853,6 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
 #'
 #' @export
 #' @rdname toggle
-#'
-#' @examples
-#' # Update f7Toggle
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "updateF7Toggle"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update toggle"),
-#'           f7Toggle(
-#'             inputId = "toggle",
-#'             label = "My toggle",
-#'             color = "pink",
-#'             checked = FALSE
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$test <- renderPrint({
-#'         input$toggle
-#'       })
-#'
-#'       observeEvent(input$update, {
-#'         updateF7Toggle(
-#'           inputId = "toggle",
-#'           checked = !input$toggle,
-#'           color = "green"
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Toggle <- function(inputId, checked = NULL, color = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
