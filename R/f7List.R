@@ -129,109 +129,101 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     }
   }
 
-  itemContent <- shiny::tagList(
-    # left media
+  if (is.null(title) && !is.null(right)) {
+    stop("Can't set right when title is NULL.")
+  }
+
+  if (!is.null(right) && (!is.null(header) || !is.null(footer))) {
+    stop("right isn't compatible with footer and header.")
+  }
+
+  itemSubtitle <- if (!is.null(subtitle)) {
+    shiny::tags$div(
+      class = "item-subtitle",
+      subtitle
+    )
+  }
+
+  itemText <- if (length(list(...)) > 0) {
+    shiny::tags$div(
+      class = "item-text",
+      ...
+    )
+  }
+
+  itemTitle <- if (
+    !is.null(header) ||
+      !is.null(footer) ||
+      length(list(...)) > 0 ||
+      !is.null(title)
+  ) {
+    shiny::tags$div(
+      class = "item-title",
+      if (!is.null(header)) {
+        shiny::tags$div(
+          class = "item-header",
+          header
+        )
+      },
+      if (is.null(title)) itemText else title,
+      if (!is.null(footer)) {
+        shiny::tags$div(
+          class = "item-footer",
+          footer
+        )
+      }
+    )
+  }
+
+  itemAfter <- if (!is.null(right)) {
+    shiny::tags$div(
+      class = "item-after",
+      right
+    )
+  }
+
+  itemInner <- shiny::tags$div(
+    class = "item-inner",
+    if (!is.null(media) && !is.null(title)) {
+      shiny::tagList(
+        shiny::tags$div(
+          class = "item-title-row",
+          itemTitle,
+          itemAfter
+        ),
+        itemSubtitle,
+        itemText
+      )
+    } else {
+      shiny::tagList(
+        itemTitle,
+        itemAfter
+      )
+    }
+  )
+
+  itemContent <- shiny::tags$div(
+    class = "item-content",
     if (!is.null(media)) {
       shiny::tags$div(
         class = "item-media",
         media
       )
     },
-
-    # center content
-    shiny::tags$div(
-      class = "item-inner",
-      if (is.null(title)) {
-        shiny::tagList(
-          shiny::tags$div(
-            class = "item-title",
-            if (!is.null(header)) {
-              shiny::tags$div(
-                class = "item-header",
-                header
-              )
-            },
-            ...,
-            if (!is.null(footer)) {
-              shiny::tags$div(
-                class = "item-footer",
-                footer
-              )
-            }
-          ),
-
-          # right content
-          if (!is.null(right)) {
-            shiny::tags$div(
-              class = "item-after",
-              right
-            )
-          }
-        )
-      } else {
-        shiny::tagList(
-          shiny::tags$div(
-            class = "item-title-row",
-            shiny::tags$div(
-              class = "item-title",
-              if (!is.null(header)) {
-                shiny::tags$div(
-                  class = "item-header",
-                  header
-                )
-              },
-              title,
-              if (!is.null(footer)) {
-                shiny::tags$div(
-                  class = "item-footer",
-                  footer
-                )
-              }
-            ),
-            # right content
-            if (!is.null(right)) {
-              shiny::tags$div(
-                class = "item-after",
-                right
-              )
-            }
-          ),
-
-          # subtitle
-          if (!is.null(subtitle)) {
-            shiny::tags$div(
-              class = "item-subtitle",
-              subtitle
-            )
-          },
-
-          # text
-          if (length(list(...)) > 0) {
-            shiny::tags$div(
-              class = "item-text",
-              ...
-            )
-          }
-        )
-      }
-    )
+    itemInner
   )
 
-  itemContentWrapper <- if (is.null(href)) {
-    shiny::tags$div(
-      class = "item-content",
-      itemContent
+  if (!is.null(href)) {
+    itemContent$name <- "a"
+    itemContent$attribs$class <- paste(
+      itemContent$attribs$class,
+      "item-link external"
     )
-  } else {
-    shiny::tags$a(
-      class = "item-link item-content external",
-      href = href,
-      target = "_blank",
-      itemContent
-    )
+    itemContent$attribs$href <- href
+    itemContent$attribs$target <- "_blank"
   }
 
-  shiny::tags$li(itemContentWrapper)
+  shiny::tags$li(itemContent)
 }
 
 #' Create a framework 7 group of contacts

@@ -855,6 +855,82 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
   session$sendInputMessage(inputId, message)
 }
 
+#' Create common input layout
+#'
+#' See \url{https://framework7.io/docs/inputs#inputs-layout}.
+#'
+#' @keywords internal
+createInputLayout <- function(
+    ..., label = NULL, media = NULL,
+    floating = FALSE, inset = FALSE,
+    outline = FALSE, dividers = FALSE, strong = FALSE,
+    info = FALSE, dropdown = FALSE, clear = TRUE) {
+  item <- f7ListItem(
+    media = media, # icon
+    title = label # label
+  )
+
+  classes <- c(
+    "item-input",
+    if (outline) "item-input-outline",
+    if (info) "item-input-with-info"
+  )
+
+  item <- htmltools::tagQuery(item)$
+    find(".item-content")$
+    addClass(classes)$allTags()
+
+  # Add label on title + add input wrap sibling
+  item <- htmltools::tagQuery(item)$
+    find(".item-title")$
+    addClass("item-label")$
+    after(
+    shiny::tags$div(
+      class = paste0(
+        "item-input-wrap",
+        if (dropdown) " input-dropdown-wrap"
+      ),
+      ...,
+      if (clear) shiny::span(class = "input-clear-button")
+    )
+  )$allTags()
+
+  if (floating) {
+    item <- htmltools::tagQuery(item)$
+      find(".item-title")$
+      addClass("item-floating-label")$allTags()
+  }
+  f7List(
+    inset = inset,
+    outline = outline,
+    dividers = dividers,
+    strong = strong,
+    item
+  )
+}
+
+#' Create an input tag
+#'
+#' Useful for text inputs, password input ...
+#'
+#' @keywords internal
+createInputTag <- function(inputId, value = NULL, type, placeholder, ...) {
+  tagFunc <- if (type %in% c("textarea", "select")) {
+    shiny::tags[[type]]
+  } else {
+    shiny::tags$input
+  }
+
+  tagFunc(
+    id = inputId,
+    value = value,
+    if (type == "textarea") value,
+    type = type,
+    placeholder = placeholder,
+    ...
+  )
+}
+
 #' Framework7 text input
 #'
 #' \code{f7Text} creates a text input container.
@@ -868,294 +944,86 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
 #'
 #' @export
 #'
-#' @examples
-#' # A text input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Text"),
-#'         f7Text(
-#'           inputId = "caption",
-#'           label = "Caption",
-#'           value = "Data Summary",
-#'           placeholder = "Your text here"
-#'         ),
-#'         verbatimTextOutput("value")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$value <- renderPrint({
-#'         input$caption
-#'       })
-#'     }
-#'   )
-#' }
-f7Text <- function(inputId, label, value = "", placeholder = NULL # ,
-                   # style = NULL, inset = FALSE, icon = NULL
-) {
-  # possible styles c("inline", "floating", "outline")
-
-  wrapperCl <- "list"
-  # if (inset) wrapperCl <- paste0(wrapperCl, " inset")
-
-  itemCl <- "item-content item-input"
-  itemLabelCl <- "item-title"
-
-  # if (!is.null(style)) {
-  #  if (style == "inline") wrapperCl <- paste0(wrapperCl, " inline-labels")
-  #  if (style == "outline") itemCl <- paste0(itemCl, " item-input-outline")
-  #  if (style == "floating") itemLabelCl <- paste0(itemLabelCl, " item-floating-label")
-  # }
-
-  inputTag <- shiny::tags$input(
-    id = inputId,
+#' @example inst/examples/text/app.R
+f7Text <- function(inputId, label, value = "", placeholder = NULL) {
+  inputTag <- createInputTag(
+    inputId = inputId,
     value = value,
     type = "text",
     placeholder = placeholder
   )
 
-
-  shiny::tags$div(
-    class = wrapperCl,
-    # id = inputId,
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = itemCl,
-        # if (!is.null(icon)) shiny::tags$div(class = "item-media", icon),
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(class = itemLabelCl, label),
-          shiny::tags$div(
-            class = "item-input-wrap",
-            inputTag,
-            shiny::span(class = "input-clear-button")
-          )
-        )
-      )
-    )
+  createInputLayout(
+    inputTag,
+    label = label
   )
 }
-
-
 
 #' Update Framework7 text input
 #'
 #' \code{updateF7Text} changes the value of a text input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param label The label to set for the input object.
-#' @param value The value to set for the input object.
-#' @param placeholder The placeholder to set for the input object.
 #' @param session The Shiny session object, usually the default value will suffice.
-#'
+#' @note Updating label does not work yet.
 #' @export
 #' @rdname text
-#'
-#' @examples
-#' # Update text input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   ui <- f7Page(
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "updateF7Text"),
-#'       f7Block(f7Button("trigger", "Click me")),
-#'       f7Text(
-#'         inputId = "text",
-#'         label = "Caption",
-#'         value = "Some text",
-#'         placeholder = "Your text here"
-#'       ),
-#'       verbatimTextOutput("value")
-#'     )
-#'   )
-#'
-#'   server <- function(input, output, session) {
-#'     output$value <- renderPrint(input$text)
-#'     observeEvent(input$trigger, {
-#'       updateF7Text("text", value = "Updated Text")
-#'     })
-#'   }
-#'   shinyApp(ui, server)
-#' }
-updateF7Text <- function(inputId, label = NULL, value = NULL, placeholder = NULL, session = shiny::getDefaultReactiveDomain()) {
+updateF7Text <- function(
+    inputId, label = NULL, value = NULL, placeholder = NULL,
+    session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(label = label, value = value, placeholder = placeholder))
   session$sendInputMessage(inputId, message)
 }
-
-
 
 #' Framework7 text area input
 #'
 #' \code{f7TextArea} creates a f7 text area input.
 #'
-#' @inheritParams f7Text
 #' @param resize Whether to box can be resized. Default to FALSE.
 #'
 #' @export
-#' @rdname textarea
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7TextArea(
-#'         inputId = "textarea",
-#'         label = "Text Area",
-#'         value = "Lorem ipsum dolor sit amet, consectetur
-#'        adipiscing elit, sed do eiusmod tempor incididunt ut
-#'        labore et dolore magna aliqua",
-#'         placeholder = "Your text here",
-#'         resize = TRUE
-#'       ),
-#'       textOutput("value")
-#'     ),
-#'     server = function(input, output) {
-#'       output$value <- renderText({
-#'         input$textarea
-#'       })
-#'     }
-#'   )
-#' }
+#' @rdname text
 f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
                        resize = FALSE) {
-  areaCl <- if (resize) "resizable" else NULL
+  inputTag <- createInputTag(
+    inputId = inputId,
+    value = value,
+    type = "textarea",
+    placeholder = placeholder,
+    class = if (resize) "resizable" else NULL
+  )
 
-  shiny::tags$div(
-    class = "list",
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = "item-content item-input",
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(class = "item-title item-label", label),
-          shiny::tags$div(
-            class = "item-input-wrap",
-            shiny::tags$textarea(
-              id = inputId,
-              value,
-              placeholder = placeholder,
-              class = areaCl
-            ),
-            shiny::span(class = "input-clear-button")
-          )
-        )
-      )
-    )
+  createInputLayout(
+    inputTag,
+    label = label
   )
 }
-
-
-
 
 #' Update Framework7 text area input
 #'
 #' \code{updateF7TextArea} changes the value of a text area input on the client.
 #'
-#' @inheritParams updateF7Text
-#' @rdname textarea
+#' @rdname text
 #' @export
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   ui <- f7Page(
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "updateF7TextArea"),
-#'       f7Block(f7Button("trigger", "Click me")),
-#'       f7TextArea(
-#'         inputId = "textarea",
-#'         label = "Text Area",
-#'         value = "Lorem ipsum dolor sit amet, consectetur
-#'               adipiscing elit, sed do eiusmod tempor incididunt ut
-#'               labore et dolore magna aliqua",
-#'         placeholder = "Your text here",
-#'         resize = TRUE
-#'       ),
-#'       verbatimTextOutput("value")
-#'     )
-#'   )
-#'
-#'   server <- function(input, output, session) {
-#'     output$value <- renderPrint(input$textarea)
-#'     observeEvent(input$trigger, {
-#'       updateF7Text("textarea", value = "Updated Text")
-#'     })
-#'   }
-#'   shinyApp(ui, server)
-#' }
 updateF7TextArea <- updateF7Text
-
-
 
 #' Create an f7 password input
 #'
-#' @inheritParams f7Text
+#' \link{f7Password} creates a password input.
+#'
 #' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Password"),
-#'         f7Password(
-#'           inputId = "password",
-#'           label = "Password:",
-#'           placeholder = "Your password here"
-#'         ),
-#'         verbatimTextOutput("value")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$value <- renderPrint({
-#'         input$password
-#'       })
-#'     }
-#'   )
-#' }
-f7Password <- function(inputId, label, value = "", placeholder = NULL) {
-  shiny::tags$div(
-    class = "list",
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = "item-content item-input",
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(class = "item-title item-label", label),
-          shiny::tags$div(
-            class = "item-input-wrap",
-            shiny::tags$input(
-              id = inputId,
-              value = value,
-              type = "password",
-              placeholder = placeholder,
-              class = ""
-            ),
-            shiny::span(class = "input-clear-button")
-          )
-        )
-      )
-    )
+#' @rdname text
+f7Password <- function(inputId, label, placeholder = NULL) {
+  inputTag <- createInputTag(
+    inputId = inputId,
+    type = "password",
+    placeholder = placeholder
+  )
+
+  createInputLayout(
+    inputTag,
+    label = label
   )
 }
-
-
 
 #' Framework7 range slider
 #'

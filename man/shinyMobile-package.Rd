@@ -24,15 +24,16 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Veerle van Leemput \email{veerle@hypebright.nl}
   \item Victor Perrier \email{info@dreamrs.fr}
   \item Isabelle Rudolf
 }
 
 Other contributors:
 \itemize{
+  \item AthlyticZ [funder]
   \item John Coene \email{jcoenep@gmail.com} [contributor]
   \item Dieter Menne \email{dieter.menne@menne-biomed.de} [contributor]
-  \item Veerle van Leemput \email{veerle@hypebright.nl} [contributor]
   \item  Marvelapp (device.css wrappers) [contributor, copyright holder]
   \item Vladimir Kharlampidi \email{nolimits4web@gmail.com} (Framework7 HTML template) [contributor, copyright holder]
 }

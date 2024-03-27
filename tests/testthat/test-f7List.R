@@ -16,11 +16,14 @@ test_that("list works", {
 
 test_that("list item works", {
   expect_s3_class(f7ListItem(), "shiny.tag")
+
+  expect_error(f7ListItem(right = "test"))
+  expect_error(f7ListItem(right = "test", header = "header"))
+  expect_error(f7ListItem(right = "test", footer = "footer"))
+
   list_item <- f7ListItem(
     title = "Title",
     subtitle = "subtitle",
-    header = "Header",
-    footer = "Footer",
     href = "https://www.google.com",
     media = shiny::tags$img(
       src = "https://cdn.framework7.io/placeholder/people-160x160-1.jpg"
