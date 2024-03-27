@@ -724,28 +724,23 @@ choicesWithNames <- function(choices) {
 f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
   options <- createSelectOptions(choices, selected)
 
-  shiny::tags$div(
-    class = "list",
-    style = if (!is.null(width)) paste0("width:", htmltools::validateCssUnit(width), ";"),
-    shiny::tags$ul(
-      shiny::tags$li(
-        class = "item-content item-input",
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(class = "item-title item-label", label),
-          shiny::tags$div(
-            class = "item-input-wrap input-dropdown-wrap",
-            shiny::tags$select(
-              class = "input-select",
-              id = inputId,
-              placeholer = "Please choose...",
-              options
-            )
-          )
-        )
-      )
-    )
+  selectTag <- createInputLayout(
+    shiny::tags$select(
+      class = "input-select",
+      id = inputId,
+      placeholer = "Please choose...",
+      options
+    ),
+    label = label,
+    dropdown = TRUE,
+    clear = FALSE
   )
+
+  if (!is.null(width)) {
+    selectTag$attribs$style <- paste0("width:", htmltools::validateCssUnit(width), ";")
+  }
+
+  selectTag
 }
 
 #' Update Framework7 select
