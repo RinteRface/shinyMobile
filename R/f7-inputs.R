@@ -375,32 +375,9 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #' @param groupedModules When enabled it will add more exposure
 #' to sliders modules to make them look more separated.
 #'
+#' @example inst/examples/colorpicker/app.R
+#'
 #' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7ColorPicker"),
-#'         f7ColorPicker(
-#'           inputId = "mycolorpicker",
-#'           placeholder = "Some text here!",
-#'           label = "Select a color"
-#'         ),
-#'         "The picker value is:",
-#'         textOutput("colorPickerVal")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$colorPickerVal <- renderText(input$mycolorpicker)
-#'     }
-#'   )
-#' }
 f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
                           sliderValue = TRUE, sliderValueEditable = TRUE,
