@@ -44,8 +44,14 @@ app <- shinyApp(
       f7PhotoBrowser(
         id = "photobrowser1",
         theme = "dark",
-        type = "standalone",
-        photos = c(
+        type = "page",
+        photos = list(
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg"),
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg"),
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg",
+               caption = "Me cycling")
+        ),
+        thumbs = c(
           "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
           "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
           "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
