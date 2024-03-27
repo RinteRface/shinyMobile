@@ -745,7 +745,6 @@ choicesWithNames <- function(choices) {
   choices
 }
 
-
 #' Framework7 select input
 #'
 #' \code{f7Select} creates a select input.
@@ -759,36 +758,7 @@ choicesWithNames <- function(choices) {
 #' @export
 #' @rdname select
 #'
-#' @examples
-#' # Select input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shiny::shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Select"),
-#'         f7Select(
-#'           inputId = "variable",
-#'           label = "Choose a variable:",
-#'           choices = colnames(mtcars)[-1],
-#'           selected = "hp"
-#'         ),
-#'         tableOutput("data")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$data <- renderTable(
-#'         {
-#'           mtcars[, c("mpg", input$variable), drop = FALSE]
-#'         },
-#'         rownames = TRUE
-#'       )
-#'     }
-#'   )
-#' }
+#' @example inst/examples/select/app.R
 f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
   options <- createSelectOptions(choices, selected)
 
@@ -816,56 +786,14 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
   )
 }
 
-
-
-
 #' Update Framework7 select
 #'
 #' \code{updateF7Select} changes the value of a select input on the client
 #'
-#' @param inputId The id of the input object.
-#' @param selected New value.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
 #' @rdname select
-#'
-#' @examples
-#' # Update select input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "updateF7Select"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update select"),
-#'           br(),
-#'           f7Select(
-#'             inputId = "variable",
-#'             label = "Choose a variable:",
-#'             choices = colnames(mtcars)[-1],
-#'             selected = "hp"
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$test <- renderPrint(input$variable)
-#'
-#'       observeEvent(input$update, {
-#'         updateF7Select(
-#'           inputId = "variable",
-#'           selected = "gear"
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Select <- function(inputId, selected = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(

@@ -4,11 +4,12 @@ Title: Mobile Ready 'shiny' Apps with Standalone Capabilities
 Version: 1.0.1
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
+  person("Veerle", "van Leemput", email = "veerle@hypebright.nl", role = "aut"),
+  person("AthlyticZ", role = "fnd"),
   person("Victor", "Perrier", email = "info@dreamrs.fr", role = "aut"),
   person("John", "Coene", email = "jcoenep@gmail.com", role = "ctb"),
   person("Isabelle", "Rudolf", email = "", role = "aut"),
   person("Dieter", "Menne", email = "dieter.menne@menne-biomed.de", role = "ctb"),
-  person("Veerle", "van Leemput", email = "veerle@hypebright.nl", role = "ctb"),
   person(family = "Marvelapp", role = c("ctb", "cph"), comment = "device.css wrappers"),
   person("Vladimir", "Kharlampidi", email = "nolimits4web@gmail.com", role = c("ctb", "cph"), comment = "Framework7 HTML template"))
 Maintainer: David Granjon <dgranjon@ymail.com>

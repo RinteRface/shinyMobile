@@ -14,13 +14,13 @@ updateF7Select(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Select input id.}
 
 \item{label}{Select input label.}
 
 \item{choices}{Select input choices.}
 
-\item{selected}{New value.}
+\item{selected}{Select input default selected value.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 
@@ -32,68 +32,38 @@ updateF7Select(
 \code{updateF7Select} changes the value of a select input on the client
 }
 \examples{
-# Select input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shiny::shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Select"),
+app <- shinyApp(
+  ui = f7Page(
+    title = "f7Select",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7Select"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update select"),
+        br(),
         f7Select(
-          inputId = "variable",
+          inputId = "select",
           label = "Choose a variable:",
           choices = colnames(mtcars)[-1],
           selected = "hp"
         ),
-        tableOutput("data")
+        verbatimTextOutput("test")
       )
-    ),
-    server = function(input, output) {
-      output$data <- renderTable(
-        {
-          mtcars[, c("mpg", input$variable), drop = FALSE]
-        },
-        rownames = TRUE
-      )
-    }
-  )
-}
-# Update select input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+    )
+  ),
+  server = function(input, output, session) {
+    output$test <- renderPrint(input$select)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "updateF7Select"),
-        f7Card(
-          f7Button(inputId = "update", label = "Update select"),
-          br(),
-          f7Select(
-            inputId = "variable",
-            label = "Choose a variable:",
-            choices = colnames(mtcars)[-1],
-            selected = "hp"
-          ),
-          verbatimTextOutput("test")
-        )
+    observeEvent(input$update, {
+      updateF7Select(
+        inputId = "select",
+        selected = "gear"
       )
-    ),
-    server = function(input, output, session) {
-      output$test <- renderPrint(input$variable)
+    })
+  }
+)
 
-      observeEvent(input$update, {
-        updateF7Select(
-          inputId = "variable",
-          selected = "gear"
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
