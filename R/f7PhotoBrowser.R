@@ -14,16 +14,14 @@
 #' @export
 f7PhotoBrowser <- function(photos, theme = c("light", "dark"),
                            type = c("popup", "standalone", "page"), ..., session = shiny::getDefaultReactiveDomain()) {
+
   theme <- match.arg(theme)
   type <- match.arg(type)
-  pageBackLinkText <- if (type == "page") "back" else NULL
-
 
   options <- dropNulls(
     list(
       theme = theme,
       photos = I(photos),
-      pageBackLinkText = pageBackLinkText,
       type = type,
       ...
     )
