@@ -64,6 +64,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
 - New `updateF7Preloader()` to be able to update a progress preloader from the server.
 - `f7PhotoBrowser()` fixed the `pageBackLinkText` to `back` when type was set to `page`, but this has been removed. The Framework7 default is now used, or the `pageBackLinkText` can be set manually (iOS only).
+- `f7ColorPicker` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

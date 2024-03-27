@@ -360,8 +360,7 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #'
 #' @param inputId Color picker input.
 #' @param label Color picker label.
-#' @param value Color picker value. hex, rgb, hsl, hsb, alpha, hue,
-#' rgba, hsla are supported.
+#' @param value Initial picker value in hex.
 #' @param placeholder Color picker placeholder.
 #' @param modules Picker color modules. Choose at least one.
 #' @param palettes Picker color predefined palettes. Must be a list
@@ -374,40 +373,35 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #' @param hexValueEditable When enabled, it will display HEX module value as <input> element to edit directly.
 #' @param groupedModules When enabled it will add more exposure
 #' to sliders modules to make them look more separated.
+#' @param ... Other options to pass to the picker. See
+#' \url{https://framework7.io/docs/color-picker#color-picker-parameters}.
+#'
+#' @return The return value is a list and includes hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
+#' See \url{https://framework7.io/docs/color-picker#color-picker-value}.
+#'
+#' @example inst/examples/colorpicker/app.R
 #'
 #' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7ColorPicker"),
-#'         f7ColorPicker(
-#'           inputId = "mycolorpicker",
-#'           placeholder = "Some text here!",
-#'           label = "Select a color"
-#'         ),
-#'         "The picker value is:",
-#'         textOutput("colorPickerVal")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$colorPickerVal <- renderText(input$mycolorpicker)
-#'     }
-#'   )
-#' }
 f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
                           sliderValue = TRUE, sliderValueEditable = TRUE,
                           sliderLabel = TRUE, hexLabel = TRUE,
-                          hexValueEditable = TRUE, groupedModules = TRUE) {
+                          hexValueEditable = TRUE, groupedModules = TRUE, ...) {
   # if the value is provided as a rgb, hsl, hsb, rgba or hsla
   if (is.numeric(value) & length(value) > 1) value <- jsonlite::toJSON(value)
+
+  config <- dropNulls(list(
+    value = list(hex = value),
+    modules = modules,
+    palettes = palettes,
+    sliderValue = sliderValue,
+    sliderValueEditable = sliderValueEditable,
+    sliderLabel = sliderLabel,
+    hexLabel = hexLabel,
+    hexValueEditable = hexValueEditable,
+    groupedModules = groupedModules,
+    ...
+  ))
 
   modules <- jsonlite::toJSON(modules)
   palettes <- jsonlite::toJSON(palettes)
@@ -428,44 +422,12 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
     )
   )
 
-
-  inputTag <- shiny::tags$input(
-    type = "text",
-    placeholder = placeholder,
-    id = inputId,
-    class = "color-picker-input"
-  )
-
-  wrapperTag <- shiny::tags$div(
-    class = "list no-hairlines-md",
-    shiny::tags$ul(
-      shiny::tags$li(
-        shiny::tags$div(
-          class = "item-content item-input",
-          shiny::tags$div(
-            class = "item-media",
-            shiny::tags$i(
-              class = "icon demo-list-icon",
-              id = paste0(inputId, "-value")
-            )
-          ),
-          shiny::tags$div(
-            class = "item-inner",
-            shiny::tags$div(
-              class = "item-input-wrap",
-              inputTag
-            )
-          )
-        )
-      )
-    )
-  )
-
-  labelTag <- shiny::tags$div(class = "block-title", label)
-  shiny::tagList(
-    shiny::singleton(pickerProps),
-    labelTag,
-    wrapperTag
+  # TO DO: placeholder?
+  buildPickerInput(
+    inputId,
+    label,
+    config,
+    "color-picker-input"
   )
 }
 
