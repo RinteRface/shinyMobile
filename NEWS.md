@@ -58,7 +58,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7RadioChoice()`: new function to pass inside `choices` in a
 `f7Radio()`. Improved choice with title, subtitle, ...
 - `f7Sheet()` gains new `options` parameter to allow passing more configuration. See https://framework7.io/docs/sheet-modal#sheet-parameters.
-- `f7Picker()` has new `...` parameter to pass custom options.
+- `f7Picker()` has new `...` parameter to pass custom options. Also `f7Picker()` now can have NULL as `value`, allowing you to display a placeholder.
 - `f7DatePicker()` has new `...` parameter to pass custom options. `f7DatePicker()` now also supports usage of the `timePicker`, and returns a posixct object when this is enabled. See https://framework7.io/docs/calendar#examples.
 - Added `tapHoldPreventClicks`, `touchClicksDistanceThreshold`, `mdTouchRipple` to `f7Page()` touch options.
 - `showF7Preloader()` has new `type` parameter and a new modal dialog support (if `type` is passed). New `id` parameter that has to be set when `type` is not NULL.
