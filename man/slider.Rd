@@ -19,7 +19,9 @@ f7Slider(
   verticalReversed = FALSE,
   labels = NULL,
   color = NULL,
-  noSwipping = TRUE
+  noSwipping = TRUE,
+  showLabel = TRUE,
+  ...
 )
 
 updateF7Slider(
@@ -32,17 +34,18 @@ updateF7Slider(
   scaleSubSteps = NULL,
   step = NULL,
   color = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Slider input id.}
 
 \item{label}{Slider label.}
 
 \item{min}{Slider minimum range.}
 
-\item{max}{Slider maximum range}
+\item{max}{Slider maximum range.}
 
 \item{value}{Slider value or a vector containing 2 values (for a range).}
 
@@ -66,6 +69,12 @@ expected.}
 
 \item{noSwipping}{Prevent swiping when slider is manipulated in an \link{f7TabLayout}.}
 
+\item{showLabel}{Allow bubble containing the slider value. Default
+to TRUE.}
+
+\item{...}{Other options to pass to the widget. See
+\url{https://framework7.io/docs/range-slider#range-slider-parameters}.}
+
 \item{session}{The Shiny session object.}
 }
 \description{
@@ -79,122 +88,84 @@ labels option only works when vertical is FALSE!
 Important: you cannot transform a range slider into a simple slider and inversely.
 }
 \examples{
-# Slider input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Slider"),
-        f7Card(
-          f7Slider(
-            inputId = "obs",
-            label = "Number of observations",
-            max = 1000,
-            min = 0,
-            value = 100,
-            scaleSteps = 5,
-            scaleSubSteps = 3,
-            scale = TRUE,
-            color = "orange",
-            labels = tagList(
-              f7Icon("circle"),
-              f7Icon("circle_fill")
-            )
-          ),
-          verbatimTextOutput("test")
-        ),
-        plotOutput("distPlot")
-      )
-    ),
-    server = function(input, output) {
-      output$test <- renderPrint({
-        input$obs
-      })
-      output$distPlot <- renderPlot({
-        hist(rnorm(input$obs))
-      })
-    }
-  )
-}
-
-# Create a range
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Slider Range"),
-        f7Card(
-          f7Slider(
-            inputId = "obs",
-            label = "Range values",
-            max = 500,
-            min = 0,
-            value = c(50, 100),
-            scale = FALSE
-          ),
-          verbatimTextOutput("test")
-        )
-      )
-    ),
-    server = function(input, output) {
-      output$test <- renderPrint({
-        input$obs
-      })
-    }
-  )
-}
-
-# Update f7Slider
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "updateF7Slider"),
-        f7Card(
-          f7Button(inputId = "update", label = "Update slider"),
-          f7Slider(
-            inputId = "obs",
-            label = "Range values",
-            max = 500,
-            min = 0,
-            step = 1,
-            color = "deeppurple",
-            value = c(50, 100)
-          ),
-          verbatimTextOutput("test")
-        )
-      )
-    ),
-    server = function(input, output, session) {
-      output$test <- renderPrint({
-        input$obs
-      })
-
-      observeEvent(input$update, {
-        updateF7Slider(
-          inputId = "obs",
-          value = c(1, 5),
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7Slider"),
+      f7Block(
+        f7BlockTitle("Simple slider"),
+        f7Button(inputId = "update_slider", label = "Update slider"),
+        f7Slider(
+          inputId = "slider",
+          label = "Number of observations",
+          max = 1000,
           min = 0,
-          scaleSteps = 10,
-          scaleSubSteps = 5,
-          step = 0.1,
-          max = 10,
-          color = "teal"
-        )
-      })
-    }
-  )
-}
+          value = 100,
+          scaleSteps = 5,
+          scaleSubSteps = 3,
+          scale = TRUE,
+          color = "orange",
+          labels = tagList(
+            f7Icon("circle"),
+            f7Icon("circle_fill")
+          )
+        ),
+        textOutput("slider_res")
+      ),
+      f7Block(
+        f7BlockTitle("Range slider"),
+        f7Button(inputId = "update_range", label = "Update slider"),
+        f7Slider(
+          inputId = "range",
+          label = "Range values",
+          max = 500,
+          min = 0,
+          step = 0.01,
+          color = "deeppurple",
+          value = c(50, 100)
+        ),
+        textOutput("range_res")
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$slider_res <- renderText({
+      input$slider
+    })
+
+    observeEvent(input$update_slider, {
+      updateF7Slider(
+        inputId = "slider",
+        value = 0.05,
+        min = 0,
+        max = 0.01,
+        scale = FALSE,
+        step = 0.001,
+        color = "pink"
+      )
+    })
+
+    output$range_res <- renderText({
+      input$range
+    })
+
+    observeEvent(input$update_range, {
+      updateF7Slider(
+        inputId = "range",
+        value = c(1, 5),
+        min = 0,
+        scale = TRUE,
+        step = 0.01,
+        max = 10,
+        color = "teal"
+      )
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

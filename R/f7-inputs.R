@@ -187,7 +187,6 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
                      rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
                      closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
                      sheetSwipeToClose = FALSE, ...) {
-
   if (length(value) > 1) stop("value must be a single element")
 
   # JS needs array
@@ -397,8 +396,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           sliderValue = TRUE, sliderValueEditable = TRUE,
                           sliderLabel = TRUE, hexLabel = TRUE,
                           hexValueEditable = TRUE, groupedModules = TRUE, ...) {
-
-
   if (!is.null(value) && length(value) == 1) {
     # needed by JS (array)
     value <- list(hex = value)
@@ -1038,6 +1035,10 @@ f7Password <- function(inputId, label, placeholder = NULL) {
 #' expected.
 #' @param color See \link{getF7Colors} for valid colors.
 #' @param noSwipping Prevent swiping when slider is manipulated in an \link{f7TabLayout}.
+#' @param showLabel Allow bubble containing the slider value. Default
+#' to TRUE.
+#' @param ... Other options to pass to the widget. See
+#' \url{https://framework7.io/docs/range-slider#range-slider-parameters}.
 #'
 #' @note labels option only works when vertical is FALSE!
 #'
@@ -1045,84 +1046,11 @@ f7Password <- function(inputId, label, placeholder = NULL) {
 #'
 #' @export
 #'
-#' @examples
-#' # Slider input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Slider"),
-#'         f7Card(
-#'           f7Slider(
-#'             inputId = "obs",
-#'             label = "Number of observations",
-#'             max = 1000,
-#'             min = 0,
-#'             value = 100,
-#'             scaleSteps = 5,
-#'             scaleSubSteps = 3,
-#'             scale = TRUE,
-#'             color = "orange",
-#'             labels = tagList(
-#'               f7Icon("circle"),
-#'               f7Icon("circle_fill")
-#'             )
-#'           ),
-#'           verbatimTextOutput("test")
-#'         ),
-#'         plotOutput("distPlot")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$test <- renderPrint({
-#'         input$obs
-#'       })
-#'       output$distPlot <- renderPlot({
-#'         hist(rnorm(input$obs))
-#'       })
-#'     }
-#'   )
-#' }
-#'
-#' # Create a range
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Slider Range"),
-#'         f7Card(
-#'           f7Slider(
-#'             inputId = "obs",
-#'             label = "Range values",
-#'             max = 500,
-#'             min = 0,
-#'             value = c(50, 100),
-#'             scale = FALSE
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$test <- renderPrint({
-#'         input$obs
-#'       })
-#'     }
-#'   )
-#' }
-#'
+#' @example inst/examples/slider/app.R
 f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
                      scaleSteps = 5, scaleSubSteps = 0, vertical = FALSE,
                      verticalReversed = FALSE, labels = NULL, color = NULL,
-                     noSwipping = TRUE) {
+                     noSwipping = TRUE, showLabel = TRUE, ...) {
   if (!is.null(labels)) {
     if (length(labels) < 2) stop("labels must be a tagList with 2 elements.")
   }
@@ -1134,37 +1062,37 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
     sliderCl <- paste(sliderCl, "swiper-no-swiping")
   }
 
-  sliderProps <- dropNulls(
+  config <- dropNulls(
     list(
-      class = sliderCl,
-      id = inputId,
-      style = if (vertical) {
-        if (scale) {
-          "height: 160px; margin: 20px;"
-        } else {
-          "height: 160px;"
-        }
-      } else {
-        NULL
-      },
-      `data-dual` = if (length(value) == 2) "true" else NULL,
-      `data-min` = min,
-      `data-max` = max,
-      `data-vertical` = tolower(vertical),
-      `data-vertical-reversed` = if (vertical) tolower(verticalReversed) else NULL,
-      `data-label` = "true",
-      `data-step` = step,
-      `data-value` = if (length(value) == 1) value else NULL,
-      `data-value-left` = if (length(value) == 2) value[1] else NULL,
-      `data-value-right` = if (length(value) == 2) value[2] else NULL,
-      `data-scale` = tolower(scale),
-      `data-scale-steps` = scaleSteps,
-      `data-scale-sub-steps` = scaleSubSteps
+      dual = if (length(value) == 2) TRUE else FALSE,
+      min = min,
+      max = max,
+      vertical = vertical,
+      verticalReversed = if (vertical) verticalReversed,
+      label = showLabel,
+      step = step,
+      value = value,
+      scale = scale,
+      scaleSteps = scaleSteps,
+      scaleSubSteps = scaleSubSteps
     )
   )
 
   # wrap props
-  rangeTag <- do.call(shiny::tags$div, sliderProps)
+  rangeTag <- tags$div(
+    class = sliderCl,
+    id = inputId,
+    style = if (vertical) {
+      if (scale) {
+        "height: 160px; margin: 20px;"
+      } else {
+        "height: 160px;"
+      }
+    } else {
+      NULL
+    },
+    buildConfig(inputId, config)
+  )
 
 
   labels <- if (!is.null(labels)) {
@@ -1177,8 +1105,6 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
         labels[[i]]
       )
     })
-  } else {
-    NULL
   }
 
   # wrapper
@@ -1205,78 +1131,19 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
   )
 }
 
-
-
-
 #' Update Framework7 range slider
 #'
 #' \code{updateF7Slider} changes the value of a slider input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param min Slider minimum range.
-#' @param max Slider maximum range
-#' @param value Slider value or a vector containing 2 values (for a range).
-#' @param scale Slider scale.
-#' @param scaleSteps Number of scale steps.
-#' @param scaleSubSteps Number of scale sub steps (each step will be divided by this value).
-#' @param step Slider increase step size.
-#' @param color See \link{getF7Colors} for valid colors.
 #' @param session The Shiny session object.
 #'
 #' @export
 #' @rdname slider
 #'
 #' @note Important: you cannot transform a range slider into a simple slider and inversely.
-#'
-#' @examples
-#' # Update f7Slider
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "updateF7Slider"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update slider"),
-#'           f7Slider(
-#'             inputId = "obs",
-#'             label = "Range values",
-#'             max = 500,
-#'             min = 0,
-#'             step = 1,
-#'             color = "deeppurple",
-#'             value = c(50, 100)
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$test <- renderPrint({
-#'         input$obs
-#'       })
-#'
-#'       observeEvent(input$update, {
-#'         updateF7Slider(
-#'           inputId = "obs",
-#'           value = c(1, 5),
-#'           min = 0,
-#'           scaleSteps = 10,
-#'           scaleSubSteps = 5,
-#'           step = 0.1,
-#'           max = 10,
-#'           color = "teal"
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
                            scale = FALSE, scaleSteps = NULL, scaleSubSteps = NULL,
-                           step = NULL, color = NULL,
+                           step = NULL, color = NULL, ...,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(list(
     value = value,
@@ -1286,13 +1153,11 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
     step = step,
     scaleSteps = scaleSteps,
     scaleSubSteps = scaleSubSteps,
-    color = color
+    color = color,
+    ...
   ))
   session$sendInputMessage(inputId, message)
 }
-
-
-
 
 #' Framework7 stepper input
 #'

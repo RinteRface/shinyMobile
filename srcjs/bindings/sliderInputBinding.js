@@ -11,32 +11,24 @@ $.extend(f7SliderBinding, {
 
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
+    var config = JSON.parse($(el)
+      .find("script[data-for='" + id + "']")
+      .html());
+    // add the id
+    config.el = '#' + id;
 
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false
-        if (["min", "max", "step", "value",
-        "scaleSteps", "scaleSubSteps",
-        "valueLeft", "valueRight"].indexOf(camelCaseName) == -1) {
-          var isTrueSet = (attr.value == "true");
-          data[camelCaseName] = isTrueSet;
-        } else {
-          // convert strings to numeric
-          data[camelCaseName] = parseFloat(attr.value);
-        }
-
-      }
-    });
-
-     // add the id
-    data.el = '#' + id;
+    // TBD avoid label to contains too many numbers
+    //if (config.label) {
+    //  config.formatLabel = function(value) {
+    //    let digits = String(config.step)
+    //      .replace('.', '')
+    //      .length;
+    //    return parseFloat(value.toFixed(digits + 1));
+    //  }
+    //}
 
     // feed the create method
-    var r = this.app.range.create(data);
+    var r = this.app.range.create(config);
 
   },
 
