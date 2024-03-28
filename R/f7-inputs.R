@@ -187,11 +187,14 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
                      rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
                      closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
                      sheetSwipeToClose = FALSE, ...) {
-  # For JS
-  if (is.null(value)) stop("value cannot be NULL.")
-  if (!is.null(value) && length(value) == 1) {
-    # needed by JS (array)
+
+  if (length(value) > 1) stop("value must be a single element")
+
+  # JS needs array
+  if (!is.null(value)) {
     value <- list(value)
+  } else {
+    value <- list()
   }
 
   # TO DO: create helper function for sheet, picker, ...
@@ -212,13 +215,19 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
     )
   )
 
-  buildPickerInput(inputId, label, config, "picker-input")
+  buildPickerInput(
+    inputId,
+    label,
+    config,
+    "picker-input",
+    placeholder
+  )
 }
 
 #' Build input tag for picker elements
 #'
 #' @keywords internal
-buildPickerInput <- function(id, label, config, class) {
+buildPickerInput <- function(id, label, config, class, placeholder = NULL) {
   inputTag <- shiny::tags$li(
     shiny::tags$div(
       class = "item-content item-input",
@@ -229,7 +238,8 @@ buildPickerInput <- function(id, label, config, class) {
           shiny::tags$input(
             id = id,
             class = class,
-            type = "text"
+            type = "text",
+            placeholder = placeholder
           ),
           buildConfig(id, config)
         )
@@ -387,11 +397,17 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           sliderValue = TRUE, sliderValueEditable = TRUE,
                           sliderLabel = TRUE, hexLabel = TRUE,
                           hexValueEditable = TRUE, groupedModules = TRUE, ...) {
-  # if the value is provided as a rgb, hsl, hsb, rgba or hsla
-  if (is.numeric(value) & length(value) > 1) value <- jsonlite::toJSON(value)
+
+
+  if (!is.null(value) && length(value) == 1) {
+    # needed by JS (array)
+    value <- list(hex = value)
+  } else {
+    stop("value cannot be NULL and must be a single color")
+  }
 
   config <- dropNulls(list(
-    value = list(hex = value),
+    value = value,
     modules = modules,
     palettes = palettes,
     sliderValue = sliderValue,
@@ -403,31 +419,12 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
     ...
   ))
 
-  modules <- jsonlite::toJSON(modules)
-  palettes <- jsonlite::toJSON(palettes)
-  # We define a global variable that is
-  # reused in the pickerInputBinding.js
-  pickerProps <- shiny::tags$script(
-    paste0(
-      "var colorPickerModules = ", modules, ";
-       var colorPickerPalettes = ", palettes, ';
-       var colorPickerValue = "', value, '";
-       var colorPickerSliderValue = ', tolower(sliderValue), ";
-       var colorPickerSliderValueEditable = ", tolower(sliderValueEditable), ";
-       var colorPickerSliderLabel = ", tolower(sliderLabel), ";
-       var colorPickerHexLabel = ", tolower(hexLabel), ";
-       var colorPickerHexValueEditable = ", tolower(hexValueEditable), ";
-       var colorPickerGroupedModules = ", tolower(groupedModules), ";
-      "
-    )
-  )
-
-  # TO DO: placeholder?
   buildPickerInput(
     inputId,
     label,
     config,
-    "color-picker-input"
+    "color-picker-input",
+    placeholder
   )
 }
 
