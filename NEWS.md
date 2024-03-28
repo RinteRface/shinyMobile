@@ -15,6 +15,7 @@
 - `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `updateF7MenuDropdown()` are totally removed from Framework7. We have no alternative to replace it.
 - `f7Icon()`: remove deprecated parameter `old`.
 - `f7SmartSelect()`: `maxlength` becomes `maxLength`. Typo from Framework7.
+- Remove `value` from `f7Password` (accidental copy and paste from `f7Text()`).
 
 ## Soft deprecation
 - `f7Accordion()`:
