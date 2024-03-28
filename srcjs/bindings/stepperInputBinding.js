@@ -12,33 +12,19 @@ $.extend(f7StepperBinding, {
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
 
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false
-        if (["min", "max", "step", "value", "decimalPoint"].indexOf(camelCaseName) == -1) {
-          var isTrueSet = (attr.value == 'true');
-          data[camelCaseName] = isTrueSet;
-        } else {
-          // convert strings to numeric
-          data[camelCaseName] = parseFloat(attr.value);
-        }
-
-      }
-    });
+    var config = JSON.parse($(el)
+      .find("script[data-for='" + id + "']")
+      .html());
 
     // add the id
-    data.el = '#' + id;
+    config.el = '#' + id;
 
     // feed the create method
-    var s = this.app.stepper.create(data);
+    var s = this.app.stepper.create(config);
 
     // add readonly attr if the stepper is initially
     // not in manual mode
-    if (!data.manualInputMode) {
+    if (!config.manualInputMode) {
       var inputTarget = $(el).find('input');
       $(inputTarget).attr('readonly', '');
     }
@@ -71,7 +57,7 @@ $.extend(f7StepperBinding, {
   // see updateF7Stepper
   receiveMessage: function(el, data) {
     // create a variable to update the stepper
-    var s = this.app.stepper.get($(el));
+    var s = this.app.stepper.get(el);
 
     // for some reason, we need to update both
     // min and params.min fields

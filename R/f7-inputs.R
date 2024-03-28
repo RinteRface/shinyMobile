@@ -1234,54 +1234,39 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       color = NULL, wraps = FALSE, autorepeat = TRUE, manual = FALSE,
                       decimalPoint = 4, buttonsEndInputMode = TRUE) {
   stepperCl <- "stepper"
-  if (fill) stepperCl <- paste0(stepperCl, " stepper-fill")
-  if (rounded) stepperCl <- paste0(stepperCl, " stepper-round")
+  if (fill) stepperCl <- paste(stepperCl, "stepper-fill")
+  if (rounded) stepperCl <- paste(stepperCl, "stepper-round")
   if (!is.null(size)) {
-    if (size == "small") {
-      stepperCl <- paste0(stepperCl, " stepper-small")
-    } else if (size == "large") {
-      stepperCl <- paste0(stepperCl, " stepper-large")
-    }
+    stepperCl <- paste0(stepperCl, " stepper-", size)
   }
-  if (raised) stepperCl <- paste0(stepperCl, " stepper-raised")
+  if (raised) stepperCl <- paste(stepperCl, "stepper-raised")
   if (!is.null(color)) stepperCl <- paste0(stepperCl, " color-", color)
 
   # stepper props
-  stepperProps <- dropNulls(
+  config <- dropNulls(
     list(
-      class = stepperCl,
-      id = inputId,
-      # numeric
-      `data-min` = min,
-      `data-max` = max,
-      `data-step` = step,
-      `data-value` = value,
-      `data-decimal-point` = decimalPoint,
-      # booleans
-      `data-wraps` = wraps,
-      `data-autorepeat` = autorepeat,
-      `data-autorepeat-dynamic` = autorepeat,
-      `data-manual-input-mode` = manual,
-      `data-buttons-end-input-mode` = buttonsEndInputMode
+      min = min,
+      max = max,
+      step = step,
+      value = value,
+      decimalPoint = decimalPoint,
+      wraps = wraps,
+      autorepeat = autorepeat,
+      autorepeatDynamic = autorepeat,
+      manualInputMode = manual,
+      buttonsEndInputMode = buttonsEndInputMode
     )
   )
 
-  # replace TRUE and FALSE by true and false for javascript
-  stepperProps <- lapply(stepperProps, function(x) {
-    if (identical(x, TRUE)) {
-      "true"
-    } else if (identical(x, FALSE)) {
-      "false"
-    } else {
-      x
-    }
-  })
-
   # wrap props
-  stepperProps <- do.call(shiny::tags$div, stepperProps)
+  stepperTag <- shiny::tags$div(
+    class = stepperCl,
+    id = inputId,
+    buildConfig(inputId, config)
+  )
 
   stepperTag <- shiny::tagAppendChildren(
-    stepperProps,
+    stepperTag,
     shiny::tags$div(class = "stepper-button-minus"),
     shiny::tags$div(
       class = "stepper-input-wrap",
@@ -1300,43 +1285,16 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
   shiny::tagList(
     shiny::tags$div(
       style = "display: flex; align-items: center;",
-      # stepper tag
-      shiny::tags$small(label,
-        style = "padding: 5px"
-      ),
+      shiny::tags$small(label, style = "padding: 5px"),
       stepperTag
     ),
   )
 }
 
-
-
-
-
 #' Update Framework7 stepper
 #'
 #' \code{updateF7Stepper} changes the value of a stepper input on the client.
 #'
-#' @param inputId The id of the input object.
-#' @param min Stepper minimum value.
-#' @param max Stepper maximum value.
-#' @param value Stepper value. Must belong to \[min, max\].
-#' @param step increment step. 1 by default.
-#' @param fill Whether to fill the stepper. FALSE by default.
-#' @param rounded Whether to round the stepper. FALSE by default.
-#' @param raised Whether to put a relied around the stepper. FALSE by default.
-#' @param size Stepper size: "small", "large" or NULL.
-#' @param color Stepper color: NULL or "red", "green", "blue", "pink", "yellow", "orange", "grey" and "black".
-#' @param wraps In wraps mode incrementing beyond maximum value sets value to minimum value,
-#' likewise, decrementing below minimum value sets value to maximum value. FALSE by default.
-#' @param decimalPoint Number of digits after dot, when in manual input mode.
-#' @param autorepeat Pressing and holding one of its buttons increments or decrements the stepper’s
-#' value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
-#' continues pressing the control. TRUE by default.
-#' @param manual It is possible to enter value manually from keyboard or mobile keypad.
-#'  When click on input field, stepper enter into manual input mode, which allow type value
-#'  from keyboar and check fractional part with defined accurancy. Click outside or enter
-#'  Return key, ending manual mode. TRUE by default.
 #' @param session The Shiny session object, usually the default value will suffice.
 #'
 #' @export
