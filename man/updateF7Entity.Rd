@@ -10,14 +10,14 @@ updateF7Entity(id, options, session = shiny::getDefaultReactiveDomain())
 \item{id}{Element id.}
 
 \item{options}{Configuration list. Tightly depends on the entity.
-See \url{https://v5.framework7.io/docs/}.}
+See \url{https://framework7.io/docs/}.}
 
 \item{session}{Shiny session object.}
 }
 \description{
 \code{updateF7Entity} allows to update any Framework7 instance from the server.
 For each entity, the list of updatable properties may significantly vary. Please
-refer to the Framework7 documentation at \url{https://v5.framework7.io/docs/}.
+refer to the Framework7 documentation at \url{https://framework7.io/docs/}.
 }
 \examples{
 # Update action sheet instance

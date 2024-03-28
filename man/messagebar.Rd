@@ -30,10 +30,10 @@ Insert before \link{f7Messages}. See examples.
 \code{updateF7MessageBar} updates message bar content on the server side.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "Update message bar",
     f7SingleLayout(
@@ -58,7 +58,6 @@ if (interactive()) {
     )
   ),
   server = function(input, output, session) {
-
     output$messageContent <- renderUI({
       req(input$mymessagebar)
       tagList(
@@ -66,14 +65,12 @@ if (interactive()) {
         f7Block(strong = TRUE, inset = TRUE, input$mymessagebar)
       )
     })
-
     observeEvent(input$updateMessageBar, {
       updateF7MessageBar(
         inputId = "mymessagebar",
         value = "sjsjsj"
       )
     })
-
     observeEvent(input$updateMessageBarPlaceholder, {
       updateF7MessageBar(
         inputId = "mymessagebar",
@@ -81,6 +78,7 @@ if (interactive()) {
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

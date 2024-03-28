@@ -1,0 +1,22 @@
+{
+  "input": {
+    "mymessages": {
+      "0": {
+        "text": "Some message",
+        "name": "Victor",
+        "avatar": "https://cdn.framework7.io/placeholder/people-100x100-9.jpg",
+        "type": "received"
+      },
+      "1": {
+        "text": "Test message",
+        "header": "Message Header",
+        "footer": "Message Footer",
+        "name": "David",
+        "avatar": "https://cdn.framework7.io/placeholder/people-100x100-7.jpg",
+        "type": "sent",
+        "textHeader": "Text Header",
+        "textFooter": "text Footer"
+      }
+    }
+  }
+}

@@ -11,68 +11,7 @@
 #'
 #' @rdname timeline
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'
-#'  items <- tagList(
-#'    f7TimelineItem(
-#'      "Another text",
-#'      date = "01 Dec",
-#'      card = FALSE,
-#'      time = "12:30",
-#'      title = "Title",
-#'      subtitle = "Subtitle",
-#'      side = "left"
-#'    ),
-#'    f7TimelineItem(
-#'      "Another text",
-#'      date = "02 Dec",
-#'      card = TRUE,
-#'      time = "13:00",
-#'      title = "Title",
-#'      subtitle = "Subtitle"
-#'    ),
-#'    f7TimelineItem(
-#'      "Another text",
-#'      date = "03 Dec",
-#'      card = FALSE,
-#'      time = "14:45",
-#'      title = "Title",
-#'      subtitle = "Subtitle"
-#'    )
-#'  )
-#'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Timelines",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "Timelines"),
-#'        f7BlockTitle(title = "Horizontal timeline", size = "large") %>%
-#'        f7Align(side = "center"),
-#'        f7Timeline(
-#'          sides = FALSE,
-#'          horizontal = TRUE,
-#'          items
-#'        ),
-#'        f7BlockTitle(title = "Vertical side by side timeline", size = "large") %>%
-#'        f7Align(side = "center"),
-#'        f7Timeline(
-#'          sides = TRUE,
-#'          items
-#'        ),
-#'        f7BlockTitle(title = "Vertical timeline", size = "large") %>%
-#'        f7Align(side = "center"),
-#'        f7Timeline(items),
-#'        f7BlockTitle(title = "Calendar timeline", size = "large") %>%
-#'        f7Align(side = "center"),
-#'        f7Timeline(items, calendar = TRUE, year = "2019", month = "December")
-#'      )
-#'    ),
-#'    server = function(input, output) {}
-#'  )
-#' }
+#' @example inst/examples/timeline/app.R
 #'
 #' @author David Granjon \email{dgranjon@@ymail.com}
 #'
@@ -86,9 +25,7 @@ f7Timeline <- function(..., sides = FALSE, horizontal = FALSE, calendar = FALSE,
 
   timelineCl <- "timeline"
   if (sides) timelineCl <- paste0(timelineCl, " timeline-sides")
-  if (horizontal) timelineCl <- paste0(timelineCl, " timeline-horizontal col-50 tablet-20")
-  if (calendar) timelineCl <- paste0(timelineCl, " timeline-horizontal col-33 tablet-15")
-
+  if (horizontal || calendar) timelineCl <- paste0(timelineCl, " timeline-horizontal")
 
   timelineTag <- shiny::tags$div(
     class = timelineCl,

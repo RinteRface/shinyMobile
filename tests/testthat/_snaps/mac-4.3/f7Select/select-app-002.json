@@ -1,0 +1,8 @@
+{
+  "input": {
+    "select": "gear"
+  },
+  "output": {
+    "test": "[1] \"gear\""
+  }
+}

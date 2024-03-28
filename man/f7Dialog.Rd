@@ -28,124 +28,79 @@ f7Dialog(
 \code{f7Dialog} generates a modal window.
 }
 \examples{
-# simple alert
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-  shinyApp(
-    ui = f7Page(
-      title = "Simple Dialog",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Dialog"),
-        f7Button(inputId = "goButton", "Go!")
-      )
-    ),
-    server = function(input, output, session) {
-      observeEvent(input$goButton,{
-        f7Dialog(
-         title = "Dialog title",
-         text = "This is an alert dialog"
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "Dialogs",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7Dialog"),
+      f7Block(
+        f7Grid(
+          cols = 4,
+          f7Button(inputId = "alert", "Alert"),
+          f7Button(inputId = "confirm", "Confirm"),
+          f7Button(inputId = "prompt", "Prompt"),
+          f7Button(inputId = "login", "Login")
+        ),
+        f7Grid(
+          cols = 2,
+          uiOutput("prompt_res"),
+          uiOutput("login_res")
         )
-      })
-    }
-  )
-}
-# confirm alert
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Confirm Dialog",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Dialog"),
-       f7Button(inputId = "goButton", "Go!")
-     )
-   ),
-   server = function(input, output, session) {
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$alert, {
+      f7Dialog(
+        title = "Dialog title",
+        text = "This is an alert dialog"
+      )
+    })
 
-     observeEvent(input$goButton,{
-       f7Dialog(
-         id = "test",
-         title = "Dialog title",
-         type = "confirm",
-         text = "This is an alert dialog"
-       )
-     })
+    observeEvent(input$confirm, {
+      f7Dialog(
+        id = "comfirm_dialog",
+        title = "Dialog title",
+        type = "confirm",
+        text = "This is an alert dialog"
+      )
+    })
 
-     observeEvent(input$test, {
-       f7Toast(text = paste("Alert input is:", input$test))
-     })
+    observeEvent(input$comfirm_dialog, {
+      f7Toast(text = paste("Alert input is:", input$comfirm_dialog))
+    })
 
-   }
- )
-}
-# prompt dialog
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Prompt Dialog",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Dialog"),
-       f7Button(inputId = "goButton", "Go!"),
-       uiOutput("res")
-     )
-   ),
-   server = function(input, output, session) {
+    observeEvent(input$prompt, {
+      f7Dialog(
+        id = "prompt_dialog",
+        title = "Dialog title",
+        type = "prompt",
+        text = "This is a prompt dialog"
+      )
+    })
+    output$prompt_res <- renderText({
+      req(input$prompt_dialog)
+      input$prompt_dialog
+    })
 
-     observe({
-       print(input$prompt)
-     })
+    observeEvent(input$login, {
+      f7Dialog(
+        id = "login_dialog",
+        title = "Dialog title",
+        type = "login",
+        text = "This is an login dialog"
+      )
+    })
 
-     observeEvent(input$goButton,{
-       f7Dialog(
-         id = "prompt",
-         title = "Dialog title",
-         type = "prompt",
-         text = "This is a prompt dialog"
-       )
-     })
+    output$login_res <- renderUI({
+      req(input$login_dialog$user, input$login_dialog$password)
+      img(src = "https://media2.giphy.com/media/12gfL8Xxrhv7C1fXiV/giphy.gif")
+    })
+  }
+)
 
-     output$res <- renderUI(f7BlockTitle(title = input$prompt, size = "large"))
-   }
- )
-}
-
-# login dialog
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Login Dialog",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Dialog"),
-       f7Button(inputId = "goButton", "Go!"),
-       uiOutput("ui")
-     )
-   ),
-   server = function(input, output, session) {
-
-     observe({
-       print(input$login)
-     })
-
-     observeEvent(input$goButton,{
-       f7Dialog(
-         id = "login",
-         title = "Dialog title",
-         type = "login",
-         text = "This is an login dialog"
-       )
-     })
-
-     output$ui <- renderUI({
-       req(input$login$user == "David" & input$login$password == "prout")
-       img(src = "https://media2.giphy.com/media/12gfL8Xxrhv7C1fXiV/giphy.gif")
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

@@ -21,51 +21,12 @@
 #' @param fullsize Open popup in full width or not. Default to \code{FALSE}.
 #' @param closeButton Add or not a button to easily close the popup.
 #'  Default to \code{TRUE}.
+#' @param push Push effect. Default to TRUE.
 #' @param session Shiny session object.
 #'
 #' @export
 #'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Popup",
-#'      f7SingleLayout(
-#'       navbar = f7Navbar(
-#'         title = "f7Popup",
-#'         hairline = FALSE,
-#'         shadow = TRUE
-#'       ),
-#'       f7Button("togglePopup", "Toggle Popup")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'
-#'     output$popupContent <- renderPrint(input$text)
-#'
-#'     observeEvent(input$togglePopup, {
-#'      f7Popup(
-#'        id = "popup1",
-#'        title = "My first popup",
-#'        f7Text("text", "Popup content", "This is my first popup ever, I swear!"),
-#'        verbatimTextOutput("popupContent")
-#'       )
-#'     })
-#'
-#'     observeEvent(input$popup1, {
-#'
-#'      popupStatus <- if (input$popup1) "opened" else "closed"
-#'
-#'      f7Toast(
-#'       position = "top",
-#'       text = paste("Popup is", popupStatus)
-#'      )
-#'     })
-#'    }
-#'  )
-#' }
+#' @example inst/examples/popup/app.R
 f7Popup <- function(..., id, title = NULL,
                     backdrop = TRUE,
                     closeByBackdropClick = TRUE,
@@ -74,8 +35,8 @@ f7Popup <- function(..., id, title = NULL,
                     swipeToClose = FALSE,
                     fullsize = FALSE,
                     closeButton = TRUE,
+                    push = TRUE,
                     session = shiny::getDefaultReactiveDomain()) {
-
   message <- dropNulls(
     list(
       id = session$ns(id),
@@ -83,7 +44,8 @@ f7Popup <- function(..., id, title = NULL,
       closeByBackdropClick = closeByBackdropClick,
       closeOnEscape = closeOnEscape,
       animate = animate,
-      swipeToClose = swipeToClose
+      swipeToClose = swipeToClose,
+      push = push
     )
   )
 
@@ -112,13 +74,13 @@ f7Popup <- function(..., id, title = NULL,
 
   message$content <- as.character(popup_tag)
 
-    # see my-app.js function
-    session$sendCustomMessage(
-      type = "popup",
-      message = jsonlite::toJSON(
-        message,
-        auto_unbox = TRUE,
-        json_verbatim = TRUE
-      )
+  # see my-app.js function
+  session$sendCustomMessage(
+    type = "popup",
+    message = jsonlite::toJSON(
+      message,
+      auto_unbox = TRUE,
+      json_verbatim = TRUE
     )
+  )
 }

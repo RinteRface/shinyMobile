@@ -40,21 +40,17 @@ shinyApp(
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              f7Stepper(
-                "obs1",
-                "Number of observations",
-                min = 0,
-                max = 1000,
-                value = 500,
-                step = 100
-              ),
-              plotOutput("distPlot")
-            )
+          f7Card(
+            title = "Card header",
+            f7Stepper(
+              "obs1",
+              "Number of observations",
+              min = 0,
+              max = 1000,
+              value = 500,
+              step = 100
+            ),
+            plotOutput("distPlot")
           )
         ),
         f7Tab(
@@ -62,23 +58,19 @@ shinyApp(
           tabName = "Tab2",
           icon = f7Icon("today"),
           active = FALSE,
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              f7Select(
-                inputId = "obs2",
-                label = "Distribution type:",
-                choices = c(
-                  "Normal" = "norm",
-                  "Uniform" = "unif",
-                  "Log-normal" = "lnorm",
-                  "Exponential" = "exp"
-                )
-              ),
-              plotOutput("distPlot2")
-            )
+          f7Card(
+            title = "Card header",
+            f7Select(
+              inputId = "obs2",
+              label = "Distribution type:",
+              choices = c(
+                "Normal" = "norm",
+                "Uniform" = "unif",
+                "Log-normal" = "lnorm",
+                "Exponential" = "exp"
+              )
+            ),
+            plotOutput("distPlot2")
           )
         ),
         f7Tab(
@@ -86,29 +78,26 @@ shinyApp(
           tabName = "Tab3",
           icon = f7Icon("cloud_upload"),
           active = FALSE,
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              f7SmartSelect(
-                inputId = "variable",
-                label = "Variables to show:",
-                c("Cylinders" = "cyl",
-                  "Transmission" = "am",
-                  "Gears" = "gear"),
-                multiple = TRUE,
-                selected = "cyl"
+          f7Card(
+            title = "Card header",
+            f7SmartSelect(
+              inputId = "variable",
+              label = "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
               ),
-              tableOutput("data")
-            )
+              multiple = TRUE,
+              selected = "cyl"
+            ),
+            tableOutput("data")
           )
         )
       )
     )
   ),
   server = function(input, output, session) {
-
     n <- reactiveValues(tabs = 1:3)
 
     observe({
@@ -129,11 +118,10 @@ shinyApp(
         target = paste0("Tab", randomTab())
       )
       n$tabs <- n$tabs[-randomTab()]
-
     })
 
     # add new tab
-    observeEvent(input$ptr,{
+    observeEvent(input$ptr, {
       insertF7Tab(
         id = "tabs",
         tab = f7Tab(
@@ -166,8 +154,7 @@ shinyApp(
     })
 
     output$distPlot2 <- renderPlot({
-      dist <- switch(
-        input$obs2,
+      dist <- switch(input$obs2,
         norm = rnorm,
         unif = runif,
         lnorm = rlnorm,
@@ -178,8 +165,11 @@ shinyApp(
       hist(dist(500))
     })
 
-    output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-    }, rownames = TRUE)
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$variable), drop = FALSE]
+      },
+      rownames = TRUE
+    )
   }
 )

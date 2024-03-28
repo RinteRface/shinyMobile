@@ -6,7 +6,12 @@
 \alias{updateF7Accordion}
 \title{Framework7 accordion container}
 \usage{
-f7Accordion(..., id = NULL, multiCollapse = FALSE)
+f7Accordion(
+  ...,
+  id = NULL,
+  multiCollapse = deprecated(),
+  side = c("right", "left")
+)
 
 f7AccordionItem(..., title = NULL, open = FALSE)
 
@@ -21,8 +26,10 @@ updateF7Accordion(
 
 \item{id}{Accordion instance.}
 
-\item{multiCollapse}{Whether to open multiple items at the same time. FALSE
-by default.}
+\item{multiCollapse}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
+
+\item{side}{Accordion collapse toggle side. Default to right.}
 
 \item{title}{Item title.}
 
@@ -40,97 +47,37 @@ by default.}
 \link{updateF7Accordion} toggles an \link{f7Accordion} on the client.
 }
 \examples{
-# Accordion
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Accordions",
     f7SingleLayout(
-     navbar = f7Navbar("Accordions"),
-     f7Accordion(
-      id = "myaccordion1",
-      f7AccordionItem(
-       title = "Item 1",
-       f7Block("Item 1 content"),
-       open = TRUE
-      ),
-      f7AccordionItem(
-       title = "Item 2",
-       f7Block("Item 2 content")
+      navbar = f7Navbar("Accordions"),
+      f7Segment(f7Button(inputId = "go", "Go")),
+      f7Accordion(
+        id = "myaccordion1",
+        f7AccordionItem(
+          title = "Item 1",
+          f7Block("Item 1 content"),
+          open = TRUE
+        ),
+        f7AccordionItem(
+          title = "Item 2",
+          f7Block("Item 2 content")
+        )
       )
-     ),
-     f7Accordion(
-      multiCollapse = TRUE,
-      inputId = "myaccordion2",
-      f7AccordionItem(
-       title = "Item 1",
-       f7Block("Item 1 content")
-      ),
-      f7AccordionItem(
-       title = "Item 2",
-       f7Block("Item 2 content")
-      )
-     )
     )
   ),
   server = function(input, output, session) {
-   observe({
-    print(
-     list(
-      accordion1 = input$myaccordion1,
-      accordion2 = input$myaccordion2
-     )
-    )
-   })
+    observeEvent(input$go, {
+      updateF7Accordion(id = "myaccordion1", selected = 2)
+    })
   }
- )
-}
+)
 
-# Update accordion
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-     title = "Accordions",
-     f7SingleLayout(
-       navbar = f7Navbar("Accordions"),
-       f7Button(inputId = "go", "Go"),
-       f7Accordion(
-         id = "myaccordion1",
-         f7AccordionItem(
-           title = "Item 1",
-           f7Block("Item 1 content"),
-           open = TRUE
-         ),
-         f7AccordionItem(
-           title = "Item 2",
-           f7Block("Item 2 content")
-         )
-       )
-     )
-   ),
-   server = function(input, output, session) {
-
-     observeEvent(input$go, {
-       updateF7Accordion(id = "myaccordion1", selected = 2)
-     })
-
-     observe({
-       print(
-         list(
-           accordion1_state = input$myaccordion1$state,
-           accordion1_values = unlist(input$myaccordion1$value)
-         )
-       )
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

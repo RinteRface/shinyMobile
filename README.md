@@ -6,7 +6,7 @@
 [![R build status](https://github.com/RinteRface/shinyMobile/workflows/R-CMD-check/badge.svg)](https://github.com/RinteRface/shinyMobile/actions)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-ff69b4.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![CRAN status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-project.org/package=shinyMobile)
-
+[![Codecov test coverage](https://codecov.io/gh/RinteRface/shinyMobile/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RinteRface/shinyMobile?branch=master)
 
 
 ## Installation

@@ -1,0 +1,8 @@
+{
+  "input": {
+    "myaccordion1": {
+      "state": true,
+      "value": "Item 1"
+    }
+  }
+}

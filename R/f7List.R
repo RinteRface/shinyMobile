@@ -1,105 +1,113 @@
-#' Create a framework 7 contact list
+#' Create a framework 7 list view
 #'
 #' @param ... Slot for \link{f7ListGroup} or \link{f7ListItem}.
-#' @param mode List mode. NULL or "media" or "contacts".
+#' @param mode List mode. NULL, "simple", "links", "media" or "contacts".
 #' @param inset Whether to display a card border. FALSE by default.
+#' @param outline Outline style. Default to FALSE.
+#' @param dividers Dividers style. Default to FALSE.
+#' @param strong Strong style. Default to FALSE.
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
-#' library(shiny)
-#' library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#' shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7List"),
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "My app",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7List"),
 #'
-#'       # simple list
-#'       f7List(
-#'         lapply(1:3, function(j) f7ListItem(letters[j]))
-#'       ),
+#'         # simple list
+#'         f7List(
+#'           mode = "simple",
+#'           lapply(1:3, function(j) tags$li(letters[j]))
+#'         ),
 #'
-#'       # list with complex items
-#'       f7List(
-#'         lapply(1:3, function(j) {
-#'           f7ListItem(
-#'             letters[j],
-#'             media = f7Icon("alarm_fill"),
-#'             right = "Right Text",
-#'             header = "Header",
-#'             footer = "Footer"
-#'           )
-#'         })
-#'       ),
+#'         # list with complex items
+#'         f7List(
+#'           strong = TRUE,
+#'           outline = TRUE,
+#'           inset = TRUE,
+#'           lapply(1:3, function(j) {
+#'             f7ListItem(
+#'               letters[j],
+#'               media = f7Icon("alarm_fill"),
+#'               right = "Right Text",
+#'               header = "Header",
+#'               footer = "Footer"
+#'             )
+#'           })
+#'         ),
 #'
-#'       # list with complex items
-#'       f7List(
-#'         mode = "media",
-#'         lapply(1:3, function(j) {
-#'           f7ListItem(
-#'             title = letters[j],
-#'             subtitle = "subtitle",
-#'             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+#'         # list with complex items
+#'         f7List(
+#'           mode = "media",
+#'           lapply(1:3, function(j) {
+#'             f7ListItem(
+#'               title = letters[j],
+#'               subtitle = "subtitle",
+#'               "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 #'             Nulla sagittis tellus ut turpis condimentum, ut dignissim
 #'             lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
 #'             sit amet, pharetra sodales eros. Phasellus vel felis tellus.
 #'             Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
 #'             commodo augue id, pulvinar lacus.",
-#'             media = tags$img(
-#'              src = paste0(
-#'              "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
-#'              )
-#'             ),
-#'             right = "Right Text"
-#'           )
-#'         })
-#'       ),
+#'               media = tags$img(
+#'                 src = paste0(
+#'                   "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
+#'                 )
+#'               ),
+#'               right = "Right Text"
+#'             )
+#'           })
+#'         ),
 #'
-#'       # list with links
-#'       f7List(
-#'         lapply(1:3, function(j) {
-#'           f7ListItem(url = "https://google.com", letters[j])
-#'         })
-#'       ),
+#'         # list with links
+#'         f7List(
+#'           mode = "links",
+#'           lapply(1:3, function(j) {
+#'             tags$li(
+#'               f7Link(label = letters[j], href = "https://google.com")
+#'             )
+#'           })
+#'         ),
 #'
-#'       # grouped lists
-#'       f7List(
-#'         mode = "contacts",
-#'         lapply(1:3, function(i) {
-#'           f7ListGroup(
-#'             title = LETTERS[i],
-#'             lapply(1:3, function(j) f7ListItem(letters[j]))
-#'           )
-#'         })
+#'         # grouped lists
+#'         f7List(
+#'           mode = "contacts",
+#'           lapply(1:3, function(i) {
+#'             f7ListGroup(
+#'               title = LETTERS[i],
+#'               lapply(1:3, function(j) f7ListItem(letters[j]))
+#'             )
+#'           })
+#'         )
 #'       )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
-#'  )
+#'     ),
+#'     server = function(input, output) {}
+#'   )
 #' }
-f7List <- function(..., mode = NULL, inset = FALSE) {
-
+f7List <- function(
+    ..., mode = NULL, inset = FALSE, outline = FALSE,
+    dividers = FALSE, strong = FALSE) {
   listCl <- "list chevron-center"
-  if (!is.null(mode)) listCl <- paste0(listCl, " ", mode, "-list")
-  if (inset) listCl <- paste0(listCl, " inset")
+  if (strong) listCl <- paste(listCl, "list-strong")
+  if (outline) listCl <- paste(listCl, "list-outline")
+  if (dividers) listCl <- paste(listCl, "list-dividers")
+  if (!is.null(mode)) listCl <- paste(listCl, sprintf("%s-list", mode))
+  if (inset) listCl <- paste(listCl, "inset")
 
   shiny::tags$div(
     class = listCl,
-    if (is.null(mode)) {
-      shiny::tags$ul(...)
-    } else if (mode == "media") {
-      shiny::tags$ul(...)
-    } else {
+    if (!is.null(mode) && mode == "contacts") {
       shiny::tagList(...)
+    } else {
+      shiny::tags$ul(...)
     }
   )
 }
-
-
-
-
 
 #' Create a Framework 7 contact item
 #'
@@ -114,7 +122,6 @@ f7List <- function(..., mode = NULL, inset = FALSE) {
 #' @export
 f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                        href = NULL, media = NULL, right = NULL) {
-
   # avoid to have crazy large images
   if (!is.null(media)) {
     if (!is.null(media$name)) {
@@ -122,112 +129,102 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     }
   }
 
-  itemContent <- shiny::tagList(
-    # left media
+  if (is.null(title) && !is.null(right)) {
+    stop("Can't set right when title is NULL.")
+  }
+
+  if (!is.null(right) && (!is.null(header) || !is.null(footer))) {
+    stop("right isn't compatible with footer and header.")
+  }
+
+  itemSubtitle <- if (!is.null(subtitle)) {
+    shiny::tags$div(
+      class = "item-subtitle",
+      subtitle
+    )
+  }
+
+  itemText <- if (length(list(...)) > 0) {
+    shiny::tags$div(
+      class = "item-text",
+      ...
+    )
+  }
+
+  itemTitle <- if (
+    !is.null(header) ||
+      !is.null(footer) ||
+      length(list(...)) > 0 ||
+      !is.null(title)
+  ) {
+    shiny::tags$div(
+      class = "item-title",
+      if (!is.null(header)) {
+        shiny::tags$div(
+          class = "item-header",
+          header
+        )
+      },
+      if (is.null(title)) itemText else title,
+      if (!is.null(footer)) {
+        shiny::tags$div(
+          class = "item-footer",
+          footer
+        )
+      }
+    )
+  }
+
+  itemAfter <- if (!is.null(right)) {
+    shiny::tags$div(
+      class = "item-after",
+      right
+    )
+  }
+
+  itemInner <- shiny::tags$div(
+    class = "item-inner",
+    if (!is.null(media) && !is.null(title)) {
+      shiny::tagList(
+        shiny::tags$div(
+          class = "item-title-row",
+          itemTitle,
+          itemAfter
+        ),
+        itemSubtitle,
+        itemText
+      )
+    } else {
+      shiny::tagList(
+        itemTitle,
+        itemAfter
+      )
+    }
+  )
+
+  itemContent <- shiny::tags$div(
+    class = "item-content",
     if (!is.null(media)) {
       shiny::tags$div(
         class = "item-media",
         media
       )
     },
-
-    # center content
-    shiny::tags$div(
-      class = "item-inner",
-
-      if (is.null(title)) {
-        shiny::tagList(
-          shiny::tags$div(
-            class = "item-title",
-            if (!is.null(header)) {
-              shiny::tags$div(
-                class = "item-header",
-                header
-              )
-            },
-            ...,
-            if (!is.null(footer)) {
-              shiny::tags$div(
-                class = "item-footer",
-                footer
-              )
-            }
-          ),
-
-          # right content
-          if (!is.null(right)) {
-            shiny::tags$div(
-              class = "item-after",
-              right
-            )
-          }
-        )
-      } else {
-        shiny::tagList(
-          shiny::tags$div(
-            class = "item-title-row",
-            shiny::tags$div(
-              class = "item-title",
-              if (!is.null(header)) {
-                shiny::tags$div(
-                  class = "item-header",
-                  header
-                )
-              },
-              title,
-              if (!is.null(footer)) {
-                shiny::tags$div(
-                  class = "item-footer",
-                  footer
-                )
-              }
-            ),
-            # right content
-            if (!is.null(right)) {
-              shiny::tags$div(
-                class = "item-after",
-                right
-              )
-            }
-          ),
-
-          # subtitle
-          if (!is.null(subtitle)) {
-            shiny::tags$div(
-              class = "item-subtitle",
-              subtitle
-            )
-          },
-
-          # text
-          shiny::tags$div(
-            class = "item-text",
-            ...
-          )
-        )
-      }
-    )
+    itemInner
   )
 
-  itemContentWrapper <- if (is.null(href)) {
-    shiny::tags$div(
-      class = "item-content",
-      itemContent
+  if (!is.null(href)) {
+    itemContent$name <- "a"
+    itemContent$attribs$class <- paste(
+      itemContent$attribs$class,
+      "item-link external"
     )
-  } else {
-    shiny::tags$a(
-      class = "item-link item-content external",
-      href = href,
-      target = "_blank",
-      itemContent
-    )
+    itemContent$attribs$href <- href
+    itemContent$attribs$target <- "_blank"
   }
 
-  shiny::tags$li(itemContentWrapper)
+  shiny::tags$li(itemContent)
 }
-
-
-
 
 #' Create a framework 7 group of contacts
 #'
@@ -244,434 +241,46 @@ f7ListGroup <- function(..., title) {
   )
 }
 
-
-
 #' Create a Framework 7 list index
 #'
 #' List index must be attached to an existing list view.
 #'
 #' @param id Unique id.
 #' @param target Related list element. CSS selector like .class, #id, ...
-#' @param ... Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).
+#' @param ... Other options (see \url{https://framework7.io/docs/list-index#list-index-parameters}).
 #' @param session Shiny session object.
 #' @export
 #'
-#' @note For some reason, unable to get more than 1 list index working. See
-#' example below. The second list does not work.
+#' @note We disadvise to use multiple list index widget per app.
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "List Index",
-#'      f7TabLayout(
-#'        navbar = f7Navbar(
-#'          title = "f7ListIndex",
-#'          hairline = FALSE,
-#'          shadow = TRUE
-#'        ),
-#'        f7Tabs(
-#'          f7Tab(
-#'            tabName = "List1",
-#'            f7List(
-#'             mode = "contacts",
-#'             lapply(1:26, function(i) {
-#'               f7ListGroup(
-#'                 title = LETTERS[i],
-#'                 lapply(1:26, function(j) f7ListItem(letters[j]))
-#'               )
-#'             })
-#'            )
-#'          ),
-#'          f7Tab(
-#'            tabName = "List2",
-#'            f7List(
-#'             mode = "contacts",
-#'             lapply(1:26, function(i) {
-#'               f7ListGroup(
-#'                 title = LETTERS[i],
-#'                 lapply(1:26, function(j) f7ListItem(letters[j]))
-#'               )
-#'             })
-#'            )
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'     observeEvent(TRUE, {
-#'      f7ListIndex(id = "list-index-1", target = ".list")
-#'     }, once = TRUE)
-#'    }
-#'  )
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "List Index",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(
+#'           title = "f7ListIndex"
+#'         ),
+#'         f7List(
+#'           mode = "contacts",
+#'           lapply(1:26, function(i) {
+#'             f7ListGroup(
+#'               title = LETTERS[i],
+#'               lapply(1:26, function(j) f7ListItem(letters[j]))
+#'             )
+#'           })
+#'         )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       f7ListIndex(id = "mylist", target = ".list", label = TRUE)
+#'     }
+#'   )
 #' }
 f7ListIndex <- function(id, target, ..., session = shiny::getDefaultReactiveDomain()) {
   message <- list(el = id, listEl = target, ...)
   sendCustomMessage("listIndex", message, session)
-}
-
-
-#' Framework7 virtual list
-#'
-#' \code{f7VirtualList} is a high performance list container.
-#' Use if you have too many components in \link{f7List}.
-#'
-#' @param id Virtual list unique id.
-#' @param items List items. Slot for \link{f7VirtualListItem}.
-#' @param rowsBefore Amount of rows (items) to be rendered before current
-#' screen scroll position. By default it is equal to double amount of
-#' rows (items) that fit to screen.
-#' @param rowsAfter Amount of rows (items) to be rendered after current
-#' screen scroll position. By default it is equal to the amount of rows
-#' (items) that fit to screen.
-#' @param cache Disable or enable DOM cache for already rendered list items.
-#' In this case each item will be rendered only once and all further
-#' manipulations will be with DOM element. It is useful if your list
-#' items have some user interaction elements (like form elements or swipe outs)
-#' or could be modified.
-#'
-#' @export
-#' @rdname virtuallist
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Virtual List",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(
-#'         title = "Virtual Lists",
-#'         hairline = FALSE,
-#'         shadow = TRUE
-#'       ),
-#'       # main content
-#'       f7VirtualList(
-#'         id = "vlist",
-#'         rowsBefore = 2,
-#'         rowsAfter = 2,
-#'         items = lapply(1:2000, function(i) {
-#'           f7VirtualListItem(
-#'             title = paste("Title", i),
-#'             subtitle = paste("Subtitle", i),
-#'             header = paste("Header", i),
-#'             footer = paste("Footer", i),
-#'             right = paste("Right", i),
-#'             content = i,
-#'             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
-#'           )
-#'         })
-#'       )
-#'     )
-#'   ),
-#'   server = function(input, output) {
-#'
-#'   }
-#'  )
-#'
-#'  # below example will not load with classic f7List
-#'  #shinyApp(
-#'  #  ui = f7Page(
-#'  #    title = "My app",
-#'  #    f7SingleLayout(
-#'  #      navbar = f7Navbar(
-#'  #        title = "Virtual Lists",
-#'  #        hairline = FALSE,
-#'  #        shadow = TRUE
-#'  #      ),
-#'  #      # main content
-#'  #      f7List(
-#'  #        lapply(1:20000, function(i) {
-#'  #          f7ListItem(
-#'  #            title = paste("Title", i),
-#'  #            subtitle = paste("Subtitle", i),
-#'  #            header = paste("Header", i),
-#'  #            footer = paste("Footer", i),
-#'  #            right = paste("Right", i),
-#'  #            content = i
-#'  #          )
-#'  #        })
-#'  #      )
-#'  #    )
-#'  #  ),
-#'  #  server = function(input, output) {
-#'  #
-#'  #  }
-#'  #)
-#' }
-f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
-                          cache = TRUE) {
-
-  config <- dropNulls(
-    list(
-      items = items,
-      rowsBefore = rowsBefore,
-      rowsAfter = rowsAfter,
-      cache = cache
-    )
-  )
-
-  shiny::tags$div(
-    id = id,
-    shiny::tags$script(
-      type = "application/json",
-      `data-for` = id,
-      jsonlite::toJSON(
-        x = config,
-        auto_unbox = TRUE,
-        json_verbatim = TRUE
-      )
-    ),
-    class = "list virtual-list media-list searchbar-found"
-  )
-}
-
-
-#' Framework7 virtual list item
-#'
-#' \code{f7VirtualListItem} is an item component for \link{f7VirtualList}.
-#'
-#' @inheritParams f7ListItem
-#' @rdname virtuallist
-#' @export
-f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
-                              href = NULL, media = NULL, right = NULL) {
-
-  dropNulls(
-    list(
-      content = ...,
-      title = title,
-      subtitle = subtitle,
-      header = header,
-      footer = footer,
-      url = href,
-      media = as.character(media), # avoid issue on JS side
-      right = right
-    )
-  )
-}
-
-
-
-
-#' Update an \link{f7VirtualList} on the server side
-#'
-#' This function wraps all methods from \url{https://framework7.io/docs/virtual-list.html}
-#'
-#' @param id \link{f7VirtualList} to update.
-#' @param action Action to perform. See \url{https://framework7.io/docs/virtual-list.html}.
-#' @param item If action is one of appendItem, prependItem, replaceItem, insertItemBefore.
-#' @param items If action is one of appendItems, prependItems, replaceAllItems.
-#' @param index If action is one of replaceItem, insertItemBefore, deleteItem.
-#' @param indexes If action if one of filterItems, deleteItems.
-#' @param oldIndex If action is moveItem.
-#' @param newIndex If action is moveItem.
-#' @param session Shiny session.
-#'
-#' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Update virtual list",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "Virtual Lists",
-#'          hairline = FALSE,
-#'          shadow = TRUE
-#'        ),
-#'        # main content
-#'        f7Segment(
-#'          container = "segment",
-#'
-#'          f7Button(inputId = "appendItem", "Append Item"),
-#'          f7Button(inputId = "prependItems", "Prepend Items"),
-#'          f7Button(inputId = "insertBefore", "Insert before"),
-#'          f7Button(inputId = "replaceItem", "Replace Item")
-#'        ),
-#'        f7Segment(
-#'          container = "segment",
-#'          f7Button(inputId = "deleteAllItems", "Remove All"),
-#'          f7Button(inputId = "moveItem", "Move Item"),
-#'          f7Button(inputId = "filterItems", "Filter Items")
-#'        ),
-#'        f7Flex(
-#'          uiOutput("itemIndexUI"),
-#'          uiOutput("itemNewIndexUI"),
-#'          uiOutput("itemsFilterUI")
-#'        ),
-#'        f7VirtualList(
-#'          id = "vlist",
-#'          items = lapply(1:5, function(i) {
-#'            f7VirtualListItem(
-#'              title = paste("Title", i),
-#'              subtitle = paste("Subtitle", i),
-#'              header = paste("Header", i),
-#'              footer = paste("Footer", i),
-#'              right = paste("Right", i),
-#'              content = i,
-#'              media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
-#'            )
-#'          })
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'
-#'      output$itemIndexUI <- renderUI({
-#'        req(input$vlist$length > 2)
-#'        f7Stepper(
-#'          inputId = "itemIndex",
-#'          label = "Index",
-#'          min = 1,
-#'          value = 2,
-#'          max = input$vlist$length
-#'        )
-#'      })
-#'
-#'      output$itemNewIndexUI <- renderUI({
-#'        req(input$vlist$length > 2)
-#'        f7Stepper(
-#'          inputId = "itemNewIndex",
-#'          label = "New Index",
-#'          min = 1,
-#'          value = 1,
-#'          max = input$vlist$length
-#'        )
-#'      })
-#'
-#'      output$itemsFilterUI <- renderUI({
-#'        input$appendItem
-#'        input$prependItems
-#'        input$insertBefore
-#'        input$replaceItem
-#'        input$deleteAllItems
-#'        input$moveItem
-#'        isolate({
-#'          req(input$vlist$length > 2)
-#'          f7Slider(
-#'            inputId = "itemsFilter",
-#'            label = "Items to Filter",
-#'            min = 1,
-#'            max = input$vlist$length,
-#'            value = c(1, input$vlist$length)
-#'          )
-#'        })
-#'      })
-#'
-#'      observe(print(input$vlist))
-#'
-#'      observeEvent(input$appendItem, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "appendItem",
-#'          item = f7VirtualListItem(
-#'            title = "New Item Title",
-#'            right = "New Item Right",
-#'            content = "New Item Content",
-#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
-#'          )
-#'        )
-#'      })
-#'
-#'      observeEvent(input$prependItems, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "prependItems",
-#'          items = lapply(1:5, function(i) {
-#'            f7VirtualListItem(
-#'              title = paste("Title", i),
-#'              right = paste("Right", i),
-#'              content = i,
-#'              media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
-#'            )
-#'          })
-#'        )
-#'      })
-#'
-#'      observeEvent(input$insertBefore, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "insertItemBefore",
-#'          index = input$itemIndex,
-#'          item = f7VirtualListItem(
-#'            title = "New Item Title",
-#'            content = "New Item Content",
-#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
-#'          )
-#'        )
-#'      })
-#'
-#'      observeEvent(input$replaceItem, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "replaceItem",
-#'          index = input$itemIndex,
-#'          item = f7VirtualListItem(
-#'            title = "Replacement",
-#'            content = "Replacement Content",
-#'            media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
-#'          )
-#'        )
-#'      })
-#'
-#'      observeEvent(input$deleteAllItems, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "deleteAllItems"
-#'        )
-#'      })
-#'
-#'      observeEvent(input$moveItem, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "moveItem",
-#'          oldIndex = input$itemIndex,
-#'          newIndex = input$itemNewIndex
-#'        )
-#'      })
-#'
-#'      observeEvent(input$filterItems, {
-#'        updateF7VirtualList(
-#'          id = "vlist",
-#'          action = "filterItems",
-#'          indexes = input$itemsFilter[1]:input$itemsFilter[2]
-#'        )
-#'      })
-#'
-#'    }
-#'  )
-#' }
-updateF7VirtualList <- function(id, action = c("appendItem", "appendItems", "prependItem",
-                                               "prependItems", "replaceItem", "replaceAllItems",
-                                               "moveItem", "insertItemBefore", "filterItems",
-                                               "deleteItem", "deleteAllItems", "scrollToItem"),
-                                item = NULL, items = NULL, index = NULL, indexes = NULL,
-                                oldIndex = NULL, newIndex = NULL,
-                                session = shiny::getDefaultReactiveDomain()) {
-
-  # JavaScript starts from 0!
-  index <- index - 1
-  indexes <- indexes - 1
-  oldIndex <- oldIndex - 1
-  newIndex <- newIndex - 1
-
-  message <- dropNulls(
-    list(
-      action = action,
-      item = item,
-      items = items,
-      index = index,
-      indexes = indexes,
-      oldIndex = oldIndex,
-      newIndex = newIndex
-    )
-  )
-
-  session$sendInputMessage(inputId = id, message)
 }

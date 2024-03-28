@@ -2,108 +2,107 @@
 % Please edit documentation in R/f7Preloader.R
 \name{showF7Preloader}
 \alias{showF7Preloader}
-\alias{f7HidePreloader}
+\alias{updateF7Preloader}
+\alias{hideF7Preloader}
 \title{Framework7 preloader}
 \usage{
 showF7Preloader(
   target = NULL,
   color = NULL,
+  type = NULL,
+  id = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 
-f7HidePreloader(target = NULL, session = shiny::getDefaultReactiveDomain())
+updateF7Preloader(
+  id,
+  title = NULL,
+  text = NULL,
+  progress = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
+
+hideF7Preloader(
+  target = NULL,
+  id = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
 }
 \arguments{
 \item{target}{Element where preloader overlay will be added.}
 
 \item{color}{Preloader color.}
 
+\item{type}{Leave NULL to use the default preloader
+or use either "dialog" or "progress".}
+
+\item{id}{When type isn't NULL, an id is required
+to be able to use \link{updateF7Preloader}.}
+
 \item{session}{Shiny session object.}
+
+\item{title}{Dialog title.}
+
+\item{text}{Dialog text.}
+
+\item{progress}{Progress bar content.}
 }
 \description{
 \code{showF7Preloader} shows a preloader.
+When \code{target} is NULL, the overlay applies
+to the entire view, preventing to perform any actions.
+When type is not NULL, \code{target} is ignored.
 
-\code{f7HidePreloader} hides a preloader.
+\code{updateF7Preloader} updates a preloader.
+
+\code{hideF7Preloader} hides a preloader.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- # basic preloader with red color
- shinyApp(
-  ui = f7Page(
-    title = "Preloader",
-    f7SingleLayout(
-      navbar = f7Navbar(
-        title = "Preloader",
-        hairline = FALSE,
-        shadow = TRUE
-      ),
-      # main content
-      f7Button("showLoader", "Show loader"),
-      f7Shadow(
-        intensity = 10,
-        hover = TRUE,
-        f7Card(
-          title = "Card header",
-          f7Slider("obs", "Number of observations", 0, 1000, 500),
-          plotOutput("distPlot")
-        )
+  # preloader in container
+  shinyApp(
+    ui = f7Page(
+      title = "Preloader in container",
+      f7SingleLayout(
+        navbar = f7Navbar(
+          title = "Preloader in container"
+        ),
+        # main content
+        f7Block(
+          f7Button("compute", "Compute")
+        ),
+        f7Block(textOutput("calc"))
       )
-    )
-  ),
-  server = function(input, output, session) {
-    output$distPlot <- renderPlot({
-      dist <- rnorm(input$obs)
-      hist(dist)
-    })
+    ),
+    server = function(input, output, session) {
+      res <- reactiveVal(NULL)
+      progress <- reactiveVal(NULL)
+      output$calc <- renderText(res())
 
-    observeEvent(input$showLoader, {
-      showF7Preloader(color = "red")
-      Sys.sleep(2)
-      f7HidePreloader()
-    })
-  }
- )
+      observeEvent(input$compute, {
+        res(NULL)
+        progress(0)
+        showF7Preloader(color = "red", type = "progress", id = "loader")
+        for (i in seq_along(1:100)) {
+          Sys.sleep(0.025)
+          progress(i)
+          updateF7Preloader(
+            id = "loader",
+            title = "Computing ...",
+            text = sprintf("Done: \%s/100", progress()),
+            progress = progress()
+          )
+        }
+        res("Result!")
+      })
 
- # preloader in container
- shinyApp(
-  ui = f7Page(
-    title = "Preloader in container",
-    f7SingleLayout(
-      navbar = f7Navbar(
-        title = "Preloader in container",
-        hairline = FALSE,
-        shadow = TRUE
-      ),
-      # main content
-      f7Shadow(
-        intensity = 10,
-        hover = TRUE,
-        f7Card(
-          title = "Card header",
-          f7Slider("obs", "Number of observations", 0, 1000, 500),
-          plotOutput("distPlot")
-        )
-      ),
-      f7Card("This is a simple card with plain text,
-       but cards can also contain their own header,
-       footer, list view, image, or any other element.")
-    )
-  ),
-  server = function(input, output, session) {
-    output$distPlot <- renderPlot({
-      dist <- rnorm(input$obs)
-      hist(dist)
-    })
-
-    observeEvent(input$obs, {
-      showF7Preloader(target = "#distPlot", color = "red")
-      Sys.sleep(2)
-      f7HidePreloader()
-    })
-  }
- )
+      observeEvent(res(), {
+        hideF7Preloader(id = "loader")
+      })
+    }
+  )
 }
 }

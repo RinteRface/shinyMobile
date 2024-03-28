@@ -1,0 +1,10 @@
+{
+  "input": {
+    "slider": 100,
+    "toggle": true
+  },
+  "output": {
+    "test": "[1] TRUE",
+    "test2": "100"
+  }
+}

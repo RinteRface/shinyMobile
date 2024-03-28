@@ -15,22 +15,23 @@ colorToHex <- function(color) {
   if (is.null(color)) {
     "#007aff"
   } else {
-    switch (color,
-            "red" = "#ff3b30",
-            "green" = "#4cd964",
-            "blue" = "#2196f3",
-            "pink" = "#ff2d55",
-            "yellow" = "#ffcc00",
-            "orange" = "#ff9500",
-            "purple" = "#9c27b0",
-            "deeppurple" = "#673ab7",
-            "lightblue" = "#5ac8fa",
-            "teal" = "#009688",
-            "lime" = "#cddc39",
-            "deeporange" = "#ff6b22",
-            "gray" = "#8e8e93",
-            "white" = "#ffffff",
-            "black" = "#000000"
+    switch(color,
+      "primary" = "#007aff",
+      "red" = "#ff3b30",
+      "green" = "#4cd964",
+      "blue" = "#2196f3",
+      "pink" = "#ff2d55",
+      "yellow" = "#ffcc00",
+      "orange" = "#ff9500",
+      "purple" = "#9c27b0",
+      "deeppurple" = "#673ab7",
+      "lightblue" = "#5ac8fa",
+      "teal" = "#009688",
+      "lime" = "#cddc39",
+      "deeporange" = "#ff6b22",
+      "gray" = "#8e8e93",
+      "white" = "#ffffff",
+      "black" = "#000000"
     )
   }
 }
@@ -43,16 +44,17 @@ colorToHex <- function(color) {
 #' @export
 getF7Colors <- function() {
   c(
+    "primary",
     "red",
     "green",
     "blue",
     "pink",
     "yellow",
     "orange",
-    "purple" ,
+    "purple",
     "deeppurple",
     "lightblue",
-    "teal" ,
+    "teal",
     "lime",
     "deeporange",
     "gray",
@@ -136,11 +138,13 @@ sendCustomMessage <- function(type, message, session) {
 
 # Given a Shiny tag object, process singletons and dependencies. Returns a list
 # with rendered HTML and dependency objects.
-processDeps <- function (tags, session) {
+processDeps <- function(tags, session) {
   ui <- htmltools::takeSingletons(tags, session$singletons, desingleton = FALSE)$ui
   ui <- htmltools::surroundSingletons(ui)
-  dependencies <- lapply(htmltools::resolveDependencies(htmltools::findDependencies(ui)),
-                         shiny::createWebDependency)
+  dependencies <- lapply(
+    htmltools::resolveDependencies(htmltools::findDependencies(ui)),
+    shiny::createWebDependency
+  )
   names(dependencies) <- NULL
   list(html = htmltools::doRenderTags(ui), deps = dependencies)
 }
@@ -160,7 +164,6 @@ processDeps <- function (tags, session) {
 #' @param landscape Whether to put the device wrapper in landscape mode. Default to FALSE.
 #' @keywords internal
 app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FALSE) {
-
   # test app availability
   req <- httr::GET(url)
   show_app <- req$status_code == 200
@@ -179,7 +182,7 @@ app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FAL
       color = color,
       landscape = landscape
     )
-    if (deps){
+    if (deps) {
       shiny::tagList(
         shiny::tags$link(
           rel = "stylesheet",
@@ -197,8 +200,8 @@ app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FAL
 # Get arguments of function call at a given level. Level can be negative.
 get_args <- function(level) {
   cl <- sys.call(level)
-  f <- get(as.character(cl[[1]]), mode="function", sys.frame(-2))
-  cl <- match.call(definition=f, call=cl)
+  f <- get(as.character(cl[[1]]), mode = "function", sys.frame(-2))
+  cl <- match.call(definition = f, call = cl)
   as.list(cl)[-1]
 }
 

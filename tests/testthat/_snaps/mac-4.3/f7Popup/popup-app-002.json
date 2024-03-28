@@ -1,0 +1,9 @@
+{
+  "input": {
+    "popup": true,
+    "text": "balbla"
+  },
+  "output": {
+    "res": "[1] \"balbla\""
+  }
+}

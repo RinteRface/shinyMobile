@@ -40,11 +40,11 @@ when you want to trigger events after a specific button click.}
 
 \item{grid}{Whether to display buttons on a grid. Default to FALSE.}
 
-\item{...}{Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.}
+\item{...}{Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.}
 
 \item{session}{Shiny session object.}
 
-\item{options}{Other options. See \url{https://v5.framework7.io/docs/action-sheet.html#action-sheet-parameters}.}
+\item{options}{Other options. See \url{https://framework7.io/docs/action-sheet#action-sheet-parameters}.}
 }
 \description{
 \code{f7ActionSheet} creates an action sheet may contain multiple buttons. Each of them triggers
@@ -53,207 +53,96 @@ an action on the server side. It may be updated later by \link{updateF7ActionShe
 \code{updateF7ActionSheet} updates an \link{f7ActionSheet} from the server.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "Action sheet",
-     f7SingleLayout(
-       navbar = f7Navbar("Action sheet"),
-       br(),
-       f7Button(inputId = "go", label = "Show action sheet", color = "red")
-     )
-   ),
-   server = function(input, output, session) {
+sheetModuleUI <- function(id) {
+  ns <- NS(id)
+  f7Segment(
+    f7Button(inputId = ns("go"), label = "Show action sheet", color = "green"),
+    f7Button(inputId = ns("update"), label = "Update action sheet", color = "red")
+  )
+}
 
-     observe({
-       print(list(
-         sheetOpen = input$action1,
-         button = input$action1_button
-       ))
-     })
+sheetModule <- function(id) {
+  moduleServer(
+    id,
+    function(input, output, session) {
+      ns <- session$ns
 
-     observeEvent(input$action1_button, {
-       if (input$action1_button == 1) {
-         f7Notif(
-           text = "You clicked on the first button",
-           icon = f7Icon("bolt_fill"),
-           title = "Notification",
-           titleRightText = "now"
-         )
-       } else if (input$action1_button == 2) {
-         f7Dialog(
-           id = "test",
-           title = "Click me to launch a Toast!",
-           type = "confirm",
-           text = "You clicked on the second button"
-         )
-       }
-     })
-
-     observeEvent(input$test, {
-       f7Toast(text = paste("Alert input is:", input$test))
-     })
-
-     observeEvent(input$go, {
-       f7ActionSheet(
-         grid = TRUE,
-         id = "action1",
-         buttons = list(
-          list(
-            text = "Notification",
-            icon = f7Icon("info"),
-            color = NULL
-          ),
-          list(
-            text = "Dialog",
-            icon = f7Icon("lightbulb_fill"),
-            color = NULL
+      observeEvent(input$action1_button, {
+        if (input$action1_button == 1) {
+          f7Notif(
+            text = "You clicked on the first button",
+            icon = f7Icon("bolt_fill"),
+            title = "Notification",
+            titleRightText = "now"
           )
-         )
-       )
-     })
-   }
- )
+        } else if (input$action1_button == 2) {
+          f7Dialog(
+            id = ns("test"),
+            title = "Click me to launch a Toast!",
+            type = "confirm",
+            text = "You clicked on the second button",
+          )
+        }
+      })
 
- ### in shiny module
- library(shiny)
- library(shinyMobile)
+      observeEvent(input$test, {
+        f7Toast(text = paste("Alert input is:", input$test))
+      })
 
- sheetModuleUI <- function(id) {
-   ns <- NS(id)
-   f7Button(inputId = ns("go"), label = "Show action sheet", color = "red")
- }
+      observeEvent(input$go, {
+        f7ActionSheet(
+          grid = TRUE,
+          id = ns("action1"),
+          buttons = list(
+            list(
+              text = "Notification",
+              icon = f7Icon("info"),
+              color = NULL
+            ),
+            list(
+              text = "Dialog",
+              icon = f7Icon("lightbulb_fill"),
+              color = NULL
+            )
+          )
+        )
+      })
 
- sheetModule <- function(input, output, session) {
-
-   ns <- session$ns
-
-   observe({
-     print(list(
-       sheetOpen = input$action1,
-       button = input$action1_button
-     ))
-   })
-
-   observeEvent(input$action1_button, {
-     if (input$action1_button == 1) {
-       f7Notif(
-         text = "You clicked on the first button",
-         icon = f7Icon("bolt_fill"),
-         title = "Notification",
-         titleRightText = "now"
-       )
-     } else if (input$action1_button == 2) {
-       f7Dialog(
-         id = ns("test"),
-         title = "Click me to launch a Toast!",
-         type = "confirm",
-         text = "You clicked on the second button",
-       )
-     }
-   })
-
-   observeEvent(input$test, {
-     f7Toast(text = paste("Alert input is:", input$test))
-   })
-
-   observeEvent(input$go, {
-     f7ActionSheet(
-       grid = TRUE,
-       id = ns("action1"),
-       buttons = list(
-         list(
-           text = "Notification",
-           icon = f7Icon("info"),
-           color = NULL
-         ),
-         list(
-           text = "Dialog",
-           icon = f7Icon("lightbulb_fill"),
-           color = NULL
-         )
-       )
-     )
-   })
- }
-
- shinyApp(
-   ui = f7Page(
-     title = "Action sheet",
-     f7SingleLayout(
-       navbar = f7Navbar("Action sheet"),
-       br(),
-       sheetModuleUI(id = "sheet1")
-     )
-   ),
-   server = function(input, output, session) {
-     callModule(sheetModule, "sheet1")
-   }
- )
+      observeEvent(input$update, {
+        updateF7ActionSheet(
+          id = "action1",
+          options = list(
+            grid = TRUE,
+            buttons = list(
+              list(
+                text = "Plop",
+                icon = f7Icon("info"),
+                color = "orange"
+              )
+            )
+          )
+        )
+      })
+    }
+  )
 }
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "Update Action sheet",
-     f7SingleLayout(
-       navbar = f7Navbar("Update Action sheet"),
-       br(),
-       f7Segment(
-         f7Button(inputId = "go", label = "Show action sheet", color = "green"),
-         f7Button(inputId = "update", label = "Update action sheet", color = "red")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+app <- shinyApp(
+  ui = f7Page(
+    title = "Action sheet",
+    f7SingleLayout(
+      navbar = f7Navbar("Action sheet"),
+      br(),
+      sheetModuleUI(id = "sheet1")
+    )
+  ),
+  server = function(input, output, session) {
+    sheetModule("sheet1")
+  }
+)
 
-     observe({
-       print(list(
-         sheetOpen = input$action1,
-         button = input$action1_button
-       ))
-     })
-
-     observeEvent(input$go, {
-       f7ActionSheet(
-         grid = TRUE,
-         id = "action1",
-         buttons = list(
-           list(
-             text = "Notification",
-             icon = f7Icon("info"),
-             color = NULL
-           ),
-           list(
-             text = "Dialog",
-             icon = f7Icon("lightbulb_fill"),
-             color = NULL
-           )
-         )
-       )
-     })
-
-     observeEvent(input$update, {
-       updateF7ActionSheet(
-         id = "action1",
-         options = list(
-           grid = TRUE,
-           buttons = list(
-             list(
-               text = "Plop",
-               icon = f7Icon("info"),
-               color = "orange"
-             )
-           )
-         )
-       )
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

@@ -14,30 +14,9 @@
 #' @param ... Other options. See \url{https://framework7.io/docs/toast.html#toast-parameters}.
 #' @param session Shiny session.
 #'
-#' @export
+#' @example inst/examples/toast/app.R
 #'
-#' @examples
-#' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Toast",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(title = "f7Toast"),
-#'       f7Button(inputId = "toast", label = "Open Toast")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     observeEvent(input$toast, {
-#'       f7Toast(
-#'         position = "top",
-#'         text = "I am a toast. Eat me!"
-#'       )
-#'     })
-#'   }
-#'  )
-#' }
+#' @export
 f7Toast <- function(text, position = c("bottom", "top", "center"),
                     closeButton = TRUE, closeButtonText = "close",
                     closeButtonColor = "red", closeTimeout = 3000, icon = NULL,
@@ -59,7 +38,7 @@ f7Toast <- function(text, position = c("bottom", "top", "center"),
       ...
     )
   )
-  # see my-app.js function
+  # see components/init.js
   session$sendCustomMessage(
     type = "toast",
     message = jsonlite::toJSON(

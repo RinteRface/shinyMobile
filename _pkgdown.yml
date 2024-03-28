@@ -2,7 +2,6 @@ reference:
 - title: Basic functions
   desc: Page skeleton functions
   contents:
-  - '`f7Appbar`'
   - '`f7Item`'
   - '`f7Items`'
   - '`f7Navbar`'
@@ -26,30 +25,18 @@ reference:
 - title: Toward progressive web app
   desc: Tools to build a progressive web app
   contents:
-  - '`create_manifest`'
   - '`preview_mobile`'
 
 - title: Inputs validation
   desc: Provide feedback when an input is missing, ...
   contents:
-  - '`f7ValidateInput`'
   - '`validateF7Input`'
 
 
 - title: Grid functions
   desc: Rows, columns, flex, ...
   contents:
-  - '`f7Col`'
-  - '`f7Flex`'
-  - '`f7Row`'
-
-
-- title: Tab Navigation
-  desc: Next, back
-  contents:
-  - '`f7Back`'
-  - '`f7Next`'
-
+  - '`f7Grid`'
 
 - title: Layouts
   desc: Functions that create layouts
@@ -66,14 +53,18 @@ reference:
   - '`f7File`'
 
 
+- title: Tab Navigation
+  desc: Next, back
+  contents:
+  - '`f7Back`'
+  - '`f7Next`'
+
 
 - title: Inputs
   desc: slider, radio, checkboxes, ...
   contents:
   - '`f7AutoComplete`'
-  - '`f7checkBox`'
   - '`f7Checkbox`'
-  - '`f7checkBoxGroup`'
   - '`f7CheckboxGroup`'
   - '`f7ColorPicker`'
   - '`f7DatePicker`'
@@ -93,12 +84,8 @@ reference:
 - title: Update inputs
   desc: slider, radio, checkboxes, ...
   contents:
-  - '`f7InsertTab`'
   - '`insertF7Tab`'
-  - '`f7HideNavbar`'
-  - '`f7ShowNavbar`'
   - '`updateF7Navbar`'
-  - '`f7RemoveTab`'
   - '`removeF7Tab`'
   - '`updateF7Accordion`'
   - '`updateF7AutoComplete`'
@@ -110,7 +97,6 @@ reference:
   - '`updateF7Fabs`'
   - '`updateF7Gauge`'
   - '`updateF7Login`'
-  - '`f7AddMessages`'
   - '`updateF7Messages`'
   - '`updateF7MessageBar`'
   - '`updateF7Panel`'
@@ -147,7 +133,6 @@ reference:
   contents:
   - '`f7Card`'
   - '`f7ExpandableCard`'
-  - '`f7SocialCard`'
 
 
 - title: Lists
@@ -159,6 +144,9 @@ reference:
   - '`f7ListIndex`'
   - '`f7VirtualList`'
   - '`f7VirtualListItem`'
+  - '`f7Treeview`'
+  - '`f7TreeviewItem`'
+  - '`f7TreeviewGroup`'
 
 
 
@@ -179,7 +167,6 @@ reference:
   - '`f7Fab`'
   - '`f7Fabs`'
   - '`f7Link`'
-  - '`f7Menu`'
   - '`f7Segment`'
   - '`f7TabLink`'
 
@@ -199,9 +186,8 @@ reference:
   - '`f7ActionSheet`'
   - '`f7Dialog`'
   - '`f7Notif`'
-  - '`f7Popover`'
-  - '`f7PopoverTarget`'
   - '`addF7Popover`'
+  - '`toggleF7Popover`'
   - '`f7Popup`'
   - '`f7Sheet`'
   - '`f7Swipeout`'
@@ -217,7 +203,6 @@ reference:
   contents:
   - '`f7Accordion`'
   - '`f7AccordionItem`'
-  - '`f7AddMessages`'
   - '`f7Badge`'
   - '`f7Chip`'
   - '`f7Message`'
@@ -258,16 +243,13 @@ reference:
 - title: Loaders
   desc: Loading screens
   contents:
-  - '`f7ShowPreloader`'
   - '`showF7Preloader`'
-  - '`f7HidePreloader`'
+  - '`updateF7Preloader`'
   - '`hideF7Preloader`'
-
 
 - title: CSS effects
   desc: shadows, ...
   contents:
-  - '`f7Shadow`'
   - '`f7Skeleton`'
 
 
@@ -281,6 +263,7 @@ reference:
   contents:
   - '`createSelectOptions`'
   - '`getF7Colors`'
+  - '`add_shinyMobile_deps`'
 
 
 template:

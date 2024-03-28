@@ -10,11 +10,13 @@ f7Progress(id, value = NULL, color)
 updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{id}{Unique progress bar id.}
+\item{id}{Progress id. Must be unique.}
 
-\item{value}{New value.}
+\item{value}{Progress value. Between 0 and 100.
+If NULL the progress bar is infinite.}
 
-\item{color}{Progress color. See \url{https://framework7.io/docs/progressbar.html}.}
+\item{color}{Progress color.
+See \url{https://framework7.io/docs/progressbar.html}.}
 
 \item{session}{Shiny session object.}
 }
@@ -24,56 +26,33 @@ updateF7Progress(id, value, session = shiny::getDefaultReactiveDomain())
 \code{updateF7Progress} update a framework7 progress bar from the server side
 }
 \examples{
-# Progress bars
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "Progress",
+app <- shinyApp(
+  ui = f7Page(
+    title = "Update Progress",
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Progress"),
-     f7Block(f7Progress(id = "pg1", value = 10, color = "pink")),
-     f7Block(f7Progress(id = "pg2", value = 100, color = "green")),
-     f7Block(f7Progress(id = "pg3", value = 50, color = "orange"))
+      navbar = f7Navbar(title = "f7Progress"),
+      f7Block(
+        f7Progress(id = "pg1", value = 10, color = "blue")
+      ),
+      f7Slider(
+        inputId = "obs",
+        label = "Progress value",
+        max = 100,
+        min = 0,
+        value = 50,
+        scale = TRUE
+      )
     )
-   ),
-   server = function(input, output) {}
- )
-}
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$obs, {
+      updateF7Progress(id = "pg1", value = input$obs)
+    })
+  }
+)
 
-# Update progress
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-     title = "Update Progress",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7Progress"),
-       f7Block(
-         f7Progress(id = "pg1", value = 10, color = "blue")
-       ),
-       f7Slider(
-         inputId = "obs",
-         label = "Progress value",
-         max = 100,
-         min = 0,
-         value = 50,
-         scale = TRUE
-       )
-     )
-   ),
-   server = function(input, output, session) {
-     observeEvent(input$obs, {
-       updateF7Progress(id = "pg1", value = input$obs)
-     })
-   }
- )
-}
-}
-\author{
-David Granjon, \email{dgranjon@ymail.com}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

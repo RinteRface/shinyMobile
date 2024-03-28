@@ -2,108 +2,132 @@
 % Please edit documentation in R/f7Block.R
 \name{f7Block}
 \alias{f7Block}
+\alias{f7BlockTitle}
 \alias{f7BlockHeader}
+\alias{f7BlockFooter}
 \title{Framework7 block}
 \usage{
-f7Block(..., hairlines = TRUE, strong = FALSE, inset = FALSE, tablet = FALSE)
+f7Block(
+  ...,
+  hairlines = deprecated(),
+  strong = FALSE,
+  inset = FALSE,
+  tablet = FALSE,
+  outline = FALSE
+)
 
-f7BlockHeader(text = NULL)
+f7BlockTitle(title, size = NULL)
+
+f7BlockHeader(text)
+
+f7BlockFooter(text)
 }
 \arguments{
 \item{...}{Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.}
 
-\item{hairlines}{Whether to allow hairlines. TRUE by default.}
+\item{hairlines}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
-\item{strong}{Whether to put the text in bold. FALSE by default.}
+\item{strong}{Add white background so that text is highlighted. FALSE by default.}
 
 \item{inset}{Whether to set block inset. FALSE by default. Works only if strong is TRUE.}
 
 \item{tablet}{Whether to make block inset only on large screens. FALSE by default.}
+
+\item{outline}{Block border. Default to FALSE.}
+
+\item{title}{Block title.}
+
+\item{size}{Block title size. NULL by default or "medium", "large".}
 
 \item{text}{Any text.}
 }
 \description{
 \code{f7Block} creates a block container.
 
+\code{f7BlockTitle} creates a title for \link{f7Block}.
+
 \code{f7BlockHeader} creates a header content for \link{f7Block}.
+
+\link{f7BlockFooter} creates a footer content for \link{f7Block}.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "Blocks",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Block"),
-     f7BlockTitle(title = "A large title", size = "large"),
-    f7Block(
-     f7BlockHeader(text = "Header"),
-     "Here comes paragraph within content block.
+  shinyApp(
+    ui = f7Page(
+      title = "Blocks",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Block"),
+        f7BlockTitle(title = "A large title", size = "large"),
+        f7Block(
+          f7BlockHeader(text = "Header"),
+          "Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
      adipiscing ut sit amet sem. Suspendisse
      molestie velit vitae mattis tincidunt.
      Ut sit amet quam mollis, vulputate
      turpis vel, sagittis felis.",
-     f7BlockFooter(text = "Footer")
+          f7BlockFooter(text = "Footer")
+        ),
+        f7BlockTitle(title = "A medium title", size = "medium"),
+        f7Block(
+          strong = TRUE,
+          outline = TRUE,
+          f7BlockHeader(text = "Header"),
+          "Here comes paragraph within content block.
+     Donec et nulla auctor massa pharetra
+     adipiscing ut sit amet sem. Suspendisse
+     molestie velit vitae mattis tincidunt.
+     Ut sit amet quam mollis, vulputate
+     turpis vel, sagittis felis.",
+          f7BlockFooter(text = "Footer")
+        ),
+        f7BlockTitle(title = "A normal title", size = NULL),
+        f7Block(
+          inset = TRUE,
+          strong = TRUE,
+          f7BlockHeader(text = "Header"),
+          "Here comes paragraph within content block.
+     Donec et nulla auctor massa pharetra
+     adipiscing ut sit amet sem. Suspendisse
+     molestie velit vitae mattis tincidunt.
+     Ut sit amet quam mollis, vulputate
+     turpis vel, sagittis felis.",
+          f7BlockFooter(text = "Footer")
+        ),
+        f7Block(
+          inset = TRUE,
+          tablet = TRUE,
+          strong = TRUE,
+          f7BlockHeader(text = "Header"),
+          "Here comes paragraph within content block.
+     Donec et nulla auctor massa pharetra
+     adipiscing ut sit amet sem. Suspendisse
+     molestie velit vitae mattis tincidunt.
+     Ut sit amet quam mollis, vulputate
+     turpis vel, sagittis felis.",
+          f7BlockFooter(text = "Footer")
+        ),
+        f7Block(
+          inset = TRUE,
+          strong = TRUE,
+          outline = TRUE,
+          f7BlockHeader(text = "Header"),
+          "Here comes paragraph within content block.
+     Donec et nulla auctor massa pharetra
+     adipiscing ut sit amet sem. Suspendisse
+     molestie velit vitae mattis tincidunt.
+     Ut sit amet quam mollis, vulputate
+     turpis vel, sagittis felis.",
+          f7BlockFooter(text = "Footer")
+        )
+      )
     ),
-
-    f7BlockTitle(title = "A medium title", size = "medium"),
-    f7Block(
-     strong = TRUE,
-     f7BlockHeader(text = "Header"),
-     "Here comes paragraph within content block.
-     Donec et nulla auctor massa pharetra
-     adipiscing ut sit amet sem. Suspendisse
-     molestie velit vitae mattis tincidunt.
-     Ut sit amet quam mollis, vulputate
-     turpis vel, sagittis felis.",
-     f7BlockFooter(text = "Footer")
-    ),
-
-    f7BlockTitle(title = "A normal title", size = NULL),
-    f7Block(
-     inset = TRUE,
-     strong = TRUE,
-     f7BlockHeader(text = "Header"),
-     "Here comes paragraph within content block.
-     Donec et nulla auctor massa pharetra
-     adipiscing ut sit amet sem. Suspendisse
-     molestie velit vitae mattis tincidunt.
-     Ut sit amet quam mollis, vulputate
-     turpis vel, sagittis felis.",
-     f7BlockFooter(text = "Footer")
-    ),
-    f7Block(
-     tablet = TRUE,
-     strong = TRUE,
-     f7BlockHeader(text = "Header"),
-     "Here comes paragraph within content block.
-     Donec et nulla auctor massa pharetra
-     adipiscing ut sit amet sem. Suspendisse
-     molestie velit vitae mattis tincidunt.
-     Ut sit amet quam mollis, vulputate
-     turpis vel, sagittis felis.",
-     f7BlockFooter(text = "Footer")
-    ),
-    f7Block(
-     inset = TRUE,
-     strong = TRUE,
-     hairlines = FALSE,
-     f7BlockHeader(text = "Header"),
-     "Here comes paragraph within content block.
-     Donec et nulla auctor massa pharetra
-     adipiscing ut sit amet sem. Suspendisse
-     molestie velit vitae mattis tincidunt.
-     Ut sit amet quam mollis, vulputate
-     turpis vel, sagittis felis.",
-     f7BlockFooter(text = "Footer")
-    )
-    )
-  ),
-  server = function(input, output) {}
- )
+    server = function(input, output) {}
+  )
 }
 
 }
