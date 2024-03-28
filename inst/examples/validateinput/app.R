@@ -22,13 +22,6 @@ app <- shinyApp(
       f7Password(
         inputId = "password",
         label = "Password"
-      ),
-      hr(),
-      f7Select(
-        inputId = "select",
-        label = "Select",
-        choices = c("A", "B", "C"),
-        selected = character(0)
       )
     )
   ),

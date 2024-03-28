@@ -27,46 +27,58 @@ validateF7Input(
 \code{validateF7Input} is a function to validate a given shinyMobile input.
 }
 \note{
-Only works for \link{f7Text}, \link{f7Password}, \link{f7TextArea} and \link{f7Select}.
+Only works for \link{f7Text}, \link{f7Password} and \link{f7TextArea}.
 See more at \url{https://framework7.io/docs/inputs.html}.
 }
 \examples{
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "Validate inputs",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "validateF7Input"),
-        f7Text(
-          inputId = "caption",
-          label = "Caption",
-          value = "Data Summary"
-        ),
-        verbatimTextOutput("value"),
-        hr(),
-        f7Text(
-          inputId = "caption2",
-          label = "Enter a number",
-          value = 1
-        )
+app <- shinyApp(
+  ui = f7Page(
+    title = "Validate inputs",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "validateF7Input"),
+      f7Text(
+        inputId = "caption",
+        label = "Caption",
+        value = "Data Summary"
+      ),
+      verbatimTextOutput("value"),
+      hr(),
+      f7Text(
+        inputId = "caption2",
+        label = "Enter a number",
+        value = 1
+      ),
+      hr(),
+      f7Password(
+        inputId = "password",
+        label = "Password"
       )
-    ),
-    server = function(input, output, session) {
-      observe({
-        validateF7Input(inputId = "caption", info = "Whatever")
-        validateF7Input(
-          inputId = "caption2",
-          pattern = "[0-9]*",
-          error = "Only numbers please!"
-        )
-      })
-      output$value <- renderPrint({
-        input$caption
-      })
-    }
-  )
-}
+    )
+  ),
+  server = function(input, output, session) {
+
+    observe({
+      validateF7Input(inputId = "caption", info = "Whatever")
+      validateF7Input(
+        inputId = "caption2",
+        pattern = "[0-9]*",
+        error = "Only numbers please!"
+      )
+      validateF7Input(
+        inputId = "password",
+        pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)[a-zA-Z\\\\d]{8,}$",
+        error = "Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+      )
+    })
+
+    output$value <- renderPrint({
+      input$caption
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
