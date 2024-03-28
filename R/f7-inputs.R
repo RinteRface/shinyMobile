@@ -622,6 +622,7 @@ f7CheckboxChoice <- function(..., title, subtitle = NULL, after = NULL) {
     htmltools::tagQuery(
       f7ListItem(
         ...,
+        media = f7Icon(), # fake item to force layout
         title = title,
         subtitle = subtitle,
         right = after
