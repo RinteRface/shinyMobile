@@ -726,7 +726,7 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
     shiny::tags$select(
       class = "input-select",
       id = inputId,
-      placeholer = "Please choose...",
+      placeholder = "Please choose...",
       options
     ),
     label = label,
