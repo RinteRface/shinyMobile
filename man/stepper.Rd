@@ -43,7 +43,7 @@ updateF7Stepper(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Stepper input id.}
 
 \item{label}{Stepper label.}
 
@@ -51,9 +51,9 @@ updateF7Stepper(
 
 \item{max}{Stepper maximum value.}
 
-\item{value}{Stepper value. Must belong to [min, max].}
+\item{value}{Stepper value. Must belong to \code{\[min, max\]}.}
 
-\item{step}{increment step. 1 by default.}
+\item{step}{Increment step. 1 by default.}
 
 \item{fill}{Whether to fill the stepper. FALSE by default.}
 
@@ -72,10 +72,10 @@ likewise, decrementing below minimum value sets value to maximum value. FALSE by
 value repeatedly. With dynamic autorepeat, the rate of change depends on how long the user
 continues pressing the control. TRUE by default.}
 
-\item{manual}{It is possible to enter value manually from keyboard or mobile keypad.
-When click on input field, stepper enter into manual input mode, which allow type value
-from keyboar and check fractional part with defined accurancy. Click outside or enter
-Return key, ending manual mode. TRUE by default.}
+\item{manual}{It is possible to enter value manually from keyboard or mobile keypad. When click on
+input field, stepper enter into manual input mode, which allow type value from keyboar and check
+fractional part with defined accurancy. Click outside or enter Return key, ending manual mode.
+TRUE by default.}
 
 \item{decimalPoint}{Number of digits after dot, when in manual input mode.}
 
@@ -92,95 +92,55 @@ Return key, ending manual mode. TRUE by default.}
 While updating, the autorepeat field does not work correctly.
 }
 \examples{
-# Stepper input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7Stepper"),
+app <- shinyApp(
+  ui = f7Page(
+    title = "Stepper app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7Stepper"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update stepper"),
         f7Stepper(
           inputId = "stepper",
           label = "My stepper",
           min = 0,
           max = 10,
-          value = 4
-        ),
-        verbatimTextOutput("test"),
-        f7Stepper(
-          inputId = "stepper2",
-          label = "My stepper 2",
-          min = 0,
-          max = 10,
+          size = "small",
           value = 4,
-          color = "orange",
-          raised = TRUE,
-          fill = TRUE,
-          rounded = TRUE
+          wraps = TRUE,
+          autorepeat = TRUE,
+          rounded = FALSE,
+          raised = FALSE,
+          manual = FALSE
         ),
-        verbatimTextOutput("test2")
+        verbatimTextOutput("test")
       )
-    ),
-    server = function(input, output) {
-      output$test <- renderPrint(input$stepper)
-      output$test2 <- renderPrint(input$stepper2)
-    }
-  )
-}
-#
-# Update stepper input
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+    )
+  ),
+  server = function(input, output, session) {
+    output$test <- renderPrint(input$stepper)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "updateF7Stepper"),
-        f7Card(
-          f7Button(inputId = "update", label = "Update stepper"),
-          f7Stepper(
-            inputId = "stepper",
-            label = "My stepper",
-            min = 0,
-            max = 10,
-            size = "small",
-            value = 4,
-            wraps = TRUE,
-            autorepeat = TRUE,
-            rounded = FALSE,
-            raised = FALSE,
-            manual = FALSE
-          ),
-          verbatimTextOutput("test")
-        )
+    observeEvent(input$update, {
+      updateF7Stepper(
+        inputId = "stepper",
+        value = 0.1,
+        step = 0.01,
+        size = "large",
+        min = 0,
+        max = 1,
+        wraps = FALSE,
+        autorepeat = FALSE,
+        rounded = TRUE,
+        raised = TRUE,
+        color = "pink",
+        manual = TRUE,
+        decimalPoint = 2
       )
-    ),
-    server = function(input, output, session) {
-      output$test <- renderPrint(input$stepper)
+    })
+  }
+)
 
-      observeEvent(input$update, {
-        updateF7Stepper(
-          inputId = "stepper",
-          value = 0.1,
-          step = 0.01,
-          size = "large",
-          min = 0,
-          max = 1,
-          wraps = FALSE,
-          autorepeat = FALSE,
-          rounded = TRUE,
-          raised = TRUE,
-          color = "pink",
-          manual = TRUE,
-          decimalPoint = 2
-        )
-      })
-    }
-  )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

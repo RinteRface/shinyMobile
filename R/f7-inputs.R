@@ -1186,48 +1186,8 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
 #' @param decimalPoint Number of digits after dot, when in manual input mode.
 #' @param buttonsEndInputMode Disables manual input mode on Stepper's minus or plus button click.
 #'
-#'
 #' @rdname stepper
-#' @examples
-#' # Stepper input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7Stepper"),
-#'         f7Stepper(
-#'           inputId = "stepper",
-#'           label = "My stepper",
-#'           min = 0,
-#'           max = 10,
-#'           value = 4
-#'         ),
-#'         verbatimTextOutput("test"),
-#'         f7Stepper(
-#'           inputId = "stepper2",
-#'           label = "My stepper 2",
-#'           min = 0,
-#'           max = 10,
-#'           value = 4,
-#'           color = "orange",
-#'           raised = TRUE,
-#'           fill = TRUE,
-#'           rounded = TRUE
-#'         ),
-#'         verbatimTextOutput("test2")
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$test <- renderPrint(input$stepper)
-#'       output$test2 <- renderPrint(input$stepper2)
-#'     }
-#'   )
-#' }
-#' #
+#' @example inst/examples/stepper/app.R
 #' @export
 f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       fill = FALSE, rounded = FALSE, raised = FALSE, size = NULL,
@@ -1301,60 +1261,6 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 #' @rdname stepper
 #'
 #' @note While updating, the autorepeat field does not work correctly.
-#'
-#' @examples
-#' # Update stepper input
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "updateF7Stepper"),
-#'         f7Card(
-#'           f7Button(inputId = "update", label = "Update stepper"),
-#'           f7Stepper(
-#'             inputId = "stepper",
-#'             label = "My stepper",
-#'             min = 0,
-#'             max = 10,
-#'             size = "small",
-#'             value = 4,
-#'             wraps = TRUE,
-#'             autorepeat = TRUE,
-#'             rounded = FALSE,
-#'             raised = FALSE,
-#'             manual = FALSE
-#'           ),
-#'           verbatimTextOutput("test")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       output$test <- renderPrint(input$stepper)
-#'
-#'       observeEvent(input$update, {
-#'         updateF7Stepper(
-#'           inputId = "stepper",
-#'           value = 0.1,
-#'           step = 0.01,
-#'           size = "large",
-#'           min = 0,
-#'           max = 1,
-#'           wraps = FALSE,
-#'           autorepeat = FALSE,
-#'           rounded = TRUE,
-#'           raised = TRUE,
-#'           color = "pink",
-#'           manual = TRUE,
-#'           decimalPoint = 2
-#'         )
-#'       })
-#'     }
-#'   )
-#' }
 updateF7Stepper <- function(inputId, min = NULL, max = NULL,
                             value = NULL, step = NULL, fill = NULL,
                             rounded = NULL, raised = NULL, size = NULL,
