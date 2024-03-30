@@ -46,7 +46,6 @@ shinyApp(
         id = "sidebar",
         title = "Sidebar",
         side = "left",
-        theme = "dark",
         f7PanelMenu(
           id = "menu",
           f7PanelItem(
@@ -70,8 +69,7 @@ shinyApp(
       ),
       navbar = f7Navbar(
         title = "Split Layout",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7Toolbar(
         position = "bottom",

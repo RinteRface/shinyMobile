@@ -5,7 +5,15 @@
 \alias{f7PanelItem}
 \title{Framework7 sidebar menu}
 \usage{
-f7PanelMenu(..., id = NULL)
+f7PanelMenu(
+  ...,
+  id = NULL,
+  mode = "links",
+  inset = FALSE,
+  outline = FALSE,
+  dividers = FALSE,
+  strong = FALSE
+)
 
 f7PanelItem(title, tabName, icon = NULL, active = FALSE)
 }
@@ -13,6 +21,16 @@ f7PanelItem(title, tabName, icon = NULL, active = FALSE)
 \item{...}{Slot for \link{f7PanelItem}.}
 
 \item{id}{Unique id to access the currently selected item.}
+
+\item{mode}{List mode. NULL, "simple", "links", "media" or "contacts".}
+
+\item{inset}{Whether to display a card border. FALSE by default.}
+
+\item{outline}{Outline style. Default to FALSE.}
+
+\item{dividers}{Dividers style. Default to FALSE.}
+
+\item{strong}{Strong style. Default to FALSE.}
 
 \item{title}{Item name.}
 

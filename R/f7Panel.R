@@ -89,25 +89,35 @@ f7Panel <- function(..., id = NULL, title = NULL,
 #'
 #' @param ... Slot for \link{f7PanelItem}.
 #' @param id Unique id to access the currently selected item.
+#' @inheritParams f7List
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @rdname panelmenu
 #'
 #' @export
-f7PanelMenu <- function(..., id = NULL) {
+f7PanelMenu <- function(..., id = NULL, mode = "links", inset = FALSE, outline = FALSE,
+                       dividers = FALSE, strong = FALSE) {
+
   if (is.null(id)) {
     id <- paste0("panelMenu_", round(stats::runif(1, min = 0, max = 1e9)))
   }
 
-  shiny::tags$div(
-    class = "list links-list list-dividers",
-    shiny::tags$ul(
-      class = "panel-menu ",
-      ...,
-      id = id
-    )
+  item <- shiny::tags$div(
+    class = "panel-menu",
+    ...,
+    id = id
   )
+
+  f7List(
+    mode = mode,
+    inset = inset,
+    outline = outline,
+    dividers = dividers,
+    strong = strong,
+    item
+  )
+
 }
 
 #' Framework7 sidebar menu item
