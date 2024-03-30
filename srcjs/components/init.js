@@ -31,10 +31,10 @@ $(function() {
       // the widget instance.
       Shiny.addCustomMessageHandler(widget, function(message) {
         if (widget === "listIndex") {
-          // We first insert the HTML before the page content div.
+          // We first insert the HTML before the target element.
           $(
             '<div class="list-index" id="' + message.el + '"></div>'
-          ).insertAfter($(".navbar"));
+          ).insertBefore($(message.listEl));
         }
         // Handle dark mode
         message.on = {
@@ -53,6 +53,14 @@ $(function() {
         if (widget === "listIndex") {
           message.el = "#" + message.el;
           app[widget].create(message);
+          // add sticky class to the list index div
+          // need to do that later to make sure indexes are present
+          $(message.el).addClass("sticky-list-index");
+
+          // get the calculated height and move the listEl up (-height)
+          var height = $(message.el).height();
+          $(message.listEl).css("margin-top", -height + "px");
+
         } else {
           app[widget].create(message).open();
         }

@@ -82,3 +82,10 @@
 .demo-card-header-pic .card-content-padding .date {
   color: #8e8e93;
 }
+
+/* Sticky list index, to be able to add list index to a specific list */
+.sticky-list-index {
+  position: sticky;
+  margin-left: auto;
+  top: 50%;
+}
