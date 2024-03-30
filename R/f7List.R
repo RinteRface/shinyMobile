@@ -6,92 +6,14 @@
 #' @param outline Outline style. Default to FALSE.
 #' @param dividers Dividers style. Default to FALSE.
 #' @param strong Strong style. Default to FALSE.
+#' @param id Optional id, which can be used as a target for \link{f7ListIndex}.
+#'
+#' @example inst/examples/list/app.R
+#'
 #' @export
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "My app",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(title = "f7List"),
-#'
-#'         # simple list
-#'         f7List(
-#'           mode = "simple",
-#'           lapply(1:3, function(j) tags$li(letters[j]))
-#'         ),
-#'
-#'         # list with complex items
-#'         f7List(
-#'           strong = TRUE,
-#'           outline = TRUE,
-#'           inset = TRUE,
-#'           lapply(1:3, function(j) {
-#'             f7ListItem(
-#'               letters[j],
-#'               media = f7Icon("alarm_fill"),
-#'               right = "Right Text",
-#'               header = "Header",
-#'               footer = "Footer"
-#'             )
-#'           })
-#'         ),
-#'
-#'         # list with complex items
-#'         f7List(
-#'           mode = "media",
-#'           lapply(1:3, function(j) {
-#'             f7ListItem(
-#'               title = letters[j],
-#'               subtitle = "subtitle",
-#'               "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-#'             Nulla sagittis tellus ut turpis condimentum, ut dignissim
-#'             lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
-#'             sit amet, pharetra sodales eros. Phasellus vel felis tellus.
-#'             Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
-#'             commodo augue id, pulvinar lacus.",
-#'               media = tags$img(
-#'                 src = paste0(
-#'                   "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
-#'                 )
-#'               ),
-#'               right = "Right Text"
-#'             )
-#'           })
-#'         ),
-#'
-#'         # list with links
-#'         f7List(
-#'           mode = "links",
-#'           lapply(1:3, function(j) {
-#'             tags$li(
-#'               f7Link(label = letters[j], href = "https://google.com")
-#'             )
-#'           })
-#'         ),
-#'
-#'         # grouped lists
-#'         f7List(
-#'           mode = "contacts",
-#'           lapply(1:3, function(i) {
-#'             f7ListGroup(
-#'               title = LETTERS[i],
-#'               lapply(1:3, function(j) f7ListItem(letters[j]))
-#'             )
-#'           })
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output) {}
-#'   )
-#' }
 f7List <- function(
     ..., mode = NULL, inset = FALSE, outline = FALSE,
-    dividers = FALSE, strong = FALSE) {
+    dividers = FALSE, strong = FALSE, id = NULL) {
   listCl <- "list chevron-center"
   if (strong) listCl <- paste(listCl, "list-strong")
   if (outline) listCl <- paste(listCl, "list-outline")
@@ -101,6 +23,7 @@ f7List <- function(
 
   shiny::tags$div(
     class = listCl,
+    id = id,
     if (!is.null(mode) && mode == "contacts") {
       shiny::tagList(...)
     } else {
@@ -249,37 +172,12 @@ f7ListGroup <- function(..., title) {
 #' @param target Related list element. CSS selector like .class, #id, ...
 #' @param ... Other options (see \url{https://framework7.io/docs/list-index#list-index-parameters}).
 #' @param session Shiny session object.
+#'
+#' @example inst/examples/list/app.R
+#'
 #' @export
 #'
 #' @note We disadvise to use multiple list index widget per app.
-#'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "List Index",
-#'       f7SingleLayout(
-#'         navbar = f7Navbar(
-#'           title = "f7ListIndex"
-#'         ),
-#'         f7List(
-#'           mode = "contacts",
-#'           lapply(1:26, function(i) {
-#'             f7ListGroup(
-#'               title = LETTERS[i],
-#'               lapply(1:26, function(j) f7ListItem(letters[j]))
-#'             )
-#'           })
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output, session) {
-#'       f7ListIndex(id = "mylist", target = ".list", label = TRUE)
-#'     }
-#'   )
-#' }
 f7ListIndex <- function(id, target, ..., session = shiny::getDefaultReactiveDomain()) {
   message <- list(el = id, listEl = target, ...)
   sendCustomMessage("listIndex", message, session)
