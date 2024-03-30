@@ -19,7 +19,7 @@ f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 List index must be attached to an existing list view.
 }
 \note{
-We disadvise to use multiple list index widget per app.
+While you can also supply a class as target, we advise to use an id to avoid conflicts.
 }
 \examples{
 library(shiny)

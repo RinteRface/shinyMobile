@@ -177,7 +177,7 @@ f7ListGroup <- function(..., title) {
 #'
 #' @export
 #'
-#' @note We disadvise to use multiple list index widget per app.
+#' @note While you can also supply a class as target, we advise to use an id to avoid conflicts.
 f7ListIndex <- function(id, target, ..., session = shiny::getDefaultReactiveDomain()) {
   message <- list(el = id, listEl = target, ...)
   sendCustomMessage("listIndex", message, session)
