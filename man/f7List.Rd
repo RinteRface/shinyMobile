@@ -10,7 +10,8 @@ f7List(
   inset = FALSE,
   outline = FALSE,
   dividers = FALSE,
-  strong = FALSE
+  strong = FALSE,
+  id = NULL
 )
 }
 \arguments{
@@ -25,89 +26,123 @@ f7List(
 \item{dividers}{Dividers style. Default to FALSE.}
 
 \item{strong}{Strong style. Default to FALSE.}
+
+\item{id}{Optional id, which can be used as a target for \link{f7ListIndex}.}
 }
 \description{
 Create a framework 7 list view
 }
 \examples{
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shinyApp(
-    ui = f7Page(
-      title = "My app",
-      f7SingleLayout(
-        navbar = f7Navbar(title = "f7List"),
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7TabLayout(
+      navbar = f7Navbar(title = "f7List"),
 
-        # simple list
-        f7List(
-          mode = "simple",
-          lapply(1:3, function(j) tags$li(letters[j]))
-        ),
+      f7Tabs(
+        f7Tab(
+          title = "Lists",
+          tabName = "list",
 
-        # list with complex items
-        f7List(
-          strong = TRUE,
-          outline = TRUE,
-          inset = TRUE,
-          lapply(1:3, function(j) {
-            f7ListItem(
-              letters[j],
-              media = f7Icon("alarm_fill"),
-              right = "Right Text",
-              header = "Header",
-              footer = "Footer"
-            )
-          })
-        ),
+          # simple list
+          f7List(
+            mode = "simple",
+            lapply(1:3, function(j) tags$li(letters[j]))
+          ),
 
-        # list with complex items
-        f7List(
-          mode = "media",
-          lapply(1:3, function(j) {
-            f7ListItem(
-              title = letters[j],
-              subtitle = "subtitle",
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          # list with complex items
+          f7List(
+            strong = TRUE,
+            outline = TRUE,
+            inset = TRUE,
+            lapply(1:3, function(j) {
+              f7ListItem(
+                letters[j],
+                media = f7Icon("alarm_fill"),
+                header = "Header",
+                footer = "Footer"
+              )
+            })
+          ),
+
+          # list with complex items
+          f7List(
+            mode = "media",
+            lapply(1:3, function(j) {
+              f7ListItem(
+                title = letters[j],
+                subtitle = "subtitle",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Nulla sagittis tellus ut turpis condimentum, ut dignissim
             lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
             sit amet, pharetra sodales eros. Phasellus vel felis tellus.
             Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
             commodo augue id, pulvinar lacus.",
-              media = tags$img(
-                src = paste0(
-                  "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
-                )
-              ),
-              right = "Right Text"
-            )
-          })
-        ),
+                media = tags$img(
+                  src = paste0(
+                    "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
+                  )
+                ),
+                right = "Right Text"
+              )
+            })
+          ),
 
-        # list with links
-        f7List(
-          mode = "links",
-          lapply(1:3, function(j) {
-            tags$li(
-              f7Link(label = letters[j], href = "https://google.com")
-            )
-          })
+          # list with links
+          f7List(
+            mode = "links",
+            lapply(1:3, function(j) {
+              tags$li(
+                f7Link(label = letters[j], href = "https://google.com")
+              )
+            })
+          )
         ),
+        f7Tab(
+          title = "Group",
+          tabName = "groupedlists",
 
-        # grouped lists
-        f7List(
-          mode = "contacts",
-          lapply(1:3, function(i) {
-            f7ListGroup(
-              title = LETTERS[i],
-              lapply(1:3, function(j) f7ListItem(letters[j]))
-            )
-          })
+          # grouped lists
+          f7List(
+            id = "mycontacts",
+            mode = "contacts",
+            lapply(1:3, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(1:10, function(j) f7ListItem(letters[j]))
+              )
+            })
+          )
+        ),
+        f7Tab(
+          title = "Other group",
+          tabName = "groupedlists2",
+
+          # grouped lists
+          f7List(
+            id = "myothercontacts",
+            mode = "contacts",
+            lapply(4:6, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(10:20, function(j) f7ListItem(letters[j]))
+              )
+            })
+          )
         )
       )
-    ),
-    server = function(input, output) {}
-  )
-}
+
+    )
+  ),
+  server = function(input, output) {
+    f7ListIndex(id = "contacts", target = "#mycontacts", label = TRUE)
+    f7ListIndex(id = "othercontacts", target = "#myothercontacts", label = TRUE)
+
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
