@@ -467,67 +467,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
 #' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
 #'
-#' @examples
-#' if (interactive()) {
-#'   library(shiny)
-#'   library(shinyMobile)
-#'   shinyApp(
-#'     ui = f7Page(
-#'       title = "Split layout",
-#'       f7SplitLayout(
-#'         sidebar = f7Panel(
-#'           id = "sidebar",
-#'           title = "Sidebar",
-#'           side = "left",
-#'           f7PanelMenu(
-#'             id = "menu",
-#'             f7PanelItem(
-#'               tabName = "tab1",
-#'               title = "Tab 1",
-#'               icon = f7Icon("envelope"),
-#'               active = TRUE
-#'             ),
-#'             f7PanelItem(
-#'               tabName = "tab2",
-#'               title = "Tab 2",
-#'               icon = f7Icon("house")
-#'             )
-#'           ),
-#'           uiOutput("selected_tab")
-#'         ),
-#'         navbar = f7Navbar(
-#'           title = "Split Layout"
-#'         ),
-#'         toolbar = f7Toolbar(
-#'           position = "bottom",
-#'           f7Link(label = "Link 1", href = "https://www.google.com"),
-#'           f7Link(label = "Link 2", href = "https://www.google.com")
-#'         ),
-#'         # main content
-#'         f7Items(
-#'           f7Item(
-#'             tabName = "tab1",
-#'             f7Slider("obs", "Number of observations:",
-#'               min = 0, max = 1000, value = 500
-#'             ),
-#'             plotOutput("distPlot")
-#'           ),
-#'           f7Item(tabName = "tab2", "Tab 2 content")
-#'         )
-#'       )
-#'     ),
-#'     server = function(input, output) {
-#'       output$selected_tab <- renderUI({
-#'         HTML(paste0("Selected tab: ", strong(input$menu)))
-#'       })
-#'
-#'       output$distPlot <- renderPlot({
-#'         dist <- rnorm(input$obs)
-#'         hist(dist)
-#'       })
-#'     }
-#'   )
-#' }
+#' @example inst/examples/split_layout/app.R
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @export
