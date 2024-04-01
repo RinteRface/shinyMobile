@@ -77,7 +77,8 @@ shinyApp(
       ),
       navbar = f7Navbar(
         title = "Split Layout",
-        hairline = FALSE
+        hairline = FALSE,
+        leftPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
