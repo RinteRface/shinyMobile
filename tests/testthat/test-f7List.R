@@ -42,3 +42,21 @@ test_that("list group works", {
   )
   expect_identical(list_group$attribs$class, "list-group")
 })
+
+test_that("list index works", {
+  session <- as.environment(list(
+    ns = identity,
+    sendCustomMessage = function(type, message) {
+      session$lastCustomMessage <- list(type = type, message = message)
+    }
+  ))
+
+  f7ListIndex(id = "test", target = "#test", session = session)
+
+  res <- session$lastCustomMessage
+  res$message <- jsonlite::fromJSON(res$message)
+  expect_length(res, 2)
+  expect_equal(res$type, "listIndex")
+  expect_equal(res$message$el, "test")
+  expect_equal(res$message$listEl, "#test")
+})
