@@ -9,15 +9,16 @@ f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panel = NULL)
 \arguments{
 \item{...}{Content.}
 
-\item{navbar}{Slot for \link{f7Navbar}.}
+\item{navbar}{Slot for \link{f7Navbar}. We expect the following:
+\code{f7Navbar(title = "Navbar", leftPanel = TRUE)}}
 
-\item{sidebar}{Slot for \link{f7Panel}. Particularly we expect the following code:
-\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}}
+\item{sidebar}{Slot for \link{f7Panel}. Particularly we expect the following:
+\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}}
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
 
 \item{panel}{Slot for \link{f7Panel}. Expect only a right panel, for instance:
-\code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}}
+\code{f7Panel(title = "Right Panel", side = "right", theme = "light", "Blabla", effect = "cover")}}
 }
 \description{
 This is a modified version of the \link{f7SingleLayout}.
@@ -47,26 +48,6 @@ new_mtcars <- reshape(
 shinyApp(
   ui = f7Page(
     title = "Split layout",
-    options = list(
-      theme = "auto",
-      dark = TRUE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
     f7SplitLayout(
       sidebar = f7Panel(
         id = "sidebar",
@@ -74,6 +55,7 @@ shinyApp(
         side = "left",
         f7PanelMenu(
           id = "menu",
+          strong = TRUE,
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
@@ -172,7 +154,7 @@ shinyApp(
     })
 
     output$selected_tab <- renderUI({
-      HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
     })
 
     output$distPlot <- renderPlot({

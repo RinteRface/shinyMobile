@@ -460,8 +460,9 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' It is intended to be used with tablets.
 #'
 #' @param ... Content.
-#' @param navbar Slot for \link{f7Navbar}.
-#' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
+#' @param navbar Slot for \link{f7Navbar}. We expect the following:
+#' \code{f7Navbar(title = "Navbar", leftPanel = TRUE)}
+#' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following:
 #' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
@@ -473,6 +474,11 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
                           panel = NULL) {
+
+  if (is.null(navbar$children[[2]]$children[[1]]$attribs$class)) {
+    stop("Please make sure that leftPanel is enabled in the navbar")
+  }
+
   # add margins
   items <- shiny::div(...) %>%
     f7Margin(side = "left") %>%
