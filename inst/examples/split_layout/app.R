@@ -48,6 +48,7 @@ shinyApp(
         side = "left",
         f7PanelMenu(
           id = "menu",
+          strong = TRUE,
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
@@ -146,7 +147,7 @@ shinyApp(
     })
 
     output$selected_tab <- renderUI({
-      HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
     })
 
     output$distPlot <- renderPlot({
