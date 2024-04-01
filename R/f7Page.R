@@ -462,10 +462,10 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' @param ... Content.
 #' @param navbar Slot for \link{f7Navbar}.
 #' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
-#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}
+#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
-#' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
+#' \code{f7Panel(title = "Right Panel", side = "right", theme = "light", "Blabla", effect = "cover")}
 #'
 #' @example inst/examples/split_layout/app.R
 #'
@@ -479,9 +479,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     f7Margin(side = "right")
 
   sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
-  # this trick to prevent to select the panel view in the following
-  # javascript code
-  sidebar$children[[1]]$attribs$class <- "panel-visible-by-breakpoint"
+  sidebar$children[[2]]$attribs$class <- "panel-in-breakpoint"
 
   splitSkeleton <- f7SingleLayout(
     items,

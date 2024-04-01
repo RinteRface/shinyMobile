@@ -21,26 +21,6 @@ new_mtcars <- reshape(
 shinyApp(
   ui = f7Page(
     title = "Split layout",
-    options = list(
-      theme = "auto",
-      dark = TRUE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
     f7SplitLayout(
       sidebar = f7Panel(
         id = "sidebar",
@@ -70,7 +50,8 @@ shinyApp(
       ),
       navbar = f7Navbar(
         title = "Split Layout",
-        hairline = FALSE
+        hairline = FALSE,
+        leftPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
