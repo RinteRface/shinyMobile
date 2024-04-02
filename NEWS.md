@@ -15,7 +15,7 @@
 - `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `updateF7MenuDropdown()` are totally removed from Framework7. We have no alternative to replace it.
 - `f7Icon()`: remove deprecated parameter `old`.
 - `f7SmartSelect()`: `maxlength` becomes `maxLength`. Typo from Framework7.
-- Remove `value` from `f7Password` (accidental copy and paste from `f7Text()`).
+- Remove `value` from `f7Password()` (accidental copy and paste from `f7Text()`).
 
 ## Soft deprecation
 - `f7Accordion()`:
@@ -34,6 +34,7 @@
     - `hairline` and `shadow` are deprecated, removed from Framework7.
 - `f7Shadow()`removed from Framework7. No replacement. Will be removed in a future release.
 - `f7Swipeout`: deprecate `side` parameter and `...`. Now use either `left`/`right` or both.
+- `f7AutoComplete`: `value` now defaults to `NULL` (instead of the first choice).
 
 ## Minor change
 - New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
@@ -65,11 +66,12 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
 - New `updateF7Preloader()` to be able to update a progress preloader from the server.
 - `f7PhotoBrowser()` fixed the `pageBackLinkText` to `back` when type was set to `page`, but this has been removed. The Framework7 default is now used, or the `pageBackLinkText` can be set manually (iOS only).
-- `f7ColorPicker` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
+- `f7ColorPicker()` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
 - `f7Slider()` has new `...` parameter to pass extra options. New
 `showLabel` parameter: fix an unfortunate naming conflict between the input label (name) and the name Framework7 has given to the bubble component (label).
-- `f7ListIndex` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
-- Added `id` argument to `f7List`, which makes it possible to use an id as target in `f7ListIndex`.
+- `f7ListIndex()` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
+- Added `id` argument to `f7List()`, which makes it possible to use an id as target in `f7ListIndex`.
+- `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

@@ -21,6 +21,8 @@
 #' @param multiple Whether to allow multiple value selection. Only works
 #' when openIn is 'popup' or 'page'.
 #' @param limit Limit number of maximum displayed items in autocomplete per query.
+#' @param ... Extra options.
+#' See \url{https://framework7.io/docs/autocomplete#autocomplete-parameters}
 #'
 #' @rdname autocomplete
 #'
@@ -29,10 +31,10 @@
 #'
 #' @export
 f7AutoComplete <- function(inputId, label, placeholder = NULL,
-                           value = choices[1], choices,
+                           value = NULL, choices,
                            openIn = c("popup", "page", "dropdown"),
                            typeahead = TRUE, expandInput = deprecated(), closeOnSelect = FALSE,
-                           dropdownPlaceholderText = NULL, multiple = FALSE, limit = NULL) {
+                           dropdownPlaceholderText = NULL, multiple = FALSE, limit = NULL, ...) {
   if (lifecycle::is_present(expandInput)) {
     lifecycle::deprecate_warn(
       when = "1.1.0",
@@ -42,63 +44,46 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
       in the next release."
     )
   }
+
   type <- match.arg(openIn)
 
   if (is.null(value)) value <- character()
 
-  value <- jsonlite::toJSON(value)
-  choices <- jsonlite::toJSON(choices)
+  is_standalone <- type %in% c("page", "popup")
 
-  # autocomplete common props
-  autoCompleteCommon <- list(
-    id = inputId,
-    class = "autocomplete-input",
-    `data-choices` = choices,
-    `data-value` = value,
-    `data-open-in` = type,
-    `data-limit` = limit
+  config <- dropNulls(
+    list(
+      choices = choices,
+      value = I(value),
+      openIn = type,
+      limit = limit,
+      multiple = if (is_standalone) multiple,
+      closeOnSelect = if (is_standalone) closeOnSelect,
+      typeahead = if (!is_standalone) typeahead,
+      dropdownPlaceholderText = if (!is_standalone) dropdownPlaceholderText,
+      ...
+    )
   )
 
-  # specific props
-  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
-    list(
-      type = "text",
-      placeholder = placeholder,
-      `data-typeahead` = typeahead,
-      `data-dropdown-placeholder-text` = dropdownPlaceholderText
-    )
-  } else {
-    list(
-      class = "item-link item-content",
-      href = "#",
-      `data-multiple` = multiple,
-      `data-close-on-select` = closeOnSelect
-    )
-  }
-
-  # merge props
-  autoCompleteProps <- c(autoCompleteCommon, autoCompleteProps)
-
-  # remove NULL elements
-  autoCompleteProps <- dropNulls(autoCompleteProps)
-
-  # replace TRUE and FALSE by true and false for javascript
-  autoCompleteProps <- lapply(autoCompleteProps, function(x) {
-    if (identical(x, TRUE)) {
-      "true"
-    } else if (identical(x, FALSE)) {
-      "false"
-    } else {
-      x
-    }
-  })
+  configTag <- buildConfig(inputId, config)
 
   # wrap props
-  autoCompleteProps <- if (!(type %in% c("page", "popup"))) {
-    do.call(shiny::tags$input, autoCompleteProps)
+  autoCompleteInnerTag <- if (!is_standalone) {
+    shiny::tags$input(
+      id = inputId,
+      class = "autocomplete-input",
+      type = "text",
+      placeholder = placeholder,
+      configTag
+    )
   } else {
-    tempTag <- do.call(shiny::tags$a, autoCompleteProps)
-    tempTag <- shiny::tagAppendChildren(
+    tempTag <- shiny::tags$a(
+      id = inputId,
+      class = "autocomplete-input item-link item-content",
+      href = "#",
+      configTag
+    )
+    shiny::tagAppendChildren(
       tempTag,
       shiny::tags$input(type = "hidden"),
       shiny::tags$div(
@@ -112,27 +97,19 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
   }
 
   # input tag + label wrapper
-  if (!(type %in% c("page", "popup"))) {
-    shiny::tags$div(
-      class = "list list-strong-ios list-outline-ios",
-      shiny::tags$ul(
-        shiny::tags$li(
-          class = "item-content item-input inline-label",
-          shiny::tags$div(
-            class = "item-inner",
-            # label
-            shiny::tags$div(class = "item-title item-label", label),
-            # input
-            shiny::tags$div(
-              class = "item-input-wrap",
-              autoCompleteProps
-            )
-          )
-        )
+  if (!is_standalone) {
+    htmltools::tagQuery(
+      createInputLayout(
+        label = label,
+        clear = FALSE,
+        autoCompleteInnerTag
       )
-    )
+    )$
+      find(".item-input")$
+      addClass("inline-label")$
+      allTags()
   } else {
-    shiny::tags$div(class = "list list-strong list-outline-ios", shiny::tags$ul(autoCompleteProps))
+    f7List(autoCompleteInnerTag)
   }
 }
 
@@ -144,12 +121,13 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
 #'
 #' @export
 #' @rdname autocomplete
-updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL,
+updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL, ...,
                                  session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
       value = I(value),
-      choices = choices
+      choices = choices,
+      ...
     )
   )
   session$sendInputMessage(inputId, message)

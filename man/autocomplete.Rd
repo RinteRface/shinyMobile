@@ -9,7 +9,7 @@ f7AutoComplete(
   inputId,
   label,
   placeholder = NULL,
-  value = choices[1],
+  value = NULL,
   choices,
   openIn = c("popup", "page", "dropdown"),
   typeahead = TRUE,
@@ -17,13 +17,15 @@ f7AutoComplete(
   closeOnSelect = FALSE,
   dropdownPlaceholderText = NULL,
   multiple = FALSE,
-  limit = NULL
+  limit = NULL,
+  ...
 )
 
 updateF7AutoComplete(
   inputId,
   value = NULL,
   choices = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -58,6 +60,9 @@ Only if openIn is "dropdown".}
 when openIn is 'popup' or 'page'.}
 
 \item{limit}{Limit number of maximum displayed items in autocomplete per query.}
+
+\item{...}{Extra options.
+See \url{https://framework7.io/docs/autocomplete#autocomplete-parameters}}
 
 \item{session}{The Shiny session object.}
 }

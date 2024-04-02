@@ -27,62 +27,37 @@ $.extend(f7AutoCompleteBinding, {
     // recover the inputId passed in the R function
     var id = $(el).attr("id");
 
-    // convert data attributes to camelCase parameters
-    // necessary in the create method
-    var data = {};
-    [].forEach.call(el.attributes, function(attr) {
-      if (/^data-/.test(attr.name)) {
-        var camelCaseName = attr.name.substr(5).replace(/-(.)/g, function ($0, $1) {
-          return $1.toUpperCase();
-        });
-        // convert "true" to true and "false" to false only for booleans
-        if (["openIn", "choices", "value", "dropdownPlaceholderText", "limit"].indexOf(camelCaseName) == -1) {
-          var isTrueSet = (attr.value == 'true');
-          data[camelCaseName] = isTrueSet;
-        } else {
-          data[camelCaseName] = attr.value;
-        }
-      }
-    });
-
-    data.value = JSON.parse(data.value);
+    var config = JSON.parse($(el)
+      .parent()
+      .find("script[data-for='" + id + "']")
+      .html());
 
     // special case where the autocomplete is standalone
-    if (data.openIn == "dropdown") {
-      data.inputEl = '#' + id;
+    if (config.openIn == "dropdown") {
+      config.inputEl = '#' + id;
     } else {
-      data.openerEl = '#' + id;
+      config.openerEl = '#' + id;
     }
 
-    var vals = JSON.parse(data.choices);
-    data.source = function (query, render) {
-      var results = [];
-      if (query.length === 0) {
-        render(results);
-        return;
-      }
-      // Find matched items
-      for (var i = 0; i < vals.length; i++) {
-        if (vals[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) {
-          results.push(vals[i]);
-        }
-      }
-      // Render items by passing array with result items
-      render(results);
-    };
+    vals = config.choices;
+    config.source = setSource;
 
     // for popup and page so that shiny is aware about input change
-    data.on = {
+    config.on = {
       change: function (value) {
+        // Add item text value to item-after
+        if (config.openIn !== "dropdown") {
+          $('#' + id).find('.item-after').text(value);
+          // Add item value to input value
+          $('#' + id).find('input').val(value);
+        }
         // important: trigger change so that the input value
         // is updated for Shiny
         $('#' + id).trigger('change');
       }
     };
 
-    data.popupPush = true;
-
-    this.instances[id] = this.app.autocomplete.create(data);
+    this.instances[id] = this.app.autocomplete.create(config);
   },
 
   find: function(scope) {
