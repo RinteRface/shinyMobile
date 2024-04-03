@@ -58,3 +58,12 @@
 .panel-left.panel-in-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
   display: none;
 }
+
+/* split layout border to visually separate sidebar from main content */
+.dark .split-layout .panel-left.panel-in-breakpoint .page {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.light .split-layout .panel-left.panel-in-breakpoint .page {
+  border-right: 1px solid gainsboro;
+}
