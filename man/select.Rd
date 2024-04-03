@@ -5,7 +5,16 @@
 \alias{updateF7Select}
 \title{Framework7 select input}
 \usage{
-f7Select(inputId, label, choices, selected = NULL, width = NULL)
+f7Select(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  width = NULL,
+  media = NULL,
+  description = NULL,
+  outline = FALSE
+)
 
 updateF7Select(
   inputId,
@@ -14,15 +23,22 @@ updateF7Select(
 )
 }
 \arguments{
-\item{inputId}{Select input id.}
+\item{inputId}{Text input id.}
 
-\item{label}{Select input label.}
+\item{label}{Text input label.}
 
 \item{choices}{Select input choices.}
 
 \item{selected}{Select input default selected value.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+
+\item{media}{Expect \link{f7Icon} or image.}
+
+\item{description}{Futher input description, displayed
+under the input content.}
+
+\item{outline}{Outline style. Default to FALSE.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -43,11 +59,16 @@ app <- shinyApp(
       f7Card(
         f7Button(inputId = "update", label = "Update select"),
         br(),
-        f7Select(
-          inputId = "select",
-          label = "Choose a variable:",
-          choices = colnames(mtcars)[-1],
-          selected = "hp"
+        f7List(
+          f7Select(
+            inputId = "select",
+            label = "Choose a variable:",
+            choices = colnames(mtcars)[-1],
+            selected = "hp",
+            description = "A basic select input",
+            media = f7Icon("car_fill"),
+            outline = TRUE
+          )
         ),
         verbatimTextOutput("test")
       )

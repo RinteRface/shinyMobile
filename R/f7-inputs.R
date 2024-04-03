@@ -102,7 +102,10 @@ f7AutoComplete <- function(inputId, label, placeholder = NULL,
       createInputLayout(
         label = label,
         clear = FALSE,
-        autoCompleteInnerTag
+        autoCompleteInnerTag # ,
+        # outline = TRUE,
+        # info = "balbla",
+        # media = f7Icon("house")
       )
     )$
       find(".item-input")$
@@ -280,7 +283,6 @@ updateF7Picker <- function(inputId, value = NULL, choices = NULL,
   )
   session$sendInputMessage(inputId, message)
 }
-
 f7ColorPickerPalettes <- list(
   c(
     "#FFEBEE", "#FFCDD2", "#EF9A9A",
@@ -402,10 +404,6 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
     placeholder
   )
 }
-
-
-
-
 
 #' Framework7 date picker
 #'
@@ -684,17 +682,20 @@ choicesWithNames <- function(choices) {
 #'
 #' \code{f7Select} creates a select input.
 #'
-#' @param inputId Select input id.
-#' @param label Select input label.
 #' @param choices Select input choices.
 #' @param selected Select input default selected value.
 #' @param width The width of the input, e.g. \code{400px}, or \code{100\%}.
+#' @inheritParams f7Text
 #'
 #' @export
 #' @rdname select
 #'
 #' @example inst/examples/select/app.R
-f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
+f7Select <- function(
+    inputId, label, choices, selected = NULL, width = NULL,
+    media = NULL,
+    description = NULL,
+    outline = FALSE) {
   options <- createSelectOptions(choices, selected)
 
   selectTag <- createInputLayout(
@@ -706,7 +707,11 @@ f7Select <- function(inputId, label, choices, selected = NULL, width = NULL) {
     ),
     label = label,
     dropdown = TRUE,
-    clear = FALSE
+    clear = FALSE, # Can't be cleared
+    media = media,
+    outline = outline,
+    floating = FALSE, # Can't be change because can't be cleared
+    info = description
   )
 
   if (!is.null(width)) {
@@ -830,9 +835,12 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
 #' @keywords internal
 createInputLayout <- function(
     ..., label = NULL, media = NULL,
-    floating = FALSE, inset = FALSE,
-    outline = FALSE, dividers = FALSE, strong = FALSE,
-    info = FALSE, dropdown = FALSE, clear = TRUE) {
+    floating = FALSE, outline = FALSE, info = NULL, dropdown = FALSE,
+    clear = TRUE) {
+  if (floating && is.null(label)) {
+    stop("floating can't be used when label is NULL")
+  }
+
   item <- f7ListItem(
     media = media, # icon
     title = label # label
@@ -841,40 +849,80 @@ createInputLayout <- function(
   classes <- c(
     "item-input",
     if (outline) "item-input-outline",
-    if (info) "item-input-with-info"
+    if (!is.null(info)) "item-input-with-info"
   )
 
   item <- htmltools::tagQuery(item)$
     find(".item-content")$
-    addClass(classes)$allTags()
+    addClass(classes)$
+    allTags()
 
   # Add label on title + add input wrap sibling
-  item <- htmltools::tagQuery(item)$
-    find(".item-title")$
-    addClass("item-label")$
-    after(
-    shiny::tags$div(
-      class = paste0(
-        "item-input-wrap",
-        if (dropdown) " input-dropdown-wrap"
-      ),
-      ...,
-      if (clear) shiny::span(class = "input-clear-button")
-    )
-  )$allTags()
+  if (!is.null(label)) {
+    item <- htmltools::tagQuery(item)$
+      find(".item-title")$
+      addClass("item-label")$
+      allTags()
+  }
+
+  innerItems <- shiny::tags$div(
+    class = paste0(
+      "item-input-wrap",
+      if (dropdown) " input-dropdown-wrap"
+    ),
+    ...,
+    if (clear) shiny::span(class = "input-clear-button"),
+    if (!is.null(info)) {
+      shiny::tags$div(
+        class = "item-input-info",
+        info
+      )
+    }
+  )
+
+  item <- if (is.null(label)) {
+    htmltools::tagQuery(item)$
+      find(".item-inner")$
+      append(innerItems)$
+      allTags()
+  } else {
+    htmltools::tagQuery(item)$
+      find(".item-title")$
+      after(innerItems)$
+      allTags()
+  }
+
+  # Remove extra item-title-row class if media
+  if (!is.null(media) && !is.null(label)) {
+    inner <- htmltools::tagQuery(item)$
+      find(".item-title-row")$
+      selectedTags()[[1]]$children
+
+    item <- htmltools::tagQuery(item)$
+      find(".item-title-row")$
+      replaceWith(inner)$
+      allTags()
+  }
+
 
   if (floating) {
     item <- htmltools::tagQuery(item)$
       find(".item-title")$
-      addClass("item-floating-label")$allTags()
+      removeClass("item-label")$
+      addClass("item-floating-label")$
+      allTags()
   }
-  f7List(
-    inset = inset,
-    outline = outline,
-    dividers = dividers,
-    strong = strong,
-    item
-  )
+
+  # Is item wrapped in a f7List? If yes, we return it,
+  # if no, we wrap it to avoid rendering issues.
+  is_wrapped <- sum(
+    grepl(
+      "^f7List",
+      perl = TRUE,
+      as.character(sys.calls())
+    )
+  ) == 1
+  if (is_wrapped) item else f7List(item)
 }
 
 #' Create an input tag
@@ -907,13 +955,26 @@ createInputTag <- function(inputId, value = NULL, type, placeholder, ...) {
 #' @param label Text input label.
 #' @param value Text input value.
 #' @param placeholder Text input placeholder.
+#' @param media Expect \link{f7Icon} or image.
+#' @param description Futher input description, displayed
+#' under the input content.
+#' @param floating Floating style for label. Requires label
+#' not to be NULL. Default to FALSE.
+#' @param outline Outline style. Default to FALSE.
+#' @param clearable Cleareable icon. Default to TRUE.
 #'
 #' @rdname text
 #'
 #' @export
 #'
 #' @example inst/examples/text/app.R
-f7Text <- function(inputId, label, value = "", placeholder = NULL) {
+f7Text <- function(
+    inputId, label = NULL, value = "", placeholder = NULL,
+    media = NULL,
+    description = NULL,
+    floating = FALSE,
+    outline = FALSE,
+    clearable = TRUE) {
   inputTag <- createInputTag(
     inputId = inputId,
     value = value,
@@ -921,9 +982,17 @@ f7Text <- function(inputId, label, value = "", placeholder = NULL) {
     placeholder = placeholder
   )
 
-  createInputLayout(
-    inputTag,
-    label = label
+  do.call(
+    createInputLayout,
+    list(
+      inputTag,
+      label = label,
+      floating = floating,
+      outline = outline,
+      clear = clearable,
+      info = description,
+      media = media
+    )
   )
 }
 
@@ -951,7 +1020,11 @@ updateF7Text <- function(
 #' @export
 #' @rdname text
 f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
-                       resize = FALSE) {
+                       resize = FALSE, media = NULL,
+                       description = NULL,
+                       floating = FALSE,
+                       outline = FALSE,
+                       clearable = TRUE) {
   inputTag <- createInputTag(
     inputId = inputId,
     value = value,
@@ -960,9 +1033,17 @@ f7TextArea <- function(inputId, label, value = "", placeholder = NULL,
     class = if (resize) "resizable" else NULL
   )
 
-  createInputLayout(
-    inputTag,
-    label = label
+  do.call(
+    createInputLayout,
+    list(
+      inputTag,
+      label = label,
+      floating = floating,
+      outline = outline,
+      clear = clearable,
+      info = description,
+      media = media
+    )
   )
 }
 
@@ -980,16 +1061,29 @@ updateF7TextArea <- updateF7Text
 #'
 #' @export
 #' @rdname text
-f7Password <- function(inputId, label, placeholder = NULL) {
+f7Password <- function(
+    inputId, label, placeholder = NULL, media = NULL,
+    description = NULL,
+    floating = FALSE,
+    outline = FALSE,
+    clearable = TRUE) {
   inputTag <- createInputTag(
     inputId = inputId,
     type = "password",
     placeholder = placeholder
   )
 
-  createInputLayout(
-    inputTag,
-    label = label
+  do.call(
+    createInputLayout,
+    list(
+      inputTag,
+      label = label,
+      floating = floating,
+      outline = outline,
+      clear = clearable,
+      info = description,
+      media = media
+    )
   )
 }
 
@@ -1057,7 +1151,7 @@ f7Slider <- function(inputId, label, min, max, value, step = 1, scale = FALSE,
   )
 
   # wrap props
-  rangeTag <- tags$div(
+  rangeTag <- shiny::tags$div(
     class = sliderCl,
     id = inputId,
     style = if (vertical) {
@@ -1262,10 +1356,6 @@ updateF7Stepper <- function(inputId, min = NULL, max = NULL,
   ))
   session$sendInputMessage(inputId, message)
 }
-
-
-
-
 
 #' Framework7 toggle input
 #'

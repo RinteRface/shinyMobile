@@ -31,7 +31,6 @@
 f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
                           cache = TRUE, mode = NULL, inset = FALSE, outline = FALSE,
                           dividers = FALSE, strong = FALSE) {
-
   listCl <- "list virtual-list searchbar-found"
   if (strong) listCl <- paste(listCl, "list-strong")
   if (outline) listCl <- paste(listCl, "list-outline")
@@ -87,9 +86,6 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
   )
 }
 
-
-
-
 #' Update an \link{f7VirtualList} on the server side
 #'
 #' This function wraps all methods from \url{https://framework7.io/docs/virtual-list.html}
@@ -108,15 +104,16 @@ f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL,
 #'
 #' @export
 
-updateF7VirtualList <- function(id, action = c(
-  "appendItem", "appendItems", "prependItem",
-  "prependItems", "replaceItem", "replaceAllItems",
-  "moveItem", "insertItemBefore", "filterItems",
-  "deleteItem", "deleteAllItems", "scrollToItem"
-),
-item = NULL, items = NULL, index = NULL, indexes = NULL,
-oldIndex = NULL, newIndex = NULL,
-session = shiny::getDefaultReactiveDomain()) {
+updateF7VirtualList <- function(
+    id, action = c(
+      "appendItem", "appendItems", "prependItem",
+      "prependItems", "replaceItem", "replaceAllItems",
+      "moveItem", "insertItemBefore", "filterItems",
+      "deleteItem", "deleteAllItems", "scrollToItem"
+    ),
+    item = NULL, items = NULL, index = NULL, indexes = NULL,
+    oldIndex = NULL, newIndex = NULL,
+    session = shiny::getDefaultReactiveDomain()) {
   # JavaScript starts from 0!
   index <- index - 1
   indexes <- indexes - 1

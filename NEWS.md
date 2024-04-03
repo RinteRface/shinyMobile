@@ -74,6 +74,8 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options.
 - `f7SplitLayout()` has a new look and at a minimal app width (1024 px) the sidebar becomes always visible. The sidebar will be collapsed on smaller screens. 
 - Fix various issues in documentation.
+- `f7Text()`, `f7TextArea()` and `f7Password()` have new parameters: `description`, `media`, `floating`, `outline` and `cleareable` for more styling options. `label` can also be NULL.
+- `f7Select()` has new `description`, `media` and `outline` parameters.
 
 # shinyMobile 1.0.1
 

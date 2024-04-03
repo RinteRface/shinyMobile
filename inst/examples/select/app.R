@@ -9,11 +9,16 @@ app <- shinyApp(
       f7Card(
         f7Button(inputId = "update", label = "Update select"),
         br(),
-        f7Select(
-          inputId = "select",
-          label = "Choose a variable:",
-          choices = colnames(mtcars)[-1],
-          selected = "hp"
+        f7List(
+          f7Select(
+            inputId = "select",
+            label = "Choose a variable:",
+            choices = colnames(mtcars)[-1],
+            selected = "hp",
+            description = "A basic select input",
+            media = f7Icon("car_fill"),
+            outline = TRUE
+          )
         ),
         verbatimTextOutput("test")
       )

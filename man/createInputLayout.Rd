@@ -9,11 +9,8 @@ createInputLayout(
   label = NULL,
   media = NULL,
   floating = FALSE,
-  inset = FALSE,
   outline = FALSE,
-  dividers = FALSE,
-  strong = FALSE,
-  info = FALSE,
+  info = NULL,
   dropdown = FALSE,
   clear = TRUE
 )

@@ -81,7 +81,7 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "Update autocomplete"),
       f7Block(f7Button(inputId = "update", label = "Update autocomplete")),
-      f7Block(
+      f7List(
         f7AutoComplete(
           inputId = "myautocomplete",
           placeholder = "Some text here!",
@@ -91,9 +91,9 @@ app <- shinyApp(
             "Apple", "Apricot", "Avocado", "Banana", "Melon",
             "Orange", "Peach", "Pear", "Pineapple"
           )
-        ),
-        verbatimTextOutput("autocompleteval")
-      )
+        )
+      ),
+      f7Block(verbatimTextOutput("autocompleteval"))
     )
   ),
   server = function(input, output, session) {

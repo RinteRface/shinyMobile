@@ -6,22 +6,23 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "Text inputs"),
       f7Block(f7Button("update", "Click me")),
-      f7Block(
+      f7BlockTitle("A list of inputs"),
+      f7List(
+        outline = TRUE,
+        dividers = FALSE,
         strong = TRUE,
-        inline = TRUE,
-        f7BlockTitle("Text Input"),
+        br(),
         f7Text(
           inputId = "text",
-          label = "Caption",
+          label = "Text input",
           value = "Some text",
-          placeholder = "Your text here"
+          placeholder = "Your text here",
+          description = "A cool text input",
+          outline = TRUE,
+          media = f7Icon("house"),
+          clearable = TRUE,
+          floating = TRUE
         ),
-        textOutput("text_value")
-      ),
-      f7Block(
-        strong = TRUE,
-        inline = TRUE,
-        f7BlockTitle("Text Area Input"),
         f7TextArea(
           inputId = "textarea",
           label = "Text Area",
@@ -29,20 +30,38 @@ app <- shinyApp(
               adipiscing elit, sed do eiusmod tempor incididunt ut
               labore et dolore magna aliqua",
           placeholder = "Your text here",
-          resize = TRUE
+          resize = TRUE,
+          description = "A cool text area input",
+          outline = TRUE,
+          media = f7Icon("pencil"),
+          clearable = TRUE,
+          floating = TRUE
         ),
-        textOutput("textarea_value")
-      ),
-      f7Block(
-        strong = TRUE,
-        inline = TRUE,
-        f7BlockTitle("Password Input"),
         f7Password(
           inputId = "password",
           label = "Password:",
-          placeholder = "Your password here"
+          placeholder = "Your password here",
+          description = "A cool passord input",
+          outline = TRUE,
+          media = f7Icon("lock"),
+          clearable = TRUE,
+          floating = TRUE
+        )
+      ),
+      f7Grid(
+        cols = 3,
+        f7Block(
+          f7BlockTitle("Text value"),
+          textOutput("text_value")
         ),
-        textOutput("password_value")
+        f7Block(
+          f7BlockTitle("Text area value"),
+          textOutput("textarea_value")
+        ),
+        f7Block(
+          f7BlockTitle("Password value"),
+          textOutput("password_value")
+        )
       )
     )
   ),
