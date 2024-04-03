@@ -18,7 +18,7 @@ new_mtcars <- reshape(
   drop = c("mpg", "cyl", "hp", "dist", "qsec", "vs", "am", "gear", "carb")
 )
 
-shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Split layout",
     f7SplitLayout(
