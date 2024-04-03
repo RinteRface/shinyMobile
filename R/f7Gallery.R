@@ -20,4 +20,4 @@ f7Gallery <- function() { # nocov start
       mustWork = TRUE
     )
   )
-}
+} # nocov end
