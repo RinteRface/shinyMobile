@@ -4,7 +4,7 @@ library(shinyMobile)
 library(apexcharter)
 
 fruits <- data.frame(
-  name = c('Apples', 'Oranges', 'Bananas', 'Berries'),
+  name = c("Apples", "Oranges", "Bananas", "Berries"),
   value = c(44, 55, 67, 83)
 )
 
@@ -100,7 +100,6 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
@@ -127,7 +126,8 @@ shinyApp(
         mapping = aes(
           x = model,
           y = value,
-          group = time)
+          group = time
+        )
       )
     })
 
@@ -145,6 +145,7 @@ shinyApp(
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
       }
     })
-
   }
 )
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
