@@ -13,7 +13,9 @@ f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panel = NULL)
 \code{f7Navbar(title = "Navbar", leftPanel = TRUE)}}
 
 \item{sidebar}{Slot for \link{f7Panel}. Particularly we expect the following:
-\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}}
+\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}.
+At a minimal app width (1024 px) the sidebar becomes always visible. You can override this
+behavior by setting \code{options = list(visibleBreakpoint = 1024)} to the desired width in \link{f7Panel}.}
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
 
@@ -53,6 +55,10 @@ shinyApp(
         id = "sidebar",
         title = "Sidebar",
         side = "left",
+        effect = "reveal",
+        options = list(
+          visibleBreakpoint = 1024
+        ),
         f7PanelMenu(
           id = "menu",
           strong = TRUE,

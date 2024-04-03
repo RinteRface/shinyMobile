@@ -49,6 +49,8 @@ the check icon position. Default to left.
 - `f7CheckboxChoice()`: new function to pass inside `choices` in a
 `f7CheckboxGroup()`. Improved choice with title, subtitle, ...
 - `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
+- `f7ListIndex()` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
+- Added `id` argument to `f7List()`, which makes it possible to use an id as target in `f7ListIndex`.
 - `f7Panel()` has new "floating"/"push" effects as well as a new `options` parameter
 to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
 - `f7VirtualList()` has new `outline`, `dividers` and `strong` styles. Additionally, `mode` was added with the following possible values: `simple`, `links`, `media` or `contacts`.
@@ -69,9 +71,8 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7ColorPicker()` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
 - `f7Slider()` has new `...` parameter to pass extra options. New
 `showLabel` parameter: fix an unfortunate naming conflict between the input label (name) and the name Framework7 has given to the bubble component (label).
-- `f7ListIndex()` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
-- Added `id` argument to `f7List()`, which makes it possible to use an id as target in `f7ListIndex`.
 - `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options.
+- `f7SplitLayout()` has a new look and at a minimal app width (1024 px) the sidebar becomes always visible. The sidebar will be collapsed on smaller screens. 
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

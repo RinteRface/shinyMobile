@@ -463,7 +463,9 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' @param navbar Slot for \link{f7Navbar}. We expect the following:
 #' \code{f7Navbar(title = "Navbar", leftPanel = TRUE)}
 #' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following:
-#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}
+#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}.
+#' At a minimal app width (1024 px) the sidebar becomes always visible. You can override this
+#' behavior by setting \code{options = list(visibleBreakpoint = 1024)} to the desired width in \link{f7Panel}.
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
 #' \code{f7Panel(title = "Right Panel", side = "right", theme = "light", "Blabla", effect = "cover")}
