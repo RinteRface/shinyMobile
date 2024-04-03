@@ -486,8 +486,7 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     f7Margin(side = "left") %>%
     f7Margin(side = "right")
 
-  sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
-  sidebar$children[[2]]$attribs$class <- "panel-in-breakpoint"
+  sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in panel-in-breakpoint")
 
   splitSkeleton <- f7SingleLayout(
     items,

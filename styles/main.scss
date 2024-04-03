@@ -53,3 +53,8 @@
   margin-left: auto;
   top: 50%;
 }
+
+/* Don't display panel open button when panel in breakpoint (split layout) */
+.panel-left.panel-in-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
+  display: none;
+}

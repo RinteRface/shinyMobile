@@ -26,6 +26,10 @@ shinyApp(
         id = "sidebar",
         title = "Sidebar",
         side = "left",
+        effect = "push",
+        options = list(
+          visibleBreakpoint = 1024
+        ),
         f7PanelMenu(
           id = "menu",
           strong = TRUE,

@@ -24,10 +24,13 @@ $.extend(f7PanelBinding, {
     // if parent class is split-layout, add visibleBreakpoint
     // makes the left panel always visible on tablets and desktop
     if ($(el).parent().hasClass('split-layout')) {
-      config.visibleBreakpoint = 1024;
+      if (!config.visibleBreakpoint) {
+        config.visibleBreakpoint = 1024;
+      }
     }
 
     this.instances[el.id] = this.app.panel.create(config);
+
   },
 
   find: function(scope) {
