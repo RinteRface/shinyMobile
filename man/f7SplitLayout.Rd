@@ -55,7 +55,7 @@ shinyApp(
         id = "sidebar",
         title = "Sidebar",
         side = "left",
-        effect = "reveal",
+        effect = "push",
         options = list(
           visibleBreakpoint = 1024
         ),
