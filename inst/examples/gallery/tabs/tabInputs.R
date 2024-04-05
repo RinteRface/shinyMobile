@@ -3,17 +3,23 @@ tabInputs <- f7Tab(
   tabName = "Inputs",
   icon = f7Icon("rocket_fill"),
   active = TRUE,
-
-  f7BlockTitle(title = "f7Text input with validation") %>% f7Align(side = "center"),
-  f7Text(
-    inputId = "text",
-    label = "Your text",
-    value = "some text",
-    placeholder = "Don't leave me empty!"
+  f7List(
+    strong = TRUE,
+    inset = TRUE,
+    f7BlockTitle(title = "f7Text input with validation") %>% f7Align(side = "center"),
+    f7Text(
+      inputId = "text",
+      label = "Your text",
+      value = "some text",
+      placeholder = "Don't leave me empty!",
+      media = f7Icon("pencil"),
+      floating = TRUE,
+      outline = TRUE,
+      clearable = TRUE
+    )
   ),
   verbatimTextOutput("text"),
   br(),
-
   f7BlockTitle(title = "f7TextArea input") %>% f7Align(side = "center"),
   f7TextArea(
     inputId = "textarea",
@@ -25,7 +31,6 @@ tabInputs <- f7Tab(
     resize = TRUE
   ),
   textOutput("textarea"),
-
   f7BlockTitle(title = "f7Password input with validation") %>% f7Align(side = "center"),
   f7Password(
     inputId = "password",
@@ -34,7 +39,6 @@ tabInputs <- f7Tab(
   ),
   verbatimTextOutput("password"),
   br(),
-
   f7BlockTitle(title = "f7Slider input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -62,9 +66,7 @@ tabInputs <- f7Tab(
     )
   ),
   verbatimTextOutput("sliderRange"),
-
   br(),
-
   f7BlockTitle(title = "f7Stepper input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -79,7 +81,6 @@ tabInputs <- f7Tab(
     verbatimTextOutput("stepper")
   ),
   br(),
-
   f7BlockTitle(title = "f7Checkbox input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -91,7 +92,6 @@ tabInputs <- f7Tab(
     verbatimTextOutput("check")
   ),
   br(),
-
   f7BlockTitle(title = "f7CheckboxGroup input") %>% f7Align(side = "center"),
   f7CheckboxGroup(
     inputId = "checkgroup",
@@ -101,7 +101,6 @@ tabInputs <- f7Tab(
   ),
   verbatimTextOutput("checkgroup"),
   br(),
-
   f7BlockTitle(title = "f7Radio input") %>% f7Align(side = "center"),
   f7Radio(
     inputId = "radio",
@@ -111,7 +110,6 @@ tabInputs <- f7Tab(
   ),
   verbatimTextOutput("radio"),
   br(),
-
   f7BlockTitle(title = "f7Toggle input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -124,7 +122,6 @@ tabInputs <- f7Tab(
     verbatimTextOutput("toggle")
   ),
   br(),
-
   f7BlockTitle(title = "f7Select input") %>% f7Align(side = "center"),
   f7Select(
     inputId = "select",
@@ -133,7 +130,6 @@ tabInputs <- f7Tab(
   ),
   verbatimTextOutput("select"),
   br(),
-
   f7BlockTitle(title = "f7SmartSelect input") %>% f7Align(side = "center"),
   f7SmartSelect(
     inputId = "smartsel",
@@ -144,19 +140,25 @@ tabInputs <- f7Tab(
   ),
   tableOutput("smartdata"),
   br(),
-
   f7BlockTitle(title = "f7AutoComplete input") %>% f7Align(side = "center"),
   f7AutoComplete(
     inputId = "myautocomplete",
     placeholder = "Select a fruit!",
     openIn = "dropdown",
     label = "Type a fruit name",
-    choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-                'Orange', 'Peach', 'Pear', 'Pineapple')
+    choices = c(
+      "Apple", "Apricot", "Avocado", "Banana", "Melon",
+      "Orange", "Peach", "Pear", "Pineapple"
+    ),
+    style = list(
+      outline = TRUE,
+      media = f7Icon("house"),
+      description = "typeahead input",
+      floating = TRUE
+    )
   ),
   verbatimTextOutput("autocompleteval"),
   br(),
-
   f7BlockTitle(title = "f7Date input") %>% f7Align(side = "center"),
   f7DatePicker(
     inputId = "date",
@@ -166,18 +168,15 @@ tabInputs <- f7Tab(
   "The selected date is",
   verbatimTextOutput("selectDate"),
   br(),
-
   f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),
   f7Picker(
     inputId = "mypicker",
     placeholder = "Some text here!",
     label = "Picker Input",
-    choices = c('a', 'b', 'c')
+    choices = c("a", "b", "c")
   ),
   textOutput("pickerval"),
   br(),
-
-
   f7BlockTitle(title = "f7ColorPicker input") %>% f7Align(side = "center"),
   f7ColorPicker(
     inputId = "mycolorpicker",
@@ -185,5 +184,5 @@ tabInputs <- f7Tab(
     label = "Select a color"
   ),
   "The picker value is:",
-  textOutput("colorPickerVal")
+  verbatimTextOutput("colorPickerVal")
 )

@@ -49,7 +49,6 @@ tabOthers <- f7Tab(
     f7ListItem(title = "Item 1"),
     f7ListItem(title = "Item 2")
   ),
-
   br(),
 
   # Badges
@@ -108,7 +107,6 @@ tabOthers <- f7Tab(
       plotOutput("cos")
     )
   ),
-
   br(), br(), br(),
 
   # Pthoto browser trigger
@@ -173,30 +171,27 @@ tabOthers <- f7Tab(
   f7BlockTitle(title = "f7Gauge") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
-    f7Row(
-      f7Col(
-        f7Gauge(
-          id = "mygauge1",
-          type  = "semicircle",
-          value = 50,
-          borderColor = "#2196f3",
-          borderWidth = 10,
-          valueFontSize = 41,
-          valueTextColor = "#2196f3",
-          labelText = "amount of something"
-        )
+    f7Grid(
+      cols = 2,
+      f7Gauge(
+        id = "mygauge1",
+        type = "semicircle",
+        value = 50,
+        borderColor = "#2196f3",
+        borderWidth = 10,
+        valueFontSize = 41,
+        valueTextColor = "#2196f3",
+        labelText = "amount of something"
       ),
-      f7Col(
-        f7Gauge(
-          id = "mygauge2",
-          type  = "circle",
-          value = 30,
-          borderColor = "orange",
-          borderWidth = 10,
-          valueFontSize = 41,
-          valueTextColor = "orange",
-          labelText = "Other thing"
-        )
+      f7Gauge(
+        id = "mygauge2",
+        type = "circle",
+        value = 30,
+        borderColor = "orange",
+        borderWidth = 10,
+        valueFontSize = 41,
+        valueTextColor = "orange",
+        labelText = "Other thing"
       )
     ),
     f7Stepper(
@@ -223,6 +218,4 @@ tabOthers <- f7Tab(
   # preloaders
   f7BlockTitle(title = "f7ShowPreloader/f7HidePreloader") %>% f7Align(side = "center"),
   f7Card(plotOutput("preloaderPlot"), f7Button("showLoader", "Show loader"))
-
 )
-

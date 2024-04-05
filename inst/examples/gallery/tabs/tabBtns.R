@@ -12,7 +12,6 @@ tabBtns <- f7Tab(
     lapply(1:4, function(i) f7Fab(paste0("btn", i), label = i, flag = paste0("btn", i)))
   ),
   lapply(1:4, function(i) textOutput(paste0("res", i))),
-
   f7Fabs(
     extended = TRUE,
     label = "Menu",
@@ -22,7 +21,6 @@ tabBtns <- f7Tab(
     lapply(5:8, function(i) f7Fab(inputId = paste0("btn", i), label = i))
   ),
   lapply(5:8, function(i) textOutput(paste0("res", i))),
-
   f7Fabs(
     position = "left-bottom",
     color = "pink",
@@ -70,22 +68,7 @@ tabBtns <- f7Tab(
     f7Button(color = "purple", label = "My button", size = "large", shadow = TRUE),
     f7Button(color = "orange", label = "My button", size = "small", shadow = TRUE)
   ),
-
   br(), br(),
   f7BlockTitle(title = "Click on the black action button to update the value"),
-  textOutput("val"),
-  br(), br(),
-
-  # Menus
-  f7Button("toggleMenu", "Toggle menu"),
-  f7Menu(
-    f7MenuDropdown(
-      id = "menu1",
-      label = "Menu 1",
-      f7MenuItem(inputId = "menuItem1", "Item 1"),
-      f7MenuItem(inputId = "menuItem2", "Item 2"),
-      f7MenuDropdownDivider(),
-      f7MenuItem(inputId = "menuItem3", "Item 3")
-    )
-  )
+  textOutput("val")
 )

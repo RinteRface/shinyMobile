@@ -1,4 +1,4 @@
-#contacts_list <- f7List(
+# contacts_list <- f7List(
 #  mode = "contacts",
 #  lapply(seq_along(LETTERS), function(i) {
 #    f7ListGroup(
@@ -8,9 +8,9 @@
 #      })
 #    )
 #  })
-#)
+# )
 #
-#contacts_list$attribs$id <- "list-index-target"
+# contacts_list$attribs$id <- "list-index-target"
 
 
 tabLists <- f7Tab(
@@ -33,10 +33,11 @@ tabLists <- f7Tab(
               "You can't swipe me!"
             }
           ),
-          side = "left",
-          f7SwipeoutItem(id = "swipeAlert", color = "pink", "Alert"),
-          f7SwipeoutItem(id = "swipeNotif", color = "green", "Notif"),
-          f7SwipeoutItem(id = "swipeActionSheet", color = "purple", "Action")
+          left = tagList(
+            f7SwipeoutItem(id = "swipeAlert", color = "pink", "Alert"),
+            f7SwipeoutItem(id = "swipeNotif", color = "green", "Notif"),
+            f7SwipeoutItem(id = "swipeActionSheet", color = "purple", "Action")
+          )
         )
       } else {
         f7ListItem(letters[j])
@@ -55,13 +56,15 @@ tabLists <- f7Tab(
   # list with complex items
   f7BlockTitle(title = "f7List with components") %>% f7Align(side = "center"),
   f7List(
+    inset = TRUE,
+    outline = TRUE,
+    dividers = TRUE,
+    strong = TRUE,
     lapply(1:3, function(j) {
       f7ListItem(
-        letters[j],
+        title = letters[j],
         media = f7Icon("alarm_fill"),
-        right = "Right Text",
-        header = "Header",
-        footer = "Footer"
+        right = "Right Text"
       )
     })
   ),
@@ -107,7 +110,9 @@ tabLists <- f7Tab(
   f7BlockTitle(title = "f7List with links") %>% f7Align(side = "center"),
   f7List(
     lapply(1:3, function(j) {
-      f7ListItem(url = "https://google.com", letters[j])
+      tags$li(
+        f7Link(label = letters[j], href = "https://google.com")
+      )
     })
   ),
   br(),
@@ -122,10 +127,10 @@ tabLists <- f7Tab(
         lapply(1:3, function(j) f7ListItem(letters[j]))
       )
     })
-  )#,
-  #br(),
+  ) # ,
+  # br(),
 
   ## list index
-  #f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
-  #contacts_list
+  # f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
+  # contacts_list
 )

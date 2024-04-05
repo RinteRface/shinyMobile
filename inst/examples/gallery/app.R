@@ -27,23 +27,35 @@ shinyApp(
           id = "panelLeft",
           title = "Left Panel",
           side = "left",
-          theme = "light",
-          "Blabla",
-          effect = "reveal"
+          f7Block("A panel with push effect"),
+          f7PanelMenu(
+            id = "panelmenu",
+            f7PanelItem(
+              tabName = "Inputs",
+              title = "Input tabs",
+              icon = f7Icon("envelope"),
+              active = TRUE
+            ),
+            f7PanelItem(
+              tabName = "tab2",
+              title = "Tab 2",
+              icon = f7Icon("house")
+            )
+          ),
+          effect = "push",
+          options = list(swipe = TRUE)
         ),
         f7Panel(
           title = "Right Panel",
           side = "right",
-          theme = "dark",
           "Blabla",
-          effect = "cover"
+          effect = "floating",
+          options = list(swipe = TRUE)
         )
       ),
       navbar = f7Navbar(
         title = "shinyMobile",
-        subtitle = "for Shiny",
         hairline = TRUE,
-        shadow = TRUE,
         leftPanel = TRUE,
         rightPanel = TRUE,
         bigger = TRUE,
@@ -153,8 +165,7 @@ shinyApp(
       req(input$tabset == "chat")
     })
     # login server module
-    callModule(
-      f7LoginServer,
+    f7LoginServer(
       id = "loginPage",
       ignoreInit = TRUE,
       trigger = trigger
@@ -188,7 +199,7 @@ shinyApp(
       output[[paste0("res", i)]] <- renderText(paste0("Button", i, " is ", input[[paste0("btn", i)]]))
     })
     output$pickerval <- renderText(input$mypicker)
-    output$colorPickerVal <- renderText(input$mycolorpicker)
+    output$colorPickerVal <- renderPrint(input$mycolorpicker)
 
     # send the color picker input to JS
     observeEvent(input$mycolorpicker, {
