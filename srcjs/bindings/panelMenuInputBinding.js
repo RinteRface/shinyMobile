@@ -47,7 +47,7 @@ $.extend(f7PanelMenuBinding, {
 
   subscribe: function(el, callback) {
     $(el).find("a").on("click.f7PanelMenuBinding", function(e) {
-      $($(this).data("tab")).trigger("shown").trigger("shown");
+      $($(this).data("tab")).trigger("shown");
         callback(false);
     });
 

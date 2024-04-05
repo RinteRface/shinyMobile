@@ -29,17 +29,19 @@ shinyApp(
           side = "left",
           f7Block("A panel with push effect"),
           f7PanelMenu(
-            id = "panelmenu",
+            inset = TRUE,
+            outline = TRUE,
+            # Use items as tab navigation only
             f7PanelItem(
-              tabName = "Inputs",
+              tabName = "tabset-Inputs",
               title = "Input tabs",
-              icon = f7Icon("envelope"),
+              icon = f7Icon("largecircle_fill_circle"),
               active = TRUE
             ),
             f7PanelItem(
-              tabName = "tab2",
-              title = "Tab 2",
-              icon = f7Icon("house")
+              tabName = "tabset-FABs",
+              title = "Buttons tabs",
+              icon = f7Icon("largecircle_fill_circle")
             )
           ),
           effect = "push",
