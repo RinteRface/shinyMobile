@@ -14,3 +14,6 @@
 ^tools$
 ^index\.Rmd$
 ^CRAN-SUBMISSION$
+^shinyMobile\.Rcheck$
+^shinyMobile.*\.tar\.gz$
+^shinyMobile.*\.tgz$

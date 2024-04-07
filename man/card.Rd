@@ -25,7 +25,8 @@ f7ExpandableCard(
   subtitle = NULL,
   color = NULL,
   image = NULL,
-  fullBackground = FALSE
+  fullBackground = FALSE,
+  height = "300px"
 )
 
 updateF7Card(id, session = shiny::getDefaultReactiveDomain())

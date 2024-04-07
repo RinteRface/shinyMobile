@@ -266,7 +266,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 #' @export
 f7ExpandableCard <- function(..., id = NULL, title = NULL,
                              subtitle = NULL, color = NULL,
-                             image = NULL, fullBackground = FALSE) {
+                             image = NULL, fullBackground = FALSE, height = "300px") {
 
   cardColorCl <- if (!is.null(color)) paste0("bg-color-", color)
 
@@ -328,6 +328,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
   # main wrapper
   shiny::tags$div(
     class = "card card-expandable",
+    style = paste0("height: ",height),
     `data-card` = paste0("#", id),
     id = id,
     shiny::tags$div(
@@ -345,6 +346,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
       } else {
         shiny::tags$div(
           class = cardColorCl,
+          #style = paste0("height: ",height),
           style = "height: 300px;",
           cardHeader,
           closeCard

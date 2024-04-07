@@ -11,3 +11,6 @@ inst/examples/chat_widget
 docs
 inst/examples/chat_widget
 inst/tests/**
+shinyMobile.Rcheck/
+shinyMobile*.tar.gz
+shinyMobile*.tgz
