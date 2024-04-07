@@ -31,6 +31,9 @@ updateF7Select(
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 
+\item{style}{Input style. A list with media (image or icon),
+description (text), floating, outline and clearable (booleans).}
+
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{

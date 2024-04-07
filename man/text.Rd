@@ -60,12 +60,12 @@ f7Password(
 
 \item{placeholder}{Text input placeholder.}
 
+\item{style}{Input style. A list with media (image or icon),
+description (text), floating, outline and clearable (booleans).}
+
 \item{session}{The Shiny session object, usually the default value will suffice.}
 
 \item{resize}{Whether to box can be resized. Default to FALSE.}
-
-\item{style.}{Input style. A list with media (image or icon),
-description (text), floating, outline and clearable (booleans).}
 }
 \description{
 \code{f7Text} creates a text input container.

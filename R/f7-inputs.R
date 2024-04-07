@@ -974,7 +974,7 @@ createInputTag <- function(inputId, value = NULL, type, placeholder, ...) {
 #' @param label Text input label.
 #' @param value Text input value.
 #' @param placeholder Text input placeholder.
-#' @param style. Input style. A list with media (image or icon),
+#' @param style Input style. A list with media (image or icon),
 #' description (text), floating, outline and clearable (booleans).
 #'
 #' @rdname text
