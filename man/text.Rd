@@ -13,11 +13,8 @@ f7Text(
   label = NULL,
   value = "",
   placeholder = NULL,
-  media = NULL,
-  description = NULL,
-  floating = FALSE,
-  outline = FALSE,
-  clearable = TRUE
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
 )
 
 updateF7Text(
@@ -34,11 +31,8 @@ f7TextArea(
   value = "",
   placeholder = NULL,
   resize = FALSE,
-  media = NULL,
-  description = NULL,
-  floating = FALSE,
-  outline = FALSE,
-  clearable = TRUE
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
 )
 
 updateF7TextArea(
@@ -53,11 +47,8 @@ f7Password(
   inputId,
   label,
   placeholder = NULL,
-  media = NULL,
-  description = NULL,
-  floating = FALSE,
-  outline = FALSE,
-  clearable = TRUE
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
 )
 }
 \arguments{
@@ -69,21 +60,12 @@ f7Password(
 
 \item{placeholder}{Text input placeholder.}
 
-\item{media}{Expect \link{f7Icon} or image.}
-
-\item{description}{Futher input description, displayed
-under the input content.}
-
-\item{floating}{Floating style for label. Requires label
-not to be NULL. Default to FALSE.}
-
-\item{outline}{Outline style. Default to FALSE.}
-
-\item{clearable}{Cleareable icon. Default to TRUE.}
-
 \item{session}{The Shiny session object, usually the default value will suffice.}
 
 \item{resize}{Whether to box can be resized. Default to FALSE.}
+
+\item{style.}{Input style. A list with media (image or icon),
+description (text), floating, outline and clearable (booleans).}
 }
 \description{
 \code{f7Text} creates a text input container.
@@ -110,20 +92,21 @@ app <- shinyApp(
       f7Block(f7Button("update", "Click me")),
       f7BlockTitle("A list of inputs"),
       f7List(
-        outline = TRUE,
+        inset = TRUE,
         dividers = FALSE,
         strong = TRUE,
-        br(),
         f7Text(
           inputId = "text",
           label = "Text input",
           value = "Some text",
           placeholder = "Your text here",
-          description = "A cool text input",
-          outline = TRUE,
-          media = f7Icon("house"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         ),
         f7TextArea(
           inputId = "textarea",
@@ -133,21 +116,25 @@ app <- shinyApp(
               labore et dolore magna aliqua",
           placeholder = "Your text here",
           resize = TRUE,
-          description = "A cool text area input",
-          outline = TRUE,
-          media = f7Icon("pencil"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         ),
         f7Password(
           inputId = "password",
           label = "Password:",
           placeholder = "Your password here",
-          description = "A cool passord input",
-          outline = TRUE,
-          media = f7Icon("lock"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         )
       ),
       f7Grid(

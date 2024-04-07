@@ -4,18 +4,7 @@
 \alias{f7GroupInput}
 \title{Framework7 group input}
 \usage{
-f7GroupInput(
-  type,
-  inputId,
-  label,
-  choices,
-  selected,
-  position,
-  inset,
-  outline,
-  dividers,
-  strong
-)
+f7GroupInput(type, inputId, label, choices, selected, position, style)
 }
 \arguments{
 \item{inputId}{Input id.}
@@ -33,13 +22,8 @@ selected must be a numeric value corresponding to the index of the element to se
 \item{position}{Check mark side.
 \code{"left"} or \code{"right"}.}
 
-\item{inset}{Whether to display a card border. FALSE by default.}
-
-\item{outline}{Outline style. Default to FALSE.}
-
-\item{dividers}{Dividers style. Default to FALSE.}
-
-\item{strong}{Strong style. Default to FALSE.}
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 }
 \description{
 Useful to create \code{f7Radio} and \link{f7CheckboxGroup}.

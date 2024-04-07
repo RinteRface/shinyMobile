@@ -40,10 +40,12 @@ app <- shinyApp(
             )
           ),
           selected = 2,
-          outline = TRUE,
-          strong = TRUE,
-          inset = TRUE,
-          dividers = TRUE
+          style = list(
+            outline = TRUE,
+            strong = TRUE,
+            inset = TRUE,
+            dividers = TRUE
+          )
         ),
         textOutput("res2")
       )

@@ -7,7 +7,10 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "Update autocomplete"),
       f7Block(f7Button(inputId = "update", label = "Update autocomplete")),
-      f7List(
+      f7Block(
+        inset = TRUE,
+        strong = TRUE,
+        f7BlockTitle("Autocomplete input"),
         f7AutoComplete(
           inputId = "myautocomplete",
           placeholder = "Some text here!",
@@ -16,6 +19,12 @@ app <- shinyApp(
           choices = c(
             "Apple", "Apricot", "Avocado", "Banana", "Melon",
             "Orange", "Peach", "Pear", "Pineapple"
+          ),
+          style = list(
+            outline = TRUE,
+            media = f7Icon("house"),
+            description = "typeahead input",
+            floating = TRUE
           )
         )
       ),

@@ -1,6 +1,7 @@
 # shinyMobile 1.1.0
 ## Major change
 - Update Framework7 from 5.7.14 to 8.3.2
+- Whenever you have multiple inputs, we now recommand to wrap all of them within `f7List()` which allows you to benefit from new styling options such as outline, inset, strong, ... Internally, we use a function able to detect whether the input is inside a `f7List()`: if yes, you can style this list by passing parameters like `f7List(outline = TRUE, inset = TRUE, ...)`; if not, the input is internally wrapped in a list to have correct rendering (but no styling is possible). Besides, some input like `f7Text()` can have custom styling (add an icon, clear button, outline style), which is independant from the external list wrapper style. Hence, we don't recommand doing `f7List(outline = TRUE, f7Text(outline = TRUE))` since it won't render very well (only use the `f7Text(outline = TRUE)`). Please have a look at the corresponding examples in the documentation.
 
 ## Breaking changes
 - The aurora theme has been removed. Supported themes are now: ios, md and auto. In case of auto it will use iOS theme for iOS devices and MD theme for all other devices.
@@ -71,7 +72,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7ColorPicker()` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
 - `f7Slider()` has new `...` parameter to pass extra options. New
 `showLabel` parameter: fix an unfortunate naming conflict between the input label (name) and the name Framework7 has given to the bubble component (label).
-- `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options.
+- `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options as well as a new `style` parameter to customize the input look and feel. `f7AutoComplete()` has new `style` parameter to allow for custom styling only when `openIn` is `dropdown`.
 - `f7SplitLayout()` has a new look and at a minimal app width (1024 px) the sidebar becomes always visible. The sidebar will be collapsed on smaller screens. 
 - Fix various issues in documentation.
 - `f7Text()`, `f7TextArea()` and `f7Password()` have new parameters: `description`, `media`, `floating`, `outline` and `cleareable` for more styling options. `label` can also be NULL.

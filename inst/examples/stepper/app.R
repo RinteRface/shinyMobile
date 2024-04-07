@@ -6,8 +6,11 @@ app <- shinyApp(
     title = "Stepper app",
     f7SingleLayout(
       navbar = f7Navbar(title = "updateF7Stepper"),
-      f7Card(
-        f7Button(inputId = "update", label = "Update stepper"),
+      f7Block(f7Button(inputId = "update", label = "Update stepper")),
+      f7Block(
+        strong = TRUE,
+        inset = TRUE,
+        outline = TRUE,
         f7Stepper(
           inputId = "stepper",
           label = "My stepper",
@@ -19,7 +22,8 @@ app <- shinyApp(
           autorepeat = TRUE,
           rounded = FALSE,
           raised = FALSE,
-          manual = FALSE
+          manual = FALSE,
+          layout = "list"
         ),
         verbatimTextOutput("test")
       )

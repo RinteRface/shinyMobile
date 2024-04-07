@@ -4,16 +4,7 @@
 \alias{createInputLayout}
 \title{Create common input layout}
 \usage{
-createInputLayout(
-  ...,
-  label = NULL,
-  media = NULL,
-  floating = FALSE,
-  outline = FALSE,
-  info = NULL,
-  dropdown = FALSE,
-  clear = TRUE
-)
+createInputLayout(..., label = NULL, style, dropdown = FALSE)
 }
 \description{
 See \url{https://framework7.io/docs/inputs#inputs-layout}.

@@ -69,11 +69,16 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7SmartSelect"),
       f7Block(f7Button("update", "Update Smart Select")),
-      f7SmartSelect(
-        inputId = "smartselect",
-        label = "Choose a variable:",
-        choices = split(colnames(mtcars[-1]), rep(1:5)),
-        openIn = "popup"
+      f7List(
+        inset = TRUE,
+        strong = TRUE,
+        outline = TRUE,
+        f7SmartSelect(
+          inputId = "smartselect",
+          label = "Choose a variable:",
+          choices = split(colnames(mtcars[-1]), rep(1:5)),
+          openIn = "popup"
+        )
       ),
       tableOutput("data")
     )

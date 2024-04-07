@@ -15,9 +15,11 @@ app <- shinyApp(
             label = "Choose a variable:",
             choices = colnames(mtcars)[-1],
             selected = "hp",
-            description = "A basic select input",
-            media = f7Icon("car_fill"),
-            outline = TRUE
+            style = list(
+              description = "A basic select input",
+              media = f7Icon("car_fill"),
+              outline = TRUE
+            )
           )
         ),
         verbatimTextOutput("test")

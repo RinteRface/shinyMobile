@@ -11,9 +11,7 @@ f7Select(
   choices,
   selected = NULL,
   width = NULL,
-  media = NULL,
-  description = NULL,
-  outline = FALSE
+  style = list(media = NULL, description = NULL, outline = FALSE)
 )
 
 updateF7Select(
@@ -33,19 +31,16 @@ updateF7Select(
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
 
-\item{media}{Expect \link{f7Icon} or image.}
-
-\item{description}{Futher input description, displayed
-under the input content.}
-
-\item{outline}{Outline style. Default to FALSE.}
-
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
 \code{f7Select} creates a select input.
 
 \code{updateF7Select} changes the value of a select input on the client
+}
+\note{
+Contrary to \link{f7Text}, \link{f7Select} can't be cleared and
+label can't float.
 }
 \examples{
 library(shiny)
@@ -65,9 +60,11 @@ app <- shinyApp(
             label = "Choose a variable:",
             choices = colnames(mtcars)[-1],
             selected = "hp",
-            description = "A basic select input",
-            media = f7Icon("car_fill"),
-            outline = TRUE
+            style = list(
+              description = "A basic select input",
+              media = f7Icon("car_fill"),
+              outline = TRUE
+            )
           )
         ),
         verbatimTextOutput("test")

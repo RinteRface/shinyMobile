@@ -12,10 +12,12 @@ tabInputs <- f7Tab(
       label = "Your text",
       value = "some text",
       placeholder = "Don't leave me empty!",
-      media = f7Icon("pencil"),
-      floating = TRUE,
-      outline = TRUE,
-      clearable = TRUE
+      style = list(
+        media = f7Icon("pencil"),
+        floating = TRUE,
+        outline = TRUE,
+        clearable = TRUE
+      )
     )
   ),
   verbatimTextOutput("text"),

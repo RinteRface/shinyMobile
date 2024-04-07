@@ -12,10 +12,7 @@ f7Radio(
   choices = NULL,
   selected = NULL,
   position = c("left", "right"),
-  inset = FALSE,
-  outline = FALSE,
-  dividers = FALSE,
-  strong = FALSE
+  style = list(inset = FALSE, outline = FALSE, dividers = FALSE, strong = FALSE)
 )
 
 updateF7Radio(
@@ -44,13 +41,8 @@ selected must be a numeric value corresponding to the index of the element to se
 \item{position}{Check mark side.
 \code{"left"} or \code{"right"}.}
 
-\item{inset}{Whether to display a card border. FALSE by default.}
-
-\item{outline}{Outline style. Default to FALSE.}
-
-\item{dividers}{Dividers style. Default to FALSE.}
-
-\item{strong}{Strong style. Default to FALSE.}
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{session}{Shiny session object.}
 
@@ -110,10 +102,12 @@ app <- shinyApp(
             )
           ),
           selected = 2,
-          outline = TRUE,
-          strong = TRUE,
-          inset = TRUE,
-          dividers = TRUE
+          style = list(
+            outline = TRUE,
+            strong = TRUE,
+            inset = TRUE,
+            dividers = TRUE
+          )
         ),
         textOutput("res2")
       )

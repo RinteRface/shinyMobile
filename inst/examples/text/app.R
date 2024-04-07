@@ -8,20 +8,21 @@ app <- shinyApp(
       f7Block(f7Button("update", "Click me")),
       f7BlockTitle("A list of inputs"),
       f7List(
-        outline = TRUE,
+        inset = TRUE,
         dividers = FALSE,
         strong = TRUE,
-        br(),
         f7Text(
           inputId = "text",
           label = "Text input",
           value = "Some text",
           placeholder = "Your text here",
-          description = "A cool text input",
-          outline = TRUE,
-          media = f7Icon("house"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         ),
         f7TextArea(
           inputId = "textarea",
@@ -31,21 +32,25 @@ app <- shinyApp(
               labore et dolore magna aliqua",
           placeholder = "Your text here",
           resize = TRUE,
-          description = "A cool text area input",
-          outline = TRUE,
-          media = f7Icon("pencil"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         ),
         f7Password(
           inputId = "password",
           label = "Password:",
           placeholder = "Your password here",
-          description = "A cool passord input",
-          outline = TRUE,
-          media = f7Icon("lock"),
-          clearable = TRUE,
-          floating = TRUE
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
         )
       ),
       f7Grid(

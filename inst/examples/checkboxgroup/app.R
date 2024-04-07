@@ -37,7 +37,13 @@ app <- shinyApp(
             after = "March 17, 2024"
           )
         ),
-        selected = 2
+        selected = 2,
+        style = list(
+          inset = TRUE,
+          outline = TRUE,
+          dividers = TRUE,
+          strong = TRUE
+        )
       ),
       textOutput("selected")
     )

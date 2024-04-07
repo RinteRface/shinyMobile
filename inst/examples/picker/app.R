@@ -33,7 +33,7 @@ app <- shinyApp(
         value = "b",
         choices = letters,
         openIn = "sheet",
-        toolbarCloseText = "Prout",
+        toolbarCloseText = "Close me",
         sheetSwipeToClose = TRUE
       )
     })

@@ -11,10 +11,7 @@ f7CheckboxGroup(
   choices = NULL,
   selected = NULL,
   position = c("left", "right"),
-  inset = FALSE,
-  outline = FALSE,
-  dividers = FALSE,
-  strong = FALSE
+  style = list(inset = FALSE, outline = FALSE, dividers = FALSE, strong = FALSE)
 )
 
 f7CheckboxChoice(..., title, subtitle = NULL, after = NULL)
@@ -35,13 +32,8 @@ selected must be a numeric value corresponding to the index of the element to se
 \item{position}{Check mark side.
 \code{"left"} or \code{"right"}.}
 
-\item{inset}{Whether to display a card border. FALSE by default.}
-
-\item{outline}{Outline style. Default to FALSE.}
-
-\item{dividers}{Dividers style. Default to FALSE.}
-
-\item{strong}{Strong style. Default to FALSE.}
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{...}{Choice content. Text is striped if too long.}
 
@@ -96,7 +88,13 @@ app <- shinyApp(
             after = "March 17, 2024"
           )
         ),
-        selected = 2
+        selected = 2,
+        style = list(
+          inset = TRUE,
+          outline = TRUE,
+          dividers = TRUE,
+          strong = TRUE
+        )
       ),
       textOutput("selected")
     )

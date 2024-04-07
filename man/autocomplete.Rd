@@ -7,7 +7,7 @@
 \usage{
 f7AutoComplete(
   inputId,
-  label,
+  label = NULL,
   placeholder = NULL,
   value = NULL,
   choices,
@@ -18,6 +18,7 @@ f7AutoComplete(
   dropdownPlaceholderText = NULL,
   multiple = FALSE,
   limit = NULL,
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE),
   ...
 )
 
@@ -61,6 +62,9 @@ when openIn is 'popup' or 'page'.}
 
 \item{limit}{Limit number of maximum displayed items in autocomplete per query.}
 
+\item{style}{Autocomplete styling parameters.
+Only available when \code{openIn} is "dropdown".}
+
 \item{...}{Extra options.
 See \url{https://framework7.io/docs/autocomplete#autocomplete-parameters}}
 
@@ -70,6 +74,9 @@ See \url{https://framework7.io/docs/autocomplete#autocomplete-parameters}}
 \code{f7AutoComplete} generates a Framework7 autocomplete input.
 
 \code{updateF7AutoComplete} changes the value of an autocomplete input on the client.
+}
+\note{
+Contrary to \link{f7Text}, this input can't be cleared.
 }
 \examples{
 library(shiny)
@@ -81,7 +88,10 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "Update autocomplete"),
       f7Block(f7Button(inputId = "update", label = "Update autocomplete")),
-      f7List(
+      f7Block(
+        inset = TRUE,
+        strong = TRUE,
+        f7BlockTitle("Autocomplete input"),
         f7AutoComplete(
           inputId = "myautocomplete",
           placeholder = "Some text here!",
@@ -90,6 +100,12 @@ app <- shinyApp(
           choices = c(
             "Apple", "Apricot", "Avocado", "Banana", "Melon",
             "Orange", "Peach", "Pear", "Pineapple"
+          ),
+          style = list(
+            outline = TRUE,
+            media = f7Icon("house"),
+            description = "typeahead input",
+            floating = TRUE
           )
         )
       ),

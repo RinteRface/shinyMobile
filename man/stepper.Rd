@@ -21,7 +21,8 @@ f7Stepper(
   autorepeat = TRUE,
   manual = FALSE,
   decimalPoint = 4,
-  buttonsEndInputMode = TRUE
+  buttonsEndInputMode = TRUE,
+  layout = c("default", "list")
 )
 
 updateF7Stepper(
@@ -81,6 +82,8 @@ TRUE by default.}
 
 \item{buttonsEndInputMode}{Disables manual input mode on Stepper's minus or plus button click.}
 
+\item{layout}{Either "default" or "list" (input is pushed to the right side).}
+
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
 \description{
@@ -100,8 +103,11 @@ app <- shinyApp(
     title = "Stepper app",
     f7SingleLayout(
       navbar = f7Navbar(title = "updateF7Stepper"),
-      f7Card(
-        f7Button(inputId = "update", label = "Update stepper"),
+      f7Block(f7Button(inputId = "update", label = "Update stepper")),
+      f7Block(
+        strong = TRUE,
+        inset = TRUE,
+        outline = TRUE,
         f7Stepper(
           inputId = "stepper",
           label = "My stepper",
@@ -113,7 +119,8 @@ app <- shinyApp(
           autorepeat = TRUE,
           rounded = FALSE,
           raised = FALSE,
-          manual = FALSE
+          manual = FALSE,
+          layout = "list"
         ),
         verbatimTextOutput("test")
       )

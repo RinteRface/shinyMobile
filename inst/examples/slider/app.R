@@ -7,7 +7,7 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "updateF7Slider"),
       f7Block(
-        f7BlockTitle("Simple slider"),
+        f7BlockTitle("Simple slider with custom style", size = "large"),
         f7Button(inputId = "update_slider", label = "Update slider"),
         f7Slider(
           inputId = "slider",
@@ -22,12 +22,13 @@ app <- shinyApp(
           labels = tagList(
             f7Icon("circle"),
             f7Icon("circle_fill")
-          )
+          ),
+          style = list(inset = TRUE, strong = TRUE, outline = TRUE)
         ),
         textOutput("slider_res")
       ),
       f7Block(
-        f7BlockTitle("Range slider"),
+        f7BlockTitle("Range slider", size = "large"),
         f7Button(inputId = "update_range", label = "Update slider"),
         f7Slider(
           inputId = "range",
