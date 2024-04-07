@@ -23,7 +23,7 @@ License: GPL-2
 Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
 BugReports: https://github.com/RinteRface/shinyMobile/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests: 
     knitr,
     rmarkdown,
