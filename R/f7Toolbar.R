@@ -23,7 +23,7 @@ f7Toolbar <- function(..., position = c("top", "bottom"), hairline = deprecated(
                       icons = FALSE, scrollable = FALSE) {
   if (lifecycle::is_present(hairline)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Toolbar(hairline)",
       details = "hairline has been
       removed from Framework7 and will be removed from shinyMobile
@@ -33,7 +33,7 @@ f7Toolbar <- function(..., position = c("top", "bottom"), hairline = deprecated(
 
   if (lifecycle::is_present(shadow)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Toolbar(shadow)",
       details = "shadow has been
       removed from Framework7 and will be removed from shinyMobile

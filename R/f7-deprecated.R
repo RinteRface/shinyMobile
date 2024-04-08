@@ -13,7 +13,7 @@
 #' @export
 f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
                          footer = NULL) {
-  lifecycle::deprecate_warn("1.1.0", "f7SocialCard()", "f7Card()")
+  lifecycle::deprecate_warn("2.0.0", "f7SocialCard()", "f7Card()")
 
   headerTag <- shiny::tags$div(
     class = "card-header",
@@ -49,7 +49,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 #' @keywords internal
 f7Menu <- function(...) {
   lifecycle::deprecate_stop(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "f7Menu()",
     details = "f7Menu has been
       removed from Framework7 and there is no replacement in shinyMobile."
@@ -73,7 +73,7 @@ f7Menu <- function(...) {
 #' @export
 f7MenuItem <- function(inputId, label) {
   lifecycle::deprecate_stop(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "f7MenuItem()",
     details = "f7MenuItem has been
       removed from Framework7 and there is no replacement in shinyMobile."
@@ -99,7 +99,7 @@ f7MenuItem <- function(inputId, label) {
 #' @export
 f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "right")) {
   lifecycle::deprecate_stop(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "f7MenuDropdown()",
     details = "f7MenuDropdown has been
       removed from Framework7 and there is no replacement in shinyMobile."
@@ -139,7 +139,7 @@ f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "ri
 #' @export
 f7MenuDropdownDivider <- function() {
   lifecycle::deprecate_stop(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "f7MenuDropdownDivider()",
     details = "f7MenuDropdownDivider has been
       removed from Framework7 and there is no replacement in shinyMobile."
@@ -157,7 +157,7 @@ f7MenuDropdownDivider <- function() {
 #' @export
 updateF7MenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()) {
   lifecycle::deprecate_stop(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "updateF7MenuDropdown()",
     details = "updateF7MenuDropdown has been
       removed from Framework7 and there is no replacement in shinyMobile."
@@ -178,7 +178,7 @@ updateF7MenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()
 #' @keywords internal
 #' @export
 f7Row <- function(..., gap = TRUE) {
-  lifecycle::deprecate_warn("1.1.0", "f7Row()", "f7Grid()")
+  lifecycle::deprecate_warn("2.0.0", "f7Row()", "f7Grid()")
   shiny::tags$div(class = if (gap) "row" else "row no-gap", ...)
 }
 
@@ -198,7 +198,7 @@ f7Row <- function(..., gap = TRUE) {
 #' @keywords internal
 #' @export
 f7Col <- function(...) {
-  lifecycle::deprecate_warn("1.1.0", "f7Col()", "f7Grid()")
+  lifecycle::deprecate_warn("2.0.0", "f7Col()", "f7Grid()")
   shiny::tags$div(class = "col", ...)
 }
 
@@ -213,7 +213,7 @@ f7Col <- function(...) {
 #' @export
 #' @keywords internal
 f7Flex <- function(...) {
-  lifecycle::deprecate_warn("1.1.0", "f7Flex()", "f7Grid()")
+  lifecycle::deprecate_warn("2.0.0", "f7Flex()", "f7Grid()")
   shiny::tags$div(
     class = "display-flex justify-content-space-between align-items-flex-start",
     ...
@@ -295,7 +295,7 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
 #' @export
 f7Shadow <- function(tag, intensity, hover = FALSE, pressed = FALSE) {
   lifecycle::deprecate_warn(
-    when = "1.1.0",
+    when = "2.0.0",
     what = "f7Shadow"
   )
   tag

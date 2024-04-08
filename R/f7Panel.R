@@ -29,7 +29,7 @@ f7Panel <- function(..., id = NULL, title = NULL,
                     options = list()) {
   if (lifecycle::is_present(theme)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Panel(theme)",
       details = "theme has been
       removed from Framework7 and will be removed from shinyMobile

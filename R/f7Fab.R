@@ -31,7 +31,7 @@ f7Fabs <- function(
     sideOpen = c("left", "right", "top", "bottom", "center"), morph = deprecated(), morphTarget = NULL) {
   if (lifecycle::is_present(morph)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Fabs(morph)",
       details = "morph has been
       removed from Framework7 and will be removed from shinyMobile

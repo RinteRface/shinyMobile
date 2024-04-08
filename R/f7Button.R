@@ -171,7 +171,7 @@ f7Segment <- function(
     shadow = FALSE, rounded = FALSE, strong = FALSE) {
   if (lifecycle::is_present(container)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Segment(container)",
       details = "container has been
       removed from Framework7 and will be removed from shinyMobile

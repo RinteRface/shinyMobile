@@ -91,7 +91,7 @@
 f7Swipeout <- function(tag, ..., left = NULL, right = NULL, side = deprecated()) {
   if (lifecycle::is_present(side)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Swipeout(side)",
       details = "side will be removed in the next release."
     )
@@ -99,7 +99,7 @@ f7Swipeout <- function(tag, ..., left = NULL, right = NULL, side = deprecated())
 
   if (length(list(...)) > 0) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Swipeout()",
       details = "... will be removed in the next release."
     )

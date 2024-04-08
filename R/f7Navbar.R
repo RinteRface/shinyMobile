@@ -33,7 +33,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = deprecated(
                      rightPanel = FALSE) {
   if (lifecycle::is_present(subtitle)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Navbar(subtitle)",
       details = "subtitle has been
       removed from Framework7 and will be removed from shinyMobile
@@ -43,7 +43,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = deprecated(
 
   if (lifecycle::is_present(shadow)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Navbar(shadow)",
       details = "shadow has been
       removed from Framework7 and will be removed from shinyMobile

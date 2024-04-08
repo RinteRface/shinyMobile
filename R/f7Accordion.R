@@ -17,7 +17,7 @@
 f7Accordion <- function(..., id = NULL, multiCollapse = deprecated(), side = c("right", "left")) {
   if (lifecycle::is_present(multiCollapse)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Accordion(multiCollapse)",
       details = "multiCollapse has been
       removed from Framework7 and will be removed from shinyMobile

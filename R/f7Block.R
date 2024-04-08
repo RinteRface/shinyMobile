@@ -99,7 +99,7 @@ f7Block <- function(..., hairlines = deprecated(), strong = FALSE, inset = FALSE
 
   if (lifecycle::is_present(hairlines)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7Block(hairlines)",
       details = "hairlines has been
       removed from Framework7 and will be removed from shinyMobile

@@ -47,7 +47,7 @@ f7AutoComplete <- function(
     ), ...) {
   if (lifecycle::is_present(expandInput)) {
     lifecycle::deprecate_warn(
-      when = "1.1.0",
+      when = "2.0.0",
       what = "f7AutoComplete(expandInput)",
       details = "expandInput has been
       removed from Framework7 and will be removed from shinyMobile

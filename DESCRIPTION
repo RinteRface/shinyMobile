@@ -1,7 +1,7 @@
 Package: shinyMobile
 Type: Package
 Title: Mobile Ready 'shiny' Apps with Standalone Capabilities
-Version: 1.0.1
+Version: 2.0.0
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
   person("Veerle", "van Leemput", email = "veerle@hypebright.nl", role = "aut"),
