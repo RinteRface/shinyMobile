@@ -31,12 +31,16 @@
 f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
                           cache = TRUE, mode = NULL, inset = FALSE, outline = FALSE,
                           dividers = FALSE, strong = FALSE) {
-  listCl <- "list virtual-list searchbar-found"
-  if (strong) listCl <- paste(listCl, "list-strong")
-  if (outline) listCl <- paste(listCl, "list-outline")
-  if (dividers) listCl <- paste(listCl, "list-dividers")
-  if (!is.null(mode)) listCl <- paste(listCl, sprintf("%s-list", mode))
-  if (inset) listCl <- paste(listCl, "inset")
+
+  listCl <- f7List(
+    inset = inset,
+    outline = outline,
+    dividers = dividers,
+    strong = strong,
+    mode = mode
+  )
+
+  listCl <- paste(listCl$attribs$class, "virtual-list searchbar-found")
 
   config <- dropNulls(
     list(
