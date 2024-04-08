@@ -31,7 +31,7 @@ poll <- data.frame(
   n = c(254, 238)
 )
 
-shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Tabs layout",
     f7TabLayout(
@@ -186,6 +186,8 @@ shinyApp(
     })
   }
 )
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
