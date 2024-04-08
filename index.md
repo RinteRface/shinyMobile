@@ -1,7 +1,7 @@
 
 # shinyMobile <img src="man/figures/logo.png" width="200px" align="right"/>
 
-> Develop outstanding {shiny} apps for iOS, Android, desktop as well as
+> Develop outstanding {shiny} apps for iOS and Android, as well as
 > beautiful {shiny} gadgets. {shinyMobile} is built on top of the latest
 > [Framework7](https://framework7.io) template.
 
@@ -17,13 +17,13 @@ status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-projec
 
 You can play with the below sandbox.
 
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-2345">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRaVAH0iqUpwAEAHgC0eup1LsRe63tLc48PQF49QsLSKc3uKzYAmLADWznoAYgCCADIAygCiPhA2egBmikp+IREx8b7WxNREjCFuAMQADGUA7FDJyd65tkQArgTcIWYWDdakaAASRNQZLgAqWACqOYlJtn0DfgAicNRQrCGVAKxlCdN6HpzDza1YtOhKmVFxDQLbNnvDzBCc1C0UpABCLPouWXE31tAAN3oLHatHMlimST2AGFXnBGMNaKQziNxpMdrw-HAAPIQAAKUAA5nBogRGANqCFRhMrn9GgNgUUXB0IRjaFjcQTiaTydRKd8LrFaQ1UE0+QcsHBkow4DxztlfCoRFJ+OF0Ky9E1aCFkpUuXANdZtKQPI8QuotDpOHSTci4MUwCrZPJFPbolAIH56EQAB71SEpSrDKD0SIrZqdAPWVAepZfGaEyJgyM7ay6gkQJbsW0o1xgSJS0h6DNLbx6Tjs+0uNxKZKkMt2BxVvN0Qncet4PNvZb0ZZlqXJOAEIvVwhEAHwtzXLo2dOx6jZpG5tzHNtFkvUMsVrEOxi0NcN+yOUcBRiBMtubshvudgdDkd54gTxhTmfTqN6QGMnWVAByUCBFhDWmHNmzcJ05AUM53U9b0-TwGdrG4KBaEYOhMypNE6SSHgoD8IgAHdMImbCbFrUgN2I9FUz3NdKNRGkP3fHZdWDehOGApIPVoGAoHIIY9GpaidhKTgCJOOBr2bITSLTIMQ04kClzAsA2L0ABGf1UxsHp6H-Y88zYzSEI-KFiESFxdQASXMywwGSOZJzAZjtL0KBh1oCcqISRCyPUagOHUxAAGYtkDaEWD8FRtJclj5PoRSklAh01IAJi01zdP0lS2PSkzXN2cyfxskg7MCOBWG9SKp1k2dKmiZD8IIxLpj4chHiRVYXHUrZfKSbhx3hby+rqiLGD8FqdmS0cxoyew8Kc2qdjccI9AIaqwBG6xotcnadli6ZWIUkbpsMkM9GCjLtKy2AcpDS78tc2gissyoSogOzllYeFOA0KBqA7A64oavDCMm24yAoCtSC6jTetM6YBufYaEaSXVZvBpLlIdWa9HmrEX0egq5OiXjGFIaIlnvTHpjcAEWFoKSruJ6w3AANQZqT9FIIhywGgjEGZlmCDs6FWHQgmvDAB0CHFoWWcMh5OBgMEKxINwHVgeWWbcABxSTGClh1iRYGqtumbQKCsiy8x4OA4A7JbUxgMUTVQXMhPN7anaSqTsSaUhRU6MAAh6V9UZsPbUyjpIY70KOdpczh4WRyymggDzSr4IPcD0CMc-LWU1YgAQ9BABoSj0UO+KZgN84DgASavDBMGVPXhNilHYcuPxgUh1sN4Bc5FtwYFQQky2zxv6b3KTrir8lUHlOIAF0GgAX1z8kCOgeB4yEnb15EFQwHXlegA" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
 <template>Expand</template>
-<span class="bslib-full-screen-enter badge rounded-pill bg-dark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-arrows-fullscreen " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"></path></svg></span>
+<button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
 </bslib-tooltip>
 <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
 </div>
