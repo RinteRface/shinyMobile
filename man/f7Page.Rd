@@ -26,7 +26,8 @@ f7Page(
 notable options. General options:
 \itemize{
 \item \code{theme}: App skin: "ios", "md", or "auto".
-\item \code{dark}: Dark layout. TRUE or FALSE.
+\item \code{dark}: Dark layout. TRUE, FALSE, or "auto".
+If set to auto automatically enables dark theme based on user system color scheme preference.
 \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
 This is a preloading effect. Not compatible with preloader.
 \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.

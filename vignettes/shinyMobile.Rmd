@@ -56,7 +56,7 @@ Of course, turning your Shiny app into a PWA doesn't get you there completely: y
 
 When set to auto, it automatically detects if the app is running with Android (using Material Design, MD) or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS theme on an android device and inversely, although not recommended.
 
-Besides these themes, `{shinyMobile}` gives you the possibility to choose between a light and a dark mode.
+Besides these themes, `{shinyMobile}` gives you the possibility to choose between a light or dark mode, which can be set in the app options that we'll come back to later.
 
 ## Layouts
 
@@ -179,11 +179,11 @@ options = list(
 )
 ```
 
-As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and 2 color modes (controlled by setting `dark` to `TRUE` or `FALSE`). There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. 
+As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and there is support for a dark or light mode. The `dark` option supports 3 values: `TRUE`, `FALSE` or `"auto"`. In case of `"auto"`, the app will automatically switch between dark and light mode based on the user's system settings.
 
 <br>
 
-The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, and more. Note that the behaviour is different on the MD and iOS themes: in the MD theme the color gets "blended in" with the background, while in the iOS theme the color is more prominently visible in the elements.
+The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, and more. Note that the behaviour is different on the MD and iOS themes: in the MD theme the color gets "blended in" with the background, while in the iOS theme the color is more prominently visible in the elements. Another option to get more control over the colors in the app is using __filled__. It allows you to fill the navbar and toolbar with the chosen color if enabled. 
 
 <br>
 
