@@ -52,7 +52,6 @@ app <- shinyApp(
     title = "Split layout",
     f7SplitLayout(
       sidebar = f7Panel(
-        id = "sidebar",
         title = "Sidebar",
         side = "left",
         effect = "push",
