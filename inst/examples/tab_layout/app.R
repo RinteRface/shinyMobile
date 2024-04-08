@@ -29,7 +29,8 @@ shinyApp(
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
-          f7Flex(
+          f7List(
+            strong = TRUE,
             prettyRadioButtons(
               inputId = "theme",
               label = "Select a theme:",
@@ -67,9 +68,15 @@ shinyApp(
                 }
 
                 if (skin === "dark") {
-                 $(".view-main").addClass("theme-dark");
+                 $("html").addClass("dark");
+                 $("html").removeClass("light");
+                 $("body").addClass("dark");
+                 $("body").removeClass("light");
                 } else {
-                  $(".view-main").removeClass("theme-dark");
+                 $("html").addClass("light");
+                 $("html").removeClass("dark");
+                 $("body").addClass("light");
+                 $("body").removeClass("dark");
                 }
 
                });

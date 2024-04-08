@@ -21,152 +21,171 @@ Wrap in \code{tagList} if multiple panels.}
 giving the illusion of a multi pages experience.
 }
 \examples{
-if (interactive()) {
-  library(shiny)
-  library(shinyMobile)
-  library(shinyWidgets)
+library(shiny)
+library(shinyMobile)
+library(apexcharter)
+library(shinyWidgets)
 
-  shinyApp(
-    ui = f7Page(
-      title = "Tab layout",
-      f7TabLayout(
-        tags$head(
-          tags$script(
-            "$(function(){
-               $('#tapHold').on('taphold', function () {
-                 app.dialog.alert('Tap hold fired!');
+poll <- data.frame(
+  answer = c("Yes", "No"),
+  n = c(254, 238)
+)
+
+shinyApp(
+  ui = f7Page(
+    title = "Tabs layout",
+    f7TabLayout(
+      panels = tagList(
+        f7Panel(title = "Left Panel", side = "left", "Blabla", effect = "cover"),
+        f7Panel(title = "Right Panel", side = "right", "Blabla", effect = "cover")
+      ),
+      navbar = f7Navbar(
+        title = "Tabs",
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      f7Tabs(
+        animated = TRUE,
+        # swipeable = TRUE,
+        f7Tab(
+          title = "Tab 1",
+          tabName = "Tab1",
+          icon = f7Icon("folder"),
+          active = TRUE,
+          f7List(
+            strong = TRUE,
+            prettyRadioButtons(
+              inputId = "theme",
+              label = "Select a theme:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "md",
+              choices = c("ios", "md"),
+              animation = "pulse",
+              status = "info"
+            ),
+            prettyRadioButtons(
+              inputId = "color",
+              label = "Select a color:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "dark",
+              choices = c("light", "dark"),
+              animation = "pulse",
+              status = "info"
+            )
+          ),
+          tags$head(
+            tags$script(
+              'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
+                var os = message.os;
+                var skin = message.skin;
+                if (os === "md") {
+                  $("html").addClass("md");
+                  $("html").removeClass("ios");
+                  $(".tab-link-highlight").show();
+                } else if (os === "ios") {
+                  $("html").addClass("ios");
+                  $("html").removeClass("md");
+                  $(".tab-link-highlight").hide();
+                }
+
+                if (skin === "dark") {
+                 $("html").addClass("dark");
+                 $("html").removeClass("light");
+                 $("body").addClass("dark");
+                 $("body").removeClass("light");
+                } else {
+                 $("html").addClass("light");
+                 $("html").removeClass("dark");
+                 $("body").addClass("light");
+                 $("body").removeClass("dark");
+                }
+
                });
-             });
-             "
+              '
+            )
+          ),
+          f7Card(
+            title = "Card header",
+            apexchartOutput("pie")
           )
         ),
-        panels = tagList(
-          f7Panel(
-            title = "Left Panel",
-            side = "left",
-            "Blabla",
-            effect = "cover"
-          ),
-          f7Panel(
-            title = "Right Panel",
-            side = "right",
-            "Blabla",
-            effect = "cover"
+        f7Tab(
+          title = "Tab 2",
+          tabName = "Tab2",
+          icon = f7Icon("keyboard"),
+          f7Card(
+            title = "Card header",
+            apexchartOutput("scatter")
           )
         ),
-        navbar = f7Navbar(
-          title = "Tabs",
-          leftPanel = TRUE,
-          rightPanel = TRUE
-        ),
-        f7Tabs(
-          animated = FALSE,
-          swipeable = TRUE,
-          f7Tab(
-            tabName = "Tab1",
-            icon = f7Icon("envelope"),
-            active = TRUE,
-            f7Card(
-              title = "Card header",
-              f7Stepper(
-                "obs1",
-                "Number of observations",
-                min = 0,
-                max = 1000,
-                value = 500,
-                step = 100
+        f7Tab(
+          title = "Tab 3",
+          tabName = "Tab3",
+          icon = f7Icon("layers_alt"),
+          f7Card(
+            title = "Card header",
+            f7SmartSelect(
+              "variable",
+              "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
               ),
-              plotOutput("distPlot1"),
-              footer = tagList(
-                f7Button(inputId = "tapHold", label = "My button"),
-                f7Badge("Badge", color = "green")
-              )
-            )
-          ),
-          f7Tab(
-            tabName = "Tab2",
-            icon = f7Icon("today"),
-            active = FALSE,
-            f7Card(
-              title = "Card header",
-              f7Select(
-                inputId = "obs2",
-                label = "Distribution type:",
-                choices = c(
-                  "Normal" = "norm",
-                  "Uniform" = "unif",
-                  "Log-normal" = "lnorm",
-                  "Exponential" = "exp"
-                )
-              ),
-              plotOutput("distPlot2"),
-              footer = tagList(
-                f7Button(
-                  label = "My button",
-                  href = "https://www.google.com"
-                ),
-                f7Badge("Badge", color = "orange")
-              )
-            )
-          ),
-          f7Tab(
-            tabName = "Tab3",
-            icon = f7Icon("cloud_upload"),
-            active = FALSE,
-            f7Card(
-              title = "Card header",
-              f7SmartSelect(
-                inputId = "variable",
-                label = "Variables to show:",
-                c(
-                  "Cylinders" = "cyl",
-                  "Transmission" = "am",
-                  "Gears" = "gear"
-                ),
-                multiple = TRUE,
-                selected = "cyl"
-              ),
-              tableOutput("data"),
-              footer = tagList(
-                f7Button(
-                  label = "My button",
-                  href = "https://www.google.com"
-                ),
-                f7Badge("Badge", color = "green")
-              )
-            )
+              openIn = "sheet",
+              multiple = TRUE
+            ),
+            tableOutput("data")
           )
         )
       )
-    ),
-    server = function(input, output) {
-      output$distPlot1 <- renderPlot({
-        dist <- rnorm(input$obs1)
-        hist(dist)
-      })
+    )
+  ),
+  server = function(input, output, session) {
+    # river plot
+    dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
 
-      output$distPlot2 <- renderPlot({
-        dist <- switch(input$obs2,
-          norm = rnorm,
-          unif = runif,
-          lnorm = rlnorm,
-          exp = rexp,
-          rnorm
-        )
-
-        hist(dist(500))
-      })
-
-      output$data <- renderTable(
-        {
-          mtcars[, c("mpg", input$variable), drop = FALSE]
-        },
-        rownames = TRUE
+    output$pie <- renderApexchart({
+      apex(
+        data = poll,
+        type = "pie",
+        mapping = aes(x = answer, y = n)
       )
-    }
-  )
-}
+    })
 
+    output$scatter <- renderApexchart({
+      apex(
+        data = mtcars,
+        type = "scatter",
+        mapping = aes(
+          x = wt,
+          y = mpg,
+          fill = cyl
+        )
+      )
+    })
+
+
+    # datatable
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$variable), drop = FALSE]
+      },
+      rownames = TRUE
+    )
+
+
+    # send the theme to javascript
+    observe({
+      session$sendCustomMessage(
+        type = "ui-tweak",
+        message = list(os = input$theme, skin = input$color)
+      )
+    })
+  }
+)
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}
