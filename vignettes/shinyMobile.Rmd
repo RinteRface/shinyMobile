@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-author: "David Granjon"
+author: "David Granjon & Veerle van Leemput"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,69 +8,133 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r echo=FALSE}
-knitr::include_url("https://rencontresr2021.rinterface.com/")
-```
-
+  
 ```{r setup, echo=FALSE, message=FALSE}
 library(bslib)
 ```
 
 # Introduction
 
-`{shinyMobile}` is built on top of the [framework7](https://framework7.io) template (V5.7.14) and has different purposes:
+`{shinyMobile}` is built on top of the [Framework7](https://framework7.io) template (V8.3.2) and has different purposes:
 
-  - Develop __mobile-ready__ shinyapps.
-  - Develop __progressive web shinyapps__ (PWA, similar to native apps).
-  - Develop desktop shinyapps.
-  
-## Custom skins
+- Develop __mobile-ready__ Shiny applications
+- Turn your Shiny application into a __progressive web app__ (PWA)
 
-`{shinyMobile}` offers 2 skins:
+Both with the goal of developing mobile apps that looks and feels like native apps. 
 
-  - __ios__ 
-  - __md__ 
+## Classic web apps, native apps and PWAs
 
-It automatically detects if the app is running with android or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS skin on an android device and inversely, although not recommended.
+Classic web apps are accessed via a browser and require an internet connection. They are built with HTML, CSS, and JavaScript. They are cross-platform and can be accessed from any device with a browser, which is convenient. This means they work on any mobile device! And your `shiny` app will also work perfectly fine on a mobile device. While this sounds nice, it doesn't give your users the most wonderful experience: a classic Shiny web app is not optimized for mobile devices. To name a few limitations:
 
-`{shinyMobile}` also provides 2 themes, namely light and dark.
+<br>
+
+- There's __no fullscreen__ option and the app is always displayed in a browser with the surrounding browser UI
+- No consideration for __touch interfaces__
+- Not optimized for __small screens__
+- Can't be used when __offline__
+
+<br>
+
+So, what about native apps? Native apps are built for a specific platform (iOS or Android) and are installed on the device. They are developed with platform-specific languages (Swift for iOS, Kotlin for Android) and are distributed via the App Store, Google Play or other stores. Native apps are fast and responsive, and they can work offline. They can also access the device's hardware and software features (camera, GPS, etc.). However, they are expensive to develop and maintain: you need to know multiple languages and maintain multiple codebases.
+
+<br>
+
+Luckily, there is a middle ground: Progressive Web Apps (PWAs). PWAs are web applications that are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. They combine the best of both worlds: they can be __installed__ on the device, provide __offline__ features, can be __launched from the home screen__, and have a __fullscreen__ display. All with just one codebase!
+
+<br>
+
+Of course, turning your Shiny app into a PWA doesn't get you there completely: you also need UI components that are designed for touch interfaces and optimized for small screens- something Framework7 provides. It only makes sense to bring Framework7 and PWA capabilities to Shiny, and that's what `{shinyMobile}` does!
+
+
+## Themes
+
+`{shinyMobile}` offers 3 themes: 
+
+- __ios__ 
+- __md__
+- __auto__
+
+When set to auto, it automatically detects if the app is running with Android (using Material Design, MD) or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS theme on an android device and inversely, although not recommended.
+
+Besides these themes, `{shinyMobile}` gives you the possibility to choose between a light and a dark mode.
 
 ## Layouts
 
-`{shinyMobile}` brings 3 out of the box layouts:
+`{shinyMobile}` brings 3 out-of-the-box layouts:
 
-  - `f7SingleLayout()`: develop __simple__ apps (best choice for iOS/android Apps).
-  - `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
-  - `f7SplitLayout()`: for __tablets__ and desktop with a sidebar, navbar and a main panel
+- `f7SingleLayout()`: develop __simple__ apps (best choice for iOS/android Apps).
+- `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
+- `f7SplitLayout()`: for __tablets__ with a sidebar, navbar and a main panel
 
 ## UI elements
+
+With over 50 core components, `{shinyMobile}` provides a wide range of UI elements to build your app. These components are designed for mobile usage and provide a native app-like experience. They include inputs, containers, buttons, lists, modals, popups, and more. We'll pick a few to highlight here.
+
 ### Inputs: brief comparison side by side with `{shiny}`
 
-`{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android). Below we summarise all known shiny inputs and their
-equivalent with `{shinyMobile}`.
+`{shinyMobile}` has its own custom input widgets with unique design for each theme (iOS/android). Below we summarise all known shiny inputs and their equivalent with `{shinyMobile}`.
 
 |  Features (sample)  |      shiny      |  shinyMobile |
 |----------|:-------------:|------:|
-| Range slider | `sliderInput()` | `f7Slider()` |
-| Text input | `textInput()`, `textAreaInput()` | `f7Text()`, `f7Password()`, `f7TextArea()` |
-| Checkbox | `checkboxInput()`, `checkboxGroupInput()` | `f7Checkbox()`, `f7CheckboxGroup()`|
-| Radio | `radioButtons()` | `f7Radio()` |
-| Toggle switch | ❌ (see `{bslib}`) | `f7Toggle()` |
-| Numeric | `numericInput()` | `f7Stepper()` |
-| Select | `selectInput()` | `f7Select()`, `f7SmartSelect()`, `f7Picker()` |
-| Autocomplete | ❌ | `f7AutoComplete()` |
 | Action button | `actionButton()` | `f7Button()` `f7Fab()`|
-| Date | `dateInput()`, `dateRangeInput()` | `f7DatePicker()`|
+| Autocomplete | ❌ | `f7AutoComplete()` |
+| Checkbox | `checkboxInput()`, `checkboxGroupInput()` | `f7Checkbox()`, `f7CheckboxGroup()`|
 | Color | ❌ | `f7ColorPicker()`|
+| Date | `dateInput()`, `dateRangeInput()` | `f7DatePicker()`|
 | Download | `downloadButton()` | `f7DownloadButton()`|
+| Numeric | `numericInput()` | `f7Stepper()` |
+| Radio | `radioButtons()` | `f7Radio()` |
+| Range slider | `sliderInput()` | `f7Slider()` |
+| Select | `selectInput()` | `f7Select()`, `f7SmartSelect()`, `f7Picker()` |
+| Stepper | ❌ | `f7Stepper()` |
+| Text input | `textInput()`, `textAreaInput()` | `f7Text()`, `f7Password()`, `f7TextArea()` |
+| Toggle switch | ❌ (see `{bslib}`) | `f7Toggle()` |
+
 
 ### Containers
-  
+
+`{shinyMobile}` provides a set of containers to organize the content of your app, including:
+
+- `f7Accordion()`: an accordion container
+- `f7Block()`: content block designed to add extra formatting and required spacing for text content
+- `f7Card()`: a card container
+- `f7Panel()`: sidebar elements
+- `f7Popup()`: a popup window
+- `f7Sheet()`: a modal sheet
+- `f7Swiper()`: a swiper container (modern touch slider)
+- `f7Tab()`: a tab container, to be used in combination with `f7Tabs()`
+
+<br>
+
+With these containers, you can organize your content in a way that makes sense for your app. Together with the layouts, you can create a wide variety of app designs for different purposes.
+
+### Notifications & progress
+
+There's also a set of components available to keep your users informed:
+
+- `f7Dialog()`: a dialog window
+- `f7Notif()`: a notification
+- `f7Preloader()`: a preloader
+- `f7Progressbar()`: a progress bar
+- `f7Toast()`: a toast notification
+
+<br>
+
+These components can be used to provide feedback to the user, ask for input, or display information. The look and feel of these components are unique to the chosen theme (iOS/Android).
+
+### Gallery
+
+Curious to see a full-blown app built with `{shinyMobile}`? Check out our demo gallery! You can run the gallery with the following code:
+
+```{r, eval=FALSE}
+f7Gallery()
+```
+
 # Create your first App
 
 ## Page
-It is the main template skeleton.
+
+Every `{shinyMobile}` app starts with a `f7Page()`.
 
 ```{r, eval=FALSE}
 f7Page(
@@ -81,11 +145,57 @@ f7Page(
 )
 ```
 
-__options__ sets up the app look and feel (See dedicated section below). `f7Page()` accepts any `{shinyMobile}` layout (See below).
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, or `f7SplitLayout`. The `options` sets up the app look and feel, and there's plenty of options to choose from, which we'll discuss below. The `allowPWA` parameter allows you to add the necessary PWA dependencies to turn your app into a PWA.
 
-### Navbar
-The __navbar__ is a mandatory element of any `{shinyMobile}` layout.
-It contains a title, a subtitle and triggers for both right and left panels (`f7Panel()`).
+## App options
+
+This is where you can customize the global app behavior: 
+
+```{r, eval=FALSE}
+options = list(
+  theme = c("auto", "ios", "md"),
+  dark = TRUE,
+  skeletonsOnLoad = FALSE,
+  preloader = FALSE,
+  filled = FALSE,
+  color = "#007aff",
+  touch = list(
+    touchClicksDistanceThreshold = 5,
+    tapHold = TRUE,
+    tapHoldDelay = 750,
+    tapHoldPreventClicks = TRUE,
+    iosTouchRipple = FALSE,
+    mdTouchRipple = TRUE
+  ),
+  iosTranslucentBars = FALSE,
+  navbar = list(
+    iosCenterTitle = TRUE,
+    hideOnPageScroll = TRUE
+  ),
+  toolbar = list(
+    hideOnPageScroll = FALSE
+  ),
+  pullToRefresh = FALSE
+)
+```
+
+As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and 2 color modes (controlled by setting `dark` to `TRUE` or `FALSE`). There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. 
+
+<br>
+
+The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, and more. Note that the behaviour is different on the MD and iOS themes: in the MD theme the color gets "blended in" with the background, while in the iOS theme the color is more prominently visible in the elements.
+
+<br>
+
+__hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
+
+<br>
+
+Framework7 has many more [options](https://framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter- so you're not limited to the list above.
+
+## Navbar
+
+Before we dive into the layout, we'll take a look at components necessary for a layout- starting with the navbar. The __navbar__ is a mandatory element of any `{shinyMobile}` layout. It contains a title, a subtitle and triggers (if desired) for both right and left panels (`f7Panel()`).
 
 ```{r, eval=FALSE}
 f7Navbar(
@@ -94,7 +204,6 @@ f7Navbar(
   title = NULL,
   subtitle = NULL,
   hairline = TRUE,
-  shadow = TRUE,
   bigger = FALSE,
   transparent = FALSE,
   leftPanel = FALSE,
@@ -102,9 +211,9 @@ f7Navbar(
 )
 ```
 
-For complex apps, you can even add it a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as shadow and hairline.
+For complex apps, you can even add a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as hairline.
 
-### The Toolbar
+## Toolbar
 
 This is an option if you decide not to embed a `f7SubNavbar()`. The toolbar is the
 right place to add `f7Button()`, `f7Link()`, `f7Badge()`... Its location is controlled with the position parameter (either top or bottom).
@@ -122,7 +231,7 @@ f7Toolbar(
 
 Under the hood, `f7Tabs()` is a custom `f7Toolbar()`.
 
-### Panels
+## Panels
 
 Panels are also called sidebars, `f7Panel()` being the corresponding function.
 
@@ -132,31 +241,30 @@ f7Panel(
   id = NULL,
   title = NULL,
   side = c("left", "right"),
-  theme = c("dark", "light"),
-  effect = c("reveal", "cover"),
+  effect = c("reveal", "cover", "push", "floating"),
   resizable = FALSE
 )
 ```
 
-`f7Panel()` has a __theme__ option, regardless of the main app theme.
-For instance, it is entirely possible to create a dark `f7Panel()` while the page
-theme is light, and conversely. Its behavior is controlled via the effect argument:
+`f7Panel()` can have different behaviors and this is controlled via the `effect` argument:
 
-  - __reveal__ makes the body content move and resize.
-  - __cover__ covers the body content.
-  
+- __reveal__ makes the body content move and resize.
+- __cover__ covers the body content.
+- __floating___ makes the panel float over the body content.
+- __push__ pushes the body content to the side.
+
 The __resizable__ argument allows to dynamically resize the panel.
 
 Note that for the moment, there is no option to control the width of each panel.
-  
-As stated previously for the `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`.
-Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
+As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`. We'll get into more details about the split layout at the [dedicated section](#Split Layout)
 
-## Select a template
+## Layouts
 
-This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets and desktop apps.
+`{shinyMobile}` offers three layouts: `f7SingleLayout()`, `f7TabLayout()`, and `f7SplitLayout()`.
 
-### Simple Layout
+The layout choice is crucial when you are developing an app. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets apps.
+
+### Single Layout
 
 `f7SingleLayout()` is dedicated to build simple, one-page apps or gadgets.
 
@@ -172,12 +280,12 @@ f7SingleLayout(
 While only the navbar is mandatory, other components such as the toolbar are 
 optional for the `f7SingleLayout()`.
 
-The app below runs with specific options:
+The app below runs with specific app options:
 
 ```r
 f7Page(
-  options = list(dark = FALSE, filled = FALSE, theme = "md"),
-  ...
+options = list(dark = FALSE, filled = FALSE, theme = "md"),
+...
 )
 ```
 
@@ -193,7 +301,7 @@ card(
 ```
 <div class="text-center">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#singleLayout" role="button" aria-expanded="false" aria-controls="singleLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -251,7 +359,7 @@ shinyApp(
 ```
 </div>
 
-### Tabs Layout
+### Tab Layout
 
 Choose this layout to develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
 
@@ -263,15 +371,15 @@ f7TabLayout(
   panels = NULL
 )
 ```
-  
+
 The ... argument requires `f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)`. The id argument is mandatory if you want to exploit the `updateF7Tabs()` function. `f7Tabs()` expect to have `f7Tab(..., tabName, icon = NULL, active = FALSE)` passed inside.
 
 The app below runs with specific options:
 
 ```r
 f7Page(
-  options = list(dark = FALSE, filled = FALSE, theme = "md"),
-  ...
+options = list(dark = FALSE, filled = FALSE, theme = "md"),
+...
 )
 ```
 
@@ -288,7 +396,7 @@ card(
 
 <div class="text-center">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -367,7 +475,7 @@ shinyApp(
   server = function(input, output, session) {
     # river plot
     dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
-
+    
     output$pie <- renderApexchart({
       apex(
         data = poll,
@@ -375,7 +483,7 @@ shinyApp(
         mapping = aes(x = answer, y = n)
       )
     })
-
+    
     output$scatter <- renderApexchart({
       apex(
         data = mtcars,
@@ -387,8 +495,8 @@ shinyApp(
         )
       )
     })
-
-
+    
+    
     # datatable
     output$data <- renderTable(
       {
@@ -403,8 +511,7 @@ shinyApp(
 
 ### Split Layout
 
-`f7SplitLayout()` is the third layout introduced with `{shinyMobile}`, similar to `sidebarLayout` with {shiny}. This template is focused for 
-tablet/desktop use. It is composed of a sidebar, and a main panel.
+`f7SplitLayout()` is the third layout introduced with `{shinyMobile}`, similar to `sidebarLayout` with {shiny}. This template is focused for tablet use. It is composed of a sidebar, and a main panel.
 
 ```{r, eval=FALSE}
 f7SplitLayout(
@@ -416,28 +523,41 @@ f7SplitLayout(
 )
 ```
 
-The main content goes in the __...__ parameter. Navigation items are gathered in the sidebar slot. The sidebar expect a `f7Panel()`. Importantly, the side parameter must be set to `left` and the style to `reveal`. The navigation menu is organized as follows:
+The main content goes in the __...__ parameter. Navigation items are gathered in the sidebar slot. This sidebar is visible at a certain `visibleBreakpoint`. By default it is set to 1024, meaning that the sidebar will be collapsed onscreen smaller than 1024px. This means you don't have to worry about your split layout being opened on a smaller mobile phone.
+
+The sidebar expect a `f7Panel()`. Importantly, do not forget to allow the `leftPanel` with `f7Navbar(leftPanel = TRUE)`! The sidebar menu is organized as follows:
+
+The sidebar is composed of `f7Panel()` with and `f7PanelMenu` and one or more `f7PanelItem()`:
+
 
 ```{r, eval=FALSE}
-f7PanelMenu(
-  id = "menu",
-  f7PanelItem(
-    tabName = "tab1",
-    title = "Tab 1",
-    icon = f7Icon("email"),
-    active = TRUE
+f7Panel(
+  title = "Sidebar",
+  side = "left",
+  effect = "push",
+  options = list(
+    visibleBreakpoint = 1024
   ),
-  f7PanelItem(
-    tabName = "tab2",
-    title = "Tab 2",
-    icon = f7Icon("home")
+  f7PanelMenu(
+    id = "menu",
+    f7PanelItem(
+      tabName = "tab1",
+      title = "Tab 1",
+      icon = f7Icon("email"),
+      active = TRUE
+    ),
+    f7PanelItem(
+      tabName = "tab2",
+      title = "Tab 2",
+      icon = f7Icon("home")
+    )
   )
 )
 ```
 
-The __id__ argument is important if you want to get the currently selected item or
-update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input
-will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
+Note that `f7Panel` has `side` set to `left`.
+
+The __id__ argument in `f7PanelMenu` is important if you want to get the currently selected item or update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
@@ -452,7 +572,7 @@ card(
 
 <div class="text-center">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#splitLayout" role="button" aria-expanded="false" aria-controls="splitLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -583,7 +703,7 @@ shinyApp(
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
-
+    
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
@@ -595,7 +715,7 @@ shinyApp(
         )
       }
     })
-
+    
     output$radar <- renderApexchart({
       apex(
         data = new_mtcars,
@@ -607,16 +727,16 @@ shinyApp(
         )
       )
     })
-
+    
     output$selected_tab <- renderUI({
       HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
     })
-
+    
     output$distPlot <- renderPlot({
       dist <- rnorm(input$obs)
       hist(dist)
     })
-
+    
     output$multi_radial <- renderApexchart({
       if (input$plot_show) {
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
@@ -626,37 +746,6 @@ shinyApp(
 )
 ```
 </div>
-
-## App options
-
-This is where you can customize the global app behavior: 
-
-```{r, eval=FALSE}
-options <- list(
-  theme = c("ios", "md", "auto"),
-  dark = TRUE,
-  filled = FALSE,
-  color = "#007aff",
-  touch = list(
-    tapHold = TRUE,
-    tapHoldDelay = 750,
-    iosTouchRipple = FALSE
-  ),
-  iosTranslucentBars = FALSE,
-  navbar = list(
-    iosCenterTitle = TRUE,
-    hideOnPageScroll = TRUE
-  ),
-  toolbar = list(
-    hideOnPageScroll = FALSE
-  ),
-  pullToRefresh = FALSE
-)
-```
-
-As stated above, you may choose between 3 skins and 2 color themes. There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
-`{shinyMobile}` brings a lot of different colors. __hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
-Framework7 has many more [options](https://framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter.
 
 # Gadgets
 
