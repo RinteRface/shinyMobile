@@ -17,13 +17,12 @@ const setTouchStyle = config => {
 
 // Set dark mode
 const setDarkMode = (config, app) => {
-  if (!config.hasOwnProperty("dark")) config.darkMode = false;
+  if (!config.hasOwnProperty("dark")) config.dark = "auto";
   app.setDarkMode(config.dark);
 };
 
-// Filled
+// Filled theme
 const setFilledStyle = config => {
-  // Filled theme
   if (!config.hasOwnProperty("filled")) config.filled = false;
   if (config.filled) {
     var filledCSS = `

@@ -63,7 +63,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7Picker()` has new `...` parameter to pass custom options. Also `f7Picker()` now can have NULL as `value`, allowing you to display a placeholder.
 - `f7DatePicker()` has new `...` parameter to pass custom options. `f7DatePicker()` now also supports usage of the `timePicker`, and returns a posixct object when this is enabled. See https://framework7.io/docs/calendar#examples.
 - Added `tapHoldPreventClicks`, `touchClicksDistanceThreshold`, `mdTouchRipple` to `f7Page()` touch options.
-- The `dark` option in `f7Page()` now also supports `"auto"` besides `TRUE` and `FALSE`.  If set to auto automatically enables dark theme based on user system color scheme preference.
+- The `dark` option in `f7Page()` now also supports `"auto"` besides `TRUE` and `FALSE`.  If set to auto (the new default) it automatically enables dark theme based on user system color scheme preference.
 - `showF7Preloader()` has new `type` parameter and a new modal dialog support (if `type` is passed). New `id` parameter that has to be set when `type` is not NULL.
 - `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
 - New `updateF7Preloader()` to be able to update a progress preloader from the server.

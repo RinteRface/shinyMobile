@@ -7,7 +7,7 @@
 f7Page(
   ...,
   title = NULL,
-  options = list(theme = c("auto", "ios", "md"), dark = TRUE, skeletonsOnLoad = FALSE,
+  options = list(theme = c("auto", "ios", "md"), dark = "auto", skeletonsOnLoad = FALSE,
     preloader = FALSE, filled = FALSE, color = "#007aff", touch =
     list(touchClicksDistanceThreshold = 5, tapHold = TRUE, tapHoldDelay = 750,
     tapHoldPreventClicks = TRUE, iosTouchRipple = FALSE, mdTouchRipple = TRUE),
@@ -26,8 +26,8 @@ f7Page(
 notable options. General options:
 \itemize{
 \item \code{theme}: App skin: "ios", "md", or "auto".
-\item \code{dark}: Dark layout. TRUE, FALSE, or "auto".
-If set to auto automatically enables dark theme based on user system color scheme preference.
+\item \code{dark}: Dark layout. TRUE, FALSE, or "auto". The default is "auto".
+If set to "auto" automatically enables dark theme based on user system color scheme preference.
 \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
 This is a preloading effect. Not compatible with preloader.
 \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.

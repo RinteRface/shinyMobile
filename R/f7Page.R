@@ -9,8 +9,8 @@
 #' notable options. General options:
 #' \itemize{
 #'  \item \code{theme}: App skin: "ios", "md", or "auto".
-#'  \item \code{dark}: Dark layout. TRUE, FALSE, or "auto".
-#'  If set to auto automatically enables dark theme based on user system color scheme preference.
+#'  \item \code{dark}: Dark layout. TRUE, FALSE, or "auto". The default is "auto".
+#'  If set to "auto" automatically enables dark theme based on user system color scheme preference.
 #'  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
 #'  This is a preloading effect. Not compatible with preloader.
 #'  \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
@@ -61,7 +61,7 @@ f7Page <- function(
     # default options
     options = list(
       theme = c("auto", "ios", "md"),
-      dark = TRUE,
+      dark = "auto",
       skeletonsOnLoad = FALSE,
       preloader = FALSE,
       filled = FALSE,
