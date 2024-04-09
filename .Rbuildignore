@@ -20,3 +20,4 @@
 ^esbuild\.dev\.js$
 ^esbuild\.prod\.js$
 ^codecov\.yml$
+^inst/.*./.*\.map$

@@ -4,9 +4,9 @@ library(shinyMobile)
 app <- shinyApp(
   ui = f7Page(
     f7SingleLayout(
-      navbar = f7Navbar(title = "Text inputs"),
+      navbar = f7Navbar(title = "Inputs form"),
       f7Block(f7Button("update", "Click me")),
-      f7BlockTitle("A list of inputs"),
+      f7BlockTitle("A list of inputs in a form"),
       f7List(
         inset = TRUE,
         dividers = FALSE,

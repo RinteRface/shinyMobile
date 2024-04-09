@@ -26,7 +26,6 @@ app <- shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     observe({
       validateF7Input(inputId = "caption", info = "Whatever")
       validateF7Input(
@@ -37,7 +36,9 @@ app <- shinyApp(
       validateF7Input(
         inputId = "password",
         pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
-        error = "Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        error = "Password must contain at least one
+        number and one uppercase and lowercase letter,
+        and at least 8 or more characters"
       )
     })
 
