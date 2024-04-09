@@ -1638,12 +1638,14 @@ createOptions <- function(
 #' This only works with elements having
 #' an input HTML tag.
 #'
-#' @param ... A list of input elements.
 #' @param id Form unique id. Using input$<id> gives
 #' the form result.
+#' @param ... A list of input elements.
 #'
 #' @export
-f7Form <- function(..., id) {
+#' @rdname form-inputs
+#' @example inst/examples/forms/app.R
+f7Form <- function(id, ...) {
   inputs <- list(...)
   # All inputs must have a name + no binding
   inputs <- lapply(inputs, \(input) {
@@ -1672,6 +1674,14 @@ f7Form <- function(..., id) {
   shiny::tags$form(class = "inputs-form", id = id, inputs)
 }
 
+#' Update a form on the server
+#'
+#' \link{updateF7Form} update form inputs on the server.
+#'
+#' @param data New form data.
+#' @param session Shiny session objects.
+#' @rdname form-inputs
+#' @export
 updateF7Form <- function(id, data, session = shiny::getDefaultReactiveDomain()) {
   session$sendInputMessage(id, data)
 }
