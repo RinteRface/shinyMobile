@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 esbuild
   .build({
     entryPoints: ['./srcjs/main.js'],
-    outdir: "inst/shinyMobile-1.0.1/dist",
+    outdir: "inst/shinyMobile-2.0.0/dist",
     entryNames: "shinyMobile.min",
     bundle: true,
     format: "esm",

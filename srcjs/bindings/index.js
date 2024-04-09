@@ -23,3 +23,4 @@ import './tabsInputBinding.js';
 import './toggleInputBinding.js';
 import './virtualListBinding.js';
 import './treeviewInputBinding.js';
+import './inputsFormBinding.js';

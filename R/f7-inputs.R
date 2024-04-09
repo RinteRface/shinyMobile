@@ -1628,16 +1628,50 @@ createOptions <- function(
   })
 }
 
-# createInputsForm <- function(..., id) {
-#  inputs <- list(...)
-#  # All inputs must have a name + no binding
-#  inputs <- lapply(inputs, \(input) {
-#    browser()
-#    htmltools::tagQuery(input)$
-#      find("input") # $
-#    # addAttrs()
-#    # name = input$attribs$id,
-#    # `data-shiny-no-bind-input` = NA
-#  })
-#  shiny::tags$div(id = id, inputs)
-# }
+#' Creates an input form
+#'
+#' Instead of having shiny return one input
+#' at a time, a form is a collection of related inputs.
+#' The form returns a list with all sub-inputs as elements.
+#' This avoids to have to deal with too many inputs.
+#'
+#' This only works with elements having
+#' an input HTML tag.
+#'
+#' @param ... A list of input elements.
+#' @param id Form unique id. Using input$<id> gives
+#' the form result.
+#'
+#' @export
+f7Form <- function(..., id) {
+  inputs <- list(...)
+  # All inputs must have a name + no binding
+  inputs <- lapply(inputs, \(input) {
+    # Test for different input types
+    valid_inputs <- c("input", "textarea", "select")
+    target <- NULL
+    for (el in valid_inputs) {
+      tmp <- htmltools::tagQuery(input)$
+        find(el)$
+        selectedTags()
+
+      if (length(tmp) > 0) target <- el
+    }
+    query <- htmltools::tagQuery(input)$
+      find(target)
+    id <- query$
+      selectedTags()[[1]]$
+      attribs$id
+
+    query$
+      addAttrs(
+      name = id,
+      `data-shiny-no-bind-input` = NA
+    )$allTags()
+  })
+  shiny::tags$form(class = "inputs-form", id = id, inputs)
+}
+
+updateF7Form <- function(id, data, session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(id, data)
+}
