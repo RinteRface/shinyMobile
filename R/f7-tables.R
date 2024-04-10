@@ -6,27 +6,7 @@
 #' @param colnames Column names to use, if \code{NULL} uses \code{data} column names.
 #' @param card Whether to use as card.
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shiny::shinyApp(
-#'   ui = f7Page(
-#'     title = "My app",
-#'     f7SingleLayout(
-#'        navbar = f7Navbar(
-#'          title = "f7Table"
-#'        ),
-#'       uiOutput("table")
-#'     )
-#'   ),
-#'   server = function(input, output) {
-#'     output$table <- renderUI({
-#'       f7Table(mtcars)
-#'     })
-#'   }
-#'  )
-#' }
+#' @example inst/examples/table/app.R
 #'
 #' @export
 f7Table <- function(data, colnames = NULL, card = FALSE){
