@@ -36,7 +36,9 @@ app <- shinyApp(
     title = "f7PhotoBrowser",
     f7SingleLayout(
       navbar = f7Navbar(title = "f7PhotoBrowser"),
-      f7Button(inputId = "togglePhoto", "Open photo")
+      f7Block(
+        f7Button(inputId = "togglePhoto", "Open photo")
+      )
     )
   ),
   server = function(input, output, session) {
