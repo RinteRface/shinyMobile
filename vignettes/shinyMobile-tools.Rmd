@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -19,21 +19,32 @@ knitr::opts_chunk$set(
 library(bslib)
 ```
 
+# Tools for mobile development
+
+`{shinyMobile}` provides a set of tools specifically designed to help you develop user-friendly mobile applications and leverage certain actions on mobile phones. The tools we discuss here are:
+
+- `preview_mobile`: a function to preview your app in a large range of mobile devices
+- `pullToRefresh`: a feature to refresh the page content by pulling from top to bottom
+- A custom disconnected screen
+- Predefined input values to get information about the device and Shiny inputs
+
 ## Mobile preview
+
 Since V0.2.0, `{shinyMobile}` has a function to preview your app in a large range of 
-mobile devices: iphone X, iphone 8+, iphone8, iphone 5s, iphone 4s, ipad, Samsung galaxy S5,
-Samsung galaxy Note 8, ... either locally on online:
+mobile devices: iPhone X, iPhone 8+, iPhone8, iPhone 5s, iPhone 4s, iPad, Samsung galaxy S5, Samsung galaxy Note 8, ... either locally on online:
 
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
+
 preview_mobile(appPath = system.file("examples/gallery/app.R", package = "shinyMobile"), device = "iphoneX")
+
 preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ipadMini")
 ```
 
 The local preview is a 4 steps process:
 
-- run `preview_mobile` with appPath
+- run `preview_mobile` with `appPath`
 - Copy the returned code `R -e "shiny::runApp('appPath', port = 3838)"` in a terminal to launch the app
 - Press enter to run the wrapper app
 - Have fun!
@@ -41,7 +52,8 @@ The local preview is a 4 steps process:
 `preview_mobile` has other options such as color and landscape (to preview in landscape mode).
 
 ## Pull to Refresh
-`{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page` options will activate it. On the server side, an input, namely input$ptr is TRUE when ptr is refreshed and becomes NULL at the end of the animation (You may run the app below in full screen mode and hold a left click with your mouse from top to bottom):
+
+`{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page` options will activate it. On the server side, an input, namely `input$ptr` is `TRUE` when ptr is refreshed and becomes `NULL` at the end of the animation (you may run the app below in full screen mode and hold a left click with your mouse from top to bottom):
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
@@ -65,8 +77,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -89,7 +100,7 @@ shinyApp(
   ),
   server = function(input, output, session) {
     observe(print(input$ptr))
-
+    
     observeEvent(input$ptr, {
       ptrStatus <- if (input$ptr) "on"
       f7Dialog(
@@ -102,13 +113,45 @@ shinyApp(
 
 ```
 
+## Custom disconnected screen
+
+Nobody likes it when an app stops responding. Traditionally, Shiny apps will be "grayed out". Since this doesn't provide a nice user experience, `{shinyMobile}` adds a custom disconnected screen. This screen (a toast) is displayed when the app is disconnected from the server.
+
+TODO: shinylive example
+
+```{r, eval = FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    options = list(dark = FALSE),
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Custom disconnected screen",
+        hairline = FALSE
+      ),
+      f7Block(
+        f7Button(inputId = "disconnect",
+                 label = "Disconnect me")
+      )
+    )
+  ),
+  server = function(input, output) {
+    observeEvent(input$disconnect, {
+      stop("Oops, I disconnected you!")
+    })
+  }
+)
+```
+
 ## Predefined input values
-`{shinyMobile}` contains a set of useful functions to help you setting the layout as best as
-possible. 
 
-### Informations about your current device
+`{shinyMobile}` contains functionality to retrieve information about the device displaying your app, the last input that was used and other information about the running Shiny session. This information helps you to set the layout as best as possible. 
 
-#### Description
+### Information about your current device
+
 `{shinyMobile}` has a predefined input, namely **input$deviceInfo**.
 
 ```{r, eval=TRUE, echo=FALSE}
@@ -133,8 +176,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Access device info",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       # main content
       verbatimTextOutput("info")
@@ -148,34 +190,31 @@ shinyApp(
 )
 ```
 
-The following fields are returned:
+All this information is related to the device running the application. The following information is returned:
 
-- `input$deviceInfo$os`, returns a string containing your OS
-- `input$deviceInfo$desktop`, TRUE or FALSE (if you are running the app on your laptop or desktop)
-- `input$deviceInfo$standalone`, TRUE or FALSE (standalone, namely whether you access the app like a native app)
-- `input$deviceInfo$webview`, TRUE or FALSE (webview)
-- `input$deviceInfo$electron`, TRUE or FALSE (electron)
+- `input$deviceInfo$ios`: TRUE for iOS device
+- `input$deviceInfo$android`: TRUE for Android device
+- `input$deviceInfo$androidChrome`: TRUE for Android Chrome
+- `input$deviceInfo$desktop`: TRUE for desktop browser
+- `input$deviceInfo$iphone`: TRUE for iPhone
+- `input$deviceInfo$ipod`: TRUE for iPod
+- `input$deviceInfo$ipad`: TRUE for iPad
+- `input$deviceInfo$cordova`: TRUE when app running in cordova environment
+- `input$deviceInfo$capacitor`: TRUE when app running in capacitor environment
+- `input$deviceInfo$windows`: TRUE for desktop windows
+- `input$deviceInfo$macos`: TRUE for desktop macOS
+- `input$deviceInfo$ie`: TRUE for Internet Explorer browser
+- `input$deviceInfo$edge`: TRUE for MS Edge browser
+- `input$deviceInfo$firefox`: TRUE for FireFox browser
+- `input$deviceInfo$electron`: TRUE when app is running under Electron environment
+- `input$deviceInfo$nwjs`: TRUE when app is running under NW.js environment
+- `input$deviceInfo$webView`: TRUE if app runs in web view - webapp installed to home screen, valid for desktop PWAs installed to desktop
+- `input$deviceInfo$standalone`: Same as webView
+- `input$deviceInfo$os`: Contains OS can be ios, android, macos, windows
+- `input$deviceInfo$osVersion`: Contains OS version, e.g. 11.2.0
+- `input$deviceInfo$pixelRatio`: Device pixel ratio
 
-There are other fields, with less inportance:
-
-- `input$deviceInfo$ios`, TRUE or FALSE (if you are running under iOS)
-- `input$deviceInfo$android`, TRUE or FALSE (if you are running under android)
-- `input$deviceInfo$androidChrome`, TRUE or FALSE (if you are running under android with Chrome)
-- `input$deviceInfo$iphone`, TRUE or FALSE (if you have an iphone)
-- `input$deviceInfo$ipod`, TRUE or FALSE (if you have an ipod)
-- `input$deviceInfo$ipad`, TRUE or FALSE (if you have an ipad)
-- `input$deviceInfo$edge`, TRUE or FALSE (if you are using edge)
-- `input$deviceInfo$ie`, TRUE or FALSE (if you are using Internet Explorer)
-- `input$deviceInfo$firefox`, TRUE or FALSE (if you are using Firefox)
-- `input$deviceInfo$macos`, TRUE or FALSE (if you have macOS)
-- `input$deviceInfo$windows`, TRUE or FALSE (if you have Windows)
-- `input$deviceInfo$cordova`, TRUE or FALSE (cordova)
-- `input$deviceInfo$phonegap`, TRUE or FALSE (phonegap)
-
-
-#### Usecase
-
-Below the example displays a card only when the app is on desktop.
+Below an example that displays a card only when the app is on desktop:
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
@@ -199,8 +238,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Access device info",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       # main content
       uiOutput("card"),
@@ -225,10 +263,9 @@ shinyApp(
 ```
 
 
-### Informations about Shiny inputs
+### Information about Shiny inputs
 
-`{shinyMobile}` has `input$lastInputChanged` which returns the name, value and type of the
-last changed input, see below.
+`{shinyMobile}` has `input$lastInputChanged` which returns the name, value and type of the last changed input:
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
@@ -252,8 +289,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -277,12 +313,8 @@ shinyApp(
 )
 ```
 
-This is convenient since usually, there is no shortcut to get the last changed value and this
-needs to be done server side in shiny.
-
-Soon there will be a way to compare initial input values (frozen) to current input values
-and get a diff.
+This is convenient since usually, there is no shortcut to get the last changed value and this needs to be done server side in Shiny.
 
 ### Other information
 
-`input$shinyInfo` gives the current __workerId__ (for shinyapps.io, shiny server pro, Posit Connect), the unique __sessionId__ (equal to `session$token` on the server side).
+`input$shinyInfo` gives the current __workerId__ (for shinyapps.io, Shiny Server Pro, Posit Connect) and the unique __sessionId__ (equal to `session$token` on the server side).
