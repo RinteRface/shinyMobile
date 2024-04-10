@@ -22,52 +22,64 @@ refer to the Framework7 documentation at \url{https://framework7.io/docs/}.
 \examples{
 # Update action sheet instance
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Simple Dialog",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "Update action sheet instance"),
-       f7Button(inputId = "goButton", "Go!"),
-       f7Button(inputId = "update", "Update config")
-     )
-   ),
-   server = function(input, output, session) {
-     observeEvent(input$goButton, {
-       f7ActionSheet(
-        grid = TRUE,
-        id = "action1",
-        buttons = list(
-          list(
-            text = "Notification",
-            icon = f7Icon("info"),
-            color = NULL
+  library(shiny)
+  library(shinyMobile)
+  shinyApp(
+    ui = f7Page(
+      title = "Simple Dialog",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "Update action sheet instance"),
+        f7Segment(
+          f7Button(
+            inputId = "goButton",
+            "Go!",
+            fill = FALSE,
+            outline = TRUE
           ),
-          list(
-            text = "Dialog",
-            icon = f7Icon("lightbulb_fill"),
-            color = NULL
+          f7Button(
+            inputId = "update",
+            "Update config",
+            fill = FALSE,
+            outline = TRUE
           )
         )
-       )
-     })
+      )
+    ),
+    server = function(input, output, session) {
+      observeEvent(input$goButton, {
+        f7ActionSheet(
+          grid = TRUE,
+          id = "action1",
+          buttons = list(
+            list(
+              text = "Notification",
+              icon = f7Icon("info"),
+              color = NULL
+            ),
+            list(
+              text = "Dialog",
+              icon = f7Icon("lightbulb_fill"),
+              color = NULL
+            )
+          )
+        )
+      })
 
-     observeEvent(input$update,{
-       updateF7Entity(
-       id = "action1",
-        options = list(
-         buttons = list(
-          list(
-            text = "Notification",
-            icon = f7Icon("info"),
-            color = NULL
+      observeEvent(input$update, {
+        updateF7Entity(
+          id = "action1",
+          options = list(
+            buttons = list(
+              list(
+                text = "Notification",
+                icon = f7Icon("info"),
+                color = NULL
+              )
+            )
           )
-         )
         )
-       )
-     })
-   }
- )
+      })
+    }
+  )
 }
 }

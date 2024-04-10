@@ -14,51 +14,60 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Simple Dialog",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "f7Dialog"),
-#'        f7Button(inputId = "goButton", "Go!"),
-#'        f7Button(inputId = "update", "Update config")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      observeEvent(input$goButton,{
-#'        f7Dialog(
-#'          title = "Dialog title",
-#'          text = "This is an alert dialog"
-#'        )
-#'      })
-#'
-#'      observeEvent(input$update,{
-#'        updateF7App(
-#'         options = list(
-#'          dialog = list(
-#'           buttonOk =  "Yeaaaah!",
-#'           buttonCancel = "Ouuups!"
-#'          )
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Simple Dialog",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Dialog"),
+#'         f7Segment(
+#'           f7Button(
+#'             inputId = "goButton",
+#'             "Go!",
+#'             fill = FALSE,
+#'             outline = TRUE
+#'           ),
+#'           f7Button(
+#'             inputId = "update",
+#'             "Update config",
+#'             fill = FALSE,
+#'             outline = TRUE
+#'           )
 #'         )
-#'        )
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$goButton, {
+#'         f7Dialog(
+#'           title = "Dialog title",
+#'           text = "This is an alert dialog"
+#'         )
+#'       })
 #'
-#'        f7Dialog(
-#'          id = "test",
-#'          title = "Warning",
-#'          type = "confirm",
-#'          text = "Look at me, I have a new buttons!"
-#'        )
-#'      })
-#'    }
-#'  )
+#'       observeEvent(input$update, {
+#'         updateF7App(
+#'           options = list(
+#'             dialog = list(
+#'               buttonOk = "Yeaaaah!",
+#'               buttonCancel = "Ouuups!"
+#'             )
+#'           )
+#'         )
+#'
+#'         f7Dialog(
+#'           id = "test",
+#'           title = "Warning",
+#'           type = "confirm",
+#'           text = "Look at me, I have a new buttons!"
+#'         )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
   sendCustomMessage("update-app", options, session)
 }
-
-
-
 
 #' Update Framework7 entity
 #'
@@ -75,56 +84,67 @@ updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
 #' @examples
 #' # Update action sheet instance
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Simple Dialog",
-#'      f7SingleLayout(
-#'        navbar = f7Navbar(title = "Update action sheet instance"),
-#'        f7Button(inputId = "goButton", "Go!"),
-#'        f7Button(inputId = "update", "Update config")
-#'      )
-#'    ),
-#'    server = function(input, output, session) {
-#'      observeEvent(input$goButton, {
-#'        f7ActionSheet(
-#'         grid = TRUE,
-#'         id = "action1",
-#'         buttons = list(
-#'           list(
-#'             text = "Notification",
-#'             icon = f7Icon("info"),
-#'             color = NULL
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Simple Dialog",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "Update action sheet instance"),
+#'         f7Segment(
+#'           f7Button(
+#'             inputId = "goButton",
+#'             "Go!",
+#'             fill = FALSE,
+#'             outline = TRUE
 #'           ),
-#'           list(
-#'             text = "Dialog",
-#'             icon = f7Icon("lightbulb_fill"),
-#'             color = NULL
+#'           f7Button(
+#'             inputId = "update",
+#'             "Update config",
+#'             fill = FALSE,
+#'             outline = TRUE
 #'           )
 #'         )
-#'        )
-#'      })
+#'       )
+#'     ),
+#'     server = function(input, output, session) {
+#'       observeEvent(input$goButton, {
+#'         f7ActionSheet(
+#'           grid = TRUE,
+#'           id = "action1",
+#'           buttons = list(
+#'             list(
+#'               text = "Notification",
+#'               icon = f7Icon("info"),
+#'               color = NULL
+#'             ),
+#'             list(
+#'               text = "Dialog",
+#'               icon = f7Icon("lightbulb_fill"),
+#'               color = NULL
+#'             )
+#'           )
+#'         )
+#'       })
 #'
-#'      observeEvent(input$update,{
-#'        updateF7Entity(
-#'        id = "action1",
-#'         options = list(
-#'          buttons = list(
-#'           list(
-#'             text = "Notification",
-#'             icon = f7Icon("info"),
-#'             color = NULL
+#'       observeEvent(input$update, {
+#'         updateF7Entity(
+#'           id = "action1",
+#'           options = list(
+#'             buttons = list(
+#'               list(
+#'                 text = "Notification",
+#'                 icon = f7Icon("info"),
+#'                 color = NULL
+#'               )
+#'             )
 #'           )
-#'          )
 #'         )
-#'        )
-#'      })
-#'    }
-#'  )
+#'       })
+#'     }
+#'   )
 #' }
 updateF7Entity <- function(id, options, session = shiny::getDefaultReactiveDomain()) {
-
   # Convert any shiny tag into character so that toJSON does not cry
   listRenderTags <- function(l) {
     lapply(
