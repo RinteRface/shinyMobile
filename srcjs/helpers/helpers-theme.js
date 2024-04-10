@@ -77,11 +77,6 @@ const setFilledStyle = config => {
       .appendTo("head");
   }
 
-  // trick to fix the photo browser link issue
-  // we set the body class that will contain the color.
-  // We then recover this class in a variable in the app.js code
-  $("body").addClass(config.color);
-  $("body").attr("filled", config.filled);
 };
 
 export const initTheme = (config, app) => {
