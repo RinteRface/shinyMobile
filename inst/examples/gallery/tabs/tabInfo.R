@@ -48,40 +48,29 @@ tabInfo <- f7Tab(
       )
     )
   ),
-
-
   br(),
   # action sheet
   f7BlockTitle(title = "Action Sheet") %>% f7Align("center"),
   f7Block(
     f7Button(inputId = "goActionSheet", "Show action sheet", color = "red")
   ),
-
-
   br(),
   # dialog
   f7BlockTitle(title = "Modal Dialog") %>% f7Align("center"),
-
   uiOutput("promptres"),
   f7Segment(
-    container = "segment",
     f7Button(inputId = "goDialog1", "Open dialog 1", color = "yellow"),
     f7Button(inputId = "goDialog2", "Open confirm dialog 2", color = "blue"),
     f7Button(inputId = "goDialog3", "Open prompt dialog 3")
   ),
-
-
   br(),
   # notifications
   f7BlockTitle(title = "Notifications") %>% f7Align("center"),
-
   f7Segment(
-    container = "segment",
     f7Button(inputId = "goNotif1", "Open notification 1", color = "orange"),
     f7Button(inputId = "goNotif2", "Open notification 2", color = "purple"),
     f7Button(inputId = "goNotif3", "Open notification 3")
   ),
-
   br(),
 
   # popovers
@@ -92,13 +81,11 @@ tabInfo <- f7Tab(
       "Click me!"
     )
   ),
-
   br(),
 
   # toasts
   f7BlockTitle(title = "Toasts") %>% f7Align("center"),
   f7Block(f7Button(inputId = "toast", label = "Open Toast", color = "lime")),
-
   br(),
 
   # Tooltips

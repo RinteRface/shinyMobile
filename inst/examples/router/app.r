@@ -1,90 +1,190 @@
 library(shiny)
-library(shiny.router)
+library(brochure)
 library(shinyMobile)
 
-root_page <- shiny::tags$div(
-    class = "page",
-    # top navbar goes here
-    f7Navbar("Main page"),
-    f7Toolbar(
-        position = "bottom",
-        a(href = route_link("other"), "Another page")
-        # tags$a(
-        #  href = "/other/",
-        #  `data-animate` = "true",
-        #  `data-reload-current` = "true",
-        #  "Other page"
-        #  )
-    ),
-    shiny::tags$div(
-        class = "page-content",
-        # page content
-        f7Block("Page 1")
+links <- lapply(2:3, function(i) {
+  tags$li(
+    f7Link(
+      routable = TRUE,
+      label = sprintf("Link to page %s", i),
+      href = sprintf("/%s", i)
     )
-)
-other_page <- shiny::tags$div(
-    class = "page",
-    # top navbar goes here
-    f7Navbar("Other page"),
-    f7Toolbar(
-        position = "bottom",
-        tags$a(
-            href = route_link("/"),
-            `data-animate` = "true",
-            `data-reload-current` = "true",
-            "Main page",
-            class = "back"
-        )
-    ),
-    shiny::tags$div(
-        class = "page-content",
-        # page content
-        f7Block("Other page")
-    )
-)
+  )
+})
 
-f7Route <- function(page, path, main = TRUE, name) {
-    tmp <- route(path, root_page)
-    if (main) {
-        tmp[[path]]$ui$attribs$class <- paste(
-            tmp[[path]]$ui$attribs$class,
-            "view view-main tab tab-active"
+page_1 <- function() {
+  page(
+    href = "/",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar("Home page"),
+        tags$div(
+          class = "page-content",
+          f7List(
+            inset = TRUE,
+            strong = TRUE,
+            outline = TRUE,
+            dividers = TRUE,
+            mode = "links",
+            links
+          )
         )
-    } else {
-        tmp[[path]]$ui$attribs$class <- paste(
-            tmp[[path]]$ui$attribs$class,
-            sprintf("view view-%s tab", name)
+      )
+    },
+    # Important: in theory brochure makes
+    # each page having its own shiny session.
+    # That's not what we want here so only the first
+    # page has the entire server function.
+    # Other pages only provide the UI which is
+    # included by Framework7 router.
+    server = function(input, output, session) {
+      output$res <- renderText(input$text)
+      output$test <- renderPrint(input$stepper)
+
+      observeEvent(input$update, {
+        updateF7Stepper(
+          inputId = "stepper",
+          value = 0.1,
+          step = 0.01,
+          size = "large",
+          min = 0,
+          max = 1,
+          wraps = FALSE,
+          autorepeat = FALSE,
+          rounded = TRUE,
+          raised = TRUE,
+          color = "pink",
+          manual = TRUE,
+          decimalPoint = 2
         )
+      })
     }
-    tmp[[path]]$ui$attribs$`data-url` <- path
-    tmp[[path]]$ui$attribs$`data-path` <- path
-    tmp[[path]]$ui$attribs$`data-name` <- name
-    tmp
+  )
 }
 
-router <- router_ui(
-    f7Route(root_page, "/", name = "main"),
-    f7Route(other_page, "/other", main = FALSE, name = "other")
-)
-router[[2]][[2]]$attribs$class <- paste(
-    router[[2]][[2]]$attribs$class,
-    "views tabs"
-)
-
-ui <- f7Page(
-    title = "My app",
-    options = list(
-        dark = TRUE,
-        routes = list(
-            list(path = "/", url = "/"),
-            list(path = "/other", url = "/other")
+page_2 <- function() {
+  page(
+    href = "/2",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar(
+          "Second page",
+          # Allows to go back to main
+          leftPanel = tags$a(
+            href = "/",
+            class = "link",
+            tags$i(class = "icon icon-back"),
+            tags$span(
+              class = "if-not-md",
+              "Back"
+            )
+          )
+        ),
+        f7Toolbar(
+          position = "bottom",
+          tags$a(
+            href = "/",
+            "Main page",
+            class = "link"
+          )
+        ),
+        shiny::tags$div(
+          class = "page-content", f7Block(
+            strong = TRUE,
+            inset = TRUE,
+            outline = TRUE,
+            f7Block(f7Button(inputId = "update", label = "Update stepper")),
+            f7Block(
+              strong = TRUE,
+              inset = TRUE,
+              outline = TRUE,
+              f7Stepper(
+                inputId = "stepper",
+                label = "My stepper",
+                min = 0,
+                max = 10,
+                size = "small",
+                value = 4,
+                wraps = TRUE,
+                autorepeat = TRUE,
+                rounded = FALSE,
+                raised = FALSE,
+                manual = FALSE,
+                layout = "list"
+              ),
+              verbatimTextOutput("test")
+            )
+          )
         )
-    ),
-    router
-)
-
-server <- function(input, output, session) {
-    router_server()
+      )
+    }
+  )
 }
 
-shinyApp(ui, server)
+page_3 <- function() {
+  page(
+    href = "/3",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar(
+          "Third page",
+          # Allows to go back to main
+          leftPanel = tags$a(
+            href = "/",
+            class = "link",
+            tags$i(class = "icon icon-back"),
+            tags$span(
+              class = "if-not-md",
+              "Back"
+            )
+          )
+        ),
+        f7Toolbar(
+          position = "bottom",
+          tags$a(
+            href = "/2",
+            "Second page",
+            class = "link"
+          )
+        ),
+        shiny::tags$div(
+          class = "page-content",
+          f7Block("Nothing to show yet ...")
+        )
+      )
+    }
+  )
+}
+
+brochureApp(
+  # Pages
+  page_1(),
+  page_2(),
+  page_3(),
+  wrapped = f7Page,
+  wrapped_options = list(
+    allowRouter = TRUE,
+    options = list(
+      dark = TRUE,
+      # Note: ios seems to have issue
+      # with the sidebar title
+      theme = "md",
+      routes = list(
+        list(path = "/", url = "/", name = "home"),
+        # Important: don't remove keepalive
+        # for child pages as this allows
+        # to save the input state when switching
+        # between pages. If FALSE, each time a page is
+        # changed, inputs are reset (except on the first page).
+        list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
+        list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
+      )
+    )
+  )
+)

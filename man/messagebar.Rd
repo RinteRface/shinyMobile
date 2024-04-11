@@ -49,7 +49,6 @@ app <- shinyApp(
       ),
       # main content
       f7Segment(
-        container = "segment",
         f7Button("updateMessageBar", "Update value"),
         f7Button("updateMessageBarPlaceholder", "Update placeholder")
       ),

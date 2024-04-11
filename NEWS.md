@@ -1,6 +1,7 @@
 # shinyMobile 2.0.0
 ## Major change
 - Update Framework7 from 5.7.14 to 8.3.2
+- New experimental router layout: supported by {brochure}, this allows to have beautiful transitions between pages as more native like experience.
 - Whenever you have multiple inputs, we now recommend to wrap all of them within `f7List()` which allows you to benefit from new styling options such as outline, inset, strong, ... Internally, we use a function able to detect whether the input is inside a `f7List()`: if yes, you can style this list by passing parameters like `f7List(outline = TRUE, inset = TRUE, ...)`; if not, the input is internally wrapped in a list to have correct rendering (but no styling is possible). Besides, some input like `f7Text()` can have custom styling (add an icon, clear button, outline style), which is independent from the external list wrapper style. Hence, we don't recommend doing `f7List(outline = TRUE, f7Text(outline = TRUE))` since it won't render very well (only use `f7List(outline = TRUE, f7Text())`). Please have a look at the corresponding examples in the documentation.
 
 ## Breaking changes
@@ -75,6 +76,10 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7SplitLayout()` has a new look and at a minimal app width (1024 px) the sidebar becomes always visible. The sidebar will be collapsed on smaller screens. 
 - `f7Text()`, `f7TextArea()` and `f7Password()` have new parameters: `description`, `media`, `floating`, `outline` and `cleareable` for more styling options. `label` can also be NULL.
 - `f7Select()` has new `description`, `media` and `outline` parameters.
+- `f7Link()` has new `routable` parameter which allows to use the new experimental router layout.
+- `f7Navbar()`: both `leftPanel` and `rightPanel` now accept shiny tag such as an icon or link. This is useful to support
+the new router layout.
+- `f7Page()`: new `allowRouter` parameter which allows to use the new experimental router layout.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

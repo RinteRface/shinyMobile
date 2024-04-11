@@ -12,8 +12,15 @@ $( document ).ready(function() {
   let config = setConfig();
   // create app instance
   app = new Framework7(config);
-  // init main view
-  mainView = app.views.create('.view-main');
+
+  var mainView = app.views.get(".view-main");
+  // Required to bind/unbind inputs
+  // on page change
+  mainView.router.on('routeChanged', function(newRoute, previousRoute, router) {
+    Shiny.unbindAll();
+    Shiny.initializeInputs();
+    Shiny.bindAll();
+  });
   // Set theme: dark mode, touch, filled, color, taphold css
   initTheme(config, app);
   // Set custom disconnect screen

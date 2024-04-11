@@ -51,6 +51,7 @@
 #' In any case, you must follow the same structure as provided in the function arguments.
 #'
 #' @param allowPWA Whether to include PWA dependencies. Default to FALSE.
+#' @param allowRouter Experimental router support. See vignette.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -84,7 +85,8 @@ f7Page <- function(
       ),
       pullToRefresh = FALSE
     ),
-    allowPWA = FALSE) {
+    allowPWA = FALSE,
+    allowRouter = FALSE) {
   # Color must be converted to HEX before going to JavaScript
   if (!is.null(options$color)) {
     # If color is a name
@@ -142,6 +144,16 @@ f7Page <- function(
       attributes(item)$layout
     }
   }))
+
+  if (allowRouter) {
+    items <- tags$div(
+      class = "view view-main view-init",
+      `data-url` = "/",
+      # Important: to be able to have updated url
+      `data-browser-history` = "true",
+      items
+    )
+  }
 
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
@@ -248,7 +260,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
     # panels go here
     panels,
     shiny::tags$div(
-      class = "view view-main",
+      class = "view view-main view-init",
       shiny::tags$div(
         class = "page",
         # top navbar goes here
@@ -289,7 +301,7 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
     # panels go here
     panels,
     shiny::tags$div(
-      class = "view view-main",
+      class = "view view-main view-init",
       # the page wrapper is important for tabs
       # to swipe properly. It is not mentionned
       # in the doc. Also necessary to adequately
@@ -332,7 +344,6 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
                           panel = NULL) {
-
   if (is.null(navbar$children[[2]]$children[[1]]$attribs$class)) {
     stop("Please make sure that leftPanel is enabled in the navbar")
   }

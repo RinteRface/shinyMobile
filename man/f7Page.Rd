@@ -13,7 +13,8 @@ f7Page(
     tapHoldPreventClicks = TRUE, iosTouchRipple = FALSE, mdTouchRipple = TRUE),
     iosTranslucentBars = FALSE, navbar = list(iosCenterTitle = TRUE, hideOnPageScroll =
     TRUE), toolbar = list(hideOnPageScroll = FALSE), pullToRefresh = FALSE),
-  allowPWA = FALSE
+  allowPWA = FALSE,
+  allowRouter = FALSE
 )
 }
 \arguments{
@@ -68,6 +69,8 @@ Toolbar options \url{https://framework7.io/docs/toolbar-tabbar#toolbar-app-param
 In any case, you must follow the same structure as provided in the function arguments.}
 
 \item{allowPWA}{Whether to include PWA dependencies. Default to FALSE.}
+
+\item{allowRouter}{Experimental router support. See vignette.}
 }
 \description{
 \code{f7Page} is the main app container.

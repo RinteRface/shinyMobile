@@ -4,7 +4,7 @@
 \alias{f7Link}
 \title{Framework7 link}
 \usage{
-f7Link(label = NULL, href, icon = NULL)
+f7Link(label = NULL, href, icon = NULL, routable = FALSE)
 }
 \arguments{
 \item{label}{Optional link text.}
@@ -12,6 +12,10 @@ f7Link(label = NULL, href, icon = NULL)
 \item{href}{Link source, url.}
 
 \item{icon}{Link icon, if any. Must pass \link{f7Icon}.}
+
+\item{routable}{Whether to make the link handled by
+the framework 7 router. Default to FALSE which opens
+a new page in a new tab.}
 }
 \description{
 Link to point toward external content.

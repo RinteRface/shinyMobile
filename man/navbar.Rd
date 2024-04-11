@@ -46,9 +46,13 @@ becomes smaller when scrolling down the page.}
 \item{transparent}{Whether the navbar should be transparent. FALSE by default.
 Only works if bigger is TRUE.}
 
-\item{leftPanel}{Whether to enable the left panel. FALSE by default.}
+\item{leftPanel}{Whether to enable the left panel. FALSE by default.
+You can also pass a shiny tag such as an icon or text. This is useful
+when using the yet experimental routable API.}
 
-\item{rightPanel}{Whether to enable the right panel. FALSE by default.}
+\item{rightPanel}{Whether to enable the right panel. FALSE by default.
+You can also pass a shiny tag such as an icon or text. This is useful
+when using the yet experimental routable API.}
 
 \item{animate}{Whether it should be hidden with animation or not. By default is TRUE.}
 
