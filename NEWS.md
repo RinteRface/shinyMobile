@@ -2,6 +2,8 @@
 ## Major change
 - Update Framework7 from 5.7.14 to 8.3.2
 - New experimental router layout: supported by {brochure}, this allows to have beautiful transitions between pages as more native like experience.
+- New `f7Form()`: gather inputs in the same form to get a nested list containing all input values. This allows to reduce the number of inputs on the server side.
+`updateF7Form()` makes it possible to update input in batch or only selected ones.
 - Whenever you have multiple inputs, we now recommend to wrap all of them within `f7List()` which allows you to benefit from new styling options such as outline, inset, strong, ... Internally, we use a function able to detect whether the input is inside a `f7List()`: if yes, you can style this list by passing parameters like `f7List(outline = TRUE, inset = TRUE, ...)`; if not, the input is internally wrapped in a list to have correct rendering (but no styling is possible). Besides, some input like `f7Text()` can have custom styling (add an icon, clear button, outline style), which is independent from the external list wrapper style. Hence, we don't recommend doing `f7List(outline = TRUE, f7Text(outline = TRUE))` since it won't render very well (only use `f7List(outline = TRUE, f7Text())`). Please have a look at the corresponding examples in the documentation.
 
 ## Breaking changes
