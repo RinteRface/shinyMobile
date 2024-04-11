@@ -9,21 +9,21 @@ export const setCustomDisconnect = (app) => {
         }
       };
     });
-  
+
     $(document).on("shiny:disconnected", function(event) {
       let reconnectToast = app.toast
         .create({
           position: "center",
           text:
-            'Oups... disconnected </br> </br> <div class="row"><button onclick="Shiny.shinyapp.reconnect();" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" class="toast-button button color-red col">Reload</button></div>'
+            'Oops... disconnected </br> </br> <button onclick="Shiny.shinyapp.reconnect();" style="margin:0" class="toast-button button color-green col">Reconnect</button><button onclick="location.reload();" style="margin:0" class="toast-button button color-red col">Reload</button>'
         })
         .open();
-  
-      $('.toast').css("background-color", "#1c1c1d");
-  
+
+      $('.toast').css("z-index", "99999");
+
       // close toast whenever a choice is made ...
       $(".toast-button").on("click", function() {
         reconnectToast.close();
       });
     });
-  }; 
+  };

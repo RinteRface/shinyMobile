@@ -17,16 +17,16 @@ f7Table(data, colnames = NULL, card = FALSE)
 Creates a table container.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
- shiny::shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "My app",
     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "f7Table"
-       ),
+      navbar = f7Navbar(
+        title = "f7Table"
+      ),
       uiOutput("table")
     )
   ),
@@ -35,7 +35,7 @@ if(interactive()){
       f7Table(mtcars)
     })
   }
- )
-}
+)
 
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

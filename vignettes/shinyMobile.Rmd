@@ -145,7 +145,15 @@ f7Page(
 )
 ```
 
-`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, or `f7SplitLayout`. The `options` sets up the app look and feel, and there's plenty of options to choose from, which we'll discuss below. The `allowPWA` parameter allows you to add the necessary PWA dependencies to turn your app into a PWA.
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, or `f7SplitLayout` which we will discuss further in the Layouts section. 
+
+<br>
+
+The `options` sets up the app look and feel, and there's plenty of options to choose from, which we'll discuss below. 
+
+<br>
+
+The `allowPWA` parameter allows you to add the necessary PWA dependencies to turn your app into a PWA.
 
 ## App options
 
@@ -179,7 +187,7 @@ options = list(
 )
 ```
 
-As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and there is support for a dark or light mode. The `dark` option supports 3 values: `TRUE`, `FALSE` or `"auto"`. In case of `"auto"`, the app will automatically switch between dark and light mode based on the user's system settings.
+As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and there is support for a dark or light mode. The `dark` option supports 3 values: `TRUE`, `FALSE` or `"auto"`. In case of `"auto"`, the default, the app will automatically switch between dark and light mode based on the user's system settings.
 
 <br>
 
@@ -195,14 +203,13 @@ Framework7 has many more [options](https://framework7.io/docs/app#app-parameters
 
 ## Navbar
 
-Before we dive into the layout, we'll take a look at components necessary for a layout- starting with the navbar. The __navbar__ is a mandatory element of any `{shinyMobile}` layout. It contains a title, a subtitle and triggers (if desired) for both right and left panels (`f7Panel()`).
+Before we dive into the different layouts, we'll take a look at components necessary for a layout- starting with the navbar. The __navbar__ is a mandatory element of any `{shinyMobile}` layout. It contains a title, a subtitle and triggers (if desired) for both right and left panels (`f7Panel()`).
 
 ```{r, eval=FALSE}
 f7Navbar(
   ...,
   subNavbar = NULL,
   title = NULL,
-  subtitle = NULL,
   hairline = TRUE,
   bigger = FALSE,
   transparent = FALSE,
@@ -211,23 +218,24 @@ f7Navbar(
 )
 ```
 
-For complex apps, you can even add a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as hairline.
+For complex apps, you can even add a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as `hairline` (a subtle border), `bigger` (size of the navbar text) and `transparent`(for a transparent navbar).
 
 ## Toolbar
 
-This is an option if you decide not to embed a `f7SubNavbar()`. The toolbar is the
-right place to add `f7Button()`, `f7Link()`, `f7Badge()`... Its location is controlled with the position parameter (either top or bottom).
+This is an option if you decide not to embed a `f7SubNavbar()` in the navbar, but still would like to have additional buttons or text. The toolbar is the right place to add things like `f7Button()`, `f7Link()` or `f7Badge()`. Its location is controlled with the position parameter (either top or bottom).
 
 ```{r, eval=FALSE}
 f7Toolbar(
   ...,
   position = c("top", "bottom"),
-  hairline = TRUE,
-  shadow = TRUE,
   icons = FALSE,
   scrollable = FALSE
 )
 ```
+
+Besides simply using `"top"` or `"bottom"`, you can also use different positions for iOS and MD themes by using: `"top-ios"`, `"top-md"`, `"bottom-ios"`, or `"bottom-md"`.
+
+<br>
 
 Under the hood, `f7Tabs()` is a custom `f7Toolbar()`.
 
@@ -253,14 +261,23 @@ f7Panel(
 - __floating___ makes the panel float over the body content.
 - __push__ pushes the body content to the side.
 
+<br>
+
 The __resizable__ argument allows to dynamically resize the panel.
 
+<br>
+
 Note that for the moment, there is no option to control the width of each panel.
-As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`. We'll get into more details about the split layout at the [dedicated section](#Split Layout)
+As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`. We'll get into more details about the split layout at the [dedicated section](#Split Layout).
 
 ## Layouts
 
-`{shinyMobile}` offers three layouts: `f7SingleLayout()`, `f7TabLayout()`, and `f7SplitLayout()`.
+`{shinyMobile}` offers three layouts: 
+- `f7SingleLayout()`
+- `f7TabLayout()`
+- `f7SplitLayout()`.
+
+<br>
 
 The layout choice is crucial when you are developing an app. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets apps.
 
@@ -277,15 +294,18 @@ f7SingleLayout(
 )
 ```
 
-While only the navbar is mandatory, other components such as the toolbar are 
-optional for the `f7SingleLayout()`.
+Only the navbar is mandatory, other components such as the toolbar are optional for the `f7SingleLayout()`.
 
 The app below runs with specific app options:
 
 ```r
 f7Page(
-options = list(dark = FALSE, filled = FALSE, theme = "md"),
-...
+  options = list(
+              dark = FALSE, 
+              filled = FALSE, 
+              theme = "md"
+            ),
+  ...
 )
 ```
 
@@ -378,8 +398,12 @@ The app below runs with specific options:
 
 ```r
 f7Page(
-options = list(dark = FALSE, filled = FALSE, theme = "md"),
-...
+  options = list(
+              dark = FALSE, 
+              filled = FALSE, 
+              theme = "md"
+            ),
+  ...
 )
 ```
 
@@ -525,7 +549,11 @@ f7SplitLayout(
 
 The main content goes in the __...__ parameter. Navigation items are gathered in the sidebar slot. This sidebar is visible at a certain `visibleBreakpoint`. By default it is set to 1024, meaning that the sidebar will be collapsed onscreen smaller than 1024px. This means you don't have to worry about your split layout being opened on a smaller mobile phone.
 
+<br>
+
 The sidebar expect a `f7Panel()`. Importantly, do not forget to allow the `leftPanel` with `f7Navbar(leftPanel = TRUE)`! The sidebar menu is organized as follows:
+
+<br>
 
 The sidebar is composed of `f7Panel()` with and `f7PanelMenu` and one or more `f7PanelItem()`:
 
@@ -556,6 +584,8 @@ f7Panel(
 ```
 
 Note that `f7Panel` has `side` set to `left`.
+
+<br>
 
 The __id__ argument in `f7PanelMenu` is important if you want to get the currently selected item or update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
 
@@ -749,7 +779,10 @@ shinyApp(
 
 # Gadgets
 
-`{shinyMobile}` is particularly well suited to build shiny __gagdets__. 
+`{shinyMobile}` is particularly well suited to build shiny __gadgets__. Gadgets are small, interactive tools that can be used as part of your data analysis workflow in R.
+
+<br>
+
 To convert an existing app to a gadget, wrap it in the `shiny::runGadget()` function. 
 
 ```{r, eval = FALSE}
