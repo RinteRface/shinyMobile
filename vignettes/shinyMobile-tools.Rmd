@@ -1,5 +1,6 @@
 ---
 title: "shinyMobile Tools"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{shinyMobile Tools}
@@ -25,7 +26,6 @@ library(bslib)
 
 - `preview_mobile`: a function to preview your app in a large range of mobile devices
 - `pullToRefresh`: a feature to refresh the page content by pulling from top to bottom
-- A custom disconnected screen
 - Predefined input values to get information about the device and Shiny inputs
 
 ## Mobile preview
@@ -111,39 +111,6 @@ shinyApp(
   }
 )
 
-```
-
-## Custom disconnected screen
-
-Nobody likes it when an app stops responding. Traditionally, Shiny apps will be "grayed out". Since this doesn't provide a nice user experience, `{shinyMobile}` adds a custom disconnected screen. This screen (a toast) is displayed when the app is disconnected from the server.
-
-TODO: shinylive example
-
-```{r, eval = FALSE}
-library(shiny)
-library(shinyMobile)
-
-shinyApp(
-  ui = f7Page(
-    options = list(dark = FALSE),
-    title = "My app",
-    f7SingleLayout(
-      navbar = f7Navbar(
-        title = "Custom disconnected screen",
-        hairline = FALSE
-      ),
-      f7Block(
-        f7Button(inputId = "disconnect",
-                 label = "Disconnect me")
-      )
-    )
-  ),
-  server = function(input, output) {
-    observeEvent(input$disconnect, {
-      stop("Oops, I disconnected you!")
-    })
-  }
-)
 ```
 
 ## Predefined input values
