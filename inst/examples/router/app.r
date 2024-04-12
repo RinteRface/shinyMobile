@@ -1,4 +1,9 @@
 library(shiny)
+# Needs a specific version of brochure for now.
+# This allows to pass wrapper functions with options
+# as list. We need it because of the f7Page options parameter
+# and to pass the routes list object for JS.
+# devtools::install_github("DivadNojnarg/brochure")
 library(brochure)
 library(shinyMobile)
 
