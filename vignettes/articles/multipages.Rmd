@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(shiny)
-library(brochure)
+#library(brochure)
 library(shinyMobile)
 ```
 
@@ -25,7 +25,7 @@ What is multi pages navigation? If you consider a basic website with 2 pages suc
 
 To develop a `{brochure}` app, you need the following template:
 
-```r
+```{r, eval=FALSE}
 page_1 <- function() {
   page(
     href = "/",
@@ -75,7 +75,7 @@ For `{shinyMobile}`, we decided to slightly deviate from this and only assign a 
 
 `f7MultiLayout()` accepts elements of a certain layout, similar to what is exposed by the `f7SingleLayout()`:
 
-```r
+```{r, eval=FALSE}
 shiny::tags$div(
   class = "page",
   # top navbar goes here
@@ -92,7 +92,7 @@ __page__ is the main wrapper which takes a __navbar__ and __page-content__ as ch
 
 `f7MultiLayout()` accepts a list of app options, like `f7DefaultOptions()`, which are internally forwarded to `f7Page()`. At the time of writting of this vignette, you must install a patched `{brochure}` version with `devtools::install_github("DivadNojnarg/brochure")` to be able to pass custom options to `brochureApp()`, which essentially calls `do.call(wrapped, wrapped_options)`:
 
-```r
+```{r, eval=FALSE}
 brochureApp(
   # Pages
   page_1(),
@@ -106,7 +106,7 @@ brochureApp(
 ## Framework 7 router
 Internally, `f7MultiLayout()` wraps all the pages in a __view__ reponsible for the page navigation and history (going back and forward with the browser back/next buttons). This __view__ is also called __router__. 
 
-```r
+```{r, eval=FALSE}
 # f7SingleLayout
 shiny::tags$div(
   class = "view view-main view-init",
@@ -122,7 +122,7 @@ shiny::tags$div(
 
 In addition to creating the pages UI, we need to tell Framework7 how to route the pages. This is pretty simple, as we can pass a list of routes which is sent to JS with the app __options__ list. This may yield something like this:
 
-```r
+```{r, eval=FALSE}
 # Framework7 options: see f7DefaultOptions()
 options = list(
   # dark mode option
