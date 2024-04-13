@@ -1,0 +1,365 @@
+---
+title: "multipages"
+---
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(shiny)
+library(brochure)
+library(shinyMobile)
+```
+
+## Introduction
+
+Since v2.0.0, `{shinyMobile}` has multi pages support. Under the hood, this amazing feature is made possible owing to the `{brochure}` [package](https://github.com/ColinFay/brochure) from 
+[Colin Fay](https://github.com/ColinFay) as well as the internal Framework7 [router](https://framework7.io/docs/view).
+
+What is multi pages navigation? If you consider a basic website with 2 pages such as `index.html` and `other.html`. Browsing to `https:://mywebsite.com` opens `index.html` while typing `https:://mywebsite.com/other.html` requests the `other.html` page. If you take a classic shiny app with tabs, clicking on one tab gives you the illusion to browse to another page because of the Bootstrap JS and CSS magic. That's however not the case as the url does not change. Therefore, Shiny doesn't support multi pages navigation by default. `{brochure}` makes this somehow possible.
+
+## About brochure
+
+To develop a `{brochure}` app, you need the following template:
+
+```r
+page_1 <- function() {
+  page(
+    href = "/",
+    ui = function(request) {
+      # PAGE 1 UI
+    },
+    server = function(input, output, session) {
+      # Server function
+    }
+  )
+}
+
+page_2 <- function() {
+  page(
+    href = "/2",
+    ui = function(request) {
+      # Page 2 UI
+    }
+  )
+}
+
+page_3 <- function() {
+  page(
+    href = "/3",
+    ui = function(request) {
+      # Page 3 UI
+    }
+  )
+}
+
+brochureApp(
+  # Pages
+  page_1(),
+  page_2(),
+  page_3(),
+  wrapped = <WRAPPER-FUNC>
+)
+```
+
+In brief, you create different pages with `page` and put them inside `brochureApp()`. Each page is composed of a `ui`, `server` and `href` which represents the location where to serve the page. In theory, as mentionned in the `{brochure}` documentation, each page has its own shiny session, which means that if you go from page 1 to page 2, the state of page 1 is lost when you come back to it. 
+
+For `{shinyMobile}`, we decided to slightly deviate from this and only assign a server function to the first page, meaning that other pages refer to that main server function.
+
+`brochureApp()` exposes `wrapped`, allowing us to inject our own `f7MultiLayout()` function, described below with more details.
+
+## The new f7MultiLayout
+
+`f7MultiLayout()` accepts elements of a certain layout, similar to what is exposed by the `f7SingleLayout()`:
+
+```r
+shiny::tags$div(
+  class = "page",
+  # top navbar goes here
+  f7Navbar("Home page"),
+  # Optional toolbar #
+  tags$div(
+    class = "page-content",
+    ...
+  )
+)
+```
+
+__page__ is the main wrapper which takes a __navbar__ and __page-content__ as children. Note that you can also have a local __toolbar__, assuming you didn't define a main toolbar in `f7MultiLayout()`. Indeed, if you pass a __toolbar__ to the corresponding `f7MultiLayout()` parameter, it is seen as a global app toolbar. __page-content__ is where is displayed the page content such as `{shinyMobile}` widgets.
+
+`f7MultiLayout()` accepts a list of app options, like `f7DefaultOptions()`, which are internally forwarded to `f7Page()`. At the time of writting of this vignette, you must install a patched `{brochure}` version with `devtools::install_github("DivadNojnarg/brochure")` to be able to pass custom options to `brochureApp()`, which essentially calls `do.call(wrapped, wrapped_options)`:
+
+```r
+brochureApp(
+  # Pages
+  page_1(),
+  page_2(),
+  page_3(),
+  wrapped = <WRAPPER-FUNC>
+  wrapped_options = <OPTIONS>
+)
+```
+
+## Framework 7 router
+Internally, `f7MultiLayout()` wraps all the pages in a __view__ reponsible for the page navigation and history (going back and forward with the browser back/next buttons). This __view__ is also called __router__. 
+
+```r
+# f7SingleLayout
+shiny::tags$div(
+  class = "view view-main view-init",
+  # Base url
+  `data-url` = "/",
+  # Important: to be able to have updated url when changing page
+  `data-browser-history` = "true",
+  # Optional common toolbar
+  toolbar,
+  ...
+)
+```
+
+In addition to creating the pages UI, we need to tell Framework7 how to route the pages. This is pretty simple, as we can pass a list of routes which is sent to JS with the app __options__ list. This may yield something like this:
+
+```r
+# Framework7 options: see f7DefaultOptions()
+options = list(
+  # dark mode option
+  dark = TRUE,
+  routes = list(
+    list(path = "/", url = "/", name = "home"),
+    # Important: don't remove keepalive
+    # for child pages as this allows
+    # to save the input state when switching
+    # between pages. If FALSE, each time a page is
+    # changed, inputs are reset (except on the first page).
+    list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
+    list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
+  )
+)
+```
+
+For each route, we must provide:
+
+- __path__: path display in the url,
+- __url__: page url. In our case, this is identical to the path.
+- __keepAlive__: this ensures that when we leave the current page and come back, we don't lose the state of inputs and widgets inside. Hence, it is expected to be `TRUE`.
+
+
+## Wrap it up
+
+To sum up, below is 
+
+<div class="text-center">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="tabLayout">
+```{r, eval=FALSE}
+library(shiny)
+# Needs a specific version of brochure for now.
+# This allows to pass wrapper functions with options
+# as list. We need it because of the f7Page options parameter
+# and to pass the routes list object for JS.
+# devtools::install_github("DivadNojnarg/brochure")
+library(brochure)
+library(shinyMobile)
+
+links <- lapply(2:3, function(i) {
+  tags$li(
+    f7Link(
+      routable = TRUE,
+      label = sprintf("Link to page %s", i),
+      href = sprintf("/%s", i)
+    )
+  )
+})
+
+page_1 <- function() {
+  page(
+    href = "/",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar("Home page"),
+        tags$div(
+          class = "page-content",
+          f7List(
+            inset = TRUE,
+            strong = TRUE,
+            outline = TRUE,
+            dividers = TRUE,
+            mode = "links",
+            links
+          )
+        )
+      )
+    },
+    # Important: in theory brochure makes
+    # each page having its own shiny session.
+    # That's not what we want here so only the first
+    # page has the entire server function.
+    # Other pages only provide the UI which is
+    # included by Framework7 router.
+    server = function(input, output, session) {
+      output$res <- renderText(input$text)
+      output$test <- renderPrint(input$stepper)
+
+      observeEvent(input$update, {
+        updateF7Stepper(
+          inputId = "stepper",
+          value = 0.1,
+          step = 0.01,
+          size = "large",
+          min = 0,
+          max = 1,
+          wraps = FALSE,
+          autorepeat = FALSE,
+          rounded = TRUE,
+          raised = TRUE,
+          color = "pink",
+          manual = TRUE,
+          decimalPoint = 2
+        )
+      })
+    }
+  )
+}
+
+page_2 <- function() {
+  page(
+    href = "/2",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar(
+          "Second page",
+          # Allows to go back to main
+          leftPanel = tags$a(
+            href = "/",
+            class = "link",
+            tags$i(class = "icon icon-back"),
+            tags$span(
+              class = "if-not-md",
+              "Back"
+            )
+          )
+        ),
+        # NOTE: when the main toolbar is enabled in
+        # f7MultiLayout, we can't use individual page toolbars.
+        # f7Toolbar(
+        #  position = "bottom",
+        #  tags$a(
+        #    href = "/",
+        #    "Main page",
+        #    class = "link"
+        #  )
+        # ),
+        shiny::tags$div(
+          class = "page-content", f7Block(
+            strong = TRUE,
+            inset = TRUE,
+            outline = TRUE,
+            f7Block(f7Button(inputId = "update", label = "Update stepper")),
+            f7Block(
+              strong = TRUE,
+              inset = TRUE,
+              outline = TRUE,
+              f7Stepper(
+                inputId = "stepper",
+                label = "My stepper",
+                min = 0,
+                max = 10,
+                size = "small",
+                value = 4,
+                wraps = TRUE,
+                autorepeat = TRUE,
+                rounded = FALSE,
+                raised = FALSE,
+                manual = FALSE,
+                layout = "list"
+              ),
+              verbatimTextOutput("test")
+            )
+          )
+        )
+      )
+    }
+  )
+}
+
+page_3 <- function() {
+  page(
+    href = "/3",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar(
+          "Third page",
+          # Allows to go back to main
+          leftPanel = tags$a(
+            href = "/",
+            class = "link",
+            tags$i(class = "icon icon-back"),
+            tags$span(
+              class = "if-not-md",
+              "Back"
+            )
+          )
+        ),
+        # NOTE: when the main toolbar is enabled in
+        # f7MultiLayout, we can't use individual page toolbars.
+        # f7Toolbar(
+        #  position = "bottom",
+        #  tags$a(
+        #    href = "/2",
+        #    "Second page",
+        #    class = "link"
+        #  )
+        # ),
+        shiny::tags$div(
+          class = "page-content",
+          f7Block("Nothing to show yet ...")
+        )
+      )
+    }
+  )
+}
+
+brochureApp(
+  # Pages
+  page_1(),
+  page_2(),
+  page_3(),
+  wrapped = f7MultiLayout,
+  wrapped_options = list(
+    # Common toolbar
+    toolbar = f7Toolbar(
+      f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+    ),
+    options = list(
+      dark = TRUE,
+      # Note: ios seems to have issue
+      # with the sidebar title
+      theme = "md",
+      routes = list(
+        list(path = "/", url = "/", name = "home"),
+        # Important: don't remove keepalive
+        # for child pages as this allows
+        # to save the input state when switching
+        # between pages. If FALSE, each time a page is
+        # changed, inputs are reset (except on the first page).
+        list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
+        list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
+      )
+    )
+  )
+)
+```
+</div>

@@ -21,3 +21,4 @@
 ^esbuild\.prod\.js$
 ^codecov\.yml$
 ^inst/.*./.*\.map$
+^vignettes/articles$
