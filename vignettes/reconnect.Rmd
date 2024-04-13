@@ -27,9 +27,30 @@ shinyApp(
         title = "Custom disconnected screen",
         hairline = FALSE
       ),
+      f7List(
+        inset = TRUE,
+        dividers = FALSE,
+        strong = TRUE,
+        f7Text(
+          inputId = "text",
+          label = "Text input",
+          value = "Some text",
+          placeholder = "Your text here"
+        ),
+        f7Select(
+            inputId = "select",
+            label = "Make a choice",
+            choices = 1:3,
+            selected = 1
+          )
+      ),
       f7Block(
         f7Button(inputId = "disconnect",
                  label = "Disconnect me")
+      ),
+      f7Block(
+        verbatimTextOutput("mytext"),
+        verbatimTextOutput("myselect")
       )
     )
   ),
@@ -39,6 +60,14 @@ shinyApp(
     observeEvent(input$disconnect, ignoreInit = TRUE, {
       print(input$disconnect)
       stop("Oops, I disconnected you!")
+    })
+    
+    output$mytext <- renderText({
+      input$text
+    })
+    
+    output$myselect <- renderText({
+      input$select
     })
   }
 )
@@ -52,7 +81,7 @@ This button will attempt to reconnect to the server. If the server is not availa
 
 <br>
 
-When reconnecting, Shiny attempts to restore the app to its previous state. This means that the app will be in the same state as before the disconnection. In the above code, this means that the value of `input$disconnect` will be set to `1` again.
+When reconnecting, Shiny attempts to restore the app to its previous state. This means that the app will be in the same state as before the disconnection. In the above code, this means `input$disconnect`, `input$text` and `input$select` will be restored to their previous values. The user actually doesn't see that they are "restored": it looks like the user never left. But it is important to realize that behind the scenes, Shiny is starting from the initial state of your app and sets back the values of the inputs to their previous values. This means observers and reactive expressions will be triggered again. In the code above, we're using `ignoreInit` to avoid the observer being triggered after reconnect. If we would omit this, we would end up being disconnected again. After all, the value of `input$disconnect` changes from `0` to `1` when clicked.
 
 <br>
 
