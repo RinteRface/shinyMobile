@@ -89,14 +89,16 @@ page_2 <- function() {
             )
           )
         ),
-        f7Toolbar(
-          position = "bottom",
-          tags$a(
-            href = "/",
-            "Main page",
-            class = "link"
-          )
-        ),
+        # NOTE: when the main toolbar is enabled in
+        # f7MultiLayout, we can't use individual page toolbars.
+        # f7Toolbar(
+        #  position = "bottom",
+        #  tags$a(
+        #    href = "/",
+        #    "Main page",
+        #    class = "link"
+        #  )
+        # ),
         shiny::tags$div(
           class = "page-content", f7Block(
             strong = TRUE,
@@ -150,14 +152,16 @@ page_3 <- function() {
             )
           )
         ),
-        f7Toolbar(
-          position = "bottom",
-          tags$a(
-            href = "/2",
-            "Second page",
-            class = "link"
-          )
-        ),
+        # NOTE: when the main toolbar is enabled in
+        # f7MultiLayout, we can't use individual page toolbars.
+        # f7Toolbar(
+        #  position = "bottom",
+        #  tags$a(
+        #    href = "/2",
+        #    "Second page",
+        #    class = "link"
+        #  )
+        # ),
         shiny::tags$div(
           class = "page-content",
           f7Block("Nothing to show yet ...")
@@ -172,9 +176,12 @@ brochureApp(
   page_1(),
   page_2(),
   page_3(),
-  wrapped = f7Page,
+  wrapped = f7MultiLayout,
   wrapped_options = list(
-    allowRouter = TRUE,
+    # Common toolbar
+    toolbar = f7Toolbar(
+      f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+    ),
     options = list(
       dark = TRUE,
       # Note: ios seems to have issue

@@ -6,7 +6,7 @@
 \usage{
 f7Toolbar(
   ...,
-  position = c("top", "bottom"),
+  position = c("bottom", "top"),
   hairline = deprecated(),
   shadow = deprecated(),
   icons = FALSE,

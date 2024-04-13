@@ -5,7 +5,8 @@
 #' @param ... Slot for shinyMobile skeleton elements: \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param title Page title.
-#' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
+#' @param options shinyMobile configuration. See \link{f7DefaultOptions} and
+#' \url{https://framework7.io/docs/app.html}. Below are the most
 #' notable options. General options:
 #' \itemize{
 #'  \item \code{theme}: App skin: "ios", "md", or "auto".
@@ -51,7 +52,6 @@
 #' In any case, you must follow the same structure as provided in the function arguments.
 #'
 #' @param allowPWA Whether to include PWA dependencies. Default to FALSE.
-#' @param allowRouter Experimental router support. See vignette.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -60,33 +60,8 @@ f7Page <- function(
     ...,
     title = NULL,
     # default options
-    options = list(
-      theme = c("auto", "ios", "md"),
-      dark = "auto",
-      skeletonsOnLoad = FALSE,
-      preloader = FALSE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        touchClicksDistanceThreshold = 5,
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        tapHoldPreventClicks = TRUE,
-        iosTouchRipple = FALSE,
-        mdTouchRipple = TRUE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
-    allowPWA = FALSE,
-    allowRouter = FALSE) {
+    options = f7DefaultOptions(),
+    allowPWA = FALSE) {
   # Color must be converted to HEX before going to JavaScript
   if (!is.null(options$color)) {
     # If color is a name
@@ -145,16 +120,6 @@ f7Page <- function(
     }
   }))
 
-  if (allowRouter) {
-    items <- tags$div(
-      class = "view view-main view-init",
-      `data-url` = "/",
-      # Important: to be able to have updated url
-      `data-browser-history` = "true",
-      items
-    )
-  }
-
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
     `data-ptr` = dataPTR,
@@ -198,6 +163,77 @@ f7Page <- function(
       bodyTag
     )
   )
+}
+
+#' shinyMobile app default options
+#'
+#' List of default custom options.
+#'
+#' @export
+#' @return A list of options to pass in
+#' \link{f7Page}.
+f7DefaultOptions <- function() {
+  list(
+    theme = c("auto", "ios", "md"),
+    dark = "auto",
+    skeletonsOnLoad = FALSE,
+    preloader = FALSE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      touchClicksDistanceThreshold = 5,
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      tapHoldPreventClicks = TRUE,
+      iosTouchRipple = FALSE,
+      mdTouchRipple = TRUE
+    ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  )
+}
+
+#' Framework7 multi pages layout
+#'
+#' r lifecycle::badge("experimental")`
+#' Experimental multi pages layout. This has to be used
+#' with the brochure R package. See the corresponding vignette at
+#' \code{vignette("multipages", package = "shinyMobile")}.
+#'
+#' @param ... Pages. Must be an element like
+#' \code{shiny::tags$div(class = "page", ...)}
+#' @param toolbar Contrary to \link{f7SingleLayout} or any other layout,
+#' the multi page layout can have a common toolbar for all pages.
+#' See more at \url{https://framework7.io/docs/toolbar-tabbar#common-toolbar}.
+#' You can pass \link{f7Toolbar} in this slot or \link{f7Tabs} but if you
+#' do so, don't pass any toolbar in the different pages elements.
+#' @inheritParams f7Page
+#'
+#' @export
+f7MultiLayout <- function(
+    ...,
+    toolbar = NULL,
+    title = NULL,
+    options = f7DefaultOptions(),
+    allowPWA = FALSE) {
+  items <- shiny::tags$div(
+    class = "view view-main view-init",
+    `data-url` = "/",
+    # Important: to be able to have updated url
+    `data-browser-history` = "true",
+    # Optional common toolbar
+    toolbar,
+    ...
+  )
+
+  f7Page(items, title = title, options = options, allowPWA = allowPWA)
 }
 
 #' Framework7 single layout

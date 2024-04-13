@@ -19,7 +19,7 @@
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Toolbar <- function(..., position = c("top", "bottom"), hairline = deprecated(), shadow = deprecated(),
+f7Toolbar <- function(..., position = c("bottom", "top"), hairline = deprecated(), shadow = deprecated(),
                       icons = FALSE, scrollable = FALSE) {
   if (lifecycle::is_present(hairline)) {
     lifecycle::deprecate_warn(

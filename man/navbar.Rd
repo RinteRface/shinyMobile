@@ -48,11 +48,11 @@ Only works if bigger is TRUE.}
 
 \item{leftPanel}{Whether to enable the left panel. FALSE by default.
 You can also pass a shiny tag such as an icon or text. This is useful
-when using the yet experimental routable API.}
+when using the yet experimental routable API with \link{f7MultiLayout}.}
 
 \item{rightPanel}{Whether to enable the right panel. FALSE by default.
 You can also pass a shiny tag such as an icon or text. This is useful
-when using the yet experimental routable API.}
+when using the yet experimental routable API with \link{f7MultiLayout}.}
 
 \item{animate}{Whether it should be hidden with animation or not. By default is TRUE.}
 

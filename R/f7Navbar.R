@@ -18,10 +18,10 @@
 #' Only works if bigger is TRUE.
 #' @param leftPanel Whether to enable the left panel. FALSE by default.
 #' You can also pass a shiny tag such as an icon or text. This is useful
-#' when using the yet experimental routable API.
+#' when using the yet experimental routable API with \link{f7MultiLayout}.
 #' @param rightPanel Whether to enable the right panel. FALSE by default.
 #' You can also pass a shiny tag such as an icon or text. This is useful
-#' when using the yet experimental routable API.
+#' when using the yet experimental routable API with \link{f7MultiLayout}.
 #'
 #' @note Currently, bigger parameters does mess with the CSS.
 #'
