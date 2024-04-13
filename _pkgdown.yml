@@ -13,6 +13,7 @@ reference:
   - '`f7Tab`'
   - '`f7Tabs`'
   - '`f7Toolbar`'
+  - '`f7DefaultOptions`'
 
 - title: Authentication
   desc: UI skeletons for authentication purposes
@@ -41,6 +42,7 @@ reference:
 - title: Layouts
   desc: Functions that create layouts
   contents:
+  - '`f7MultiLayout`'
   - '`f7SingleLayout`'
   - '`f7SplitLayout`'
   - '`f7TabLayout`'
