@@ -19,7 +19,7 @@ library(shinyMobile)
 Since v2.0.0, `{shinyMobile}` has multi pages support. Under the hood, this amazing feature is made possible owing to the `{brochure}` [package](https://github.com/ColinFay/brochure) from 
 [Colin Fay](https://github.com/ColinFay) as well as the internal Framework7 [router](https://framework7.io/docs/view).
 
-What is multi pages navigation? If you consider a basic website with 2 pages such as `index.html` and `other.html`. Browsing to `https:://mywebsite.com` opens `index.html` while typing `https:://mywebsite.com/other.html` requests the `other.html` page. If you take a classic shiny app with tabs, clicking on one tab gives you the illusion to browse to another page because of the Bootstrap JS and CSS magic. That's however not the case as the url does not change. Therefore, Shiny doesn't support multi pages navigation by default. `{brochure}` makes this somehow possible.
+What is multi pages navigation? If you consider a basic website with 2 pages such as `index.html` and `other.html`, browsing to `https:://mywebsite.com` opens `index.html` while typing `https:://mywebsite.com/other.html` requests the `other.html` page. If you take a classic shiny app with tabs, clicking on one tab gives you the illusion to browse to another page because of the Bootstrap JS and CSS magic. That's however not the case as the url does not change. Therefore, Shiny doesn't support multi pages navigation by default. `{brochure}` makes this somehow possible.
 
 ## About brochure
 
@@ -107,7 +107,7 @@ brochureApp(
 Internally, `f7MultiLayout()` wraps all the pages in a __view__ reponsible for the page navigation and history (going back and forward with the browser back/next buttons). This __view__ is also called __router__. 
 
 ```{r, eval=FALSE}
-# f7SingleLayout
+# f7MultiLayout
 shiny::tags$div(
   class = "view view-main view-init",
   # Base url
