@@ -166,6 +166,8 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL, ...,
 #' @param toolbar Enables picker toolbar. Default to TRUE.
 #' @param toolbarCloseText Text for Done/Close toolbar button.
 #' @param sheetSwipeToClose Enables ability to close Picker sheet with swipe. Default to FALSE.
+#' @param style Input style. Inherit from \link{f7List} options
+#' such as outline, inset, strong and dividers.
 #' @param ... Other options to pass to the picker. See
 #' \url{https://framework7.io/docs/picker#picker-parameters}.
 #'
@@ -177,7 +179,12 @@ updateF7AutoComplete <- function(inputId, value = NULL, choices = NULL, ...,
 f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], choices,
                      rotateEffect = TRUE, openIn = "auto", scrollToInput = FALSE,
                      closeByOutsideClick = TRUE, toolbar = TRUE, toolbarCloseText = "Done",
-                     sheetSwipeToClose = FALSE, ...) {
+                     sheetSwipeToClose = FALSE, style = list(
+                       inset = FALSE,
+                       outline = FALSE,
+                       strong = FALSE,
+                       dividers = FALSE
+                     ),...) {
   if (length(value) > 1) stop("value must be a single element")
 
   # JS needs array
@@ -210,32 +217,34 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
     label,
     config,
     "picker-input",
-    placeholder
+    placeholder,
+    style
   )
 }
 
 #' Build input tag for picker elements
 #'
 #' @keywords internal
-buildPickerInput <- function(id, label, config, class, placeholder = NULL) {
-  inputTag <- shiny::tags$li(
-    shiny::tags$div(
-      class = "item-content item-input",
+buildPickerInput <- function(id, label, config, class, placeholder = NULL, style = NULL) {
+  inputTag <-
+    tagList(
       shiny::tags$div(
-        class = "item-inner",
+        class = "item-content item-input",
         shiny::tags$div(
-          class = "item-input-wrap",
-          shiny::tags$input(
-            id = id,
-            class = class,
-            type = "text",
-            placeholder = placeholder
-          ),
-          buildConfig(id, config)
+          class = "item-inner",
+          shiny::tags$div(
+            class = "item-input-wrap",
+            shiny::tags$input(
+              id = id,
+              class = class,
+              type = "text",
+              placeholder = placeholder
+            ),
+            buildConfig(id, config)
+          )
         )
       )
     )
-  )
 
   # tag wrapper
   shiny::tagList(
@@ -243,7 +252,7 @@ buildPickerInput <- function(id, label, config, class, placeholder = NULL) {
       class = "block-title",
       label
     ),
-    listify(inputTag)
+    listify(inputTag, style)
   )
 }
 
@@ -372,6 +381,8 @@ globalVariables(c("f7ColorPickerPalettes", "f7ColorPickerModules"))
 #' @param hexValueEditable When enabled, it will display HEX module value as <input> element to edit directly.
 #' @param groupedModules When enabled it will add more exposure
 #' to sliders modules to make them look more separated.
+#' @param style Input style. Inherit from \link{f7List} options
+#' such as outline, inset, strong and dividers.
 #' @param ... Other options to pass to the picker. See
 #' \url{https://framework7.io/docs/color-picker#color-picker-parameters}.
 #'
@@ -385,7 +396,13 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
                           modules = f7ColorPickerModules, palettes = f7ColorPickerPalettes,
                           sliderValue = TRUE, sliderValueEditable = TRUE,
                           sliderLabel = TRUE, hexLabel = TRUE,
-                          hexValueEditable = TRUE, groupedModules = TRUE, ...) {
+                          hexValueEditable = TRUE, groupedModules = TRUE,
+                          style = list(
+                            outline = FALSE,
+                            inset = FALSE,
+                            strong = FALSE,
+                            dividers = FALSE
+                          ), ...) {
   if (!is.null(value) && length(value) == 1) {
     # needed by JS (array)
     value <- list(hex = value)
@@ -411,7 +428,8 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
     label,
     config,
     "color-picker-input",
-    placeholder
+    placeholder,
+    style
   )
 }
 
@@ -437,6 +455,8 @@ f7ColorPicker <- function(inputId, label, value = "#ff0000", placeholder = NULL,
 #' @param toolbarCloseText Text for Done/Close toolbar button.
 #' @param header Enables calendar header.
 #' @param headerPlaceholder Default calendar header placeholder text.
+#' @param style Input style. Inherit from \link{f7List} options
+#' such as outline, inset, strong and dividers.
 #' @param ... Other options to pass to the picker. See
 #' \url{https://framework7.io/docs/calendar#calendar-parameters}.
 #'
@@ -452,7 +472,13 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
                          openIn = c("auto", "popover", "sheet", "customModal"),
                          scrollToInput = FALSE, closeByOutsideClick = TRUE,
                          toolbar = TRUE, toolbarCloseText = "Done", header = FALSE,
-                         headerPlaceholder = "Select date", ...) {
+                         headerPlaceholder = "Select date",
+                         style = list(
+                           outline = FALSE,
+                           inset = FALSE,
+                           strong = FALSE,
+                           dividers = FALSE
+                         ), ...) {
   direction <- match.arg(direction)
   openIn <- match.arg(openIn)
 
@@ -481,7 +507,8 @@ f7DatePicker <- function(inputId, label, value = NULL, multiple = FALSE, directi
     inputId,
     label,
     config,
-    "calendar-input"
+    "calendar-input",
+    style = style
   )
 }
 
@@ -930,7 +957,7 @@ createInputLayout <- function(
   listify(item)
 }
 
-listify <- function(tag) {
+listify <- function(tag, style = NULL) {
   is_wrapped <- sum(
     grepl(
       "^f7List",
@@ -939,9 +966,16 @@ listify <- function(tag) {
     )
   ) == 1
 
-  # This list can't be styled as this would conflict
-  # with the input style.
-  if (!is_wrapped) f7List(tag) else tag
+  # This list can only be styled by inputs making use
+  # of the buildPicker function. For others, it would
+  # conflict with the input style.
+  if (!is.null(style) & !is_wrapped) {
+    do.call(f7List, c(tag, style))
+  } else if (!is_wrapped) {
+    f7List(tag)
+  } else {
+    tag
+  }
 }
 
 #' Create an input tag
@@ -1337,18 +1371,18 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
 
   # main wrapper
   switch(layout,
-    "default" = shiny::div(
-      # stepper tag
-      style = "display: flex; align-items: center;",
-      shiny::tags$small(label, style = "padding: 5px"),
-      stepperTag
-    ),
-    "list" = listify(
-      f7ListItem(
-        title = label,
-        right = stepperTag
-      )
-    )
+         "default" = shiny::div(
+           # stepper tag
+           style = "display: flex; align-items: center;",
+           shiny::tags$small(label, style = "padding: 5px"),
+           stepperTag
+         ),
+         "list" = listify(
+           f7ListItem(
+             title = label,
+             right = stepperTag
+           )
+         )
   )
 }
 
@@ -1408,7 +1442,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   shiny::tagList(
     # toggle tag
     shiny::tags$span(label,
-      style = "padding: 5px"
+                     style = "padding: 5px"
     ),
     shiny::tags$label(
       class = toggleCl,
@@ -1667,9 +1701,9 @@ f7Form <- function(id, ...) {
 
     query$
       addAttrs(
-      name = id,
-      `data-shiny-no-bind-input` = NA
-    )$allTags()
+        name = id,
+        `data-shiny-no-bind-input` = NA
+      )$allTags()
   })
   shiny::tags$form(class = "inputs-form", id = id, inputs)
 }

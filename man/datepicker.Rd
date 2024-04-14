@@ -21,6 +21,7 @@ f7DatePicker(
   toolbarCloseText = "Done",
   header = FALSE,
   headerPlaceholder = "Select date",
+  style = list(outline = FALSE, inset = FALSE, strong = FALSE, dividers = FALSE),
   ...
 )
 
@@ -64,6 +65,9 @@ In case of auto will open in sheet modal on small screens and in popover on larg
 \item{header}{Enables calendar header.}
 
 \item{headerPlaceholder}{Default calendar header placeholder text.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{...}{Other options to pass to the picker. See
 \url{https://framework7.io/docs/calendar#calendar-parameters}.}

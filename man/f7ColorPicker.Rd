@@ -17,6 +17,7 @@ f7ColorPicker(
   hexLabel = TRUE,
   hexValueEditable = TRUE,
   groupedModules = TRUE,
+  style = list(outline = FALSE, inset = FALSE, strong = FALSE, dividers = FALSE),
   ...
 )
 }
@@ -47,6 +48,9 @@ elements to edit directly.}
 
 \item{groupedModules}{When enabled it will add more exposure
 to sliders modules to make them look more separated.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{...}{Other options to pass to the picker. See
 \url{https://framework7.io/docs/color-picker#color-picker-parameters}.}

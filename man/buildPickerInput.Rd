@@ -4,7 +4,7 @@
 \alias{buildPickerInput}
 \title{Build input tag for picker elements}
 \usage{
-buildPickerInput(id, label, config, class, placeholder = NULL)
+buildPickerInput(id, label, config, class, placeholder = NULL, style = NULL)
 }
 \description{
 Build input tag for picker elements

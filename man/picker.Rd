@@ -18,6 +18,7 @@ f7Picker(
   toolbar = TRUE,
   toolbarCloseText = "Done",
   sheetSwipeToClose = FALSE,
+  style = list(inset = FALSE, outline = FALSE, strong = FALSE, dividers = FALSE),
   ...
 )
 
@@ -64,6 +65,9 @@ Default to TRUE.}
 \item{toolbarCloseText}{Text for Done/Close toolbar button.}
 
 \item{sheetSwipeToClose}{Enables ability to close Picker sheet with swipe. Default to FALSE.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{...}{Other options to pass to the picker. See
 \url{https://framework7.io/docs/picker#picker-parameters}.}
