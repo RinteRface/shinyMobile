@@ -59,6 +59,10 @@ shinyApp(
             "Apple", "Apricot", "Avocado", "Banana", "Melon",
             "Orange", "Peach", "Pear", "Pineapple"
           )
+        ),
+        f7Toggle(
+          inputId = "toggle",
+          label = "Toggle me"
         )
       )
     )
@@ -78,7 +82,10 @@ The following inputs are supported:
 - `f7TextArea`
 - `f7Password`
 - `f7Select`
+- `f7SmartSelect`
 - `f7AutoComplete`
+- `f7Stepper`
+- `f7Toggle`
 
 <br>
 
@@ -119,6 +126,23 @@ shinyApp(
           label = "Make a choice",
           choices = 1:3,
           selected = 1
+        ),
+        f7Stepper(
+          inputId = "stepper",
+          "Stepper",
+          0,
+          10,
+          5,
+          layout = "list"
+        ),
+        f7SmartSelect(
+          "smartselect",
+          "SmartSelect",
+          colnames(mtcars)
+        ),
+        f7Toggle(
+          inputId = "toggle",
+          label = "Toggle me"
         )
       ),
       f7DatePicker(
@@ -225,23 +249,7 @@ shinyApp(
               outline = TRUE,
               media = f7Icon("house")
             )
-          ),
-          f7AutoComplete(
-          inputId = "myautocomplete",
-          placeholder = "Some text here!",
-          openIn = "dropdown",
-          label = "Type a fruit name",
-          choices = c(
-            "Apple", "Apricot", "Avocado", "Banana", "Melon",
-            "Orange", "Peach", "Pear", "Pineapple"
-          ),
-          style = list(
-            outline = TRUE,
-            media = f7Icon("house"),
-            description = "typeahead input",
-            floating = TRUE
           )
-        )
         )
       ),
       verbatimTextOutput("form")
@@ -257,8 +265,7 @@ shinyApp(
           "text" = "New text",
           "textarea" = "New text area",
           "password" = "New password",
-          "select" = 3,
-          "autocomplete" = "Apple"
+          "select" = 3
         )
       )
     })
@@ -277,7 +284,6 @@ Currently, the following inputs supported for the form are:
 - `f7TextArea`
 - `f7Password`
 - `f7Select`
-- `f7AutoComplete`
 
 <br>
 
