@@ -43,6 +43,7 @@ app <- shinyApp(
       navbar = f7Navbar(title = "updateF7Toggle"),
       f7Card(
         f7Button(inputId = "update", label = "Update toggle"),
+        br(),
         f7Toggle(
           inputId = "toggle",
           label = "My toggle",

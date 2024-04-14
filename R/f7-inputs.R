@@ -957,21 +957,28 @@ createInputLayout <- function(
   listify(item)
 }
 
-listify <- function(tag, style = NULL) {
-  is_wrapped <- sum(
+#' Check if f7List is in call stack
+#' @keywords internal
+is_wrapped <- function() {
+  sum(
     grepl(
       "^f7List",
       perl = TRUE,
       as.character(sys.calls())
     )
   ) == 1
+}
+
+#' Listify a tag
+#' @keywords internal
+listify <- function(tag, style = NULL) {
 
   # This list can only be styled by inputs making use
   # of the buildPicker function. For others, it would
   # conflict with the input style.
-  if (!is.null(style) & !is_wrapped) {
+  if (!is.null(style) & !is_wrapped()) {
     do.call(f7List, c(tag, style))
-  } else if (!is_wrapped) {
+  } else if (!is_wrapped()) {
     f7List(tag)
   } else {
     tag
@@ -1439,11 +1446,7 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   toggleCl <- "toggle"
   if (!is.null(color)) toggleCl <- paste0(toggleCl, " color-", color)
 
-  shiny::tagList(
-    # toggle tag
-    shiny::tags$span(label,
-                     style = "padding: 5px"
-    ),
+  toggleInnerTag <-
     shiny::tags$label(
       class = toggleCl,
       id = inputId,
@@ -1453,7 +1456,29 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
       ),
       shiny::tags$span(class = "toggle-icon")
     )
-  )
+
+  # if not wrapped inside f7List, return "standalone" toggle
+  if (!is_wrapped()) {
+    tagList(
+      shiny::tags$span(label,
+                       style = "padding: 5px"),
+      toggleInnerTag
+    )
+  } else {
+    tagList(
+      shiny::tags$li(class = "item-content",
+                     shiny::tags$div(
+                       class = "item-inner",
+                       # label
+                       shiny::tags$div(class = "item-title", label),
+                       # input
+                       shiny::tags$div(class = "item-after",
+                                       toggleInnerTag)
+                     )
+      )
+
+    )
+  }
 }
 
 #' Update Framework7 toggle input
