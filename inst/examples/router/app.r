@@ -24,7 +24,7 @@ page_1 <- function() {
       shiny::tags$div(
         class = "page",
         # top navbar goes here
-        f7Navbar("Home page"),
+        f7Navbar(title = "Home page"),
         tags$div(
           class = "page-content",
           f7List(
@@ -49,7 +49,7 @@ page_2 <- function() {
         class = "page",
         # top navbar goes here
         f7Navbar(
-          "Second page",
+          title = "Second page",
           # Allows to go back to main
           leftPanel = tags$a(
             href = "/",
@@ -112,7 +112,7 @@ page_3 <- function() {
         class = "page",
         # top navbar goes here
         f7Navbar(
-          "Third page",
+          title = "Third page",
           # Allows to go back to main
           leftPanel = tags$a(
             href = "/",
@@ -182,8 +182,6 @@ brochureApp(
     ),
     options = list(
       dark = TRUE,
-      # Note: ios seems to have issue
-      # with the sidebar title
       theme = "md",
       routes = list(
         list(path = "/", url = "/", name = "home"),
