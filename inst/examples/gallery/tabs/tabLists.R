@@ -49,20 +49,24 @@ tabLists <- f7Tab(
   # simple list
   f7BlockTitle(title = "Simple f7List") %>% f7Align(side = "center"),
   f7List(
-    lapply(1:3, function(j) f7ListItem(letters[j]))
+    lapply(1:3, function(j) {
+      f7ListItem(sprintf("Item %s content", j))
+    })
   ),
   br(),
 
   # list with complex items
-  f7BlockTitle(title = "f7List with components") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7List with custom style") %>% f7Align(side = "center"),
   f7List(
     inset = TRUE,
     outline = TRUE,
     dividers = TRUE,
     strong = TRUE,
+    mode = "media",
     lapply(1:3, function(j) {
       f7ListItem(
         title = letters[j],
+        "Content",
         media = f7Icon("alarm_fill"),
         right = "Right Text"
       )
@@ -92,23 +96,10 @@ tabLists <- f7Tab(
   ),
   br(),
 
-  # simple media list
-  f7BlockTitle(title = "f7List with simple media") %>% f7Align(side = "center"),
-  f7List(
-    mode = "media",
-    lapply(1:3, function(j) {
-      f7ListItem(
-        title = "Title",
-        subtitle = "Subtitle",
-        media = tags$img(src = paste0("https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"))
-      )
-    })
-  ),
-  br(),
-
   # list with links
   f7BlockTitle(title = "f7List with links") %>% f7Align(side = "center"),
   f7List(
+    mode = "links",
     lapply(1:3, function(j) {
       tags$li(
         f7Link(label = letters[j], href = "https://google.com")
