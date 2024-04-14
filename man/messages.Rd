@@ -100,8 +100,7 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Messages",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
       # main content

@@ -37,34 +37,6 @@ page_1 <- function() {
           )
         )
       )
-    },
-    # Important: in theory brochure makes
-    # each page having its own shiny session.
-    # That's not what we want here so only the first
-    # page has the entire server function.
-    # Other pages only provide the UI which is
-    # included by Framework7 router.
-    server = function(input, output, session) {
-      output$res <- renderText(input$text)
-      output$test <- renderPrint(input$stepper)
-
-      observeEvent(input$update, {
-        updateF7Stepper(
-          inputId = "stepper",
-          value = 0.1,
-          step = 0.01,
-          size = "large",
-          min = 0,
-          max = 1,
-          wraps = FALSE,
-          autorepeat = FALSE,
-          rounded = TRUE,
-          raised = TRUE,
-          color = "pink",
-          manual = TRUE,
-          decimalPoint = 2
-        )
-      })
     }
   )
 }
@@ -176,6 +148,32 @@ brochureApp(
   page_1(),
   page_2(),
   page_3(),
+  # Important: in theory brochure makes
+  # each page having its own shiny session/ server function.
+  # That's not what we want here so we'll have
+  # a global server function.
+  server = function(input, output, session) {
+    output$res <- renderText(input$text)
+    output$test <- renderPrint(input$stepper)
+
+    observeEvent(input$update, {
+      updateF7Stepper(
+        inputId = "stepper",
+        value = 0.1,
+        step = 0.01,
+        size = "large",
+        min = 0,
+        max = 1,
+        wraps = FALSE,
+        autorepeat = FALSE,
+        rounded = TRUE,
+        raised = TRUE,
+        color = "pink",
+        manual = TRUE,
+        decimalPoint = 2
+      )
+    })
+  },
   wrapped = f7MultiLayout,
   wrapped_options = list(
     # Common toolbar

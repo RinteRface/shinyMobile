@@ -204,8 +204,8 @@ f7DefaultOptions <- function() {
 #'
 #' r lifecycle::badge("experimental")`
 #' Experimental multi pages layout. This has to be used
-#' with the brochure R package. See the corresponding vignette at
-#' \code{vignette("multipages", package = "shinyMobile")}.
+#' with the brochure R package. See in the corresponding
+#' pkgdown article.
 #'
 #' @param ... Pages. Must be an element like
 #' \code{shiny::tags$div(class = "page", ...)}

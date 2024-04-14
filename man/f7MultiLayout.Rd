@@ -75,6 +75,6 @@ In any case, you must follow the same structure as provided in the function argu
 \description{
 r lifecycle::badge("experimental")`
 Experimental multi pages layout. This has to be used
-with the brochure R package. See the corresponding vignette at
-\code{vignette("multipages", package = "shinyMobile")}.
+with the brochure R package. See in the corresponding
+pkgdown article.
 }
