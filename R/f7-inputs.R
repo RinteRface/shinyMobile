@@ -1465,18 +1465,11 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
       toggleInnerTag
     )
   } else {
-    tagList(
-      shiny::tags$li(class = "item-content",
-                     shiny::tags$div(
-                       class = "item-inner",
-                       # label
-                       shiny::tags$div(class = "item-title", label),
-                       # input
-                       shiny::tags$div(class = "item-after",
-                                       toggleInnerTag)
-                     )
+    listify(
+      f7ListItem(
+        title = label,
+        right = toggleInnerTag
       )
-
     )
   }
 }
