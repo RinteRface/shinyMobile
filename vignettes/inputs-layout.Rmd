@@ -62,7 +62,16 @@ By default inputs list is displayed with stacked labels. Stacked labels always a
 
 <br>
 
-The following inputs are supported: `f7Text`, `f7TextArea`, `f7Password`, `f7Select`, `f7SmartSelect`. This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List` and style them manually with the available options in the input. For example:
+The following inputs are supported: 
+
+- `f7Text`
+- `f7TextArea`
+- `f7Password`
+- `f7Select`
+
+<br>
+
+This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List` and style them manually with the available options in the input. For example:
 
 ```{r, eval = FALSE}
 library(shiny)
@@ -132,4 +141,107 @@ shinyApp(
 
 ## Forms
 
-TODO
+Since {shinyMobile} 2.0.0, the functions `f7Form` and `updateF7Form` have been introduced to gather inputs in the same form and update them in batch or only selected ones. The form returns a list with all the inputs inside it, and you can access them by their `inputId`. 
+
+<br>
+
+In the below example this means you can gather all the values by simply calling `input$myform` and update them all at once by calling `updateF7Form`:
+
+```{r, eval = FALSE}
+
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Inputs form"),
+      f7Block(f7Button("update", "Click me")),
+      f7BlockTitle("A list of inputs in a form"),
+      f7List(
+        inset = TRUE,
+        dividers = FALSE,
+        strong = TRUE,
+        f7Form(
+          id = "myform",
+          f7Text(
+            inputId = "text",
+            label = "Text input",
+            value = "Some text",
+            placeholder = "Your text here",
+            style = list(
+              description = "A cool text input",
+              outline = TRUE,
+              media = f7Icon("house"),
+              clearable = TRUE,
+              floating = TRUE
+            )
+          ),
+          f7TextArea(
+            inputId = "textarea",
+            label = "Text Area",
+            value = "Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua",
+            placeholder = "Your text here",
+            resize = TRUE,
+            style = list(
+              description = "A cool text input",
+              outline = TRUE,
+              media = f7Icon("house"),
+              clearable = TRUE,
+              floating = TRUE
+            )
+          ),
+          f7Password(
+            inputId = "password",
+            label = "Password:",
+            placeholder = "Your password here",
+            style = list(
+              description = "A cool text input",
+              outline = TRUE,
+              media = f7Icon("house"),
+              clearable = TRUE,
+              floating = TRUE
+            )
+          ),
+          f7Select(
+            inputId = "select",
+            label = "Select a number",
+            choices = c(1, 2, 3)
+          )
+        )
+      ),
+      verbatimTextOutput("form")
+    )
+  ),
+  server = function(input, output, session) {
+    output$form <- renderPrint(input$myform)
+    
+    observeEvent(input$update, {
+      updateF7Form(
+        "myform",
+        data = list(
+          "text" = "New text",
+          "textarea" = "New text area",
+          "password" = "New password",
+          "select" = 3
+        )
+      )
+    })
+  }
+)
+
+```
+
+Currently, the following inputs supported for the form are: 
+
+- `f7Text`
+- `f7TextArea`
+- `f7Password`
+- `f7Select`
+
+<br>
+
+Having other types of inputs in your form might not looks as good, or it might not return the expected results.
+
