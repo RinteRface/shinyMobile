@@ -43,6 +43,9 @@ page_2 <- function() {
     href = "/2",
     ui = function(request) {
       # Page 2 UI
+    },
+    server = function(input, output, session) {
+      # Server function
     }
   )
 }
@@ -52,6 +55,9 @@ page_3 <- function() {
     href = "/3",
     ui = function(request) {
       # Page 3 UI
+    },
+    server = function(input, output, session) {
+      # Server function
     }
   )
 }
@@ -575,6 +581,7 @@ my_page <- function() {
   page(
     href = "/",
     ui = page_ui("page1")
+  )
 }
 
 brochureApp(
