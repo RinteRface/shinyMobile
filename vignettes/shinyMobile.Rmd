@@ -56,6 +56,8 @@ Of course, turning your Shiny app into a PWA doesn't get you there completely: y
 
 When set to auto, it automatically detects if the app is running with Android (using Material Design, MD) or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS theme on an android device and inversely, although not recommended.
 
+<br>
+
 Besides these themes, `{shinyMobile}` gives you the possibility to choose between a light or dark mode, which can be set in the app options that we'll come back to later.
 
 ## Layouts
@@ -99,6 +101,7 @@ With over 50 core components, `{shinyMobile}` provides a wide range of UI elemen
 - `f7Accordion()`: an accordion container
 - `f7Block()`: content block designed to add extra formatting and required spacing for text content
 - `f7Card()`: a card container
+- `f7List()`: a list container
 - `f7Panel()`: sidebar elements
 - `f7Popup()`: a popup window
 - `f7Sheet()`: a modal sheet
@@ -146,7 +149,7 @@ f7Page(
 )
 ```
 
-`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, `f7SplitLayout` or the experimental `f7MultiLayout` which we will discuss further in the Layouts section. 
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, `f7SplitLayout` or the experimental `f7MultiLayout`, which we will discuss further in the Layouts section. 
 
 <br>
 
@@ -187,6 +190,10 @@ options = list(
   pullToRefresh = FALSE
 )
 ```
+
+The default options are all set with the help of `f7DefaultOptions()`.
+
+<br>
 
 As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and there is support for a dark or light mode. The `dark` option supports 3 values: `TRUE`, `FALSE` or `"auto"`. In case of `"auto"`, the default, the app will automatically switch between dark and light mode based on the user's system settings.
 
@@ -274,6 +281,7 @@ As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be consider
 ## Layouts
 
 `{shinyMobile}` offers four layouts: 
+
 - `f7SingleLayout()`
 - `f7TabLayout()`
 - `f7SplitLayout()`
@@ -553,11 +561,7 @@ The main content goes in the __...__ parameter. Navigation items are gathered in
 
 <br>
 
-The sidebar expect a `f7Panel()`. Importantly, do not forget to allow the `leftPanel` with `f7Navbar(leftPanel = TRUE)`! The sidebar menu is organized as follows:
-
-<br>
-
-The sidebar is composed of `f7Panel()` with and `f7PanelMenu` and one or more `f7PanelItem()`:
+The `sidebar` is composed of `f7Panel()` with and `f7PanelMenu` and one or more `f7PanelItem()`:
 
 
 ```{r, eval=FALSE}
@@ -585,7 +589,10 @@ f7Panel(
 )
 ```
 
-Note that `f7Panel` has `side` set to `left`.
+Two important notes:
+
+- Do not forget to allow the `leftPanel` in the navbar with `f7Navbar(leftPanel = TRUE)`!
+- `f7Panel` has `side` set to `left`.
 
 <br>
 
