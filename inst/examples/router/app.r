@@ -72,32 +72,27 @@ page_2 <- function() {
         #  )
         # ),
         shiny::tags$div(
-          class = "page-content", f7Block(
+          class = "page-content",
+          f7Block(f7Button(inputId = "update", label = "Update stepper")),
+          f7List(
             strong = TRUE,
             inset = TRUE,
-            outline = TRUE,
-            f7Block(f7Button(inputId = "update", label = "Update stepper")),
-            f7Block(
-              strong = TRUE,
-              inset = TRUE,
-              outline = TRUE,
-              f7Stepper(
-                inputId = "stepper",
-                label = "My stepper",
-                min = 0,
-                max = 10,
-                size = "small",
-                value = 4,
-                wraps = TRUE,
-                autorepeat = TRUE,
-                rounded = FALSE,
-                raised = FALSE,
-                manual = FALSE,
-                layout = "list"
-              ),
-              verbatimTextOutput("test")
+            outline = FALSE,
+            f7Stepper(
+              inputId = "stepper",
+              label = "My stepper",
+              min = 0,
+              max = 10,
+              size = "small",
+              value = 4,
+              wraps = TRUE,
+              autorepeat = TRUE,
+              rounded = FALSE,
+              raised = FALSE,
+              manual = FALSE
             )
-          )
+          ),
+          verbatimTextOutput("test")
         )
       )
     }

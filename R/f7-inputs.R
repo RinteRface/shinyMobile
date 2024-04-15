@@ -1318,7 +1318,6 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
 #' TRUE by default.
 #' @param decimalPoint Number of digits after dot, when in manual input mode.
 #' @param buttonsEndInputMode Disables manual input mode on Stepper's minus or plus button click.
-#' @param layout Either "default" or "list" (input is pushed to the right side).
 #'
 #' @rdname stepper
 #' @example inst/examples/stepper/app.R
@@ -1326,8 +1325,7 @@ updateF7Slider <- function(inputId, min = NULL, max = NULL, value = NULL,
 f7Stepper <- function(inputId, label, min, max, value, step = 1,
                       fill = FALSE, rounded = FALSE, raised = FALSE, size = NULL,
                       color = NULL, wraps = FALSE, autorepeat = TRUE, manual = FALSE,
-                      decimalPoint = 4, buttonsEndInputMode = TRUE, layout = c("default", "list")) {
-  layout <- match.arg(layout)
+                      decimalPoint = 4, buttonsEndInputMode = TRUE) {
   stepperCl <- "stepper"
   if (fill) stepperCl <- paste(stepperCl, "stepper-fill")
   if (rounded) stepperCl <- paste(stepperCl, "stepper-round")
@@ -1376,21 +1374,22 @@ f7Stepper <- function(inputId, label, min, max, value, step = 1,
     shiny::tags$div(class = "stepper-button-plus")
   )
 
-  # main wrapper
-  switch(layout,
-         "default" = shiny::div(
-           # stepper tag
-           style = "display: flex; align-items: center;",
-           shiny::tags$small(label, style = "padding: 5px"),
-           stepperTag
-         ),
-         "list" = listify(
-           f7ListItem(
-             title = label,
-             right = stepperTag
-           )
-         )
-  )
+  # if not wrapped inside f7List, return "standalone" toggle
+  if (!is_wrapped()) {
+    shiny::div(
+      # stepper tag
+      style = "display: flex; align-items: center;",
+      shiny::tags$small(label, style = "padding: 5px"),
+      stepperTag
+    )
+  } else {
+    listify(
+      f7ListItem(
+        title = label,
+        right = stepperTag
+      )
+    )
+  }
 }
 
 #' Update Framework7 stepper

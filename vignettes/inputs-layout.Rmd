@@ -130,10 +130,9 @@ shinyApp(
         f7Stepper(
           inputId = "stepper",
           "Stepper",
-          0,
-          10,
-          5,
-          layout = "list"
+          min = 0,
+          max = 10,
+          value = 5
         ),
         f7SmartSelect(
           "smartselect",

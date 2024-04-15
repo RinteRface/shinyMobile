@@ -7,7 +7,7 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(title = "updateF7Stepper"),
       f7Block(f7Button(inputId = "update", label = "Update stepper")),
-      f7Block(
+      f7List(
         strong = TRUE,
         inset = TRUE,
         outline = TRUE,
@@ -22,11 +22,10 @@ app <- shinyApp(
           autorepeat = TRUE,
           rounded = FALSE,
           raised = FALSE,
-          manual = FALSE,
-          layout = "list"
-        ),
-        verbatimTextOutput("test")
-      )
+          manual = FALSE
+        )
+      ),
+      verbatimTextOutput("test")
     )
   ),
   server = function(input, output, session) {

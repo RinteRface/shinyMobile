@@ -84,6 +84,7 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 the new router layout.
 - New `f7DefaultOptions()`: can be used in `f7Page()` to pass app options.
 - `f7Picker`, `f7DatePicker` and `f7ColorPicker` now have an additional `style` parameter to set the input style and inherit from `f7List` options such as outline, inset, strong and dividers.
+- `f7Toggle()` and `f7Stepper()` automatically detect when they are called inside a `f7List` and adjust accordingly to the list style.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1
