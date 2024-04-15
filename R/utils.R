@@ -152,8 +152,7 @@ processDeps <- function(tags, session) {
 
 #' Create an iframe container for app demo
 #'
-#' @param url app URL. httr GET test is run before. If failed,
-#' function returns NULL.
+#' @param url app URL.
 #' @param deps Whether to include marvel device assets. Default to FALSE.
 #' The first occurence must set deps to TRUE so that CSS is loaded in the page.
 #' @param skin Wrapper devices.
@@ -164,36 +163,30 @@ processDeps <- function(tags, session) {
 #' @param landscape Whether to put the device wrapper in landscape mode. Default to FALSE.
 #' @keywords internal
 app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FALSE) {
-  # test app availability
-  req <- httr::GET(url)
-  show_app <- req$status_code == 200
-
-  if (show_app) {
-    device_tag <- create_app_container(
-      shiny::tags$iframe(
-        width = "100%",
-        src = url,
-        allowfullscreen = "",
-        frameborder = "0",
-        scrolling = "yes",
-        height = set_app_height(skin, landscape)
+  device_tag <- create_app_container(
+    shiny::tags$iframe(
+      width = "100%",
+      src = url,
+      allowfullscreen = "",
+      frameborder = "0",
+      scrolling = "yes",
+      height = set_app_height(skin, landscape)
+    ),
+    skin = skin,
+    color = color,
+    landscape = landscape
+  )
+  if (deps) {
+    shiny::tagList(
+      shiny::tags$link(
+        rel = "stylesheet",
+        href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "shinyMobile"),
+        type = "text/css"
       ),
-      skin = skin,
-      color = color,
-      landscape = landscape
-    )
-    if (deps) {
-      shiny::tagList(
-        shiny::tags$link(
-          rel = "stylesheet",
-          href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "shinyMobile"),
-          type = "text/css"
-        ),
-        device_tag
-      )
-    } else {
       device_tag
-    }
+    )
+  } else {
+    device_tag
   }
 }
 

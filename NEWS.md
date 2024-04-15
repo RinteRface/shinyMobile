@@ -22,6 +22,7 @@
 - `f7SmartSelect()`: `maxlength` becomes `maxLength`. Typo from Framework7.
 - Remove `value` from `f7Password()` (accidental copy and paste from `f7Text()`).
 - Possible breaking change: `f7Toolbar()` default position is now `bottom`.
+- Possible breaking change: remove `httr` dependency from `app_container()`.
 
 ## Soft deprecation
 - `f7Accordion()`:

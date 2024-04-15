@@ -7,8 +7,7 @@
 app_container(url, deps = FALSE, skin, color = NULL, landscape = FALSE)
 }
 \arguments{
-\item{url}{app URL. httr GET test is run before. If failed,
-function returns NULL.}
+\item{url}{app URL.}
 
 \item{deps}{Whether to include marvel device assets. Default to FALSE.
 The first occurence must set deps to TRUE so that CSS is loaded in the page.}
