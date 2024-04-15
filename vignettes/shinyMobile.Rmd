@@ -60,11 +60,12 @@ Besides these themes, `{shinyMobile}` gives you the possibility to choose betwee
 
 ## Layouts
 
-`{shinyMobile}` brings 3 out-of-the-box layouts:
+`{shinyMobile}` brings 4 out-of-the-box layouts:
 
 - `f7SingleLayout()`: develop __simple__ apps (best choice for iOS/android Apps).
 - `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
 - `f7SplitLayout()`: for __tablets__ with a sidebar, navbar and a main panel
+- `f7MultiLayout()`: a layout consisting of __multiple pages__ that allows to have beautiful transitions between pages to provide a more native like experience. This layout is experimental.
 
 ## UI elements
 
@@ -145,7 +146,7 @@ f7Page(
 )
 ```
 
-`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, or `f7SplitLayout` which we will discuss further in the Layouts section. 
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, `f7SplitLayout` or the experimental `f7MultiLayout` which we will discuss further in the Layouts section. 
 
 <br>
 
@@ -272,10 +273,11 @@ As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be consider
 
 ## Layouts
 
-`{shinyMobile}` offers three layouts: 
+`{shinyMobile}` offers four layouts: 
 - `f7SingleLayout()`
 - `f7TabLayout()`
-- `f7SplitLayout()`.
+- `f7SplitLayout()`
+- `f7MultiLayout()` (experimental)
 
 <br>
 
@@ -776,6 +778,10 @@ shinyApp(
 )
 ```
 </div>
+
+### Multi Layout
+
+The layout for __multiple pages__ is covered in a [separate article](https://shinymobile.rinterface.com/articles/multipages).
 
 # Gadgets
 
