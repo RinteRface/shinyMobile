@@ -12,7 +12,7 @@ Since {shinyMobile} 2.0.0, the layout of inputs has been improved. It is recomme
 
 ## Inputs Layout
 
-Let's say you have multiple inputs, like a text input, a text area input, and a select input. You can wrap them inside a `f7List` to benefit from the styling options, styling them all at once. 
+In your app you can have many different inputs. Most of the time these inputs are nicely displayed together so the users can make her/his selections. With the many styling options that Framework7 provides, it can be quite a hassle if you would have to style them all individually. Luckily, you don't have to! You can wrap them inside a `f7List` to benefit from the styling options, styling them all at once:
 
 ```{r, eval = FALSE}
 library(shiny)
@@ -63,6 +63,23 @@ shinyApp(
         f7Toggle(
           inputId = "toggle",
           label = "Toggle me"
+        ),
+        f7Picker(
+          inputId = "picker",
+          placeholder = "Some text here!",
+          label = "Picker Input",
+          choices = c("a", "b", "c"),
+          options = list(sheetPush = TRUE)
+        ),
+        f7DatePicker(
+          inputId = "date",
+          label = "Pick a date",
+          value = Sys.Date()
+        ),
+        f7ColorPicker(
+          inputId = "mycolorpicker",
+          placeholder = "Some text here!",
+          label = "Select a color"
         )
       )
     )
@@ -86,10 +103,13 @@ The following inputs are supported:
 - `f7AutoComplete`
 - `f7Stepper`
 - `f7Toggle`
+- `f7Picker`
+- `f7DatePicker`
+- `f7ColorPicker`
 
 <br>
 
-This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List` and style them manually with the available options in the input. For example:
+This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List` and style them manually with the available options in the input. For example, `f7CheckboxGroup` and `f7Radio` are not supported in `f7List` but can be styled to look similar:
 
 ```{r, eval = FALSE}
 library(shiny)
@@ -106,7 +126,7 @@ shinyApp(
         hairline = FALSE
       ),
       f7List(
-        inset = FALSE,
+        inset = TRUE,
         dividers = TRUE,
         strong = TRUE,
         f7Text(
@@ -127,43 +147,60 @@ shinyApp(
           choices = 1:3,
           selected = 1
         ),
-        f7Stepper(
-          inputId = "stepper",
-          "Stepper",
-          min = 0,
-          max = 10,
-          value = 5
-        ),
-        f7SmartSelect(
-          "smartselect",
-          "SmartSelect",
-          colnames(mtcars)
+        f7AutoComplete(
+          inputId = "myautocomplete",
+          placeholder = "Some text here!",
+          openIn = "dropdown",
+          label = "Type a fruit name",
+          choices = c(
+            "Apple", "Apricot", "Avocado", "Banana", "Melon",
+            "Orange", "Peach", "Pear", "Pineapple"
+          )
         ),
         f7Toggle(
           inputId = "toggle",
           label = "Toggle me"
+        ),
+        f7Picker(
+          inputId = "picker",
+          placeholder = "Some text here!",
+          label = "Picker Input",
+          choices = c("a", "b", "c"),
+          options = list(sheetPush = TRUE)
+        ),
+        f7DatePicker(
+          inputId = "date",
+          label = "Pick a date",
+          value = Sys.Date()
+        ),
+        f7ColorPicker(
+          inputId = "mycolorpicker",
+          placeholder = "Some text here!",
+          label = "Select a color"
         )
       ),
-      f7DatePicker(
-        inputId = "date",
-        label = "Pick a date",
-        value = Sys.Date(),
-        style = list(
-          inset = FALSE,
-          dividers = TRUE,
-          strong = TRUE
-        )
-      ),
-      f7Picker(
-        inputId = "picker",
-        placeholder = "Some text here!",
-        label = "Picker Input",
+      f7CheckboxGroup(
+        inputId = "checkbox",
+        label = "Checkbox group",
         choices = c("a", "b", "c"),
-        options = list(sheetPush = TRUE),
+        selected = "a",
         style = list(
-          inset = FALSE,
+          inset = TRUE,
           dividers = TRUE,
-          strong = TRUE
+          strong = TRUE,
+          outline = FALSE
+        )
+      ),
+      f7Radio(
+        inputId = "radio",
+        label = "Radio group",
+        choices = c("a", "b", "c"),
+        selected = "a",
+        style = list(
+          inset = TRUE,
+          dividers = TRUE,
+          strong = TRUE,
+          outline = FALSE
         )
       )
     )
