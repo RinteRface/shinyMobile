@@ -226,34 +226,59 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
 #'
 #' @keywords internal
 buildPickerInput <- function(id, label, config, class, placeholder = NULL, style = NULL) {
-  inputTag <-
-    tagList(
-      shiny::tags$div(
-        class = "item-content item-input",
-        shiny::tags$div(
-          class = "item-inner",
-          shiny::tags$div(
-            class = "item-input-wrap",
-            shiny::tags$input(
-              id = id,
-              class = class,
-              type = "text",
-              placeholder = placeholder
-            ),
-            buildConfig(id, config)
-          )
-        )
-      )
+
+  pickerInnerTag <-
+    shiny::tags$div(
+      class = "item-input-wrap",
+      shiny::tags$input(
+        id = id,
+        class = class,
+        type = "text",
+        placeholder = placeholder
+      ),
+      buildConfig(id, config)
     )
 
-  # tag wrapper
-  shiny::tagList(
-    shiny::tags$div(
-      class = "block-title",
-      label
-    ),
-    listify(inputTag, style)
-  )
+  # if not wrapped inside f7List, return "standalone" picker
+  if (!is_wrapped()) {
+    tagList(
+      shiny::tags$div(
+        class = "block-title",
+        label
+      ),
+      listify(
+        tagList(
+          htmltools::tagQuery(f7ListItem())$
+            find(".item-inner")$
+            append(pickerInnerTag)$
+            allTags()
+        ),
+        style
+      )
+    )
+  } else {
+    item <-
+      listify(
+        htmltools::tagQuery(
+          f7ListItem(title = label)
+        )$
+          find(".item-inner")$
+          append(pickerInnerTag)$
+          allTags(),
+        style
+      )
+
+    item <-
+      htmltools::tagQuery(item)$
+      find(".item-title")$
+      addClass("item-label")$
+      allTags()
+
+    htmltools::tagQuery(item)$
+      find(".item-content")$
+      addClass("item-input")$
+      allTags()
+  }
 }
 
 #' Build config tag for JavaScript
