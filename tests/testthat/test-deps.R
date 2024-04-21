@@ -1,5 +1,5 @@
 test_that("pwa compat deps", {
-  tag <- add_pwacompat_deps(div())
+  tag <- add_pwacompat_deps(shiny::div())
   deps <- htmltools::findDependencies(tag)
   expect_is(deps, "list")
   expect_length(deps, 1)
@@ -8,7 +8,7 @@ test_that("pwa compat deps", {
 })
 
 test_that("pwa deps", {
-  tag <- add_pwa_deps(div())
+  tag <- add_pwa_deps(shiny::div())
   deps <- htmltools::findDependencies(tag)
   expect_is(deps, "list")
   expect_length(deps, 1)
