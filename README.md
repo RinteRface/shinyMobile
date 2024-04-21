@@ -14,6 +14,7 @@
 ```r
 # from CRAN
 install.packages("shinyMobile")
+
 # for the latest version
 devtools::install_github("RinteRface/shinyMobile")
 ```
@@ -25,11 +26,16 @@ A running demo is available [here](https://shinylive.io/r/app/#h=0&code=NobwRAdg
 ## Progressive Web App (PWA)
 
 ### Configuration
-`{shinyMobile}` is PWA capable, meaning that it can be displayed full screen on many mobile
-devices. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE` (it leverages the Google PWA compatibility
-[script](https://github.com/GoogleChromeLabs/pwacompat)). 
 
-To setup the necessary assets for your PWA, you may run:
+`{shinyMobile}` is PWA capable, meaning that you can make sure your app uses the correct assets to be used as a PWA. This feature is automatically handled by `f7Page()` if `allowPWA` is `TRUE`. 
+
+<br>
+
+When set to `TRUE`, your app is set up to use both a `service-worker.js` script and a `manifest.webmanifest` file that you will provide.
+
+<br>
+
+To create these necessary assets for your PWA, you can use `{charpente}`:
 
 ```r
 remotes::install_github("RinteRface/charpente")
@@ -37,28 +43,36 @@ library(charpente)
 set_pwa(APP_PATH, ...)
 ```
 
-where `APP_PATH` is the app location. It only works if the app is inside a package like with
-{golem}. Alternatively, you may copy the `www` folder of the gallery [app](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www), which provides:
+Where `APP_PATH` is the app location. Currently, it only works if the app is **inside a package** like with [`{golem}`](https://github.com/ThinkR-open/golem). If your app is not in a package, you may copy the `www` folder of the [gallery app](https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www), which provides:
 
-- A valid service worker.
-- A valid `offline.html` fallback.
-- A valid web manifest. Don't forget to change the `start_url` property to the path of your app.
+- A valid `service-worker.js`.
+- A valid web manifest (`manifest-webmanifest`). Don't forget to change the `start_url` property to the path of your app.
 For instance, the following app hosted at https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/, has the `/rstudio-global-2021-calendar/` path.
+- As a bonus a valid `offline.html` fallback, which is displayed when the app is offline.
 - A valid set of icons. There are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
 
-It is really easier with `{charpente}`, the reason why we strongly recommend to develop your app
-inside a package.
+It is really easier with `{charpente}`, the reason why we strongly recommend to develop your app inside a package.
 
-### Add the PWA to your desktop Apps
+<br>
 
-Copy the url of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app, with top and bottom ugly navigation bars.
+But that's not all that's needed! When you set `allowPWA = TRUE` in `f7Page()`, the app will also attach the [Google PWA compatibility script](https://github.com/GoogleChromeLabs/pwacompat), called PWACompat, which will help with PWA compatibility. More specifically, PWACompat brings the Web App Manifest to non-compliant browsers for better PWAs. This mostly means creating splash screens and icons for Mobile Safari, as well as supporting IE/Edge's Pinned Sites feature. It basically assures that the `manifest.webmanifest` file has a wider support.
 
-- Select the share button located in the bottom bar of your Iphone/Ipad. For Android,
-you may do something similar. Importantly, Chrome for iOS does not support this feature, that's why I recommend using Safari.
+### Using your PWA
+
+The first step is to deploy your app somewhere. It doesn't matter where (shinyapps.io, Posit Connect, your own server, etc.), but you will need a URL to access it.
+
+<br>
+
+Then, you can follow these steps to install your app on your mobile device.
+
+<br> 
+Copy the URL of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app, with top and bottom ugly navigation bars that are part of the browser UI.
+
+- Select the share button located in the bottom bar of your iPhone/iPad For Android, you may do something similar. Importantly, Chrome for iOS does not support this feature, that's why we recommend using Safari.
 - Click on "Add to Home Screen"
 - Choose a relevant name and click on OK. 
-- The app will be added to your IOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.
+- The app will be added to your iOS/Android Apps. In case you want custom icons, replace the content of the www folder with your own.
 
 <div class="row">
 <div class="card">
@@ -68,7 +82,7 @@ you may do something similar. Importantly, Chrome for iOS does not support this 
 
 ### Limitations
 It is actually quite complex to guarantee that all mobile platforms are supported.
-The PWA compatibility script will work in most of the case. If not, please open an issue [here](https://github.com/GoogleChromeLabs/pwacompat/issues), to help improving it!
+The PWA compatibility script will work in most cases. If not, please open an issue [here](https://github.com/GoogleChromeLabs/pwacompat/issues), to help improving it!
 
 ## Acknowledgement
 
