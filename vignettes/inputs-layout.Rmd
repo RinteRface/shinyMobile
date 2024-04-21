@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Since {shinyMobile} 2.0.0, the layout of inputs has been improved. It is recommended that multiple inputs are wrapped inside a `f7List` to benefit from styling options such as `outline`, `inset`, `strong`, and `dividers`. Also introduced since 2.0.0 are the functions `f7Form` and `updateF7Form` to gather inputs in the same form and update them in batch or only selected ones.
+Since {shinyMobile} 2.0.0, the layout of inputs has been improved. It is recommended that multiple inputs are wrapped inside a `f7List` to benefit from styling options such as `inset`, `strong`, `dividers`,and `outline`. Also introduced since 2.0.0 are the functions `f7Form` and `updateF7Form` to gather inputs in the same form and update them in batch or only selected ones.
 
 ## Inputs Layout
 
@@ -32,6 +32,7 @@ shinyApp(
         inset = TRUE,
         dividers = TRUE,
         strong = TRUE,
+        outline = FALSE,
         f7Text(
           inputId = "text",
           label = "Text input",
@@ -129,6 +130,7 @@ shinyApp(
         inset = TRUE,
         dividers = TRUE,
         strong = TRUE,
+        outline = FALSE,
         f7Text(
           inputId = "text",
           label = "Text input",
@@ -233,6 +235,7 @@ shinyApp(
         inset = TRUE,
         dividers = FALSE,
         strong = TRUE,
+        outline = FALSE,
         f7Form(
           id = "myform",
           f7Text(
