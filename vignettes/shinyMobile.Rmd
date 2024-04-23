@@ -322,8 +322,8 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZGmwor3GhwAB4E6krpx8s7ACao4soM99ureXkvRKQATPNzI8oHZonBiBAiDBJARhAB9cQkGZgeYQkjQ2EIpEQPLOAA8dWc6KhMLhiORzgApAA+Kn+Zx5BicVDwuirABuSkkUDoR2pdIZwikOW43Ag3BMdQAjAAGWUmRASkxAhYQdbKACC6CcrhYknCzgyAHYAApQPJwXWuZxEVCkcrqw1SWzcEEMADWhoAYpqADIAZQAot0MoYjI8ff7g90inB4Ib+DBHqZcAzXA7SEZE2AdMpnGhUF100bjQGtHkjH6oMpODwS65oBy6EpDSaAHJQZtKaLl3HZ6u1likVMN5ykIhEcQthht40AFUn057Y9cwWEhUdObofwnMGLLhtR5Nfq0Hu44l5cHEOdPEC90q6znUgQyOdi8USyWoP-yk8ruTEPuqJpoeR6uCeZ4XleN4RPwd5ev8T4vnAb5wb0n4DD+1B-kQAEYEBsxgTaJigeBzgAMTODAUBaJEJDkGQY4mgAwkojzWuRdZSBAcCGvOWAAKohquziKJIwhwJGEQCcJZHkc4jySBykiPNU-FCSJxFHpm2boWxDCRuocBQGpDAHgpBaoJc1y3AA8sOqDDtESgmSxNwMCOqJjvMR6+c4pFCtUHLqREGRsAQDokNwWhOaQ3R1nFJjOCAJaJcOAAkrlQO5twEkSgQQGZ2o2R5PCpdpVmXJx4EgnYhokpi5I4nk8nkaQyjWTm2UWQpNHoBWhpQHAwg1eRFyGnVcBtQp+YRFy4gsHAsrSjN5Fhg4hpcqkvJGKJ-l+QK9KVa4UAXPCyhnRJboQpINHiMIACSEDekioKGoCR2Uc4EAsDAdDqUQb5qQQd32KEE7OB6cBBKJZ3wrZnlrHYBDQ9JziyUGyW0sdlnw5dFzXTRE0RAALLGsIepqHBcIapMHc4AC+-mM3MYCMwAukAA", # nolint
-    "editor",
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZGmwor3GhwAB4E6krpx8s7ACao4soM99ureXkvRKQATPNzI8oHZonBiBAiDBJARhAB9cQkGZgeYQkjQ2EIpEQPLOAA8dWc6KhMLhiORzgApAA+Kn+Zx5BicVDwuirABuSkkUDoR2pdIZwikOW43Ag3BMdQAjAAGWUmRASkxAhYQdbKACC6CcrhYknCzgyAHYAApQPJwXWuZxEVCkcrqw1SWzcEEMADWhoAYpqADIAZQAot0MoYjI8ff7g90inB4Ib+DBHqZcAzXA7SEZE2AdMpnGhUF100bjQGtHkjH6oMpODwS65oBy6EpDSaAHJQZtKbiZ7MRfjl3HZ6u1likVMN5ykIhEcQthht40AFVn857U9cwWEhUdObofxnMGLLhtZ5Nfq0Hu44l5cHEOcvEC90q6znUgQyOdi8USyWoAH5LOla5MQx6ommp5nq4F5Xjed4PgOYBPl6-xvh+cBfkhP79P+gF5MBRgYGBsxQTaJiQdBzgAMTODAUBaJEJDkGQU4mgAwkojzWlRdZSBAcCGsuWAAKohpuziKJIwhwJGETCWJlFUc4jySBykiPNUQmieJZFnn2glIZxDCRuocBQJpDAnspBaoJc1y3AA8uOqDjtESjmexNwMBOqJTvMZ4Bc4FFCtUHJaREGRsAQDokNwWiuaQ3R1olJjOCAJYpeOAAkHlQF5twEkSgQQJZ2r2d5PAZXptmXDx0EgnYhokpi5I4nkSlUaQyh2TmeXWcp9HoBWhpQHAwj1VRFyGo1cCdcp+YRFy4gsHAsrSvNVFhg4hpcqkvJGBJQWBQK9I1a4UAXPCyiXdJboQpI9HiMIACSEDekioKGoCp00c4EAsDAdBaUQX6aQQj32KEM7OB6cBBBJl3wg5PlrHYBBw3JzgKUGaW0mdNlIzdFx3fR00RAALLGsIepqHBcIaFPHc4AC+QUs3MYAswAukAA", # nolint
+    "app",
     header = FALSE
   ),
   full_screen = TRUE
@@ -348,15 +348,12 @@ economics_long <- economics_long %>%
   group_by(variable) %>%
   slice((n() - 100):n())
 
-
 shinyApp(
   ui = f7Page(
-    title = "My app",
     options = list(dark = FALSE, filled = FALSE, theme = "md"),
+    title = "My app",
     f7SingleLayout(
-      navbar = f7Navbar(
-        title = "Single Layout"
-      ),
+      navbar = f7Navbar(title = "Single Layout"),
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", href = "https://www.google.com"),
@@ -364,6 +361,9 @@ shinyApp(
       ),
       # main content
       f7Card(
+        outline = TRUE,
+        raised = TRUE,
+        divider = TRUE,
         title = "Card header",
         apexchartOutput("areaChart")
       )
