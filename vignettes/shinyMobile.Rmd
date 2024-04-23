@@ -164,7 +164,7 @@ The `allowPWA` parameter allows you to add the necessary PWA dependencies to tur
 This is where you can customize the global app behavior: 
 
 ```{r, eval=FALSE}
-options = list(
+options <- list(
   theme = c("auto", "ios", "md"),
   dark = TRUE,
   skeletonsOnLoad = FALSE,
@@ -322,8 +322,8 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFWPUcAJqmqsjIkxPYBzB5aKkATCpFmopKOyFgcMQQRDC0BJwA+tQkDgEqQSSh4VExEA4ABAA8ALQZiSFhEdGxGQCkAHxlIhkZDoxEAK6okfQcAG4stFD0SgLlVTUZnHQEcOzsEOwCOQCMAAzzAohTAp4QIlL8AILo-hC1jbQZALwZAGYA7AAKUA7jQ7VEqKS0JJynGXScpOzejABrT4AMW2ABkAMoAUVwF0USjMIPB0NhpG4cHgnwCMDM8Vwjwyr1ISixYBkrAyaFQAXxB1qF0uEL4DiUYKgrCavwJtWg7XoLE+VwAclA+Sx9vTJYTaMS4KSmekSWyOY1SDTufT9LRGHQIHKzgAVLAAVRhGtqPCgZiIAHdPkbTRqBLSpYSiERqPzGILLgb3Z7xeaMqgiJwZW8DmcAvRXKRQuq6a6rmC+AD2NQenBqKSUxAgbMaRluIw4OdSdxSKRUJxEAB6Ws2xsYBzullwDDEGB4oPJ1PpzPZqNgXNAtyF4ul8uV6t1htNltENsd+NgFSu50agDEGRgUD4GWC5DIGquEP01ptEtdGT4R7DpApZ1mADYXdfuER2nBvYaTWbE1KVwAMIsGYV7XtKsqkiBjCIuiVrfgmEG1Fouj6IwpAAPKqqgqr+CgJZQEB6FqquQZrlKFG1BRG50pw35fj+FyNBABCvCQ7B8LhpCwpy3H9CABJ8aqAAkLBwERJHZHkJYQGY367DoegGOwgkAShqA6OBUreL4nwFMkxRpA4b6ug+mmkuJUBIdeu7oMynxQHAnDaa62ifLpcCmdej4ZJ01CNHA8yzN5Sbwp8nSMN0vRwORToDNU6n0lA2iRKwKW0C58kELQu7UJwACSEDAjEPifB4CUZNuECNDA9DfhkRBltluVQPlboZACcBwNSSUoalykYVwvgEF1iK-qa-SVIlEEpWlGUubu7lnAALKi4QAtsMBNGQnwrVRGQAL4UYdIgCGAh0ALpAA", # nolint
-    "app",
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZGmwor3GhwAB4E6krpx8s7ACao4soM99ureXkvRKQATPNzI8oHZonBiBAiDBJARhAB9cQkGZgeYQkjQ2EIpEQPLOAA8dWc6KhMLhiORzgApAA+Kn+Zx5BicVDwuirABuSkkUDoR2pdIZwikOW43Ag3BMdQAjAAGWUmRASkxAhYQdbKACC6CcrhYknCzgyAHYAApQPJwXWuZxEVCkcrqw1SWzcEEMADWhoAYpqADIAZQAot0MoYjI8ff7g90inB4Ib+DBHqZcAzXA7SEZE2AdMpnGhUF100bjQGtHkjH6oMpODwS65oBy6EpDSaAHJQZtKaLl3HZ6u1likVMN5ykIhEcQthht40AFUn057Y9cwWEhUdObofwnMGLLhtR5Nfq0Hu44l5cHEOdPEC90q6znUgQyOdi8USyWoP-yk8ruTEPuqJpoeR6uCeZ4XleN4RPwd5ev8T4vnAb5wb0n4DD+1B-kQAEYEBsxgTaJigeBzgAMTODAUBaJEJDkGQY4mgAwkojzWuRdZSBAcCGvOWAAKohquziKJIwhwJGEQCcJZHkc4jySBykiPNU-FCSJxFHpm2boWxDCRuocBQGpDAHgpBaoJc1y3AA8sOqDDtESgmSxNwMCOqJjvMR6+c4pFCtUHLqREGRsAQDokNwWhOaQ3R1nFJjOCAJaJcOAAkrlQO5twEkSgQQGZ2o2R5PCpdpVmXJx4EgnYhokpi5I4nk8nkaQyjWTm2UWQpNHoBWhpQHAwg1eRFyGnVcBtQp+YRFy4gsHAsrSjN5Fhg4hpcqkvJGKJ-l+QK9KVa4UAXPCyhnRJboQpINHiMIACSEDekioKGoCR2Uc4EAsDAdDqUQb5qQQd32KEE7OB6cBBKJZ3wrZnlrHYBDQ9JziyUGyW0sdlnw5dFzXTRE0RAALLGsIepqHBcIapMHc4AC+-mM3MYCMwAukAA", # nolint
+    "editor",
     header = FALSE
   ),
   full_screen = TRUE
@@ -509,7 +509,7 @@ shinyApp(
   server = function(input, output, session) {
     # river plot
     dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
-    
+
     output$pie <- renderApexchart({
       apex(
         data = poll,
@@ -517,7 +517,7 @@ shinyApp(
         mapping = aes(x = answer, y = n)
       )
     })
-    
+
     output$scatter <- renderApexchart({
       apex(
         data = mtcars,
@@ -529,8 +529,8 @@ shinyApp(
         )
       )
     })
-    
-    
+
+
     # datatable
     output$data <- renderTable(
       {
@@ -742,7 +742,7 @@ shinyApp(
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
-    
+
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
@@ -754,7 +754,7 @@ shinyApp(
         )
       }
     })
-    
+
     output$radar <- renderApexchart({
       apex(
         data = new_mtcars,
@@ -766,16 +766,16 @@ shinyApp(
         )
       )
     })
-    
+
     output$selected_tab <- renderUI({
       HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
     })
-    
+
     output$distPlot <- renderPlot({
       dist <- rnorm(input$obs)
       hist(dist)
     })
-    
+
     output$multi_radial <- renderApexchart({
       if (input$plot_show) {
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
