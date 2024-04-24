@@ -13,13 +13,16 @@ Status](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatu
 [![CRAN
 status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-project.org/package=shinyMobile)
 
+<br>
+
 ## Sandbox
 
-You can play with the below sandbox.
+The best way to discover {shinyMobile} is to play with it. Here is a
+sandbox where you can test it out:
 
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-2345">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3186">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-<iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRaVAH0iqUpwAEAHgC0eup1LsRe63tLc48PQF49QsLSKc3uKzYAmLADWznoAYgCCADIAygCiPhA2egBmikp+IREx8b7WxNREjCFuAMQADGUA7FDJyd65tkQArgTcIWYWDdakaAASRNQZLgAqWACqOYlJtn0DfgAicNRQrCGVAKxlCdN6HpzDza1YtOhKmVFxDQLbNnvDzBCc1C0UpABCLPouWXE31tAAN3oLHatHMlimST2AGFXnBGMNaKQziNxpMdrw-HAAPIQAAKUAA5nBogRGANqCFRhMrn9GgNgUUXB0IRjaFjcQTiaTydRKd8LrFaQ1UE0+QcsHBkow4DxztlfCoRFJ+OF0Ky9E1aCFkpUuXANdZtKQPI8QuotDpOHSTci4MUwCrZPJFPbolAIH56EQAB71SEpSrDKD0SIrZqdAPWVAepZfGaEyJgyM7ay6gkQJbsW0o1xgSJS0h6DNLbx6Tjs+0uNxKZKkMt2BxVvN0Qncet4PNvZb0ZZlqXJOAEIvVwhEAHwtzXLo2dOx6jZpG5tzHNtFkvUMsVrEOxi0NcN+yOUcBRiBMtubshvudgdDkd54gTxhTmfTqN6QGMnWVAByUCBFhDWmHNmzcJ05AUM53U9b0-TwGdrG4KBaEYOhMypNE6SSHgoD8IgAHdMImbCbFrUgN2I9FUz3NdKNRGkP3fHZdWDehOGApIPVoGAoHIIY9GpaidhKTgCJOOBr2bITSLTIMQ04kClzAsA2L0ABGf1UxsHp6H-Y88zYzSEI-KFiESFxdQASXMywwGSOZJzAZjtL0KBh1oCcqISRCyPUagOHUxAAGYtkDaEWD8FRtJclj5PoRSklAh01IAJi01zdP0lS2PSkzXN2cyfxskg7MCOBWG9SKp1k2dKmiZD8IIxLpj4chHiRVYXHUrZfKSbhx3hby+rqiLGD8FqdmS0cxoyew8Kc2qdjccI9AIaqwBG6xotcnadli6ZWIUkbpsMkM9GCjLtKy2AcpDS78tc2gissyoSogOzllYeFOA0KBqA7A64oavDCMm24yAoCtSC6jTetM6YBufYaEaSXVZvBpLlIdWa9HmrEX0egq5OiXjGFIaIlnvTHpjcAEWFoKSruJ6w3AANQZqT9FIIhywGgjEGZlmCDs6FWHQgmvDAB0CHFoWWcMh5OBgMEKxINwHVgeWWbcABxSTGClh1iRYGqtumbQKCsiy8x4OA4A7JbUxgMUTVQXMhPN7anaSqTsSaUhRU6MAAh6V9UZsPbUyjpIY70KOdpczh4WRyymggDzSr4IPcD0CMc-LWU1YgAQ9BABoSj0UO+KZgN84DgASavDBMGVPXhNilHYcuPxgUh1sN4Bc5FtwYFQQky2zxv6b3KTrir8lUHlOIAF0GgAX1z8kCOgeB4yEnb15EFQwHXlegA" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+ZoqAD6RKikoQA8da7OUrZOrkVw8OE95cJd-s4AJkoANaffhQFikIi-FzOYRAuBGSEQYQAeQgABkiFB-p8AGIAQXRAGUAKK4P6oQLiLH-ap4wmk8kwjKGIw4iIE4lkv7EakMUFgADEAAZhQB2KAZDLQ16cAjqT5PHh-WUseUAYSkBCBwgAIpJbFAIDkACrqQIaIjidnOACsTIezjsqAAElabSasABVbkw15oN3W3UIqDKT5i23Ch0PZ2B-4ABUCADcKKRNZJtaEIp6fdHXN8TXL1FhJOgjPSuXnnDB-oW1cXS6hy9nvSS-iZowX2sJxGrUwAhJRZ5ycxl-aBJuhKRUG5V+5zfdWp6omwrN5w532OzS0tHxqB5OBEtpW8SfTft6OQq1T-kRJUvB47uB7g9Hk8OCuky8UlgOQtYHAGQWgqHIMm2EDHMiezKPi6CPiwkifBkYr7oej6uJcpDlMinynBcVzCFW2GkOu7gwQcPjOESRr-HQRAAB4yg8KEmlAdDoqGnBzo6rioEaCLDnYeTorOGG8Sh+4QAi4m8QuNr8DAyj8dJ4gAIzMXJrjCJItICkYGSkJpWlARkcAEKQAqoCI6jGXJJFkWA6JAZZKkInZEliv21LatE+LOG5Z7UIUCrWRozimeZRlgB2KpaZJAniDoFAsLJWm6QK8AQCwHlyQlqkAJLkDAaVaU67EAHKwHAApsXQGl+POZWvGuNURPwdXOA1VbNQuxAuBEKEFf10QZO61SmD1zXZNhKbnq2cVlbFTXxahiVFe8pVaXYdBVR87VgHVABMuXba1tXsc4J2Nb1joZiQyFisNJDRPCyj0Uo-yzCtcnLbdzj5QiG0lYtzU7XtbU9HVADMp32edB2dbDN3-X1D2DU9I38OIobVMIZz2NF8z-cTzWk79U2uIDjig3dClgEpgXXZTDw6XpB2pHksRwxFUpRQKGTUlA2EQDMKNlQ5kP8CWXOuYlPMod5RC+bTvH8P5gXOMFRSREQKb8pFFn8Krrjk7xZum1NE63o9VWTkoW2SwK6xeIcNU0RAdGMad6hQJIDBSNJ825qrBmkFJCLB1uWmc7EEdni2Pqg39nl1cIW0ZQdO0-OLvFGpIMDC3AHqtizgrCMFqBwOx66bizrHsVtLWkVLh2Xd1Jvlbt1UXfVPP3QNAOYy9-BjdaE0xSzrgzZIc2J9HZU42WqxqYg0NRgDbAWTh3CSCYzggJ3VNiuqn3cE7ETCJSaQZNEp8MDiACkOfdHvU+9agazX2Qt-8OqJDkDIM4Z+XQFwmHAZ3AAvhbB4Kc8pijqk3J0CMoaXWZp3cGPdEbsXQT9B4A9HrPQgK9OA70sQP0mp3FC99-hIObo5Ghzh1DV1pAwHmrh1aRE+sbPBptVZwNTo3DBKCOqXWRu-TB+1UF0HEZ3AhGMiHRBxsoPGBNxBE3ftQs+R9kEtwFIw5h2IJ7v2PkSQuDBSBEgRFFOh+CIDWVIAVemSYlCSBrr4ExDwcZ0EjgdAAaq49xoRISwnUEQagiB2EPHlEQDMcBhxRD-soQOrCc4CgIMkqJqMobdhgAaHSJB+AClgFk1G-AADi1cGBpIOoeJQlDeG8UuBQAqg9yJwDgNFTxrgYB-mwk2SGF5GmWx0TtIwKIIQOOiICOw31eowL4StM2pMU7CGqPrZCW9sIvS0A47o3E9mwniQUyCB84qCmcCwVAMyarZwBEECg-wtB5GcA9NmNVApxX0GshgKYSQpjILvexEIAAkWUWDdEPitK5NzcQIPYunTOPRs6lN4msowFli6fF2aC8F3S5JrOECcz4hKTlm2geYc5AJhY0roEYL5kzQUzKgM4O4zhAiexXO47gUK5IwFIAQIcwBuiJIZqgMWr9gWkBBS41I7iOwAgYJcL8JIAC6cVIHdCVdQaA8BhyblJpAuYYBIGqqAA" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
 <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
 <template>Expand</template>
@@ -30,14 +33,25 @@ You can play with the below sandbox.
 
 ## Installation
 
+You can install {shinyMobile} in the usual ways:
+
 ``` r
 # from CRAN
 install.packages("shinyMobile")
+
 # for the latest version
 devtools::install_github("RinteRface/shinyMobile")
 ```
 
 ## Demo
+
+{shinyMobile} knows three themes:
+
+- **ios**: for iOS
+- **md**: for Android
+- **auto**: either iOS or Android, depending on the device
+
+<br>
 
 Android demo:
 
@@ -58,6 +72,8 @@ Android demo:
 </div>
 </div>
 
+<br>
+
 iOS demo:
 
 <link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/4.2/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css"/>
@@ -75,11 +91,13 @@ iOS demo:
 <div class="bottom-bar"></div>
 </div>
 
+<br>
+
 ## Acknowledgement
 
 A special thanks to [Vladimir
 Kharlampidi](https://github.com/nolimits4web) for creating this amazing
-framework7 HTML template.
+Framework7 HTML template.
 
 ## Code of Conduct
 
