@@ -17,7 +17,11 @@ home_page <- function() {
             f7Link(icon = f7Icon("search"), href = "#")
           ),
           rightPanel = tagList(
-            f7Link(icon = f7Icon("chat_bubble_text_fill"), href = "#"),
+            f7Link(
+              icon = f7Icon("chat_bubble_text"),
+              href = "/messages",
+              routable = TRUE
+            ),
             f7Link(icon = f7Icon("bell"), href = "#")
           )
         ),

@@ -184,7 +184,7 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
                        outline = FALSE,
                        strong = FALSE,
                        dividers = FALSE
-                     ),...) {
+                     ), ...) {
   if (length(value) > 1) stop("value must be a single element")
 
   # JS needs array
@@ -226,7 +226,6 @@ f7Picker <- function(inputId, label, placeholder = NULL, value = choices[1], cho
 #'
 #' @keywords internal
 buildPickerInput <- function(id, label, config, class, placeholder = NULL, style = NULL) {
-
   pickerInnerTag <-
     shiny::tags$div(
       class = "item-input-wrap",
@@ -270,9 +269,9 @@ buildPickerInput <- function(id, label, config, class, placeholder = NULL, style
 
     item <-
       htmltools::tagQuery(item)$
-      find(".item-title")$
-      addClass("item-label")$
-      allTags()
+        find(".item-title")$
+        addClass("item-label")$
+        allTags()
 
     htmltools::tagQuery(item)$
       find(".item-content")$
@@ -997,7 +996,6 @@ is_wrapped <- function() {
 #' Listify a tag
 #' @keywords internal
 listify <- function(tag, style = NULL) {
-
   # This list can only be styled by inputs making use
   # of the buildPicker function. For others, it would
   # conflict with the input style.
@@ -1485,7 +1483,8 @@ f7Toggle <- function(inputId, label, checked = FALSE, color = NULL) {
   if (!is_wrapped()) {
     tagList(
       shiny::tags$span(label,
-                       style = "padding: 5px"),
+        style = "padding: 5px"
+      ),
       toggleInnerTag
     )
   } else {
@@ -1606,6 +1605,10 @@ f7GroupInput <- function(
   has_media_list <- inherits(choices[[1]], "custom_choice")
 
   mainCl <- sprintf("shiny-input-%sgroup", type)
+  position <- switch(position,
+    "left" = "start",
+    "right" = "end"
+  )
 
   tmp <- f7List(
     mode = if (has_media_list) "media" else NULL,
@@ -1652,7 +1655,7 @@ f7GroupInput <- function(
 #' @keywords internal
 createOptions <- function(
     inputId, choices, selected,
-    position = "left", has_media_list = FALSE, type) {
+    position = "start", has_media_list = FALSE, type) {
   if (has_media_list) position <- "start"
 
   selectedPosition <- NULL
@@ -1743,9 +1746,9 @@ f7Form <- function(id, ...) {
 
     query$
       addAttrs(
-        name = id,
-        `data-shiny-no-bind-input` = NA
-      )$allTags()
+      name = id,
+      `data-shiny-no-bind-input` = NA
+    )$allTags()
   })
   shiny::tags$form(class = "inputs-form", id = id, inputs)
 }

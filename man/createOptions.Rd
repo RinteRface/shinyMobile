@@ -8,7 +8,7 @@ createOptions(
   inputId,
   choices,
   selected,
-  position = "left",
+  position = "start",
   has_media_list = FALSE,
   type
 )
