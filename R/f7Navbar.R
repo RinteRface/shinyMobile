@@ -17,10 +17,10 @@
 #' @param transparent Whether the navbar should be transparent. FALSE by default.
 #' Only works if bigger is TRUE.
 #' @param leftPanel Whether to enable the left panel. FALSE by default.
-#' You can also pass a shiny tag such as an icon or text. This is useful
+#' You can also pass a list of shiny tag with \code{shiny::tagList}, such as an icon or text. This is useful
 #' when using the yet experimental routable API with \link{f7MultiLayout}.
 #' @param rightPanel Whether to enable the right panel. FALSE by default.
-#' You can also pass a shiny tag such as an icon or text. This is useful
+#' You can also pass a list of shiny tags with \code{shiny::tagList}, such as an icon or text. This is useful
 #' when using the yet experimental routable API with \link{f7MultiLayout}.
 #'
 #' @note Currently, bigger parameters does mess with the CSS.
@@ -61,7 +61,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = deprecated(
   if (bigger) navbarClass <- paste(navbarClass, "navbar-large")
   if (!hairline) navbarClass <- paste(navbarClass, "no-outline")
 
-  leftNav <- if (!inherits(leftPanel, "shiny.tag")) {
+  leftNav <- if (!inherits(leftPanel, "shiny.tag.list")) {
     if (leftPanel) {
       shiny::tags$div(
         class = "left",
@@ -79,7 +79,7 @@ f7Navbar <- function(..., subNavbar = NULL, title = NULL, subtitle = deprecated(
     )
   }
 
-  rightNav <- if (!inherits(rightPanel, "shiny.tag")) {
+  rightNav <- if (!inherits(rightPanel, "shiny.tag.list")) {
     if (rightPanel) {
       shiny::tags$div(
         class = "right",

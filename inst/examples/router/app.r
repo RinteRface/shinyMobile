@@ -51,13 +51,15 @@ page_2 <- function() {
         f7Navbar(
           title = "Second page",
           # Allows to go back to main
-          leftPanel = tags$a(
-            href = "/",
-            class = "link",
-            tags$i(class = "icon icon-back"),
-            tags$span(
-              class = "if-not-md",
-              "Back"
+          leftPanel = tagList(
+            tags$a(
+              href = "/",
+              class = "link",
+              tags$i(class = "icon icon-back"),
+              tags$span(
+                class = "if-not-md",
+                "Back"
+              )
             )
           )
         ),
@@ -109,13 +111,15 @@ page_3 <- function() {
         f7Navbar(
           title = "Third page",
           # Allows to go back to main
-          leftPanel = tags$a(
-            href = "/",
-            class = "link",
-            tags$i(class = "icon icon-back"),
-            tags$span(
-              class = "if-not-md",
-              "Back"
+          leftPanel = tagList(
+            tags$a(
+              href = "/",
+              class = "link",
+              tags$i(class = "icon icon-back"),
+              tags$span(
+                class = "if-not-md",
+                "Back"
+              )
             )
           )
         ),

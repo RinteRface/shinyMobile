@@ -81,8 +81,8 @@ Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `
 - `f7Text()`, `f7TextArea()` and `f7Password()` have new parameters: `description`, `media`, `floating`, `outline` and `cleareable` for more styling options. `label` can also be NULL.
 - `f7Select()` has new `description`, `media` and `outline` parameters.
 - `f7Link()` has new `routable` parameter which allows to use the new experimental router layout in `f7MultiLayout()`.
-- `f7Navbar()`: both `leftPanel` and `rightPanel` now accept shiny tag such as an icon or link. This is useful to support
-the new router layout.
+- `f7Navbar()`: both `leftPanel` and `rightPanel` now accept shiny tags such as an icon or link. This is useful to support
+the new router layout. Items must be wrapped in a `shiny::tagList()`.
 - New `f7DefaultOptions()`: can be used in `f7Page()` to pass app options.
 - `f7Picker`, `f7DatePicker` and `f7ColorPicker` now have an additional `style` parameter to set the input style and inherit from `f7List` options such as outline, inset, strong and dividers.
 - `f7Toggle()` and `f7Stepper()` automatically detect when they are called inside a `f7List` and adjust accordingly to the list style.
