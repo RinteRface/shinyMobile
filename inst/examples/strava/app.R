@@ -2,75 +2,24 @@ library(shiny)
 library(shinyMobile)
 library(brochure)
 
-home_page <- function() {
-  page(
-    href = "/",
-    ui = function(request) {
-      shiny::tags$div(
-        class = "page",
-        # top navbar goes here
-        f7Navbar(
-          title = "Home",
-          leftPanel = tagList(
-            tags$a(
-              href = "#",
-              class = "link sheet-open",
-              f7Icon("splus_circle"),
-              `data-sheet` = "#new"
-            ),
-            f7Link(icon = f7Icon("search"), href = "#")
-          ),
-          rightPanel = tagList(
-            f7Link(icon = f7Icon("chat_bubble_text_fill"), href = "#"),
-            f7Link(icon = f7Icon("bell"), href = "#")
-          )
-        ),
-        tags$div(
-          class = "page-content",
-          f7Sheet(
-            id = "new",
-            orientation = "top",
-            swipeHandler = FALSE,
-            f7Segment(
-              tags$a(
-                href = "#",
-                class = "link sheet-open",
-                f7Icon("text_alignleft"),
-                `data-sheet` = "#post",
-                "Post"
-              ),
-              tags$a(
-                href = "#",
-                class = "link sheet-open",
-                f7Icon("photo"),
-                `data-sheet` = "#photo-post",
-                "Photos"
-              ),
-              tags$a(
-                href = "#",
-                class = "link sheet-open",
-                f7Icon("pencil"),
-                `data-sheet` = "#manual-post",
-                "Manual"
-              )
-            )
-          )
-        )
-      )
-    }
-  )
-}
-
-page_2 <- function() {
-  page(
-    href = "/2"
-  )
-}
+e <- environment()
+path <- system.file("examples/strava/pages", package = "shinyMobile")
+sapply(
+  list.files(
+    path,
+    include.dirs = FALSE,
+    pattern = ".R",
+    ignore.case = TRUE
+  ),
+  function(f) {
+    source(file.path(path, f), local = e)
+  }
+)
 
 brochureApp(
   # Pages
   home_page(),
-  page_2(),
+  me_page(),
   # Important: in theory brochure makes
   # each page having its own shiny session/ server function.
   # That's not what we want here so we'll have
@@ -112,7 +61,7 @@ brochureApp(
       f7Link(
         "You",
         icon = f7Icon("graph_circle"),
-        href = "/you",
+        href = "/me",
         routable = TRUE
       )
     ),
@@ -121,12 +70,8 @@ brochureApp(
       theme = "ios",
       color = "deeporange",
       routes = list(
-        list(path = "/", url = "/", name = "home")
-        # Important: don't remove keepalive
-        # for child pages as this allows
-        # to save the input state when switching
-        # between pages. If FALSE, each time a page is
-        # changed, inputs are reset (except on the first page).
+        list(path = "/", url = "/", name = "home"),
+        list(path = "/me", url = "/me", name = "me", keepAlive = TRUE)
       )
     )
   )
