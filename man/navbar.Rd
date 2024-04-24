@@ -100,11 +100,11 @@ app <- shinyApp(
         )
       ),
       navbar = f7Navbar(
-        # subNavbar = f7SubNavbar(
-        #  f7Button(label = "My button", tonal = TRUE),
-        #  f7Button(label = "My button", tonal = TRUE),
-        #  f7Button(label = "My button", tonal = TRUE)
-        # ),
+        subNavbar = f7SubNavbar(
+          f7Button(label = "My button"),
+          f7Button(label = "My button"),
+          f7Button(label = "My button")
+        ),
         title = "Title",
         leftPanel = TRUE,
         rightPanel = TRUE
