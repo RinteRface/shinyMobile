@@ -296,7 +296,7 @@ create_manifest <- function(path, name = "My App", shortName = "My App",
 f7Shadow <- function(tag, intensity, hover = FALSE, pressed = FALSE) {
   lifecycle::deprecate_warn(
     when = "2.0.0",
-    what = "f7Shadow"
+    what = "f7Shadow()"
   )
   tag
 }
