@@ -47,6 +47,14 @@ $.extend(f7PanelMenuBinding, {
 
   subscribe: function(el, callback) {
     $(el).find("a").on("click.f7PanelMenuBinding", function(e) {
+      // make sure the clicked element has a tab-link-active class
+      // if not, add it, and remove tab-link-active from other tabs
+      // this hapens when f7PanelMenu is inside f7Panel
+      if (!$(this).hasClass("tab-link-active")) {
+        $(el).find("a").removeClass("tab-link-active");
+        $(this).addClass("tab-link-active");
+      }
+
       $($(this).data("tab")).trigger("shown");
         callback(false);
     });
