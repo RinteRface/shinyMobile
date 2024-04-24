@@ -7,8 +7,7 @@ app <- shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Message bar",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -20,7 +19,10 @@ app <- shinyApp(
         f7Button("updateMessageBar", "Update value"),
         f7Button("updateMessageBarPlaceholder", "Update placeholder")
       ),
-      f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      f7Block(
+        title = "Message bar",
+        f7MessageBar(inputId = "mymessagebar", placeholder = "Message")
+      ),
       uiOutput("messageContent")
     )
   ),
