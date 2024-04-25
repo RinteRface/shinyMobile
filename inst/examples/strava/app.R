@@ -34,12 +34,22 @@ brochureApp(
     # Common toolbar
     toolbar = f7Toolbar(
       icons = TRUE,
+      # Allow to show correct active state
+      # since this is not really a tab layout
+      tags$script(
+        "$(function(){
+          $('.tab-link').on('click', function() {
+            $(this).addClass('tab-link-active');
+            $('.tab-link').not(this).removeClass('tab-link-active');
+          });
+        });"
+      ),
       f7TabLink(
         label = "Home",
         icon = f7Icon("house"),
         href = "/",
         # TO be routable
-        class = "link"
+        class = "link tab-link-active"
       ),
       f7TabLink(
         label = "Maps",
