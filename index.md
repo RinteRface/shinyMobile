@@ -20,7 +20,7 @@ status](https://www.r-pkg.org/badges/version/shinyMobile)](https://cran.r-projec
 The best way to discover {shinyMobile} is to play with it. Here is a
 sandbox where you can test it out:
 
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3186">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1161">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+ZoqAD6RKikoQA8da7OUrZOrkVw8OE95cJd-s4AJkoANaffhQFikIi-FzOYRAuBGSEQYQAeQgABkiFB-p8AGIAQXRAGUAKK4P6oQLiLH-ap4wmk8kwjKGIw4iIE4lkv7EakMUFgADEAAZhQB2KAZDLQ16cAjqT5PHh-WUseUAYSkBCBwgAIpJbFAIDkACrqQIaIjidnOACsTIezjsqAAElabSasABVbkw15oN3W3UIqDKT5i23Ch0PZ2B-4ABUCADcKKRNZJtaEIp6fdHXN8TXL1FhJOgjPSuXnnDB-oW1cXS6hy9nvSS-iZowX2sJxGrUwAhJRZ5ycxl-aBJuhKRUG5V+5zfdWp6omwrN5w532OzS0tHxqB5OBEtpW8SfTft6OQq1T-kRJUvB47uB7g9Hk8OCuky8UlgOQtYHAGQWgqHIMm2EDHMiezKPi6CPiwkifBkYr7oej6uJcpDlMinynBcVzCFW2GkOu7gwQcPjOESRr-HQRAAB4yg8KEmlAdDoqGnBzo6rioEaCLDnYeTorOGG8Sh+4QAi4m8QuNr8DAyj8dJ4gAIzMXJrjCJItICkYGSkJpWlARkcAEKQAqoCI6jGXJJFkWA6JAZZKkInZEliv21LatE+LOG5Z7UIUCrWRozimeZRlgB2KpaZJAniDoFAsLJWm6QK8AQCwHlyQlqkAJLkDAaVaU67EAHKwHAApsXQGl+POZWvGuNURPwdXOA1VbNQuxAuBEKEFf10QZO61SmD1zXZNhKbnq2cVlbFTXxahiVFe8pVaXYdBVR87VgHVABMuXba1tXsc4J2Nb1joZiQyFisNJDRPCyj0Uo-yzCtcnLbdzj5QiG0lYtzU7XtbU9HVADMp32edB2dbDN3-X1D2DU9I38OIobVMIZz2NF8z-cTzWk79U2uIDjig3dClgEpgXXZTDw6XpB2pHksRwxFUpRQKGTUlA2EQDMKNlQ5kP8CWXOuYlPMod5RC+bTvH8P5gXOMFRSREQKb8pFFn8Krrjk7xZum1NE63o9VWTkoW2SwK6xeIcNU0RAdGMad6hQJIDBSNJ825qrBmkFJCLB1uWmc7EEdni2Pqg39nl1cIW0ZQdO0-OLvFGpIMDC3AHqtizgrCMFqBwOx66bizrHsVtLWkVLh2Xd1Jvlbt1UXfVPP3QNAOYy9-BjdaE0xSzrgzZIc2J9HZU42WqxqYg0NRgDbAWTh3CSCYzggJ3VNiuqn3cE7ETCJSaQZNEp8MDiACkOfdHvU+9agazX2Qt-8OqJDkDIM4Z+XQFwmHAZ3AAvhbB4Kc8pijqk3J0CMoaXWZp3cGPdEbsXQT9B4A9HrPQgK9OA70sQP0mp3FC99-hIObo5Ghzh1DV1pAwHmrh1aRE+sbPBptVZwNTo3DBKCOqXWRu-TB+1UF0HEZ3AhGMiHRBxsoPGBNxBE3ftQs+R9kEtwFIw5h2IJ7v2PkSQuDBSBEgRFFOh+CIDWVIAVemSYlCSBrr4ExDwcZ0EjgdAAaq49xoRISwnUEQagiB2EPHlEQDMcBhxRD-soQOrCc4CgIMkqJqMobdhgAaHSJB+AClgFk1G-AADi1cGBpIOoeJQlDeG8UuBQAqg9yJwDgNFTxrgYB-mwk2SGF5GmWx0TtIwKIIQOOiICOw31eowL4StM2pMU7CGqPrZCW9sIvS0A47o3E9mwniQUyCB84qCmcCwVAMyarZwBEECg-wtB5GcA9NmNVApxX0GshgKYSQpjILvexEIAAkWUWDdEPitK5NzcQIPYunTOPRs6lN4msowFli6fF2aC8F3S5JrOECcz4hKTlm2geYc5AJhY0roEYL5kzQUzKgM4O4zhAiexXO47gUK5IwFIAQIcwBuiJIZqgMWr9gWkBBS41I7iOwAgYJcL8JIAC6cVIHdCVdQaA8BhyblJpAuYYBIGqqAA" height="700" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -55,7 +55,7 @@ devtools::install_github("RinteRface/shinyMobile")
 
 Android demo:
 
-<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/4.2/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css"/>
+<link rel="stylesheet" href="/private/var/folders/jn/sm28k_jn5fn873pbmw709hj00000gn/T/RtmpZOREJv/temp_libpath9a64f7f4fd9/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css"/>
 <div class="marvel-device note8">
 <div class="inner"></div>
 <div class="overflow">
@@ -76,7 +76,7 @@ Android demo:
 
 iOS demo:
 
-<link rel="stylesheet" href="/Library/Frameworks/R.framework/Versions/4.2/Resources/library/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css"/>
+<link rel="stylesheet" href="/private/var/folders/jn/sm28k_jn5fn873pbmw709hj00000gn/T/RtmpZOREJv/temp_libpath9a64f7f4fd9/shinyMobile/marvel-devices-css-1.0.0/devices.min.css" type="text/css"/>
 <div class="marvel-device black iphone8">
 <div class="top-bar"></div>
 <div class="sleep"></div>
@@ -92,6 +92,22 @@ iOS demo:
 </div>
 
 <br>
+
+## Sponsors
+
+`{shinyMobile}` is supported/funded by
+[AthlyticZ](https://linktr.ee/athlyticz).
+
+<img src="man/figures/DARKathlyticzlogoArtboard1.png" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+
+AthlyticZ offers top notch Shiny courses developed by [Veerle van
+Leemput](https://hypebright.nl/):
+
+- Productionizing Shiny Applications
+  [course](https://athlyticz.com/shiny-ii).
+- Outstanding InterfaceZ with Shiny
+  [course](https://athlyticz.com/shiny-iii).
+- More to come …
 
 ## Acknowledgement
 
