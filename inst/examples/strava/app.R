@@ -22,6 +22,7 @@ brochureApp(
   me_page(),
   profile_page(),
   messages_page(),
+  settings_page(),
   # Important: in theory brochure makes
   # each page having its own shiny session/ server function.
   # That's not what we want here so we'll have
@@ -89,7 +90,8 @@ brochureApp(
         list(path = "/", url = "/", name = "home"),
         list(path = "/me", url = "/me", name = "me", keepAlive = TRUE),
         list(path = "/profile", url = "/profile", name = "profile", keepAlive = TRUE),
-        list(path = "/messages", url = "/messages", name = "messages", keepAlive = TRUE)
+        list(path = "/messages", url = "/messages", name = "messages", keepAlive = TRUE),
+        list(path = "/settings", url = "/settings", name = "settings", keepAlive = TRUE)
       )
     )
   )
