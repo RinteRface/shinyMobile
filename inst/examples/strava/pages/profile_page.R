@@ -9,7 +9,7 @@ profile_page <- function() {
           leftPanel = tagList(
             tags$a(
               href = "/me",
-              class = "link",
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span("You")
             )

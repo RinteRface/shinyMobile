@@ -46,6 +46,7 @@ brochureApp(
         });"
       ),
       f7TabLink(
+        `data-animate` = "false",
         label = "Home",
         icon = f7Icon("house"),
         href = "/",
@@ -53,6 +54,7 @@ brochureApp(
         class = "link tab-link-active"
       ),
       f7TabLink(
+        `data-animate` = "false",
         label = "Maps",
         icon = f7Icon("map_pin_ellipse"),
         href = "/maps",
@@ -68,6 +70,7 @@ brochureApp(
         `data-sheet` = "#record"
       ),
       f7TabLink(
+        `data-animate` = "false",
         label = "Groups",
         icon = f7Icon("person_2_fill"),
         href = "/groups",
@@ -75,6 +78,7 @@ brochureApp(
         class = "link"
       ),
       f7TabLink(
+        `data-animate` = "false",
         label = "You",
         icon = f7Icon("graph_circle"),
         href = "/me",
@@ -87,11 +91,34 @@ brochureApp(
       theme = "ios",
       color = "deeporange",
       routes = list(
-        list(path = "/", url = "/", name = "home"),
-        list(path = "/me", url = "/me", name = "me", keepAlive = TRUE),
-        list(path = "/profile", url = "/profile", name = "profile", keepAlive = TRUE),
-        list(path = "/messages", url = "/messages", name = "messages", keepAlive = TRUE),
-        list(path = "/settings", url = "/settings", name = "settings", keepAlive = TRUE)
+        list(
+          path = "/",
+          url = "/",
+          name = "home"
+        ),
+        list(
+          path = "/me",
+          url = "/me",
+          name = "me",
+          keepAlive = TRUE
+        ),
+        list(
+          path = "/profile",
+          url = "/profile",
+          name = "profile",
+          keepAlive = TRUE
+        ),
+        list(
+          path = "/messages",
+          url = "/messages",
+          name = "messages",
+          keepAlive = TRUE
+        ),
+        list(
+          path = "/settings",
+          url = "/settings",
+          name = "settings", keepAlive = TRUE
+        )
       )
     )
   )

@@ -23,7 +23,7 @@ messages_page <- function() {
           leftPanel = tagList(
             tags$a(
               href = "/",
-              class = "link",
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span("Home")
             )
