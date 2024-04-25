@@ -27,8 +27,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Standalone tabs",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       f7Block(f7Button(inputId = "removeTab", "Remove Tab")),
       f7Block(f7Button(inputId = "updateTab", "Update Tab")),

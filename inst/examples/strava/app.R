@@ -34,17 +34,19 @@ brochureApp(
     # Common toolbar
     toolbar = f7Toolbar(
       icons = TRUE,
-      f7Link(
-        "Home",
+      f7TabLink(
+        label = "Home",
         icon = f7Icon("house"),
         href = "/",
-        routable = TRUE
+        # TO be routable
+        class = "link"
       ),
-      f7Link(
-        "Maps",
+      f7TabLink(
+        label = "Maps",
         icon = f7Icon("map_pin_ellipse"),
         href = "/maps",
-        routable = TRUE
+        # TO be routable
+        class = "link"
       ),
       tags$a(
         href = "#",
@@ -54,17 +56,19 @@ brochureApp(
         "Record",
         `data-sheet` = "#record"
       ),
-      f7Link(
-        "Groups",
+      f7TabLink(
+        label = "Groups",
         icon = f7Icon("person_2_fill"),
         href = "/groups",
-        routable = TRUE
+        # TO be routable
+        class = "link"
       ),
-      f7Link(
-        "You",
+      f7TabLink(
+        label = "You",
         icon = f7Icon("graph_circle"),
         href = "/me",
-        routable = TRUE
+        # TO be routable
+        class = "link"
       )
     ),
     options = list(

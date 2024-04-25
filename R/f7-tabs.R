@@ -273,10 +273,12 @@ f7Tab <- function(..., title = NULL, tabName, icon = NULL, active = FALSE, hidde
 #' @param label Button label.
 #' @export
 f7TabLink <- function(..., icon = NULL, label = NULL) {
+  props <- list(...)
+
   shiny::tags$a(
     ...,
     class = "tab-link",
-    href = "#",
+    href = if (is.null(props$href)) "#",
     icon,
     shiny::span(class = "tabbar-label", label)
   )
