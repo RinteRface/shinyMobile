@@ -11,13 +11,16 @@ add_post_ui <- function(id) {
       id = ns("sheet"),
       orientation = "top",
       swipeHandler = FALSE,
-      f7Segment(
-        tags$a(
-          href = "#",
-          class = "link sheet-open",
-          f7Icon("text_alignleft"),
-          `data-sheet` = "#post",
-          "Post"
+      f7Grid(
+        cols = 3,
+        tagAppendAttributes(
+          f7Link(
+            href = "#",
+            icon = f7Icon("text_alignleft"),
+            label = "Post"
+          ),
+          id = ns("post"),
+          class = "action-button"
         ),
         tags$a(
           href = "#",
@@ -45,6 +48,20 @@ add_post <- function(id) {
     id,
     function(input, output, session) {
       ns <- session$ns
+
+      observeEvent(input$post, {
+        # Close sheet
+        updateF7Sheet("sheet")
+        f7Popup(
+          id = "post_popup",
+          title = "Post content",
+          f7TextArea(
+            "post_descr",
+            "",
+            placeholder = "What's going on?"
+          )
+        )
+      })
 
       observeEvent(input$manual_post, {
         # Close sheet
@@ -117,6 +134,24 @@ home_page <- function() {
         ),
         tags$div(
           class = "page-content",
+          f7Block(
+            strong = TRUE,
+            f7BlockHeader(
+              f7Grid(
+                cols = 2,
+                tags$b("Your weekly Snapshot"),
+                f7Link(
+                  "See More",
+                  href = "/me",
+                  routable = TRUE
+                )
+              )
+            ),
+            f7Grid(
+              cols = 3,
+              "ee"
+            )
+          ),
           add_post_ui("new")[[2]]
         )
       )
