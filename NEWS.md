@@ -86,6 +86,7 @@ the new router layout. Items must be wrapped in a `shiny::tagList()`.
 - New `f7DefaultOptions()`: can be used in `f7Page()` to pass app options.
 - `f7Picker`, `f7DatePicker` and `f7ColorPicker` now have an additional `style` parameter to set the input style and inherit from `f7List` options such as outline, inset, strong and dividers.
 - `f7Toggle()` and `f7Stepper()` automatically detect when they are called inside a `f7List` and adjust accordingly to the list style.
+- `f7TabLink()`: `href` can now be different of `#` if passed in `...` (Default is still `#` when no custom `href` is detected). This allows to use tab links as routable links but with a better rendering in the toolbar/tabbar than classic `f7Link()`.
 - Fix various issues in documentation.
 
 # shinyMobile 1.0.1

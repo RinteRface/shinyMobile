@@ -27,7 +27,7 @@ brochureApp(
   # That's not what we want here so we'll have
   # a global server function.
   server = function(input, output, session) {
-
+    add_post("new")
   },
   wrapped = f7MultiLayout,
   wrapped_options = list(
