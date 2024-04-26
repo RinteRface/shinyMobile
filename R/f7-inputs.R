@@ -915,14 +915,14 @@ inputLayoutDefaults <- function() {
 createInputLayout <- function(
     ..., label = NULL, style, dropdown = FALSE) {
 
-  if (style$floating && is.null(label)) {
-    stop("floating can't be used when label is NULL")
-  }
-
   # make sure style does contain all defaults
   # this prevents an error when the users only provides
   # a subset of the style options
   style <- modifyList(inputLayoutDefaults(), style)
+
+  if (style$floating && is.null(label)) {
+    stop("floating can't be used when label is NULL")
+  }
 
   item <- f7ListItem(
     media = style$media, # icon
