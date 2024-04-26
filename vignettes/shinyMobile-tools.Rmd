@@ -62,7 +62,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 
@@ -128,7 +129,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 
@@ -190,7 +192,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 
@@ -241,7 +244,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 

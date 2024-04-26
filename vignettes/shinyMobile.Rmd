@@ -20,7 +20,7 @@ library(bslib)
 - Develop __mobile-ready__ Shiny applications
 - Turn your Shiny application into a __progressive web app__ (PWA)
 
-Both with the goal of developing mobile apps that looks and feels like native apps. 
+Both with the goal of developing mobile apps that look and feel like native apps. 
 
 ## Classic web apps, native apps and PWAs
 
@@ -327,7 +327,7 @@ card(
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px;"
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 <div class="text-center">
@@ -425,7 +425,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 
@@ -606,7 +607,8 @@ card(
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 322px; margin: 0 auto; float: none;"
 )
 ```
 
