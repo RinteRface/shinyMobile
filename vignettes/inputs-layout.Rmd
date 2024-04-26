@@ -159,6 +159,14 @@ shinyApp(
             "Orange", "Peach", "Pear", "Pineapple"
           )
         ),
+        f7Stepper(
+          inputId = "stepper",
+          label = "My stepper",
+          min = 0,
+          color = "default",
+          max = 10,
+          value = 4
+        ),
         f7Toggle(
           inputId = "toggle",
           label = "Toggle me"
