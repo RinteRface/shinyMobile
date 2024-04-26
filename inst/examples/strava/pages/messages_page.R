@@ -1,16 +1,52 @@
-user_choices <- f7CheckboxGroup(
-  "message-user",
-  "New Messages",
-  position = "right",
-  choices = colnames(mtcars)[c(1, 3)],
-  style = list(
-    inset = FALSE,
-    outline = FALSE,
-    dividers = TRUE,
-    strong = TRUE
+new_message_ui <- function(id) {
+  ns <- shiny::NS(id)
+
+  user_choices <- f7CheckboxGroup(
+    ns("message_user"),
+    "Contacts",
+    position = "right",
+    choices = colnames(mtcars)[c(1, 3)],
+    style = list(
+      inset = FALSE,
+      outline = FALSE,
+      dividers = TRUE,
+      strong = TRUE
+    )
   )
-)
-user_choices[[2]] <- f7Found(user_choices[[2]])
+  user_choices[[2]] <- f7Found(user_choices[[2]])
+
+  tagAppendAttributes(
+    f7Link(
+      href = "#",
+      icon = f7Icon("square_pencil")
+    ),
+    id = ns("new_message"),
+    class = "action-button"
+  )
+}
+
+new_message <- function(id) {
+  moduleServer(
+    id,
+    function(input, output, session) {
+      observeEvent(input$new_message, {
+        f7Popup(
+          id = "new-message-popup",
+          title = "New Message",
+          f7Searchbar(
+            id = NULL,
+            placeholder = "Search people who follow you"
+          ),
+          # TO DO: fix broken search
+          user_choices,
+          f7Block(
+            p("No result found for your search")
+          ) %>% f7NotFound()
+        )
+      })
+    }
+  )
+}
 
 messages_page <- function() {
   page(
@@ -29,12 +65,7 @@ messages_page <- function() {
             )
           ),
           rightPanel = tagList(
-            tags$a(
-              href = "#",
-              class = "link sheet-open",
-              f7Icon("square_pencil"),
-              `data-sheet` = "#new-message"
-            ),
+            new_message_ui("mod1"),
             # Messaging options
             f7Link(
               icon = f7Icon("gear_alt"),
@@ -43,24 +74,7 @@ messages_page <- function() {
           )
         ),
         tags$div(
-          class = "page-content",
-          f7Sheet(
-            id = "new-message",
-            orientation = "bottom",
-            swipeToClose = TRUE,
-            options = list(
-              push = TRUE
-            ),
-            f7Searchbar(
-              id = NULL,
-              placeholder = "Search people who follow you"
-            ),
-            # TO DO: fix broken search
-            user_choices,
-            f7Block(
-              p("No result found for your search")
-            ) %>% f7NotFound()
-          )
+          class = "page-content"
         )
       )
     }
