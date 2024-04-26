@@ -25,7 +25,7 @@ shinyApp(
       dark = TRUE,
       filled = FALSE,
       preloader = TRUE,
-      color = "red",
+      color = "#007aff",
       navbar = list(
         hideOnPageScroll = TRUE,
         mdCenterTitle = TRUE
@@ -194,12 +194,13 @@ shinyApp(
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$textarea <- renderPrint(input$textarea)
-    output$slider <- renderPrint(input$slider)
-    output$sliderRange <- renderPrint(input$sliderRange)
+    output$slider <- renderPrint(input$sliderInput)
+    output$sliderRange <- renderPrint(input$sliderRangeInput)
     output$stepper <- renderPrint(input$stepper)
     output$check <- renderPrint(input$check)
     output$checkgroup <- renderPrint(input$checkgroup)
     output$radio <- renderPrint(input$radio)
+    output$radio2 <- renderPrint(input$radio2)
     output$toggle <- renderPrint(input$toggle)
     output$select <- renderPrint(input$select)
     output$val <- renderPrint(input$button2)
@@ -209,7 +210,7 @@ shinyApp(
       },
       rownames = TRUE
     )
-    output$selectDate <- renderPrint(input$date)
+    output$dateval <- renderPrint(input$mydatepicker)
     output$autocompleteval <- renderPrint(input$myautocomplete)
 
     lapply(1:12, function(i) {

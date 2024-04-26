@@ -3,188 +3,229 @@ tabInputs <- f7Tab(
   tabName = "Inputs",
   icon = f7Icon("rocket_fill"),
   active = TRUE,
+  f7BlockTitle(title = "Inputs in list") %>% f7Align(side = "center"),
   f7List(
+    inset = FALSE,
+    dividers = TRUE,
     strong = TRUE,
-    inset = TRUE,
-    f7BlockTitle(title = "f7Text input with validation") %>% f7Align(side = "center"),
+    outline = TRUE,
     f7Text(
       inputId = "text",
-      label = "Your text",
+      label = "f7Text()",
       value = "some text",
       placeholder = "Don't leave me empty!",
       style = list(
-        media = f7Icon("pencil"),
-        floating = TRUE,
-        outline = TRUE,
-        clearable = TRUE
+        media = f7Icon("pencil")
       )
-    )
-  ),
-  verbatimTextOutput("text"),
-  br(),
-  f7BlockTitle(title = "f7TextArea input") %>% f7Align(side = "center"),
-  f7TextArea(
-    inputId = "textarea",
-    label = "Text Area",
-    value = "Lorem ipsum dolor sit amet, consectetur
+    ),
+    f7TextArea(
+      inputId = "textarea",
+      label = "f7TextArea()",
+      value = "Lorem ipsum dolor sit amet, consectetur
        adipiscing elit, sed do eiusmod tempor incididunt ut
        labore et dolore magna aliqua",
-    placeholder = "Your text here",
-    resize = TRUE
+      placeholder = "Your text here",
+      resize = TRUE,
+      style = list(
+        media = f7Icon("pencil")
+      )
+    ),
+    f7Password(
+      inputId = "password",
+      label = "f7Password()",
+      placeholder = "Expect a number",
+      style = list(
+        media = f7Icon("lock_fill")
+      )
+    ),
+    f7AutoComplete(
+      inputId = "myautocomplete",
+      placeholder = "Type a fruit name",
+      openIn = "dropdown",
+      label = "f7AutoComplete()",
+      choices = c(
+        "Apple", "Apricot", "Avocado", "Banana", "Melon",
+        "Orange", "Peach", "Pear", "Pineapple"
+      ),
+      style = list(
+        media = f7Icon("logo_apple"),
+        description = "Fruits"
+      )
+    ),
+    f7Select(
+      inputId = "select",
+      label = "f7Select()",
+      choices = colnames(mtcars),
+      style = list(
+        media = f7Icon("bars")
+      )
+    ),
+    f7Picker(
+      inputId = "mypicker",
+      placeholder = "Some text here!",
+      label = "f7Picker()",
+      choices = c("a", "b", "c")
+    ),
+    f7DatePicker(
+      inputId = "mydatepicker",
+      label = "f7DatePicker()",
+      value = as.POSIXct("2024-03-24 09:00:00 UTC"),
+      openIn = "auto",
+      direction = "horizontal",
+      timePicker = TRUE,
+      dateFormat = "yyyy-mm-dd, HH::mm"
+    ),
+    f7ColorPicker(
+      inputId = "mycolorpicker",
+      placeholder = "Some text here!",
+      label = "f7ColorPicker()",
+    ),
+    f7SmartSelect(
+      inputId = "smartsel",
+      label = "f7SmartSelect()",
+      selected = "drat",
+      choices = colnames(mtcars)[-1],
+      openIn = "popup"
+    ),
+    f7Toggle(
+      inputId = "toggle",
+      label = "f7Toggle()",
+      color = "default",
+      checked = TRUE
+    ),
+    f7Stepper(
+      inputId = "stepper",
+      label = "f7Stepper()",
+      min = 0,
+      color = "default",
+      max = 10,
+      value = 4
+    )
   ),
-  textOutput("textarea"),
-  f7BlockTitle(title = "f7Password input with validation") %>% f7Align(side = "center"),
-  f7Password(
-    inputId = "password",
-    label = "Password:",
-    placeholder = "Expect a number"
+  f7BlockTitle(title = "Outputs") %>% f7Align(side = "center"),
+  f7Block(
+    strong = TRUE,
+    p("Change the inputs and see the outputs below!"),
+    f7BlockTitle(title = "f7TextInput()"),
+    verbatimTextOutput("text"),
+    f7BlockTitle(title = "f7TextArea()"),
+    textOutput("textarea"),
+    f7BlockTitle(title = "f7Password()"),
+    verbatimTextOutput("password"),
+    f7BlockTitle(title = "f7AutoComplete()"),
+    verbatimTextOutput("autocompleteval"),
+    f7BlockTitle(title = "f7Select()"),
+    verbatimTextOutput("select"),
+    f7BlockTitle(title = "f7Picker()"),
+    textOutput("pickerval"),
+    f7BlockTitle(title = "f7DatePicker()"),
+    verbatimTextOutput("dateval"),
+    f7BlockTitle(title = "f7ColorPicker()"),
+    verbatimTextOutput("colorPickerVal"),
+    f7BlockTitle(title = "f7SmartSelect()"),
+    tableOutput("smartdata"),
+    f7BlockTitle(title = "f7Toggle()"),
+    verbatimTextOutput("toggle"),
+    f7BlockTitle(title = "f7Stepper()"),
+    verbatimTextOutput("stepper"),
   ),
-  verbatimTextOutput("password"),
   br(),
   f7BlockTitle(title = "f7Slider input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
+    p("Slide away!"),
     f7Slider(
-      inputId = "slider",
+      inputId = "sliderInput",
       label = "Unique value",
       max = 20,
       min = 0,
       value = 10,
       scale = FALSE
     ),
-    verbatimTextOutput("slider")
-  ),
-  br(),
-  f7Slider(
-    inputId = "sliderRange",
-    label = "Range values",
-    max = 500,
-    min = 0,
-    value = c(50, 100),
-    scale = TRUE,
-    labels = tagList(
-      f7Icon("bolt_slash_fill"),
-      f7Icon("bolt_fill")
-    )
-  ),
-  verbatimTextOutput("sliderRange"),
-  br(),
-  f7BlockTitle(title = "f7Stepper input") %>% f7Align(side = "center"),
-  f7Block(
-    strong = TRUE,
-    f7Stepper(
-      inputId = "stepper",
-      label = "My stepper",
+    verbatimTextOutput("slider"),
+    br(),
+    f7Slider(
+      inputId = "sliderRangeInput",
+      label = "Range values",
+      max = 500,
       min = 0,
-      color = "default",
-      max = 10,
-      value = 4
+      value = c(50, 100),
+      scale = TRUE,
+      labels = tagList(
+        f7Icon("bolt_slash_fill"),
+        f7Icon("bolt_fill")
+      )
     ),
-    verbatimTextOutput("stepper")
+    verbatimTextOutput("sliderRange")
   ),
-  br(),
-  f7BlockTitle(title = "f7Checkbox input") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7Checkbox & f7CheckboxGroup input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
+    p("Check it out!"),
+    f7BlockTitle(title = "f7Checkbox()"),
     f7Checkbox(
       inputId = "check",
-      label = "Checkbox",
+      label = "Check me",
       value = FALSE
     ),
-    verbatimTextOutput("check")
+    verbatimTextOutput("check"),
+    br(),
+    f7CheckboxGroup(
+      inputId = "checkgroup",
+      label = "f7CheckboxGroup() - choose variable:",
+      choices = colnames(mtcars)[1:3],
+      selected = "mpg"
+    ),
+    verbatimTextOutput("checkgroup")
   ),
-  br(),
-  f7BlockTitle(title = "f7CheckboxGroup input") %>% f7Align(side = "center"),
-  f7CheckboxGroup(
-    inputId = "checkgroup",
-    label = "Choose a variable:",
-    choices = colnames(mtcars)[1:3],
-    selected = "mpg"
-  ),
-  verbatimTextOutput("checkgroup"),
-  br(),
   f7BlockTitle(title = "f7Radio input") %>% f7Align(side = "center"),
-  f7Radio(
-    inputId = "radio",
-    label = "Choose a fruit:",
-    choices = c("banana", "apple", "peach"),
-    selected = "apple"
-  ),
-  verbatimTextOutput("radio"),
-  br(),
-  f7BlockTitle(title = "f7Toggle input") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
-    f7Toggle(
-      inputId = "toggle",
-      label = "My toggle",
-      color = "default",
-      checked = TRUE
+    p("Choose wisely!"),
+    f7Radio(
+      inputId = "radio",
+      label = "f7Radio() - pick fruit:",
+      choices = c("banana", "apple", "peach"),
+      selected = "apple",
+      position = "right",
+      style = list(
+        outline = FALSE,
+        strong = TRUE,
+        inset = TRUE,
+        dividers = FALSE
+      )
     ),
-    verbatimTextOutput("toggle")
-  ),
-  br(),
-  f7BlockTitle(title = "f7Select input") %>% f7Align(side = "center"),
-  f7Select(
-    inputId = "select",
-    label = "Choose a variable:",
-    choices = colnames(mtcars)
-  ),
-  verbatimTextOutput("select"),
-  br(),
-  f7BlockTitle(title = "f7SmartSelect input") %>% f7Align(side = "center"),
-  f7SmartSelect(
-    inputId = "smartsel",
-    label = "Choose a variable:",
-    selected = "drat",
-    choices = colnames(mtcars)[-1],
-    openIn = "popup"
-  ),
-  tableOutput("smartdata"),
-  br(),
-  f7BlockTitle(title = "f7AutoComplete input") %>% f7Align(side = "center"),
-  f7AutoComplete(
-    inputId = "myautocomplete",
-    placeholder = "Select a fruit!",
-    openIn = "dropdown",
-    label = "Type a fruit name",
-    choices = c(
-      "Apple", "Apricot", "Avocado", "Banana", "Melon",
-      "Orange", "Peach", "Pear", "Pineapple"
+    verbatimTextOutput("radio"),
+    br(),
+    f7Radio(
+      inputId = "radio2",
+      label = "Custom choices with f7RadioChoice() - pick one:",
+      choices = list(
+        f7RadioChoice(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum,
+            ut dignissim lacus tincidunt",
+          title = "Choice 1",
+          subtitle = "David",
+          after = "March 16, 2024"
+        ),
+        f7RadioChoice(
+          "Cras dolor metus, ultrices condimentum sodales sit
+            amet, pharetra sodales eros. Phasellus vel felis tellus.
+            Mauris rutrum ligula nec dapibus feugiat",
+          title = "Choice 2",
+          subtitle = "Veerle",
+          after = "March 17, 2024"
+        )
+      ),
+      selected = 2,
+      style = list(
+        outline = FALSE,
+        strong = TRUE,
+        inset = TRUE,
+        dividers = TRUE
+      )
     ),
-    style = list(
-      outline = TRUE,
-      media = f7Icon("house"),
-      description = "typeahead input",
-      floating = TRUE
-    )
-  ),
-  verbatimTextOutput("autocompleteval"),
-  br(),
-  f7BlockTitle(title = "f7Date input") %>% f7Align(side = "center"),
-  f7DatePicker(
-    inputId = "date",
-    label = "Choose a date",
-    value = "2019-08-24"
-  ),
-  "The selected date is",
-  verbatimTextOutput("selectDate"),
-  br(),
-  f7BlockTitle(title = "f7Picker input") %>% f7Align(side = "center"),
-  f7Picker(
-    inputId = "mypicker",
-    placeholder = "Some text here!",
-    label = "Picker Input",
-    choices = c("a", "b", "c")
-  ),
-  textOutput("pickerval"),
-  br(),
-  f7BlockTitle(title = "f7ColorPicker input") %>% f7Align(side = "center"),
-  f7ColorPicker(
-    inputId = "mycolorpicker",
-    placeholder = "Some text here!",
-    label = "Select a color"
-  ),
-  "The picker value is:",
-  verbatimTextOutput("colorPickerVal")
+    verbatimTextOutput("radio2")
+  )
 )
