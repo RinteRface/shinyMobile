@@ -19,9 +19,22 @@ sapply(
 # shiny app
 shinyApp(
   ui = f7Page(
-    allowPWA = TRUE, options = list(dark = TRUE, filled = FALSE, preloader = TRUE),
+    allowPWA = TRUE,
+    options = list(
+      theme = "md",
+      dark = TRUE,
+      filled = FALSE,
+      preloader = TRUE,
+      color = "red",
+      navbar = list(
+        hideOnPageScroll = TRUE,
+        mdCenterTitle = TRUE
+      )
+    ),
     f7TabLayout(
-      messagebar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      title = "shinyMobile Gallery",
+      messagebar = f7MessageBar(inputId = "mymessagebar",
+                                placeholder = "Message"),
       panels = tagList(
         f7Panel(
           id = "panelLeft",
@@ -56,13 +69,16 @@ shinyApp(
         )
       ),
       navbar = f7Navbar(
-        title = "shinyMobile",
+        subNavbar = f7SubNavbar(
+          f7Searchbar(id = "search1",
+                      inline = TRUE,
+                      placeholder = "Try me on the lists tab!"
+          )
+        ),
+        title = "shinyMobile Gallery",
         hairline = TRUE,
         leftPanel = TRUE,
-        rightPanel = TRUE,
-        bigger = TRUE,
-        transparent = FALSE,
-        f7SubNavbar(f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!"))
+        rightPanel = TRUE
       ),
       f7Login(
         id = "loginPage",
@@ -105,8 +121,7 @@ shinyApp(
         tabInfo,
         tabOthers
       )
-    ),
-    title = "shinyMobile"
+    )
   ),
   server = function(input, output, session) {
     # input validation
@@ -201,11 +216,11 @@ shinyApp(
       output[[paste0("res", i)]] <- renderText(paste0("Button", i, " is ", input[[paste0("btn", i)]]))
     })
     output$pickerval <- renderText(input$mypicker)
-    output$colorPickerVal <- renderPrint(input$mycolorpicker)
+    output$colorPickerVal <- renderPrint(input$mycolorpicker$hex)
 
     # send the color picker input to JS
     observeEvent(input$mycolorpicker, {
-      session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
+      session$sendCustomMessage(type = "text-color", message = input$mycolorpicker$hex)
     })
 
 
