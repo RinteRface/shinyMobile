@@ -892,16 +892,37 @@ updateF7SmartSelect <- function(inputId, selected = NULL, choices = NULL, multip
   session$sendInputMessage(inputId, message)
 }
 
+#' Input layout default options
+#'
+#' @keywords internal
+inputLayoutDefaults <- function() {
+  list(
+    media = NULL,
+    description = NULL,
+    floating = FALSE,
+    outline = FALSE,
+    clearable = TRUE
+  )
+}
+
 #' Create common input layout
 #'
 #' See \url{https://framework7.io/docs/inputs#inputs-layout}.
 #'
+#' @importFrom utils modifyList
+#'
 #' @keywords internal
 createInputLayout <- function(
     ..., label = NULL, style, dropdown = FALSE) {
+
   if (style$floating && is.null(label)) {
     stop("floating can't be used when label is NULL")
   }
+
+  # make sure style does contain all defaults
+  # this prevents an error when the users only provides
+  # a subset of the style options
+  style <- modifyList(inputLayoutDefaults(), style)
 
   item <- f7ListItem(
     media = style$media, # icon
