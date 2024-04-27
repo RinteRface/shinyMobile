@@ -1,0 +1,355 @@
+---
+title: "Dynamic App Configuration"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Dynamic App Configuration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Update app configuration and theme at runtime
+
+Sometimes, you want to update the configuration of your app at run time. Think about changing the global configuration for one or multiple components or updating the theme of your app.
+
+<br>
+
+In `{shinyMobile}`, there are two functions that can update (parts of) your app:
+
+- `updateF7App`: injecting any configuration inside the current running instance, including `theme`, `dark`, and `color.`
+- `updateF7Entity`: update any Framework7 instance from the server.
+
+### Updating theme, dark mode and color
+
+In essence, `updateF7App` is a pretty simple function: it takes a list of options and passes it to the running app instance.
+
+```r
+updateF7App(
+  options = list(
+    theme = "md",
+    dark = TRUE,
+    color = "#007aff"
+    # any other options
+    # ...
+  )
+)
+```
+
+The following example shows how to update the theme, dark mode, and color theme of the app:
+
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+colors <- c(
+  lightblue = "#5ac8fa",
+  pink = "#ff2d55",
+  teal = "#009688",
+  yellow = "#ffcc00"
+)
+
+shinyApp(
+  ui = f7Page(
+    title = "Update App",
+    options = (
+      list(
+        color = "#5ac8fa"
+      )
+    ),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update App"),
+      f7BlockTitle("Update theme"),
+      f7Segment(
+        f7Button(
+          inputId = "theme_ios",
+          "iOS theme"
+        ),
+        f7Button(
+          inputId = "theme_md",
+          "MD theme"
+        )
+      ),
+      f7BlockTitle("Set dark mode"),
+      f7Segment(
+        f7Button(
+          inputId = "enable_darkmode",
+          "Enable darkmode"
+        ),
+        f7Button(
+          inputId = "disable_darkmode",
+          "Disable darkmode"
+        )
+      ),
+      f7BlockTitle("Change color theme"),
+      f7Segment(
+        tagList(
+          lapply(names(colors),
+                 function(color) {
+                   f7Button(
+                     inputId = paste0("color_", color),
+                     label = color,
+                     color = color,
+                   )
+                 }
+          )
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+
+    observeEvent(input$theme_ios, {
+      updateF7App(
+        options = list(
+          theme = "ios"
+        )
+      )
+    })
+
+    observeEvent(input$theme_md, {
+      updateF7App(
+        options = list(
+          theme = "md"
+        )
+      )
+    })
+
+    observeEvent(input$enable_darkmode, {
+      updateF7App(
+        options = list(
+          dark = TRUE
+        )
+      )
+    })
+
+    observeEvent(input$disable_darkmode, {
+      updateF7App(
+        options = list(
+          dark = FALSE
+        )
+      )
+    })
+
+    lapply(names(colors), function(color) {
+      observeEvent(input[[paste0("color_", color)]], {
+        updateF7App(
+          options = list(
+            color = colors[color]
+          )
+        )
+      })
+    })
+
+  }
+)
+```
+TODO: shinylive example
+
+Note that the given `color` should be a valid hexadecimal color. You can call `updateF7App` multiple times, and the app will update the given configuration settings accordingly.
+
+### Updating component configuration
+
+Besides updating the theme, dark mode, and color, you can also update the configuration of a specific type of component. For example, you can update the configuration of all the `f7Dialog` components in an app:
+
+```r
+updateF7App(
+  options = list(
+    dialog = list(
+      buttonOk = "Yeaaaah!",
+      buttonCancel = "Ouuups!"
+    )
+  )
+)
+```
+
+Above code will update the text shown in the dialog buttons. In the below app, there are three `f7Dialog`s that will be updated when the "Update config" button is clicked:
+
+
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "Update App",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update App"),
+      f7BlockTitle("Update f7Dialog configuration"),
+      f7Segment(
+        f7Button(
+          inputId = "goButton",
+          "Show f7Dialog 1"
+        ),
+        f7Button(
+          inputId = "goButton2",
+          "Show f7Dialog 2"
+        ),
+        f7Button(
+          inputId = "update",
+          "Update config"
+        )
+      ),
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$goButton, {
+      f7Dialog(
+        id = "dialog1",
+        title = "Dialog title",
+        text = "This is a confirm dialog",
+        type = "confirm"
+      )
+    })
+    
+    observeEvent(input$goButton2, {
+      f7Dialog(
+        title = "Another dialog title",
+        text = "This is an alert"
+      )
+    })
+
+    observeEvent(input$update, {
+      updateF7App(
+        options = list(
+          dialog = list(
+            buttonOk = "Yeaaaah!",
+            buttonCancel = "Ouuups!"
+          )
+        )
+      )
+      
+      f7Dialog(
+        id = "dialog2",
+        title = "Warning",
+        type = "confirm",
+        text = "Look at me, I have a new buttons!"
+      )
+            
+    })
+    
+  }
+)
+```
+
+There are many more components that can be updated in this way. For example:
+
+- `f7Card`: update the [card configuration](https://framework7.io/docs/cards#card-app-parameters)
+- `f7Dialog`: update the [dialog configuration](https://framework7.io/docs/dialog#dialog-shortcuts), like in the examples above
+- `f7Panel`: update (part of) the [panel configuration](https://framework7.io/docs/panel#panel-parameters)
+- `f7PhotoBrowser`: update (part of) the [photo browser configuration](https://framework7.io/docs/photo-browser#photo-browser-parameters)
+- `f7Swipeout`: update the [swipeout configuration](https://framework7.io/docs/swipeout#swipeout-app-parameters)
+- `f7Toolbar`: update the [toolbar configuration](https://framework7.io/docs/toolbar-tabbar#toolbar-app-parameters)
+
+<br>
+
+Basically, whenever a component in the [Framework7 documentation](https://framework7.io/docs/) contains a section on "global app parameters", you can update these parameters using `updateF7App`.
+
+## Update individual components at runtime
+
+If you're not looking to update the entire app or a particular group of components, but rather a specific component, you can use `updateF7Entity`. This function allows you to update any Framework7 instance from the server:
+
+```r
+updateF7Entity(
+  id = "idtoupdate",
+    options = list(
+      # your configuration here
+    )
+)
+```
+
+For example, we could update (or reset) the content of an `f7ActionSheet`:
+
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "Update Entity",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Update action sheet instance"),
+      f7Segment(
+        f7Button(
+          inputId = "goButton",
+          "Go!",
+          fill = FALSE,
+          outline = TRUE
+        ),
+        f7Button(
+          inputId = "update",
+          "Update config",
+          fill = FALSE,
+          outline = TRUE
+        ),
+        f7Button(
+          inputId = "reset",
+          "Reset",
+          fill = FALSE,
+          outline = TRUE
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$goButton, {
+      f7ActionSheet(
+        grid = TRUE,
+        id = "action1",
+        buttons = list(
+          list(
+            text = "Notification",
+            icon = f7Icon("info"),
+            color = NULL
+          ),
+          list(
+            text = "Dialog",
+            icon = f7Icon("lightbulb_fill"),
+            color = NULL
+          )
+        )
+      )
+    })
+
+    observeEvent(input$update, {
+      updateF7Entity(
+        id = "action1",
+        options = list(
+          buttons = list(
+            list(
+              text = "Notification",
+              icon = f7Icon("info"),
+              color = NULL
+            )
+          )
+        )
+      )
+    })
+
+    observeEvent(input$reset, {
+      updateF7Entity(
+        id = "action1",
+        options = list(
+          buttons = list(
+            list(
+              text = "Notification",
+              icon = f7Icon("info"),
+              color = NULL
+            ),
+            list(
+              text = "Dialog",
+              icon = f7Icon("lightbulb_fill"),
+              color = NULL
+            )
+          )
+        )
+      )
+    })
+  }
+)
+```
+
+In the above example, we update the content of `buttons` in the `f7ActionSheet` with the id `action1`. This way, you can update the component at runtime.
+
+<br>
+
+TODO: other examples
