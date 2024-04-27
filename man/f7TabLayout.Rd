@@ -65,7 +65,7 @@ app <- shinyApp(
               status = "info"
             ),
             prettyRadioButtons(
-              inputId = "color",
+              inputId = "dark",
               label = "Select a color:",
               thick = TRUE,
               inline = TRUE,
@@ -73,37 +73,6 @@ app <- shinyApp(
               choices = c("light", "dark"),
               animation = "pulse",
               status = "info"
-            )
-          ),
-          tags$head(
-            tags$script(
-              'Shiny.addCustomMessageHandler("ui-tweak", function(message) {
-                var os = message.os;
-                var skin = message.skin;
-                if (os === "md") {
-                  $("html").addClass("md");
-                  $("html").removeClass("ios");
-                  $(".tab-link-highlight").show();
-                } else if (os === "ios") {
-                  $("html").addClass("ios");
-                  $("html").removeClass("md");
-                  $(".tab-link-highlight").hide();
-                }
-
-                if (skin === "dark") {
-                 $("html").addClass("dark");
-                 $("html").removeClass("light");
-                 $("body").addClass("dark");
-                 $("body").removeClass("light");
-                } else {
-                 $("html").addClass("light");
-                 $("html").removeClass("dark");
-                 $("body").addClass("light");
-                 $("body").removeClass("dark");
-                }
-
-               });
-              '
             )
           ),
           f7Card(
@@ -177,13 +146,16 @@ app <- shinyApp(
     )
 
 
-    # send the theme to javascript
+    # theme changes
     observe({
-      session$sendCustomMessage(
-        type = "ui-tweak",
-        message = list(os = input$theme, skin = input$color)
+      updateF7App(
+        options =list(
+          theme = input$theme,
+          dark = ifelse(input$dark == "dark", TRUE, FALSE)
+        )
       )
     })
+
   }
 )
 
