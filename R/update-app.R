@@ -2,7 +2,8 @@
 #'
 #' \code{updateF7App} allows to update a shinyMobile app at run time by
 #' injecting any configuration inside the current running instance. Useful it you want
-#' to share the same behavior across multiple elements.
+#' to share the same behavior across multiple elements. It can also be used to
+#' update the app theme, dark mode, or color.
 #'
 #' @note This function may be not work with all options and is intended
 #' for advanced/expert usage.
