@@ -15,7 +15,8 @@ app <- shiny::shinyApp(
           outline = FALSE,
           fill = TRUE,
           shadow = FALSE,
-          rounded = FALSE
+          rounded = FALSE,
+          icon = f7Icon("speedometer")
         )
       )
     )
@@ -31,7 +32,8 @@ app <- shiny::shinyApp(
         outline = TRUE,
         fill = FALSE,
         tonal = TRUE,
-        size = "large"
+        size = "large",
+        icon = f7Icon("speaker_zzz")
       )
     })
   }

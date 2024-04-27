@@ -17,7 +17,8 @@ f7Button(
   rounded = FALSE,
   size = NULL,
   active = FALSE,
-  tonal = FALSE
+  tonal = FALSE,
+  icon = NULL
 )
 
 updateF7Button(
@@ -30,6 +31,7 @@ updateF7Button(
   rounded = NULL,
   size = NULL,
   tonal = NULL,
+  icon = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 
@@ -67,6 +69,8 @@ used in \link{f7Segment} with the strong parameter set to TRUE.}
 
 \item{tonal}{Button tonal style. Default to FALSE}
 
+\item{icon}{Button icon. Expect link{f7Icon}.}
+
 \item{session}{The Shiny session object, usually the default value will suffice.}
 
 \item{...}{Slot for \link{f7Button}.}
@@ -101,7 +105,8 @@ app <- shiny::shinyApp(
           outline = FALSE,
           fill = TRUE,
           shadow = FALSE,
-          rounded = FALSE
+          rounded = FALSE,
+          icon = f7Icon("speedometer")
         )
       )
     )
@@ -117,7 +122,8 @@ app <- shiny::shinyApp(
         outline = TRUE,
         fill = FALSE,
         tonal = TRUE,
-        size = "large"
+        size = "large",
+        icon = f7Icon("square")
       )
     })
   }

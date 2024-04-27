@@ -25,7 +25,56 @@ profile_page <- function() {
         ),
         tags$div(
           class = "page-content",
-          "TBD"
+          f7List(
+            mode = "media",
+            strong = TRUE,
+            f7ListItem(
+              title = tags$strong(
+                paste(
+                  me$firstname,
+                  me$lastname
+                )
+              ),
+              subtitle = paste(
+                me$city,
+                me$state,
+                sep = ", "
+              ),
+              media = img(
+                src = me$profile,
+                style = "border-radius: 50%;",
+                width = "100%"
+              ),
+              # p(me$bio),
+              f7Grid(
+                cols = 4,
+                f7Chip(
+                  label = paste("Following:", me$friend),
+                  icon = f7Icon("person_3_fill")
+                ),
+                f7Chip(
+                  label = paste("Followers:", me$follower),
+                  icon = f7Icon("person_3_fill")
+                ),
+                f7Button(
+                  "share",
+                  "Share",
+                  icon = f7Icon("square_arrow_up", style = "font-size: 18px;"),
+                  tonal = TRUE,
+                  fill = FALSE,
+                  size = "small"
+                ),
+                f7Button(
+                  "edit",
+                  "Edit",
+                  icon = f7Icon("pencil", style = "font-size: 18px;"),
+                  tonal = TRUE,
+                  fill = FALSE,
+                  size = "small"
+                )
+              )
+            )
+          )
         )
       )
     }

@@ -1,20 +1,5 @@
 new_message_ui <- function(id) {
   ns <- shiny::NS(id)
-
-  user_choices <- f7CheckboxGroup(
-    ns("message_user"),
-    "Contacts",
-    position = "right",
-    choices = colnames(mtcars)[c(1, 3)],
-    style = list(
-      inset = FALSE,
-      outline = FALSE,
-      dividers = TRUE,
-      strong = TRUE
-    )
-  )
-  user_choices[[2]] <- f7Found(user_choices[[2]])
-
   tagAppendAttributes(
     f7Link(
       href = "#",
@@ -29,19 +14,20 @@ new_message <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
+      ns <- session$ns
+
       observeEvent(input$new_message, {
         f7Popup(
           id = "new-message-popup",
           title = "New Message",
-          f7Searchbar(
-            id = NULL,
-            placeholder = "Search people who follow you"
-          ),
           # TO DO: fix broken search
-          user_choices,
-          f7Block(
-            p("No result found for your search")
-          ) %>% f7NotFound()
+          f7SmartSelect(
+            ns("message_user"),
+            "Contacts",
+            choices = colnames(mtcars)[c(1, 3)],
+            openIn = "popup",
+            multiple = TRUE
+          )
         )
       })
     }

@@ -64,10 +64,10 @@ brochureApp(
       ),
       tags$a(
         href = "#",
-        class = "link sheet-open",
+        class = "link tab-link sheet-open",
         f7Icon("smallcircle_fill_circle
 "),
-        "Record",
+        span(class = "tabbar-label", "Record"),
         `data-sheet` = "#record"
       ),
       f7TabLink(

@@ -16,6 +16,7 @@
 #' @param active Button active state. Default to FALSE. This is useful when
 #' used in \link{f7Segment} with the strong parameter set to TRUE.
 #' @param tonal Button tonal style. Default to FALSE
+#' @param icon Button icon. Expect link{f7Icon}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
@@ -25,7 +26,7 @@
 f7Button <- function(inputId = NULL, label = NULL, href = NULL,
                      color = NULL, fill = TRUE, outline = FALSE,
                      shadow = FALSE, rounded = FALSE, size = NULL,
-                     active = FALSE, tonal = FALSE) {
+                     active = FALSE, tonal = FALSE, icon = NULL) {
   if (!is.null(inputId) && !is.null(href)) stop("Cannot set inputId and src at the same time.")
 
   # outline and fill are incompatible by definition
@@ -56,7 +57,11 @@ f7Button <- function(inputId = NULL, label = NULL, href = NULL,
     class = buttonCl,
     href = if (!is.null(href)) href else NULL,
     `data-val` = if (!is.null(inputId)) value else NULL,
-    label
+    icon,
+    shiny::tags$span(
+      class = "f7-button-label",
+      label
+    )
   )
 }
 
@@ -74,17 +79,24 @@ f7Button <- function(inputId = NULL, label = NULL, href = NULL,
 updateF7Button <- function(inputId, label = NULL, color = NULL,
                            fill = NULL, outline = NULL, shadow = NULL,
                            rounded = NULL, size = NULL, tonal = NULL,
+                           icon = NULL,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
-      label = label,
+      label = as.character(
+        shiny::tags$span(
+          class = "f7-button-label",
+          label
+        )
+      ),
       color = color,
       fill = fill,
       outline = outline,
       raised = shadow,
       round = rounded,
       size = size,
-      tonal = tonal
+      tonal = tonal,
+      icon = as.character(icon)
     )
   )
   session$sendInputMessage(inputId, message)

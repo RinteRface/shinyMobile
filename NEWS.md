@@ -46,7 +46,7 @@
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R. We now return an object of objects which becomes a list of lists.
 - `f7Block()` gains an `outline` parameter (add grey border).
-- `f7Button()` get a new `tonal` style.
+- `f7Button()` get a new `tonal` style. It is also possible to pass `icon` as parameter and update the icon with `updateF7Button`.
 - `f7Card()` get a new `raised` and `divider` parameters.
 - `f7CheckboxGroup()` has a new `position` parameter to control
 the check icon position. Default to left.

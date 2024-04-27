@@ -50,13 +50,22 @@ $.extend(f7ButtonInputBinding, {
       }
     }
 
-    // retrieve current label and icon
-    var label = $el.text();
-
+    // retrieve current label
+    var label = $el.find('.f7-button-label');
     // update the requested properties
-    if (data.hasOwnProperty('label')) label = data.label;
-    // produce new html
-    $el.html(label);
+    if (data.hasOwnProperty('label')) {
+      label.replaceWith(data.label);;
+    } 
+
+    // Update icon
+    var icon = $el.find('.f7-icons');
+    if (data.hasOwnProperty('icon')) {
+      if (icon.length === 0) {
+        $(`${data.icon}`).insertBefore(label);
+      } else {
+        icon.replaceWith(data.icon);
+      }
+    }
   },
   subscribe: function(el, callback) {
     $(el).on("click.f7ButtonInputBinding", function(e) {
