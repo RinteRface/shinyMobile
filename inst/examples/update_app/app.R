@@ -70,8 +70,9 @@ app <- shinyApp(
   server = function(input, output, session) {
     observeEvent(input$goButton, {
       f7Dialog(
+        id = "test2",
         title = "Dialog title",
-        text = "This is an alert dialog"
+        text = "This is an alert dialog",
         type = "confirm"
       )
     })

@@ -11,17 +11,7 @@ $(function() {
     }
 
     if (message.hasOwnProperty("dark")) {
-      if (message.dark) {
-        $("html").addClass("dark");
-        $("html").removeClass("light");
-        $("body").addClass("dark");
-        $("body").removeClass("light");
-      } else {
-        $("html").addClass("light");
-        $("html").removeClass("dark");
-        $("body").addClass("light");
-        $("body").removeClass("dark");
-      }
+      app.setDarkMode(message.dark);
     }
 
     if (message.hasOwnProperty("theme")) {
@@ -35,11 +25,6 @@ $(function() {
         $(".tab-link-highlight").hide();
       }
     }
-
-    // Remove color, dark and theme params from message
-    delete message.color;
-    delete message.dark;
-    delete message.theme;
 
     // Merge new config to existing one
     app.utils.extend(app.params, message);
