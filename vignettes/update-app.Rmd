@@ -143,9 +143,10 @@ shinyApp(
   }
 )
 ```
-TODO: shinylive example
 
-Note that the given `color` should be a valid hexadecimal color. You can call `updateF7App` multiple times, and the app will update the given configuration settings accordingly.
+Note that the color can both be a color of `getF7Colors()` (like "primary", "pink" or  "teal") or a hexadecimal color. You can call `updateF7App` multiple times, and the app will update the given configuration settings accordingly.
+
+TODO: shinylive example
 
 ### Updating component configuration
 

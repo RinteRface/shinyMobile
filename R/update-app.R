@@ -15,6 +15,14 @@
 #'
 #' @export
 updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
+
+  # if color in options, convert color to hex
+  if (!is.null(options$color)) {
+    if (options$color %in% getF7Colors()) {
+      options$color <- colorToHex(options$color)
+    }
+  }
+
   sendCustomMessage("update-app", options, session)
 }
 
