@@ -69,7 +69,7 @@ used in \link{f7Segment} with the strong parameter set to TRUE.}
 
 \item{tonal}{Button tonal style. Default to FALSE}
 
-\item{icon}{Button icon. Expect link{f7Icon}.}
+\item{icon}{Button icon. Expect \link{f7Icon}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 
@@ -123,7 +123,7 @@ app <- shiny::shinyApp(
         fill = FALSE,
         tonal = TRUE,
         size = "large",
-        icon = f7Icon("square")
+        icon = f7Icon("speaker_zzz")
       )
     })
   }

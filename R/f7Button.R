@@ -16,7 +16,7 @@
 #' @param active Button active state. Default to FALSE. This is useful when
 #' used in \link{f7Segment} with the strong parameter set to TRUE.
 #' @param tonal Button tonal style. Default to FALSE
-#' @param icon Button icon. Expect link{f7Icon}.
+#' @param icon Button icon. Expect \link{f7Icon}.
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
