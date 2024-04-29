@@ -308,13 +308,13 @@ Only the navbar is mandatory, other components such as the toolbar are optional 
 
 The app below runs with specific app options:
 
-```r
+```{r, eval=FALSE}
 f7Page(
   options = list(
-              dark = FALSE, 
-              filled = FALSE, 
-              theme = "md"
-            ),
+    dark = FALSE,
+    filled = FALSE,
+    theme = "md"
+  ),
   ...
 )
 ```
@@ -407,13 +407,13 @@ The ... argument requires `f7Tabs(..., id = NULL, swipeable = FALSE, animated = 
 
 The app below runs with specific options:
 
-```r
+```{r, eval=FALSE}
 f7Page(
   options = list(
-              dark = FALSE, 
-              filled = FALSE, 
-              theme = "md"
-            ),
+    dark = FALSE,
+    filled = FALSE,
+    theme = "md"
+  ),
   ...
 )
 ```
@@ -421,7 +421,7 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA", # nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZGmwor3GhwAB4E6krp8+bBDs4APHXOACZQdhgZivBOrigEGEtAY4Ui0QAmnBhF0egA5IimXD+ZwuCJRABMAFYACzdTEAZgAHPN7sC9soAILoAHOFiScEZADsAAUoHk4HTXERUKRysDwVJbNxPgwANbggBiVIAMgBlACi3QyhiM72lcqV3SKcHg4P4MHeyNRrn5pCMBrAOmUzjQqC6pucLIAKlA6LKoMpODwna5UEC4OJQhE7HlZZIRX7XM62YHHNGY85zZaIvxZXAMqRnOyIEG4YmY8JJO84FajFnHS4kzWWbmgzoKCxuTWkzY4NmIi6sABVZWFpM+qR58Hdvso6utpMAYmcPeEZcKetCTWT7rRUAAbpI8l8Bc4SOJlAOY3X4wBJcgwFtTmN2Ojw2BltNge8L0h1N10ACMVdvrZTZ8ehdIhnC-Zxfz8Sd-1cSRiHRWNz3g6IMiIcRSwYE1oJg7J+U3ICx0VE9XBMCcYNcM883ES89Rvf970ffUXzfDtP3dTE-3Is1ClTYDQPAjioK42D4KZZkkJIaJxTgZQ6CIJRjTAeYuNI4jY3rairzo28GKfK0WI-L9CU4rjAKtECwPXYyhOEuCSDEiSIGicQvWqYQAH17FIWZsKnZT-1ItxfKTTMMjgAhOx6DJxHk-kIBmMBC1U4L1PjbgzJfLAd1iHN4zhYtSytVI8liOEWQAIRighxWiSr3Rc5FnFC8LIv4aLYq0BL-KTZLW2gTc6CUMTHwGpRtOTHigP4L9Qk9b0WG8mzWxuSQGGHAje37FKK1IDTR02sip2K2I9q7Tbo162tmRm8agUkGAvjgDUzvHQsS30913xMq6v3G7iLSmsBwMgw6dPdRjAa-EGTzshCWUclC0IwrCcIiyR8P216Uoo5kAGEFL+mMhy0DasdvRRIyezGttvd50ZLapqdB8iMp6fGGA1dQ4CgZGlvI84rhuBhSAAeQW1AFuiVBJF8bqAqS5mk1dd1CdZ6b10ExWa10pjgPY77W1hhzkP4aTZPkjmUf-Fl2feQmeQW9amcLCmF2esCDsLOntww53se1yarVt5wuZ56oDf-AXrluMX4kl9wCC+dIfJUhXC2VuhVcDl9wOsrWkx1yH3TzmHRIieGTbAFzlDczzxEWy7bxtgm1OJkcXppo6oEp93CPzj56d9jv+4A7O2YUkPud5kervlB7hflIMWvtmt+E3JRJHq3wZ9bfgADUN630JSFAjQiGoRAI5gqJ+Fx5Rhww2EwCtAh76v8jpvaZpI2LEh+CtWA78YL8AAOLcwYE-K0nIlBW2EgeVAFBzwIXcFzDsQCpwwBYPXSQqBeKETUiRHed4t6xwlr6MAnw7Ap3InLHqF0nT+UuguBg+EwTlzYGjSSWgyHdB9Dw5wC5hC-wgCYZwIBzBOlnKkVhzhcFEG8tBShMIXhvECLhdGXIFwAEcMAABFHrcHlMoYQeiDGiLeISAADN0IxJj9HkG4IFOgtoIjcIWgAEmcSYckg5xYeOlmWV4zhAgQAwjSS40dhbcHEb5AW41KFQHBI8cQ-dSDKAQVaAJ78HroE6uCKAMJuAXHycCUE3QXFoloc4OWABfHxRM-GkHccIROcRGZBJCWEhBgtbjROjHEr2XxEkRBgKQROEDUnpMBi0pO4c+ZJhydLeK+TCknmKREagpAZ4VJgKgPIM9VRPAxG-FKVTankkkR8IZ94jBOj4R4hJKjgkUAwl+IwfTfKjPGcIYA3Qb5gF2Qlbobimnr1SFvQK7wGC8k1AqRUABdJ0NTujQuoNAeAIYPZ9n8jUuYYAanwqAA", # nolint
     "app",
     header = FALSE
   ),
@@ -453,23 +453,57 @@ shinyApp(
     title = "My app",
     f7TabLayout(
       panels = tagList(
-        f7Panel(title = "Left Panel", side = "left", "Blabla", effect = "cover"),
-        f7Panel(title = "Right Panel", side = "right", "Blabla", effect = "cover")
+        f7Panel(
+          title = "Left Panel",
+          side = "left",
+          f7PanelMenu(
+            inset = TRUE,
+            outline = TRUE,
+            # Use items as tab navigation only
+            f7PanelItem(
+              tabName = "tabset-Tab1",
+              title = "To Tab 1",
+              icon = f7Icon("folder"),
+              active = TRUE
+            ),
+            f7PanelItem(
+              tabName = "tabset-Tab2",
+              title = "To Tab 2",
+              icon = f7Icon("keyboard")
+            ),
+            f7PanelItem(
+              tabName = "tabset-Tab3",
+              title = "To Tab 3",
+              icon = f7Icon("layers_alt")
+            )
+          ),
+          effect = "floating"
+        ),
+        f7Panel(
+          title = "Right Panel",
+          side = "right",
+          f7Block("Blabla"),
+          effect = "floating"
+        )
       ),
       navbar = f7Navbar(
-        title = "Tabs",
+        title = "Tabs Layout",
+        hairline = TRUE,
         leftPanel = TRUE,
         rightPanel = TRUE
       ),
       f7Tabs(
         animated = TRUE,
-        # swipeable = TRUE,
+        id = "tabset",
         f7Tab(
           title = "Tab 1",
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
           f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
             title = "Card header",
             apexchartOutput("pie")
           )
@@ -478,8 +512,10 @@ shinyApp(
           title = "Tab 2",
           tabName = "Tab2",
           icon = f7Icon("keyboard"),
-          active = FALSE,
           f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
             title = "Card header",
             apexchartOutput("scatter")
           )
@@ -488,8 +524,10 @@ shinyApp(
           title = "Tab 3",
           tabName = "Tab3",
           icon = f7Icon("layers_alt"),
-          active = FALSE,
           f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
             title = "Card header",
             f7SmartSelect(
               "variable",
