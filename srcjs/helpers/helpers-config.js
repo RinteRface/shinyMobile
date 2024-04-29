@@ -36,8 +36,7 @@ export const setConfig = () => {
       searchbar: [],
       listIndex: [],
       photoBrowser: [],
-      // Input elements
-      stepper: []
+      // Input elements: TBD??
     },
     actions: {
       //toggleDarkTheme: function() {
