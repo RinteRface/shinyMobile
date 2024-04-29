@@ -10,6 +10,8 @@ $(function() {
       app.setColorTheme(message.color);
     }
 
+    // Note that app.setDarkMode does not work in tab layout
+    // That's why we need to manually add/remove dark/light class
     if (message.hasOwnProperty("dark")) {
       if (message.dark) {
         $("html").addClass("dark");
@@ -35,11 +37,6 @@ $(function() {
         $(".tab-link-highlight").hide();
       }
     }
-
-    // Remove color, dark and theme params from message
-    delete message.color;
-    delete message.dark;
-    delete message.theme;
 
     // Merge new config to existing one
     app.utils.extend(app.params, message);

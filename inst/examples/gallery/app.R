@@ -63,7 +63,24 @@ shinyApp(
         f7Panel(
           title = "Right Panel",
           side = "right",
-          "Blabla",
+          f7Radio(
+            inputId = "theme",
+            label = "Theme",
+            choices = c("md", "ios"),
+            selected = "md"
+          ),
+          f7Radio(
+            inputId = "dark",
+            label = "Mode",
+            choices = c("dark", "light"),
+            selected = "dark"
+          ),
+          f7Radio(
+            inputId = "color",
+            label = "Color",
+            choices = getF7Colors(),
+            selected = "primary"
+          ),
           effect = "floating",
           options = list(swipe = TRUE)
         )
@@ -124,6 +141,34 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
+
+    # update theme
+    observeEvent(input$theme, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          theme = input$theme
+        )
+      )
+    })
+
+    # update mode
+    observeEvent(input$dark, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          dark = ifelse(input$dark == "dark", TRUE, FALSE)
+        )
+      )
+    })
+
+    # update color
+    observeEvent(input$color, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          color = input$color
+        )
+      )
+    })
+
     # input validation
     observe({
       validateF7Input(inputId = "text", info = "Whatever")
