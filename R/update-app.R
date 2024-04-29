@@ -33,7 +33,7 @@ updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
 #' Currently, \code{updateF7Entity} supports \link{f7Gauge},
 #' \link{f7Swiper}, \link{f7Searchbar},
 #' \link{f7PhotoBrowser}, \link{f7Popup},
-#' \link{f7ListView} and \link{f7ActionSheet}.
+#' \link{f7ListIndex} and \link{f7ActionSheet}.
 #'
 #' @param id Element id.
 #' @param options Configuration list. Tightly depends on the entity.
