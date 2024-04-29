@@ -35,8 +35,10 @@ test_that("photobrowser R function works", {
     photos = list(
       list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg"),
       list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg"),
-      list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg",
-           caption = "Me cycling")
+      list(
+        url = "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg",
+        caption = "Me cycling"
+      )
     ),
     thumbs = c(
       "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
@@ -50,6 +52,6 @@ test_that("photobrowser R function works", {
   res$message <- jsonlite::fromJSON(res$message)
   expect_length(res, 2)
   expect_equal(res$type, "photoBrowser")
-  expect_length(res$message, length(formals(f7PhotoBrowser)))
+  expect_equal(res$message$id, "photobrowser1")
   expect_equal(res$message$type, "page")
 })
