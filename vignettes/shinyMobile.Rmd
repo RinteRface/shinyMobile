@@ -15,7 +15,7 @@ library(bslib)
 
 # Introduction
 
-`{shinyMobile}` is built on top of the [Framework7](https://framework7.io) template (V8.3.2) and has different purposes:
+`{shinyMobile}` is built on top of the [Framework7](https://framework7.io) template (V8.3.3) and has different purposes:
 
 - Develop __mobile-ready__ Shiny applications
 - Turn your Shiny application into a __progressive web app__ (PWA)

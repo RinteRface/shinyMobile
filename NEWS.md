@@ -1,6 +1,6 @@
 # shinyMobile 2.0.0
 ## Major change
-- Update Framework7 from 5.7.14 to 8.3.2
+- Update Framework7 from 5.7.14 to 8.3.3
 - New experimental router layout `f7MultiLayout()`: supported by `{brochure}`, this allows to have beautiful transitions between pages to provide a more native like experience.
 - New `f7Form()`: gather inputs in the same form to get a nested list containing all input values. This allows to reduce the number of inputs on the server side.
 `updateF7Form()` makes it possible to update input in batch or only selected ones.
@@ -36,7 +36,7 @@
     - `shadow` and `subtitle` have been removed in Framework7.
 - `f7SocialCard()` is deprecated as the same result can be achieved with `f7Card()`.
 - `f7AutoComplete()`: `expandInput` is deprecated, removed from Framework7.
-- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7 8.3.2
+- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7 8.3.3
 - `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
 - `f7Toolbar()`:
     - `hairline` and `shadow` are deprecated, removed from Framework7.
