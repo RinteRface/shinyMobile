@@ -15,7 +15,6 @@
 #'
 #' @export
 updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
-
   # if color in options, convert color to hex
   if (!is.null(options$color)) {
     if (options$color %in% getF7Colors()) {
@@ -33,8 +32,8 @@ updateF7App <- function(options, session = shiny::getDefaultReactiveDomain()) {
 #' refer to the Framework7 documentation at \url{https://framework7.io/docs/}.
 #' Currently, \code{updateF7Entity} supports \link{f7Gauge},
 #' \link{f7Swiper}, \link{f7Searchbar},
-#' \link{f7PhotoBrowser}, \link{f7Popup} and
-#' \link{f7ListView}.
+#' \link{f7PhotoBrowser}, \link{f7Popup},
+#' \link{f7ListView} and \link{f7ActionSheet}.
 #'
 #' @param id Element id.
 #' @param options Configuration list. Tightly depends on the entity.

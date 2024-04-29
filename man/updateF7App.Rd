@@ -98,7 +98,6 @@ app <- shinyApp(
         title = "Dialog title",
         text = "This is an alert dialog",
         type = "confirm"
-        type = "confirm"
       )
     })
 

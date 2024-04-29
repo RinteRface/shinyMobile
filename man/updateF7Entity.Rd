@@ -20,8 +20,8 @@ For each entity, the list of updatable properties may significantly vary. Please
 refer to the Framework7 documentation at \url{https://framework7.io/docs/}.
 Currently, \code{updateF7Entity} supports \link{f7Gauge},
 \link{f7Swiper}, \link{f7Searchbar},
-\link{f7PhotoBrowser}, \link{f7Popup} and
-\link{f7ListView}.
+\link{f7PhotoBrowser}, \link{f7Popup},
+\link{f7ListView} and \link{f7ActionSheet}.
 }
 \examples{
 library(shiny)
@@ -32,22 +32,79 @@ app <- shinyApp(
     title = "Update Entity",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update action sheet instance"),
+      f7BlockTitle("Action sheet", size = "large"),
       f7Segment(
         f7Button(
           inputId = "goButton",
-          "Go!",
+          "Show action sheet",
           fill = FALSE,
           outline = TRUE
         ),
         f7Button(
-          inputId = "update",
+          inputId = "update_action_sheet",
           "Update config",
           fill = FALSE,
           outline = TRUE
         ),
         f7Button(
-          inputId = "reset",
+          inputId = "reset_action_sheet",
           "Reset",
+          fill = FALSE,
+          outline = TRUE
+        )
+      ),
+      f7BlockTitle("Gauges", size = "large"),
+      f7Block(
+        f7Gauge(
+          id = "mygauge",
+          type = "semicircle",
+          value = 50,
+          borderColor = "#2196f3",
+          borderWidth = 10,
+          valueFontSize = 41,
+          valueTextColor = "#2196f3",
+          labelText = "amount of something"
+        )
+      ),
+      f7Block(f7Button("update_gauge", "Update Gauge")),
+      f7BlockTitle("Swiper", size = "large"),
+      f7Swiper(
+        id = "swiper",
+        lapply(1:20, \(c) {
+          f7Slide(
+            f7Card(
+              title = sprintf("Slide \%s", c)
+            )
+          )
+        })
+      ),
+      f7Block(f7Button("update_swiper", "Update Swiper")),
+      f7BlockTitle("Photo Browser", size = "large"),
+      f7Segment(
+        f7Button(
+          "show_photobrowser",
+          "Open photo browser",
+          fill = FALSE,
+          outline = TRUE
+        ),
+        f7Button(
+          "update_photobrowser",
+          "Update photo browser",
+          fill = FALSE,
+          outline = TRUE
+        )
+      ),
+      f7BlockTitle("Popup", size = "large"),
+      f7Segment(
+        f7Button(
+          "toggle",
+          "Toggle Popup",
+          fill = FALSE,
+          outline = TRUE
+        ),
+        f7Button(
+          "update",
+          "Update Popup",
           fill = FALSE,
           outline = TRUE
         )
@@ -74,7 +131,7 @@ app <- shinyApp(
       )
     })
 
-    observeEvent(input$update, {
+    observeEvent(input$update_action_sheet, {
       updateF7Entity(
         id = "action1",
         options = list(
@@ -89,7 +146,7 @@ app <- shinyApp(
       )
     })
 
-    observeEvent(input$reset, {
+    observeEvent(input$reset_action_sheet, {
       updateF7Entity(
         id = "action1",
         options = list(
@@ -105,6 +162,125 @@ app <- shinyApp(
               color = NULL
             )
           )
+        )
+      )
+    })
+
+    observeEvent(input$update_gauge, {
+      new_val <- 75
+      updateF7Entity(
+        id = "mygauge",
+        options = list(
+          # Must be between 0 and 1
+          value = new_val / 100,
+          valueText = paste0(new_val, "\%"),
+          labelText = "New label!"
+        )
+      )
+    })
+
+    observeEvent(input$update_swiper, {
+      updateF7Entity(
+        "swiper",
+        options = list(
+          speed = 100,
+          slidesPerView = 2,
+          spaceBetween = 10,
+          autoplay = TRUE,
+          scrollbar = list(
+            enabled = FALSE
+          ),
+          navigation = list(
+            enabled = FALSE
+          ),
+          pagination = list(
+            type = "progressbar"
+          ),
+          grid = list(
+            fill = "columns",
+            rows = 4
+          ),
+          thumbs = TRUE
+        )
+      )
+    })
+
+    observeEvent(input$show_photobrowser, {
+      f7PhotoBrowser(
+        id = "photobrowser1",
+        theme = "dark",
+        type = "page",
+        photos = list(
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg"),
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg"),
+          list(
+            url = "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg",
+            caption = "Me cycling"
+          )
+        ),
+        thumbs = c(
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+        )
+      )
+    })
+
+    observeEvent(input$update_photobrowser, {
+      updateF7Entity(
+        "photobrowser1",
+        options = list(
+          type = "popup",
+          popupPush = TRUE,
+          toolbar = FALSE,
+          photos = list(
+            list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg")
+          ),
+          thumbs = list("https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg")
+        )
+      )
+    })
+
+    observeEvent(input$toggle, {
+      f7Popup(
+        id = "popup",
+        title = "My first popup",
+        f7Text(
+          "text", "Popup content",
+          "This is my first popup ever, I swear!"
+        ),
+        verbatimTextOutput("res")
+      )
+    })
+
+    observeEvent(input$update, {
+      updateF7Entity(
+        id = "popup",
+        options = list(
+          swipeToClose = TRUE,
+          animate = FALSE,
+          closeOnEscape = TRUE,
+          # Content must contain the popup
+          # layout!!!
+          content = '<div class="popup">
+            <div class="view">
+              <div class="page">
+                <div class="navbar">
+                  <div class="navbar-bg"></div>
+                  <div class="navbar-inner">
+                    <div class="title">Popup</div>
+                    <div class="right">
+                      <!-- Link to close popup -->
+                      <a class="link popup-close">Close</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="page-content">
+                  <div class="block">New content ...</div>
+                </div>
+              </div>
+            </div>
+          </div>'
         )
       )
     })
