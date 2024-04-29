@@ -18,6 +18,10 @@ See \url{https://framework7.io/docs/}.}
 \code{updateF7Entity} allows to update any Framework7 instance from the server.
 For each entity, the list of updatable properties may significantly vary. Please
 refer to the Framework7 documentation at \url{https://framework7.io/docs/}.
+Currently, \code{updateF7Entity} supports \link{f7Gauge},
+\link{f7Swiper}, \link{f7Searchbar},
+\link{f7PhotoBrowser}, \link{f7Popup} and
+\link{f7ListView}.
 }
 \examples{
 library(shiny)
@@ -25,7 +29,7 @@ library(shinyMobile)
 
 app <- shinyApp(
   ui = f7Page(
-    title = "Simple Dialog",
+    title = "Update Entity",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update action sheet instance"),
       f7Segment(
@@ -38,6 +42,12 @@ app <- shinyApp(
         f7Button(
           inputId = "update",
           "Update config",
+          fill = FALSE,
+          outline = TRUE
+        ),
+        f7Button(
+          inputId = "reset",
+          "Reset",
           fill = FALSE,
           outline = TRUE
         )
@@ -72,6 +82,26 @@ app <- shinyApp(
             list(
               text = "Notification",
               icon = f7Icon("info"),
+              color = NULL
+            )
+          )
+        )
+      )
+    })
+
+    observeEvent(input$reset, {
+      updateF7Entity(
+        id = "action1",
+        options = list(
+          buttons = list(
+            list(
+              text = "Notification",
+              icon = f7Icon("info"),
+              color = NULL
+            ),
+            list(
+              text = "Dialog",
+              icon = f7Icon("lightbulb_fill"),
               color = NULL
             )
           )

@@ -23,6 +23,7 @@
 - Remove `value` from `f7Password()` (accidental copy and paste from `f7Text()`).
 - Possible breaking change: `f7Toolbar()` default position is now `bottom`.
 - Possible breaking change: remove `httr` dependency from `app_container()`.
+- Possible breaking change in `f7PhotoBrowser()`: `id` param reintroduce (but not mandatory, default `NULL`) as needed by `updateF7Entity()` to update the widget on the server side.
 
 ## Soft deprecation
 - `f7Accordion()`:

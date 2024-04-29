@@ -9,6 +9,7 @@ f7PhotoBrowser(
   theme = c("light", "dark"),
   type = c("popup", "standalone", "page"),
   ...,
+  id = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -21,6 +22,9 @@ f7PhotoBrowser(
 
 \item{...}{Other options to pass to the photo browser. See
 \url{https://framework7.io/docs/photo-browser#photo-browser-parameters} for more details.}
+
+\item{id}{Unique id. Useful to
+leverage \link{updateF7Entity} on the server.}
 
 \item{session}{Shiny session object.}
 }

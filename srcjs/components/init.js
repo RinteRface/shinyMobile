@@ -23,7 +23,9 @@ $(function() {
         config.el = "#" + $el.attr("id");
 
         // feed the create method
-        app[widget].create(config);
+        var instance = app[widget].create(config);
+        // Store widget into app store
+        app.store.state[widget][$el.attr("id")] = instance; 
       });
     } else {
       // This concerns toasts, notifications, photoBrowser, ...
@@ -51,8 +53,10 @@ $(function() {
           }
         };
         if (widget === "listIndex") {
+          let id = message.el;
           message.el = "#" + message.el;
-          app[widget].create(message);
+          var instance = app[widget].create(message);
+          app.store.state[widget][id] = instance;
           // add sticky class to the list index div
           // need to do that later to make sure indexes are present
           $(message.el).addClass("sticky-list-index");
@@ -62,7 +66,20 @@ $(function() {
           $(message.listEl).css("margin-top", -height + "px");
 
         } else {
-          app[widget].create(message).open();
+          // Elements like toast and notifications
+          // don't need to be stored as they
+          // are one time elements. They also don't have
+          // ids anyway ^_^
+          if (message.id !== undefined) {
+            if (app.store.state[widget][message.id] === undefined) {
+              let instance = app[widget].create(message).open();
+              app.store.state[widget][message.id] = instance;
+            } else {
+              app.store.state[widget][message.id].open();
+            }
+          } else {
+            app[widget].create(message).open();
+          }
         }
       });
     }

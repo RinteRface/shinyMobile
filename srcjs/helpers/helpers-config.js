@@ -26,7 +26,18 @@ export const setConfig = () => {
       popovers: [],
       tooltips: [],
       actions: [],
-      preloaders: []
+      preloaders: [],
+      // For some widgets, we must match the widget name
+      // that's why no 's' at the end even if there
+      // are multiple gauges ...
+      gauge: [],
+      popup: [],
+      swiper: [],
+      searchbar: [],
+      listIndex: [],
+      photoBrowser: [],
+      // Input elements
+      stepper: []
     },
     actions: {
       //toggleDarkTheme: function() {

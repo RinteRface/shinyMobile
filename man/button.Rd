@@ -123,7 +123,7 @@ app <- shiny::shinyApp(
         fill = FALSE,
         tonal = TRUE,
         size = "large",
-        icon = f7Icon("square")
+        icon = f7Icon("speaker_zzz")
       )
     })
   }

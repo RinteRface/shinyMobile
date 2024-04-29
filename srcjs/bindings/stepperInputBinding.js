@@ -4,7 +4,7 @@ import { getAppInstance } from "../init.js";
 var f7StepperBinding = new Shiny.InputBinding();
 
 $.extend(f7StepperBinding, {
-
+  instances: [],
   initialize: function(el) {
 
     this.app = getAppInstance();
@@ -28,6 +28,9 @@ $.extend(f7StepperBinding, {
       var inputTarget = $(el).find('input');
       $(inputTarget).attr('readonly', '');
     }
+
+    // Store in global app
+    this.instances[el.id] = s;
   },
 
   find: function(scope) {
@@ -36,28 +39,18 @@ $.extend(f7StepperBinding, {
 
   // Given the DOM element for the input, return the value
   getValue: function(el) {
-    return this.app.stepper.getValue(el);
+    return this.instances[el.id].getValue();
   },
 
   // see updateF7Stepper
   setValue: function(el, value) {
-    this.app.stepper.setValue(el, value);
-  },
-
-  // the 2 methods below are needed by incrementF7Stepper
-  // and decrementF7Stepper
-  increment: function() {
-    this.app.stepper.increment();
-  },
-
-  decrement: function() {
-    this.app.stepper.decrement();
+    this.instances[el.id].setValue(value);
   },
 
   // see updateF7Stepper
   receiveMessage: function(el, data) {
     // create a variable to update the stepper
-    var s = this.app.stepper.get(el);
+    var s = this.instances[el.id];
 
     // for some reason, we need to update both
     // min and params.min fields
@@ -150,6 +143,8 @@ $.extend(f7StepperBinding, {
       this.setValue(el, data.value);
       s.params.value = data.value;
     }
+
+    $(el).trigger("change");
   },
 
   subscribe: function(el, callback) {
@@ -162,7 +157,7 @@ $.extend(f7StepperBinding, {
       // except if autorepeat is set
       // then we send the value once
       // the + or - buttons is released
-      var s = self.app.stepper.get(el);
+      var s = self.instances[el.id];
       if (s.params.autorepeat) {
         callback(true);
       } else {
