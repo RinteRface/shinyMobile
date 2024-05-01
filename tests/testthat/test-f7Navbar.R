@@ -28,8 +28,7 @@ test_that("toggle navbar works as expected", {
     system.file("examples/navbar/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "navbar-app",
-    variant = platform_variant()
+    name = "navbar-app"
   )
   app$expect_values(input = "toggle")
   app$click(selector = "#toggle")

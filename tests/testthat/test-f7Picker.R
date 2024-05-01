@@ -5,8 +5,7 @@ test_that("picker works", {
     system.file("examples/picker/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "picker-app",
-    variant = platform_variant()
+    name = "picker-app"
   )
 
   app$expect_values(input = "picker")

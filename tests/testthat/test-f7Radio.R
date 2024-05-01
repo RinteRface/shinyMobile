@@ -6,8 +6,7 @@ test_that("radio works as expected", {
     system.file("examples/radio/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "radio-app",
-    variant = platform_variant()
+    name = "radio-app"
   )
   app$expect_values(input = c("radio", "radio2"), output = c("res", "res2"))
   app$click(selector = "#update")

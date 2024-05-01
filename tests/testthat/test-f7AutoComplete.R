@@ -5,8 +5,7 @@ test_that("autocomplete works", {
     system.file("examples/autocomplete/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "autocomplete-app",
-    variant = platform_variant()
+    name = "autocomplete-app"
   )
   app$expect_values(input = "myautocomplete")
   app$click(selector = "#update")

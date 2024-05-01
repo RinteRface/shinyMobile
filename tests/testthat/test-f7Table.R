@@ -20,8 +20,7 @@ test_that("table works as expected", {
     system.file("examples/table/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "table-app",
-    variant = platform_variant()
+    name = "table-app"
   )
   app$expect_values(output = "table")
 })

@@ -5,8 +5,7 @@ test_that("select works", {
     system.file("examples/select/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "select-app",
-    variant = platform_variant()
+    name = "select-app"
   )
 
   # Open

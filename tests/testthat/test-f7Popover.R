@@ -5,8 +5,7 @@ test_that("popover works", {
     system.file("examples/popover/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "popover-app",
-    variant = platform_variant()
+    name = "popover-app"
   )
 
   # Disable popovers

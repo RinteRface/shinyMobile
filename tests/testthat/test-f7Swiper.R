@@ -21,8 +21,7 @@ test_that("swiper works", {
     system.file("examples/swiper/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "swiper-app",
-    variant = platform_variant()
+    name = "swiper-app"
   )
 
   app$expect_values(

@@ -8,8 +8,7 @@ test_that("tooltips work as expected", {
 
   app <- AppDriver$new(
     shiny_app_path,
-    name = "tooltip-app",
-    variant = platform_variant()
+    name = "tooltip-app"
   )
 
   app$click(selector = "#target_1")

@@ -5,8 +5,7 @@ test_that("form works", {
     system.file("examples/forms/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "forms-app",
-    variant = platform_variant()
+    name = "forms-app"
   )
 
   # Open

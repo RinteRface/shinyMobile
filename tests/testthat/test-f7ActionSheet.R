@@ -44,8 +44,7 @@ test_that("actionSheet work as expected", {
     system.file("examples/actionsheet/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "actionsheet-app",
-    variant = platform_variant()
+    name = "actionsheet-app"
   )
 
   app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))

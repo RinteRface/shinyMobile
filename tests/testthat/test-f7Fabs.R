@@ -6,8 +6,7 @@ test_that("fabs works as expected", {
     system.file("examples/fabs/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "fabs-app",
-    variant = platform_variant()
+    name = "fabs-app"
   )
   app$expect_values(input = c("fabs", "fabsMorph", "1"), output = "res")
   app$click(selector = "#toggle")

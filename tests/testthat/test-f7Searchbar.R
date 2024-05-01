@@ -74,8 +74,7 @@ test_that("searchbar works", {
     system.file("examples/searchbar/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "searchbar-app",
-    variant = platform_variant()
+    name = "searchbar-app"
   )
 
   # Open

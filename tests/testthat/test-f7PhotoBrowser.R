@@ -5,8 +5,7 @@ test_that("photobrowser works", {
     system.file("examples/photobrowser/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "photobrowser-app",
-    variant = platform_variant()
+    name = "photobrowser-app"
   )
 
   # Open

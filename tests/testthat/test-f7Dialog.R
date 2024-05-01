@@ -31,8 +31,7 @@ test_that("dialog works as expected", {
     system.file("examples/dialog/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "dialog-app",
-    variant = platform_variant()
+    name = "dialog-app"
   )
 
   inputs <- c("comfirm_dialog", "prompt_dialog", "login_dialog")

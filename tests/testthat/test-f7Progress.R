@@ -5,8 +5,7 @@ test_that("progress works", {
     system.file("examples/progress/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "progress-app",
-    variant = platform_variant()
+    name = "progress-app"
   )
 
   app$expect_values(input = "obs")

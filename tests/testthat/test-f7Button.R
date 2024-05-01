@@ -8,8 +8,7 @@ test_that("button works as expected", {
     system.file("examples/button/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "button-app",
-    variant = platform_variant()
+    name = "button-app"
   )
   app$expect_values(input = "button")
   app$click(selector = "#update")

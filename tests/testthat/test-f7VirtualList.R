@@ -6,8 +6,7 @@ test_that("virtualList works as expected", {
     system.file("examples/virtualList/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "virtualList-app",
-    variant = platform_variant()
+    name = "virtualList-app"
   )
   # Animation/transition takes a bit of time
   app$wait_for_idle(1000)

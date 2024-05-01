@@ -31,8 +31,7 @@ test_that("expandable cards work expected", {
     system.file("examples/card/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "card-app",
-    variant = platform_variant()
+    name = "card-app"
   )
   app$expect_values(input = "card2")
   app$click(selector = "#go")

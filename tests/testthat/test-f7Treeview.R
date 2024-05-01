@@ -6,8 +6,7 @@ test_that("Treeview works as expected", {
     system.file("examples/treeview/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "treeview-app",
-    variant = platform_variant()
+    name = "treeview-app"
   )
   # Animation/transition takes a bit of time
   app$wait_for_idle(1000)

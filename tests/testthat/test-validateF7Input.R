@@ -29,8 +29,7 @@ test_that("input validation works as expected", {
 
   app <- AppDriver$new(
     shiny_app_path,
-    name = "validateinput-app",
-    variant = platform_variant()
+    name = "validateinput-app"
   )
 
   app$wait_for_idle(1000)

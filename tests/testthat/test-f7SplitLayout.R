@@ -7,7 +7,6 @@ test_that("Split layout works as expected", {
   app <- AppDriver$new(
     shiny_app_path,
     name = "splitlayout-app",
-    variant = platform_variant(),
     width = 1024,
     height = 768
   )

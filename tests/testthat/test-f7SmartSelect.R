@@ -5,8 +5,7 @@ test_that("smartselect works", {
     system.file("examples/smartselect/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "smartselect-app",
-    variant = platform_variant()
+    name = "smartselect-app"
   )
 
   app$expect_values(input = "smartselect")

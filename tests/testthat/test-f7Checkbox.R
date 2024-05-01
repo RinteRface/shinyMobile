@@ -14,8 +14,7 @@ test_that("checkbox works as expected", {
     system.file("examples/checkbox/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "checkbox-app",
-    variant = platform_variant()
+    name = "checkbox-app"
   )
   app$expect_values(input = "checkbox")
   app$click(selector = "#update")
@@ -90,8 +89,7 @@ test_that("checkboxgroup works as expected", {
     system.file("examples/checkboxgroup/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "checkboxgroup-app",
-    variant = platform_variant()
+    name = "checkboxgroup-app"
   )
   app$expect_values(input = c("checkboxgroup", "checkboxgroup2"))
   app$set_inputs("checkboxgroup" = "wt", "checkboxgroup2" = "1")

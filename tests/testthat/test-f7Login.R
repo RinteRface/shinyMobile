@@ -5,8 +5,7 @@ test_that("login works", {
     system.file("examples/login/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "login-app",
-    variant = platform_variant()
+    name = "login-app"
   )
 
   app$expect_values(input = "login", export = "res")

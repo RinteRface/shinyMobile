@@ -6,8 +6,7 @@ test_that("messages work as expected", {
     system.file("examples/messages/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "messages-app",
-    variant = platform_variant()
+    name = "messages-app"
   )
   app$expect_values(input = "mymessages")
   # Send a message
@@ -25,8 +24,7 @@ test_that("message bar work as expected", {
     system.file("examples/messagebar/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "messagebar-app",
-    variant = platform_variant()
+    name = "messagebar-app"
   )
   app$expect_values(input = "mymessagebar")
 

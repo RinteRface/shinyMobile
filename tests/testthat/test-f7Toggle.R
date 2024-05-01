@@ -5,8 +5,7 @@ test_that("toggle works", {
     system.file("examples/toggle/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "toggle-app",
-    variant = platform_variant()
+    name = "toggle-app"
   )
 
   # Open

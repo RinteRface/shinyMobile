@@ -5,8 +5,7 @@ test_that("popup works", {
     system.file("examples/popup/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "popup-app",
-    variant = platform_variant()
+    name = "popup-app"
   )
 
   # Open

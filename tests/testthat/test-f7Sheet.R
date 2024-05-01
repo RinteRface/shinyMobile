@@ -5,8 +5,7 @@ test_that("sheet works", {
     system.file("examples/sheet/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "sheet-app",
-    variant = platform_variant()
+    name = "sheet-app"
   )
 
   # Open

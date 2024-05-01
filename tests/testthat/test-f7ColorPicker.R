@@ -5,8 +5,7 @@ test_that("color picker works", {
     system.file("examples/colorpicker/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "colorpicker-app",
-    variant = platform_variant()
+    name = "colorpicker-app"
   )
 
   app$wait_for_idle(2000)

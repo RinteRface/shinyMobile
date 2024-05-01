@@ -5,8 +5,7 @@ test_that("date picker works", {
     system.file("examples/datepicker/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "datepicker-app",
-    variant = platform_variant()
+    name = "datepicker-app"
   )
 
   # Disable popovers

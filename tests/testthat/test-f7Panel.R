@@ -4,8 +4,7 @@ test_that("panel works", {
     system.file("examples/panel/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "panel-app",
-    variant = platform_variant()
+    name = "panel-app"
   )
 
   inputs <- c("mypanel1", "mypanel2", "panelmenu")

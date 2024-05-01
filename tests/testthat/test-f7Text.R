@@ -40,8 +40,7 @@ test_that("text inputs as expected", {
     system.file("examples/text/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "text-app",
-    variant = platform_variant()
+    name = "text-app"
   )
 
   inputs <- c(

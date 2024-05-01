@@ -34,8 +34,7 @@ test_that("gauge e2e", {
     system.file("examples/gauge/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "gauge-app",
-    variant = platform_variant()
+    name = "gauge-app"
   )
 
   app$expect_values(input = "update")

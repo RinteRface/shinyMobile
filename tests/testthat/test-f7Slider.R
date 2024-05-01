@@ -5,8 +5,7 @@ test_that("slider works", {
     system.file("examples/slider/app.R", package = "shinyMobile")
   app <- AppDriver$new(
     shiny_app_path,
-    name = "slider-app",
-    variant = platform_variant()
+    name = "slider-app"
   )
 
   inputs <- c("slider", "range")
