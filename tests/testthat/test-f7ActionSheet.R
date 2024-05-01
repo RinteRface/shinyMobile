@@ -62,8 +62,10 @@ test_that("actionSheet work as expected", {
   app$click(selector = ".actions-button:nth-child(2)")
   app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
 
+  app$click(selector = "div.dialog-buttons > span:nth-child(1)")
   app$click(selector = "#sheet1-update")
   app$click(selector = "#sheet1-go")
   app$wait_for_idle(3000)
+  app$click(selector = ".actions-button:first-child")
   app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
 })
