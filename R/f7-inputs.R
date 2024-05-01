@@ -1603,6 +1603,18 @@ updateF7Radio <- function(inputId, label = NULL, choices = NULL,
 #' @rdname radio
 f7RadioChoice <- f7CheckboxChoice
 
+#' Group input default options
+#'
+#' @keywords internal
+groupInputDefaults <- function() {
+  style = list(
+    inset = FALSE,
+    outline = FALSE,
+    dividers = FALSE,
+    strong = FALSE
+  )
+}
+
 #' Framework7 group input
 #'
 #' Useful to create \code{f7Radio} and \link{f7CheckboxGroup}.
@@ -1620,9 +1632,17 @@ f7RadioChoice <- f7CheckboxChoice
 #' @param style Input style. Inherit from \link{f7List} options
 #' such as outline, inset, strong and dividers.
 #'
+#' @importFrom utils modifyList
+#'
 #' @keywords internal
 f7GroupInput <- function(
     type, inputId, label, choices, selected, position, style) {
+
+  # make sure style does contain all defaults
+  # this prevents an error when the users only provides
+  # a subset of the style options
+  style <- modifyList(groupInputDefaults(), style)
+
   has_media_list <- inherits(choices[[1]], "custom_choice")
 
   mainCl <- sprintf("shiny-input-%sgroup", type)
