@@ -16,8 +16,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
-        hairline = TRUE,
-        shadow = TRUE
+        hairline = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
