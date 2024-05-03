@@ -10,5 +10,6 @@ test_that("radio works as expected", {
   )
   app$expect_values(input = c("radio", "radio2"), output = c("res", "res2"))
   app$click(selector = "#update")
+  app$wait_for_idle(3000)
   app$expect_values(input = c("radio", "radio2"), output = c("res", "res2"))
 })
