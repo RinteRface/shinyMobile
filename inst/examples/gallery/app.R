@@ -530,14 +530,10 @@ shinyApp(
       f7Skeleton(".skeleton-list", "fade", 2)
     })
 
-    # List index
-    # observeEvent(TRUE, {
-    #  f7ListIndex(
-    #    id = "list-index-1",
-    #    target = "#list-index-target",
-    #    label = TRUE
-    #  )
-    # }, once = TRUE)
+    # Treeview
+    output$treeview <- renderText({
+      input$treeview
+    })
 
     # pull to refresh
     # observeEvent(input$ptr, {

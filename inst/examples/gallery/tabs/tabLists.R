@@ -123,10 +123,23 @@ tabLists <- f7Tab(
         lapply(1:3, function(j) f7ListItem(letters[j]))
       )
     })
-  ) # ,
-  # br(),
+  ),
+  br(),
 
-  ## list index
-  # f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
-  # contacts_list
+  # treeview
+  f7BlockTitle(title = "f7Treeview") %>% f7Align(side = "center"),
+  f7Treeview(
+    id = "treeview",
+    withCheckbox = TRUE,
+    startExpanded = TRUE,
+    f7TreeviewGroup(
+      title = "Images",
+      icon = f7Icon("folder_fill"),
+      toggleButton = TRUE,
+      lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
+                                             icon = f7Icon("photo_fill")))
+    )
+  ),
+  br(),
+  verbatimTextOutput("treeview")
 )
