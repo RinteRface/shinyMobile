@@ -39,9 +39,9 @@ tabLists <- f7Tab(
             }
           ),
           left = tagList(
-            f7SwipeoutItem(id = "swipeAlert", color = "pink", "Alert"),
-            f7SwipeoutItem(id = "swipeNotif", color = "green", "Notif"),
-            f7SwipeoutItem(id = "swipeActionSheet", color = "purple", "Action")
+            f7SwipeoutItem(id = "swipeAlert", color = "red", "Alert"),
+            f7SwipeoutItem(id = "swipeNotif", color = "blue", "Notif"),
+            f7SwipeoutItem(id = "swipeActionSheet", color = "green", "Action")
           )
         )
       } else {
@@ -136,8 +136,8 @@ tabLists <- f7Tab(
       title = "Images",
       icon = f7Icon("folder_fill"),
       toggleButton = TRUE,
-      lapply(1:3, function(i) f7TreeviewItem(label = paste0("image", i, ".png"),
-                                             icon = f7Icon("photo_fill")))
+      lapply(letters[1:3], function(i) f7TreeviewItem(label = paste0(i, ".png"),
+                                                      icon = f7Icon("photo_fill")))
     )
   ),
   br(),
