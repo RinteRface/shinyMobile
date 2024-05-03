@@ -16,21 +16,23 @@ sapply(
   }
 )
 
+app_options <- list(
+  theme = "md",
+  dark = TRUE,
+  filled = FALSE,
+  preloader = TRUE,
+  color = "#007aff",
+  navbar = list(
+    hideOnPageScroll = TRUE,
+    mdCenterTitle = TRUE
+  )
+)
+
 # shiny app
 shinyApp(
   ui = f7Page(
     allowPWA = TRUE,
-    options = list(
-      theme = "md",
-      dark = TRUE,
-      filled = FALSE,
-      preloader = TRUE,
-      color = "#007aff",
-      navbar = list(
-        hideOnPageScroll = TRUE,
-        mdCenterTitle = TRUE
-      )
-    ),
+    options = app_options,
     f7TabLayout(
       title = "shinyMobile Gallery",
       messagebar = f7MessageBar(inputId = "mymessagebar",
@@ -67,13 +69,13 @@ shinyApp(
             inputId = "theme",
             label = "Theme",
             choices = c("md", "ios"),
-            selected = "md"
+            selected = app_options$theme
           ),
           f7Radio(
             inputId = "dark",
             label = "Mode",
             choices = c("dark", "light"),
-            selected = "dark"
+            selected = ifelse(app_options$dark, "dark", "light")
           ),
           f7Radio(
             inputId = "color",
@@ -86,12 +88,6 @@ shinyApp(
         )
       ),
       navbar = f7Navbar(
-        subNavbar = f7SubNavbar(
-          f7Searchbar(id = "search1",
-                      inline = TRUE,
-                      placeholder = "Try me on the lists tab!"
-          )
-        ),
         title = "shinyMobile Gallery",
         hairline = TRUE,
         leftPanel = TRUE,
@@ -182,6 +178,7 @@ shinyApp(
     # toggle message bar: should only be dislayed when on the messages tab
     observeEvent(input$tabset, {
       session$sendCustomMessage(type = "toggleMessagebar", input$tabset)
+      session$sendCustomMessage(type = "toggleSearchbar", input$tabset)
     })
 
     # user send new message

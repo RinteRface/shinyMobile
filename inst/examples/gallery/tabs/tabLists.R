@@ -15,10 +15,15 @@
 
 tabLists <- f7Tab(
   title = "Lists",
-  tabName = "Lists",
+  tabName = "lists",
   icon = f7Icon("list_dash", f7Badge("New", color = "red")),
   active = FALSE,
-
+  f7Block(
+    f7Searchbar(id = "search1",
+                inline = TRUE,
+                placeholder = "Search for something!"
+    )
+  ),
   # swipeable list
   f7BlockTitle(title = "f7Swipeout, swipeable list") %>%
     f7Align(side = "center"),

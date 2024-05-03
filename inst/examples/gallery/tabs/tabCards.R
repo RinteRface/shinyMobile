@@ -121,7 +121,7 @@ tabCards <- f7Tab(
   f7ExpandableCard(
     id = "card1",
     title = "Expandable Card 1",
-    color = "yellow",
+    color = "deeporange",
     subtitle = "Click on me pleaaaaase",
     "Framework7 - is a free and open source HTML mobile framework
     to develop hybrid mobile apps or web apps with iOS or Android
