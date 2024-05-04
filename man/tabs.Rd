@@ -22,7 +22,7 @@ the tabbar.}
 
 \item{id}{Optional to get the id of the currently selected \link{f7Tab}.}
 
-\item{swipeable}{Whether to allow finger swip. FALSE by default. Only for touch-screens.
+\item{swipeable}{Whether to allow finger swipe. FALSE by default. Only for touch-screens.
 Not compatible with animated.}
 
 \item{animated}{Whether to show transition between tabs. TRUE by default.

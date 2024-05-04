@@ -14,7 +14,7 @@
 #' buttons or \link{f7TabLink}. This may be useful to open an \link{f7Sheet} from
 #' the tabbar.
 #' @param id Optional to get the id of the currently selected \link{f7Tab}.
-#' @param swipeable Whether to allow finger swip. FALSE by default. Only for touch-screens.
+#' @param swipeable Whether to allow finger swipe. FALSE by default. Only for touch-screens.
 #' Not compatible with animated.
 #' @param animated Whether to show transition between tabs. TRUE by default.
 #' Not compatible with swipeable.
