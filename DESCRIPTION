@@ -38,6 +38,7 @@ Suggests:
     ggplot2,
     dplyr,
     bslib,
-    shinytest2
+    shinytest2,
+    thematic
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

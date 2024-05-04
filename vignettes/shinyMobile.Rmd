@@ -327,10 +327,10 @@ card(
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#singleLayout" role="button" aria-expanded="false" aria-controls="singleLayout">
 Code
 </a>
@@ -426,11 +426,11 @@ card(
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
 Code
 </a>
@@ -640,17 +640,17 @@ The __id__ argument in `f7PanelMenu` is important if you want to get the current
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
-  shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw4BzSampFSAJmGiGzNl178AskXq1qcZWLUc0cAB4FuLcoyOqJ7UtzgwopWgWUiAZowCutKScAAQAPAC0IQAm7lAYfrBw7CIhIdDwIQC8IQTsAOQAgugGnPm4IfkA8swQknBlFfkAQlDQ0I2VzXCMjLQN+QK4qSEAblDU-nDZuewALHMVAKxLFQBsAOwVABwAzMreZC5uHgQA+jx8HD4kpDNCKP6kRA+HEHAA7mcwpAQsoZEQowGtZUMkRrFSFAZi4oNF2D8-oxOEMRrRouNGPcwDAiNE4NQHsMIGlMaw+JIZnROKR2HkHtFmKQiSEHh9mWABKiSSEPPBQjl6WBGe4WWyOdy0tFaMCCB4SNi5HUiSNRhgMg1seNJnAVTzGURUDMhTBUJIxYRWIS8KywNxUBbpTSLQBHThwAgW0acC2wC31FgWpH0V4iQ6XfjFVApHmBGY+DYABSg9RjaTSHlIBmxWlYITQDrwIzShvlEAFIWptOL6ecrmmOQeUH8jCIzD16fTsUYAGsZgAVLAAVQAosTO2kfPoDNEZgAxQoAGQAymOa2liHIsY2wABiAAM+42UB8Pg7E+e-isVNoNLTE4zaAAEkRqLOcoPR+OH7zn6-ogAIgSUB5jkGxLPu34PrQRCcP2RBXtwWC0CUDYhAuK4juuISShOMFwbUnCTAQFCkK0yLzkuq5Qem0CjPQLA3ne2FpPhADCpE9P2QTZh+w5rjyD68PiAByUCjFUEDJvUy4EK21DUAO-HYbhnbPK+DHbpWt7VoJE7CXAYkSVJKZwLJ8mKTkGGripNFpKg-gKfBWBwH4IKUZhNaqSECbLrIQSLiBCG6Q+nDonAmnxkmbQEveD6ZrxtrLuFmnnqF4WKq5HJ2bWxxoQ8dCSNw2UsT50XvNQWgUP4cU-ui2LwBA-hpT+CbJhVACS5AwLVP6-vQYmZDuUL0AAjC1fUJflYD9lA9AhONRZ6X1ngKjkCYdcQEApGAcAuv4ExnAQMoEAYrw5Q+UByrQoxoZ+WHLRO3kPm1MXUF1ri9T+I2DdNI0KBN308dNs3zQDS19Z2q0kutGybSQO17Qd1BHSdZ2cqVaTPROr2dd1X3xXNv3YiNuyA-FwPYqDIRkxDkOsVtUXw9tDxI4dx2MKduoY49nbKH12NpIEVRPA51ZgO6BhynA0RnCN52la5PgencO7ArdEwPLZ2F0ZFsNGZpBO8pTO5+XQdyBawwXkyE1gynQ7wedRpU8HCRAfEpo7a496nUHrZXwRpLBG6gsFBDBMO2vQ8jPDANsJoufA9uw1BzQS2KJxAfaLRU3DAj42LFaQqCcIgAD0ZcfFXGCSEQRCSAYGDEHHnIXWVmfJ6n9DpzuHchODuf54XpDF6XFdVx8Nd1w3cBN0QLf809OW7iEbh8LktykdhG3dZwRs759mP9cTw1zTnR8Js0TzPCzYDPNIBjLi4cDZbaiZyHcqAsEktg+q3F8bCfnAF+RsobvltDwYBpBz68wnF3Hub8P4hGTMweAv8badjbP0Mg7gI7YmjiPeeGD0ycA+ChOA8E2JyHdJ7AS9M0gMQID2A0Ro+JfiPpOQBdB8SMFAROB4ug-5twfA8ES-gYDdyxEQAugiejjDLKXYhnYYDrxyJBVeUBzAzFGoeSCHD0zaimDMCC+59GLwFsIkITB2CC3TLIeQIti5PB2k6Ug795ChlgbYg+PUj4-SSCTOaA8j5mEsNYRgpBHFix2swbsniLGlR8Xw-xQ1bSk2IQmeCD9wSwKhhAMWHVwEPHsaQC43B3ZKMrGnSySVyke3caQAA-JUqwHoewy1oUfWxaRQlWBsFE5xDwYCOQ8GcWJtBNY8wFipLyIxcLukYLdLSPh-AQGugjPgYsKjBS2SEd0nAwokAECEEAIgayyMWXAEct0yDsE2U8AAJPfGeQCX4VFOY9fwqBIRwDnIA5+tJ6o7kgS-Ra5iQgAF9DiYPoAs261zSJ3PyY8wR7zsK0ALkisWDzBHhBCCY45Hy+oJhEvIDFySLCqxCF-GkcB9w7X7C4PZ3CehjAmEY28IQSDUDzCye5pAcWwoqA8DAyCDBQHdPo+hIQ+ByTgBK6YQQFa5JlYzWGzMdrR2oKUqcCllX0ymtiQoBgInEKmshIqpB+yUpmMuVgnAMAAXcMkcFfNsIQprFCs5ekdmPNiYxQEwIIA8OKBYPpET2BEonKEo2kJoQ5HeF8RE-w26kFYGCbE-rGA2zcOgCkMwoAND4VonIuJ8TUEsaBNlOpLGSFbF8mYfJDAzL0l6iA5zRaPMlirGWcs5rhCiEGnhQ4OqRuwk+fsWhFzsBpeQelDxCgEBIgc3kTKCAtiDVmPM3bpazhGogW0FQaStjqFix5jV-BcnBW2jtTiBWuIaQOoEFAeENLHY9VxT7GAQDbD1flgqUTYV4HeVx17oXpl9QK4Z2raBjLhBMxSgaX09FDWEmw77oKYv-SUsp7tCWlRjXG+MAQgicAqGmjNat4MTHIiyXNqB805ELXvEt6QkgVCrYYwwrrIWevAx6iAAgwAQoALpAA", # nolint
+  shinyMobile:::create_app_link("NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oq3Hl5qOJEpABMmwora5raegZGZ8s7aHAAHgTqSun326tFcDBQpEkBHm5gyDBYhVCAB46s4ACYAqAYMGwOBOVzQeDhSLRACC6CMwi6PQA8u08nAiXgegAhKDQaBU7r8GnVVKU0y4fzOABu9hYcGxUQALMLugBWcXdABsAHZugAOADM8xBZHUfwBQIA+utVhkSKRsfwoCxSERZgsIBA4NRtTBSAQlNDYYENE90fDEdiNVA4dwHU6GMITFyXM5JHC+QxjWAOHC4OIutzo8otHlsVJbNwovw4YpSMT+NRC2ATKHuYD4KEIrmwPmAUWaKWK+G4ZJAgRASRY4cIDM-OGeRhMZTY3zxALk22GERUELojBUAPmYRlEnqfx1Kgm+3bE2AI7COAEJs8pk9WBNilKJtBuiWtV6-GoT0Q7EZWUABSgFM9rkBUgjFjABlA5CmccQoGUThSzDVxXE-MCpFIAAZaDYP-BDhEjeglA-b96UTLCEOcQDgIifgQNwuhb0HUjSJwhNezgDI4O5BjnFYjITyNSiwFQER1GnTjXDnbsIBrSDJGzDjRJ5GTpCMGlAigABrYI0mxWUAAYdLk0jW1E5xPx-G1xB0CgWBIhjI1jeAIBYETjOcWxZ37bEABUsAAVQAUXglzTKI8QAElyBgGzOLsOgADlUVjGKAEZnJcsjCgonpPKgOhnBS+i0ojYgXAiT9QuK6I4APFh7G1AgOwIIxOQM0TskBHlBQibz-JawzAuM4LzPCv4ooYmL4qxfiYuOVKXPIzqspy5wZoKtKgR7UrZXKkhKuq2r6oYRrfHmNKjKCwihoi0bSPGhKppypVZuM+bY2y3LHtWlz1pKkytoq-gqpq8Q6oapqy16hCTtEs7OIhEkzUEnh3ETXi4DhbUYstTiYYQ6AeVomNNvi-GlFGl7+OQiD0Jgs0noQ94OykG1sQAMVxVCQICiGjDYszEy83y-JanGAKIIhxAJgjPLFiXSYh4IcIk2M6COc0YDpxDZVQrQ1O4KC6H5-jtYgNS8uJdRAgyWNYniRJkmoB38jFvIjAwYh1bLfqGM-Y3df1w2el95bzct62+jtgQHeoJ2iBd3J3axhiRecABiZx-i0SJDQoQtw1IsqIuEUaC5GiGAJyiaFv4ZKNYQz8aTNc0IGic09iMECNTgOCei-Q4jVQJRUXSKlk-z2UO7gLvroQuz+I0SfSHyr3jP98RY17o5nB-RR4GH2vSKmSQc61DaehVuIiA95fROEahJFQOBpYAYUOY8Bf86-ONogg1PzOd365nnc6IEpAJgYNPUi-B9BMjLgxfgsUWAwANjGIgVtoHVD5BJRI+8GIwEzhEHS3R-jPGxElPShDYGkQnAKbE4o9KUOcFDYyo8EKMG4Cw1wBwjjw3iGaaIe5SAbxbBDFhJdIqwNupNHo00cFPFeO8BgpAeGI2iIoBEDBE7Y0-r9Ya4igHRQrndaRD0cGfmlm3NEDCtCI1CnCWMXDSC6nUEQagODXCr1As46gW8+4AH43GRA1D-NGADYEcOcHIt4HxlF8P4DAFg4hATajUZIewmik7CzklDM6x4GAdUJiZNgXZyjN2sWabosFEbdGPMIHCJATDOBAHJdBeS4B+Q6mQbgZTSAABJW5xwnl3boTT9HOBYKgBE5AWbj07jwWePR55d3ykw5wABfNUB86C5I6u0nOXSICIx6dA4ZLVJBW32Yc6BzgoTODoTpBpIyBqylikcM509yDPD4s4Aetg4A6QgVlDUrlQHVF5PyQUMlnAkHEMoHo3RulHK2auDAPi4BNGMKMziWg2horfoUfgYTtGuG+gRbazd+Aq0SdqDIhgNzhPJj0XERhFE4PmlgSQeRYieReF8kCyhhAYAACIAjRCswyLVVlyXWeYGVQDKlmh6Wo-CMJnCBAgGA-ELwomKO4I8hicjRqTKgNiG0dpAzOm0aQZQD9YxKo0Z9Ui-x0DpmxFASk08SERHjImIlzhYURGoXAX1eRZzjOxFWDFzDMlAOlVaA+CMFXHiMF2NGGMloqrVWAnyoVdUtQABKeR0KhbgPzyD-P4E-FgDA1VAVhUm1GdiYqIDha5Ug7k8gXIVQ5Fg5YVmxuaQm3pAihHXNdBQMBQjc2jIEaO1VEApiRQRdAsVzhNDZgEX2jZCF5W9PiYkyQyS-SpLXhm8d1RNXyI+FOrF5yEUOKcS4h5EMDVGo-OCSE3QrU2v4ik+wdJ7VELQKgF1EQ3VF09c4Uc3R-VgsnHAcsEqpVQ0lRAEwYBVkAF0gA", # nolint
     "app",
-    header = FALSE
+    header = FALSE,
+    height = "1024"
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 768px; margin: 0 auto; float: none;"
 )
 ```
 
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#splitLayout" role="button" aria-expanded="false" aria-controls="splitLayout">
 Code
 </a>
@@ -684,34 +684,18 @@ new_mtcars <- reshape(
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
-    options = list(
-      theme = "auto",
-      dark = TRUE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideNavOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideNavOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
+    title = "Split layout",
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",
         side = "left",
-        theme = "light",
+        effect = "push",
+        options = list(
+          visibleBreakpoint = 700
+        ),
         f7PanelMenu(
           id = "menu",
+          strong = TRUE,
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
@@ -729,13 +713,12 @@ shinyApp(
             icon = f7Icon("equal_circle")
           )
         ),
-        uiOutput("selected_tab"),
-        effect = "reveal"
+        uiOutput("selected_tab")
       ),
       navbar = f7Navbar(
         title = "Split Layout",
         hairline = FALSE,
-        shadow = TRUE
+        leftPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -787,14 +770,17 @@ shinyApp(
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
-          text = paste0("The slider value is only ", input$obs, ". Please
-                        increase it"),
+          text = paste0(
+            "The slider value is only ", input$obs, ". Please
+            increase it"
+          ),
           icon = f7Icon("bolt_fill"),
           title = "Alert",
           titleRightText = Sys.Date()
         )
       }
     })
+
 
     output$radar <- renderApexchart({
       apex(
@@ -809,7 +795,7 @@ shinyApp(
     })
 
     output$selected_tab <- renderUI({
-      HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
     })
 
     output$distPlot <- renderPlot({

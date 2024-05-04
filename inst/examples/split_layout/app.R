@@ -2,11 +2,14 @@ library(shiny)
 library(ggplot2)
 library(shinyMobile)
 library(apexcharter)
+library(thematic)
 
 fruits <- data.frame(
   name = c("Apples", "Oranges", "Bananas", "Berries"),
   value = c(44, 55, 67, 83)
 )
+
+thematic_shiny(font = "auto")
 
 new_mtcars <- reshape(
   data = head(mtcars),

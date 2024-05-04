@@ -205,9 +205,13 @@ get_args <- function(level) {
 #' the end of the url.
 #' @param mode How to display the shinylive app. Default to app mode.
 #' @param header Whether to display the shinylive header. Default to TRUE.
+#' @param height iframe height. Useful to setup custom viewport dimensions.
+#' Default to iphone15 height.
 #'
 #' @keywords internal
-create_app_link <- function(app_code, mode = c("app", "editor"), header = TRUE) {
+create_app_link <- function(
+    app_code, mode = c("app", "editor"), header = TRUE,
+    height = "852") {
   mode <- match.arg(mode)
 
   app_url <- sprintf(
@@ -222,7 +226,7 @@ create_app_link <- function(app_code, mode = c("app", "editor"), header = TRUE) 
     # To allow the content to fill the full screen card
     class = "html-fill-item",
     src = app_url,
-    height = "700",
+    height = height,
     width = "100%",
     style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;",
     allowfullscreen = "",
