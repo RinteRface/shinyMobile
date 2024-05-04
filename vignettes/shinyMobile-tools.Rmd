@@ -58,15 +58,22 @@ The local preview is a 4 steps process:
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRU-gEF07EQAJdAV1q6AvLoBmAdgAKUAOZwdEfftK1SS07qFgZrXWioPrh6LkSobiScXnScpOyoBtTUACpEWHDmjHA8XilYAKoAogIhzi5WAMp8dkoAMlCsRAbxoS660ABu9CxeVgByUN0sTu3tbh5wXj7VELVTDU0twW1j3FC0jHQQU2YAYhp1lUVlYy48UAAmRADueYVFq-qlT7qkRETUPYx9lmmf31GZ10qCInHctBI0zA9CIpHeMBW5TOVjqfAA1uxqFB6HBqNC0RB0boAIzBXTcbLmaHceGoTiIAD0jJurIwdg+8wwxERYBeyLGqIxWJxeIJGN0ACZyZTMjS6QzmaybuzOUpuUReSozvyzgBiXQwDbOYhkCikV5CuJAs7Y9DUDgkxAAZlwFgMEAIkQg7AAVgJdCBXu0raQAJLkGA24H6JTwuCMTjAX0AXVOMZc8EutCgvzDpp0KGxjBgAH1zIpqD5dRn9IxaHZadCsA2myk4AAPC14YNrOBXBPQgAS-cuCaRtf05g+5B+Zh8exn47AveevYAvtqxlu1+Ua5wE51B2ZzB6vZCfXxEqQ3c1SNe3QfOOCSAGgwL5AfGEeEvWyOwrxaAASCJGAEFRVk-Q84CKI9-0A0gQNIRg3XfM5QMqUgoFIAxogAHgAWl0WhqQAiBryQsDvDAEgfEtSwABEc2oIg7GjcZO1ILxUCgOJHAAclA4jOH4t0MKwnDOBrM5SFYVBdmoqAlEYbtXh3XRN1CdcRAEMB1xTIA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4qBYDgAKkQsHAMoENHdkVgAKoAUW6ABMlABrO4AMTOABkAMoEky4MGuR50rR5Iw0qDKTg8FmfaAANzoSjujwAclARUoPp9Pt9SL8IvwnkjxF8iM50Zi4BpQS55Z91FBJAwpBA4FTaQyBa4mXbNURxKKGOKHqjna65UbgsJCuUXCqwHQiHEiDADUbPo8aVoydxxFA6HANcG4xAKQBGLrOdSBDJ-XrxRLJajl-JEIic3LESNgB2G6Ox+OJ5OposZikAJlz+YxRdiJYG5eolerRgwddmTc+jejAGJnDBTS5iGQKKRHS34Y7XDY4KQcfiiXvnLYGCQ8sfCczZ-LiZIhZJidUYc5cbezxxX0X4I+oCjaNnCTdBxFWLNEAAZm6DI2AIKEIG4AArExnBAM9WQeONbAASXIGAfWAr4fitWFD3SYRgGQgBdO9iPlVI8liIssEkZij3IAAPLc-HvYD-0kKB3Vw9donsJQYAAfQyQxxBnBjnHmYiAF9lKNdT7TBedz2qIVqnFeDEO4LREVIbo+TM7phD1f0SDQjDZ30GyGH0hFUjIEyIDMgASSEGBMTS3CcugXP0gl9M80yWFIPzSAYbpHOjfy6TsUgRGcAAeOpnEkQsvN8-y0P4Eh+G3B4ABEhPEasiIVOAeLuVAmnIbgAHJ-Ny4Q2u6FK0pEHTo1IZRUDInp7GqXjHSCtSwRUuYwBUmigA", #nolint
     "app",
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#ptr" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="ptr">
 ```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
@@ -74,10 +81,10 @@ library(shinyMobile)
 shinyApp(
   ui = f7Page(
     title = "My app",
-    options = list(pullToRefresh = TRUE),
+    options = list(pullToRefresh = TRUE, dark = FALSE),
     f7SingleLayout(
       navbar = f7Navbar(
-        title = "Single Layout",
+        title = "Pull to Refresh",
         hairline = FALSE
       ),
       toolbar = f7Toolbar(
@@ -111,8 +118,8 @@ shinyApp(
     })
   }
 )
-
 ```
+</div>
 
 ## Predefined input values
 
@@ -125,15 +132,22 @@ shinyApp(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRU-gEF07EQAJdAV1q6AvLoBmAdgAKUAOZwdEffqKpStEp1O66nUuwAJiwA1j4AYhoAMgDKAKICuHouHqRKPkJgMqy6aKiZSc4uVjF8dkpRUKxEBgHJLrrQAG70LD5WAHJQLSxODQ2p6WaZGgQEcJzegXBNtOO6fOZEBfX93FC0jHQQcBHR8YX9LjxQgUQA7j4AKlgAqnGr+omPugDEujAbzsRkFKQvTTgjFaHhgVzgAA9SAB5WqoWo6MCLZZgFQNNG6Z5FThAwGMdoGCAEDwkdh8eGkXC6GqkCkCXQgVY0ikAEmRugAPABaXSMCjTRjWRh8AKMooNcm1FnTWbjACSECWqwAvhjlSIBGBlQBdIA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67ORKik5RChESktm4ABMlABrO4AMTOABkAMoAURMuH8n1+pCMd34OmUzjQqC6aNcj3hWjyRlhUGUnB4xM+0AAbnQlHdHgA5KDMpQfT7owpYiL8M4EHLCUIguCMyQ5ZxaDJEIkuPmfdRQSQMKQQODQuFI1HKlXODRQEFEah3AAqWAAqoj6a4UQ7nABiZwwdUuYhkCikZ2M6os34wS1wAAepAA8ix4jHovLFWB5nzk84ncrhNUAww2WwCL8SNwtKgY91aSXSCZnCB6eWYwASBPOAA8dWcgQgkoYT1SZG4NcNn2LDcl0pyAEkIAr6QBfVMzuZgGcAXSAA", #nolint
     "app",
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#deviceInfo" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="deviceInfo">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
@@ -158,6 +172,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 All this information is related to the device running the application. The following information is returned:
 
@@ -188,15 +203,22 @@ Below an example that displays a card only when the app is on desktop:
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRU-gEF07EQAJdAV1q6AvLoBmAdgAKUAOZwdEffqKpStEp1O66nUuwAJiwA1j4AYhoAMgDKAKICuHouHqRKPkJgMqy6aKiZSc4uVjF8dkpRUKxEBgHJLrrQAG70LD5WAHJQLSxODQ2p6WaZGgQEcJzegXBNtOO6fOZEBfX93FC0jHQQcBHR8YX9LjxQgUQA7j4AKlgAqnGr+omPugDEujAbzsRkFKQvRgA8rVULUdIQWIFMs8igM4AAPUjA0igupgAycOCMDQOMjQw4uFRPAmYxhNLHtAwQAgeEjsPio3C6Goo2oCXQgVarFmogAkGKxOL+ugAPABaXSMCjTRhXBEBBm1XnTWbjACSECWyomIVIbiJLlW71xWKg5FyugIkOZohyS0YummnF1bm5IKVVsYgVFEqlEBltzV7E5sJcUoAjvSIHyVXM4BqtU6XagDQ0rABhSF9I66TJXXjeWjeKC6Ti0GCodKe73nWikbi6StfXTkREEo70WqWyHeK3OKDUThES0kUjN+twTbM87ObhwU5Y9v9JZEciMJl+Ui6WZwc5M8v2OBMogOqD8ZkTh1wJTwMgYTIvVO6AC+BufIgEYGfAF0gA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67ORKik5RChESktm4ABMlABrO4AMTOABkAMoAURMuH8n1+pCMd34OmUzjQqC6aNcj3hWjyRlhUGUnB4xM+0AAbnQlHdHgA5KDMpQfT7owpYiL8M4EHLCUIguCMyQ5ZxaDJEIkuPmfdRQSQMKQQODQuFI+muFEG5wAYmcMHVLmIZAopGNNwA8ix4s7ogQlCDTKjlXzyAAPUhOl10sAiapnN5kL30+aG72uYTVRnVNlsAi-EjcLSoZ3dWk50gmZwgen0-POgAkYYYEdtzgAPHVnIEIJKGAAVOABrMQAsVyXSnIASQgCv7cGE4NI31jn3pZsj1Sg5HxkQ9Xwg4jxCoYzklk+nhJ9X2dffdDBBDabLbbAFUh9wS8eAnAAI49vsDmVwEdj-dTmdjUeABhD1eRVfh200UJJFCKBnGESQYFQLFz0vahCnUZwUMtZx-VIeMVVcOhnTXC9QndFx7GEIhIhIOwtDw9Q4A1L5qBcZioDbQiiIVIh0m6IFSGcaU4GobokNeOA813KBtC+IoUzgIx4DIDB+GNWdXAAX1nbS5jAbSAF0gA", #nolint
     "app",
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#deviceInfoEx" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="deviceInfoEx">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
@@ -231,6 +253,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 
 ### Information about Shiny inputs
@@ -240,15 +263,22 @@ shinyApp(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGEQRU-gEF07EQAJdAV1q6AvLoBmAdgAKUAOZwdEffqKpStEp1O66nUuwAJiwA1j4AYhoAMgDKAKICuHouHqRKPkJgMqy6aKiZSc4uVjF8dkpRUKxEBgHJLrrQAG70LD5WAHJQLSxODQ2p6WaZpRDlcLqV1bUF9f3cULSMdBATZpGxcYX9LjxQgUQA7j4AKlgAqnFz+onXuqRERNStjO2WJ4-PvXf6qESctA8JAyYHoRFIDxgsyKOysUT4IXY1Cg9Dg1BB8IgYQAjAVdNxGHBzCDuBDUJxEAB6SmHWkYOyPcYYYhQsC3GH9OEIpEotEYhG6ABMeIJRJJZIp1Nph3pjKUzKIrJUO3ZOwAxLoYItnMQyBRSHcrABhFiBdhNOCMVoeGAnOAAD1IAHlaqhajowHxzP9MgJVZzLCbGGafhZ3g6Anw3aQAJKBEHkR145Go9HDMB2pNs7Y7MMxOiBS3sKO1OMg5hjOC4vC+Xlp3SZLBQSt4mB8HwABlwmqg9p8gu7TSg1AMa102O7-jgqE7GGx-thlhi5HQRZLsfj6anq8Y1e7Kb56eX09Qltb7bMXZ7fbM2KvQ5HY4ArAv+harVAbZnna73Zlkf4RoLJWgS+ncyouBB-qcJa77tAYEAEECEDFhA0bdjUpDRgIuggHMmHRgAJF6-y6AAPAAtLohIQIWjDWIwfCRmhtSEeorAxhA3oQa4v6kIRAGkEBzYOPGlHURQdEMUxqFEYJnHRsJIEQQAviIAhgCpAC6QA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67ORKik5RChESktm4ABMlABrO4AMTOABkAMoAURMuH8n1+pCMd34OmUzjQqC6aNcj3hWjyRlhUGUnB4xM+0AAbnQlHdHgA5KDMpQfT7owpYiL8ACSEFQLFIzglhmERJcfM+6igkgYUggcGhcKR9NcKJ1zlIRCI4hZDDZDwAKkaTTz9a5gsJCn9sWA6EQ4kQYHKFZ9HrCtODuOIoHQ4OIXf6IJCAIxdZzqQIZF2xeKJZLUDP5I0U3LEL1gPXyn1+gNBkNhiMB5wAJjjCbgSaFvVTAwz1CzRBzGDzsyLn0LPoAxM4YMqXMQyBRSPrHgBhJQg3kKjGCnpacWkAAkp1FGSI3p9zkZ1RZvxgFrgAA9SAB5CUb6JaPeygsDhUl4F2+6Wq88dcS4UQRdchrzjYNQ3DJsL1AgtUT7PlSSkEFqm4f9SEAl12jeWM8GccCKybLAoAgN44xgLQ7gABm6UdLzuatukZewWA1CJo26WwgiojBozfYsHnhch0BQtCMKbTjhIYHDunwyCekEoJUGqMiKIiaiRygOi2PUpjxBYu4AFZ5h9PjfQeecGEXL8V1YtcxQlTdg1sUUN1nJUSLgEEDx9Y8GFPSRz1-O94glaInNINziLeLyC31Yz+zRN9hGqXy2TYAhfhIVD7NIbpaQ3ExnBAel8ocp8QmcAAeOpnECCBkIYJ5UjIbKN23PZlF3Ih4tcUqt3CyKPKA6raooBqmrSVqHPClyJUG6L4oAXzmMBFoAXSAA", #nolint
     "app",
     header = FALSE
   ),
   full_screen = TRUE,
-  style = "width: 322px; margin: 0 auto; float: none;"
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#lastChanged" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="lastChanged">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
@@ -283,6 +313,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 This is convenient since usually, there is no shortcut to get the last changed value and this needs to be done server side in Shiny.
 
