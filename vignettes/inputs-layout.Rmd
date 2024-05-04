@@ -8,20 +8,41 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Since {shinyMobile} 2.0.0, the layout of inputs has been improved. It is recommended that multiple inputs are wrapped inside a `f7List` to benefit from styling options such as `inset`, `strong`, `dividers`,and `outline`. Also introduced since 2.0.0 are the functions `f7Form` and `updateF7Form` to gather inputs in the same form and update them in batch or only selected ones.
+```{r setup, echo=FALSE, message=FALSE}
+library(bslib)
+```
+
+Since {shinyMobile} 2.0.0, the layout of inputs has been improved. It is recommended that multiple inputs are wrapped inside a `f7List()` to benefit from styling options such as `inset`, `strong`, `dividers`,and `outline`. Also introduced since 2.0.0 are the functions `f7Form()` and `updateF7Form()` to gather inputs in the same form and update them in batch or only selected ones.
 
 ## Inputs Layout
 
-In your app you can have many different inputs. Most of the time these inputs are nicely displayed together so the users can make her/his selections. With the many styling options that Framework7 provides, it can be quite a hassle if you would have to style them all individually. Luckily, you don't have to! You can wrap them inside a `f7List` to benefit from the styling options, styling them all at once:
+In your app you can have many different inputs. Most of the time these inputs are nicely displayed together so the users can make her/his selections. With the many styling options that Framework7 provides, it can be quite a hassle if you would have to style them all individually. Luckily, you don't have to! You can wrap them inside a `f7List()` to benefit from the styling options, styling them all at once (see below with the iOS skin):
 
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67ORKik5RChESktm4ABMlABrO4AMTOABkAMoAUW6RTg8Du-HKwlMuH8n1+pCMGLAAEkIKgWKRQrCoMpOKQunjXI94Vo8kYaXTKR9Ps5oAA3OhKO6PAByUEFSh5vOcBKJEX4ZIpVOcnPpjJcMtc6igkgYUggcGhcKRTM+Jlxmt5j1hkmBZt5NjgpDuABUsABVZEOz4gyT8yQg6oA5zur2WrWuWwMEh5N2e71WmX0g1GiIwhGJyP3B6uuAADx4Psd5MpJJBxPIhY12dc4igdDg4mJecLzi0yprtf59hYaZ68KI6KrDL8Sa1qHrOXURHEQYYxIAmpwFyPnOpqr5i84LdvHq3SGdAlBpVqO2WKwqwCOlHAoF3s-XG82rwfnLeoO3S6OI93e-3+EHYcCx-bdXEnWoZznaolxXWUQPXTd+G3Xdx0+FkmzgAgizQktlXLYlhEw7CH0jJ8m2JHQoHBI1PwIGdJByUitXoohGLgEMAEZEAAZl-bMiKMbC4EvZxOJQ-iZUeM5KSIABhIdJ2dd4wK-fDRP4GBlCgWTiBgJTyGYmUIOnWd52JICjTXDdAgAQiM3lvgoMliRBGNUBBIhqAWMda2cciXx6V1lFQWj7gYG4XWgeAHM+Vj2JDKJVNcfgLiUroeguVJiB-TL+SIAgoE8jL+AAISgaBoBKsAdCbEhYt5fgAHl2jeaqnjvej2rvBh2q0O90CMZDcPNCS91zIg8nZFSRtcc9SAIq9SEm6aGv8hsKNfFaiRisAxpGx4nkYmiGFPGV5sWnpUGO6o1pMuAoPMq9LPgtsbLgezfNrALiSOggTucJVKTW+KckS6J7zwHo6GqggcVU75fhIEMgR4DQ4GdJ4RHUeMvXmbNUOzR4ABEoHIP6TrOvCL1csnfEkrUfqvCn32cMFDK+7Me3EPs7nhZRhAwUnyG4fHI0JyNHgU8Qpgp6oqc+C6NLALTiBlhhrv+27Ocje7Hpg56hyshD3s+hmZSZgdiJdOjZymYaCZ9MXXDFiWiIYfkDfuNhsL+bh5u6ellRMZwQDxABfOYwHDgBdIA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#inputlist" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="inputlist">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    options = list(dark = FALSE,
-                   theme = "ios"),
+    options = list(dark = FALSE, theme = "ios"),
     title = "Inputs Layout",
     f7SingleLayout(
       navbar = f7Navbar(
@@ -89,6 +110,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 By default inputs list is displayed with stacked labels. Stacked labels always appear on top of the input.
 
@@ -96,30 +118,47 @@ By default inputs list is displayed with stacked labels. Stacked labels always a
 
 The following inputs are supported: 
 
-- `f7Text`
-- `f7TextArea`
-- `f7Password`
-- `f7Select`
-- `f7SmartSelect`
-- `f7AutoComplete`
-- `f7Stepper`
-- `f7Toggle`
-- `f7Picker`
-- `f7DatePicker`
-- `f7ColorPicker`
+- `f7Text()`
+- `f7TextArea()`
+- `f7Password()`
+- `f7Select()`
+- `f7SmartSelect()`
+- `f7AutoComplete()`
+- `f7Stepper()`
+- `f7Toggle()`
+- `f7Picker()`
+- `f7DatePicker()`
+- `f7ColorPicker()`
 
 <br>
 
-This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List` and style them manually with the available options in the input. For example, `f7CheckboxGroup` and `f7Radio` are not supported in `f7List` but can be styled to look similar:
+This doesn't mean you can't use other inputs, but they may look a bit off. In this case you can take them out of `f7List()` and style them manually with the available options in the input. For example, `f7CheckboxGroup()` and `f7Radio()` are not supported in `f7List()` but can be styled to look similar:
 
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67ORKik5RChESktm4ABMlABrO4AMTOABkAMoAUW6RTg8Du-HKwlMuH8n1+pCMGLAAEkIKgWKRQrCoMpOKQunjXI94Vo8kYaXTKR9Ps5oAA3OhKO6PAByUEFSh5vOcBKJEX4ZIpVOcnPpjJcMtc6igkgYUggcGhcKRTM+Jlxmt5j1hkmBZt5NjgpDuABUsABVZEOz4gyT8yQg6oA5zur2WrWuWwMEh5N2e71WmX0g1GiIwhGJyP3B6uuAADx4Psd5MpJJBxPIhY12dc4igdDg4mJecLzi0yprtf59hYaZ68KI6KrDL8Sa1qHrOXURHEQYYxIAmpwFyPnOpqr5i84LdvHq3SGdAlBpVqO2WKwqwCOlHAoF3s-XG82rwfnLeoO3S6OI93e-3+EHYcCx-bdXEnWoZznaolxXWUQPXTd+G3Xdx0+FkmzgAgizQktlXLYlhEw7CH0jJ8m2JHQoHBI1PwIGdJByUitXoohGLgEMAEZEAAZl-bMiKMbC4EvZxOJQ-iZUeM5KSIABhIdJ2dd4wK-fDRP4GBlCgWTiBgJTyGYmUIOnWd52JICjTXDdAgAQiM3lvgoMliRBGNUBBIhqAWMda2cciXx6V1lFQWj7gYG4XWgeAHM+Vj2JDKJVNcfgLiUroeguVJiB-TL+SIAgoE8jL+AAISgaBoBKsAdCbEhYt5fgAHl2jeaqnjvej2rvBh2q0O90CMZDcPNCS9weeFyHQapTxlc9SAIq9bCCULet82sAso5RnGW6a1skrUYC0O4AAYDplYhxCmVy4CyFhxFAkbXBgKB8zuTiztUntxD7O4ABYxpG-ciDydkVKetSL0rEGwYa-yGwo18YaJGKwEB7NHieRiaIYWa8Khq9UGx6o4ZMuAoPMq9LPgtsbLgez1sfBHAv4LGCBx5wlUpOH4pyRLonvPAejoaqCBxVTvl+EgQyBHgNDgZ0nhEdR4y9eZs1QjGHgAESgcg2ZxvHPnmxaejBQzGbI5niQN99nHN3xzt5b7foieFlGEDBdfIbh1cjTXI0eBSroYA2ZtUk2NLALTLqmIn2ZJy2JyncmzJgqmhyshC6YZp3Pk2qniJdOjZymYaNZ9APrQeOSN3ZugiHzABxGMWFQI3I+JeisPBBv81iguelrnu++cPJW9QWLeY4u4kpQaqRaF-gxbAKuZUErDyCjwW89sZR5X8u0cL8p0XQiMMs1rP0A3nEML7zqNSBjCA43PhMH6+SlU2NTMUMr87HhYCKuUDu35Tb8EUH6IgA9rZXiAVAseE8p4MT5rPAWC9RbixGhvYS29Yp7wPrLI2rhT6q0vtma+gZgxkI-tGWMNCJZf36j-U0I0-a8nYTuPEAciIMH5One4bBsJ-G4PNbo9JlQmGcCAPEABfOYYBZEAF0gA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#outsidelist" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="outsidelist">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
-    options = list(dark = FALSE,
-                   theme = "ios"),
+    options = list(dark = FALSE, theme = "ios"),
     title = "Inputs Layout",
     f7SingleLayout(
       navbar = f7Navbar(
@@ -219,17 +258,35 @@ shinyApp(
   }
 )
 ```
+</div>
 
 ## Forms
 
-Since {shinyMobile} 2.0.0, the functions `f7Form` and `updateF7Form` have been introduced to gather inputs in the same form and update them in batch or only selected ones. The form returns a list with all the inputs inside it, and you can access them by their `inputId`. 
+Since {shinyMobile} 2.0.0, the functions `f7Form()` and `updateF7Form()` have been introduced to gather inputs in the same form and update them in batch or only selected ones. The form returns a list with all the inputs inside it, and you can access them by their `inputId`. 
 
 <br>
 
-In the below example this means you can gather all the values by simply calling `input$myform` and update them all at once by calling `updateF7Form`:
+In the below example this means you can gather all the values by simply calling `input$myform` and update them all at once by calling `updateF7Form()`:
 
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV673DwDKWnlGABkoMpODx-J9XNAAG50JR3R4AOSgMKU3FIhSMd34AEkIKgWKRQhkpjBTLhwRDHgAhcREAgAa241IJpBI0RYqAAJlByF0egBhKQM5zwUwmckuCFfGl0+kAFQx734Z2cUlsziIGWcWnxhO1Lig9xJZIpn0eAMktg+Uv1wjgpDucqwAFUAKISm2uTmSKGSTnVUIRABiZwB33dpohtgYJDyjpdEclNtBUggcDuIbDic9XyDJOtnr9WLAMGUxIYpL8Sc9jzlcAAHmDqzmdQTsZzi+RG11I57xFA6HBxMW6439bqe83PVD7Cx0xF+N8iPBnF3SJOcxDUP2cuoiOJ-QxiwBNThHtfOdTVXwezeuWzKTERNVNu8Q-3CNqSVDokjFlXEPuq4Ng6rbrlWb6fCmWjzs4TpurekHwN6hoRI82LEBA0R7iIvjir2OYEEYSgDk+cEJohb4ZLSPJ-PGboEVK8x3vhU6Ug8o6kGcgRQAWLZ4m2HYLmAa5KHAUAbm+-aDsOwmcc43HiZJd4zuIc7FgCUxwDA2oJCwOmcvuUzOMIhTOLA9rdJhdoEOQpAsAwjE2lA3qoJaBB0UOhTdHaHaGc4cCSCIHAduQMDBEeWged6nJcM4BJOVK0laQFDqGbSgQiq80DmVIACOLASRBb7brUe4HtUJ5nsBY5XoEymboEpkAF6wfB2Zvg+ZEvnxm4fl+P7lC4wkAUQQEXmBDV3tBab0R1SFwCh8IPBhbL8DhdommxnpEeJih0GR7WUXe1FELREBxhE7WJa4zGbqxJ3PE0wjUFMnK9TaYHtsWqDPa9DCclNfYDkOxYvMIL1vYgQM2qVu77oeVUOc4v0Q-9HZ1TeN0maQj6wT12NenAn6pINf4jZEY3DhNAngcdm4zW1FGEyKi2SKhXyrVh62cJtYAPZBkTEfth3M9tNqnedl3kQx4ufHdOYCzmjzfEOcC2R9UpfUJPR2kYtkw0lIOyT0qv6w6hoQPpg6OcVd4EHukg5IGkTcAAjN0ABM3QAMxK5uXX45ar6C-1pO-sNPQqnr6sR4byYEqmTMISzyHs8tXPYbzeHYwrnp5xCBfOP7rjUrSDLcFC1SwuiMCcQA8gSurROWlYmHnd0C3aDBV0eaFsLZQ3cGB3SgrqPnE6ZJAmM4ICmmPBIACSt84AA8dTOIEECHk8qRkMPtOL6Wrd5-PdDd1XrpV-vYGLxy3LkN0c9TvfPJwEGDx5hWmv8Mfxp21KB+HMCZy34GufgxYERwGoDVOmiUwEgTEkVSB0DYHmR4vHHoqNIYAwgcJKBMDsHo0we4NWBswB3B9oxIuecAC+d1aFzDALQgAukAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#forms" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="forms">
 ```{r, eval = FALSE}
-
 library(shiny)
 library(shinyMobile)
 
@@ -299,7 +356,7 @@ shinyApp(
           )
         )
       ),
-      verbatimTextOutput("form")
+      f7Block(verbatimTextOutput("form"))
     )
   ),
   server = function(input, output, session) {
@@ -318,19 +375,19 @@ shinyApp(
     })
   }
 )
-
 ```
+</div>
 
-Since the `f7Form` is wrapped inside a `f7List`, it will look like a regular list of inputs. The difference is in the way the inputs are gathered and how they can be updated.
+Since the `f7Form()` is wrapped inside a `f7List()`, it will look like a regular list of inputs. The difference is in the way the inputs are gathered and how they can be updated.
 
 <br>
 
 Currently, the following inputs supported for the form are: 
 
-- `f7Text`
-- `f7TextArea`
-- `f7Password`
-- `f7Select`
+- `f7Text()`
+- `f7TextArea()`
+- `f7Password()`
+- `f7Select()`
 
 <br>
 
