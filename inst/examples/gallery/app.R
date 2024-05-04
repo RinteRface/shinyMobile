@@ -245,7 +245,6 @@ shinyApp(
     output$radio2 <- renderPrint(input$radio2)
     output$toggle <- renderPrint(input$toggle)
     output$select <- renderPrint(input$select)
-    output$val <- renderPrint(input$button2)
     output$smartdata <- renderTable(
       {
         head(mtcars[, c("mpg", input$smartsel), drop = FALSE])
