@@ -202,7 +202,7 @@ f7DefaultOptions <- function() {
 
 #' Framework7 multi pages layout
 #'
-#' r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("experimental")`
 #' Experimental multi pages layout. This has to be used
 #' with the brochure R package. See in the corresponding
 #' pkgdown article.
