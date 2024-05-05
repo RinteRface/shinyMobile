@@ -541,6 +541,11 @@ shinyApp(
       input$treeview
     })
 
+    # Table
+    output$table <- renderUI({
+      f7Table(mtcars[1:15,])
+    })
+
     # pull to refresh
     # observeEvent(input$ptr, {
     #

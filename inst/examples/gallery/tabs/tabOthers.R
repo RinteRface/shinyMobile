@@ -217,5 +217,15 @@ tabOthers <- f7Tab(
 
   # preloaders
   f7BlockTitle(title = "f7ShowPreloader/f7HidePreloader") %>% f7Align(side = "center"),
-  f7Card(plotOutput("preloaderPlot"), f7Button("showLoader", "Show loader"))
+  f7Card(
+    plotOutput("preloaderPlot"),
+    br(),
+    f7Button("showLoader", "Show loader")
+  ),
+
+  # table
+  f7BlockTitle(title = "f7Table") %>% f7Align(side = "center"),
+  f7Block(
+    uiOutput("table")
+  )
 )
