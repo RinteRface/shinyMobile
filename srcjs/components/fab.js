@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   var fab = $(".fab");
   var pageCurrent = $(".page-current");
-  var navbar = $(".navbar");
+  var navbar = $(".view-main .navbar");
 
   // establish the current parent of the FAB
   var parent = fab.parent();
