@@ -194,7 +194,7 @@ tabInputs <- f7Tab(
     p("Choose wisely!"),
     f7Radio(
       inputId = "radio",
-      label = "f7Radio() - pick fruit:",
+      label = "f7Radio() right - pick fruit:",
       choices = c("banana", "apple", "peach"),
       selected = "apple",
       position = "right",

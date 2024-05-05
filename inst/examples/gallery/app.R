@@ -274,8 +274,14 @@ shinyApp(
       f7Popup(
         id = "popup1",
         title = "My first popup",
-        f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
-        verbatimTextOutput("popupContent")
+        f7Block(
+          p("Popup can push the view behind. By default it has effect only when
+            'safe-area-inset-top' is more than zero (iOS fullscreen webapp or iOS cordova app)"),
+          f7Text(inputId = "popupText",
+                 label = "Popup content",
+                 value = "This is my first popup, I swear!"),
+          verbatimTextOutput("popupContent")
+        )
       )
     })
 
