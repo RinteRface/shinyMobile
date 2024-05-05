@@ -47,28 +47,25 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 
           # inputs
           shiny::tags$form(
-            shiny::tags$div(
-              class = "list", shiny::tags$ul(
-                f7Text(
-                  inputId = ns("user"),
-                  label = "",
-                  placeholder = "Your name here"
-                ),
-                f7Password(
-                  inputId = ns("password"),
-                  label = "",
-                  placeholder = "Your password here"
-                ),
-                ...
-              )
+            f7List(
+              f7Text(
+                inputId = ns("user"),
+                label = "Username",
+                placeholder = "Your name here"
+              ),
+              f7Password(
+                inputId = ns("password"),
+                label = "Password",
+                placeholder = "Your password here"
+              ),
+              ...
             ),
-            shiny::tags$div(
-              class = "list",
-              shiny::tags$ul(shiny::tags$li(submitBttn)),
-              if (!is.null(footer)) {
-                shiny::tags$div(class = "block-footer", footer)
-              }
-            )
+            f7List(
+              submitBttn
+            ),
+            if (!is.null(footer)) {
+              shiny::tags$div(class = "block-footer", footer)
+            }
           )
         )
       )
@@ -117,17 +114,17 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
 
       # toggle the login only if not authenticated
       shiny::observeEvent(input$submit,
-        {
-          if (!authenticated()) {
-            updateF7Login(
-              id = modId,
-              user = input$user,
-              password = input$password
-            )
-            authenticated(TRUE)
-          }
-        },
-        ignoreInit = ignoreInit
+                          {
+                            if (!authenticated()) {
+                              updateF7Login(
+                                id = modId,
+                                user = input$user,
+                                password = input$password
+                              )
+                              authenticated(TRUE)
+                            }
+                          },
+                          ignoreInit = ignoreInit
       )
 
       # useful to export the user name outside the module
