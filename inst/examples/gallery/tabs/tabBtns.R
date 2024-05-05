@@ -42,9 +42,8 @@ tabBtns <- f7Tab(
     f7Button(color = "yellow", label = "My button", tonal = TRUE),
     f7Button(color = "green", label = "My button", tonal = TRUE)
   ),
-  f7BlockTitle(title = "Filled Buttons in a segment/rounded container"),
+  f7BlockTitle(title = "Filled Buttons in a segment container"),
   f7Segment(
-    rounded = TRUE,
     f7Button(color = "purple", label = "Action Button", inputId = "button2"),
     f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
     f7Button(color = "orange", label = "My button")
@@ -52,20 +51,27 @@ tabBtns <- f7Tab(
   f7BlockTitle(title = "Outline Buttons in a segment/shadow container"),
   f7Segment(
     shadow = TRUE,
-    f7Button(label = "My button", outline = TRUE, fill = FALSE),
-    f7Button(label = "My button", outline = TRUE, fill = FALSE),
-    f7Button(label = "My button", outline = TRUE, fill = FALSE)
+    f7Button(label = "My button", outline = TRUE, fill = FALSE, shadow = TRUE),
+    f7Button(label = "My button", outline = TRUE, fill = FALSE, shadow = TRUE),
+    f7Button(label = "My button", outline = TRUE, fill = FALSE, shadow = TRUE)
   ),
-  f7BlockTitle(title = "Rounded Buttons in a segment container"),
+  f7BlockTitle(title = "Rounded Buttons in a segment/rounded container"),
   f7Segment(
+    rounded = TRUE,
     f7Button(color = "black", label = "My button", rounded = TRUE),
     f7Button(color = "green", label = "My button", rounded = TRUE),
     f7Button(color = "yellow", label = "My button", rounded = TRUE)
   ),
-  f7BlockTitle(title = "Buttons of different size in a row container"),
+  f7BlockTitle(title = "Buttons of different size in a segment container"),
   f7Segment(
-    f7Button(color = "pink", label = "My button", shadow = TRUE),
-    f7Button(color = "teal", label = "My button", size = "large", shadow = TRUE),
-    f7Button(color = "lightblue", label = "My button", size = "small", shadow = TRUE)
+    f7Button(color = "red", label = "My button"),
+    f7Button(color = "black", label = "My button", size = "large"),
+    f7Button(color = "deeporange", label = "My button", size = "small")
+  ),
+  f7BlockTitle(title = "Buttons with icons in a segment container"),
+  f7Segment(
+    f7Button(color = "pink", label = "My button", icon = f7Icon("star")),
+    f7Button(color = "teal", label = "My button", icon = f7Icon("house")),
+    f7Button(color = "lightblue", label = "My button", icon = f7Icon("heart"))
   )
 )
