@@ -16,7 +16,8 @@ f7Fabs(
   label = NULL,
   sideOpen = c("left", "right", "top", "bottom", "center"),
   morph = deprecated(),
-  morphTarget = NULL
+  morphTarget = NULL,
+  global = FALSE
 )
 
 updateF7Fabs(id, session = shiny::getDefaultReactiveDomain())
@@ -42,6 +43,10 @@ f7FabMorphTarget(tag)
 removed from Framework7.}
 
 \item{morphTarget}{CSS selector of the morph target: \code{".toolbar"} for instance.}
+
+\item{global}{If FABs are used in \link{f7TabLayout} and this argument is set to TRUE,
+the FAB will be displayed on all tabs. If FALSE, the default, it will be displayed only on
+tab it is called from.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 

@@ -10,6 +10,7 @@ tabBtns <- f7Tab(
     lapply(1:12, function(i) textOutput(paste0("res", i)))
   ),
   f7Fabs(
+    global = TRUE,
     position = "right-top",
     color = "yellow",
     sideOpen = "bottom",

@@ -12,6 +12,9 @@
 #' @param morph `r lifecycle::badge("deprecated")`:
 #' removed from Framework7.
 #' @param morphTarget CSS selector of the morph target: \code{".toolbar"} for instance.
+#' @param global If FABs are used in \link{f7TabLayout} and this argument is set to TRUE,
+#' the FAB will be displayed on all tabs. If FALSE, the default, it will be displayed only on
+#' tab it is called from.
 #'
 #' @note The background color might be an issue depending on the parent container. Consider
 #' it experimental.
@@ -28,7 +31,8 @@ f7Fabs <- function(
       "left-center", "left-bottom", "center-center", "center-top", "center-bottom"
     ),
     color = NULL, extended = FALSE, label = NULL,
-    sideOpen = c("left", "right", "top", "bottom", "center"), morph = deprecated(), morphTarget = NULL) {
+    sideOpen = c("left", "right", "top", "bottom", "center"), morph = deprecated(),
+    morphTarget = NULL, global = FALSE) {
   if (lifecycle::is_present(morph)) {
     lifecycle::deprecate_warn(
       when = "2.0.0",
@@ -43,6 +47,7 @@ f7Fabs <- function(
   fabCl <- paste0("fab fab-", position, if (!is.null(color)) " color-", color)
   if (extended) fabCl <- paste0(fabCl, " fab-extended")
   if (!is.null(morphTarget)) fabCl <- paste0(fabCl, " fab-morph")
+  if (global) fabCl <- paste0(fabCl, " fab-global")
 
   sideOpen <- match.arg(sideOpen)
 
