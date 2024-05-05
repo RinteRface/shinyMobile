@@ -14,9 +14,7 @@ $(document).ready(function() {
   // establish the current parent of the FAB
   var parent = fab.parent();
 
-  // check if the parent class is .page-content, and if so, get the id
-  // whenever data-active='true' for this page, the FAB will be shown
-  // if data-active='false', the FAB will be hidden
+  // check if the parent has class .page-content, and if so, get the id
   if (parent.hasClass("page-content")) {
     var parentID = parent.attr("id");
     app.store.state.fabs.ids = parentID;
