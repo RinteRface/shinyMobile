@@ -121,6 +121,7 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'
 #'   shinyApp(
 #'     ui = f7Page(
+#'       options = list(dark = FALSE),
 #'       title = "Button Segments",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(title = "f7Segment, f7Button"),
@@ -156,18 +157,6 @@ updateF7Button <- function(inputId, label = NULL, color = NULL,
 #'           f7Button(label = "My button", fill = FALSE),
 #'           f7Button(label = "My button", fill = FALSE),
 #'           f7Button(label = "My button", fill = FALSE, active = TRUE)
-#'         ),
-#'         f7BlockTitle(title = "Rounded Buttons in a segment container"),
-#'         f7Segment(
-#'           f7Button(color = "blue", label = "My button", rounded = TRUE),
-#'           f7Button(color = "green", label = "My button", rounded = TRUE),
-#'           f7Button(color = "yellow", label = "My button", rounded = TRUE)
-#'         ),
-#'         f7BlockTitle(title = "Raised buttons in a segment container"),
-#'         f7Segment(
-#'           f7Button(color = "blue", label = "My button", shadow = TRUE),
-#'           f7Button(color = "green", label = "My button", shadow = TRUE),
-#'           f7Button(color = "yellow", label = "My button", shadow = TRUE)
 #'         )
 #'       )
 #'     ),
@@ -197,11 +186,27 @@ f7Segment <- function(
   if (rounded) containerCl <- paste0(containerCl, " segmented-round")
   if (strong) containerCl <- paste0(containerCl, " segmented-strong")
 
+  # Note: there's a inconsistency in the Framework7 API where the segment can
+  # have the segmented-round class. This actually does not change the button
+  # appearance (only the container).
+  # Instead, we'll apply the button-round class to all buttons within
+  # the segment, if not already done.
+  btns <- list(...)
+  if (rounded) {
+    btns <- lapply(btns, \(btn) {
+      is_rounded <- grepl("button-round", btn$attribs$class)
+      if (!is_rounded) {
+        btn <- tagAppendAttributes(btn, class = "button-round")
+      }
+      btn
+    })
+  }
+
   shiny::tags$div(
     class = "block",
     shiny::tags$p(
       class = containerCl,
-      ...,
+      btns,
       if (strong) shiny::span(class = "segmented-highlight")
     )
   )

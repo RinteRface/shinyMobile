@@ -136,6 +136,7 @@ if (interactive()) {
 
   shinyApp(
     ui = f7Page(
+      options = list(dark = FALSE),
       title = "Button Segments",
       f7SingleLayout(
         navbar = f7Navbar(title = "f7Segment, f7Button"),
@@ -171,18 +172,6 @@ if (interactive()) {
           f7Button(label = "My button", fill = FALSE),
           f7Button(label = "My button", fill = FALSE),
           f7Button(label = "My button", fill = FALSE, active = TRUE)
-        ),
-        f7BlockTitle(title = "Rounded Buttons in a segment container"),
-        f7Segment(
-          f7Button(color = "blue", label = "My button", rounded = TRUE),
-          f7Button(color = "green", label = "My button", rounded = TRUE),
-          f7Button(color = "yellow", label = "My button", rounded = TRUE)
-        ),
-        f7BlockTitle(title = "Raised buttons in a segment container"),
-        f7Segment(
-          f7Button(color = "blue", label = "My button", shadow = TRUE),
-          f7Button(color = "green", label = "My button", shadow = TRUE),
-          f7Button(color = "yellow", label = "My button", shadow = TRUE)
         )
       )
     ),
