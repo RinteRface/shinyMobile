@@ -241,6 +241,7 @@ shinyApp(
     output$stepper <- renderPrint(input$stepper)
     output$check <- renderPrint(input$check)
     output$checkgroup <- renderPrint(input$checkgroup)
+    output$checkgroup2 <- renderPrint(input$checkgroup2)
     output$radio <- renderPrint(input$radio)
     output$radio2 <- renderPrint(input$radio2)
     output$toggle <- renderPrint(input$toggle)

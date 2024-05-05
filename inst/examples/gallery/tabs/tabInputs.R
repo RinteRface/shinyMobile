@@ -172,11 +172,21 @@ tabInputs <- f7Tab(
     br(),
     f7CheckboxGroup(
       inputId = "checkgroup",
-      label = "f7CheckboxGroup() - choose variable:",
+      label = "f7CheckboxGroup() right - choose variable:",
       choices = colnames(mtcars)[1:3],
-      selected = "mpg"
+      selected = "mpg",
+      position = "right"
     ),
-    verbatimTextOutput("checkgroup")
+    verbatimTextOutput("checkgroup"),
+    br(),
+    f7CheckboxGroup(
+      inputId = "checkgroup2",
+      label = "f7CheckboxGroup() left - choose variable:",
+      choices = colnames(mtcars)[1:3],
+      selected = "cyl",
+      position = "left"
+    ),
+    verbatimTextOutput("checkgroup2")
   ),
   f7BlockTitle(title = "f7Radio input") %>% f7Align(side = "center"),
   f7Block(
