@@ -57,8 +57,7 @@ See \url{https://framework7.io/docs/floating-action-button#fab-morph}.
 }
 \note{
 The background color might be an issue depending on the parent container. Consider
-it experimental. Also note that the f7Fabs looses its sticky behaviour when used inside
-\link{f7Tabs} and the tabs are animated or swipeable.
+it experimental.
 }
 \examples{
 library(shiny)

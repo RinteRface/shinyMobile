@@ -2,6 +2,7 @@ import './init.js';
 import './actionSheet.js';
 import './chips.js';
 import './dialog.js';
+import './fab.js';
 import './gauge.js';
 import './navbar.js';
 import './popover.js';

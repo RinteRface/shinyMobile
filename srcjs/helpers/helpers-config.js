@@ -27,6 +27,7 @@ export const setConfig = () => {
       tooltips: [],
       actions: [],
       preloaders: [],
+      fabs: [],
       // For some widgets, we must match the widget name
       // that's why no 's' at the end even if there
       // are multiple gauges ...
@@ -35,7 +36,7 @@ export const setConfig = () => {
       swiper: [],
       searchbar: [],
       listIndex: [],
-      photoBrowser: [],
+      photoBrowser: []
       // Input elements: TBD??
     },
     actions: {

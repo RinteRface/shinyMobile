@@ -14,8 +14,7 @@
 #' @param morphTarget CSS selector of the morph target: \code{".toolbar"} for instance.
 #'
 #' @note The background color might be an issue depending on the parent container. Consider
-#' it experimental. Also note that the f7Fabs looses its sticky behaviour when used inside
-#' \link{f7Tabs} and the tabs are animated or swipeable.
+#' it experimental.
 #'
 #' @rdname fabs
 #'
@@ -49,11 +48,6 @@ f7Fabs <- function(
 
   shiny::tags$div(
     class = fabCl,
-    # overwrite Framework7 position style to be able to position the FAB container
-    # in f7SingleLayout. It looses its sticky behaviour due to the parent .page-content
-    # container. For f7TabLayout, this only works when when the tabs are
-    # NOT animated and NOT swipeable.
-    style = "position: fixed;",
     id = id,
     `data-morph-to` = morphTarget,
     shiny::a(
