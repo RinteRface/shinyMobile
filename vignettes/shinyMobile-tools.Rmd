@@ -24,7 +24,7 @@ library(bslib)
 
 `{shinyMobile}` provides a set of tools specifically designed to help you develop user-friendly mobile applications and leverage certain actions on mobile phones. The tools we discuss here are:
 
-- `preview_mobile`: a function to preview your app in a large range of mobile devices
+- `preview_mobile()`: a function to preview your app in a large range of mobile devices
 - `pullToRefresh`: a feature to refresh the page content by pulling from top to bottom
 - Predefined input values to get information about the device and Shiny inputs
 
@@ -44,16 +44,16 @@ preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ip
 
 The local preview is a 4 steps process:
 
-- run `preview_mobile` with `appPath`
+- run `preview_mobile()` with `appPath`
 - Copy the returned code `R -e "shiny::runApp('appPath', port = 3838)"` in a terminal to launch the app
 - Press enter to run the wrapper app
 - Have fun!
 
-`preview_mobile` has other options such as color and landscape (to preview in landscape mode).
+`preview_mobile()` has other options such as color and landscape (to preview in landscape mode).
 
 ## Pull to Refresh
 
-`{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page` options will activate it. On the server side, an input, namely `input$ptr` is `TRUE` when ptr is refreshed and becomes `NULL` at the end of the animation (you may run the app below in full screen mode and hold a left click with your mouse from top to bottom):
+`{shinyMobile}` introduces the pull to refresh feature. It may be used to refresh the page content by pulling from top to bottom. This feature is disabled by default but passing `pullToRefresh = TRUE` in `f7Page()` options will activate it. On the server side, an input, namely `input$ptr` is `TRUE` when ptr is refreshed and becomes `NULL` at the end of the animation (you may run the app below in full screen mode and hold a left click with your mouse from top to bottom):
 
 ```{r, eval=TRUE, echo=FALSE}
 card(

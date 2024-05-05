@@ -149,7 +149,7 @@ f7Page(
 )
 ```
 
-`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout`, `f7TabLayout`, `f7SplitLayout` or the experimental `f7MultiLayout`, which we will discuss further in the Layouts section. 
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout()`, `f7TabLayout()`, `f7SplitLayout()` or the experimental `f7MultiLayout()`, which we will discuss further in the Layouts section. 
 
 <br>
 
@@ -601,7 +601,7 @@ The main content goes in the __...__ parameter. Navigation items are gathered in
 
 <br>
 
-The `sidebar` is composed of `f7Panel()` with and `f7PanelMenu` and one or more `f7PanelItem()`:
+The `sidebar` is composed of `f7Panel()` with and `f7PanelMenu()` and one or more `f7PanelItem()`:
 
 
 ```{r, eval=FALSE}
@@ -632,11 +632,11 @@ f7Panel(
 Two important notes:
 
 - Do not forget to allow the `leftPanel` in the navbar with `f7Navbar(leftPanel = TRUE)`!
-- `f7Panel` has `side` set to `left`.
+- `f7Panel()` has `side` set to `left`.
 
 <br>
 
-The __id__ argument in `f7PanelMenu` is important if you want to get the currently selected item or update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
+The __id__ argument in `f7PanelMenu()` is important if you want to get the currently selected item or update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
