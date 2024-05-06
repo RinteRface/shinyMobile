@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("select works", {
   skip_on_cran()
   shiny_app_path <-

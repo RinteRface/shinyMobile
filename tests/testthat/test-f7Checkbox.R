@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("checkbox tag", {
   checkbox <- f7Checkbox("check", "Checkbox")
   expect_s3_class(checkbox, "shiny.tag.list")

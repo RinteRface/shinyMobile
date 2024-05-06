@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("gauge tags works", {
   gauge <- f7Gauge(id = "test", value = 10)
   expect_s3_class(gauge, "shiny.tag")

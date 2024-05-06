@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("card works", {
   expect_s3_class(f7Card(), "shiny.tag")
   expect_identical(f7Card()$attribs$class, "card")

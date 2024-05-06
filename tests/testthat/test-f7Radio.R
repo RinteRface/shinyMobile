@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("radio works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

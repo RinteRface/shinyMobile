@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("send custom message", {
   session <- as.environment(list(
     ns = identity,

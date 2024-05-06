@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("swiper slide works", {
   slide <- f7Slide()
   expect_s3_class(slide, "shiny.tag")

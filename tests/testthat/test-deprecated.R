@@ -5,7 +5,7 @@ test_that("deprecated messages work", {
   expect_snapshot(f7MenuDropdown(label = "label"))
   expect_snapshot(f7MenuDropdownDivider())
 
-  expect_error({
+  expect_snapshot({
     session <- as.environment(list(
       ns = identity,
       sendInputMessage = function(inputId, message) {

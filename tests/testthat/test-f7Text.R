@@ -1,4 +1,5 @@
 library(htmltools)
+library(shinytest2)
 
 test_that("f7Text tag works", {
   text_input <- f7Text("ee", "label", value = "text")

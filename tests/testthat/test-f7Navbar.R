@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("navbar works", {
   expect_s3_class(f7Navbar(), "shiny.tag")
   expect_identical(f7Navbar()$attribs$class, "navbar")

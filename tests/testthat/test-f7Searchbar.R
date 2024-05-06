@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("searchbar tag works", {
   searchbar <- f7Searchbar(
     id = "test",

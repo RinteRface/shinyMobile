@@ -74,6 +74,19 @@
 ---
 
     Code
+      session <- as.environment(list(ns = identity, sendInputMessage = function(
+        inputId, message) {
+        session$lastInputMessage <- list(inputId = inputId, message = message)
+      }))
+      updateF7MenuDropdown("id", session)
+    Condition
+      Warning:
+      `updateF7MenuDropdown()` was deprecated in shinyMobile 2.0.0.
+      i updateF7MenuDropdown has been removed from Framework7 and there is no replacement in shinyMobile.
+
+---
+
+    Code
       f7Row()
     Condition
       Warning:

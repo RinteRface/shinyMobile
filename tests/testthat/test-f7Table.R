@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("table works", {
   expect_true(inherits(f7Table(mtcars), "shiny.tag"))
 
