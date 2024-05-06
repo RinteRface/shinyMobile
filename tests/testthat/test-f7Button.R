@@ -1,6 +1,3 @@
-context("f7Button")
-
-library(shinytest2)
 test_that("button works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
@@ -41,9 +38,6 @@ test_that("button", {
   # input binding class
   expect_equal(f7Button(inputId = "test")$attribs$class, "button f7-action-button button-fill")
 })
-
-
-context("f7Segment")
 
 test_that("f7Segment", {
   expect_true(inherits(f7Segment(), "shiny.tag"))

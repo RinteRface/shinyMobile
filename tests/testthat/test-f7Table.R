@@ -1,5 +1,3 @@
-context("f7Table")
-
 test_that("table works", {
   expect_true(inherits(f7Table(mtcars), "shiny.tag"))
 
@@ -12,7 +10,6 @@ test_that("table works", {
   expect_equal(length(body_children), nrow(mtcars))
 })
 
-library(shinytest2)
 test_that("table works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

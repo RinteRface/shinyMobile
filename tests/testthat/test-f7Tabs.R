@@ -1,4 +1,4 @@
-test_that("swiper works", {
+test_that("tabs works", {
   skip_on_cran()
   shiny_app_path <-
     system.file("examples/tabs/app.R", package = "shinyMobile")

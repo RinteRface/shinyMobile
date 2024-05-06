@@ -6,7 +6,6 @@ test_that("checkbox tag", {
   expect_identical(checkbox[[2]]$children[[1]]$attribs$id, "check")
 })
 
-library(shinytest2)
 test_that("checkbox works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
@@ -81,7 +80,6 @@ test_that("checkboxgroup tag", {
   expect_true(grepl("media-list", checkbox_group[[2]]$attribs$class))
 })
 
-library(shinytest2)
 test_that("checkboxgroup works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

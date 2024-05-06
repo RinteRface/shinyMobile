@@ -21,7 +21,7 @@
 #'   ui <- f7Page(
 #'     f7SingleLayout(
 #'       navbar = f7Navbar(title = "File handling"),
-#'       f7File("up", "Upload!")
+#'       f7Block(f7File("up", "Upload!"))
 #'     )
 #'   )
 #'
@@ -52,24 +52,35 @@ f7File <- function(inputId, label, multiple = FALSE, accept = NULL, width = NULL
   if (length(accept) > 0) {
     inputTag$attribs$accept <- paste(accept, collapse = ",")
   }
-  shiny::div(class = "form-group shiny-input-container", style = if (!is.null(width)) {
-    paste0("width: ", shiny::validateCssUnit(width), ";")
-  }, shinyInputLabel(
-    inputId,
-    label
-  ), shiny::div(class = "input-group", shiny::tags$label(
-    class = "input-group-btn",
-    shiny::span(
-      class = "button button-fill btn-file", buttonLabel,
-      inputTag
+  shiny::div(
+    class = "form-group shiny-input-container",
+    style = if (!is.null(width)) {
+      paste0("width: ", shiny::validateCssUnit(width), ";")
+    },
+    shinyInputLabel(
+      inputId,
+      label
+    ),
+    shiny::div(
+      class = "input-group",
+      shiny::tags$label(
+        class = "input-group-btn",
+        shiny::span(
+          class = "bustton button-fill btn-file",
+          buttonLabel,
+          inputTag
+        )
+      ),
+      shiny::tags$input(
+        type = "text",
+        class = "form-control",
+        placeholder = placeholder,
+        readonly = "readonly"
+      )
+    ),
+    shiny::tags$div(
+      id = paste(inputId, "_progress", sep = ""),
+      class = "shiny-file-input-progress"
     )
-  ), shiny::tags$input(
-    type = "text", class = "form-control",
-    placeholder = placeholder, readonly = "readonly"
-  )), shiny::tags$div(
-    id = paste(inputId,
-      "_progress",
-      sep = ""
-    ), class = "shiny-file-input-progress"
-  ))
+  )
 }

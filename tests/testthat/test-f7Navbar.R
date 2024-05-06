@@ -20,7 +20,6 @@ test_that("navbar works", {
   expect_identical(navbar_inner$attribs$class, "navbar-inner sliding")
 })
 
-library(shinytest2)
 test_that("toggle navbar works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

@@ -1,5 +1,3 @@
-context("preview_mobile")
-
 test_that("dependencies", {
   device <- "iphoneX"
   landscape <- FALSE

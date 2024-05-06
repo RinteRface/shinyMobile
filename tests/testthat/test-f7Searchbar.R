@@ -67,7 +67,6 @@ test_that("Search ignore works", {
   expect_true(grepl("searchbar-ignore", res$attribs$class))
 })
 
-library(shinytest2)
 test_that("searchbar works", {
   skip_on_cran()
   shiny_app_path <-

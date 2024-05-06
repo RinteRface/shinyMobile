@@ -1,5 +1,3 @@
-context("f7Block")
-
 test_that("block class", {
   expect_true(inherits(f7Block(), "shiny.tag"))
   expect_equal(f7Block()$attribs$class, "block")
@@ -33,7 +31,6 @@ test_that("block class", {
     "block block-strong medium-inset block-outline"
   )
 })
-
 
 test_that("blocktitle", {
   expect_true(inherits(f7BlockTitle("plop"), "shiny.tag"))

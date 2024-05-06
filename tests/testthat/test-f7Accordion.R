@@ -1,5 +1,3 @@
-context("f7Accordion")
-
 test_that("accordion", {
   expect_true(inherits(f7Accordion(), "shiny.tag"))
   expect_equal(f7Accordion()$attribs$class, "list list-strong list-outline-ios list-dividers-ios inset-md accordion-list")
@@ -17,7 +15,6 @@ test_that("accordion", {
   # check that children are wrapped by an <ul></ul>
   expect_equal(f7Accordion()$children[[1]]$name, "ul")
 })
-
 
 test_that("accordion items", {
   expect_true(inherits(f7AccordionItem(), "shiny.tag"))
@@ -38,7 +35,6 @@ test_that("accordion items", {
   expect_equal(item[[2]]$attribs$class, "accordion-item-content")
 })
 
-
 test_that("update", {
   session <- as.environment(list(
     ns = identity,
@@ -54,7 +50,6 @@ test_that("update", {
   expect_equal(result$id, "accordion")
 })
 
-library(shinytest2)
 test_that("accordion works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

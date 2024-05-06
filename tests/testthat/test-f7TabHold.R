@@ -1,4 +1,4 @@
-test_that("TabHold works", {
+test_that("Tap Hold works", {
   session <- as.environment(list(
     ns = identity,
     sendCustomMessage = function(type, message) {

@@ -20,7 +20,6 @@ test_that("Input validation R function works", {
   expect_equal(res$message$target, "caption2")
 })
 
-library(shinytest2)
 test_that("input validation works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()

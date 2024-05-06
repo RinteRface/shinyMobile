@@ -48,7 +48,7 @@ f7SocialCard <- function(..., image = NULL, author = NULL, date = NULL,
 #' @rdname menu
 #' @keywords internal
 f7Menu <- function(...) {
-  lifecycle::deprecate_stop(
+  lifecycle::deprecate_warn(
     when = "2.0.0",
     what = "f7Menu()",
     details = "f7Menu has been
@@ -72,7 +72,7 @@ f7Menu <- function(...) {
 #' @param label Button label.
 #' @export
 f7MenuItem <- function(inputId, label) {
-  lifecycle::deprecate_stop(
+  lifecycle::deprecate_warn(
     when = "2.0.0",
     what = "f7MenuItem()",
     details = "f7MenuItem has been
@@ -98,7 +98,7 @@ f7MenuItem <- function(inputId, label) {
 #' @rdname menu
 #' @export
 f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "right")) {
-  lifecycle::deprecate_stop(
+  lifecycle::deprecate_warn(
     when = "2.0.0",
     what = "f7MenuDropdown()",
     details = "f7MenuDropdown has been
@@ -138,7 +138,7 @@ f7MenuDropdown <- function(..., id = NULL, label, side = c("left", "center", "ri
 #' @rdname menu
 #' @export
 f7MenuDropdownDivider <- function() {
-  lifecycle::deprecate_stop(
+  lifecycle::deprecate_warn(
     when = "2.0.0",
     what = "f7MenuDropdownDivider()",
     details = "f7MenuDropdownDivider has been
@@ -156,7 +156,7 @@ f7MenuDropdownDivider <- function() {
 #' @rdname menu
 #' @export
 updateF7MenuDropdown <- function(id, session = shiny::getDefaultReactiveDomain()) {
-  lifecycle::deprecate_stop(
+  lifecycle::deprecate_warn(
     when = "2.0.0",
     what = "updateF7MenuDropdown()",
     details = "updateF7MenuDropdown has been

@@ -42,7 +42,7 @@ if (interactive()) {
   ui <- f7Page(
     f7SingleLayout(
       navbar = f7Navbar(title = "File handling"),
-      f7File("up", "Upload!")
+      f7Block(f7File("up", "Upload!"))
     )
   )
 

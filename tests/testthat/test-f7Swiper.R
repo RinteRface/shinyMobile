@@ -14,7 +14,6 @@ test_that("swiper tag works", {
   expect_identical(swiper$attribs$id, "swiper")
 })
 
-library(shinytest2)
 test_that("swiper works", {
   skip_on_cran()
   shiny_app_path <-

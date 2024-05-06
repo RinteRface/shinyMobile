@@ -1,4 +1,3 @@
-library(shinytest2)
 test_that("stepper works", {
   skip_on_cran()
   shiny_app_path <-

@@ -31,8 +31,6 @@ test_that("f7Text tag works", {
   expect_identical(input_tag$attribs$type, "text")
 })
 
-
-library(shinytest2)
 test_that("text inputs as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
