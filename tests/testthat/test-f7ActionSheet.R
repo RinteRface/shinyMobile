@@ -31,7 +31,7 @@ test_that("send custom message", {
   expect_length(res, 2)
   expect_equal(res$type, "action-sheet")
   expect_length(res$message, 3)
-  expect_is(res$message$buttons, "data.frame")
+  expect_s3_class(res$message$buttons, "data.frame")
   expect_equal(res$message$grid, FALSE)
   expect_equal(res$message$id, "action")
 })
