@@ -1,3 +1,5 @@
+library(shinytest2)
+
 test_that("accordion", {
   expect_true(inherits(f7Accordion(), "shiny.tag"))
   expect_equal(f7Accordion()$attribs$class, "list list-strong list-outline-ios list-dividers-ios inset-md accordion-list")
