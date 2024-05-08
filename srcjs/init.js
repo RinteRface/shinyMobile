@@ -7,8 +7,6 @@ import { setCustomDisconnect } from './helpers/helpers-disconnect.js';
 import { setStyles } from './helpers/helpers-styles.js';
 import { shinyInputsReset } from './utils/shinyUtils.js';
 
-let appInstance;
-
 $( document ).ready(function() {
   let config = setConfig();
   // create app instance
@@ -24,7 +22,7 @@ $( document ).ready(function() {
     // by the router and we don't loose it's state when moving
     // to another page and moving back.
     mainView.router.navigate(
-      window.location.pathname, 
+      window.location.pathname,
       {reloadCurrent: true}
     );
     // Each time a page is mounted, we need to rebind all inputs ...
