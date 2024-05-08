@@ -14,19 +14,25 @@ $( document ).ready(function() {
   // create app instance
   app = new Framework7(config);
 
-  var mainView = app.views.get(".view-main");
-  // Required so that the first page is processed
-  // by the router and we don't loose it's state when moving
-  // to another page and moving back.
-  mainView.router.navigate(
-    window.location.pathname, 
-    {reloadCurrent: true}
-  );
-  // Each time a page is mounted, we need to rebind all inputs ...
-  // which triggers a warning but doesn't seem to break the app
-  $(document).on("page:mounted", function(e) {
-    shinyInputsReset();
-  });
+  let mainView = app.views.get(".view-main");
+
+  // Won't run on f7SingleLayout or f7TabLayout.
+  // Only for f7MultiLayout.
+  let hasRouter = $(".view-main").attr("data-browser-history") !== undefined;
+  if (hasRouter) {
+    // Required so that the first page is processed
+    // by the router and we don't loose it's state when moving
+    // to another page and moving back.
+    mainView.router.navigate(
+      window.location.pathname, 
+      {reloadCurrent: true}
+    );
+    // Each time a page is mounted, we need to rebind all inputs ...
+    // which triggers a warning but doesn't seem to break the app
+    $(document).on("page:mounted", function(e) {
+      shinyInputsReset();
+    });
+  }
   // Set theme: dark mode, touch, filled, color, taphold css
   initTheme(config, app);
   // Set custom disconnect screen
