@@ -16,6 +16,9 @@ library(shinyMobile)
 
 ## Introduction
 
+Disclaimer: all of the following is still very __experimental__. Use it
+with caution.
+
 Since v2.0.0, `{shinyMobile}` has __multi pages__ support. Under the hood, this amazing feature is made possible owing to the `{brochure}` [package](https://github.com/ColinFay/brochure) from 
 [Colin Fay](https://github.com/ColinFay) as well as the internal Framework7 [router](https://framework7.io/docs/view).
 
@@ -117,16 +120,24 @@ brochureApp(
 ```
 
 ## Framework 7 router
+
+### Local version
+
 Internally, `f7MultiLayout()` wraps all the pages in a __view__ reponsible for the page navigation and history (going back and forward with the browser back/next buttons). This __view__ is also called __router__. 
+(At this point, you may wonder what is `basepath`. We come back on that later in the article)
 
 ```{r, eval=FALSE}
 # f7MultiLayout
 shiny::tags$div(
   class = "view view-main view-init",
-  # Base url
-  `data-url` = "/",
-  # Important: to be able to have updated url when changing page
+  # When app is deployed, the basepath isn't / but something else ...
+  `data-url` = basepath,
+  # Avoids to see the previous page in the DOM
+  `data-preload-previous-page` = "false",
+  # Important: to be able to have updated url
   `data-browser-history` = "true",
+  # Avoids the ugly #! default separator
+  `data-browser-history-separator` = "",
   # Optional common toolbar
   toolbar,
   ...
@@ -141,12 +152,12 @@ options = list(
   # dark mode option
   dark = TRUE,
   routes = list(
-    list(path = "/", url = "/", name = "home"),
-    # Important: don't remove keepalive
-    # for child pages as this allows
+    # Important: don't remove keepAlive
+    # for pages as this allows
     # to save the input state when switching
     # between pages. If FALSE, each time a page is
-    # changed, inputs are reset (except on the first page).
+    # changed, inputs are reset.
+    list(path = "/", url = "/", name = "home", keepAlive = TRUE),
     list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
     list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
   )
@@ -161,11 +172,94 @@ For each route, we must provide:
 we don't lose the state of inputs and widgets inside. 
 Hence, it is expected to be `TRUE`. See more [here](https://framework7.io/docs/routes#keep-alive).
 
+### Deploying on a server
+
+At some point, you want to deploy your app on a server. The url could be something like
+`https://<user_name>.shinyapps.io/<app_name>` if your using [shinyapps.io](https://www.shinyapps.io/) 
+as hosting system.
+
+In that case, we must adapt all the links, the one provided in the router configuration and in the different pages
+to account for the base location (`basepath`) that is `/<app_name` and not just `/` as you would have
+locally.
+
+We create a config.yml file to handle the different `basepath`
+so that the link navigation work:
+
+```yaml
+default:
+  basepath: ""
+shinyapps:
+  basepath: "/multipages"
+```
+
+We design a helper function to handle the link update:
+
+```r
+# Allows to use the app on a server like 
+# shinyapps.io where basepath is /app_name
+# instead of "/" or "".
+make_link <- function(path = NULL) {
+  if (is.null(path)) {
+    if (nchar(config::get()$basepath) > 0) {
+      return(config::get()$basepath)
+    } else {
+      return("/")
+    }
+  }
+  sprintf("%s/%s", config::get()$basepath, path)
+}
+```
+
+As you can see, we leverage the `{config}` package to recover the `basepath` value.
+Once deployed, the app knows that on `shinyapps.io` the basepath will be `/multipages`.
+
+We can then update our router config with ` make_link`. Note that for the first page,
+we use `make_link()` that will either return `/` (locally) or `/<app_path>` on a server.
+For other pages, we just call `make_link("2")` which yields either `/2` locally or `/<app_path>/2` on a server:
+
+```{r, eval=FALSE}
+# Framework7 options: see f7DefaultOptions()
+options = list(
+  # dark mode option
+  dark = TRUE,
+  routes = list(
+    # Important: don't remove keepAlive
+    # for pages as this allows
+    # to save the input state when switching
+    # between pages. If FALSE, each time a page is
+    # changed, inputs are reset.
+    list(path = make_link(), url = make_link(), name = "home", keepAlive = TRUE),
+    list(path = make_link("2"), url = make_link("2")", name = "2", keepAlive = TRUE),
+    list(path = make_link("3"), url = make_link("3"), name = "3", keepAlive = TRUE)
+  )
+)
+```
+
+When you call `brochureApp`, don't forget to pass the `basepath` parameter 
+(or alternatively `make_link()`):
+
+```{r, eval=FALSE}
+brochureApp(
+  basepath = config::get()$basepath,
+  # Pages
+  page_1(),
+  page_2(),
+  page_3(),
+  wrapped = <WRAPPER-FUNC>
+  # This list is passed to <WRAPPER-FUNC>
+  wrapped_options = list(
+    basepath = make_link(),
+    toolbar = <TOOLBAR>,
+    options = # Framework7 options see above #
+  )
+)
+```
+
 ## A simple multi pages app
 
 let's build our simple app. It has 3 pages, the welcome page and 2 other 
 pages. We create the navigation links as follows with the `f7Link()` function
-and allowing `routable`:
+and allowing `routable`, wrapping them with `make_link`:
 
 ```{r, eval=FALSE}
 links <- lapply(2:3, function(i) {
@@ -173,7 +267,7 @@ links <- lapply(2:3, function(i) {
     f7Link(
       routable = TRUE,
       label = sprintf("Link to page %s", i),
-      href = sprintf("/%s", i)
+      href = make_link(sprintf("/%s", i))
     )
   )
 })
@@ -186,6 +280,9 @@ The first page is a function wrapped by the `{brochure}` `page()` function conta
 
 - a __ui__ component with a navbar, the page content.
 - __href__ must be `/` that is the root page.
+
+As you may notice, here is the only place where we don't need to wrap
+`href` with `make_link`.
 
 ```{r, eval=FALSE}
 page_1 <- function() {
@@ -205,6 +302,12 @@ page_1 <- function() {
             dividers = TRUE,
             mode = "links",
             links
+          ),
+          f7Block(
+            f7Text("text", "Text input", "default"),
+            f7Select("select", "Select", colnames(mtcars)),
+            textOutput("res"),
+            textOutput("res2")
           )
         )
       )
@@ -219,7 +322,8 @@ The second page follows the same layout. Notice that we could pass it a local `t
 decided to use the global toolbar from `f7Multilayout()` so all pages share the same
 toolbar. This choice is up to your preference. A cool new feature from 
 `{shinyMobile}` 2.0.0 is the ability to pass tags to the `f7Navbar()` __left__ parameter, which
-make it possible to add a back button link:
+make it possible to add a back button link. Don't forget the `back` css class so that
+the router transition looks correct:
 
 ```{r, eval=FALSE}
 page_2 <- function() {
@@ -234,8 +338,8 @@ page_2 <- function() {
           # Allows to go back to main
           leftPanel = tagList(
             tags$a(
-              href = "/",
-              class = "link",
+              href = make_link(),
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span(
                 class = "if-not-md",
@@ -275,7 +379,7 @@ page_2 <- function() {
               manual = FALSE
             )
           ),
-          verbatimTextOutput("test")
+          f7Block(textOutput("test"))
         )
       )
     }
@@ -293,7 +397,8 @@ find in all pages and passed to the `brochureApp()` __server__ parameter:
 ```{r, eval=FALSE}
 server = function(input, output, session) {
   output$res <- renderText(input$text)
-  output$test <- renderPrint(input$stepper)
+  output$res2 <- renderText(input$select)
+  output$test <- renderText(input$stepper)
 
   observeEvent(input$update, {
     updateF7Stepper(
@@ -316,13 +421,15 @@ server = function(input, output, session) {
 ```
 
 Notice that the global app toolbar is passed with the __wrapper_options__
-parameter, the reason being it has to be injected in the `f7MultiLayout()` wrapper:
+parameter, the reason being it has to be injected in the `f7MultiLayout()` wrapper. We also
+have to pass the `basepath` paramter for the `f7MultiLayout` wrapper function:
 
 ```{r, eval=FALSE}
 wrapped_options = list(
+  basepath = make_link(),
   # Common toolbar
   toolbar = f7Toolbar(
-    f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+    f7Link(icon = f7Icon("house"), href = make_link(), routable = TRUE)
   ),
   # Other options
   ...
@@ -349,12 +456,26 @@ library(shiny)
 library(brochure)
 library(shinyMobile)
 
+# Allows to use the app on a server like 
+# shinyapps.io where basepath is /app_name
+# instead of "/" or "".
+make_link <- function(path = NULL) {
+  if (is.null(path)) {
+    if (nchar(config::get()$basepath) > 0) {
+      return(config::get()$basepath)
+    } else {
+      return("/")
+    }
+  }
+  sprintf("%s/%s", config::get()$basepath, path)
+}
+
 links <- lapply(2:3, function(i) {
   tags$li(
     f7Link(
       routable = TRUE,
       label = sprintf("Link to page %s", i),
-      href = sprintf("/%s", i)
+      href = make_link(i)
     )
   )
 })
@@ -376,6 +497,12 @@ page_1 <- function() {
             dividers = TRUE,
             mode = "links",
             links
+          ),
+          f7Block(
+            f7Text("text", "Text input", "default"),
+            f7Select("select", "Select", colnames(mtcars)),
+            textOutput("res"),
+            textOutput("res2")
           )
         )
       )
@@ -395,8 +522,8 @@ page_2 <- function() {
           # Allows to go back to main
           leftPanel = tagList(
             tags$a(
-              href = "/",
-              class = "link",
+              href = make_link(),
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span(
                 class = "if-not-md",
@@ -436,7 +563,7 @@ page_2 <- function() {
               manual = FALSE
             )
           ),
-          verbatimTextOutput("test")
+          f7Block(textOutput("test"))
         )
       )
     }
@@ -455,8 +582,8 @@ page_3 <- function() {
           # Allows to go back to main
           leftPanel = tagList(
             tags$a(
-              href = "/",
-              class = "link",
+              href = make_link(),
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span(
                 class = "if-not-md",
@@ -485,6 +612,7 @@ page_3 <- function() {
 }
 
 brochureApp(
+  basepath = make_link(),
   # Pages
   page_1(),
   page_2(),
@@ -495,7 +623,8 @@ brochureApp(
   # a global server function.
   server = function(input, output, session) {
     output$res <- renderText(input$text)
-    output$test <- renderPrint(input$stepper)
+    output$res2 <- renderText(input$select)
+    output$test <- renderText(input$stepper)
 
     observeEvent(input$update, {
       updateF7Stepper(
@@ -517,22 +646,23 @@ brochureApp(
   },
   wrapped = f7MultiLayout,
   wrapped_options = list(
+    basepath = make_link(),
     # Common toolbar
     toolbar = f7Toolbar(
-      f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+      f7Link(icon = f7Icon("house"), href = make_link(), routable = TRUE)
     ),
     options = list(
       dark = TRUE,
       theme = "md",
       routes = list(
-        list(path = "/", url = "/", name = "home"),
-        # Important: don't remove keepalive
-        # for child pages as this allows
+        # Important: don't remove keepAlive
+        # for pages as this allows
         # to save the input state when switching
         # between pages. If FALSE, each time a page is
-        # changed, inputs are reset (except on the first page).
-        list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
-        list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
+        # changed, inputs are reset.
+        list(path = make_link(), url = make_link(), name = "home", keepAlive = TRUE),
+        list(path = make_link("2"), url = make_link("2"), name = "2", keepAlive = TRUE),
+        list(path = make_link("3"), url = make_link("3"), name = "3", keepAlive = TRUE)
       )
     )
   )
@@ -580,6 +710,7 @@ my_page <- function() {
 }
 
 brochureApp(
+  basepath = config::get()$basepath,
   my_page(),
   server = function(input, output, session) {
     # Call modules here
@@ -587,22 +718,21 @@ brochureApp(
   },
   wrapped = f7MultiLayout,
   wrapped_options = list(
+    basepath = make_link(),
     # Common toolbar
     toolbar = f7Toolbar(
-      f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+      f7Link(icon = f7Icon("house"), href = make_link(), routable = TRUE)
     ),
     options = list(
       dark = TRUE,
       theme = "md",
       routes = list(
-        list(path = "/", url = "/", name = "home"),
-        # Important: don't remove keepalive
-        # for child pages as this allows
+        # Important: don't remove keepAlive
+        # for pages as this allows
         # to save the input state when switching
         # between pages. If FALSE, each time a page is
-        # changed, inputs are reset (except on the first page).
-        list(path = "/2", url = "/2", name = "2", keepAlive = TRUE),
-        list(path = "/3", url = "/3", name = "3", keepAlive = TRUE)
+        # changed, inputs are reset.
+        list(path = make_link(), url = make_link(), name = "home", keepAlive = TRUE)
       )
     )
   )
