@@ -11,14 +11,21 @@ library(shinyMobile)
 # shinyapps.io where basepath is /app_name
 # instead of "/" or "".
 make_link <- function(path = NULL) {
+  base_path <- config::get(
+    file = system.file(
+      "examples/multi_layout/config.yml", 
+      package = "shinyMobile"
+    )
+  )$basepath
+
   if (is.null(path)) {
-    if (nchar(config::get()$basepath) > 0) {
-      return(config::get()$basepath)
+    if (base_path > 0) {
+      return(base_path)
     } else {
       return("/")
     }
   }
-  sprintf("%s/%s", config::get()$basepath, path)
+  sprintf("%s/%s", base_path, path)
 }
 
 links <- lapply(2:3, function(i) {
@@ -74,7 +81,7 @@ page_2 <- function() {
           leftPanel = tagList(
             tags$a(
               href = make_link(),
-              class = "link",
+              class = "link back",
               tags$i(class = "icon icon-back"),
               tags$span(
                 class = "if-not-md",
@@ -164,7 +171,7 @@ page_3 <- function() {
 
 brochureApp(
   # You can also use the local config.yml file
-  basepath = "", #config::get()$basepath,
+  basepath = make_link(),
   # Pages
   page_1(),
   page_2(),
@@ -198,6 +205,7 @@ brochureApp(
   },
   wrapped = f7MultiLayout,
   wrapped_options = list(
+    basepath = make_link(),
     # Common toolbar
     toolbar = f7Toolbar(
       f7Link(icon = f7Icon("house"), href = make_link(), routable = TRUE)
