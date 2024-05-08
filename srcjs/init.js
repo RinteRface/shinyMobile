@@ -27,10 +27,6 @@ $( document ).ready(function() {
   $(document).on("page:mounted", function(e) {
     shinyInputsReset();
   });
-    // Required to bind/unbind inputs on page change
-  //mainView.router.on('routeChanged', function(newRoute, previousRoute, router) {
-  //  shinyInputsReset();
-  //});
   // Set theme: dark mode, touch, filled, color, taphold css
   initTheme(config, app);
   // Set custom disconnect screen
