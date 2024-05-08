@@ -9,7 +9,8 @@ f7MultiLayout(
   toolbar = NULL,
   title = NULL,
   options = f7DefaultOptions(),
-  allowPWA = FALSE
+  allowPWA = FALSE,
+  basepath = "/"
 )
 }
 \arguments{
@@ -71,6 +72,9 @@ Toolbar options \url{https://framework7.io/docs/toolbar-tabbar#toolbar-app-param
 In any case, you must follow the same structure as provided in the function arguments.}
 
 \item{allowPWA}{Whether to include PWA dependencies. Default to FALSE.}
+
+\item{basepath}{Useful when the app is deployed on a server like
+https://user.shinyapps.io/base_path.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

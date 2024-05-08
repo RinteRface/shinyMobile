@@ -215,6 +215,8 @@ f7DefaultOptions <- function() {
 #' You can pass \link{f7Toolbar} in this slot or \link{f7Tabs} but if you
 #' do so, don't pass any toolbar in the different pages elements.
 #' @inheritParams f7Page
+#' @param basepath Useful when the app is deployed on a server like 
+#' https://user.shinyapps.io/base_path.
 #'
 #' @export
 f7MultiLayout <- function(
@@ -222,12 +224,17 @@ f7MultiLayout <- function(
     toolbar = NULL,
     title = NULL,
     options = f7DefaultOptions(),
-    allowPWA = FALSE) {
+    allowPWA = FALSE, basepath = "/") {
   items <- shiny::tags$div(
     class = "view view-main view-init",
-    `data-url` = "/",
+    # When app is deployed, the basepath isn't / but something else ...
+    `data-url` = basepath,
+    # Avoids to see the previous page in the DOM
+    `data-preload-previous-page` = "false",
     # Important: to be able to have updated url
     `data-browser-history` = "true",
+    # Avoids the ugly #! default separator
+    `data-browser-history-separator` = "",
     # Optional common toolbar
     toolbar,
     ...

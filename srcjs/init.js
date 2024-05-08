@@ -5,6 +5,7 @@ import { initTheme } from './helpers/helpers-theme.js';
 import { setPWA } from './helpers/helpers-pwa.js';
 import { setCustomDisconnect } from './helpers/helpers-disconnect.js';
 import { setStyles } from './helpers/helpers-styles.js';
+import { shinyInputsReset } from './utils/shinyUtils.js';
 
 let appInstance;
 
@@ -14,13 +15,22 @@ $( document ).ready(function() {
   app = new Framework7(config);
 
   var mainView = app.views.get(".view-main");
-  // Required to bind/unbind inputs
-  // on page change
-  mainView.router.on('routeChanged', function(newRoute, previousRoute, router) {
-    Shiny.unbindAll();
-    Shiny.initializeInputs();
-    Shiny.bindAll();
+  // Required so that the first page is processed
+  // by the router and we don't loose it's state when moving
+  // to another page and moving back.
+  mainView.router.navigate(
+    window.location.pathname, 
+    {reloadCurrent: true}
+  );
+  // Each time a page is mounted, we need to rebind all inputs ...
+  // which triggers a warning but doesn't seem to break the app
+  $(document).on("page:mounted", function(e) {
+    shinyInputsReset();
   });
+    // Required to bind/unbind inputs on page change
+  //mainView.router.on('routeChanged', function(newRoute, previousRoute, router) {
+  //  shinyInputsReset();
+  //});
   // Set theme: dark mode, touch, filled, color, taphold css
   initTheme(config, app);
   // Set custom disconnect screen
