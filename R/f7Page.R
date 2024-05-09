@@ -236,7 +236,7 @@ f7MultiLayout <- function(
     # Avoids the ugly #! default separator
     `data-browser-history-separator` = "",
     # Optional common toolbar
-    toolbar,
+    shiny::tagAppendAttributes(toolbar, class = "toolbar-main"),
     ...
   )
 

@@ -27,6 +27,10 @@ $(function() {
   // Framework7.device is extremely useful to set up custom design
   $(document).on("shiny:connected", function(event) {
     Shiny.setInputValue("deviceInfo", Framework7.device);
+    // handle toolbar padding for mobiles in standalone mode
+    if (Framework7.device.standalone) {
+      $('body').css({ height: '100vh', width: '100vw' });
+    }
   });
 });
 

@@ -18,13 +18,42 @@ $( document ).ready(function() {
   // Only for f7MultiLayout.
   let hasRouter = $(".view-main").attr("data-browser-history") !== undefined;
   if (hasRouter) {
+    // Remove content of the first page 
+    // to prevent shiny from binding any input
+    // Because we reload the page content via the router, it will
+    // be reincluded automatically. This avoids duplicated
+    // binding warning and broken app. We also save the toolbar
+    // as we reinject it once the session is loaded.
+    let mainToolbar = $(".toolbar-main");
+    let viewContent = $(".view-main").children();
+    viewContent.remove();
+
+    // Re-include global toolbar if there was one ...
+    // the toolbar-main class is given by the f7MultiLayout
+    // whenever a global toolbar is passed (as opposed to local
+    // pages toolbars)
+    if (mainToolbar.length > 0) {
+      $(document).on('shiny:sessioninitialized', function() {
+        $(".view-main").append(mainToolbar);
+      });
+    }
     // Required so that the first page is processed
     // by the router and we don't loose it's state when moving
     // to another page and moving back.
     mainView.router.navigate(
       window.location.pathname,
+      // Doc -> reloadCurrent: true: 
+      // replace the current page with the new one from route, 
+      // no animation in this case
       {reloadCurrent: true}
     );
+    
+    // For some reasons, the navbars get duplicated entries.
+    // We remove the first one.
+    $(document).on('shiny:sessioninitialized', function() {
+      $(".navbars").children()[0].remove();
+    });
+
     // Each time a page is mounted, we need to rebind all inputs ...
     // which triggers a warning but doesn't seem to break the app
     $(document).on("page:mounted", function(e) {

@@ -1,4 +1,3 @@
-import './actionSheetInputBinding.js';
 import './autoCompleteInputBinding.js';
 import './buttonInputBinding.js';
 import './cardInputBinding.js';
