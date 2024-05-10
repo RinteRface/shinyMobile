@@ -53,6 +53,9 @@ new_mtcars <- reshape(
 app <- shinyApp(
   ui = f7Page(
     title = "Split layout",
+    options = list(
+      dark = FALSE
+    ),
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",
@@ -83,10 +86,16 @@ app <- shinyApp(
         ),
         uiOutput("selected_tab")
       ),
+      panel = f7Panel(
+        side = "right",
+        effect = "floating",
+        "Blablabla"
+      ),
       navbar = f7Navbar(
         title = "Split Layout",
         hairline = FALSE,
-        leftPanel = TRUE
+        leftPanel = TRUE,
+        rightPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",

@@ -21,12 +21,22 @@ $.extend(f7PanelBinding, {
       }
     };
 
-    // if parent class is split-layout, add visibleBreakpoint
-    // makes the left panel always visible on tablets and desktop
     if ($(el).parent().hasClass('split-layout')) {
-      if (!config.visibleBreakpoint) {
-        config.visibleBreakpoint = 1024;
+
+      // if parent class is split-layout, add visibleBreakpoint
+      // makes the left panel always visible on tablets and desktop
+      if ($(el).hasClass('panel-left')) {
+        if (!config.visibleBreakpoint) {
+          config.visibleBreakpoint = 1024;
+        }
       }
+
+      // add event listener on backdrop click that closes the panel
+      // this is a necessary workaround because the panel does not close
+      // in the split layout when clicking on the backdrop
+      $(el).parent().find('.panel-backdrop').on('click', function() {
+        app.panel.get(config.el).close();
+      });
     }
 
     this.instances[el.id] = this.app.panel.create(config);
