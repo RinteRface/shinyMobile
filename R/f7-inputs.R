@@ -648,16 +648,20 @@ f7CheckboxChoice <- function(..., title, subtitle = NULL, after = NULL) {
   # We can benefit from f7ListItem, though we don't
   # need all of the generated tag, hence the use of
   # htmltools::tagQuery ...
+
+  el <- f7List(
+    mode = "media",
+    f7ListItem(
+      ...,
+      media = f7Icon(), # fake item to force layout
+      title = title,
+      subtitle = subtitle,
+      right = after
+    )
+  )
+
   structure(
-    htmltools::tagQuery(
-      f7ListItem(
-        ...,
-        media = f7Icon(), # fake item to force layout
-        title = title,
-        subtitle = subtitle,
-        right = after
-      )
-    )$
+    htmltools::tagQuery(el)$
       find(".item-inner")$
       selectedTags()[[1]]$
       children,
@@ -924,10 +928,16 @@ createInputLayout <- function(
     stop("floating can't be used when label is NULL")
   }
 
-  item <- f7ListItem(
-    media = style$media, # icon
-    title = label # label
+  el <- f7List(
+    f7ListItem(
+      media = style$media, # icon
+      title = label # label
+    )
   )
+
+  item <- htmltools::tagQuery(el)$
+    find("li")$
+    selectedTags()[[1]]
 
   classes <- c(
     "item-input",
@@ -972,18 +982,6 @@ createInputLayout <- function(
     htmltools::tagQuery(item)$
       find(".item-title")$
       after(innerItems)$
-      allTags()
-  }
-
-  # Remove extra item-title-row class if media
-  if (!is.null(style$media) && !is.null(label)) {
-    inner <- htmltools::tagQuery(item)$
-      find(".item-title-row")$
-      selectedTags()[[1]]$children
-
-    item <- htmltools::tagQuery(item)$
-      find(".item-title-row")$
-      replaceWith(inner)$
       allTags()
   }
 

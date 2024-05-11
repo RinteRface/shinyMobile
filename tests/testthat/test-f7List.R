@@ -18,8 +18,8 @@ test_that("list item works", {
   expect_s3_class(f7ListItem(), "shiny.tag")
 
   expect_error(f7ListItem(right = "test"))
-  expect_error(f7ListItem(right = "test", header = "header"))
-  expect_error(f7ListItem(right = "test", footer = "footer"))
+  expect_error(f7ListItem(subtitle = "subtitle"))
+  expect_error(f7ListItem(routable = TRUE))
 
   list_item <- f7ListItem(
     title = "Title",

@@ -62,7 +62,7 @@ or could be modified.}
 
 \item{title}{Item title.}
 
-\item{subtitle}{Item subtitle.}
+\item{subtitle}{Item subtitle. Only work if the \link{f7List} mode is media.}
 
 \item{header}{Item header. Do not use when \link{f7List} mode is not NULL.}
 
