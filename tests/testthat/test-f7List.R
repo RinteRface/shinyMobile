@@ -21,16 +21,21 @@ test_that("list item works", {
   expect_error(f7ListItem(subtitle = "subtitle"))
   expect_error(f7ListItem(routable = TRUE))
 
-  list_item <- f7ListItem(
-    title = "Title",
-    subtitle = "subtitle",
-    href = "https://www.google.com",
-    media = shiny::tags$img(
-      src = "https://cdn.framework7.io/placeholder/people-160x160-1.jpg"
-    ),
-    right = "After item",
-    "Item content"
-  )
+  list_item <- htmltools::tagQuery(
+    f7List(
+      mode = "media",
+      f7ListItem(
+        title = "Title",
+        subtitle = "subtitle",
+        href = "https://www.google.com",
+        media = shiny::tags$img(
+          src = "https://cdn.framework7.io/placeholder/people-160x160-1.jpg"
+        ),
+        right = "After item",
+        "Item content"
+      )
+    )
+  )$find("li")$selectedTags()[[1]]
   expect_identical(list_item$name, "li")
 })
 

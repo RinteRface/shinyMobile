@@ -1,3 +1,4 @@
+library(shinytest2)
 test_that("Input validation R function works", {
   session <- as.environment(list(
     ns = identity,
