@@ -23,12 +23,12 @@ f7List <- function(
     
   # Modify item call so that we can inject the list mode
   # and get the correct layout
-  if (!is.null(mode)) {
+  if (!is.null(mode) && mode == "media") {
     items_call_list <- as.list(substitute(c(...)))[-1]
     # Modify any f7ListItem call by injecting the mode of the
     # parent f7List element
     for (i in seq_along(items_call_list)) {
-      tmp <- deparse(items_call_list[[i]])
+      tmp <- deparse1(items_call_list[[i]])
       if (any(grepl("f7ListItem", tmp))) {
         parm <- sprintf("f7ListItem(mode = \"%s\", ", mode)
         items_call_list[[i]] <- str2lang(

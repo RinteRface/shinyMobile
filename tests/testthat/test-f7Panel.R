@@ -40,7 +40,10 @@ test_that("panel menu works", {
 
   # structure
   expect_identical(panel_menu$attribs$class, "list chevron-center links-list")
-  expect_identical(panel_menu$children[[1]]$children[[1]]$attribs$id, "menu")
+  expect_identical(
+    htmltools::tagQuery(panel_menu)$
+      find(".panel-menu")$
+      selectedTags()[[1]]$attribs$id, "menu")
 })
 
 test_that("panel item works", {
