@@ -20,14 +20,35 @@ f7List <- function(
   if (dividers) listCl <- paste(listCl, "list-dividers")
   if (!is.null(mode)) listCl <- paste(listCl, sprintf("%s-list", mode))
   if (inset) listCl <- paste(listCl, "inset")
+    
+  # Modify item call so that we can inject the list mode
+  # and get the correct layout
+  if (!is.null(mode)) {
+    items_call_list <- as.list(substitute(c(...)))[-1]
+    # Modify any f7ListItem call by injecting the mode of the
+    # parent f7List element
+    for (i in seq_along(items_call_list)) {
+      tmp <- deparse(items_call_list[[i]])
+      if (any(grepl("f7ListItem", tmp))) {
+        parm <- sprintf("f7ListItem(mode = \"%s\", ", mode)
+        items_call_list[[i]] <- str2lang(
+          sub("f7ListItem\\(", parm, tmp)
+        )
+      }
+    }
+    # Calling in the parent environment
+    items <- lapply(items_call_list, eval, envir = parent.frame(1))
+  } else {
+    items <- list(...)
+  }
 
   shiny::tags$div(
     class = listCl,
     id = id,
     if (!is.null(mode) && mode == "contacts") {
-      shiny::tagList(...)
+      shiny::tagList(items)
     } else {
-      shiny::tags$ul(...)
+      shiny::tags$ul(items)
     }
   )
 }
@@ -54,19 +75,9 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     }
   }
 
-  # Access the mode of the f7List parent call
-  l <- sys.nframe() - 1
-  mode <- NULL
-  # Don't call if we just call f7ListItem().
-  if (length(sys.calls()) > 1) {
-    for (i in seq_len(l)) {
-      tmp_call <- as.list(sys.calls()[[sys.nframe() - i]])
-      res <- grepl("f7List", as.character(tmp_call[[1]]))
-      if (!all(res)) next
-      mode <- tmp_call$mode
-      break
-    }
-  }
+  pars <- list(...)
+  mode <- pars$mode
+  pars$mode <- NULL
   if (is.null(mode)) mode <- "undefined"
 
   if (mode != "media" && !is.null(subtitle)) {
@@ -81,9 +92,10 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     stop("Can't set right when title is NULL.")
   }
 
-  #if (!is.null(right) && (!is.null(header) || !is.null(footer))) {
-  #  stop("right isn't compatible with footer and header.")
-  #}
+  if (mode == "media" && (!is.null(header) || 
+  !is.null(footer))) {
+    stop("header and footer can't be used with media list.")
+  }
 
   itemSubtitle <- if (!is.null(subtitle)) {
     shiny::tags$div(
@@ -92,12 +104,10 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     )
   }
 
-  itemText <- if (length(list(...)) > 0) {
-    shiny::tags$div(
-      class = "item-text",
-      ...
-    )
-  }
+  itemText <- shiny::tags$div(
+    class = "item-text",
+    pars
+  )
 
   itemTitle <- if (
     !is.null(header) ||

@@ -648,20 +648,17 @@ f7CheckboxChoice <- function(..., title, subtitle = NULL, after = NULL) {
   # We can benefit from f7ListItem, though we don't
   # need all of the generated tag, hence the use of
   # htmltools::tagQuery ...
-
-  el <- f7List(
-    mode = "media",
-    f7ListItem(
-      ...,
-      media = f7Icon(), # fake item to force layout
-      title = title,
-      subtitle = subtitle,
-      right = after
-    )
-  )
-
   structure(
-    htmltools::tagQuery(el)$
+    htmltools::tagQuery(
+      f7ListItem(
+        ...,
+        media = f7Icon(), # fake item to force layout
+        title = title,
+        subtitle = subtitle,
+        right = after,
+        mode = "media"
+      )
+    )$
       find(".item-inner")$
       selectedTags()[[1]]$
       children,
@@ -928,16 +925,10 @@ createInputLayout <- function(
     stop("floating can't be used when label is NULL")
   }
 
-  el <- f7List(
-    f7ListItem(
-      media = style$media, # icon
-      title = label # label
-    )
+  item <- f7ListItem(
+    media = style$media, # icon
+    title = label # label
   )
-
-  item <- htmltools::tagQuery(el)$
-    find("li")$
-    selectedTags()[[1]]
 
   classes <- c(
     "item-input",
@@ -1640,7 +1631,6 @@ f7GroupInput <- function(
   # this prevents an error when the users only provides
   # a subset of the style options
   style <- modifyList(groupInputDefaults(), style)
-
   has_media_list <- inherits(choices[[1]], "custom_choice")
 
   mainCl <- sprintf("shiny-input-%sgroup", type)
