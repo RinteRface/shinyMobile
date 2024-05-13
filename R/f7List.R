@@ -23,7 +23,7 @@ f7List <- function(
     
   # Modify item call so that we can inject the list mode
   # and get the correct layout
-  if (!is.null(mode) && mode == "media") {
+  if (!is.null(mode)) {
     items_call_list <- as.list(substitute(c(...)))[-1]
     # Modify any f7ListItem call by injecting the mode of the
     # parent f7List element
@@ -176,7 +176,8 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     itemContent$name <- "a"
     itemContent$attribs$class <- paste(
       itemContent$attribs$class,
-      "item-link",
+      # Don't show extra link chevron icon
+      if (mode != "links") "item-link",
       if (!routable) "external"
     )
     itemContent$attribs$href <- href
