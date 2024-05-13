@@ -1,0 +1,190 @@
+---
+title: "List View"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{List View}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Creating Different Types of Lists
+
+Lists are a great way to organize information in a structured way. And Framework7 provides a number of different list types to choose from, ranging from simple text lists to more complex lists with icons, groups, headers and footers. In {shinyMobile}, all these possibilities are available through the `f7List()` and `f7ListItem()` functions.
+
+### Styling options
+
+There are 4 styling options available for lists:
+
+- __inset__: to make list block inset, which will make the list block appear indented. If used in combination with strong, it will also have rounded corners.
+- __outline__: to add outline (borders) around the list block
+- __dividers__: to add dividers (borders) between list items
+- __strong__: to add extra highlighting to list block
+
+### Available mode options
+
+There are 4 different modes available for lists:
+
+- __simple__: to create a simple list
+- __links__: to create a list with links
+- __media__: to create a list with media elements
+- __contacts__: to create a grouped list
+
+## Examples
+
+As you can imagine, there are a lot of possible combinations of these options. Below we will show some examples of how to create different types of lists.
+
+### Simple list
+
+The most simple list has `mode` set to `"simple"` and no other options set:
+
+```{r}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "simple",
+        lapply(1:5, function(j) {
+          tags$li(
+            paste("Item", j)
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+
+<br>
+
+Note that we're using `tags$li()` and not `f7ListItem()` here. This is because we're creating a simple list, and `f7ListItem()` is only needed when you want to add more complex items to the list. The styling of `f7ListItem()` is also different because it adds some additional CSS classes.
+
+<br>
+
+Using the styling options, you can already drastically change the appearance of the list:
+
+```{r}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "simple",
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(1:5, function(j) {
+          tags$li(
+            paste("Item", j)
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+
+### Simple link list
+
+When setting `mode` to `"links"`, the list items will be displayed as links:
+
+```{r}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "links",
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(1:5, function(j) {
+          tags$li(
+            f7Link(label = paste("Item", j), href = "https://www.google.com")
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+
+<br>
+
+In the example above, we're using `f7Link()` to create the links. This will automatically make sure that the links are opened in a new tab. 
+
+### Link list with header and footer
+
+To add some complexity to the link list, we can add a header and footer. In this case, we will use `f7ListItem()` to create the list items. It is important to set `mode` to `NULL` in `f7List()`:   
+
+```{r}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "md"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = NULL,
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(1:5, function(j) {
+          f7ListItem(
+            title = paste("Item", j),
+            header = paste("Header", j),
+            footer = paste("Footer", j),
+            href = "https://www.google.com"
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+
+### Grouped list
+
+### Media list
+
+## Other Types of Lists
+
+The list view can be used in other cases as well:
+
+- To create a __virtual list__ with `f7VirtualList()` for displaying a list with a large number of items.
+- To create an inputs layout, where inputs can be nicely grouped and styled together inside an `f7List()`. You can read more about this in the [Inputs Layout](inputs-layout.html) vignette.
+- Swipeout is an extension of the list view that allows you to swipe over list elements to reveal a hidden menu with available actions. You can use `f7Swipeout()` and `f7SwipeOutItem()` for this.
