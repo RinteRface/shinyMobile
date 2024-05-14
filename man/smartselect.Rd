@@ -35,7 +35,7 @@ updateF7SmartSelect(
 
 \item{choices}{Select input choices.}
 
-\item{selected}{Default selected item.}
+\item{selected}{Default selected item. If NULL, the first item is selected.}
 
 \item{openIn}{Smart select type: either \code{c("sheet", "popup", "popover")}.
 Note that the search bar is only available when the type is popup.}

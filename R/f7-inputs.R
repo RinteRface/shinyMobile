@@ -810,7 +810,7 @@ updateF7Select <- function(inputId, selected = NULL,
 #' @param inputId Select input id.
 #' @param label Select input label.
 #' @param choices Select input choices.
-#' @param selected Default selected item.
+#' @param selected Default selected item. If NULL, the first item is selected.
 #' @param openIn Smart select type: either \code{c("sheet", "popup", "popover")}.
 #' Note that the search bar is only available when the type is popup.
 #' @param searchbar Whether to enable the search bar. TRUE by default.
