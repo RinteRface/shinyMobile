@@ -99,7 +99,7 @@ shinyApp(
         footer = "This section simulates an authentication process. There
         is actually no user and password database. Put whatever you want but
         don't leave blank!",
-        startOpen = FALSE,
+        startOpen = FALSE
       ),
       # recover the color picker input and update the text background
       # color accordingly.
