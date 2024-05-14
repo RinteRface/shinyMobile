@@ -20,7 +20,7 @@ f7List <- function(
   if (dividers) listCl <- paste(listCl, "list-dividers")
   if (!is.null(mode)) listCl <- paste(listCl, sprintf("%s-list", mode))
   if (inset) listCl <- paste(listCl, "inset")
-    
+
   # Modify item call so that we can inject the list mode
   # and get the correct layout
   if (!is.null(mode)) {
@@ -92,9 +92,17 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
     stop("Can't set right when title is NULL.")
   }
 
-  if (mode == "media" && (!is.null(header) || 
+  if (mode == "media" && (!is.null(header) ||
   !is.null(footer))) {
     stop("header and footer can't be used with media list.")
+  }
+
+  if (mode == "simple" && is.null(title)) {
+    stop("Use a title in a simple list.")
+  }
+
+  if (mode == "simple") {
+    return(shiny::tags$li(title))
   }
 
   itemSubtitle <- if (!is.null(subtitle)) {

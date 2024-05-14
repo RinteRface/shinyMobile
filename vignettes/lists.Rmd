@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 ## Creating Different Types of Lists
 
-Lists are a great way to organize information in a structured way. And Framework7 provides a number of different list types to choose from, ranging from simple text lists to more complex lists with icons, groups, headers and footers. In {shinyMobile}, all these possibilities are available through the `f7List()` and `f7ListItem()` functions.
+Lists are a great way to organize information in a structured way. And Framework7 provides a number of different list types to choose from, ranging from simple text lists to more complex lists with icons, groups, headers and footers. In `{shinyMobile}`, all these possibilities are available through the `f7List()` and `f7ListItem()` functions.
 
 ### Styling options
 
@@ -41,6 +41,45 @@ There are 4 different modes available for lists:
 
 As you can imagine, there are a lot of possible combinations of these options. Below we will show some examples of how to create different types of lists.
 
+### List items
+
+There are two different ways in which you can create items belonging in `f7List()`:
+
+1. Using `tags$li()`, which is the most simple way to create a list item. Within this tag you can add any HTML content you like.
+2. Using `f7ListItem()`, which gives you plenty of options to configure your list item. This is the recommended method.
+
+For example, the following code creates a simple list with 5 items using the first method:
+
+```{r eval = FALSE}
+f7List(
+  mode = "simple",
+  lapply(1:5, function(j) {
+    tags$li(
+      paste("Item", j)
+    )
+  })
+)
+```
+
+<br>
+
+Using the second method, the code would look like:
+
+```{r eval = FALSE}
+f7List(
+  mode = "simple",
+  lapply(1:5, function(j) {
+    f7ListItem(
+      title = paste("Item", j)
+    )
+  })
+)
+```
+
+<br>
+
+The styling of these two methods might differ slightly, because in the second method some CSS classes are added to the list items. However, in the case of a simple item like above, there's no difference.
+
 ### Simple list
 
 The most simple list has `mode` set to `"simple"` and no other options set:
@@ -58,8 +97,8 @@ shinyApp(
       f7List(
         mode = "simple",
         lapply(1:5, function(j) {
-          tags$li(
-            paste("Item", j)
+          f7ListItem(
+            title = paste("Item", j)
           )
         })
       )
@@ -72,7 +111,7 @@ shinyApp(
 
 <br>
 
-Note that we're using `tags$li()` and not `f7ListItem()` here. This is because we're creating a simple list, and `f7ListItem()` is only needed when you want to add more complex items to the list. The styling of `f7ListItem()` is also different because it adds some additional CSS classes.
+Note that you need to use `title = ...` in `f7ListItem()` when using `f7List(mode = "simple", ...)`. Other arguments in `f7ListItem()` will be ignored when `mode` is `"simple"`.
 
 <br>
 
@@ -94,8 +133,8 @@ shinyApp(
         dividers = TRUE,
         strong = TRUE,
         lapply(1:5, function(j) {
-          tags$li(
-            paste("Item", j)
+          f7ListItem(
+            title = paste("Item", j)
           )
         })
       )
