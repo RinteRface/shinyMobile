@@ -181,6 +181,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
       if (!routable) "external"
     )
     itemContent$attribs$href <- href
+    if (!routable) itemContent$attribs$target <- "_blank"
   }
 
   shiny::tags$li(itemContent)
