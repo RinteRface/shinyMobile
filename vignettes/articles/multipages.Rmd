@@ -74,7 +74,7 @@ brochureApp(
 )
 ```
 
-In brief, you create different pages with `page()` and put them inside `brochureApp()`. Each page is composed of a `ui`, `server` and `href` which represents the location where to serve the page. In theory, as mentionned in the `{brochure}` documentation, each page has its own shiny session, which means that if you go from page 1 to page 2, the state of page 1 is lost when you come back to it. 
+In brief, you create different pages with `page()` and put them inside `brochureApp()`. Each page is composed of a `ui`, `server` and `href` which represents the location where to serve the page. In theory, as mentioned in the `{brochure}` documentation, each page has its own shiny session, which means that if you go from page 1 to page 2, the state of page 1 is lost when you come back to it. 
 
 For `{shinyMobile}`, we decided to slightly deviate from this and only assign a global server function, meaning that you can use the `brochureApp()` __server__ 
 parameter instead of the one from `page()`. This requires to install a modified version of
@@ -229,7 +229,7 @@ options = list(
     # between pages. If FALSE, each time a page is
     # changed, inputs are reset.
     list(path = make_link(), url = make_link(), name = "home", keepAlive = TRUE),
-    list(path = make_link("2"), url = make_link("2")", name = "2", keepAlive = TRUE),
+    list(path = make_link("2"), url = make_link("2"), name = "2", keepAlive = TRUE),
     list(path = make_link("3"), url = make_link("3"), name = "3", keepAlive = TRUE)
   )
 )
