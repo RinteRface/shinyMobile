@@ -71,7 +71,12 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
   # avoid to have crazy large images
   if (!is.null(media)) {
     if (!is.null(media$name)) {
-      if (media$name == "img") media$attribs$width <- "50"
+      if (media$name == "img") {
+        # if width is not given, set it to 50
+        if (is.null(media$attribs$width)) {
+          media$attribs$width <- "50"
+        }
+      }
     }
   }
 
