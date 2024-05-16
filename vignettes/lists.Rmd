@@ -8,11 +8,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r setup, echo=FALSE, message=FALSE}
+library(bslib)
 ```
 
 ## Creating Different Types of Lists
@@ -84,7 +81,25 @@ The styling of these two methods might differ slightly, because in the second me
 
 The most simple list has `mode` set to `"simple"` and no other options set:
 
-```{r}
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAk4SSGCoIyglyfQ3iYHiVYARkQAFZuhk2AQoRBuAArEzOEAqw1SmWkACS5BgH0NQa+Pw1EVQTXI0T9RK6zhdHs+82DrgAvsmgxnXBmTJSDcJqhzqry7Q7uFpUCxSN0WZXSK73QbU3MwKmALpAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#simpleList" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="simpleList">
+```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
 
@@ -108,6 +123,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 <br>
 
@@ -117,7 +133,25 @@ Note that you need to use `title = ...` in `f7ListItem()` when using `f7List(mod
 
 Using the styling options, you can already drastically change the appearance of the list:
 
-```{r}
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAk4SSGCoIyglyfQ3iYHiVYARkQAFZuhk2AQoRBuAArEzOEAqw1SmWkACS5BgH0NQa+Pw1EVQTXI0T9RK6zhdHs+82DrgAvsmgxnXBmTJSDcJqhzqry7Q7uFpUCxSN0WZXSK73QbU3MwKmALpAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#simpleListStyling" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="simpleListStyling">
+```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
 
@@ -144,12 +178,31 @@ shinyApp(
   }
 )
 ```
+</div>
 
 ### Simple link list
 
 When setting `mode` to `"links"`, the list items will be displayed as links:
 
-```{r}
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAkqQQZHkvwuT4GllajURAAqWAAqviVa4EZIOZJ1QwYc5zVbKfqDa5bAwSHk7m7rZ6veJgeJVgBGRAAVm6GTYBChEG4ACsTM4QDbPnY8sIACRSD5er1SrTI7ihuhwcR3VBNcjRACS5BgXWcae66kCGRJsXiiWS1CH+SIRHpuWIrbA82LBpns4AvvO52z5yYPd7qhzqryE0nuFpUCxSN0WUfSOnM-qF3MwAuALpAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#simpleLinkList" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="simpleLinkList">
+```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
 
@@ -176,6 +229,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 <br>
 
@@ -185,14 +239,32 @@ In the example above, we're using `f7Link()` to create the links. This will auto
 
 To add some complexity to the link list, we can add a header and footer. In this case, we will use `f7ListItem()` to create the list items. It is important to set `mode` to `NULL` in `f7List()`:   
 
-```{r}
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuB3PkAVUxmMpLk+hpZUggGoiABUsFr8SrXAjJBzJOqGDDnJbrfrDYbbAwSHk7u6bQavc5xMDxKsAIyIACs3QybAIUIg3AAViZnCBbZ8pTLSABJcgwD4hw2i8XOVBNcjRQtErrOdOe0uG9RwKDOu5V2zvfgACXbzobTezhoyRCI6S71d7YDRE-Sw5MzZbrnUgQyJNi8USyWo+-yE-puWIMH4o+c8xbAF8r1676478uwcJqhzqrzE8nuFpUCxSN0LJ-qQGZZga15zGA14ALpAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#linkedListHF" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="linkedListHF">
+```{r, eval=FALSE}
 library(shiny)
 library(shinyMobile)
 
 shinyApp(
   ui = f7Page(
     title = "My app",
-    options = list(dark = FALSE, theme = "md"),
+    options = list(dark = FALSE, theme = "ios"),
     f7SingleLayout(
       navbar = f7Navbar(title = "f7List"),
       f7List(
@@ -215,10 +287,189 @@ shinyApp(
   }
 )
 ```
+</div>
 
 ### Grouped list
 
+A grouped list can be generated by using `f7ListGroup()`. The `mode` argument should be set to `"contacts"` in `f7List()`:
+
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAk4hkbKkcl+FyfQ0sqQQDURAAqWAAqviVa4EZIOZJ1QwYc5LTbKQbDa5bAwSHk7h7bd6feJgeJVgAWRAANm6GTYBChEG4khMzhAds+UplpAA4v6WKgPj6faLxc5MbjzebcVhscBJABdL1lsvh9CR7gARkQPYADAmkynuAArDNZ0PtnOKvMASXIMBFPzNzlQTXI0Se1WEJC6zgnbZnJ-b8AdUDudjywgAJJIYHlS6eX85RAQ7hvbHAB9FYvFEmSAgEQgDAMkUeBqCmZEHjKCpUHDHJ1CIcQXQEVA4AhIw6h7WMBwAD1wgc6gPMdun4DAx1QGYwHmV96JMY96NPABiZwsCgCAESIGB12Q01nAgFgYDoaogVCch8NIbNmM+L9yF-fgAGoowAJmcWMem6YRYAQ95BwHQyjMQABOMzzLM7oexMOjZJPWzTwAXwc9sXMNZyVRc2zGLBYRqg5MSIkTCBk3KVMtFQFhSG6FlItIScwUcuYwEc5sgA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#groupedList" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="groupedList">
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "contacts",
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(4:6, function(i) {
+          f7ListGroup(
+            title = LETTERS[i],
+            lapply(1:10, function(j) {
+              f7ListItem(title = paste("Person", j),
+                         media = tags$img(
+                         src = paste0("https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg")
+                         ),
+                         # Random phone number as text
+                         paste0("+42 6 ", sample(10000000:99999999, 1))
+                         )
+            })
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+</div>
+
+By adding `media` to the `f7ListItem()`, you can display an image next to the list item, thereby making a pretty fancy contact list!
+
+<br>
+
+If desired, you can also use `f7Icon()`:
+
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAk4hkbKkcl+FyfQ0sqQQDURAAqWAAqviVa4EZIOZJ1QwYc5LTbKQbDa5bAwSHk7h7bd6feJgeJVgAWRAANm6GTYBChEG4khMzhAds+UplpAA4v6WKgPj6faLxc5MbjzebcVhscBJABdL1lsvh9CR7gARkQPYADAmkynuAArDNZ0PtnOKvMASXIMBFPzNzlQTXI0Se1WEJC6zgnbZnJ-b8AdUF5D3nWuiqF3JAA+hlDOI5dPT6eAMTOLBQCAIkQMDruoJAahALAwHQ1RAqE5AAB6kNmn5lhuthwAO0QANQAMw9s4sY9N0wiwKgRi9gOlFUQOiAAJz0Qx9HdD2JjzCh7FsZ+AC+nEzrxPo8Sq-GcSYx7CNUHIwREiYQMm5SploqAsKQ3QskppCTmCXFzGAXHNkAA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#groupedListIcon" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="groupedListIcon">
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "contacts",
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(4:6, function(i) {
+          f7ListGroup(
+            title = LETTERS[i],
+            lapply(1:10, function(j) {
+              f7ListItem(title = paste("Person", j),
+                         media = f7Icon("person_fill"),
+                         # Random phone number as text
+                         paste0("+31 6 ", sample(10000000:99999999, 1))
+                         )
+            })
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+</div>
+
 ### Media list
+
+With `mode` set to `"media"`, you can create a list with media objects, and you have the option to add a `subtitle` to the list items. Note that `header` and `footer` can't be used in a media list.
+
+```{r, eval=TRUE, echo=FALSE}
+card(
+  shinyMobile:::create_app_link(
+    "https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAvy4bjFxCUkpQUQYDA1NMBhEDHmm5mYQ5lKMSsrcHtrzS4oqa5raegZG8+brygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-w6ymcaFQXX8nyIqG+JFCESktm4ABMlABrO4AMTOABkAMoAUW6RTg8D+YHKwlMuDBrke2K0eSMmKgyk4PCpn2gADc6Eo7o8AHJQLlKbjfUi-CL8R6YyS2Cls6kPaXw+WfDgIuAk+AIyRQUEuT4GllSCAaiIAFSwAFV8SrXNqOZJ1QwYc4LdbKfqDa5bAwSHk7m6bZ6veJgeJVgBGRARgAM3QybAIUIg3EkJmcIFtnylMtIAElyDAPl6vaLxc5UE1yNEzT9fN00x6SyXhCUy6aK1X3vxsW2611nI2swatTq7nY8sIACSSGB5YvNg22ZTl-h0KZOuqKbUiRDOAAcqAAHgBuPWLlsMAh3Su2OAx6KxeKJZIEBEQDAZRTwahTZEPMoKlQUMcnUIhxCdARUDgCEjDqCMADYYyPRCYzqAdJG6fgMAAK1QGYwBMJsLwNahHSKEkHhjfhh0+IjaICSQ8liG8u2iLAmNiDD6ODRdb2rHsiGJcQ-WqL44CPUggXXFgpKKGVOwYb4CBYUMGEHQsvnUKApO00JCWcGBXkkAh7GcCAWBgOhqm44iSPUQIMhJABiGjeK9eZFwAX08jy2V8njvWqDkxIiBMICTcoUy0VBZO6FlYtIdNM31Ly5jALyAF0gA", # nolint
+    "app",
+    header = FALSE
+  ),
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
+)
+```
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#mediaList" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
+
+<div class="collapse" id="mediaList">
+```{r, eval=FALSE}
+library(shiny)
+library(shinyMobile)
+
+shinyApp(
+  ui = f7Page(
+    title = "My app",
+    options = list(dark = FALSE, theme = "ios"),
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7List"),
+      f7List(
+        mode = "media",
+        outline = TRUE,
+        dividers = TRUE,
+        strong = TRUE,
+        lapply(1:10, function(i) {
+          f7ListItem(
+            title = paste("Title", i),
+            subtitle = paste("Subtitle", i),
+            media = tags$img(
+              style = "border-radius: 8px;",
+              src = paste0("https://cdn.framework7.io/placeholder/people-160x160-", i, ".jpg"),
+              width = "70"
+            ),
+            right = paste("Right", i),
+            paste("Some longer text about this particular item that has the magical number", i),
+            href = "#"
+          )
+        })
+      )
+    )
+  ),
+  server = function(input, output) {
+  }
+)
+```
+</div>
+
+The default media width is `50`. If you want to override this, you can add `width` to the `img` tag.
 
 ## Other Types of Lists
 
