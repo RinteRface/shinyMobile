@@ -123,6 +123,7 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #' @param image Card background image url. Tje JPG format is prefered. Not compatible
 #' with the color argument.
 #' @param fullBackground Whether the image should cover the entire card.
+#' @param buttonColor Color of the close button. Default is "white".
 #'
 #' @note For \link{f7ExpandableCard}, image and color are not compatible. Choose one of them.
 #'
@@ -130,7 +131,8 @@ f7Card <- function(..., image = NULL, title = NULL, footer = NULL, outline = FAL
 #' @export
 f7ExpandableCard <- function(..., id = NULL, title = NULL,
                              subtitle = NULL, color = NULL,
-                             image = NULL, fullBackground = FALSE) {
+                             image = NULL, fullBackground = FALSE,
+                             buttonColor = "white") {
   cardColorCl <- if (!is.null(color)) paste0("bg-color-", color)
 
   # card header if any
@@ -155,7 +157,7 @@ f7ExpandableCard <- function(..., id = NULL, title = NULL,
   # trigger to close the card
   closeCard <- shiny::tags$a(
     href = "#",
-    class = paste0("link card-close card-opened-fade-in color-white"),
+    class = paste0("link card-close card-opened-fade-in color-", buttonColor),
     style = "position: absolute; right: 15px; top: 15px;",
     f7Icon("xmark_circle_fill")
   )

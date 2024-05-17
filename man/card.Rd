@@ -24,7 +24,8 @@ f7ExpandableCard(
   subtitle = NULL,
   color = NULL,
   image = NULL,
-  fullBackground = FALSE
+  fullBackground = FALSE,
+  buttonColor = "white"
 )
 
 updateF7Card(id, session = shiny::getDefaultReactiveDomain())
@@ -55,6 +56,8 @@ with the color argument.}
 Not compatible with the img argument.}
 
 \item{fullBackground}{Whether the image should cover the entire card.}
+
+\item{buttonColor}{Color of the close button. Default is "white".}
 
 \item{session}{Shiny session object.}
 }
