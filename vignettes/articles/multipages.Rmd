@@ -671,6 +671,9 @@ brochureApp(
 </div>
 
 ## Going further
+
+### With shiny modules 
+
 You might find more convenient to assign a Shiny __module__
 per page such as:
 
@@ -735,6 +738,133 @@ brochureApp(
         list(path = make_link(), url = make_link(), name = "home", keepAlive = TRUE)
       )
     )
+  )
+)
+```
+
+### Dynamic routes
+
+How do we dynamically create new routes? Since `{brochure}` stores all the pages in the `...pages` environment, we can add entries to it.
+In the following example, we add a `/new` page which has a basic UI and then browse to the corresponding url.
+We then leverage `session$sendCustomMessage` to send the page `href` from R to JS and `Shiny.addCustomMessageHandler` on the JS side to pass it to `window.open`, with the `_self` option (meaning that we open in the same window).
+
+```{r, eval=FALSE}
+brochureApp(
+  # First page
+  tags$script(
+    "$(function() {
+      $(document).on('shiny:connected', function() {
+        Shiny.addCustomMessageHandler('browse', function(m) {
+          window.open(window.location.href + m, '_self');
+        });
+      });
+    });"
+  ),
+  page(
+    href = "/",
+    ui = fluidPage(
+      h1("This is my first page"),
+      plotOutput("plot"),
+      actionButton("add", "Add page")
+    )
+  ),
+  # Second page, without any server-side function
+  page(
+    href = "/page2",
+    ui = fluidPage(
+      h1("This is my second page"),
+      tags$p("There is no server function in this one")
+    )
+  ),
+  server = function(input, output, session) {
+    output$plot <- renderPlot({
+      plot(iris)
+    })
+    observeEvent(input$add, {
+      if (!("/new" %in% names(...pages))) {
+        ...pages[["/new"]]$ui <- fluidPage("New dynamic page")
+      }
+      session$sendCustomMessage("browse", "new")
+    })
+  }
+)
+```
+
+How does that translate for `{shinyMobile}`? Let's take a simple app with one page.
+We define the routes outside the `brochureApp`, as we'll have to update the options from
+within the server function. Initially, we consider one route. By clicking on the add button, we add a new page to `...pages[["/new"]]$ui`, update the global options to account for the new route on the R side and use `updateF7Routes(options$routes)` to update the router on the JS side and have the navigation working:
+
+```{r, eval=FALSE}
+options <- list(
+  dark = TRUE,
+  theme = "md",
+  routes = list(
+    list(path = "/", url = "/", name = "home", keepAlive = TRUE)
+  )
+)
+
+page_1 <- function() {
+  page(
+    href = "/",
+    ui = function(request) {
+      shiny::tags$div(
+        class = "page",
+        # top navbar goes here
+        f7Navbar(title = "Home page"),
+        tags$div(
+          class = "page-content",
+          f7Block(
+            f7Button("add", "Add new")
+          ),
+          f7Block(
+            f7Link("New", href = "/new", routable = TRUE)
+          )
+        )
+      )
+    }
+  )
+}
+
+brochureApp(
+  page_1(),
+  server = function(input, output, session) {
+    observeEvent(input$add, {
+      if (!("/new" %in% names(...pages))) {
+        ...pages[["/new"]]$ui <- shiny::tags$div(
+            class = "page",
+            # top navbar goes here
+            f7Navbar(
+              title = "New page",
+              # Allows to go back to main
+              leftPanel = tagList(
+                tags$a(
+                  href = "/",
+                  class = "link back",
+                  tags$i(class = "icon icon-back"),
+                  tags$span(
+                    class = "if-not-md",
+                    "Back"
+                  )
+                )
+              )
+            ),
+            tags$div(
+              class = "page-content",
+              f7Block("Nothing here")
+            )
+          )
+        options$routes[[length(options$routes) + 1]] <- list(path = "/new", url = "/new", name = "new", keepAlive = TRUE)
+        updateF7Routes(options$routes)
+      }
+    })
+  },
+  wrapped = f7MultiLayout,
+  wrapped_options = list(
+    # Common toolbar
+    toolbar = f7Toolbar(
+      f7Link(icon = f7Icon("house"), href = "/", routable = TRUE)
+    ),
+    options = options
   )
 )
 ```
