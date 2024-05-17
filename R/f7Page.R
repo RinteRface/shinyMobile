@@ -243,6 +243,19 @@ f7MultiLayout <- function(
   f7Page(items, title = title, options = options, allowPWA = allowPWA)
 }
 
+#' Update routes on the server
+#'
+#' `r lifecycle::badge("experimental")`
+#' Add a route to existing app routes.
+#'
+#' @param routes New list of routes.
+#' @param session Shiny session object.
+#'
+#' @export
+updateF7Routes <- function(routes, session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage("update-routes", routes)
+}
+
 #' Framework7 single layout
 #'
 #' \code{f7SingleLayout} provides a simple page layout.

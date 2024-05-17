@@ -118,6 +118,7 @@ reference:
   - '`updateF7VirtualList`'
   - '`updateF7App`'
   - '`updateF7Entity`'
+  - '`updateF7Routes`'
 
 
 - title: Search

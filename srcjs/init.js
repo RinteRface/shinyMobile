@@ -51,7 +51,9 @@ $( document ).ready(function() {
     // For some reasons, the navbars get duplicated entries.
     // We remove the first one.
     $(document).on('shiny:sessioninitialized', function() {
-      $(".navbars").children()[0].remove();
+      if ($(".navbars").children().length > 1) {
+        $(".navbars").children()[0].remove();
+      }
     });
 
     // Each time a page is mounted, we need to rebind all inputs ...
