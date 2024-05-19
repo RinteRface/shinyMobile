@@ -95,6 +95,18 @@ f7VirtualListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, hea
     stop("href can't be NULL when routable is TRUE.")
   }
 
+  # avoid to have crazy large images
+  if (!is.null(media)) {
+    if (!is.null(media$name)) {
+      if (media$name == "img") {
+        # if width is not given, set it to 50
+        if (is.null(media$attribs$width)) {
+          media$attribs$width <- "50"
+        }
+      }
+    }
+  }
+
   dropNulls(
     list(
       content = ...,
