@@ -37,7 +37,7 @@ $.extend(f7VirtualListBinding, {
           ? '<div class="item-media">' + item.media + "</div>"
           : "";
       var template =
-        '<div class="item-content">' +
+        '<div class="item-content" id=' + (item.id === undefined ? "" : item.id) + '>' +
         media +
         '<div class="item-inner">' +
         '<div class="item-title-row">' +

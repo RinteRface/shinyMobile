@@ -20,6 +20,7 @@ f7VirtualList(
 
 f7VirtualListItem(
   ...,
+  id = NULL,
   title = NULL,
   subtitle = NULL,
   header = NULL,
@@ -30,7 +31,7 @@ f7VirtualListItem(
 )
 }
 \arguments{
-\item{id}{Virtual list unique id.}
+\item{id}{Unique id for list or item.}
 
 \item{items}{List items. Slot for \link{f7VirtualListItem}.}
 
@@ -119,6 +120,7 @@ app <- shinyApp(
         mode = "media",
         items = lapply(1:1000, function(i) {
           f7VirtualListItem(
+            id = paste0("vlist-item-", i),
             title = paste("Title", i),
             subtitle = paste("Subtitle", i),
             header = paste("Header", i),

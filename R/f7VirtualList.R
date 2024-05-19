@@ -3,7 +3,7 @@
 #' \code{f7VirtualList} is a high performance list container.
 #' Use if you have too many components in \link{f7List}.
 #'
-#' @param id Virtual list unique id.
+#' @param id Unique id for list or item.
 #' @param items List items. Slot for \link{f7VirtualListItem}.
 #' @param rowsBefore Amount of rows (items) to be rendered before current
 #' screen scroll position. By default it is equal to double amount of
@@ -74,11 +74,12 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 #' @inheritParams f7ListItem
 #' @rdname virtuallist
 #' @export
-f7VirtualListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
+f7VirtualListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                               href = NULL, media = NULL, right = NULL) {
   dropNulls(
     list(
       content = ...,
+      id = id,
       title = title,
       subtitle = subtitle,
       header = header,

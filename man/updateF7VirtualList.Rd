@@ -79,6 +79,7 @@ app <- shinyApp(
         mode = "media",
         items = lapply(1:1000, function(i) {
           f7VirtualListItem(
+            id = paste0("vlist-item-", i),
             title = paste("Title", i),
             subtitle = paste("Subtitle", i),
             header = paste("Header", i),
