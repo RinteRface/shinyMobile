@@ -56,6 +56,7 @@ f7List <- function(
 #' Create a Framework 7 contact item
 #'
 #' @param ... Item text.
+#' @param id Optional id for item.
 #' @param title Item title.
 #' @param subtitle Item subtitle. Only work if the \link{f7List} mode is media.
 #' @param header Item header. Do not use when \link{f7List} mode is not NULL.
@@ -66,7 +67,7 @@ f7List <- function(
 #' @param routable Works when href is not NULL. Default to FALSE. If TRUE,
 #' the list item may point to another page. See \link{f7MultiLayout}.
 #' @export
-f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer = NULL,
+f7ListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                        href = NULL, media = NULL, right = NULL, routable = FALSE) {
   # avoid to have crazy large images
   if (!is.null(media)) {
@@ -176,6 +177,7 @@ f7ListItem <- function(..., title = NULL, subtitle = NULL, header = NULL, footer
 
   itemContent <- shiny::tags$div(
     class = "item-content",
+    id = id,
     if (!is.null(media)) {
       shiny::tags$div(
         class = "item-media",

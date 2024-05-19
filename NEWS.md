@@ -56,6 +56,7 @@ the check icon position. Default to left.
 `f7CheckboxGroup()`. Improved choice with title, subtitle, ...
 - `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
 - `f7ListItem()` has new `routable` parameter which allows navigation between pages in the new `f7MultiLayout()`.
+- `f7ListItem()` and `f7VirtualListItem()` have new optional argument `id`, which allows for easy targetting.
 - `f7ListIndex()` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
 - Added `id` argument to `f7List()`, which makes it possible to use an id as target in `f7ListIndex`.
 - `f7Panel()` has new "floating"/"push" effects as well as a new `options` parameter

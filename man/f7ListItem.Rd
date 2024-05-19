@@ -6,6 +6,7 @@
 \usage{
 f7ListItem(
   ...,
+  id = NULL,
   title = NULL,
   subtitle = NULL,
   header = NULL,
@@ -18,6 +19,8 @@ f7ListItem(
 }
 \arguments{
 \item{...}{Item text.}
+
+\item{id}{Optional id for item.}
 
 \item{title}{Item title.}
 
