@@ -42,7 +42,7 @@ app <- shinyApp(
             header = paste("Header", i),
             footer = paste("Footer", i),
             right = paste("Right", i),
-            content = paste0("Content", i),
+            paste0("Content", i),
             media = img(style = "border-radius: 8px",
                         src = "https://cdn.framework7.io/placeholder/fashion-88x88-1.jpg")
           )
@@ -100,7 +100,7 @@ app <- shinyApp(
         item = f7VirtualListItem(
           title = "New Item Title",
           right = "New Item Right",
-          content = "New Item Content",
+          "New Item Content",
           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
         )
       )
@@ -114,7 +114,7 @@ app <- shinyApp(
           f7VirtualListItem(
             title = paste("Title", i),
             right = paste("Right", i),
-            content = i,
+            i,
             media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
           )
         })
@@ -128,7 +128,7 @@ app <- shinyApp(
         index = input$itemIndex,
         item = f7VirtualListItem(
           title = "New Item Title",
-          content = "New Item Content",
+          "New Item Content",
           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
         )
       )
@@ -141,7 +141,7 @@ app <- shinyApp(
         index = input$itemIndex,
         item = f7VirtualListItem(
           title = "Replacement",
-          content = "Replacement Content",
+          "Replacement Content",
           media = img(src = "https://cdn.framework7.io/placeholder/fashion-88x88-3.jpg")
         )
       )
