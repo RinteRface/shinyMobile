@@ -109,7 +109,7 @@ f7VirtualListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, hea
 
   dropNulls(
     list(
-      content = ...,
+      content = as.character(...),
       id = id,
       title = title,
       subtitle = subtitle,
