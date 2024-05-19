@@ -37,7 +37,6 @@ $.extend(f7VirtualListBinding, {
           ? '<div class="item-media">' + item.media + "</div>"
           : "";
       var template =
-        '<div class="item-content" id=' + (item.id === undefined ? "" : item.id) + '>' +
         media +
         '<div class="item-inner">' +
         '<div class="item-title-row">' +
@@ -62,14 +61,20 @@ $.extend(f7VirtualListBinding, {
         "</div>" +
         "</div>" +
         "</div>";
+
       if (item.url === undefined) {
-        return "<li>" + template + "</li>";
+        return (
+          "<li>" +
+          '<div class="item-content" id=' + (item.id === undefined ? "" : item.id) + '>' +
+          template +
+          "</li>"
+        );
       } else {
         return (
           "<li>" +
           '<a class="item-link item-content external" href="' +
           item.url +
-          '" target="_blank">' +
+          '" target="_blank" id=' + (item.id === undefined ? "" : item.id) + '>' +
           template +
           "</a>" +
           "</li>"
