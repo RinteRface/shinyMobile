@@ -71,11 +71,30 @@ f7VirtualList <- function(id, items, rowsBefore = NULL, rowsAfter = NULL,
 #'
 #' \code{f7VirtualListItem} is an item component for \link{f7VirtualList}.
 #'
-#' @inheritParams f7ListItem
+#' @param ... Item text.
+#' @param id Optional id for item.
+#' @param title Item title.
+#' @param subtitle Item subtitle.
+#' @param header Item header.
+#' @param footer Item footer.
+#' @param href Item external link.
+#' @param media Expect \link{f7Icon} or \code{img}.
+#' @param right Right content if any.
+#' @param routable Works when href is not NULL. Default to FALSE. If TRUE,
+#' the list item may point to another page, but we recommend using \link{f7List}
+#' and \link{f7ListItem} instead. See \link{f7MultiLayout}. Can also be used in
+#' combination with href = "#" to make items appear as links, but not actually
+#' navigate anywhere, which is useful for custom click events.
+#'
 #' @rdname virtuallist
 #' @export
 f7VirtualListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, header = NULL, footer = NULL,
-                              href = NULL, media = NULL, right = NULL) {
+                              href = NULL, media = NULL, right = NULL, routable = FALSE) {
+
+  if (is.null(href) && routable) {
+    stop("href can't be NULL when routable is TRUE.")
+  }
+
   dropNulls(
     list(
       content = ...,
@@ -86,7 +105,8 @@ f7VirtualListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, hea
       footer = footer,
       url = href,
       media = as.character(media), # avoid issue on JS side
-      right = right
+      right = right,
+      routable = routable
     )
   )
 }

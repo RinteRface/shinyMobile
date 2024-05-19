@@ -66,6 +66,9 @@ f7List <- function(
 #' @param right Right content if any.
 #' @param routable Works when href is not NULL. Default to FALSE. If TRUE,
 #' the list item may point to another page. See \link{f7MultiLayout}.
+#' Can also be used in combination with href = "#" to make items appear
+#' as links, but not actually navigate anywhere, which is useful for
+#' custom click events.
 #' @export
 f7ListItem <- function(..., id = NULL, title = NULL, subtitle = NULL, header = NULL, footer = NULL,
                        href = NULL, media = NULL, right = NULL, routable = FALSE) {

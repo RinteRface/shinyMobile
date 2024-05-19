@@ -72,7 +72,7 @@ $.extend(f7VirtualListBinding, {
       } else {
         return (
           "<li>" +
-          '<a class="item-link item-content external" href="' +
+          '<a class="item-link item-content' + (item.routable === false ? " external" : "") +             '" href="' +
           item.url +
           '" target="_blank" id=' + (item.id === undefined ? "" : item.id) + '>' +
           template +

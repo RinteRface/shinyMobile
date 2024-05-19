@@ -27,11 +27,12 @@ f7VirtualListItem(
   footer = NULL,
   href = NULL,
   media = NULL,
-  right = NULL
+  right = NULL,
+  routable = FALSE
 )
 }
 \arguments{
-\item{id}{Unique id for list or item.}
+\item{id}{Optional id for item.}
 
 \item{items}{List items. Slot for \link{f7VirtualListItem}.}
 
@@ -63,17 +64,23 @@ or could be modified.}
 
 \item{title}{Item title.}
 
-\item{subtitle}{Item subtitle. Only work if the \link{f7List} mode is media.}
+\item{subtitle}{Item subtitle.}
 
-\item{header}{Item header. Do not use when \link{f7List} mode is not NULL.}
+\item{header}{Item header.}
 
-\item{footer}{Item footer. Do not use when \link{f7List} mode is not NULL.}
+\item{footer}{Item footer.}
 
 \item{href}{Item external link.}
 
 \item{media}{Expect \link{f7Icon} or \code{img}.}
 
 \item{right}{Right content if any.}
+
+\item{routable}{Works when href is not NULL. Default to FALSE. If TRUE,
+the list item may point to another page, but we recommend using \link{f7List}
+and \link{f7ListItem} instead. See \link{f7MultiLayout}. Can also be used in
+combination with href = "#" to make items appear as links, but not actually
+navigate anywhere, which is useful for custom click events.}
 }
 \description{
 \code{f7VirtualList} is a high performance list container.
