@@ -10,19 +10,34 @@ test_that("popup works", {
   )
 
   # Open
-  app$click(select = "#toggle")
+  app$click(select = "#toggle1")
   app$wait_for_idle(3000)
-  app$expect_values(input = "popup")
+  app$expect_values(input = "popup1")
 
   # Inputs work in a popup
-  app$set_inputs("text" = "balbla")
+  app$set_inputs("text1" = "balbla")
   app$wait_for_idle(1000)
-  app$expect_values(input = c("popup", "text"), output = "res")
+  app$expect_values(input = c("popup1", "text1"), output = "res1")
 
   # Close
   app$click(select = ".popup-close")
   app$wait_for_idle(1000)
-  app$expect_values(input = "popup")
+  app$expect_values(input = "popup1")
+
+  # Open
+  app$click(select = "#toggle2")
+  app$wait_for_idle(3000)
+  app$expect_values(input = "popup2")
+
+  # Inputs work in a popup
+  app$set_inputs("text2" = "balbla")
+  app$wait_for_idle(1000)
+  app$expect_values(input = c("popup2", "text2"), output = "res2")
+
+  # Close
+  app$click(select = ".popup-close")
+  app$wait_for_idle(1000)
+  app$expect_values(input = "popup2")
 })
 
 test_that("Popup R function work", {
@@ -49,4 +64,24 @@ test_that("Popup R function work", {
   expect_length(res, 2)
   expect_equal(res$type, "popup")
   expect_identical(res$message$id, "popup")
+  expect_equal(grepl("page-content", res$message$content), FALSE)
+
+
+  f7Popup(
+    id = "popup",
+    title = "My first popup",
+    page = TRUE,
+    f7Text(
+      "text", "Popup content",
+      "This is my first popup ever, I swear!"
+    ),
+    shiny::verbatimTextOutput("res"),
+    session = session
+  )
+
+  res <- session$lastCustomMessage
+  res$message <- jsonlite::fromJSON(res$message)
+  expect_length(res, 2)
+  expect_equal(grepl("page-content", res$message$content), TRUE)
+
 })
