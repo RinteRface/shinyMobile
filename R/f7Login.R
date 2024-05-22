@@ -20,21 +20,25 @@
 #' @param startOpen Whether to open the login page at start. Default to TRUE. There
 #' are some cases where it is interesting to set up to FALSE, for instance when you want
 #' to have authentication only in a specific tab of your app (See example 2).
+#' @param module Whether or not to use in combination with \link{f7LoginServer}. Can be
+#' set to FALSE if you want to develop your own server functionality, or if you want to
+#' use \code{f7Login} inside a module yourself. Defaults to TRUE.
 #'
 #' @export
 #' @rdname authentication
 #' @importFrom jsonlite toJSON
 #' @example inst/examples/login/app.R
 f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
-                    startOpen = TRUE) {
+                    startOpen = TRUE, module = TRUE) {
+
   ns <- shiny::NS(id)
 
-  submitBttn <- f7Button(inputId = ns("submit"), label = label)
+  submitBttn <- f7Button(inputId = ifelse(module, ns("submit"), "submit"), label = label)
   submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
   submitBttn[[2]]$name <- "a"
 
   shiny::tags$div(
-    id = ns(id),
+    id = ifelse(module, ns(id), id),
     `data-start-open` = jsonlite::toJSON(startOpen),
     class = "login-screen",
     shiny::tags$div(
@@ -49,12 +53,12 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
           shiny::tags$form(
             f7List(
               f7Text(
-                inputId = ns("user"),
+                inputId = ifelse(module, ns("user"), "user"),
                 label = "Username",
                 placeholder = "Your name here"
               ),
               f7Password(
-                inputId = ns("password"),
+                inputId = ifelse(module, ns("password"), "password"),
                 label = "Password",
                 placeholder = "Your password here"
               ),

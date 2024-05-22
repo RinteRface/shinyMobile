@@ -6,7 +6,15 @@
 \alias{updateF7Login}
 \title{Framework7 login screen}
 \usage{
-f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
+f7Login(
+  ...,
+  id,
+  title,
+  label = "Sign In",
+  footer = NULL,
+  startOpen = TRUE,
+  module = TRUE
+)
 
 f7LoginServer(id, ignoreInit = FALSE, trigger = NULL)
 
@@ -32,6 +40,10 @@ either opened or closed).}
 \item{startOpen}{Whether to open the login page at start. Default to TRUE. There
 are some cases where it is interesting to set up to FALSE, for instance when you want
 to have authentication only in a specific tab of your app (See example 2).}
+
+\item{module}{Whether or not to use in combination with \link{f7LoginServer}. Can be
+set to FALSE if you want to develop your own server functionality, or if you want to
+use \code{f7Login} inside a module yourself. Defaults to TRUE.}
 
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),
