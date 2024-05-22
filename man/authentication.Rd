@@ -43,7 +43,9 @@ to have authentication only in a specific tab of your app (See example 2).}
 
 \item{module}{Whether or not to use in combination with \link{f7LoginServer}. Can be
 set to FALSE if you want to develop your own server functionality, or if you want to
-use \code{f7Login} inside a module yourself. Defaults to TRUE.}
+use \code{f7Login} inside a module yourself. Note that inputs, like user, password and submit,
+will need to be accessed with the id of \code{f7Login} with -user, -password or -submit appended.
+For example: "input$\code{login-user}".}
 
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),

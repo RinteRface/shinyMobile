@@ -22,7 +22,8 @@
 #' to have authentication only in a specific tab of your app (See example 2).
 #' @param module Whether or not to use in combination with \link{f7LoginServer}. Can be
 #' set to FALSE if you want to develop your own server functionality, or if you want to
-#' use \code{f7Login} inside a module yourself. Defaults to TRUE.
+#' use \code{f7Login} inside a module yourself. Note that inputs, like user, password and submit,
+#' will need to be accessed with the id of \code{f7Login} with -user, -password or -submit appended.
 #'
 #' @export
 #' @rdname authentication
@@ -33,7 +34,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 
   ns <- shiny::NS(id)
 
-  submitBttn <- f7Button(inputId = ifelse(module, ns("submit"), "submit"), label = label)
+  submitBttn <- f7Button(inputId = ns("submit"), label = label)
   submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
   submitBttn[[2]]$name <- "a"
 
@@ -53,12 +54,12 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
           shiny::tags$form(
             f7List(
               f7Text(
-                inputId = ifelse(module, ns("user"), "user"),
+                inputId = ns("user"),
                 label = "Username",
                 placeholder = "Your name here"
               ),
               f7Password(
-                inputId = ifelse(module, ns("password"), "password"),
+                inputId = ns("password"),
                 label = "Password",
                 placeholder = "Your password here"
               ),
