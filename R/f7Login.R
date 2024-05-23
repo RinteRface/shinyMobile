@@ -34,7 +34,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
   submitBttn[[2]]$name <- "a"
 
   shiny::tags$div(
-    id = ns(id),
+    id = id,
     `data-start-open` = jsonlite::toJSON(startOpen),
     class = "login-screen",
     shiny::tags$div(
@@ -91,8 +91,6 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
     id,
     function(input, output, session) {
       ns <- session$ns
-      # module id
-      modId <- strsplit(ns(""), "-")[[1]][1]
 
       # this is needed if we have local authentication (not on all pages)
       # and the login page is not visible at start.
@@ -106,25 +104,26 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
         },
         {
           if (!authenticated()) {
-            if (!input[[modId]]) updateF7Login(id = modId)
+            if (!input[[modId]]) updateF7Login(id = character(0))
           }
         },
         once = TRUE
       )
 
       # toggle the login only if not authenticated
-      shiny::observeEvent(input$submit,
-                          {
-                            if (!authenticated()) {
-                              updateF7Login(
-                                id = modId,
-                                user = input$user,
-                                password = input$password
-                              )
-                              authenticated(TRUE)
-                            }
-                          },
-                          ignoreInit = ignoreInit
+      shiny::observeEvent(
+        input$submit,
+        {
+          if (!authenticated()) {
+            updateF7Login(
+              id = character(0),
+              user = input$user,
+              password = input$password
+            )
+            authenticated(TRUE)
+          }
+        },
+        ignoreInit = ignoreInit
       )
 
       # useful to export the user name outside the module
