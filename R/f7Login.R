@@ -1,36 +1,27 @@
 #' Framework7 login screen
 #'
-#' Provide a template for authentication
+#' Provide a UI template for authentication
 #'
-#' This function does not provide any security check.
-#'
-#' @note There is an input associated with the login status, namely input$login.
-#' It is linked to an action button, which is 0 when the application starts. As soon
-#' as the button is pressed, its value is incremented which might fire a
-#' \code{observeEvent} listening to it (See example below). Importantly,
-#' the login page is closed only if the text and password inputs are filled. The
-#' \code{f7LoginServer} contains a piece of server logic that does this work for you.
+#' @note There is an input associated with the login status, namely `input$login`.
+#' It is linked to an action button, `input$submit`, which is 0 when the application starts. As soon
+#' as the button is pressed, its value is incremented which may be used to call 
+#' \link{udpateF7Login}. `input$user` and `input$password` contains values passed 
+#' by the user in these respective fields and can be forwarded to \link{udpateF7Login}.
 #'
 #' @param ... Slot for inputs like password, text, ...
-#' @param id Login unique id. input$<id> gives the status of the login page (
-#' either opened or closed).
+#' @param id Login unique id.
 #' @param title Login page title.
 #' @param label Login confirm button label.
 #' @param footer Optional footer.
 #' @param startOpen Whether to open the login page at start. Default to TRUE. There
 #' are some cases where it is interesting to set up to FALSE, for instance when you want
 #' to have authentication only in a specific tab of your app (See example 2).
-#' @param module Whether or not to use in combination with \link{f7LoginServer}. Can be
-#' set to FALSE if you want to develop your own server functionality, or if you want to
-#' use \code{f7Login} inside a module yourself. Note that inputs, like user, password and submit,
-#' will need to be accessed with the id of \code{f7Login} with -user, -password or -submit appended.
 #'
 #' @export
 #' @rdname authentication
 #' @importFrom jsonlite toJSON
 #' @example inst/examples/login/app.R
-f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
-                    startOpen = TRUE, module = TRUE) {
+f7Login <- function(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE) {
 
   ns <- shiny::NS(id)
 
@@ -39,7 +30,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
   submitBttn[[2]]$name <- "a"
 
   shiny::tags$div(
-    id = id,
+    id = sprintf("%s-login", id),
     `data-start-open` = jsonlite::toJSON(startOpen),
     class = "login-screen",
     shiny::tags$div(
@@ -80,8 +71,11 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
 
 #' Framework7 login server module
 #'
-#' \code{f7LoginServer} is a useful server elements to fine tune the
-#' \link{f7Login} page.
+#' \code{f7LoginServer} is demonstration module to test the
+#' \link{f7Login} page. We do not recommend using it in production,
+#' since there is absolutely no security over the passed credentials.
+#' On the JS side, the login is closed as soon as a user and password
+#' are provided but no validity checks are made.
 #'
 #' @param ignoreInit If TRUE, then, when this observeEvent is first
 #' created/initialized, ignore the handlerExpr (the second argument),
@@ -108,9 +102,7 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
           trigger()
         },
         {
-          if (!authenticated()) {
-            if (!input[[modId]]) updateF7Login(id = character(0))
-          }
+          if (!authenticated()) updateF7Login()
         },
         once = TRUE
       )
@@ -121,7 +113,6 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
         {
           if (!authenticated()) {
             updateF7Login(
-              id = character(0),
               user = input$user,
               password = input$password
             )
@@ -134,6 +125,7 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
       # useful to export the user name outside the module
       return(
         list(
+          status = shiny::reactive(input$login),
           user = shiny::reactive(input$user),
           password = shiny::reactive(input$password)
         )
@@ -151,12 +143,12 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
 #' @param session Shiny session object.
 #' @export
 #' @rdname authentication
-updateF7Login <- function(id, user = NULL, password = NULL, session = shiny::getDefaultReactiveDomain()) {
+updateF7Login <- function(user = NULL, password = NULL, session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
       user = user,
       password = password
     )
   )
-  session$sendInputMessage(id, message)
+  session$sendInputMessage("login", message)
 }

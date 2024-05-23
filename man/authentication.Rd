@@ -6,20 +6,11 @@
 \alias{updateF7Login}
 \title{Framework7 login screen}
 \usage{
-f7Login(
-  ...,
-  id,
-  title,
-  label = "Sign In",
-  footer = NULL,
-  startOpen = TRUE,
-  module = TRUE
-)
+f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
 
 f7LoginServer(id, ignoreInit = FALSE, trigger = NULL)
 
 updateF7Login(
-  id,
   user = NULL,
   password = NULL,
   session = shiny::getDefaultReactiveDomain()
@@ -28,8 +19,7 @@ updateF7Login(
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
 
-\item{id}{Login unique id. input$\if{html}{\out{<id>}} gives the status of the login page (
-either opened or closed).}
+\item{id}{Login unique id.}
 
 \item{title}{Login page title.}
 
@@ -40,12 +30,6 @@ either opened or closed).}
 \item{startOpen}{Whether to open the login page at start. Default to TRUE. There
 are some cases where it is interesting to set up to FALSE, for instance when you want
 to have authentication only in a specific tab of your app (See example 2).}
-
-\item{module}{Whether or not to use in combination with \link{f7LoginServer}. Can be
-set to FALSE if you want to develop your own server functionality, or if you want to
-use \code{f7Login} inside a module yourself. Note that inputs, like user, password and submit,
-will need to be accessed with the id of \code{f7Login} with -user, -password or -submit appended.
-For example: "input$\code{login-user}".}
 
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),
@@ -61,23 +45,22 @@ one wants to set up local authentication (for a specific section). See example 2
 \item{session}{Shiny session object.}
 }
 \description{
-Provide a template for authentication
+Provide a UI template for authentication
 
-\code{f7LoginServer} is a useful server elements to fine tune the
-\link{f7Login} page.
+\code{f7LoginServer} is demonstration module to test the
+\link{f7Login} page. We do not recommend using it in production,
+since there is absolutely no security over the passed credentials.
+On the JS side, the login is closed as soon as a user and password
+are provided but no validity checks are made.
 
 \code{updateF7Login} toggles a login page.
 }
-\details{
-This function does not provide any security check.
-}
 \note{
-There is an input associated with the login status, namely input$login.
-It is linked to an action button, which is 0 when the application starts. As soon
-as the button is pressed, its value is incremented which might fire a
-\code{observeEvent} listening to it (See example below). Importantly,
-the login page is closed only if the text and password inputs are filled. The
-\code{f7LoginServer} contains a piece of server logic that does this work for you.
+There is an input associated with the login status, namely \code{input$login}.
+It is linked to an action button, \code{input$submit}, which is 0 when the application starts. As soon
+as the button is pressed, its value is incremented which may be used to call
+\link{udpateF7Login}. \code{input$user} and \code{input$password} contains values passed
+by the user in these respective fields and can be forwarded to \link{udpateF7Login}.
 }
 \examples{
 library(shiny)
