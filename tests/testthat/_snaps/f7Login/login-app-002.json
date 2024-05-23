@@ -1,43 +1,7 @@
 {
-  "input": {
-
-  },
   "export": {
-    "res": {
-      "user": [
-        "structure(function () ",
-        "{",
-        "    .dependents$register()",
-        "    if (.invalidated || .running) {",
-        "        ..stacktraceoff..(self$.updateValue())",
-        "    }",
-        "    if (.error) {",
-        "        stop(.value)",
-        "    }",
-        "    if (.visible) ",
-        "        .value",
-        "    else invisible(.value)",
-        "}, observable = <environment>, cacheHint = list(userExpr = {",
-        "    input$user",
-        "}), class = \"function\")"
-      ],
-      "password": [
-        "structure(function () ",
-        "{",
-        "    .dependents$register()",
-        "    if (.invalidated || .running) {",
-        "        ..stacktraceoff..(self$.updateValue())",
-        "    }",
-        "    if (.error) {",
-        "        stop(.value)",
-        "    }",
-        "    if (.visible) ",
-        "        .value",
-        "    else invisible(.value)",
-        "}, observable = <environment>, cacheHint = list(userExpr = {",
-        "    input$password",
-        "}), class = \"function\")"
-      ]
-    }
+    "password": "pwd",
+    "status": false,
+    "user": "usr"
   }
 }
