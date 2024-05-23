@@ -24,7 +24,11 @@ app <- shinyApp(
   server = function(input, output, session) {
     loginData <- f7LoginServer(id = "login")
 
-    exportTestValues(res = loginData)
+    exportTestValues(
+      status = loginData$status(),
+      user = loginData$user(),
+      password = loginData$password()
+    )
 
     output$user <- renderText({
       req(loginData$user)

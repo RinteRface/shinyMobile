@@ -9,12 +9,12 @@ test_that("login works", {
     name = "login-app"
   )
 
-  app$expect_values(input = "login", export = "res")
+  app$expect_values(input = "login", export = TRUE)
 
   app$set_inputs("login-user" = "usr", "login-password" = "pwd")
   app$wait_for_idle(2000)
   # Wait for any animation to complete
   app$click(selector = "#login-submit")
   app$wait_for_idle(2000)
-  app$expect_values(input = "login", export = "res")
+  app$expect_values(input = "login", export = TRUE)
 })
