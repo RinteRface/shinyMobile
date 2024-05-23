@@ -20,13 +20,18 @@
 #' @param startOpen Whether to open the login page at start. Default to TRUE. There
 #' are some cases where it is interesting to set up to FALSE, for instance when you want
 #' to have authentication only in a specific tab of your app (See example 2).
+#' @param module Whether or not to use in combination with \link{f7LoginServer}. Can be
+#' set to FALSE if you want to develop your own server functionality, or if you want to
+#' use \code{f7Login} inside a module yourself. Note that inputs, like user, password and submit,
+#' will need to be accessed with the id of \code{f7Login} with -user, -password or -submit appended.
 #'
 #' @export
 #' @rdname authentication
 #' @importFrom jsonlite toJSON
 #' @example inst/examples/login/app.R
 f7Login <- function(..., id, title, label = "Sign In", footer = NULL,
-                    startOpen = TRUE) {
+                    startOpen = TRUE, module = TRUE) {
+
   ns <- shiny::NS(id)
 
   submitBttn <- f7Button(inputId = ns("submit"), label = label)

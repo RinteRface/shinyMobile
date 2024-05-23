@@ -62,7 +62,7 @@ the check icon position. Default to left.
 - `f7Panel()` has new "floating"/"push" effects as well as a new `options` parameter
 to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
 - `f7VirtualList()` has new `outline`, `dividers` and `strong` styles. Additionally, `mode` was added with the following possible values: `simple`, `links`, `media` or `contacts`.
-- `f7Popup()` has a new `push` effect (pushing the main view behind on opening).
+- `f7Popup()` has a new `push` effect (pushing the main view behind on opening). There's also a new argument called `page` that can control whether or not the popup behaves as a page and can scroll- handy for popups with more content.
 - `f7Radio()` has a new `position` parameter to control
 the check icon position. Default to left (like `f7CheckboxGroup()`).
 Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `outline`,`dividers`, `strong` for more styling option.
@@ -94,6 +94,7 @@ the new router layout. Items must be wrapped in a `shiny::tagList()`.
 - `updateF7App` can now also handle changes in app theme (ios or md), dark mode, and color.
 - `f7Fabs()` has a new argument `global` that can be used to make FABs persistent across different tabs in `f7TabLayout()`. 
 - `f7ExpandableCard()` has a new argument `buttonColor` that can be used to control the color of the close button.
+- `f7Login()` has a new argument `module` that can, optionally, be set to `FALSE` for more flexibility. For example, this allows you to use `f7Login()` inside your own modules, or without the provided `f7LoginServer()` module.
 - Fix various issues in documentation.
 - Include new vignettes.
 

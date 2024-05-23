@@ -22,6 +22,7 @@
 #' @param closeButton Add or not a button to easily close the popup.
 #'  Default to \code{TRUE}.
 #' @param push Push effect. Default to TRUE.
+#' @param page Allow content to be scrollable, as a page. Default to FALSE.
 #' @param session Shiny session object.
 #'
 #' @export
@@ -36,6 +37,7 @@ f7Popup <- function(..., id, title = NULL,
                     fullsize = FALSE,
                     closeButton = TRUE,
                     push = TRUE,
+                    page = FALSE,
                     session = shiny::getDefaultReactiveDomain()) {
   message <- dropNulls(
     list(
@@ -49,18 +51,32 @@ f7Popup <- function(..., id, title = NULL,
     )
   )
 
-  content <- shiny::tags$div(
-    class = "block",
-    if (!is.null(title)) shiny::tags$div(class = "block-title", title),
-    ...
-  )
+  if (page) {
+    content <- shiny::tags$div(
+      class = "page",
+      shiny::tags$div(
+        class = "page-content",
+        shiny::tags$div(
+          class = "block",
+          if (!is.null(title)) shiny::tags$div(class = "block-title", title),
+          ...
+        )
+      )
+    )
+  } else {
+    content <- shiny::tags$div(
+      class = "block",
+      if (!is.null(title)) shiny::tags$div(class = "block-title", title),
+      ...
+    )
+  }
 
   if (closeButton) {
     content <- htmltools::tagAppendChild(
       content,
       shiny::tags$a(
         class = "link popup-close",
-        style = "position: absolute; top: -15px; right: 10px;",
+        style = sprintf("position: absolute; top: %s; right: 10px;", ifelse(page, "15px", "-15px")),
         href = "#",
         f7Icon("multiply")
       )
