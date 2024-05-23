@@ -59,8 +59,8 @@ are provided but no validity checks are made.
 There is an input associated with the login status, namely \code{input$login}.
 It is linked to an action button, \code{input$submit}, which is 0 when the application starts. As soon
 as the button is pressed, its value is incremented which may be used to call
-\link{udpateF7Login}. \code{input$user} and \code{input$password} contains values passed
-by the user in these respective fields and can be forwarded to \link{udpateF7Login}.
+\link{updateF7Login}. \code{input$user} and \code{input$password} contains values passed
+by the user in these respective fields and can be forwarded to \link{updateF7Login}.
 }
 \examples{
 library(shiny)

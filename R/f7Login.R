@@ -5,8 +5,8 @@
 #' @note There is an input associated with the login status, namely `input$login`.
 #' It is linked to an action button, `input$submit`, which is 0 when the application starts. As soon
 #' as the button is pressed, its value is incremented which may be used to call 
-#' \link{udpateF7Login}. `input$user` and `input$password` contains values passed 
-#' by the user in these respective fields and can be forwarded to \link{udpateF7Login}.
+#' \link{updateF7Login}. `input$user` and `input$password` contains values passed 
+#' by the user in these respective fields and can be forwarded to \link{updateF7Login}.
 #'
 #' @param ... Slot for inputs like password, text, ...
 #' @param id Login unique id.
