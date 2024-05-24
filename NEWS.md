@@ -44,6 +44,7 @@
 - `f7Shadow()`removed from Framework7. No replacement. Will be removed in a future release.
 - `f7Swipeout`: deprecate `side` parameter and `...`. Now use either `left`/`right` or both.
 - `f7AutoComplete`: `value` now defaults to `NULL` (instead of the first choice).
+- `updateF7Login()`: `id` is deprecated.
 
 ## Minor change
 - `f7Messages()`: the corresponding input is now a list of lists, each item being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R. We now return an object of objects which becomes a list of lists.
@@ -94,7 +95,8 @@ the new router layout. Items must be wrapped in a `shiny::tagList()`.
 - `updateF7App` can now also handle changes in app theme (ios or md), dark mode, and color.
 - `f7Fabs()` has a new argument `global` that can be used to make FABs persistent across different tabs in `f7TabLayout()`. 
 - `f7ExpandableCard()` has a new argument `buttonColor` that can be used to control the color of the close button.
-- `f7Login()` has a new argument `module` that can, optionally, be set to `FALSE` for more flexibility. For example, this allows you to use `f7Login()` inside your own modules, or without the provided `f7LoginServer()` module.
+- `f7Login()` has a new argument `cancellable` that can, optionally, show a cancel button to close the login window. `f7LoginServer()` also return the cancel state so it can be used to trigger actions on the server side, like changing tab.
+- `updateF7Login()`: new `cancel` parameter to close the login window.
 - Fix various issues in documentation.
 - Include new vignettes.
 

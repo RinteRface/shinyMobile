@@ -13,7 +13,7 @@ app <- shinyApp(
         f7Link(label = "Link 1", href = "https://www.google.com"),
         f7Link(label = "Link 2", href = "https://www.google.com")
       ),
-      f7Login(id = "login", title = "Welcome"),
+      f7Login(id = "login", title = "Welcome", cancellable = TRUE),
       # main content
       f7BlockTitle(
         title = HTML(paste("Welcome", textOutput("user"))),
@@ -27,7 +27,9 @@ app <- shinyApp(
     exportTestValues(
       status = loginData$status(),
       user = loginData$user(),
-      password = loginData$password()
+      password = loginData$password(),
+      authenticated = loginData$authenticated(),
+      cancelled = loginData$cancelled()
     )
 
     output$user <- renderText({

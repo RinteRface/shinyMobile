@@ -44,11 +44,15 @@ $.extend(f7LoginBinding, {
   // see updateF7Login
   receiveMessage: function(el, data) {
     if (this.instances[el.id].opened) {
-      // only close if valid password and user
-      if (data.user.length > 0 && data.password.length > 0) {
+      if (data.cancel) {
         this.instances[el.id].close();
       } else {
-        this.app.dialog.alert('Please enter a valid password and user.');
+        // only close if valid password and user
+        if (data.user.length > 0 && data.password.length > 0) {
+          this.instances[el.id].close();
+        } else {
+          this.app.dialog.alert('Please enter a valid password and user.');
+        }
       }
     } else {
       this.instances[el.id].open();

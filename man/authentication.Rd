@@ -6,20 +6,30 @@
 \alias{updateF7Login}
 \title{Framework7 login screen}
 \usage{
-f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
+f7Login(
+  ...,
+  id,
+  title,
+  label = "Sign In",
+  footer = NULL,
+  startOpen = TRUE,
+  cancellable = FALSE
+)
 
 f7LoginServer(id, ignoreInit = FALSE, trigger = NULL)
 
 updateF7Login(
+  id = deprecated(),
   user = NULL,
   password = NULL,
+  cancel = FALSE,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
 
-\item{id}{Login unique id.}
+\item{id}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.}
 
 \item{title}{Login page title.}
 
@@ -31,6 +41,9 @@ updateF7Login(
 are some cases where it is interesting to set up to FALSE, for instance when you want
 to have authentication only in a specific tab of your app (See example 2).}
 
+\item{cancellable}{Whether to show a cancel button to close the login modal. Default
+to FALSE.}
+
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),
 whether it is otherwise supposed to run or not. The default is FALSE.}
@@ -41,6 +54,8 @@ one wants to set up local authentication (for a specific section). See example 2
 \item{user}{Value of the user input.}
 
 \item{password}{Value of the password input.}
+
+\item{cancel}{Whether to close the login. Default to FALSE.}
 
 \item{session}{Shiny session object.}
 }
@@ -61,6 +76,8 @@ It is linked to an action button, \code{input$submit}, which is 0 when the appli
 as the button is pressed, its value is incremented which may be used to call
 \link{updateF7Login}. \code{input$user} and \code{input$password} contains values passed
 by the user in these respective fields and can be forwarded to \link{updateF7Login}.
+\code{input$cancel} is increment whenever the login is closed when cancellable. You can access
+the value and trigger other actions on the server, as shown in \link{f7LoginServer}.
 }
 \examples{
 library(shiny)
@@ -78,7 +95,7 @@ app <- shinyApp(
         f7Link(label = "Link 1", href = "https://www.google.com"),
         f7Link(label = "Link 2", href = "https://www.google.com")
       ),
-      f7Login(id = "login", title = "Welcome"),
+      f7Login(id = "login", title = "Welcome", cancellable = TRUE),
       # main content
       f7BlockTitle(
         title = HTML(paste("Welcome", textOutput("user"))),
@@ -89,7 +106,13 @@ app <- shinyApp(
   server = function(input, output, session) {
     loginData <- f7LoginServer(id = "login")
 
-    exportTestValues(res = loginData)
+    exportTestValues(
+      status = loginData$status(),
+      user = loginData$user(),
+      password = loginData$password(),
+      authenticated = loginData$authenticated(),
+      cancelled = loginData$cancelled()
+    )
 
     output$user <- renderText({
       req(loginData$user)

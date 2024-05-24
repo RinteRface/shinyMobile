@@ -7,6 +7,8 @@
 #' as the button is pressed, its value is incremented which may be used to call 
 #' \link{updateF7Login}. `input$user` and `input$password` contains values passed 
 #' by the user in these respective fields and can be forwarded to \link{updateF7Login}.
+#' `input$cancel` is increment whenever the login is closed when cancellable. You can access
+#' the value and trigger other actions on the server, as shown in \link{f7LoginServer}.
 #'
 #' @param ... Slot for inputs like password, text, ...
 #' @param id Login unique id.
@@ -16,18 +18,30 @@
 #' @param startOpen Whether to open the login page at start. Default to TRUE. There
 #' are some cases where it is interesting to set up to FALSE, for instance when you want
 #' to have authentication only in a specific tab of your app (See example 2).
+#' @param cancellable Whether to show a cancel button to close the login modal. Default
+#' to FALSE.
 #'
 #' @export
 #' @rdname authentication
 #' @importFrom jsonlite toJSON
 #' @example inst/examples/login/app.R
-f7Login <- function(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE) {
+f7Login <- function(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE,
+cancellable = FALSE) {
 
   ns <- shiny::NS(id)
 
-  submitBttn <- f7Button(inputId = ns("submit"), label = label)
-  submitBttn[[2]]$attribs$class <- "item-link list-button f7-action-button"
-  submitBttn[[2]]$name <- "a"
+  submitBttn <- f7Button(inputId = ns("submit"), label = label, fill = FALSE)
+
+  btnUI <- submitBttn
+
+  if (cancellable) {
+    cancelButton <- f7Button(ns("cancel"), label = "Cancel", fill = FALSE)
+    btnUI <- f7Grid(
+      cols = 2,
+      cancelButton,
+      submitBttn
+    )
+  }
 
   shiny::tags$div(
     id = sprintf("%s-login", id),
@@ -56,9 +70,7 @@ f7Login <- function(..., id, title, label = "Sign In", footer = NULL, startOpen 
               ),
               ...
             ),
-            f7List(
-              submitBttn
-            ),
+            btnUI,
             if (!is.null(footer)) {
               shiny::tags$div(class = "block-footer", footer)
             }
@@ -103,8 +115,7 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
         },
         {
           if (!authenticated()) updateF7Login()
-        },
-        once = TRUE
+        }
       )
 
       # toggle the login only if not authenticated
@@ -116,18 +127,26 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
               user = input$user,
               password = input$password
             )
+            shiny::req(nchar(input$user) > 0, nchar(input$password) > 0)
             authenticated(TRUE)
           }
         },
         ignoreInit = ignoreInit
       )
+      
+      # Close on cancel
+      shiny::observeEvent(input$cancel, {
+        updateF7Login(cancel = TRUE)
+      })
 
       # useful to export the user name outside the module
       return(
         list(
           status = shiny::reactive(input$login),
           user = shiny::reactive(input$user),
-          password = shiny::reactive(input$password)
+          password = shiny::reactive(input$password),
+          authenticated = shiny::reactive(authenticated()),
+          cancelled = shiny::reactive(input$cancel)
         )
       )
     }
@@ -137,17 +156,31 @@ f7LoginServer <- function(id, ignoreInit = FALSE, trigger = NULL) {
 #' Activates Framework7 login.
 #'
 #' \code{updateF7Login} toggles a login page.
-#'
+#' 
+#' @param id `r lifecycle::badge("deprecated")`.
 #' @param user Value of the user input.
 #' @param password Value of the password input.
+#' @param cancel Whether to close the login. Default to FALSE.
 #' @param session Shiny session object.
 #' @export
 #' @rdname authentication
-updateF7Login <- function(user = NULL, password = NULL, session = shiny::getDefaultReactiveDomain()) {
+updateF7Login <- function(id = deprecated(), user = NULL, password = NULL, cancel = FALSE, session = shiny::getDefaultReactiveDomain()) {
+  
+  if (lifecycle::is_present(id)) {
+    lifecycle::deprecate_warn(
+      when = "2.0.0",
+      what = "updateF7Login(id)",
+      details = "id has been
+      deprecated will be removed from shinyMobile
+      in the next release."
+    )
+  }
+  
   message <- dropNulls(
     list(
       user = user,
-      password = password
+      password = password,
+      cancel = cancel
     )
   )
   session$sendInputMessage("login", message)

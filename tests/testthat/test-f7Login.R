@@ -10,6 +10,9 @@ test_that("login works", {
   )
 
   app$expect_values(export = TRUE)
+  app$click(selector = "#login-cancel")
+  app$wait_for_idle(2000)
+  app$expect_values(export = TRUE)
 
   app$set_inputs("login-user" = "usr", "login-password" = "pwd")
   app$wait_for_idle(2000)
