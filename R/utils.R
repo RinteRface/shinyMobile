@@ -234,3 +234,19 @@ create_app_link <- function(
     `data-external` = "1"
   )
 }
+
+#' Change tags ids
+#' 
+#' Changes the id of the shiny tags
+#' and any nested element.
+#' 
+#' @keywords internal
+#' @noRd
+change_id <- function(items, ns) {
+  lapply(items, \(item) {
+    full_ns <- ns(character(0))
+    tmp <- strsplit(as.character(item), "\n")[[1]]
+    outer_ns <- strsplit(full_ns, "-")[[1]][1]
+    shiny::HTML(paste(gsub(sprintf("%s", outer_ns), full_ns, tmp), collapse = "\n"))
+  })
+}

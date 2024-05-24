@@ -42,6 +42,9 @@ cancellable = FALSE) {
       submitBttn
     )
   }
+  
+  items <- list(...)
+  if (length(items) > 0) items <- change_id(items, ns)
 
   shiny::tags$div(
     id = sprintf("%s-login", id),
@@ -68,7 +71,7 @@ cancellable = FALSE) {
                 label = "Password",
                 placeholder = "Your password here"
               ),
-              ...
+              items
             ),
             btnUI,
             if (!is.null(footer)) {
