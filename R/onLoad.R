@@ -9,7 +9,7 @@
         as.POSIXct(f7DatePicker.date / 1000, tz = "UTC", origin = "1970-01-01")
       } else {
         # check if there's a time component
-        if (grepl("T", f7DatePicker.date)) {
+        if (any(grepl("T", f7DatePicker.date))) {
           as.POSIXct(f7DatePicker.date, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
         } else {
           as.Date(f7DatePicker.date)
