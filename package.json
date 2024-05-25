@@ -21,7 +21,7 @@
     "esbuild": "^0.19.12",
     "esbuild-sass-plugin": "^2.16.1",
     "framework7": "^8.3.3",
-    "mocha": "^8.3.0",
+    "mocha": "^10.4.0",
     "postcss": "^8.4.35"
   }
 }
