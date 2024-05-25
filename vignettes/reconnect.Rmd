@@ -8,12 +8,21 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, echo=FALSE, message=FALSE}
+library(bslib)
+```
+
 ## Custom disconnected screen
 
 Nobody likes it when an app stops responding. Traditionally, Shiny apps will be "grayed out". Since this doesn't provide a nice user experience, `{shinyMobile}` adds a custom disconnected screen. This screen (a toast) is displayed when the app is disconnected from the server.
 
-TODO: shinylive example
+<div class="text-center mt-4">
+<a class="btn btn-primary" data-bs-toggle="collapse" href="#reconnect" role="button" aria-expanded="false" aria-controls="singleLayout">
+Code
+</a>
+</div>
 
+<div class="collapse" id="reconnect">
 ```{r, eval = FALSE}
 library(shiny)
 library(shinyMobile)
@@ -72,6 +81,7 @@ shinyApp(
   }
 )
 ```
+</div>
 
 The user is given two options: either to **reconnect** or to **reload** the app. There's a subtle difference between the two, which is explained below.
 
@@ -85,7 +95,7 @@ When reconnecting, Shiny attempts to restore the app to its previous state. This
 
 <br>
 
-Note that the JS code behind the reconnect button ignores the user [reconnect setup](https://shiny.rstudio.com/articles/reconnecting.html) and proposes reconnecting regardless of the `session$allowReconnect` configuration. A solution is provided in the [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/mobile-going-further#enhance-the-disconnect-screen).
+Note that the JS code behind the reconnect button ignores the user [reconnect setup](https://shiny.rstudio.com/articles/reconnecting.html) and proposes reconnecting regardless of the `session$allowReconnect` configuration. A solution is provided in the [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/mobile-going-further#enhance-the-disconnect-screen) book.
 
 ## Reload
 
