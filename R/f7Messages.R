@@ -118,7 +118,7 @@ updateF7MessageBar <- function(inputId, value = NULL, placeholder = NULL,
 #' @param avatar Sender avatar URL string.
 #' @param textHeader Message text header.
 #' @param textFooter Message text footer.
-#' @param image Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.
+#' @param image Message image HTML string, e.g. `<img src="path/to/image">`. Can be used instead of imageSrc parameter.
 #' @param imageSrc Message image URL string. Can be used instead of image parameter.
 #' @param cssClass Additional CSS class to set on message HTML element.
 #' @rdname messages

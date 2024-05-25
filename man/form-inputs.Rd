@@ -10,7 +10,7 @@ f7Form(id, ...)
 updateF7Form(id, data, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
-\item{id}{Form unique id. Using input$\if{html}{\out{<id>}} gives
+\item{id}{Form unique id. Using \verb{input$<id>} gives
 the form result.}
 
 \item{...}{A list of input elements.}

@@ -24,7 +24,7 @@ f7Popup(
 \item{...}{UI elements for the body of the popup window.}
 
 \item{id}{Popup unique id. Useful if you want to access the popup state.
-input$\if{html}{\out{<id>}} is TRUE when the popup is opened and inversely.}
+\verb{input$<id>} is TRUE when the popup is opened and inversely.}
 
 \item{title}{Title for the popup window, use \code{NULL} for no title.}
 

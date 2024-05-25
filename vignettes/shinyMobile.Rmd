@@ -815,7 +815,7 @@ shinyApp(
 
 ### Multi Layout
 
-The layout for __multiple pages__ is covered in a [separate article](https://shinymobile.rinterface.com/articles/multipages).
+The layout for __multiple pages__ is covered in a separate article.
 
 # Gadgets
 

@@ -1746,7 +1746,7 @@ createOptions <- function(
 #' This only works with elements having
 #' an input HTML tag.
 #'
-#' @param id Form unique id. Using input$<id> gives
+#' @param id Form unique id. Using `input$<id>` gives
 #' the form result.
 #' @param ... A list of input elements.
 #'

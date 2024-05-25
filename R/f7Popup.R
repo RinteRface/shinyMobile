@@ -5,7 +5,7 @@
 #'
 #' @param ... UI elements for the body of the popup window.
 #' @param id Popup unique id. Useful if you want to access the popup state.
-#' input$<id> is TRUE when the popup is opened and inversely.
+#' `input$<id>` is TRUE when the popup is opened and inversely.
 #' @param title Title for the popup window, use \code{NULL} for no title.
 #' @param backdrop Enables Popup backdrop (dark semi transparent layer behind).
 #'  Default to \code{TRUE}.
