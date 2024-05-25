@@ -10,13 +10,28 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/inputs-layout.html</loc>
+  </url>
+  <url>
+    <loc>/articles/lists.html</loc>
+  </url>
+  <url>
+    <loc>/articles/multipages.html</loc>
+  </url>
+  <url>
     <loc>/articles/pwa.html</loc>
+  </url>
+  <url>
+    <loc>/articles/reconnect.html</loc>
   </url>
   <url>
     <loc>/articles/shinyMobile-tools.html</loc>
   </url>
   <url>
     <loc>/articles/shinyMobile.html</loc>
+  </url>
+  <url>
+    <loc>/articles/update-app.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>
@@ -40,9 +55,6 @@
     <loc>/reference/add_f7icons_deps.html</loc>
   </url>
   <url>
-    <loc>/reference/add_framework7_deps.html</loc>
-  </url>
-  <url>
     <loc>/reference/add_pwa_deps.html</loc>
   </url>
   <url>
@@ -55,9 +67,6 @@
     <loc>/reference/app_container.html</loc>
   </url>
   <url>
-    <loc>/reference/appbar.html</loc>
-  </url>
-  <url>
     <loc>/reference/authentication.html</loc>
   </url>
   <url>
@@ -65,6 +74,12 @@
   </url>
   <url>
     <loc>/reference/block.html</loc>
+  </url>
+  <url>
+    <loc>/reference/buildConfig.html</loc>
+  </url>
+  <url>
+    <loc>/reference/buildPickerInput.html</loc>
   </url>
   <url>
     <loc>/reference/button.html</loc>
@@ -82,7 +97,13 @@
     <loc>/reference/class2f7.html</loc>
   </url>
   <url>
-    <loc>/reference/createRadioOptions.html</loc>
+    <loc>/reference/createInputLayout.html</loc>
+  </url>
+  <url>
+    <loc>/reference/createInputTag.html</loc>
+  </url>
+  <url>
+    <loc>/reference/createOptions.html</loc>
   </url>
   <url>
     <loc>/reference/createSelectOptions.html</loc>
@@ -94,22 +115,19 @@
     <loc>/reference/create_app_ui.html</loc>
   </url>
   <url>
-    <loc>/reference/datepicker.html</loc>
+    <loc>/reference/create_manifest.html</loc>
   </url>
   <url>
-    <loc>/reference/f7-deprecated.html</loc>
+    <loc>/reference/datepicker.html</loc>
   </url>
   <url>
     <loc>/reference/f7Align.html</loc>
   </url>
   <url>
+    <loc>/reference/f7Back.html</loc>
+  </url>
+  <url>
     <loc>/reference/f7Badge.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7BlockFooter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7BlockTitle.html</loc>
   </url>
   <url>
     <loc>/reference/f7Chip.html</loc>
@@ -119,6 +137,9 @@
   </url>
   <url>
     <loc>/reference/f7ColorPicker.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f7DefaultOptions.html</loc>
   </url>
   <url>
     <loc>/reference/f7Dialog.html</loc>
@@ -139,16 +160,13 @@
     <loc>/reference/f7Float.html</loc>
   </url>
   <url>
-    <loc>/reference/f7Found.html</loc>
-  </url>
-  <url>
     <loc>/reference/f7Gallery.html</loc>
   </url>
   <url>
-    <loc>/reference/f7HideOnEnable.html</loc>
+    <loc>/reference/f7Grid.html</loc>
   </url>
   <url>
-    <loc>/reference/f7HideOnSearch.html</loc>
+    <loc>/reference/f7GroupInput.html</loc>
   </url>
   <url>
     <loc>/reference/f7Icon.html</loc>
@@ -178,7 +196,10 @@
     <loc>/reference/f7Margin.html</loc>
   </url>
   <url>
-    <loc>/reference/f7NotFound.html</loc>
+    <loc>/reference/f7MultiLayout.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f7Next.html</loc>
   </url>
   <url>
     <loc>/reference/f7Notif.html</loc>
@@ -190,9 +211,6 @@
     <loc>/reference/f7Page.html</loc>
   </url>
   <url>
-    <loc>/reference/f7Password.html</loc>
-  </url>
-  <url>
     <loc>/reference/f7PhotoBrowser.html</loc>
   </url>
   <url>
@@ -200,18 +218,6 @@
   </url>
   <url>
     <loc>/reference/f7Row.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7SearchIgnore.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7Searchbar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7SearchbarTrigger.html</loc>
-  </url>
-  <url>
-    <loc>/reference/f7Segment.html</loc>
   </url>
   <url>
     <loc>/reference/f7Shadow.html</loc>
@@ -223,7 +229,7 @@
     <loc>/reference/f7Skeleton.html</loc>
   </url>
   <url>
-    <loc>/reference/f7Slide.html</loc>
+    <loc>/reference/f7SocialCard.html</loc>
   </url>
   <url>
     <loc>/reference/f7SplitLayout.html</loc>
@@ -244,9 +250,6 @@
     <loc>/reference/f7Table.html</loc>
   </url>
   <url>
-    <loc>/reference/f7Tabs.html</loc>
-  </url>
-  <url>
     <loc>/reference/f7TapHold.html</loc>
   </url>
   <url>
@@ -256,10 +259,22 @@
     <loc>/reference/f7Toolbar.html</loc>
   </url>
   <url>
+    <loc>/reference/f7Treeview.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f7TreeviewGroup.html</loc>
+  </url>
+  <url>
+    <loc>/reference/f7TreeviewItem.html</loc>
+  </url>
+  <url>
     <loc>/reference/fab.html</loc>
   </url>
   <url>
     <loc>/reference/fabs.html</loc>
+  </url>
+  <url>
+    <loc>/reference/form-inputs.html</loc>
   </url>
   <url>
     <loc>/reference/gauge.html</loc>
@@ -268,10 +283,22 @@
     <loc>/reference/getF7Colors.html</loc>
   </url>
   <url>
+    <loc>/reference/groupInputDefaults.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/inputLayoutDefaults.html</loc>
+  </url>
+  <url>
     <loc>/reference/inserttab.html</loc>
+  </url>
+  <url>
+    <loc>/reference/is_wrapped.html</loc>
+  </url>
+  <url>
+    <loc>/reference/listify.html</loc>
   </url>
   <url>
     <loc>/reference/menu.html</loc>
@@ -316,10 +343,16 @@
     <loc>/reference/removetab.html</loc>
   </url>
   <url>
+    <loc>/reference/searchbar.html</loc>
+  </url>
+  <url>
     <loc>/reference/select.html</loc>
   </url>
   <url>
     <loc>/reference/sheet.html</loc>
+  </url>
+  <url>
+    <loc>/reference/shinyMobile-package.html</loc>
   </url>
   <url>
     <loc>/reference/slider.html</loc>
@@ -337,10 +370,13 @@
     <loc>/reference/swiper.html</loc>
   </url>
   <url>
-    <loc>/reference/text.html</loc>
+    <loc>/reference/swiperTag.html</loc>
   </url>
   <url>
-    <loc>/reference/textarea.html</loc>
+    <loc>/reference/tabs.html</loc>
+  </url>
+  <url>
+    <loc>/reference/text.html</loc>
   </url>
   <url>
     <loc>/reference/timeline.html</loc>
@@ -356,6 +392,9 @@
   </url>
   <url>
     <loc>/reference/updateF7Entity.html</loc>
+  </url>
+  <url>
+    <loc>/reference/updateF7Routes.html</loc>
   </url>
   <url>
     <loc>/reference/updateF7Tabs.html</loc>

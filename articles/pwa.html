@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="shinyMobile">
-<title>Progressive web app support • shinyMobile</title>
+<title>Progressive Web App (PWA) support • shinyMobile</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,8 +17,8 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<script src="../extra.js"></script><meta property="og:title" content="Progressive web app support">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../extra.js"></script><meta property="og:title" content="Progressive Web App (PWA) support">
 <meta property="og:description" content="shinyMobile">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,11 +30,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-info"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-info" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">shinyMobile</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,14 +52,20 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/pwa.html">Progressive web app support</a>
+    <a class="dropdown-item" href="../articles/inputs-layout.html">Inputs Layout and Forms</a>
+    <a class="dropdown-item" href="../articles/lists.html">List View</a>
+    <a class="dropdown-item" href="../articles/multipages.html">Multipages</a>
+    <a class="dropdown-item" href="../articles/pwa.html">Progressive Web App (PWA) support</a>
+    <a class="dropdown-item" href="../articles/reconnect.html">Disconnected, Reconnect and Reload</a>
     <a class="dropdown-item" href="../articles/shinyMobile-tools.html">shinyMobile Tools</a>
+    <a class="dropdown-item" href="../articles/update-app.html">Dynamic App Configuration</a>
   </div>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-news">
     <h6 class="dropdown-header" data-toc-skip>Releases</h6>
+    <h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.0</h6>
     <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6>
     <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6>
     <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6>
@@ -95,8 +101,9 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Progressive web app support</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Progressive Web App (PWA) support</h1>
             
+            <h4 data-toc-skip class="date">2024-05-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/HEAD/vignettes/pwa.Rmd" class="external-link"><code>vignettes/pwa.Rmd</code></a></small>
       <div class="d-none name"><code>pwa.Rmd</code></div>
@@ -104,9 +111,6 @@
 
     
     
-<div class="section level2">
-<h2 id="progressive-web-app-pwa">Progressive Web App (PWA)<a class="anchor" aria-label="anchor" href="#progressive-web-app-pwa"></a>
-</h2>
 <p>The following book provides more in depth <a href="https://unleash-shiny.rinterface.com/mobile-pwa" class="external-link">review</a> about
 PWA support.</p>
 <div class="atropos atropos-book">
@@ -125,49 +129,96 @@ PWA support.</p>
     shadow: false
     // rest of parameters
   });
-</script><div class="section level3">
-<h3 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
-</h3>
-<p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> is PWA capable, meaning that it can be
-displayed full screen on many mobile devices. This feature is
-automatically handled by <code><a href="../reference/f7Page.html">f7Page()</a></code> if <code>allowPWA</code>
-is <code>TRUE</code> (it leverages the Google PWA compatibility <a href="https://github.com/GoogleChromeLabs/pwacompat" class="external-link">script</a>).</p>
-<p>To setup the necessary assets for your PWA, you may run:</p>
+</script><p><br></p>
+<p>PWAs are web applications that are regular web pages or websites, but
+can appear to the user like traditional applications or native mobile
+applications. They can be <strong>installed</strong> on the device,
+provide <strong>offline</strong> features, can be <strong>launched from
+the home screen</strong>, and have a <strong>fullscreen</strong>
+display.</p>
+<p><br></p>
+<p>In essence, PWAs are websites. They have the same basic features as
+any other website: at least one HTML page, which very probably loads
+some CSS and JavaScript. But a PWA has some additional requirements as
+well:</p>
+<ul>
+<li>A <strong>manifest</strong>: a JSON file specifying app metadata
+like its name, icons to use for user’s home screen and launch screen,
+and theme colors.</li>
+<li>A <strong>service worker</strong> that can cache the app content,
+thereby making sure to provide basic offline support.</li>
+</ul>
+<p><br></p>
+<p>Luckily, this is can all be handled by <a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> and
+<code>{charpente}</code>.</p>
+<div class="section level2">
+<h2 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
+</h2>
+<p><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a> is PWA capable, meaning that you can make
+sure your app uses the correct assets to be used as a PWA. This feature
+is automatically handled by <code><a href="../reference/f7Page.html">f7Page()</a></code> if
+<code>allowPWA</code> is <code>TRUE</code>.</p>
+<p><br></p>
+<p>When set to <code>TRUE</code>, your app is set up to use both a
+<code>service-worker.js</code> script and a
+<code>manifest.webmanifest</code> file that you will provide.</p>
+<p><br></p>
+<p>To create these necessary assets for your PWA, you can use
+<code>{charpente}</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"RinteRface/charpente"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">charpente</span><span class="op">)</span></span>
 <span><span class="fu">set_pwa</span><span class="op">(</span><span class="va">APP_PATH</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
-<p>where <code>APP_PATH</code> is the app location. It only works if the
-app is inside a package like with {golem}. Alternatively, you may copy
-the <code>www</code> folder of the gallery <a href="https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www" class="external-link">app</a>,
-which provides:</p>
+<p>Where <code>APP_PATH</code> is the app location. Currently, it only
+works if the app is <strong>inside a package</strong> like with <a href="https://github.com/ThinkR-open/golem" class="external-link"><code>{golem}</code></a>. If
+your app is not in a package, you may copy the <code>www</code> folder
+of the <a href="https://github.com/RinteRface/shinyMobile/tree/master/inst/examples/gallery/www" class="external-link">gallery
+app</a>, which provides:</p>
 <ul>
-<li>A valid service worker.</li>
-<li>A valid <code>offline.html</code> fallback.</li>
-<li>A valid web manifest. Don’t forget to change the
-<code>start_url</code> property to the path of your app. For instance,
-the following app hosted at <a href="https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/" class="external-link uri">https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/</a>,
+<li>A valid <code>service-worker.js</code>.</li>
+<li>A valid web manifest (<code>manifest-webmanifest</code>). Don’t
+forget to change the <code>start_url</code> property to the path of your
+app. For instance, the following app hosted at <a href="https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/" class="external-link uri">https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/</a>,
 has the <code>/rstudio-global-2021-calendar/</code> path.</li>
+<li>As a bonus a valid <code>offline.html</code> fallback, which is
+displayed when the app is offline.</li>
 <li>A valid set of icons. There are tools such as <a href="https://appsco.pe/developer/splash-screens" class="external-link">appsco</a> and <a href="https://app-manifest.firebaseapp.com" class="external-link">app-manifest</a>, to create
 those custom icons and splash screens, if you need to.</li>
 </ul>
 <p>It is really easier with <code>{charpente}</code>, the reason why we
 strongly recommend to develop your app inside a package.</p>
+<p><br></p>
+<p>But that’s not all that’s needed! When you set
+<code>allowPWA = TRUE</code> in <code><a href="../reference/f7Page.html">f7Page()</a></code>, the app will also
+attach the <a href="https://github.com/GoogleChromeLabs/pwacompat" class="external-link">Google PWA
+compatibility script</a>, called PWACompat, which will help with PWA
+compatibility. More specifically, PWACompat brings the Web App Manifest
+to non-compliant browsers for better PWAs. This mostly means creating
+splash screens and icons for Mobile Safari, as well as supporting
+IE/Edge’s Pinned Sites feature. It basically assures that the
+<code>manifest.webmanifest</code> file has a wider support.</p>
 </div>
-<div class="section level3">
-<h3 id="add-the-pwa-to-your-desktop-apps">Add the PWA to your desktop Apps<a class="anchor" aria-label="anchor" href="#add-the-pwa-to-your-desktop-apps"></a>
-</h3>
-<p>Copy the url of your app in your mobile web browser (iOS: Safari and
-Andoid: Chrome). In this example this is: <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="external-link uri">https://dgranjon.shinyapps.io/miniUI2Demo/</a>. It opens
-like a classic web app, with top and bottom ugly navigation bars.</p>
+<div class="section level2">
+<h2 id="using-your-pwa">Using your PWA<a class="anchor" aria-label="anchor" href="#using-your-pwa"></a>
+</h2>
+<p>The first step is to deploy your app somewhere. It doesn’t matter
+where (shinyapps.io, Posit Connect, your own server, etc.), but you will
+need a URL to access it.</p>
+<p><br></p>
+<p>Then, you can follow these steps to install your app on your mobile
+device.</p>
+<p><br> Copy the URL of your app in your mobile web browser (iOS: Safari
+and Andoid: Chrome). In this example this is: <a href="https://dgranjon.shinyapps.io/miniUI2Demo/" class="external-link uri">https://dgranjon.shinyapps.io/miniUI2Demo/</a>. It opens
+like a classic web app, with top and bottom ugly navigation bars that
+are part of the browser UI.</p>
 <ul>
 <li>Select the share button located in the bottom bar of your
-Iphone/Ipad. For Android, you may do something similar. Importantly,
-Chrome for iOS does not support this feature, that’s why I recommend
+iPhone/iPad For Android, you may do something similar. Importantly,
+Chrome for iOS does not support this feature, that’s why we recommend
 using Safari.</li>
 <li>Click on “Add to Home Screen”</li>
 <li>Choose a relevant name and click on OK.</li>
-<li>The app will be added to your IOS/Android Apps. In case you want
+<li>The app will be added to your iOS/Android Apps. In case you want
 custom icons, replace the content of the www folder with your own.</li>
 </ul>
 <div class="row">
@@ -176,14 +227,13 @@ custom icons, replace the content of the www folder with your own.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
-</h3>
+<div class="section level2">
+<h2 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
+</h2>
 <p>It is actually quite complex to guarantee that all mobile platforms
-are supported. The PWA compatibility script will work in most of the
-case. If not, please open an issue <a href="https://github.com/GoogleChromeLabs/pwacompat/issues" class="external-link">here</a>, to
+are supported. The PWA compatibility script will work in most cases. If
+not, please open an issue <a href="https://github.com/GoogleChromeLabs/pwacompat/issues" class="external-link">here</a>, to
 help improving it!</p>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -192,13 +242,11 @@ help improving it!</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by David Granjon, Victor Perrier, Isabelle Rudolf.</p>
+  <p>Developed by David Granjon, Veerle van Leemput, AthlyticZ, Victor Perrier, Isabelle Rudolf.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer>
