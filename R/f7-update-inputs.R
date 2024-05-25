@@ -1,33 +1,3 @@
-# #' Change the value of a date input on the client
-# #'
-# #' @inheritParams updateF7Text
-# #' @export
-# #' @examples
-# #' if (interactive()) {
-# #'  library(shiny)
-# #'  library(shinyMobile)
-# #'
-# #'  ui <- f7Page(
-# #'    f7SingleLayout(
-# #'     navbar = f7Navbar(title = "updateF7Text"),
-# #'     f7Fab("trigger", "Click me"),
-# #'     f7Date(inputId = "date", label = "Date", value = "2014-04-30"),
-# #'     verbatimTextOutput("datevalue")
-# #'    )
-# #'  )
-# #'
-# #'  server <- function(input, output, session) {
-# #'    output$datevalue <- renderPrint(input$date)
-# #'    observeEvent(input$trigger, {
-# #'      updateF7Date(session, "date", value = "2020-01-15")
-# #'    })
-# #'  }
-# #'  shinyApp(ui, server)
-# #' }
-# updateF7Date <- updateF7Text
-
-
-
 
 
 # #' Change the value of an \link{f7Button} input on the client

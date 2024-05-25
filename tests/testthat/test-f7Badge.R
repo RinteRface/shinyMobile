@@ -1,5 +1,3 @@
-context("f7Badge")
-
 test_that("basic test", {
   badge <- f7Badge("mybadge")
   expect_true(inherits(badge, "shiny.tag"))

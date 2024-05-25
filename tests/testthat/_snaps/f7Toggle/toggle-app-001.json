@@ -1,0 +1,8 @@
+{
+  "input": {
+    "toggle": false
+  },
+  "output": {
+    "test": "[1] FALSE"
+  }
+}

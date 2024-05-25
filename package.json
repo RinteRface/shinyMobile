@@ -1,0 +1,27 @@
+{
+  "name": "shinyMobile",
+  "version": "1.0",
+  "description": "",
+  "private": true,
+  "main": "'main.js'",
+  "directories": {
+    "man": "man"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "mocha srcjs/test",
+    "build-dev": "node esbuild.dev.js",
+    "build-prod": "node esbuild.prod.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-2",
+  "devDependencies": {
+    "autoprefixer": "^10.4.18",
+    "esbuild": "^0.19.12",
+    "esbuild-sass-plugin": "^2.16.1",
+    "framework7": "^8.3.3",
+    "mocha": "^8.3.0",
+    "postcss": "^8.4.35"
+  }
+}

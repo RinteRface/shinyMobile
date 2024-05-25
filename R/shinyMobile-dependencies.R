@@ -6,16 +6,16 @@
 #'
 #' @importFrom utils packageVersion
 #' @importFrom htmltools tagList htmlDependency
-#' @keywords internal
+#' @export
 add_shinyMobile_deps <- function(tag) {
  shinyMobile_deps <- htmlDependency(
   name = "shinyMobile",
-  version = packageVersion("shinyMobile"),
-  src = c(file = "shinyMobile-1.0.1"),
-  script = "js/shinyMobile.min.js",
-  stylesheet = "css/shinyMobile.css",
+  version = "2.0.0",
+  src = c(file = "shinyMobile-2.0.0"),
+  script = "dist/shinyMobile.min.js",
+  stylesheet = "dist/shinyMobile.min.css",
   package = "shinyMobile",
  )
  tagList(tag, shinyMobile_deps)
 }
-
+    

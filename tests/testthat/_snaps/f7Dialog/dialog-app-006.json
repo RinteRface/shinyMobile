@@ -1,0 +1,10 @@
+{
+  "input": {
+    "comfirm_dialog": true,
+    "login_dialog": {
+      "user": "test",
+      "password": "test"
+    },
+    "prompt_dialog": "test"
+  }
+}

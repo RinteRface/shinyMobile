@@ -1,0 +1,9 @@
+{
+  "input": {
+    "popup1": true,
+    "text1": "balbla"
+  },
+  "output": {
+    "res1": "NULL"
+  }
+}

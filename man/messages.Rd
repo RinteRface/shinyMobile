@@ -68,13 +68,13 @@ when user is on top/bottom of the messages view.}
 
 \item{textFooter}{Message text footer.}
 
-\item{image}{Message image HTML string, e.g. <img src="path/to/image">. Can be used instead of imageSrc parameter.}
+\item{image}{Message image HTML string, e.g. \verb{<img src="path/to/image">}. Can be used instead of imageSrc parameter.}
 
 \item{imageSrc}{Message image URL string. Can be used instead of image parameter.}
 
 \item{cssClass}{Additional CSS class to set on message HTML element.}
 
-\item{messages}{List of \link{f7Messages}.}
+\item{messages}{List of \link{f7Message}.}
 
 \item{showTyping}{Show typing when a new message comes. Default to FALSE.
 Does not work yet...}
@@ -88,69 +88,62 @@ to include multiple \link{f7Message}.
 \code{f7Message} creates a message item to be inserted in
 \link{f7Messages} with \link{updateF7Messages}.
 
-\code{updateF7Messages} add messages to an \link{f7Messages} container.
+\code{updateF7Messages} add messages to a \link{f7Messages} container.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "Messages",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Messages",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
       # main content
       f7Messages(id = "mymessages", title = "My message")
-
     )
   ),
   server = function(input, output, session) {
-    observe({
-      print(input[["mymessagebar-send"]])
-      print(input$mymessages)
-    })
+    # Send a message
     observeEvent(input[["mymessagebar-send"]], {
       updateF7Messages(
         id = "mymessages",
         list(
-         f7Message(
-          text = input$mymessagebar,
-          name = "David",
-          type = "sent",
-          header = "Message Header",
-          footer = "Message Footer",
-          textHeader = "Text Header",
-          textFooter = "text Footer",
-          avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
-         )
+          f7Message(
+            text = input$mymessagebar,
+            name = "David",
+            type = "sent",
+            header = "Message Header",
+            footer = "Message Footer",
+            textHeader = "Text Header",
+            textFooter = "text Footer",
+            avatar = "https://cdn.framework7.io/placeholder/people-100x100-7.jpg"
+          )
         )
       )
     })
 
-    observe({
-      invalidateLater(5000)
-      names <- c("Victor", "John")
-      name <- sample(names, 1)
-
+    # Receive a message
+    observeEvent(TRUE, {
       updateF7Messages(
         id = "mymessages",
+        showTyping = FALSE, # DOES NOT WORK YET WHEN TRUE ...
         list(
-         f7Message(
-          text = "Some message",
-          name = name,
-          type = "received",
-          avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
-         )
+          f7Message(
+            text = "Some message",
+            name = "Victor",
+            type = "received",
+            avatar = "https://cdn.framework7.io/placeholder/people-100x100-9.jpg"
+          )
         )
       )
     })
-
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

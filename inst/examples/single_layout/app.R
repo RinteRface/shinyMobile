@@ -7,7 +7,7 @@ library(ggplot2)
 data("economics_long")
 economics_long <- economics_long %>%
   group_by(variable) %>%
-  slice((n()-100):n())
+  slice((n() - 100):n())
 
 
 shinyApp(
@@ -16,8 +16,7 @@ shinyApp(
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Single Layout",
-        hairline = TRUE,
-        shadow = TRUE
+        hairline = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -25,13 +24,9 @@ shinyApp(
         f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
-      f7Shadow(
-        intensity = 16,
-        hover = TRUE,
-        f7Card(
-          title = "Card header",
-          apexchartOutput("areaChart")
-        )
+      f7Card(
+        title = "Card header",
+        apexchartOutput("areaChart")
       )
     )
   ),

@@ -11,7 +11,7 @@ f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 
 \item{target}{Related list element. CSS selector like .class, #id, ...}
 
-\item{...}{Other options (see \url{https://v5.framework7.io/docs/list-index#list-index-parameters}).}
+\item{...}{Other options (see \url{https://framework7.io/docs/list-index#list-index-parameters}).}
 
 \item{session}{Shiny session object.}
 }
@@ -19,55 +19,119 @@ f7ListIndex(id, target, ..., session = shiny::getDefaultReactiveDomain())
 List index must be attached to an existing list view.
 }
 \note{
-For some reason, unable to get more than 1 list index working. See
-example below. The second list does not work.
+While you can also supply a class as target, we advise to use an id to avoid conflicts.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "List Index",
-     f7TabLayout(
-       navbar = f7Navbar(
-         title = "f7ListIndex",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7Tabs(
-         f7Tab(
-           tabName = "List1",
-           f7List(
-            mode = "contacts",
-            lapply(1:26, function(i) {
-              f7ListGroup(
-                title = LETTERS[i],
-                lapply(1:26, function(j) f7ListItem(letters[j]))
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7TabLayout(
+      navbar = f7Navbar(title = "f7List"),
+
+      f7Tabs(
+        f7Tab(
+          title = "Lists",
+          tabName = "list",
+
+          # simple list
+          f7List(
+            mode = "simple",
+            lapply(1:3, function(j) tags$li(letters[j]))
+          ),
+
+          # list with complex items
+          f7List(
+            strong = TRUE,
+            outline = TRUE,
+            inset = TRUE,
+            lapply(1:3, function(j) {
+              f7ListItem(
+                letters[j],
+                media = f7Icon("alarm_fill"),
+                header = "Header",
+                footer = "Footer"
               )
             })
-           )
-         ),
-         f7Tab(
-           tabName = "List2",
-           f7List(
-            mode = "contacts",
-            lapply(1:26, function(i) {
-              f7ListGroup(
-                title = LETTERS[i],
-                lapply(1:26, function(j) f7ListItem(letters[j]))
+          ),
+
+          # list with complex items
+          f7List(
+            mode = "media",
+            lapply(1:3, function(j) {
+              f7ListItem(
+                title = letters[j],
+                subtitle = "subtitle",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum, ut dignissim
+            lacus tincidunt. Cras dolor metus, ultrices condimentum sodales
+            sit amet, pharetra sodales eros. Phasellus vel felis tellus.
+            Mauris rutrum ligula nec dapibus feugiat. In vel dui laoreet,
+            commodo augue id, pulvinar lacus.",
+                media = tags$img(
+                  src = paste0(
+                    "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
+                  )
+                ),
+                right = "Right Text"
               )
             })
-           )
-         )
-       )
-     )
-   ),
-   server = function(input, output, session) {
-    observeEvent(TRUE, {
-     f7ListIndex(id = "list-index-1", target = ".list")
-    }, once = TRUE)
-   }
- )
-}
+          ),
+
+          # list with links
+          f7List(
+            mode = "links",
+            lapply(1:3, function(j) {
+              tags$li(
+                f7Link(label = letters[j], href = "https://google.com")
+              )
+            })
+          )
+        ),
+        f7Tab(
+          title = "Group",
+          tabName = "groupedlists",
+
+          # grouped lists
+          f7List(
+            id = "mycontacts",
+            mode = "contacts",
+            lapply(1:3, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(1:10, function(j) f7ListItem(letters[j]))
+              )
+            })
+          )
+        ),
+        f7Tab(
+          title = "Other group",
+          tabName = "groupedlists2",
+
+          # grouped lists
+          f7List(
+            id = "myothercontacts",
+            mode = "contacts",
+            lapply(4:6, function(i) {
+              f7ListGroup(
+                title = LETTERS[i],
+                lapply(10:20, function(j) f7ListItem(letters[j]))
+              )
+            })
+          )
+        )
+      )
+
+    )
+  ),
+  server = function(input, output) {
+    f7ListIndex(id = "contacts", target = "#mycontacts", label = TRUE)
+    f7ListIndex(id = "othercontacts", target = "#myothercontacts", label = TRUE)
+
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

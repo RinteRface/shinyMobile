@@ -24,7 +24,7 @@ upload multiple files at once. Does not work on older browsers, including Intern
 
 \item{accept}{A character vector of MIME types; gives the browser a hint of what kind of files the server is expecting.}
 
-\item{width}{The width of the input, e.g. 400px, or 100\%.}
+\item{width}{The width of the input, e.g. 400px.}
 
 \item{buttonLabel}{The label used on the button. Can be text or an HTML tag object.}
 
@@ -36,21 +36,21 @@ to upload one or more files.
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- ui = f7Page(
-   f7SingleLayout(
-     navbar = f7Navbar(title = "File handling"),
-     f7File("up", "Upload!")
-   )
- )
+  ui <- f7Page(
+    f7SingleLayout(
+      navbar = f7Navbar(title = "File handling"),
+      f7Block(f7File("up", "Upload!"))
+    )
+  )
 
- server = function(input, output) {
-   data <- reactive(input$up)
-   observe(print(data()))
- }
+  server <- function(input, output) {
+    data <- reactive(input$up)
+    observe(print(data()))
+  }
 
- shinyApp(ui, server)
+  shinyApp(ui, server)
 }
 }

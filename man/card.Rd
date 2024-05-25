@@ -2,7 +2,6 @@
 % Please edit documentation in R/f7Card.R
 \name{f7Card}
 \alias{f7Card}
-\alias{f7SocialCard}
 \alias{f7ExpandableCard}
 \alias{updateF7Card}
 \title{Framework7 card}
@@ -13,10 +12,10 @@ f7Card(
   title = NULL,
   footer = NULL,
   outline = FALSE,
-  height = NULL
+  height = NULL,
+  raised = FALSE,
+  divider = FALSE
 )
-
-f7SocialCard(..., image = NULL, author = NULL, date = NULL, footer = NULL)
 
 f7ExpandableCard(
   ...,
@@ -25,7 +24,8 @@ f7ExpandableCard(
   subtitle = NULL,
   color = NULL,
   image = NULL,
-  fullBackground = FALSE
+  fullBackground = FALSE,
+  buttonColor = "white"
 )
 
 updateF7Card(id, session = shiny::getDefaultReactiveDomain())
@@ -44,9 +44,9 @@ with the color argument.}
 
 \item{height}{Card height. NULL by default.}
 
-\item{author}{Author.}
+\item{raised}{Card shadow. FALSE by default.}
 
-\item{date}{Date.}
+\item{divider}{Card header/footer dividers. FALSE by default.}
 
 \item{id}{Card id.}
 
@@ -57,12 +57,12 @@ Not compatible with the img argument.}
 
 \item{fullBackground}{Whether the image should cover the entire card.}
 
+\item{buttonColor}{Color of the close button. Default is "white".}
+
 \item{session}{Shiny session object.}
 }
 \description{
 \code{f7Card} creates a simple card container.
-
-\code{f7SocialCard} is a special card for social content.
 
 \code{f7ExpandableCard} is a card that can expand. Ideal for a
 gallery.
@@ -74,186 +74,88 @@ For \link{f7ExpandableCard}, image and color are not compatible. Choose one of t
 }
 \examples{
 # Simple card
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+if (interactive()) {
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "Cards",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Card"),
-     f7Card("This is a simple card with plain text,
-    but cards can also contain their own header,
-    footer, list view, image, or any other element."),
-    f7Card(
-     title = "Card header",
-     "This is a simple card with plain text,
-     but cards can also contain their own header,
-     footer, list view, image, or any other element.",
-     footer = tagList(
-      f7Button(color = "blue", label = "My button"),
-      f7Badge("Badge", color = "green")
-     )
+  shinyApp(
+    ui = f7Page(
+      title = "Cards",
+      options = list(dark = FALSE),
+      f7SingleLayout(
+        navbar = f7Navbar(title = "f7Card"),
+        f7Card("This is a simple card with plain text,
+      but cards can also contain their own header,
+      footer, list view, image, or any other element."),
+        f7Card(
+          title = "Card header",
+          raised = TRUE,
+          outline = TRUE,
+          divider = TRUE,
+          div(class = "date", "March 16, 2024"),
+          "This is a simple card with plain text,
+       but cards can also contain their own header,
+       footer, list view, image, or any other element.",
+          footer = "Card footer"
+        ),
+        f7Card(
+          title = "Card header",
+          image = "https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg",
+          "This is a simple card with plain text,
+       but cards can also contain their own header,
+       footer, list view, image, or any other element.",
+          footer = tagList(
+            f7Link("Link 1", href = "https://google.com"),
+            f7Badge("Badge", color = "green")
+          )
+        )
+      )
     ),
-    f7Card(
-     title = "Card header",
-     image = "https://loremflickr.com/320/240",
-     "This is a simple card with plain text,
-     but cards can also contain their own header,
-     footer, list view, image, or any other element.",
-     footer = tagList(
-      f7Button(color = "blue", label = "My button"),
-      f7Badge("Badge", color = "green")
-     )
-    )
-    )
-  ),
-  server = function(input, output) {}
- )
+    server = function(input, output) {}
+  )
 }
 
-# Social card
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-  ui = f7Page(
-    title = "Social Card",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7SocialCard"),
-     f7SocialCard(
-     image = "https://loremflickr.com/g/320/240/paris",
-     author = "John Doe",
-     date = "Monday at 3:47 PM",
-     "What a nice photo i took yesterday!",
-     img(src = "https://loremflickr.com/g/320/240/paris", width = "100\%"),
-     footer = tagList(
-      f7Badge("1", color = "yellow"),
-      f7Badge("2", color = "green"),
-      f7Badge("3", color = "blue")
-     )
-    )
-    )
-  ),
-  server = function(input, output) {}
- )
-}
-
-# Expandable card
-if(interactive()){
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Expandable Cards",
     f7SingleLayout(
-      navbar = f7Navbar(
-       title = "Expandable Cards",
-       hairline = FALSE,
-       shadow = TRUE
-      ),
+      navbar = f7Navbar(title = "Expandable Cards"),
       f7ExpandableCard(
-       id = "card1",
-       title = "Expandable Card 1",
-       color = "blue",
-       subtitle = "Click on me pleaaaaase",
-       "Framework7 - is a free and open source HTML mobile framework
-       to develop hybrid mobile apps or web apps with iOS or Android
-       native look and feel. It is also an indispensable prototyping apps tool
-       to show working app prototype as soon as possible in case you need to."
-      ),
-      f7ExpandableCard(
-       id = "card2",
-       title = "Expandable Card 2",
-       color = "green",
-       "Framework7 - is a free and open source HTML mobile framework
-       to develop hybrid mobile apps or web apps with iOS or Android
-       native look and feel. It is also an indispensable prototyping apps tool
-       to show working app prototype as soon as possible in case you need to."
-      ),
-      f7ExpandableCard(
-       id = "card3",
-       title = "Expandable Card 3",
-       image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
-       "Framework7 - is a free and open source HTML mobile framework
-        to develop hybrid mobile apps or web apps with iOS or Android
-        native look and feel. It is also an indispensable prototyping apps tool
-        to show working app prototype as soon as possible in case you need to."
-      ),
-      f7ExpandableCard(
-       id = "card4",
-       title = "Expandable Card 4",
-       fullBackground = TRUE,
-       image = "https://i.ytimg.com/vi/8q_kmxwK5Rg/maxresdefault.jpg",
-       "Framework7 - is a free and open source HTML mobile framework
-              to develop hybrid mobile apps or web apps with iOS or Android
-              native look and feel. It is also an indispensable prototyping apps tool
-              to show working app prototype as soon as possible in case you need to."
-      )
-    )
-  ),
-  server = function(input, output) {}
- )
-}
-
-# Update expandable card
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
-   ui = f7Page(
-     title = "Expandable Cards",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "Expandable Cards",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7ExpandableCard(
-         id = "card1",
-         title = "Expandable Card 1",
-         image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
-         "Framework7 - is a free and open source HTML mobile framework
+        id = "card1",
+        title = "Expandable Card 1",
+        image = "https://i.pinimg.com/originals/73/38/6e/73386e0513d4c02a4fbb814cadfba655.jpg",
+        "Framework7 - is a free and open source HTML mobile framework
          to develop hybrid mobile apps or web apps with iOS or Android
          native look and feel. It is also an indispensable prototyping apps tool
          to show working app prototype as soon as possible in case you need to."
-       ),
+      ),
+      hr(),
+      f7BlockTitle(title = "Click below to expand the card!") \%>\% f7Align(side = "center"),
+      f7Button(inputId = "go", label = "Go"),
+      br(),
+      f7ExpandableCard(
+        id = "card2",
+        title = "Expandable Card 2",
+        fullBackground = TRUE,
+        image = "https://cdn.pixabay.com/photo/2017/10/03/18/55/mountain-2813667_960_720.png",
+        "Framework7 - is a free and open source HTML mobile framework
+        to develop hybrid mobile apps or web apps with iOS or Android
+        native look and feel. It is also an indispensable prototyping apps tool
+        to show working app prototype as soon as possible in case you need to."
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$go, {
+      updateF7Card(id = "card2")
+    })
+  }
+)
 
-       hr(),
-       f7BlockTitle(title = "Click below to expand the card!") \%>\% f7Align(side = "center"),
-       f7Button(inputId = "go", label = "Go"),
-       br(),
-       f7ExpandableCard(
-         id = "card2",
-         title = "Expandable Card 2",
-         fullBackground = TRUE,
-         image = "https://cdn.pixabay.com/photo/2017/10/03/18/55/mountain-2813667_960_720.png",
-         "Framework7 - is a free and open source HTML mobile framework
-               to develop hybrid mobile apps or web apps with iOS or Android
-               native look and feel. It is also an indispensable prototyping apps tool
-               to show working app prototype as soon as possible in case you need to."
-       )
-     )
-   ),
-   server = function(input, output, session) {
-
-     observeEvent(input$go, {
-       updateF7Card(id = "card2")
-     })
-
-     observe({
-       list(
-         print(input$card1),
-         print(input$card2)
-       )
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

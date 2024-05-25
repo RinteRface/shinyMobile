@@ -4,7 +4,12 @@
 \alias{create_app_link}
 \title{Create shinylive iframe}
 \usage{
-create_app_link(app_code, mode = c("app", "editor"), header = TRUE)
+create_app_link(
+  app_code,
+  mode = c("app", "editor"),
+  header = TRUE,
+  height = "852"
+)
 }
 \arguments{
 \item{app_code}{base64 app code. You can create it from https://shinylive.io/r
@@ -14,6 +19,9 @@ the end of the url.}
 \item{mode}{How to display the shinylive app. Default to app mode.}
 
 \item{header}{Whether to display the shinylive header. Default to TRUE.}
+
+\item{height}{iframe height. Useful to setup custom viewport dimensions.
+Default to iphone15 height.}
 }
 \description{
 Create shinylive iframe

@@ -11,6 +11,14 @@
 ^\.github$
 ^CODE_OF_CONDUCT\.md$
 ^srcjs$
-^tools$
 ^index\.Rmd$
 ^CRAN-SUBMISSION$
+^node_modules$
+^package\.json$
+^package-lock\.json$
+^styles$
+^esbuild\.dev\.js$
+^esbuild\.prod\.js$
+^codecov\.yml$
+^inst/.*./.*\.map$
+^vignettes/articles$

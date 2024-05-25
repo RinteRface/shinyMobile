@@ -1,0 +1,7 @@
+{
+  "input": {
+    "password": "",
+    "text": "Some text",
+    "textarea": "Lorem ipsum dolor sit amet, consectetur\n              adipiscing elit, sed do eiusmod tempor incididunt ut\n              labore et dolore magna aliqua"
+  }
+}

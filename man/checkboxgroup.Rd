@@ -2,46 +2,113 @@
 % Please edit documentation in R/f7-inputs.R
 \name{f7CheckboxGroup}
 \alias{f7CheckboxGroup}
+\alias{f7CheckboxChoice}
 \title{Framework7 checkbox group}
 \usage{
-f7CheckboxGroup(inputId, label, choices = NULL, selected = NULL)
+f7CheckboxGroup(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  position = c("left", "right"),
+  style = list(inset = FALSE, outline = FALSE, dividers = FALSE, strong = FALSE)
+)
+
+f7CheckboxChoice(..., title, subtitle = NULL, after = NULL)
 }
 \arguments{
-\item{inputId}{Checkbox group input.}
+\item{inputId}{Input id.}
 
-\item{label}{Checkbox group label.}
+\item{label}{Input label}
 
-\item{choices}{Checkbox group choices.}
+\item{choices}{List of choices. Can be a simple
+vector or named list or a list of \link{f7RadioChoice} or
+\link{f7CheckboxChoice}}
 
-\item{selected}{Checkbox group selected value.}
+\item{selected}{Selected element. NULL by default. If you pass
+\link{f7RadioChoice} or \link{f7CheckboxChoice} in choices,
+selected must be a numeric value corresponding to the index of the element to select.}
+
+\item{position}{Check mark side.
+\code{"left"} or \code{"right"}.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
+
+\item{...}{Choice content. Text is striped if too long.}
+
+\item{title}{Item title.}
+
+\item{subtitle}{Item subtitle.}
+
+\item{after}{Display at the right of title.}
 }
 \description{
 \code{f7CheckboxGroup} creates a checkbox group input
+
+Custom choice item for \link{f7CheckboxGroup}.
 }
 \examples{
-if(interactive()){
-  library(shiny)
-  library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
-  shiny::shinyApp(
-    ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
       navbar = f7Navbar(title = "f7CheckboxGroup"),
+      f7BlockTitle("Simple choices", size = "large"),
       f7CheckboxGroup(
-       inputId = "variable",
-       label = "Choose a variable:",
-       choices = colnames(mtcars)[-1],
-       selected = NULL
+        inputId = "checkboxgroup",
+        label = "Choose a variable:",
+        choices = colnames(mtcars)[-1],
+        selected = "disp",
+        position = "right"
       ),
-      tableOutput("data")
-     )
-    ),
-    server = function(input, output) {
-     output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-      }, rownames = TRUE)
-    }
-  )
- }
+      tableOutput("data"),
+      f7BlockTitle("Custom choices: f7CheckboxChoice", size = "large"),
+      f7CheckboxGroup(
+        inputId = "checkboxgroup2",
+        label = "Custom choices",
+        choices = list(
+          f7CheckboxChoice(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum,
+            ut dignissim lacus tincidunt",
+            title = "Choice 1",
+            subtitle = "David",
+            after = "March 16, 2024"
+          ),
+          f7CheckboxChoice(
+            "Cras dolor metus, ultrices condimentum sodales sit
+            amet, pharetra sodales eros. Phasellus vel felis tellus.
+            Mauris rutrum ligula nec dapibus feugiat",
+            title = "Choice 2",
+            subtitle = "Veerle",
+            after = "March 17, 2024"
+          )
+        ),
+        selected = 2,
+        style = list(
+          inset = TRUE,
+          outline = TRUE,
+          dividers = TRUE,
+          strong = TRUE
+        )
+      ),
+      textOutput("selected")
+    )
+  ),
+  server = function(input, output) {
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$checkboxgroup), drop = FALSE]
+      },
+      rownames = TRUE
+    )
+    output$selected <- renderText(input$checkboxgroup2)
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

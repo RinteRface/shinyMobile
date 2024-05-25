@@ -1,0 +1,115 @@
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "Tabs",
+    options = list(dark = FALSE, theme = "ios"),
+    f7TabLayout(
+      navbar = f7Navbar(
+        title = HTML(paste("Currently selected:", textOutput("selected"))),
+        subNavbar = f7SubNavbar(
+          f7Button("update", "Update", fill = FALSE, outline = TRUE),
+          f7Button("remove", "Remove", fill = FALSE, outline = TRUE),
+          f7Button("insert", "Insert", fill = FALSE, outline = TRUE)
+        )
+      ),
+      f7Tabs(
+        id = "tabs",
+        swipeable = TRUE,
+        animated = FALSE,
+        f7Tab(
+          title = "Tab 1",
+          tabName = "Tab1",
+          icon = f7Icon("house_alt_fill"),
+          f7Block("Tab 1 content"),
+          f7Sheet(
+            id = "sheet",
+            label = "More",
+            orientation = "bottom",
+            swipeToClose = TRUE,
+            backdrop = TRUE,
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+            scelerisque est, at porta justo cursus ac"
+          )
+        ),
+        f7Tab(
+          title = "Tab 2",
+          tabName = "Tab2",
+          icon = f7Icon("location_circle_fill"),
+          f7Block("tab 2 text"),
+          active = TRUE
+        ),
+        f7Tab(
+          title = "Tab 3",
+          tabName = "Tab3",
+          icon = f7Icon("pencil_circle_fill"),
+          f7Block("tab 3 text"),
+        ),
+        .items = f7TabLink(
+          icon = f7Icon("bolt_fill"),
+          label = "Toggle Sheet",
+          `data-sheet` = "#sheet",
+          class = "sheet-open"
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$selected <- renderText(input$tabs)
+
+    tabs <- reactiveVal(paste0("Tab", 1:3))
+
+    # Update
+    observeEvent(input$update, {
+      req(length(tabs()) > 0)
+      tab_id <- min(tabs())
+      updateF7Tabs(
+        id = "tabs",
+        selected = tab_id
+      )
+      message(sprintf("Selecting %s", tab_id))
+    })
+
+    # Remove max tab
+    observeEvent(input$remove, {
+      req(length(tabs()) > 0)
+      tab_id <- max(tabs())
+      removeF7Tab(
+        id = "tabs",
+        target = tab_id
+      )
+      message(sprintf("Removing %s", tab_id))
+      tabs(tabs()[-which(tabs() == tab_id)])
+    })
+
+    # Add
+    observeEvent(input$insert, {
+      tab_id <- if (length(tabs()) > 0) max(tabs())
+      new_tab_id <- if (length(tabs()) > 0) {
+        as.numeric(strsplit(max(tabs()), "Tab")[[1]][2]) + 1
+      } else {
+        1
+      }
+
+      insertF7Tab(
+        id = "tabs",
+        position = if (length(tabs()) > 0) "after",
+        target = if (length(tabs()) > 0) tab_id,
+        tab = f7Tab(
+          # Use multiple elements to test for accessor function
+          f7Block(sprintf("New tab %s content", new_tab_id)),
+          tabName = sprintf("Tab%s", new_tab_id),
+          icon = f7Icon("app_badge")
+        ),
+        select = TRUE
+      )
+
+      message(sprintf("Adding tab %s", new_tab_id))
+      tabs(c(tabs(), sprintf("Tab%s", new_tab_id)))
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app

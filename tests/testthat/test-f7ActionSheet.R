@@ -1,4 +1,4 @@
-context("f7ActionSheet")
+library(shinytest2)
 
 test_that("send custom message", {
   session <- as.environment(list(
@@ -31,8 +31,40 @@ test_that("send custom message", {
   expect_length(res, 2)
   expect_equal(res$type, "action-sheet")
   expect_length(res$message, 3)
-  expect_is(res$message$buttons, "data.frame")
+  expect_s3_class(res$message$buttons, "data.frame")
   expect_equal(res$message$grid, FALSE)
   expect_equal(res$message$id, "action")
 })
 
+test_that("actionSheet work as expected", {
+  # Don't run these tests on the CRAN build servers
+  skip_on_cran()
+  shiny_app_path <-
+    system.file("examples/actionsheet/app.R", package = "shinyMobile")
+  app <- AppDriver$new(
+    shiny_app_path,
+    name = "actionsheet-app"
+  )
+
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(3000)
+  app$expect_values(input = c("sheet1-action1"))
+
+  app$click(selector = ".actions-button:first-child")
+  app$wait_for_idle(3000)
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(3000)
+  app$click(selector = ".actions-button:nth-child(2)")
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+
+  app$click(selector = "div.dialog-buttons > span:nth-child(1)")
+  app$click(selector = "#sheet1-update")
+  app$click(selector = "#sheet1-go")
+  app$wait_for_idle(3000)
+  app$click(selector = ".actions-button:first-child")
+  app$expect_values(input = c("sheet1-action1", "sheet1-action1_button"))
+})

@@ -13,7 +13,7 @@ f7SmartSelect(
   openIn = c("page", "sheet", "popup", "popover"),
   searchbar = TRUE,
   multiple = FALSE,
-  maxlength = NULL,
+  maxLength = NULL,
   virtualList = FALSE,
   ...
 )
@@ -29,30 +29,27 @@ updateF7SmartSelect(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Select input id.}
 
 \item{label}{Select input label.}
 
-\item{choices}{The new choices.}
+\item{choices}{Select input choices.}
 
-\item{selected}{The new value for the input.}
+\item{selected}{Default selected item. If NULL, the first item is selected.}
 
 \item{openIn}{Smart select type: either \code{c("sheet", "popup", "popover")}.
 Note that the search bar is only available when the type is popup.}
 
 \item{searchbar}{Whether to enable the search bar. TRUE by default.}
 
-\item{multiple}{Whether to allow multiple values.}
+\item{multiple}{Whether to allow multiple values. FALSE by default.}
 
-\item{maxlength}{Maximum items to select when multiple is TRUE.}
+\item{maxLength}{Maximum items to select when multiple is TRUE.}
 
 \item{virtualList}{Enable Virtual List for smart select if your select has a lot
 of options. Default to FALSE.}
 
-\item{...}{Parameters used to update the smart select,
-use same arguments as in \code{\link{f7SmartSelect}}.}
-
-\item{maxLength}{Maximum items to select when multiple is TRUE.}
+\item{...}{Other options. See \url{https://framework7.io/docs/smart-select#smart-select-parameters}.}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -63,82 +60,47 @@ allows for choices filtering, ...
 \code{updateF7SmartSelect} changes the value of a smart select input on the client.
 }
 \examples{
-# Smart select input
-if (interactive()) {
 library(shiny)
 library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7SmartSelect"),
-       f7SmartSelect(
-         inputId = "variable",
-         label = "Choose a variable:",
-         selected = "drat",
-         choices = colnames(mtcars)[-1],
-         openIn = "popup"
-       ),
-       tableOutput("data"),
-       f7SmartSelect(
-         inputId = "variable2",
-         label = "Group variables:",
-         choices = list(
-          `East Coast` = list("NY", "NJ", "CT"),
-          `West Coast` = list("WA", "OR", "CA"),
-          `Midwest` = list("MN", "WI", "IA")
-         ),
-         openIn = "sheet"
-       ),
-       textOutput("var")
-     )
-   ),
-   server = function(input, output) {
-     output$var <- renderText(input$variable2)
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-   }
- )
-}
-# Update smart select
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
-    title = "My app",
+    title = "Update f7SmartSelect",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7SmartSelect"),
-      f7Button("updateSmartSelect", "Update Smart Select"),
-      f7SmartSelect(
-        inputId = "variable",
-        label = "Choose a variable:",
-        selected = "drat",
-        choices = colnames(mtcars)[-1],
-        openIn = "popup"
+      f7Block(f7Button("update", "Update Smart Select")),
+      f7List(
+        inset = TRUE,
+        strong = TRUE,
+        outline = TRUE,
+        f7SmartSelect(
+          inputId = "smartselect",
+          label = "Choose a variable:",
+          choices = split(colnames(mtcars[-1]), rep(1:5)),
+          openIn = "popup"
+        )
       ),
       tableOutput("data")
     )
   ),
   server = function(input, output, session) {
-    output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-    }, rownames = TRUE)
+    output$data <- renderTable(
+      mtcars[, c("mpg", input$smartselect), drop = FALSE],
+      rownames = TRUE
+    )
 
-    observeEvent(input$updateSmartSelect, {
+    observeEvent(input$update, {
       updateF7SmartSelect(
-        inputId = "variable",
+        inputId = "smartselect",
         openIn = "sheet",
         selected = "hp",
-        choices = c("hp", "gear"),
+        choices = c("hp", "gear", "carb"),
         multiple = TRUE,
-        maxLength = 3
+        maxLength = 2
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

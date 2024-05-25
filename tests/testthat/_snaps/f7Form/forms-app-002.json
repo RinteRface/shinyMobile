@@ -1,0 +1,9 @@
+{
+  "input": {
+    "myform": {
+      "text": "New text",
+      "textarea": "New text area",
+      "password": "New password"
+    }
+  }
+}

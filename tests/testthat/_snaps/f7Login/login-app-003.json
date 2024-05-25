@@ -1,0 +1,9 @@
+{
+  "export": {
+    "authenticated": true,
+    "cancelled": 1,
+    "password": "pwd",
+    "status": true,
+    "user": "usr"
+  }
+}

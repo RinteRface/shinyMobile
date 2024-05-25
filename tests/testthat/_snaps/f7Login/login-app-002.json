@@ -1,0 +1,9 @@
+{
+  "export": {
+    "authenticated": false,
+    "cancelled": 1,
+    "password": "",
+    "status": false,
+    "user": ""
+  }
+}

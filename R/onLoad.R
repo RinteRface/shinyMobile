@@ -6,11 +6,15 @@
     } else {
       f7DatePicker.date <- unlist(f7DatePicker.data)
       if (is.numeric(f7DatePicker.date)) {
-        f7DatePicker.date <- as.POSIXct(f7DatePicker.date / 1000, tz = "UTC", origin = "1970-01-01")
+        as.POSIXct(f7DatePicker.date / 1000, tz = "UTC", origin = "1970-01-01")
       } else {
-        f7DatePicker.date <- as.POSIXct(f7DatePicker.date, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+        # check if there's a time component
+        if (any(grepl("T", f7DatePicker.date))) {
+          as.POSIXct(f7DatePicker.date, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+        } else {
+          as.Date(f7DatePicker.date)
+        }
       }
-      as.Date(f7DatePicker.date, tz = Sys.timezone())
     }
   }, force = TRUE)
 }

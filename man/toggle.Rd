@@ -15,13 +15,15 @@ updateF7Toggle(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Toggle input id.}
 
 \item{label}{Toggle label.}
 
-\item{checked}{Whether the toggle is TRUE or FALSE.}
+\item{checked}{Whether to check the toggle. FALSE by default.}
 
-\item{color}{Toggle color.}
+\item{color}{Toggle color: NULL or "primary", "red", "green", "blue",
+"pink", "yellow", "orange", "purple", "deeppurple", "lightblue",
+"teal, "lime", "deeporange", "gray", "white", "black".}
 
 \item{session}{The Shiny session object.}
 }
@@ -31,70 +33,41 @@ updateF7Toggle(
 \code{updateF7Toggle} changes the value of a toggle input on the client.
 }
 \examples{
-# f7Toggle
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
+app <- shinyApp(
+  ui = f7Page(
+    title = "f7Toggle",
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Toggle"),
-     f7Toggle(
-      inputId = "toggle",
-      label = "My toggle",
-      color = "pink",
-      checked = TRUE
-     ),
-     verbatimTextOutput("test"),
-     f7Toggle(
-      inputId = "toggle2",
-      label = "My toggle 2"
-     ),
-     verbatimTextOutput("test2")
+      navbar = f7Navbar(title = "updateF7Toggle"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update toggle"),
+        br(),
+        f7Toggle(
+          inputId = "toggle",
+          label = "My toggle",
+          color = "pink",
+          checked = FALSE
+        ),
+        verbatimTextOutput("test")
+      )
     )
-   ),
-   server = function(input, output) {
-    output$test <- renderPrint(input$toggle)
-    output$test2 <- renderPrint(input$toggle2)
-   }
- )
-}
-# Update f7Toggle
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  ),
+  server = function(input, output, session) {
+    output$test <- renderPrint({
+      input$toggle
+    })
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "updateF7Toggle"),
-       f7Card(
-         f7Button(inputId = "update", label = "Update toggle"),
-         f7Toggle(
-           inputId = "toggle",
-           label = "My toggle",
-           color = "pink",
-           checked = FALSE
-         ),
-         verbatimTextOutput("test")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+    observeEvent(input$update, {
+      updateF7Toggle(
+        inputId = "toggle",
+        checked = !input$toggle,
+        color = "green"
+      )
+    })
+  }
+)
 
-     output$test <- renderPrint({input$toggle})
-
-     observeEvent(input$update, {
-       updateF7Toggle(
-         inputId = "toggle",
-         checked = TRUE,
-         color = "green"
-       )
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

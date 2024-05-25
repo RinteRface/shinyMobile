@@ -1,3 +1,105 @@
+# shinyMobile 2.0.0
+## Major change
+- Update Framework7 from 5.7.14 to 8.3.3
+- New experimental router layout `f7MultiLayout()`: supported by `{brochure}`, this allows to have beautiful transitions between pages to provide a more native like experience.
+- New `f7Form()`: gather inputs in the same form to get a nested list containing all input values. This allows to reduce the number of inputs on the server side.
+`updateF7Form()` makes it possible to update input in batch or only selected ones.
+- Whenever you have multiple inputs, we now recommend to wrap all of them within `f7List()` which allows you to benefit from new styling options such as outline, inset, strong, ... Internally, we use a function able to detect whether the input is inside a `f7List()`: if yes, you can style this list by passing parameters like `f7List(outline = TRUE, inset = TRUE, ...)`; if not, the input is internally wrapped in a list to have correct rendering (but no styling is possible). Besides, some input like `f7Text()` can have custom styling (add an icon, clear button, outline style), which is independent from the external list wrapper style. Hence, we don't recommend doing `f7List(outline = TRUE, f7Text(outline = TRUE))` since it won't render very well (only use `f7List(outline = TRUE, f7Text())`). Please have a look at the corresponding examples in the documentation.
+- New component `f7Treeview()`: display items in a treeview. Used in combination with `f7TreeviewItem()` and `f7TreeviewGroup()`. 
+
+## Breaking changes
+- The aurora theme has been removed. Supported themes are now: ios, md and auto. In case of auto it will use iOS theme for iOS devices and MD theme for all other devices.
+- `f7AddMessages()` is definitely removed. Deprecated from previous releases.
+- `f7Appbar()` has been removed in Framework7. We have no alternative to replace it.
+- `f7ShowNavbar()` and `f7HideNavbar()` are removed, as long time deprecated.
+- `f7checkBox()` and `f7checkBoxGroup()` are removed, as long time deprecated.
+- Remove `f7InsertTab()`, `f7RemoveTab()` as long time deprecated.
+- Remove `f7ValidateInput()` as long time deprecated.
+- Remove `f7Popover()` and `f7PopoverTarget()` as long time deprecated.
+- Remove `f7ShowPreloader()` and `f7HidePreloader()` as long time deprecated.
+- `f7Menu()`, `f7MenuItem()`, `f7MenuDropdown()`, `f7MenuDropdownDivider()` and `updateF7MenuDropdown()` are totally removed from Framework7. We have no alternative to replace it.
+- `f7Icon()`: remove deprecated parameter `old`.
+- `f7SmartSelect()`: `maxlength` becomes `maxLength`. Typo from Framework7.
+- Remove `value` from `f7Password()` (accidental copy and paste from `f7Text()`).
+- Possible breaking change: `f7Toolbar()` default position is now `bottom`.
+- Possible breaking change: remove `httr` dependency from `app_container()`.
+- Possible breaking change in `f7PhotoBrowser()`: `id` param reintroduce (but not mandatory, default `NULL`) as needed by `updateF7Entity()` to update the widget on the server side.
+- Possible breaking change in `f7ListItem`: now, we don't allow `footer` and `header` whenever the parent list container has mode `media` (avoids cluttered layout). When `subtitle` is provided without the parent list being of mode `media`, an error is also raised (`subtitle` is specific to the media list layout). `right` can't be passed when `title` is NULL.
+
+## Soft deprecation
+- `f7Accordion()`:
+    - `multiCollapse` has been removed in Framework7.
+- `f7Block()`:
+    - `hairlines` is deprecated since removed from Framework7.
+- `f7Segment()`:
+    - `container` is deprecated, removed from Framework7.
+- `f7Navbar()`:
+    - `shadow` and `subtitle` have been removed in Framework7.
+- `f7SocialCard()` is deprecated as the same result can be achieved with `f7Card()`.
+- `f7AutoComplete()`: `expandInput` is deprecated, removed from Framework7.
+- `f7Row()`, `f7Col()` and `f7Flex()` are deprecated in favor of `f7Grid()`, as specified by Framework7 8.3.3
+- `f7Fabs()`: `morph` is deprecated. Only `morphTarget` is used.
+- `f7Toolbar()`:
+    - `hairline` and `shadow` are deprecated, removed from Framework7.
+- `f7Shadow()`removed from Framework7. No replacement. Will be removed in a future release.
+- `f7Swipeout`: deprecate `side` parameter and `...`. Now use either `left`/`right` or both.
+- `f7AutoComplete`: `value` now defaults to `NULL` (instead of the first choice).
+- `updateF7Login()`: `id` is deprecated.
+
+## Minor change
+- `f7Messages()`: the corresponding input is now a list of lists, each item being a single `f7Message()`. The previous setting was not optimal R,the JS binding was returning a array of objects, which can't be easily translated to R. We now return an object of objects which becomes a list of lists.
+- `f7Block()` gains an `outline` parameter (add grey border).
+- `f7Button()` get a new `tonal` style. It is also possible to pass `icon` as parameter and update the icon with `updateF7Button`.
+- `f7Card()` get a new `raised` and `divider` parameters.
+- `f7CheckboxGroup()` has a new `position` parameter to control
+the check icon position. Default to left.
+- `f7CheckboxChoice()`: new function to pass inside `choices` in a
+`f7CheckboxGroup()`. Improved choice with title, subtitle, ...
+- `f7List()` has new `outline`, `dividers` and `strong` styles. `mode` gains 2 new values: `simple` and `links`.
+- `f7ListItem()` has new `routable` parameter which allows navigation between pages in the new `f7MultiLayout()`. 
+- `f7ListItem()` and `f7VirtualListItem()` have new optional argument `id`, which allows for easy targeting.
+- `f7ListIndex()` now gets applied to an specific element, instead of the whole page. This makes it possible to add multiple lists with list indexes to the same app.
+- Added `id` argument to `f7List()`, which makes it possible to use an id as target in `f7ListIndex`.
+- `f7Panel()` has new "floating"/"push" effects as well as a new `options` parameter
+to pass in extra configuration. See https://framework7.io/docs/panel#panel-parameters.
+- `f7VirtualList()` has new `outline`, `dividers` and `strong` styles. Additionally, `mode` was added with the following possible values: `simple`, `links`, `media` or `contacts`.
+- `f7Popup()` has a new `push` effect (pushing the main view behind on opening). There's also a new argument called `page` that can control whether or not the popup behaves as a page and can scroll- handy for popups with more content.
+- `f7Radio()` has a new `position` parameter to control
+the check icon position. Default to left (like `f7CheckboxGroup()`).
+Also, `f7Radio()` inherits from `f7List()` styling parameters such as `inset`, `outline`,`dividers`, `strong` for more styling option.
+- `f7RadioChoice()`: new function to pass inside `choices` in a
+`f7Radio()`. Improved choice with title, subtitle, ...
+- `f7Sheet()` gains new `options` parameter to allow passing more configuration. See https://framework7.io/docs/sheet-modal#sheet-parameters.
+- `f7Picker()` has new `...` parameter to pass custom options. Also `f7Picker()` now can have NULL as `value`, allowing you to display a placeholder.
+- `f7DatePicker()` has new `...` parameter to pass custom options. `f7DatePicker()` now also supports usage of the `timePicker`, and returns a posixct object when this is enabled. See https://framework7.io/docs/calendar#examples.
+- Added `tapHoldPreventClicks`, `touchClicksDistanceThreshold`, `mdTouchRipple` to `f7Page()` touch options.
+- The `dark` option in `f7Page()` now also supports `"auto"` besides `TRUE` and `FALSE`.  If set to auto (the new default) it automatically enables dark theme based on user system color scheme preference.
+- `showF7Preloader()` has new `type` parameter and a new modal dialog support (if `type` is passed). New `id` parameter that has to be set when `type` is not NULL.
+- `hideF7Preloader()` has a new `id` parameter. This is to hide modals or progress from the server.
+- New `updateF7Preloader()` to be able to update a progress preloader from the server.
+- `f7PhotoBrowser()` fixed the `pageBackLinkText` to `back` when type was set to `page`, but this has been removed. The Framework7 default is now used, or the `pageBackLinkText` can be set manually (iOS only).
+- `f7ColorPicker()` has new `...` parameter to pass custom options and now returns a list of values with hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
+- `f7Slider()` has new `...` parameter to pass extra options. New
+`showLabel` parameter: fix an unfortunate naming conflict between the input label (name) and the name Framework7 has given to the bubble component (label).
+- `f7AutoComplete()` and `updateF7AutoComplete()` have new `...` parameter to pass extra options as well as a new `style` parameter to customize the input look and feel. `f7AutoComplete()` has new `style` parameter to allow for custom styling only when `openIn` is `dropdown`.
+- `f7SplitLayout()` has a new look and at a minimal app width (1024 px) the sidebar becomes always visible. The sidebar will be collapsed on smaller screens. 
+- `f7Text()`, `f7TextArea()` and `f7Password()` have new parameters: `description`, `media`, `floating`, `outline` and `cleareable` for more styling options. `label` can also be NULL.
+- `f7Select()` has new `description`, `media` and `outline` parameters.
+- `f7Link()` has new `routable` parameter which allows to use the new experimental router layout in `f7MultiLayout()`.
+- `f7Navbar()`: both `leftPanel` and `rightPanel` now accept shiny tags such as an icon or link. This is useful to support
+the new router layout. Items must be wrapped in a `shiny::tagList()`.
+- New `f7DefaultOptions()`: can be used in `f7Page()` to pass app options.
+- `f7Picker`, `f7DatePicker` and `f7ColorPicker` now have an additional `style` parameter to set the input style and inherit from `f7List` options such as outline, inset, strong and dividers.
+- `f7Toggle()` and `f7Stepper()` automatically detect when they are called inside a `f7List` and adjust accordingly to the list style.
+- `f7TabLink()`: `href` can now be different of `#` if passed in `...` (Default is still `#` when no custom `href` is detected). This allows to use tab links as routable links but with a better rendering in the toolbar/tabbar than classic `f7Link()`.
+- `updateF7App` can now also handle changes in app theme (ios or md), dark mode, and color.
+- `f7Fabs()` has a new argument `global` that can be used to make FABs persistent across different tabs in `f7TabLayout()`. 
+- `f7ExpandableCard()` has a new argument `buttonColor` that can be used to control the color of the close button.
+- `f7Login()` has a new argument `cancellable` that can, optionally, show a cancel button to close the login window. `f7LoginServer()` also return the cancel state so it can be used to trigger actions on the server side, like changing tab.
+- `updateF7Login()`: new `cancel` parameter to close the login window.
+- Fix various issues in documentation.
+- Include new vignettes.
+
 # shinyMobile 1.0.1
 
 ## New

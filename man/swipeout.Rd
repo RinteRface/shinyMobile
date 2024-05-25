@@ -5,27 +5,20 @@
 \alias{f7SwipeoutItem}
 \title{Framework7 swipeout element}
 \usage{
-f7Swipeout(
-  tag,
-  ...,
-  left = NULL,
-  right = NULL,
-  side = c("left", "right", "both")
-)
+f7Swipeout(tag, ..., left = NULL, right = NULL, side = deprecated())
 
 f7SwipeoutItem(id, label, color = NULL)
 }
 \arguments{
 \item{tag}{Tag to be swiped.}
 
-\item{...}{When side is either "right" or "left" use this slot to pass
-\link{f7SwipeoutItem}.}
+\item{...}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.}
 
 \item{left}{When side is "both", put the left \link{f7SwipeoutItem}.}
 
 \item{right}{When side is "both", put the right \link{f7SwipeoutItem}.}
 
-\item{side}{On which side to swipe: "left", "right" or "both".}
+\item{side}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.}
 
 \item{id}{Item unique id.}
 
@@ -40,55 +33,79 @@ f7SwipeoutItem(id, label, color = NULL)
 }
 \examples{
 if (interactive()) {
- library(shiny)
- library(shinyMobile)
+  library(shiny)
+  library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "Swipeout",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "Swipeout"),
-       # simple list
-       f7List(
-         lapply(1:3, function(j) {
-           if (j == 1) {
-             f7Swipeout(
-               tag = f7ListItem(letters[j]),
-               side = "left",
-               f7SwipeoutItem(id = "alert", color = "pink", "Alert"),
-               f7SwipeoutItem(id = "notification", color = "green", "Notif")
-             )
-           } else {
-             f7ListItem(letters[j])
-           }
-         })
-       )
-     )
-   ),
-   server = function(input, output, session) {
-     observe({
-       print(input$alert)
-       print(input$notification)
-     })
+  media_item <- function(j) {
+    f7ListItem(
+      title = letters[j],
+      subtitle = "subtitle",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum, ut dignissim
+            lacus tincidunt.",
+      media = tags$img(
+        src = paste0(
+          "https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"
+        )
+      ),
+      right = "Right Text"
+    )
+  }
+  shinyApp(
+    ui = f7Page(
+      title = "Swipeout",
+      f7SingleLayout(
+        navbar = f7Navbar(title = "Swipeout"),
+        # simple list
+        f7List(
+          mode = "media",
+          strong = TRUE,
+          outline = TRUE,
+          inset = TRUE,
+          lapply(1:3, function(j) {
+            if (j == 1) {
+              f7Swipeout(
+                tag = media_item(j),
+                left = tagList(
+                  f7SwipeoutItem(id = "alert", "Alert"),
+                  f7SwipeoutItem(id = "notification", color = "green", "Notif")
+                ),
+                right = f7SwipeoutItem(id = "toast", "Click me!")
+              )
+            } else {
+              media_item(j)
+            }
+          })
+        )
+      )
+    ),
+    server = function(input, output, session) {
+      observe({
+        print(input$alert)
+        print(input$notification)
+      })
 
-     observeEvent(input$notification, {
-       f7Notif(
-         text = "test",
-         icon = f7Icon("bolt_fill"),
-         title = "Notification",
-         subtitle = "A subtitle",
-         titleRightText = "now"
-       )
-     })
+      observeEvent(input$notification, {
+        f7Notif(
+          text = "test",
+          icon = f7Icon("bolt_fill"),
+          title = "Notification",
+          subtitle = "A subtitle",
+          titleRightText = "now"
+        )
+      })
 
-     observeEvent(input$alert, {
-       f7Dialog(
-         title = "Dialog title",
-         text = "This is an alert dialog"
-       )
-     })
+      observeEvent(input$alert, {
+        f7Dialog(
+          title = "Dialog title",
+          text = "This is an alert dialog"
+        )
+      })
 
-   }
- )
+      observeEvent(input$toast, {
+        f7Toast("This is a toast.")
+      })
+    }
+  )
 }
 }

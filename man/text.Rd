@@ -3,9 +3,19 @@
 \name{f7Text}
 \alias{f7Text}
 \alias{updateF7Text}
+\alias{f7TextArea}
+\alias{updateF7TextArea}
+\alias{f7Password}
 \title{Framework7 text input}
 \usage{
-f7Text(inputId, label, value = "", placeholder = NULL)
+f7Text(
+  inputId,
+  label = NULL,
+  value = "",
+  placeholder = NULL,
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
+)
 
 updateF7Text(
   inputId,
@@ -14,73 +24,154 @@ updateF7Text(
   placeholder = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
+
+f7TextArea(
+  inputId,
+  label,
+  value = "",
+  placeholder = NULL,
+  resize = FALSE,
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
+)
+
+updateF7TextArea(
+  inputId,
+  label = NULL,
+  value = NULL,
+  placeholder = NULL,
+  session = shiny::getDefaultReactiveDomain()
+)
+
+f7Password(
+  inputId,
+  label,
+  placeholder = NULL,
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE,
+    clearable = TRUE)
+)
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Text input id.}
 
-\item{label}{The label to set for the input object.}
+\item{label}{Text input label.}
 
-\item{value}{The value to set for the input object.}
+\item{value}{Text input value.}
 
-\item{placeholder}{The placeholder to set for the input object.}
+\item{placeholder}{Text input placeholder.}
+
+\item{style}{Input style. A list with media (image or icon),
+description (text), floating, outline and clearable (booleans).}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
+
+\item{resize}{Whether to box can be resized. Default to FALSE.}
 }
 \description{
 \code{f7Text} creates a text input container.
 
 \code{updateF7Text} changes the value of a text input on the client.
+
+\code{f7TextArea} creates a f7 text area input.
+
+\code{updateF7TextArea} changes the value of a text area input on the client.
+
+\link{f7Password} creates a password input.
+}
+\note{
+Updating label does not work yet.
 }
 \examples{
-# A text input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-      navbar = f7Navbar(title = "f7Text"),
-      f7Text(
-       inputId = "caption",
-       label = "Caption",
-       value = "Data Summary",
-       placeholder = "Your text here"
+app <- shinyApp(
+  ui = f7Page(
+    f7SingleLayout(
+      navbar = f7Navbar(title = "Text inputs"),
+      f7Block(f7Button("update", "Click me")),
+      f7BlockTitle("A list of inputs"),
+      f7List(
+        inset = TRUE,
+        dividers = FALSE,
+        strong = TRUE,
+        f7Text(
+          inputId = "text",
+          label = "Text input",
+          value = "Some text",
+          placeholder = "Your text here",
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
+        ),
+        f7TextArea(
+          inputId = "textarea",
+          label = "Text Area",
+          value = "Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua",
+          placeholder = "Your text here",
+          resize = TRUE,
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
+        ),
+        f7Password(
+          inputId = "password",
+          label = "Password:",
+          placeholder = "Your password here",
+          style = list(
+            description = "A cool text input",
+            outline = TRUE,
+            media = f7Icon("house"),
+            clearable = TRUE,
+            floating = TRUE
+          )
+        )
       ),
-      verbatimTextOutput("value")
-     )
-   ),
-   server = function(input, output) {
-     output$value <- renderPrint({ input$caption })
-   }
- )
-}
-# Update text input
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+      f7Grid(
+        cols = 3,
+        f7Block(
+          f7BlockTitle("Text value"),
+          textOutput("text_value")
+        ),
+        f7Block(
+          f7BlockTitle("Text area value"),
+          textOutput("textarea_value")
+        ),
+        f7Block(
+          f7BlockTitle("Password value"),
+          textOutput("password_value")
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$text_value <- renderText(input$text)
+    output$textarea_value <- renderText(input$textarea)
+    output$password_value <- renderText(input$password)
 
- ui <- f7Page(
-   f7SingleLayout(
-    navbar = f7Navbar(title = "updateF7Text"),
-    f7Block(f7Button("trigger", "Click me")),
-    f7Text(
-     inputId = "text",
-     label = "Caption",
-     value = "Some text",
-     placeholder = "Your text here"
-    ),
-    verbatimTextOutput("value")
-   )
- )
+    observeEvent(input$update, {
+      updateF7Text(
+        inputId = "text",
+        value = "Updated Text"
+      )
+      updateTextAreaInput(
+        inputId = "textarea",
+        value = "",
+        placeholder = "New placeholder"
+      )
+    })
+  }
+)
 
- server <- function(input, output, session) {
-   output$value <- renderPrint(input$text)
-   observeEvent(input$trigger, {
-     updateF7Text("text", value = "Updated Text")
-   })
- }
-shinyApp(ui, server)
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

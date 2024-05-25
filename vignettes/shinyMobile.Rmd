@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-author: "David Granjon"
+author: "David Granjon & Veerle van Leemput"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -8,190 +8,313 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r echo=FALSE}
-knitr::include_url("https://rencontresr2021.rinterface.com/")
-```
-
+  
 ```{r setup, echo=FALSE, message=FALSE}
 library(bslib)
 ```
 
 # Introduction
 
-`{shinyMobile}` is built on top of the [framework7](https://framework7.io) template (V5.7.14) and has different purposes:
+`{shinyMobile}` is built on top of the [Framework7](https://framework7.io) template (V8.3.3) and has different purposes:
 
-  - Develop __mobile-ready__ shinyapps.
-  - Develop __progressive web shinyapps__ (PWA, similar to native apps).
-  - Develop desktop shinyapps.
-  
-## Custom skins
+- Develop __mobile-ready__ Shiny applications
+- Turn your Shiny application into a __progressive web app__ (PWA)
 
-`{shinyMobile}` offers 3 skins:
+Both with the goal of developing mobile apps that look and feel like native apps. 
 
-  - __aurora__ for desktop apps.
-  - __ios__ and __md__ for mobile apps.
+## Classic web apps, native apps and PWAs
 
-It automatically detects if the app is running with android or iOS and accordingly adapts the layout. It is of course possible to apply the iOS skin on an android device and inversely, although not recommended.
+Classic web apps are accessed via a browser and require an internet connection. They are built with HTML, CSS, and JavaScript. They are cross-platform and can be accessed from any device with a browser, which is convenient. This means they work on any mobile device! And your `shiny` app will also work perfectly fine on a mobile device. While this sounds nice, it doesn't give your users the most wonderful experience: a classic Shiny web app is not optimized for mobile devices. To name a few limitations:
 
-`{shinyMobile}` also provides 2 themes, namely light and dark.
+<br>
+
+- There's __no fullscreen__ option and the app is always displayed in a browser with the surrounding browser UI
+- No consideration for __touch interfaces__
+- Not optimized for __small screens__
+- Can't be used when __offline__
+
+<br>
+
+So, what about native apps? Native apps are built for a specific platform (iOS or Android) and are installed on the device. They are developed with platform-specific languages (Swift for iOS, Kotlin for Android) and are distributed via the App Store, Google Play or other stores. Native apps are fast and responsive, and they can work offline. They can also access the device's hardware and software features (camera, GPS, etc.). However, they are expensive to develop and maintain: you need to know multiple languages and maintain multiple codebases.
+
+<br>
+
+Luckily, there is a middle ground: Progressive Web Apps (PWAs). PWAs are web applications that are regular web pages or websites, but can appear to the user like traditional applications or native mobile applications. They combine the best of both worlds: they can be __installed__ on the device, provide __offline__ features, can be __launched from the home screen__, and have a __fullscreen__ display. All with just one codebase!
+
+<br>
+
+Of course, turning your Shiny app into a PWA doesn't get you there completely: you also need UI components that are designed for touch interfaces and optimized for small screens- something Framework7 provides. It only makes sense to bring Framework7 and PWA capabilities to Shiny, and that's what `{shinyMobile}` does!
+
+
+## Themes
+
+`{shinyMobile}` offers 3 themes: 
+
+- __ios__ 
+- __md__
+- __auto__
+
+When set to auto, it automatically detects if the app is running with Android (using Material Design, MD) or iOS and accordingly adapts the layout. It will use the MD theme for all other devices. It is of course possible to apply the iOS theme on an android device and inversely, although not recommended.
+
+<br>
+
+Besides these themes, `{shinyMobile}` gives you the possibility to choose between a light or dark mode, which can be set in the app options that we'll come back to later.
 
 ## Layouts
 
-`{shinyMobile}` brings 3 out of the box layouts:
+`{shinyMobile}` brings 4 out-of-the-box layouts:
 
-  - `f7SingleLayout()`: develop __simple__ apps (best choice for iOS/android Apps).
-  - `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
-  - `f7SplitLayout()`: for __tablets__ and desktop with a sidebar, navbar and a main panel
+- `f7SingleLayout()`: develop __simple__ apps (best choice for iOS/android Apps).
+- `f7TabLayout()`: develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
+- `f7SplitLayout()`: for __tablets__ with a sidebar, navbar and a main panel
+- `f7MultiLayout()`: a layout consisting of __multiple pages__ that allows to have beautiful transitions between pages to provide a more native like experience. This layout is experimental.
 
 ## UI elements
+
+With over 50 core components, `{shinyMobile}` provides a wide range of UI elements to build your app. These components are designed for mobile usage and provide a native app-like experience. They include inputs, containers, buttons, lists, modals, popups, and more. We'll pick a few to highlight here.
+
 ### Inputs: brief comparison side by side with `{shiny}`
 
-`{shinyMobile}` has its own custom input widgets with unique design for each skin (iOS/android/aurora). Below we summarise all known shiny inputs and their
-equivalent with `{shinyMobile}`.
+`{shinyMobile}` has its own custom input widgets with unique design for each theme (iOS/android). Below we summarise all known shiny inputs and their equivalent with `{shinyMobile}`.
 
 |  Features (sample)  |      shiny      |  shinyMobile |
 |----------|:-------------:|------:|
-| Range slider | `sliderInput()` | `f7Slider()` |
-| Text input | `textInput()`, `textAreaInput()` | `f7Text()`, `f7Password()`, `f7TextArea()` |
-| Checkbox | `checkboxInput()`, `checkboxGroupInput()` | `f7Checkbox()`, `f7CheckboxGroup()`|
-| Radio | `radioButtons()` | `f7Radio()` |
-| Toggle switch | ❌ (see `{bslib}`) | `f7Toggle()` |
-| Numeric | `numericInput()` | `f7Stepper()` |
-| Select | `selectInput()` | `f7Select()`, `f7SmartSelect()`, `f7Picker()` |
-| Autocomplete | ❌ | `f7AutoComplete()` |
 | Action button | `actionButton()` | `f7Button()` `f7Fab()`|
-| Date | `dateInput()`, `dateRangeInput()` | `f7DatePicker()`|
+| Autocomplete | ❌ | `f7AutoComplete()` |
+| Checkbox | `checkboxInput()`, `checkboxGroupInput()` | `f7Checkbox()`, `f7CheckboxGroup()`|
 | Color | ❌ | `f7ColorPicker()`|
+| Date | `dateInput()`, `dateRangeInput()` | `f7DatePicker()`|
 | Download | `downloadButton()` | `f7DownloadButton()`|
+| Numeric | `numericInput()` | `f7Stepper()` |
+| Radio | `radioButtons()` | `f7Radio()` |
+| Range slider | `sliderInput()` | `f7Slider()` |
+| Select | `selectInput()` | `f7Select()`, `f7SmartSelect()`, `f7Picker()` |
+| Stepper | ❌ | `f7Stepper()` |
+| Text input | `textInput()`, `textAreaInput()` | `f7Text()`, `f7Password()`, `f7TextArea()` |
+| Toggle switch | ❌ (see `{bslib}`) | `f7Toggle()` |
+
 
 ### Containers
-  
+
+`{shinyMobile}` provides a set of containers to organize the content of your app, including:
+
+- `f7Accordion()`: an accordion container
+- `f7Block()`: content block designed to add extra formatting and required spacing for text content
+- `f7Card()`: a card container
+- `f7List()`: a list container
+- `f7Panel()`: sidebar elements
+- `f7Popup()`: a popup window
+- `f7Sheet()`: a modal sheet
+- `f7Swiper()`: a swiper container (modern touch slider)
+- `f7Tab()`: a tab container, to be used in combination with `f7Tabs()`
+
+<br>
+
+With these containers, you can organize your content in a way that makes sense for your app. Together with the layouts, you can create a wide variety of app designs for different purposes.
+
+### Notifications & progress
+
+There's also a set of components available to keep your users informed:
+
+- `f7Dialog()`: a dialog window
+- `f7Notif()`: a notification
+- `f7Preloader()`: a preloader
+- `f7Progressbar()`: a progress bar
+- `f7Toast()`: a toast notification
+
+<br>
+
+These components can be used to provide feedback to the user, ask for input, or display information. The look and feel of these components are unique to the chosen theme (iOS/Android).
+
+### Gallery
+
+Curious to see a full-blown app built with `{shinyMobile}`? Check out our demo gallery! You can run the gallery with the following code:
+
+```{r, eval=FALSE}
+f7Gallery()
+```
+
 # Create your first App
 
 ## Page
-It is the main template skeleton.
+
+Every `{shinyMobile}` app starts with a `f7Page()`.
 
 ```{r, eval=FALSE}
 f7Page(
-  ..., 
+  ...,
   options = list(...),
   title = NULL,
   allowPWA = FALSE
 )
 ```
 
-__options__ sets up the app look and feel (See dedicated section below). `f7Page()` accepts any `{shinyMobile}` layout (See below).
+`f7Page()` accepts any of the following `{shinyMobile}` layouts: `f7SingleLayout()`, `f7TabLayout()`, `f7SplitLayout()` or the experimental `f7MultiLayout()`, which we will discuss further in the Layouts section. 
 
-### Navbar
-The __navbar__ is a mandatory element of any `{shinyMobile}` layout.
-It contains a title, a subtitle and triggers for both right and left panels (`f7Panel()`).
+<br>
+
+The `options` sets up the app look and feel, and there's plenty of options to choose from, which we'll discuss below. 
+
+<br>
+
+The `allowPWA` parameter allows you to add the necessary PWA dependencies to turn your app into a PWA.
+
+## App options
+
+This is where you can customize the global app behavior: 
+
+```{r, eval=FALSE}
+options <- list(
+  theme = c("auto", "ios", "md"),
+  dark = TRUE,
+  skeletonsOnLoad = FALSE,
+  preloader = FALSE,
+  filled = FALSE,
+  color = "#007aff",
+  touch = list(
+    touchClicksDistanceThreshold = 5,
+    tapHold = TRUE,
+    tapHoldDelay = 750,
+    tapHoldPreventClicks = TRUE,
+    iosTouchRipple = FALSE,
+    mdTouchRipple = TRUE
+  ),
+  iosTranslucentBars = FALSE,
+  navbar = list(
+    iosCenterTitle = TRUE,
+    hideOnPageScroll = TRUE
+  ),
+  toolbar = list(
+    hideOnPageScroll = FALSE
+  ),
+  pullToRefresh = FALSE
+)
+```
+
+The default options are all set with the help of `f7DefaultOptions()`.
+
+<br>
+
+As stated above, you may choose between 3 themes (`md`, `ios` or `auto`) and there is support for a dark or light mode. The `dark` option supports 3 values: `TRUE`, `FALSE` or `"auto"`. In case of `"auto"`, the default, the app will automatically switch between dark and light mode based on the user's system settings.
+
+<br>
+
+The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, and more. Note that the behaviour is different on the MD and iOS themes: in the MD theme the color gets "blended in" with the background, while in the iOS theme the color is more prominently visible in the elements. Another option to get more control over the colors in the app is using __filled__. It allows you to fill the navbar and toolbar with the chosen color if enabled. 
+
+<br>
+
+__hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
+
+<br>
+
+Framework7 has many more [options](https://framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter- so you're not limited to the list above.
+
+## Navbar
+
+Before we dive into the different layouts, we'll take a look at components necessary for a layout- starting with the navbar. The __navbar__ is a mandatory element of any `{shinyMobile}` layout. It contains a title, a subtitle and triggers (if desired) for both right and left panels (`f7Panel()`).
 
 ```{r, eval=FALSE}
 f7Navbar(
-  ..., 
-  subNavbar = NULL, 
-  title = NULL, 
-  subtitle = NULL,
-  hairline = TRUE, 
-  shadow = TRUE, 
+  ...,
+  subNavbar = NULL,
+  title = NULL,
+  hairline = TRUE,
   bigger = FALSE,
   transparent = FALSE,
-  leftPanel = FALSE, 
+  leftPanel = FALSE,
   rightPanel = FALSE
 )
 ```
 
-For complex apps, you can even add it a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as shadow and hairline.
+For complex apps, you can even add a sub-navbar with `f7SubNavbar(...)`, which may contain any element like `f7Button()` or text. `f7Navbar()` exposes styling parameters such as `hairline` (a subtle border), `bigger` (size of the navbar text) and `transparent`(for a transparent navbar).
 
-### The Toolbar
+## Toolbar
 
-This is an option if you decide not to embed a `f7SubNavbar()`. The toolbar is the
-right place to add `f7Button()`, `f7Link()`, `f7Badge()`... Its location is controlled with the position parameter (either top or bottom).
+This is an option if you decide not to embed a `f7SubNavbar()` in the navbar, but still would like to have additional buttons or text. The toolbar is the right place to add things like `f7Button()`, `f7Link()` or `f7Badge()`. Its location is controlled with the position parameter (either top or bottom).
 
 ```{r, eval=FALSE}
 f7Toolbar(
-  ..., 
-  position = c("top", "bottom"), 
-  hairline = TRUE,
-  shadow = TRUE, 
-  icons = FALSE, 
+  ...,
+  position = c("top", "bottom"),
+  icons = FALSE,
   scrollable = FALSE
 )
 ```
 
+Besides simply using `"top"` or `"bottom"`, you can also use different positions for iOS and MD themes by using: `"top-ios"`, `"top-md"`, `"bottom-ios"`, or `"bottom-md"`.
+
+<br>
+
 Under the hood, `f7Tabs()` is a custom `f7Toolbar()`.
 
-### Panels
+## Panels
 
 Panels are also called sidebars, `f7Panel()` being the corresponding function.
 
 ```{r, eval=FALSE}
 f7Panel(
-  ..., 
+  ...,
   id = NULL,
-  title = NULL, 
+  title = NULL,
   side = c("left", "right"),
-  theme = c("dark", "light"), 
-  effect = c("reveal", "cover"),
+  effect = c("reveal", "cover", "push", "floating"),
   resizable = FALSE
 )
 ```
 
-`f7Panel()` has a __theme__ option, regardless of the main app theme.
-For instance, it is entirely possible to create a dark `f7Panel()` while the page
-theme is light, and conversely. Its behavior is controlled via the effect argument:
+`f7Panel()` can have different behaviors and this is controlled via the `effect` argument:
 
-  - __reveal__ makes the body content move and resize.
-  - __cover__ covers the body content.
-  
+- __reveal__ makes the body content move and resize.
+- __cover__ covers the body content.
+- __floating___ makes the panel float over the body content.
+- __push__ pushes the body content to the side.
+
+<br>
+
 The __resizable__ argument allows to dynamically resize the panel.
 
+<br>
+
 Note that for the moment, there is no option to control the width of each panel.
-  
-As stated previously for the `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`.
-Finally do not forget to set up the `f7Navbar()` so that panels are allowed!
+As stated previously for `f7SplitLayout()`, the `f7Panel()` may also be considered as a sidebar. In that case, we may include `f7PanelMenu()`. We'll get into more details about the split layout at the [dedicated section](#Split Layout).
 
-### The appbar
+## Layouts
 
-`f7Appbar()` is displayed on top of the `f7Navbar()`. It is a best choice to embed
-`f7Searchbar()`. `f7Appbar()` may also trigger `f7Panel()`. 
+`{shinyMobile}` offers four layouts: 
 
-```{r, eval=FALSE}
-f7Appbar(
-  ..., 
-  leftPanel = FALSE, 
-  rightPanel = FALSE,
-  maximizable = FALSE
-)
-```
+- `f7SingleLayout()`
+- `f7TabLayout()`
+- `f7SplitLayout()`
+- `f7MultiLayout()` (experimental)
 
-## Select a template
+<br>
 
-This choice is crucial when you are developing an App. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets and desktop apps.
+The layout choice is crucial when you are developing an app. It depends on the complexity of your visualizations and content. If your plan is to develop a simple graph or table, you should go for the `f7SingleLayout()` option. For more complex design, the best is `f7TabLayout()`. `f7SplitLayout()` is specific for tablets apps.
 
-### Simple Layout
+### Single Layout
 
 `f7SingleLayout()` is dedicated to build simple, one-page apps or gadgets.
 
 ```{r, eval=FALSE}
 f7SingleLayout(
-  ..., 
-  navbar, 
-  toolbar = NULL, 
-  panels = NULL,
-  appbar = NULL
+  ...,
+  navbar,
+  toolbar = NULL,
+  panels = NULL
 )
 ```
 
-While only the navbar is mandatory, other components such as the toolbar are 
-optional for the `f7SingleLayout()`.
+Only the navbar is mandatory, other components such as the toolbar are optional for the `f7SingleLayout()`.
 
-The app below runs with specific options:
+The app below runs with specific app options:
 
-```r
+```{r, eval=FALSE}
 f7Page(
-  options = list(dark = FALSE, filled = FALSE, theme = "md"),
+  options = list(
+    dark = FALSE,
+    filled = FALSE,
+    theme = "md"
+  ),
   ...
 )
 ```
@@ -199,16 +322,17 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFWPUcAJqmqsjIkxPYBzB5aKkATCpFmopKOyFgcMQQRDC0BJwA+tQkDgEqQSSh4VExEA4ABAA8ALQZiSFhEdGxGQCkAHxlIhkZDoxEAK6okfQcAG4stFD0SgLlVTUZnHQEcOzsEOwCOQCMAAzzAohTAp4QIlL8AILo-hC1jbQZALwZAGYA7AAKUA7jQ7VEqKS0JJynGXScpOzejABrT4AMW2ABkAMoAUVwF0USjMIPB0NhpG4cHgnwCMDM8Vwjwyr1ISixYBkrAyaFQAXxB1qF0uEL4DiUYKgrCavwJtWg7XoLE+VwAclA+Sx9vTJYTaMS4KSmekSWyOY1SDTufT9LRGHQIHKzgAVLAAVRhGtqPCgZiIAHdPkbTRqBLSpYSiERqPzGILLgb3Z7xeaMqgiJwZW8DmcAvRXKRQuq6a6rmC+AD2NQenBqKSUxAgbMaRluIw4OdSdxSKRUJxEAB6Ws2xsYBzullwDDEGB4oPJ1PpzPZqNgXNAtyF4ul8uV6t1htNltENsd+NgFSu50agDEGRgUD4GWC5DIGquEP01ptEtdGT4R7DpApZ1mADYXdfuER2nBvYaTWbE1KVwAMIsGYV7XtKsqkiBjCIuiVrfgmEG1Fouj6IwpAAPKqqgqr+CgJZQEB6FqquQZrlKFG1BRG50pw35fj+FyNBABCvCQ7B8LhpCwpy3H9CABJ8aqAAkLBwERJHZHkJYQGY367DoegGOwgkAShqA6OBUreL4nwFMkxRpA4b6ug+mmkuJUBIdeu7oMynxQHAnDaa62ifLpcCmdej4ZJ01CNHA8yzN5Sbwp8nSMN0vRwORToDNU6n0lA2iRKwKW0C58kELQu7UJwACSEDAjEPifB4CUZNuECNDA9DfhkRBltluVQPlboZACcBwNSSUoalykYVwvgEF1iK-qa-SVIlEEpWlGUubu7lnAALKi4QAtsMBNGQnwrVRGQAL4UYdIgCGAh0ALpAA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEAiNJEYAfS3DSUceIAEAHgC0rgGZsCpJIkrtyoUAQA1lAA5nDCuK4McKhEwq4AvK4AcgCqADJ5CVo+RBnZ+YWuUnRluQUJAI4sknCkZQBiAIJ5AMoAognmrsOuHFxlACpYOX0mruYgQyOSPiGSwhgQLC7c1SZzixAjx1XSHt4Y1QAKUKTqwtwmwMAAjAC6b0vDAL5fritrDZbHZJFLCfauQ4nEag1LnVyxUgAeVQgRIfBo9AYtlQEWitlhwlMf1+RxGADc4Ax4fwACwYekABn4f0p1K8COELDoGN4fN4GGAAD0MG8ANQAEn4gzA0tcbLMZOGhPh0S5PP4AileHmsp1hMVx2IZAYZw5wlQprIPgxAFJhAIDBABHAYMICKbURQBMbSKaZPa5YTBkqTgq-r7-ar1RjYRgGJ5qFBhDAMEQGNFHVoXW6PZIvc7I9IBPSAMxyv7HfhxhNJlNpjNZ52u92e8iFkh+4tljDlnVFugh6HDHySAAecAAJpNprM-gDuOtNttxIuICUIVDh8VShyWIFxMJmFByVBDFA6EYMGFIjE4twBywGG5MgPDSNScdJ8k0nuIFJHG4awiEPZgbyiWJbG-VAKG-CwWgecC73if51yIEwh2HEQ4E2WA4g6bp+nfYZoN-bw2EkJo4G4UjiN8dMQmg1DXFoyFK2WVZdgoaI7m4UcIEna9wgg6joMaZpWhnGZ9gOdjoQgOAx1IOTXE-bcIEcZxVzExJklSIo0ISapxJaUgEjGMg6LUkcGNCPFmKQ2JwTY0NjgXIwIB49Q+K0QTHOo3FohMyTMimaTNxU44FKUlTrJOBcAEJAtcW0tFtRIiGoaB4AeHcItc4ckwYCAtGiUJk3IDEsDgKjHCnVx-LlQKZQgIg2hKNhpy0VxaDoLBXCdJRlF0lIMFMOjh1caLlIKn4VNheEd2AZrdWqsFJGsFR+E+WaRt3bwY34UcjEQCs9QSWEElHCdp1C2cJpGQLbDZRa0OWvEZQANSpYQgggbaVMSppTLmSKRhy4Q73KuqMQAEUy-8iCgSdSp6+h+v806dUC-ZAc4izSFk3bjj9ZQAGFbgIbyt0m6FeqYZgHCcFxnp8YR7BgKHLtOQcGo+vn8XDYmPwSKkGAYzI-AsNEIAfASidp7dOIS6JQVXfgcmgS84FcawWIR8QkcnOVjRRmWdDiSHYjlycZJcxXJscIhUBth7Fbih3UM0lnSGiAAvbhueMgWEieoXPe+N3VJUuBDx1mnaaZrTbF9gOg+kUP+bDqko7iuKtHJdZpCMbg6jyRVSXMSwnbsJOdiWfgNC0XR9EMYw8CWFVXwxdRSFIVAjwEAQrXIBgfHCHDog29RuQwIJh60Ufx4IOBE2TGBPA9KBnTO3v+8H4e9PjNf63TaJiQgRVzGqRQVG4JvtEVG+hvvzRtD0AwjCfhQX7QRSqaUKPb+jAX6TlQOIZQDBgG32UNwaI0RwFtQAExXwErcKAGI4DGhsJIAg7NDaeQvlgkgOC8G2AIdEeExDWowFwfgkglDbQAD5bRLFVpwVAtg6CwNPKaC8X8UosKWMIKQK9uDcFliYTwLxGSMhMIgSRqDzAP2UJ0dAfAyTNDKD4AA7Dca2fxnYyzSJkACPBJxKAiARXoAxfCGCMLdVwXQbEJDuK6HWmR+AwGNmADCfxAikCMGUfgOhhpoFQNKP4uieilSMHkKAyhOA8HYtAckdAlDaJ0VkE86SGBAQ2kEzxYAYmeSCfExJ+5TC4HYsBcQuTMkTCICBXJGjJrrRlsEsAdA2rWBgJE3aui8haAiLsC8sdOlDIgFYl4cp1BJFWEUveA9EBD2oGsjA0QmnRCvMQPpvjqkDJ0ZMkZ4gxkvl1Mc1wSDZnzM6Usg+azqAbK2TsmwF9oR+IKgAYlGGeI4voKAzWhLoimDBJytOHEkqQCkpIDHmmeYQ9U7ozAOZNFGhdvzUmRXC3aATCm6lBdOdQcBkZUn6ZNP+Y4AEMGRPuVA+4MRKBJWTdQgD3knDou+T5wxEUMBepLfwMs1z0rMq4JJIqFYjHFfuCUTKoAssAfCJIAkqRqP-qyml3AE7DEpRC6EFinBlGoaQ+hnlUXDlIMoGCnS5XkuHJzdAqNMhQHvGDMcZQDVwHNZNYamRTziBYHARkLxvXDmOuc3hkh+HGF2g9OYzDWG7SgGOWwyhk3rBolgyQnNDwAEkIDtENrcMoKDBHpR+VsGAdAqRitWN+Ag2bnBpD1hEOAyQVLJtsNSngmlIhItcGFWYZaO0prTWODNnN3WZFpK43BEROgEzKLSKy75SQmDAN8N4QA", # nolint
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#singleLayout" role="button" aria-expanded="false" aria-controls="singleLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -223,32 +347,26 @@ library(ggplot2)
 data("economics_long")
 economics_long <- economics_long %>%
   group_by(variable) %>%
-  slice((n()-100):n())
-
+  slice((n() - 100):n())
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
     options = list(dark = FALSE, filled = FALSE, theme = "md"),
+    title = "My app",
     f7SingleLayout(
-      navbar = f7Navbar(
-        title = "Single Layout",
-        hairline = TRUE,
-        shadow = TRUE
-      ),
+      navbar = f7Navbar(title = "Single Layout"),
       toolbar = f7Toolbar(
         position = "bottom",
         f7Link(label = "Link 1", href = "https://www.google.com"),
         f7Link(label = "Link 2", href = "https://www.google.com")
       ),
       # main content
-      f7Shadow(
-        intensity = 16,
-        hover = TRUE,
-        f7Card(
-          title = "Card header",
-          apexchartOutput("areaChart")
-        )
+      f7Card(
+        outline = TRUE,
+        raised = TRUE,
+        divider = TRUE,
+        title = "Card header",
+        apexchartOutput("areaChart")
       )
     )
   ),
@@ -272,27 +390,30 @@ shinyApp(
 ```
 </div>
 
-### Tabs Layout
+### Tab Layout
 
 Choose this layout to develop complex __multi-tabbed__ apps (best choice for iOS/android Apps).
 
 ```{r, eval=FALSE}
 f7TabLayout(
-  ..., 
+  ...,
   navbar,
   messagebar = NULL,
-  panels = NULL, 
-  appbar = NULL
+  panels = NULL
 )
 ```
-  
+
 The ... argument requires `f7Tabs(..., id = NULL, swipeable = FALSE, animated = TRUE)`. The id argument is mandatory if you want to exploit the `updateF7Tabs()` function. `f7Tabs()` expect to have `f7Tab(..., tabName, icon = NULL, active = FALSE)` passed inside.
 
 The app below runs with specific options:
 
-```r
+```{r, eval=FALSE}
 f7Page(
-  options = list(dark = FALSE, filled = FALSE, theme = "md"),
+  options = list(
+    dark = FALSE,
+    filled = FALSE,
+    theme = "md"
+  ),
   ...
 )
 ```
@@ -300,17 +421,18 @@ f7Page(
 ```{r, eval=TRUE, echo=FALSE}
 card(
   shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw48+rALJF6tanGGiGzNuzRwAHgW4tyjFSNRFq1AAQAeALQWAJlFJQMAM2bx2IixagROAO5wjBYAvBYEXmAAmnCcQngWCQByRAkCuN4WEGER7ABMAKwALLgW+QDMABwqxv68-ACC6F45FgCutLmuAOwAClAA5nCtPj5EqKS0JJy5dJyk7I6MANa5AGKNADIAygCiZa6KSvYb2-tlpNxw8LkJMPbpmW0+U6RKd2AyrL7oCc9jCy9AAqUHoWygrCI7UWWUBqD8cGos3CzkGW1oC1GgLGvQGECR7DeH3CCS2cFcpAs+KR-wsnFo9jgnyUlLpVxuzNJNFog24pDpCQAQtQwaK6RTXHACFTucQAG7BJ5wnF4xHUIm0d5cpJgLC8-nU9V0hlMz6MA0CxIc27c5YrQVgEViqAS1xSmWfBVKsAqHEWDIqnzQeX0FjdHrJKChljY-3EnUJUH0eJ4INjfS0Rh0Am5YFYACqB3TPh4UHsRACecLxZeONZpBplnC+aLAP9FgtfMb6urRfTgbrPhBYM4cZxfloMCccFOLZr7f9AGJArRUHAxTrW7WO0Cesnx-GtSTdcmLABGf4lsbOehR22nsGXtNDnG0Yg5cK9ACSH6irjMJlGGVV9ASgGVaEVPta2vYceh2fQKwCQ8Oz4ch-C1H5wnPAAGRddwsbgiEVEJ5zbWDcR6ABhFh7BQ3cE0+GjGFOa5yx9fCCN+HQ9AMAB5GFUBhKJUFoOB0gonw-QI6T-UHXcR3oeib2PRMwDPfIr1Am8wXvNTk00l8uPfEgI1-EgohWOBWHoIhaJArjwKmKDwk2XYdwI3oEPLStlMBNCKAZUgsIvPDJMI4jgmgziO16Zi6PC15VKY2jCI3ICtK4sD110fRGFIATSCE2EwE4AgnEMCTtMBWSO1qmqYrgg8KMY7kzwqTKCNvPTPmTDqjIIkzPz3cyICiUVWGCTgAH0oGoK15IIpzIJ1NyLgorzEN88KAow4LclwxqcSIkjovCuLaL8nFWt1eK0vY4CBqyvcdmnfKdiRaVYWqjsEnlFhaE3Trnp8BIADUAc3WZSCIekiICRBgZByIEio1gcyA1MvXRpGQdPZh-BgTEGRIBJPlgXGQYSABxDdGCx7lhhYBy8YsCYKG-YaEh4OA4CtI7dxgdp5rXE9t0SgMBeuzdCuKqJHGcKrnvqnEVakgcVWkxbOGCU6v3aCAIIsvhirKaEiphModc4EmIAECwQBEFUl07FaQlQagiAFOsFbiaw7EYDcIMVLg4AARwwAARGd2B2VhOCjmP7bsCo8IsOOE+j8h2AyCx6BCk2YQAEnzgQ6kBc3iqL0TmVsTsKCA5oeLyxZHdfLRtGUhWoFyUxzCO4L10+GvKZ8ad0D4QZcigOJ2G0af-CCRgyhCu2NbrABfcuxkr4uyoqqK68DiBG5y3j8vYNv-Q7runB78IYFIcr6YH1gh+5ffSEqp6cXH0SICnuEGeY4KLz3CAEUgUsQowFQIMKWRxzC5AIDjbSKtapbydhAZ2Dg763iUCqXepAi7d39vXE+wRkxKEvumR+z9ODADKCjMAMDBh0kLkQ-6FpNy53sIwCYZx3IAF0VQbzKHwgI0B4AogsNuaSG8RACDABvQRQA", #nolint
+    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEAiNJEYAfS3DSUceIAEAHgC0rgGZsCpJIkrtyoUAQA1lAA5nDCuK4McKhEwq4AvK4AcgCqADJ5CVo+RBnZ+YWuUnRluQUJAI4sknCkZQBiAIJ5AMoAognmrsOuHFxlACpYOX0mruYgQyOSPiGSwhgQLC7c1SZzixAjx1XSHt4Y1QAKUKTqwtwmwMAAjAC6b0vDAL5fritrDZbHZJFLCfauQ4nEag1LnVyxUgAeVQgRIfBo9AYtlQEWitlhwlMf1+RxGADc4Ax4fwACwYekABn4f0p1K8COELDoGN4fN4GGAAD0MG8ANQAEn4gzA0tcbLMZOGhPh0S5PP4AileHmsp1hMVx2IZAYZw5wlQprIPgxAFJhAIDBABHAYMICKbURQBMbSKaZPa5YTBkqTgq-r7-ar1RjYRgGJ5qFBhDAMEQGNFHVoXW6PZIvc7I9IBPSAMxyv7HfhxhNJlNpjNZ52u92e8iFkh+4tljDlnVFugh6HDHySAAecAAJpNprM-gDuOtNttxIuICUIVDh8VShyWIFxMJmFByVBDFA6EYMGFIjE4twBywGG5MgPDSNScdJ8k0nuIFJHG4awiEPZgbyiWJbG-VAKG-CwWgecC73if51yIEwh2HEQ4E2WA4g6bp+nfYZoN-bw2EkJo4G4UjiN8dMQmg1DXFoyFK2WVZdgoaI7m4UcIEna9wgg6joMaZpWhnGZ9gOdjoQgOAx1IOTXE-bcIEcZxVzExJklSIo0ISapxJaUgEjGMg6LUkcGNCPFmKQ2JwTY0NjgXIwIB49Q+K0QTHOo3FohMyTMimaTNxU44FKUlTrJOBcAEJAtcW0tFtRIiGoaB4AeHcItc4ckwYCAtGiUJk3IDEsDgKjHCnVx-LlQKZQgIg2hKNhpy0VxaDoLBXCdJRlF0lIMFMOjh1caLlIKn4VNheEd2AZrdWqsFJGsFR+E+WaRt3bwY34UcjEQCs9QSWEElHCdp1C2cJpGQLbDZRa0OWvEZQANSpYQgggbaVMSppTLmSKRhy4Q73KuqMQAEUy-8iCgSdSp6+h+v806dUC-ZAc4izSFk3bjj9ZQAGFbgIbyt0m6FeqYZgHCcFxnp8YR7BgKHLtOQcGo+vn8XDYmPwSKkGAYzI-AsNEIAfASidp7dOIS6JQVXfgcmgS84FcawWIR8QkcnOVjRRmWdDiSHYjlycZJcxXJscIhUBth7Fbih3UM0lnSGiAAvbhueMgWEieoXPe+N3VJUuBDx1mnaaZrTbF9gOg+kUP+bDqko7iuKtHJdZpCMbg6jyRVSXMSwnbsJOdiWfgNC0XR9EMYw8CWFVXwxdRSFIVAjwEAQrXIBgfHCHDog29RuQwIJh60Ufx4IOBE2TGBPA9KBnTO3v+8H4e9PjNf63TaJiQgRVzGqRQVG4JvtEVG+hvvzRtD0AwjCfhQX7QRSqaUKPK+EAUguHhJOW4UAMA+EUPAPgZJt7CFoNSbu-AACacQzpZCIKYXASwjjdwAEwAFZaQJEIaWAAHIqYBD9lCdHQPA4YzQyg+AAOw3Gtn8Z2Ms0iZAAjwCBDAIgEV6AMXwhgjC3VcF0MRCQ7iuh1pkfgMBjZgAwn8QIpAjBlH4DoYaaBUDSj+OwiYF48hQGUJwHg7EwgKUPGUJw0Q8jrBsbtdhNx7FMNplonRyiwB5DgD4NonjY4VmFr9b8uiwBGGCcY4WHjt6xwtlsbxisHAhVcGFAYYNhjWKkApKSOThbDAAMSuByMIHWG0WyuGTLrC8U0TySGiLcP6rgSDiGULk3wHCkniAAJLkBgGkh2Tg6BZDwtE8ZVTSCeDMXQF48TPbDF8Uo3UExSgLNcEsjuJTljGlYWwgZxoMQlHEN+BguCenDHCIESkRSekaP2Yk+xQzXSjMVuMyZ8BpkXlmfMi8hDlkrLWdEzZWTGnAr2Ss-4hzJbHNOfwCIcBlB0CRgwNRUdjjPM9q82O7yRk3IaRMqZ-iZmtEBXQPseD9mrI2n4jZWzGk0uJZIeFvSTnon4OISxP1bDOGUuop5YMMLzGFkEnwcAAjRJ8IbNpnkWS7VxcOfFq4wX+KwC03urhQniDlJE9Z1ZtVCqumwgAQobSIGJLUXl5bg1wkrpVtH8XKpGgRFXCoKiqqKJ46BKCOZM8k-qGCfJGBqjZ-zXAWKsfuEF0J1BnmfFodZ2TaWTViaQPVRT03DlNNEXu2a7ozHYj6kYpj-lhtuSVTm5BpFpsBtI-gFLTUqQrRqYWEb+DbN2bmya3yyWRsWfG7cHL2FctlkdEClzrnCzuZIB5xbimK3YRTTFVaTj5JTTm+aZ4qn1tnH2k4KNC6XJ3XS3WDKjVgDXdOdQcBkZUhHYrP+Y4AEMGRPuVA+4MSoBaBfT2Ucy3HHbRu+l2jr3bOhUe6EA7fn+IWdBsG7LggIonRiFFaKMVYpgycVdShJxgZGFuwpS7cPKj3fVMjKkT2SDPdRi9Xab0EdcPex9VyYUrNfe+z9-cf2NwILcUeAGHZAfI70hZRGmPbNZZ2i8PzIMXlk+ksdiLuUxL5QwdmgrZ0rrYbeojeT9wFNTYe3d6wqNZLM7tWj9GrMzHE7Bq90Tb2sYfTOzjeK2E9E5h+nosdnWGZOPwU8po7Xt0c8Ofgn0lCSHC2kPWGhMpY0i9CAgGIybKAKZcokYBokECy8+lZ3bFAaRgOsX6JB+DRNgEVz2-AADiD6tPVf8bEJQunYUdJghAAZBDdQaDgK0OrtMYDbECKgRl2TiXAZ8eFpEX7+NgAgU4ETisgOlr+O+FVVSGAvUlv4GWa5v1mQ6Yt07VThCVcvi5P45TTQvUm21P4K38IciSPOyk98aoYFhrcaiPRlAbD+5VOY3hSyMgSID4H-3HgJDoMNTIWgTsSgR7jf6oZrEo7-Trd7sEqQMP-omj93AE63JgmODdK2oBlFAeIcTpBlAwWiTjkbnN0Co0yFAe8Y4yiIOQQkRHU0HpWWAccLH+4JTuiE1SeESQBIE4pzx0n7FX1U8gWUGApBBNaYZ0z690u+5Ps8ycdnf7PJ8-vGDXnmRqBmTBkLmAqAgpg2Oi+VwBX9XKs26GSO5h-ehnKdT8ZRhuHnYlNTuX+OGALJLmT0Y2ulDCGAAkdLKjndymR5L0LcXtZisnOLVAoj+g7WON8C6CM8J8Ps3OMkpITBgG+G8IAA", # nolint
     "app",
     header = FALSE
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 393px; margin: 0 auto; float: none;"
 )
 ```
 
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#tabLayout" role="button" aria-expanded="false" aria-controls="tabLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -331,76 +453,100 @@ shinyApp(
     title = "My app",
     f7TabLayout(
       panels = tagList(
-        f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-        f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
+        f7Panel(
+          title = "Left Panel",
+          side = "left",
+          f7PanelMenu(
+            inset = TRUE,
+            outline = TRUE,
+            # Use items as tab navigation only
+            f7PanelItem(
+              tabName = "tabset-Tab1",
+              title = "To Tab 1",
+              icon = f7Icon("folder"),
+              active = TRUE
+            ),
+            f7PanelItem(
+              tabName = "tabset-Tab2",
+              title = "To Tab 2",
+              icon = f7Icon("keyboard")
+            ),
+            f7PanelItem(
+              tabName = "tabset-Tab3",
+              title = "To Tab 3",
+              icon = f7Icon("layers_alt")
+            )
+          ),
+          effect = "floating"
+        ),
+        f7Panel(
+          title = "Right Panel",
+          side = "right",
+          f7Block("Blabla"),
+          effect = "floating"
+        )
       ),
       navbar = f7Navbar(
-        title = "Tabs",
+        title = "Tabs Layout",
         hairline = TRUE,
-        shadow = TRUE,
         leftPanel = TRUE,
         rightPanel = TRUE
       ),
       f7Tabs(
         animated = TRUE,
-        #swipeable = TRUE,
+        id = "tabset",
         f7Tab(
           title = "Tab 1",
           tabName = "Tab1",
           icon = f7Icon("folder"),
           active = TRUE,
-
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              apexchartOutput("pie")
-            )
+          f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
+            title = "Card header",
+            apexchartOutput("pie")
           )
         ),
         f7Tab(
           title = "Tab 2",
           tabName = "Tab2",
           icon = f7Icon("keyboard"),
-          active = FALSE,
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              apexchartOutput("scatter")
-            )
+          f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
+            title = "Card header",
+            apexchartOutput("scatter")
           )
         ),
         f7Tab(
           title = "Tab 3",
           tabName = "Tab3",
           icon = f7Icon("layers_alt"),
-          active = FALSE,
-          f7Shadow(
-            intensity = 10,
-            hover = TRUE,
-            f7Card(
-              title = "Card header",
-              f7SmartSelect(
-                "variable",
-                "Variables to show:",
-                c("Cylinders" = "cyl",
-                  "Transmission" = "am",
-                  "Gears" = "gear"),
-                openIn = "sheet",
-                multiple = TRUE
+          f7Card(
+            outline = TRUE,
+            raised = TRUE,
+            divider = TRUE,
+            title = "Card header",
+            f7SmartSelect(
+              "variable",
+              "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
               ),
-              tableOutput("data")
-            )
+              openIn = "sheet",
+              multiple = TRUE
+            ),
+            tableOutput("data")
           )
         )
       )
     )
   ),
   server = function(input, output, session) {
-
     # river plot
     dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
 
@@ -426,9 +572,12 @@ shinyApp(
 
 
     # datatable
-    output$data <- renderTable({
-      mtcars[, c("mpg", input$variable), drop = FALSE]
-    }, rownames = TRUE)
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$variable), drop = FALSE]
+      },
+      rownames = TRUE
+    )
   }
 )
 ```
@@ -436,57 +585,74 @@ shinyApp(
 
 ### Split Layout
 
-`f7SplitLayout()` is the third layout introduced with `{shinyMobile}`, similar to `sidebarLayout` with {shiny}. This template is focused for 
-tablet/desktop use. It is composed of a sidebar, and a main panel.
+`f7SplitLayout()` is the third layout introduced with `{shinyMobile}`, similar to `sidebarLayout` with {shiny}. This template is focused for tablet use. It is composed of a sidebar, and a main panel.
 
 ```{r, eval=FALSE}
 f7SplitLayout(
-  ..., 
-  navbar, 
-  sidebar, 
-  toolbar = NULL, 
-  panels = NULL,
-  appbar = NULL
+  ...,
+  navbar,
+  sidebar,
+  toolbar = NULL,
+  panels = NULL
 )
 ```
 
-The main content goes in the __...__ parameter. Navigation items are gathered in the sidebar slot. The sidebar expect a `f7Panel()`. Importantly, the side parameter must be set to `left` and the style to `reveal`. The navigation menu is organized as follows:
+The main content goes in the __...__ parameter. Navigation items are gathered in the sidebar slot. This sidebar is visible at a certain `visibleBreakpoint`. By default it is set to 1024, meaning that the sidebar will be collapsed onscreen smaller than 1024px. This means you don't have to worry about your split layout being opened on a smaller mobile phone.
+
+<br>
+
+The `sidebar` is composed of `f7Panel()` with and `f7PanelMenu()` and one or more `f7PanelItem()`:
+
 
 ```{r, eval=FALSE}
-f7PanelMenu(
-  id = "menu",
-  f7PanelItem(
-    tabName = "tab1", 
-    title = "Tab 1", 
-    icon = f7Icon("email"), 
-    active = TRUE
+f7Panel(
+  title = "Sidebar",
+  side = "left",
+  effect = "push",
+  options = list(
+    visibleBreakpoint = 1024
   ),
-  f7PanelItem(
-    tabName = "tab2", 
-    title = "Tab 2", 
-    icon = f7Icon("home")
+  f7PanelMenu(
+    id = "menu",
+    f7PanelItem(
+      tabName = "tab1",
+      title = "Tab 1",
+      icon = f7Icon("email"),
+      active = TRUE
+    ),
+    f7PanelItem(
+      tabName = "tab2",
+      title = "Tab 2",
+      icon = f7Icon("home")
+    )
   )
 )
 ```
 
-The __id__ argument is important if you want to get the currently selected item or
-update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input
-will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
+Two important notes:
+
+- Do not forget to allow the `leftPanel` in the navbar with `f7Navbar(leftPanel = TRUE)`!
+- `f7Panel()` has `side` set to `left`.
+
+<br>
+
+The __id__ argument in `f7PanelMenu()` is important if you want to get the currently selected item or update the select tab. Each `f7PanelItem()` has a mandatory __tabName__. The associated input will be `input$menu` in that example, with `tab1` for value since the first tab was set to an active state. To adequately link the body and the sidebar, you must wrap the body content in `f7Items()` containing as many `f7Item()` as sidebar items. The __tabName__ must correspond.
 
 ```{r, eval=TRUE, echo=FALSE}
 card(
-  shinyMobile:::create_app_link(
-    "NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw4BzSampFSAJmGiGzNl178AskXq1qcZWLUc0cAB4FuLcoyOqJ7UtzgwopWgWUiAZowCutKScAAQAPAC0IQAm7lAYfrBw7CIhIdDwIQC8IQTsAOQAgugGnPm4IfkA8swQknBlFfkAQlDQ0I2VzXCMjLQN+QK4qSEAblDU-nDZuewALHMVAKxLFQBsAOwVABwAzMreZC5uHgQA+jx8HD4kpDNCKP6kRA+HEHAA7mcwpAQsoZEQowGtZUMkRrFSFAZi4oNF2D8-oxOEMRrRouNGPcwDAiNE4NQHsMIGlMaw+JIZnROKR2HkHtFmKQiSEHh9mWABKiSSEPPBQjl6WBGe4WWyOdy0tFaMCCB4SNi5HUiSNRhgMg1seNJnAVTzGURUDMhTBUJIxYRWIS8KywNxUBbpTSLQBHThwAgW0acC2wC31FgWpH0V4iQ6XfjFVApHmBGY+DYABSg9RjaTSHlIBmxWlYITQDrwIzShvlEAFIWptOL6ecrmmOQeUH8jCIzD16fTsUYAGsZgAVLAAVQAosTO2kfPoDNEZgAxQoAGQAymOa2liHIsY2wABiAAM+42UB8Pg7E+e-isVNoNLTE4zaAAEkRqLOcoPR+OH7zn6-ogAIgSUB5jkGxLPu34PrQRCcP2RBXtwWC0CUDYhAuK4juuISShOMFwbUnCTAQFCkK0yLzkuq5Qem0CjPQLA3ne2FpPhADCpE9P2QTZh+w5rjyD68PiAByUCjFUEDJvUy4EK21DUAO-HYbhnbPK+DHbpWt7VoJE7CXAYkSVJKZwLJ8mKTkGGripNFpKg-gKfBWBwH4IKUZhNaqSECbLrIQSLiBCG6Q+nDonAmnxkmbQEveD6ZrxtrLuFmnnqF4WKq5HJ2bWxxoQ8dCSNw2UsT50XvNQWgUP4cU-ui2LwBA-hpT+CbJhVACS5AwLVP6-vQYmZDuUL0AAjC1fUJflYD9lA9AhONRZ6X1ngKjkCYdcQEApGAcAuv4ExnAQMoEAYrw5Q+UByrQoxoZ+WHLRO3kPm1MXUF1ri9T+I2DdNI0KBN308dNs3zQDS19Z2q0kutGybSQO17Qd1BHSdZ2cqVaTPROr2dd1X3xXNv3YiNuyA-FwPYqDIRkxDkOsVtUXw9tDxI4dx2MKduoY49nbKH12NpIEVRPA51ZgO6BhynA0RnCN52la5PgencO7ArdEwPLZ2F0ZFsNGZpBO8pTO5+XQdyBawwXkyE1gynQ7wedRpU8HCRAfEpo7a496nUHrZXwRpLBG6gsFBDBMO2vQ8jPDANsJoufA9uw1BzQS2KJxAfaLRU3DAj42LFaQqCcIgAD0ZcfFXGCSEQRCSAYGDEHHnIXWVmfJ6n9DpzuHchODuf54XpDF6XFdVx8Nd1w3cBN0QLf809OW7iEbh8LktykdhG3dZwRs759mP9cTw1zTnR8Js0TzPCzYDPNIBjLi4cDZbaiZyHcqAsEktg+q3F8bCfnAF+RsobvltDwYBpBz68wnF3Hub8P4hGTMweAv8badjbP0Mg7gI7YmjiPeeGD0ycA+ChOA8E2JyHdJ7AS9M0gMQID2A0Ro+JfiPpOQBdB8SMFAROB4ug-5twfA8ES-gYDdyxEQAugiejjDLKXYhnYYDrxyJBVeUBzAzFGoeSCHD0zaimDMCC+59GLwFsIkITB2CC3TLIeQIti5PB2k6Ug795ChlgbYg+PUj4-SSCTOaA8j5mEsNYRgpBHFix2swbsniLGlR8Xw-xQ1bSk2IQmeCD9wSwKhhAMWHVwEPHsaQC43B3ZKMrGnSySVyke3caQAA-JUqwHoewy1oUfWxaRQlWBsFE5xDwYCOQ8GcWJtBNY8wFipLyIxcLukYLdLSPh-AQGugjPgYsKjBS2SEd0nAwokAECEEAIgayyMWXAEct0yDsE2U8AAJPfGeQCX4VFOY9fwqBIRwDnIA5+tJ6o7kgS-Ra5iQgAF9DiYPoAs261zSJ3PyY8wR7zsK0ALkisWDzBHhBCCY45Hy+oJhEvIDFySLCqxCF-GkcB9w7X7C4PZ3CehjAmEY28IQSDUDzCye5pAcWwoqA8DAyCDBQHdPo+hIQ+ByTgBK6YQQFa5JlYzWGzMdrR2oKUqcCllX0ymtiQoBgInEKmshIqpB+yUpmMuVgnAMAAXcMkcFfNsIQprFCs5ekdmPNiYxQEwIIA8OKBYPpET2BEonKEo2kJoQ5HeF8RE-w26kFYGCbE-rGA2zcOgCkMwoAND4VonIuJ8TUEsaBNlOpLGSFbF8mYfJDAzL0l6iA5zRaPMlirGWcs5rhCiEGnhQ4OqRuwk+fsWhFzsBpeQelDxCgEBIgc3kTKCAtiDVmPM3bpazhGogW0FQaStjqFix5jV-BcnBW2jtTiBWuIaQOoEFAeENLHY9VxT7GAQDbD1flgqUTYV4HeVx17oXpl9QK4Z2raBjLhBMxSgaX09FDWEmw77oKYv-SUsp7tCWlRjXG+MAQgicAqGmjNat4MTHIiyXNqB805ELXvEt6QkgVCrYYwwrrIWevAx6iAAgwAQoALpAA", #nolint
+  shinyMobile:::create_app_link("NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEAiNJEYAfS3DSUceIAEAHgC0rgGZsCpJIkrtyoUAQA1lAA5nDCuK4McKhEwq4AvK4AcgCqADJ5CVo+RBnZ+YWuUnRluQUJAI4sknCkZQBiAIJ5AMoAognmrsOuHFxlACpYOX0mruYgQyOSPiGSwhgQLC7c1SZzixAjx1XSHt4Y1QAKUKTqwtwmwMAAjAC6b0vDAL5fritrDZbHZJFLCfauQ4nEag1LnVyxUgAeVQgRIfBo9AYtlQEWitlhwlMf1+RxGADc4Ax4fwACwYekABn4f0p1K8COELDoGN4fN4GGAAD0MG8ANQAEn4gzA0tcbLMZOGhPh0S5PP4AileHmsp1hMVx2IZAYZw5wlQprIPgxAFJhAIDBABHAYMICKbURQBMbSKaZPa5YTBkqTgq-r7-ar1RjYRgGJ5qFBhDAMEQGNFHVoXW6PZIvc7I9IBPSAMxyv7HfhxhNJlNpjNZ52u92e8iFkh+4tljDlnVFugh6HDHySAAecAAJpNprM-gDuOtNttxIuICUIVDh8VShyWIFxMJmFByVBDFA6EYMGFIjE4twBywGG5MgPDSNScdJ8k0nuIFJHG4awiEPZgbyiWJbG-VAKG-CwWgecC73if51yIEwh2HEQ4E2WA4g6bp+nfYZoN-bw2EkJo4G4UjiN8dMQmg1DXFoyFK2WVZdgoaI7m4UcIEna9wgg6joMaZpWhnGZ9gOdjoQgOAx1IOTXE-bcIEcZxVzExJklSIo0ISapxJaUgEjGMg6LUkcGNCPFmKQ2JwTY0NjgXIwIB49Q+K0QTHOo3FohMyTMimaTNxU44FKUlTrJOBcAEJAtcW0tFtRIiGoaB4AeHcItc4ckwYCAtGiUJk3IDEsDgKjHCnVx-LlQKZQgIg2hKNhpy0VxaDoLBXCdJRlF0lIMFMOjh1caLlIKn4VNheEd2AZrdWqsFJGsFR+E+WaRt3bwY34UcjEQCs9QSWEElHCdp1C2cJpGQLbDZRa0OWvEZQANSpYQgggbaVMSppTLmSKRhy4Q73KuqMQAEUy-8iCgSdSp6+h+v806dUC-ZAc4izSFk3bjj9ZQAGFbgIbyt0m6FeqYZgHCcFxnp8YR7BgKHLtOQcGo+vn8XDYmPwSKkGAYzI-AsNEIAfASidp7dOIS6JQVXfgcmgS84FcawWIR8QkcnOVjRRmWdDiSHYjlycZJcxXJscIhUBth7Fbih3UM0lnSGiAAvbhueMgWEieoXPe+N3VJUuBDx1mnaaZrTbF9gOg+kUP+bDqko7iuKtHJdZpCMbg6jyRVSXMSwnbsJOdiWfgNC0XR9EMYw8CWFVXwxdRSFIVAjwEAQrXIBgfHCHDog29RuQwIJh60Ufx4IOBE2TGBPA9KBnTO3v+8H4e9PjNf63TaJiQgRVzGqRQVG4JvtEVG+hu4aJolQQ3SAAJifhQX4fluBgjC-0YC-NAikqZKFHiA2+yggLqFdLcSQBAr7rgYM0UgZEWK3CgBgHwih4B8DJNlHW3d+CdHQEYIkOp+BIkUJ5OIZ0ABC29WHUJlEwsWCFTC4CWKecQLBSGuAINwWktIEgAFYJEJAAGwAHYEgAA5SyKlQXcRBgQCC2AAXxTsZR+BQH3EQC+5gFLUFsDAUgBAlBYKSBocBRCSI4LKAg5G3BLHWIYOCXhZJJCTlPNSTI-AODfnENKPhQ1UaZAAjwER-BJyKGUjQmgST9g+OGIEHKZQ4lgASbcM61BUnpJYpIJIAQ-r6LAIbTy4SyTklwlkoJYB+GCNqSRcWqBskYhgKgc+ySCDKDCck9QqAzoo0cGdBowg4AEDOuSdhupYBnViEoM6ni6AX1QQAihLsljNDKD4ORNxrZ-ECKQIwlSegfw2lUKAyhOBJOKSOORVypCkDyHch5jiTi-W-HQJQByjnb1jt86EZyLlNJ6H4+gqyO67V+UI-gRgfCPJjj4HwMy2hNNQCIdQbThzOxlmkaJ6weBg0Lr9bWTCkhQAiCkReZQ5GMmZLtDCKlDk3AUuIC2WxQXblurqeAWx8WOz9CQaIUkBhgw5cC8QABJcgMA+WTScHQLIeFKmqpeCK2m4LEVgAmBeVw2q4We2QcESWci5XGgxDVFgzhbAEFKQQIwPCwbDHCIESkkqwZsuFjKrlCrXTKuHKq9V8BNUXi-jqlVG0IW6kNTUaNpqHbmqOJa616J+B2odU6hgLr25R2GH6xWAbY5BqVe63WF5w36tVX2J5uq436sTa4BtVa02AszbLbNTRc3OtdWAItrgo4lqwpIJE+4cVkrANMowAQpwpwvBfaEY6oonn+YE3wcj1Xkk3SGjJzbLnXLaB8+5+4Y0jHUGeZ8WghFdF6FK3ayLSCctjj6gqa6RjAXEJuwFEwiAgX3SpdaMtKl0DatYGAl7nl5C0BEXYF531NLgxACIxq5TqCSKsJpe8B6ICHtQIjGBoiAeiFeYg0Gh2NuOIc1DCHxBIZfLqejrhk0JCw3AHDuo8MHyI9QEjZGKM2BXScL9wwADEowzxHF9BQGa0JDkVoeOyq1iqD3fprRqppWqYMjEOUw-c1ge1gGsG-IwPQEGtDOlcT+DUlB4VHtQ8TJxDmWbgK0DTbkBWNys6QE1NHhyMboMh3Utm2quBuAQ1oP09PHHTC0MgSCLW6gg33ETKbFbCGoPmOAAGyaG2mZKwL0J-mRASc7YrVa3NSG-AwLzJx+D6HYVW4Y-AsgsBgCF6kRBVjNapKeIlWMSvDhgN1TIjJzJQDHGUF4zLJutflM4QRZQJHMqrcOlzxxGCPBG8MD+bVJ3933BicZr7P6idXSNpT6mwZhu07qVV7GwbgLHJAhgyIp0nerMjWFo7rtqeDXdrTEadMXnbf6uRAHzPUQ7RAadcqfNgAO6QbR6hMpxZGMF0L-BLOZUi5-AA-Jj4YVMZkRHqndGYvq9uuFe+9z7x2Z0wG2IEAkyNJDOEu2J9idF3xjumQwF6kt-AyzXNOhIDyJeuGmcIX6JAFYjH60LuAfRKRkHF-uCUZnyNwHc60BICdhgsFQJOW4cB2gvL84uJHGgPP+e55HcwfxleUjV-JzXpAJTNcN+xBcWhp3e7oL+Vwa3GSK8UzutqKwGvkCUmUMIdVGQNbawahBMvatUiWwInW6xXAkHEMNOUAetc+91BgAncBkzGGFsMLQHoq9FY2iyYWW3ljGi7Ta-gEHxCo+OkMtvh7zn6s6EYD7mO9VYEkNEXuExFJYtcD0ZQGxYbm8eCpB6edUEu6+17xQZv2TeCSAJKkFCIHXo+9wI3dOYJjg02bpwZQzEWKsTYkbpBlAwUqfv2FI3OboCiTp3vDBhm0yBCVjlp2GkyBaTgFp1Vk4E6UyEyRr0mgeislQXi13wlDnUxUXVVXhGPzqxyDlSv3YgAAkJgdA8hoZyBk9+AyYnxj9zlhocCF1pxVVEBdQEhHBxZPJPcJQhUWAZISQMClcsCztws2gORCCqRJDSCCozsCDWoGAlUS8vdmsHpNBAIzt0DndQwpctcWde9JB2cUZnACDYJT9b8Gd5DoR-d4ctcUc0dMoI8ThXsaJnFJZ0ENoUIP8v8ml99OdxAWEGA5R-9UBACoB7xQCpo8IEgoDs9BFcYCot8lhSQTAwBvg3ggA", # nolint
     "app",
-    header = FALSE
+    header = FALSE,
+    height = "1024"
   ),
-  full_screen = TRUE
+  full_screen = TRUE,
+  style = "width: 768px; margin: 0 auto; float: none;"
 )
 ```
 
-<div class="text-center">
+<div class="text-center mt-4">
 <a class="btn btn-primary" data-bs-toggle="collapse" href="#splitLayout" role="button" aria-expanded="false" aria-controls="splitLayout">
-  Code
+Code
 </a>
 </div>
 
@@ -500,7 +666,7 @@ library(apexcharter)
 library(thematic)
 
 fruits <- data.frame(
-  name = c('Apples', 'Oranges', 'Bananas', 'Berries'),
+  name = c("Apples", "Oranges", "Bananas", "Berries"),
   value = c(44, 55, 67, 83)
 )
 
@@ -518,34 +684,18 @@ new_mtcars <- reshape(
 
 shinyApp(
   ui = f7Page(
-    title = "My app",
-    options = list(
-      theme = "aurora",
-      dark = TRUE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideNavOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideNavOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
+    title = "Split layout",
     f7SplitLayout(
       sidebar = f7Panel(
         title = "Sidebar",
         side = "left",
-        theme = "light",
+        effect = "push",
+        options = list(
+          visibleBreakpoint = 700
+        ),
         f7PanelMenu(
           id = "menu",
+          strong = TRUE,
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
@@ -563,13 +713,12 @@ shinyApp(
             icon = f7Icon("equal_circle")
           )
         ),
-        uiOutput("selected_tab"),
-        effect = "reveal"
+        uiOutput("selected_tab")
       ),
       navbar = f7Navbar(
         title = "Split Layout",
         hairline = FALSE,
-        shadow = TRUE
+        leftPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -614,7 +763,6 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
@@ -622,14 +770,17 @@ shinyApp(
     observeEvent(input$obs, {
       if (input$obs < 500) {
         f7Notif(
-          text = paste0("The slider value is only ", input$obs, ". Please
-                        increase it"),
+          text = paste0(
+            "The slider value is only ", input$obs, ". Please
+            increase it"
+          ),
           icon = f7Icon("bolt_fill"),
           title = "Alert",
           titleRightText = Sys.Date()
         )
       }
     })
+
 
     output$radar <- renderApexchart({
       apex(
@@ -638,12 +789,13 @@ shinyApp(
         mapping = aes(
           x = model,
           y = value,
-          group = time)
+          group = time
+        )
       )
     })
 
     output$selected_tab <- renderUI({
-      HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
     })
 
     output$distPlot <- renderPlot({
@@ -656,46 +808,21 @@ shinyApp(
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
       }
     })
-
   }
 )
 ```
 </div>
 
-## App options
+### Multi Layout
 
-This is where you can customize the global app behavior: 
-
-```{r, eval=FALSE}
-options = list(
-    theme = c("ios", "md", "auto", "aurora"),
-    dark = TRUE,
-    filled = FALSE,
-    color = "#007aff",
-    touch = list(
-      tapHold = TRUE,
-      tapHoldDelay = 750,
-      iosTouchRipple = FALSE
-    ),
-    iosTranslucentBars = FALSE,
-    navbar = list(
-      iosCenterTitle = TRUE,
-      hideOnPageScroll = TRUE
-    ),
-    toolbar = list(
-      hideOnPageScroll = FALSE
-    ),
-    pullToRefresh = FALSE
-  )
-```
-
-As stated above, you may choose between 3 skins and 2 color themes. There is a third option called __filled__ that allows to fill the navbar and toolbar if enabled. The __color__ options simply changes the color of elements such as buttons, panel triggers, tabs triggers, ... 
-`{shinyMobile}` brings a lot of different colors. __hideOnPageScroll__ allows to hide/show the navbar and toolbar which is useful to focus on the content. The __tapHold__ parameter ensure that the "long-press" feature is activated. __preloader__ is useful in case you want to display a loading screen.
-Framework7 has many more [options](https://v5.framework7.io/docs/app#app-parameters) which can be passed through this __options__ parameter.
+The layout for __multiple pages__ is covered in a separate article.
 
 # Gadgets
 
-`{shinyMobile}` is particularly well suited to build shiny __gagdets__. 
+`{shinyMobile}` is particularly well suited to build shiny __gadgets__. Gadgets are small, interactive tools that can be used as part of your data analysis workflow in R.
+
+<br>
+
 To convert an existing app to a gadget, wrap it in the `shiny::runGadget()` function. 
 
 ```{r, eval = FALSE}

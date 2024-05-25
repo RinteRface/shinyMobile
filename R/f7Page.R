@@ -2,14 +2,16 @@
 #'
 #' \code{f7Page} is the main app container.
 #'
-#' @param ... Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+#' @param ... Slot for shinyMobile skeleton elements: \link{f7SingleLayout},
 #' \link{f7TabLayout}, \link{f7SplitLayout}.
 #' @param title Page title.
-#' @param options shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
+#' @param options shinyMobile configuration. See \link{f7DefaultOptions} and
+#' \url{https://framework7.io/docs/app.html}. Below are the most
 #' notable options. General options:
 #' \itemize{
-#'  \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
-#'  \item \code{dark}: Dark layout. TRUE or FALSE.
+#'  \item \code{theme}: App skin: "ios", "md", or "auto".
+#'  \item \code{dark}: Dark layout. TRUE, FALSE, or "auto". The default is "auto".
+#'  If set to "auto" automatically enables dark theme based on user system color scheme preference.
 #'  \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
 #'  This is a preloading effect. Not compatible with preloader.
 #'  \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
@@ -20,26 +22,29 @@
 #'  If a name is specified it must be accepted either by \link[gplots]{col2hex} or
 #'  \link{getF7Colors} (valid Framework 7 color names).
 #'  \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
-#'  See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
+#'  See \url{https://framework7.io/docs/pull-to-refresh#examples}.
 #'  \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
 #'  FALSE by default.
 #' }
-#' Touch module options \url{https://v5.framework7.io/docs/app.html#app-parameters}:
+#' Touch module options \url{https://framework7.io/docs/app#param-touch}:
 #' \itemize{
-#'  \item \code{tapHold}:  It triggers (if enabled) after a sustained, complete touch event.
-#'  By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
-#'  so Fast Clicks should be also enabled.
+#'  \item \code{touchClicksDistanceThreshold}: Distance threshold (in px) to prevent short swipes.
+#'  So if tap/move distance is larger than this value then "click" will not be triggered.
+#'  \item \code{tapHold}: It triggers (if enabled) after a sustained, complete touch event.
+#'  By default it is enabled. See \link{f7TapHold} for usage.
 #'  \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
 #'  Default to 750 ms.
+#'  \item \code{tapHoldPreventClicks}: When enabled (by default), then click event will not be fired after tap hold event.
 #'  \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+#'  \item \code{mdTouchRipple}: Default to TRUE. Enables touch ripple effect for MD theme.
 #' }
-#' Navbar options \url{https://v5.framework7.io/docs/navbar.html#navbar-app-parameters}:
+#' Navbar options \url{https://framework7.io/docs/navbar#navbar-app-parameters}:
 #' \itemize{
 #'  \item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
 #'  title at the center in iOS theme. Sometime (with some custom design) it may not needed.
 #'  \item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
 #' }
-#' Toolbar options \url{https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters}:
+#' Toolbar options \url{https://framework7.io/docs/toolbar-tabbar#toolbar-app-parameters}:
 #' \itemize{
 #'  \item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
 #' }
@@ -55,31 +60,8 @@ f7Page <- function(
     ...,
     title = NULL,
     # default options
-    options = list(
-      theme = c("auto", "ios", "md", "aurora"),
-      dark = TRUE,
-      skeletonsOnLoad = FALSE,
-      preloader = FALSE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
-    ),
-    allowPWA = FALSE
-) {
-
+    options = f7DefaultOptions(),
+    allowPWA = FALSE) {
   # Color must be converted to HEX before going to JavaScript
   if (!is.null(options$color)) {
     # If color is a name
@@ -105,7 +87,7 @@ f7Page <- function(
 
   if (!is.null(options$theme) && !is.null(options$filled) && !is.null(options$color)) {
     if (options$theme == "dark" && options$filled == TRUE &&
-        (options$color == "white" || options$color == "#fff")) {
+      (options$color == "white" || options$color == "#fff")) {
       stop("Wrong theme combination: navbar color cannot be white in a dark theme!")
     }
   }
@@ -140,7 +122,7 @@ f7Page <- function(
 
   bodyTag <- shiny::tags$body(
     `data-pwa` = tolower(allowPWA),
-    `data-ptr`= dataPTR,
+    `data-ptr` = dataPTR,
     shiny::tags$div(
       id = "app",
       class = layout,
@@ -174,7 +156,6 @@ f7Page <- function(
     # Body
     add_dependencies(
       deps = c(
-        "framework7",
         "shinyMobile",
         pwaDeps,
         "f7icons"
@@ -184,7 +165,96 @@ f7Page <- function(
   )
 }
 
+#' shinyMobile app default options
+#'
+#' List of default custom options.
+#'
+#' @export
+#' @return A list of options to pass in
+#' \link{f7Page}.
+f7DefaultOptions <- function() {
+  list(
+    theme = c("auto", "ios", "md"),
+    dark = "auto",
+    skeletonsOnLoad = FALSE,
+    preloader = FALSE,
+    filled = FALSE,
+    color = "#007aff",
+    touch = list(
+      touchClicksDistanceThreshold = 5,
+      tapHold = TRUE,
+      tapHoldDelay = 750,
+      tapHoldPreventClicks = TRUE,
+      iosTouchRipple = FALSE,
+      mdTouchRipple = TRUE
+    ),
+    iosTranslucentBars = FALSE,
+    navbar = list(
+      iosCenterTitle = TRUE,
+      hideOnPageScroll = TRUE
+    ),
+    toolbar = list(
+      hideOnPageScroll = FALSE
+    ),
+    pullToRefresh = FALSE
+  )
+}
 
+#' Framework7 multi pages layout
+#'
+#' `r lifecycle::badge("experimental")`
+#' Experimental multi pages layout. This has to be used
+#' with the brochure R package. See in the corresponding
+#' pkgdown article.
+#'
+#' @param ... Pages. Must be an element like
+#' \code{shiny::tags$div(class = "page", ...)}
+#' @param toolbar Contrary to \link{f7SingleLayout} or any other layout,
+#' the multi page layout can have a common toolbar for all pages.
+#' See more at \url{https://framework7.io/docs/toolbar-tabbar#common-toolbar}.
+#' You can pass \link{f7Toolbar} in this slot or \link{f7Tabs} but if you
+#' do so, don't pass any toolbar in the different pages elements.
+#' @inheritParams f7Page
+#' @param basepath Useful when the app is deployed on a server like 
+#' https://user.shinyapps.io/base_path.
+#'
+#' @export
+f7MultiLayout <- function(
+    ...,
+    toolbar = NULL,
+    title = NULL,
+    options = f7DefaultOptions(),
+    allowPWA = FALSE, basepath = "/") {
+  items <- shiny::tags$div(
+    class = "view view-main view-init",
+    # When app is deployed, the basepath isn't / but something else ...
+    `data-url` = basepath,
+    # Avoids to see the previous page in the DOM
+    `data-preload-previous-page` = "false",
+    # Important: to be able to have updated url
+    `data-browser-history` = "true",
+    # Avoids the ugly #! default separator
+    `data-browser-history-separator` = "",
+    # Optional common toolbar
+    shiny::tagAppendAttributes(toolbar, class = "toolbar-main"),
+    ...
+  )
+
+  f7Page(items, title = title, options = options, allowPWA = allowPWA)
+}
+
+#' Update routes on the server
+#'
+#' `r lifecycle::badge("experimental")`
+#' Add a route to existing app routes.
+#'
+#' @param routes New list of routes.
+#' @param session Shiny session object.
+#'
+#' @export
+updateF7Routes <- function(routes, session = shiny::getDefaultReactiveDomain()) {
+  session$sendCustomMessage("update-routes", routes)
+}
 
 #' Framework7 single layout
 #'
@@ -195,64 +265,58 @@ f7Page <- function(
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panels Slot for \link{f7Panel}.
 #' Wrap in \code{tagList} if multiple panels.
-#' @param appbar Slot for \link{f7Appbar}.
 #'
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Single layout",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(
-#'         title = "Single Layout",
-#'         hairline = FALSE,
-#'         shadow = TRUE
-#'       ),
-#'       toolbar = f7Toolbar(
-#'         position = "bottom",
-#'         f7Link(label = "Link 1", href = "https://www.google.com"),
-#'         f7Link(label = "Link 2", href = "https://www.google.com")
-#'       ),
-#'       # main content
-#'       f7Shadow(
-#'         intensity = 10,
-#'         hover = TRUE,
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Single layout",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(
+#'           title = "Single Layout"
+#'         ),
+#'         toolbar = f7Toolbar(
+#'           position = "bottom",
+#'           f7Link(label = "Link 1", href = "https://www.google.com"),
+#'           f7Link(label = "Link 2", href = "https://www.google.com")
+#'         ),
+#'         # main content
 #'         f7Card(
 #'           title = "Card header",
 #'           f7Slider("obs", "Number of observations", 0, 1000, 500),
 #'           plotOutput("distPlot"),
 #'           footer = tagList(
-#'             f7Button(color = "blue", label = "My button", href = "https://www.google.com"),
+#'             f7Button(
+#'               color = "blue",
+#'               label = "My button",
+#'               href = "https://www.google.com"
+#'             ),
 #'             f7Badge("Badge", color = "green")
 #'           )
 #'         )
 #'       )
-#'     )
-#'   ),
-#'   server = function(input, output) {
-#'     output$distPlot <- renderPlot({
-#'       dist <- rnorm(input$obs)
-#'       hist(dist)
-#'     })
-#'   }
-#'  )
+#'     ),
+#'     server = function(input, output) {
+#'       output$distPlot <- renderPlot({
+#'         dist <- rnorm(input$obs)
+#'         hist(dist)
+#'       })
+#'     }
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
 f7SingleLayout <- function(..., navbar, toolbar = NULL,
-                           panels = NULL, appbar = NULL) {
-
+                           panels = NULL) {
   single_layout_tag <- shiny::tagList(
-    # appbar goes here
-    appbar,
     # panels go here
     panels,
     shiny::tags$div(
-      class = "view view-main",
+      class = "view view-main view-init",
       shiny::tags$div(
         class = "page",
         # top navbar goes here
@@ -260,7 +324,7 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
         # toolbar goes here
         toolbar,
         shiny::tags$div(
-          class= "page-content",
+          class = "page-content",
           # page content
           ...
         )
@@ -272,9 +336,6 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
   single_layout_tag
 }
 
-
-
-
 #' Framework7 tab layout
 #'
 #' \code{f7TabLayout} create a single page app with multiple tabs,
@@ -285,161 +346,18 @@ f7SingleLayout <- function(..., navbar, toolbar = NULL,
 #' @param messagebar Slot for \link{f7MessageBar}.
 #' @param panels Slot for \link{f7Panel}.
 #' Wrap in \code{tagList} if multiple panels.
-#' @param appbar Slot for \link{f7Appbar}.
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  library(shinyWidgets)
-#'
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Tab layout",
-#'      f7TabLayout(
-#'        tags$head(
-#'          tags$script(
-#'            "$(function(){
-#'                $('#tapHold').on('taphold', function () {
-#'                  app.dialog.alert('Tap hold fired!');
-#'                });
-#'              });
-#'              "
-#'          )
-#'        ),
-#'        panels = tagList(
-#'          f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-#'          f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
-#'        ),
-#'        navbar = f7Navbar(
-#'          title = "Tabs",
-#'          hairline = FALSE,
-#'          shadow = TRUE,
-#'          leftPanel = TRUE,
-#'          rightPanel = TRUE
-#'        ),
-#'        f7Tabs(
-#'          animated = FALSE,
-#'          swipeable = TRUE,
-#'          f7Tab(
-#'            tabName = "Tab1",
-#'            icon = f7Icon("envelope"),
-#'            active = TRUE,
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7Stepper(
-#'                  "obs1",
-#'                  "Number of observations",
-#'                  min = 0,
-#'                  max = 1000,
-#'                  value = 500,
-#'                  step = 100
-#'                ),
-#'                plotOutput("distPlot1"),
-#'                footer = tagList(
-#'                  f7Button(inputId = "tapHold", label = "My button"),
-#'                  f7Badge("Badge", color = "green")
-#'                )
-#'              )
-#'            )
-#'          ),
-#'          f7Tab(
-#'            tabName = "Tab2",
-#'            icon = f7Icon("today"),
-#'            active = FALSE,
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7Select(
-#'                  inputId = "obs2",
-#'                  label = "Distribution type:",
-#'                  choices = c(
-#'                    "Normal" = "norm",
-#'                    "Uniform" = "unif",
-#'                    "Log-normal" = "lnorm",
-#'                    "Exponential" = "exp"
-#'                  )
-#'                ),
-#'                plotOutput("distPlot2"),
-#'                footer = tagList(
-#'                  f7Button(label = "My button", href = "https://www.google.com"),
-#'                  f7Badge("Badge", color = "orange")
-#'                )
-#'              )
-#'            )
-#'          ),
-#'          f7Tab(
-#'            tabName = "Tab3",
-#'            icon = f7Icon("cloud_upload"),
-#'            active = FALSE,
-#'            f7Shadow(
-#'              intensity = 10,
-#'              hover = TRUE,
-#'              f7Card(
-#'                title = "Card header",
-#'                f7SmartSelect(
-#'                  inputId = "variable",
-#'                  label = "Variables to show:",
-#'                  c("Cylinders" = "cyl",
-#'                    "Transmission" = "am",
-#'                    "Gears" = "gear"),
-#'                  multiple = TRUE,
-#'                  selected = "cyl"
-#'                ),
-#'                tableOutput("data"),
-#'                footer = tagList(
-#'                  f7Button(label = "My button", href = "https://www.google.com"),
-#'                  f7Badge("Badge", color = "green")
-#'                )
-#'              )
-#'            )
-#'          )
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'      output$distPlot1 <- renderPlot({
-#'        dist <- rnorm(input$obs1)
-#'        hist(dist)
-#'      })
-#'
-#'      output$distPlot2 <- renderPlot({
-#'        dist <- switch(
-#'          input$obs2,
-#'          norm = rnorm,
-#'          unif = runif,
-#'          lnorm = rlnorm,
-#'          exp = rexp,
-#'          rnorm
-#'        )
-#'
-#'        hist(dist(500))
-#'      })
-#'
-#'      output$data <- renderTable({
-#'        mtcars[, c("mpg", input$variable), drop = FALSE]
-#'      }, rownames = TRUE)
-#'    }
-#'  )
-#' }
+#' @example inst/examples/tab_layout/app.R
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL) {
-
+f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL) {
   tab_layout_tag <- shiny::tagList(
-    # appbar goes here
-    appbar,
     # panels go here
     panels,
     shiny::tags$div(
-      class = "view view-main",
+      class = "view view-main view-init",
       # the page wrapper is important for tabs
       # to swipe properly. It is not mentionned
       # in the doc. Also necessary to adequately
@@ -460,94 +378,38 @@ f7TabLayout <- function(..., navbar, messagebar = NULL, panels = NULL, appbar = 
   tab_layout_tag
 }
 
-
-
-
-
-
 #' Framework7 split layout
 #'
 #' This is a modified version of the \link{f7SingleLayout}.
 #' It is intended to be used with tablets.
 #'
 #' @param ... Content.
-#' @param navbar Slot for \link{f7Navbar}.
-#' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following code:
-#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}
+#' @param navbar Slot for \link{f7Navbar}. We expect the following:
+#' \code{f7Navbar(title = "Navbar", leftPanel = TRUE)}
+#' @param sidebar Slot for \link{f7Panel}. Particularly we expect the following:
+#' \code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}.
+#' At a minimal app width (1024 px) the sidebar becomes always visible. You can override this
+#' behavior by setting \code{options = list(visibleBreakpoint = 1024)} to the desired width in \link{f7Panel}.
 #' @param toolbar Slot for \link{f7Toolbar}.
 #' @param panel Slot for \link{f7Panel}. Expect only a right panel, for instance:
-#' \code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}
-#' @param appbar Slot for \link{f7Appbar}.
+#' \code{f7Panel(title = "Right Panel", side = "right", theme = "light", "Blabla", effect = "cover")}
 #'
-#' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
-#'  shinyApp(
-#'    ui = f7Page(
-#'      title = "Split layout",
-#'      f7SplitLayout(
-#'        sidebar = f7Panel(
-#'          id = "sidebar",
-#'          title = "Sidebar",
-#'          side = "left",
-#'          theme = "dark",
-#'          f7PanelMenu(
-#'            id = "menu",
-#'            f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("envelope"), active = TRUE),
-#'            f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("house"))
-#'          ),
-#'          uiOutput("selected_tab")
-#'        ),
-#'        navbar = f7Navbar(
-#'          title = "Split Layout",
-#'          hairline = FALSE,
-#'          shadow = TRUE
-#'        ),
-#'        toolbar = f7Toolbar(
-#'          position = "bottom",
-#'          f7Link(label = "Link 1", href = "https://www.google.com"),
-#'          f7Link(label = "Link 2", href = "https://www.google.com")
-#'        ),
-#'        # main content
-#'        f7Items(
-#'          f7Item(
-#'            tabName = "tab1",
-#'            f7Slider("obs", "Number of observations:",
-#'                        min = 0, max = 1000, value = 500
-#'            ),
-#'            plotOutput("distPlot")
-#'          ),
-#'          f7Item(tabName = "tab2", "Tab 2 content")
-#'        )
-#'      )
-#'    ),
-#'    server = function(input, output) {
-#'
-#'      output$selected_tab <- renderUI({
-#'       HTML(paste0("Selected tab: ", strong(input$menu)))
-#'      })
-#'
-#'      output$distPlot <- renderPlot({
-#'        dist <- rnorm(input$obs)
-#'        hist(dist)
-#'      })
-#'    }
-#'  )
-#' }
+#' @example inst/examples/split_layout/app.R
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #' @export
 f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
-                          panel = NULL, appbar = NULL) {
+                          panel = NULL) {
+  if (is.null(navbar$children[[2]]$children[[1]]$attribs$class)) {
+    stop("Please make sure that leftPanel is enabled in the navbar")
+  }
 
   # add margins
-  items <- shiny::div(...) %>% f7Margin(side = "left") %>% f7Margin(side = "right")
+  items <- shiny::div(...) %>%
+    f7Margin(side = "left") %>%
+    f7Margin(side = "right")
 
-  sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in")
-  # this trick to prevent to select the panel view in the following
-  # javascript code
-  sidebar$children[[1]]$attribs$class <- "panel-visible-by-breakpoint"
+  sidebar <- shiny::tagAppendAttributes(sidebar, class = "panel-in panel-in-breakpoint")
 
   splitSkeleton <- f7SingleLayout(
     items,
@@ -556,22 +418,18 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
     panels = shiny::tagList(
       sidebar,
       panel
-    ),
-    appbar = appbar
+    )
   )
 
   # Customize class
-  splitSkeleton[[3]] <- tagAppendAttributes(
-    splitSkeleton[[3]],
+  splitSkeleton[[2]] <- tagAppendAttributes(
+    splitSkeleton[[2]],
     class = "safe-areas"
   )
 
   attr(splitSkeleton, "layout") <- "split-layout"
   splitSkeleton
 }
-
-
-
 
 #' Framework7 item container
 #'
@@ -582,20 +440,17 @@ f7SplitLayout <- function(..., navbar, sidebar, toolbar = NULL,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Items <- function(...){
-  #shiny::tags$div(
-    #class = "tabs-animated-wrap",
-    shiny::tags$div(
-      # ios-edges necessary to have
-      # the good ios rendering
-      class = "tabs ios-edges",
-      ...
-    )
-  #)
+f7Items <- function(...) {
+  # shiny::tags$div(
+  # class = "tabs-animated-wrap",
+  shiny::tags$div(
+    # ios-edges necessary to have
+    # the good ios rendering
+    class = "tabs ios-edges",
+    ...
+  )
+  # )
 }
-
-
-
 
 #' Framework7 body item
 #'

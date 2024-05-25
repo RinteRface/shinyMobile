@@ -1,0 +1,10 @@
+{
+  "input": {
+    "radio": "apple",
+    "radio2": "2"
+  },
+  "output": {
+    "res": "apple",
+    "res2": "2"
+  }
+}

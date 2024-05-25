@@ -2,11 +2,14 @@ library(shiny)
 library(ggplot2)
 library(shinyMobile)
 library(apexcharter)
+library(thematic)
 
 fruits <- data.frame(
-  name = c('Apples', 'Oranges', 'Bananas', 'Berries'),
+  name = c("Apples", "Oranges", "Bananas", "Berries"),
   value = c(44, 55, 67, 83)
 )
+
+thematic_shiny(font = "auto")
 
 new_mtcars <- reshape(
   data = head(mtcars),
@@ -18,37 +21,23 @@ new_mtcars <- reshape(
   drop = c("mpg", "cyl", "hp", "dist", "qsec", "vs", "am", "gear", "carb")
 )
 
-shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Split layout",
     options = list(
-      theme = "aurora",
-      dark = TRUE,
-      filled = FALSE,
-      color = "#007aff",
-      touch = list(
-        tapHold = TRUE,
-        tapHoldDelay = 750,
-        iosTouchRipple = FALSE
-      ),
-      iosTranslucentBars = FALSE,
-      navbar = list(
-        iosCenterTitle = TRUE,
-        hideOnPageScroll = TRUE
-      ),
-      toolbar = list(
-        hideOnPageScroll = FALSE
-      ),
-      pullToRefresh = FALSE
+      dark = FALSE
     ),
     f7SplitLayout(
       sidebar = f7Panel(
-        id = "sidebar",
         title = "Sidebar",
         side = "left",
-        theme = "dark",
+        effect = "push",
+        options = list(
+          visibleBreakpoint = 1024
+        ),
         f7PanelMenu(
           id = "menu",
+          strong = TRUE,
           f7PanelItem(
             tabName = "tab1",
             title = "Tab 1",
@@ -68,10 +57,16 @@ shinyApp(
         ),
         uiOutput("selected_tab")
       ),
+      panel = f7Panel(
+        side = "right",
+        effect = "floating",
+        "Blablabla"
+      ),
       navbar = f7Navbar(
         title = "Split Layout",
         hairline = FALSE,
-        shadow = TRUE
+        leftPanel = TRUE,
+        rightPanel = TRUE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -116,7 +111,6 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-
     observeEvent(input$toggleSheet, {
       updateF7Sheet(id = "sheet1")
     })
@@ -143,12 +137,13 @@ shinyApp(
         mapping = aes(
           x = model,
           y = value,
-          group = time)
+          group = time
+        )
       )
     })
 
     output$selected_tab <- renderUI({
-      HTML(paste0("Access the currently selected tab: ", strong(input$menu)))
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
     })
 
     output$distPlot <- renderPlot({
@@ -161,6 +156,7 @@ shinyApp(
         apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
       }
     })
-
   }
 )
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app

@@ -14,3 +14,4 @@ createSelectOptions(choices, selected)
 \description{
 Used by \link{f7SmartSelect} and \link{f7Select}
 }
+\keyword{internal}

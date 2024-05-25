@@ -18,7 +18,7 @@
 #'  ui = f7Page(
 #'   f7SingleLayout(
 #'     navbar = f7Navbar(title = "File handling"),
-#'     f7DownloadButton("download","Download!")
+#'     f7Block(f7DownloadButton("download","Download!"))
 #'   )
 #'  )
 #'
@@ -39,14 +39,23 @@
 #'  shinyApp(ui, server)
 #' }
 f7DownloadButton <- function (outputId, label = "Download", class = NULL, ...) {
-  shiny::tags$a(
+  tag <- shiny::tags$a(
     id = outputId,
-    class = paste("button button-fill external shiny-download-link", class),
+    class = "button button-fill external shiny-download-link",
     href = "", target = "_blank",
     download = NA,
     shiny::icon("download"),
     label, ...
   )
+
+  if (!is.null(class)) {
+    tagAppendAttributes(
+      tag,
+      class = class
+    )
+  } else {
+    tag
+  }
 }
 
 

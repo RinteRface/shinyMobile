@@ -9,6 +9,7 @@ f7PhotoBrowser(
   theme = c("light", "dark"),
   type = c("popup", "standalone", "page"),
   ...,
+  id = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
 }
@@ -19,7 +20,11 @@ f7PhotoBrowser(
 
 \item{type}{Browser type: choose among \code{c("popup", "standalone", "page")}.}
 
-\item{...}{Other options.}
+\item{...}{Other options to pass to the photo browser. See
+\url{https://framework7.io/docs/photo-browser#photo-browser-parameters} for more details.}
+
+\item{id}{Unique id. Useful to
+leverage \link{updateF7Entity} on the server.}
 
 \item{session}{Shiny session object.}
 }
@@ -27,34 +32,40 @@ f7PhotoBrowser(
 A nice photo browser.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "f7PhotoBrowser",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7PhotoBrowser"),
-       f7Button(inputId = "togglePhoto", "Open photo")
-     )
-   ),
-   server = function(input, output, session) {
+app <- shinyApp(
+  ui = f7Page(
+    title = "f7PhotoBrowser",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7PhotoBrowser"),
+      f7Block(
+        f7Button(inputId = "togglePhoto", "Open photo")
+      )
+    )
+  ),
+  server = function(input, output, session) {
     observeEvent(input$togglePhoto, {
-     f7PhotoBrowser(
-         id = "photobrowser1",
-         label = "Open",
-         theme = "dark",
-         type = "standalone",
-         photos = c(
-           "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
-           "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
-           "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
-         )
-       )
+      f7PhotoBrowser(
+        id = "photobrowser1",
+        theme = "dark",
+        type = "page",
+        photos = list(
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg"),
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg"),
+          list(url = "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg",
+               caption = "Me cycling")
+        ),
+        thumbs = c(
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-1.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-2.jpg",
+          "https://cdn.framework7.io/placeholder/sports-1024x1024-3.jpg"
+        )
+      )
     })
+  }
+)
 
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

@@ -3,9 +3,17 @@
 \name{f7Radio}
 \alias{f7Radio}
 \alias{updateF7Radio}
+\alias{f7RadioChoice}
 \title{Framework7 radio input}
 \usage{
-f7Radio(inputId, label, choices = NULL, selected = NULL)
+f7Radio(
+  inputId,
+  label,
+  choices = NULL,
+  selected = NULL,
+  position = c("left", "right"),
+  style = list(inset = FALSE, outline = FALSE, dividers = FALSE, strong = FALSE)
+)
 
 updateF7Radio(
   inputId,
@@ -14,17 +22,37 @@ updateF7Radio(
   selected = NULL,
   session = shiny::getDefaultReactiveDomain()
 )
+
+f7RadioChoice(..., title, subtitle = NULL, after = NULL)
 }
 \arguments{
-\item{inputId}{Radio input id.}
+\item{inputId}{Input id.}
 
-\item{label}{New radio label}
+\item{label}{Input label}
 
-\item{choices}{New list of choices.}
+\item{choices}{List of choices. Can be a simple
+vector or named list or a list of \link{f7RadioChoice} or
+\link{f7CheckboxChoice}}
 
-\item{selected}{New selected element. NULL by default.}
+\item{selected}{Selected element. NULL by default. If you pass
+\link{f7RadioChoice} or \link{f7CheckboxChoice} in choices,
+selected must be a numeric value corresponding to the index of the element to select.}
+
+\item{position}{Check mark side.
+\code{"left"} or \code{"right"}.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
 
 \item{session}{Shiny session object.}
+
+\item{...}{Choice content. Text is striped if too long.}
+
+\item{title}{Item title.}
+
+\item{subtitle}{Item subtitle.}
+
+\item{after}{Display at the right of title.}
 }
 \description{
 \code{f7Radio} creates a radio button input.
@@ -32,55 +60,64 @@ updateF7Radio(
 \code{updateF7Radio} updates a radio button input.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7Radio"),
-     f7Radio(
-      inputId = "radio",
-      label = "Choose a fruit:",
-      choices = c("banana", "apple", "peach"),
-      selected = "apple"
-     ),
-     plotOutput("plot")
-    )
-   ),
-   server = function(input, output) {
-    output$plot <- renderPlot({
-     if (input$radio == "apple") hist(mtcars[, "mpg"])
-    })
-   }
- )
-}
-# Update radio
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Update radio",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update f7Radio"),
-      f7Button("go", "Update radio"),
-      f7Radio(
-        inputId = "radio",
-        label = "Choose a fruit:",
-        choices = c("banana", "apple", "peach"),
-        selected = "apple"
+      f7Block(f7Button("update", "Update radio")),
+      f7Block(
+        f7Radio(
+          inputId = "radio",
+          label = "Choose a fruit:",
+          choices = c("banana", "apple", "peach"),
+          selected = "apple",
+          position = "right"
+        ),
+        textOutput("res")
       ),
-      textOutput("radio_value")
+      f7Block(
+        f7Radio(
+          inputId = "radio2",
+          label = "Custom choices",
+          choices = list(
+            f7RadioChoice(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Nulla sagittis tellus ut turpis condimentum,
+            ut dignissim lacus tincidunt",
+              title = "Choice 1",
+              subtitle = "David",
+              after = "March 16, 2024"
+            ),
+            f7RadioChoice(
+              "Cras dolor metus, ultrices condimentum sodales sit
+            amet, pharetra sodales eros. Phasellus vel felis tellus.
+            Mauris rutrum ligula nec dapibus feugiat",
+              title = "Choice 2",
+              subtitle = "Veerle",
+              after = "March 17, 2024"
+            )
+          ),
+          selected = 2,
+          style = list(
+            outline = TRUE,
+            strong = TRUE,
+            inset = TRUE,
+            dividers = TRUE
+          )
+        ),
+        textOutput("res2")
+      )
     )
   ),
   server = function(input, output, session) {
-    output$radio_value <- renderText(input$radio)
+    output$res <- renderText(input$radio)
+    output$res2 <- renderText(input$radio2)
 
-    observeEvent(input$go, {
+    observeEvent(input$update, {
       updateF7Radio(
         session,
         inputId = "radio",
@@ -90,6 +127,7 @@ if (interactive()) {
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

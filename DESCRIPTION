@@ -1,9 +1,11 @@
 Package: shinyMobile
 Type: Package
 Title: Mobile Ready 'shiny' Apps with Standalone Capabilities
-Version: 1.0.1
+Version: 2.0.0
 Authors@R: c(
   person("David", "Granjon", email = "dgranjon@ymail.com", role = c("aut", "cre")),
+  person("Veerle", "van Leemput", email = "veerle@hypebright.nl", role = "aut"),
+  person("AthlyticZ", role = "fnd"),
   person("Victor", "Perrier", email = "info@dreamrs.fr", role = "aut"),
   person("John", "Coene", email = "jcoenep@gmail.com", role = "ctb"),
   person("Isabelle", "Rudolf", email = "", role = "aut"),
@@ -11,19 +13,19 @@ Authors@R: c(
   person(family = "Marvelapp", role = c("ctb", "cph"), comment = "device.css wrappers"),
   person("Vladimir", "Kharlampidi", email = "nolimits4web@gmail.com", role = c("ctb", "cph"), comment = "Framework7 HTML template"))
 Maintainer: David Granjon <dgranjon@ymail.com>
-Description: Develop outstanding 'shiny' apps for 'iOS', 'Android', desktop as well as beautiful 'shiny' gadgets.
+Description: Develop outstanding 'shiny' apps for 'iOS' and 'Android' as well as beautiful 'shiny' gadgets.
     'shinyMobile' is built on top of the latest 'Framework7' template <https://framework7.io>.
     Discover 14 new input widgets (sliders, vertical sliders, stepper, 
     grouped action buttons, toggles, picker, smart select, ...), 2 themes (light and dark), 
     12 new widgets (expandable cards, badges, chips, timelines, gauges, progress bars, ...) 
     combined with the power of server-side notifications such as alerts, modals, toasts,
     action sheets, sheets (and more) as well as 3 layouts (single, tabs and split).
-Imports: shiny, htmltools, jsonlite, magrittr, httr, gplots
+Imports: shiny, htmltools, jsonlite, magrittr, gplots, lifecycle
 License: GPL-2
 Encoding: UTF-8
 URL: https://github.com/RinteRface/shinyMobile, https://rinterface.github.io/shinyMobile/
 BugReports: https://github.com/RinteRface/shinyMobile/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests: 
     knitr,
     rmarkdown,
@@ -35,5 +37,10 @@ Suggests:
     apexcharter,
     ggplot2,
     dplyr,
-    bslib
+    bslib,
+    shinytest2,
+    thematic
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+Config/testthat/parallel: true
+Config/testthat/edition: 3

@@ -26,11 +26,11 @@
 #'       title = "My app",
 #'       f7SingleLayout(
 #'         navbar = f7Navbar(title = "f7Notif"),
-#'         f7Button(inputId = "goButton", "Go!")
+#'         f7Block(f7Button(inputId = "goButton", "Go!"))
 #'       )
 #'     ),
 #'     server = function(input, output, session) {
-#'       observeEvent(input$goButton,{
+#'       observeEvent(input$goButton, {
 #'         f7Notif(
 #'           text = "test",
 #'           icon = f7Icon("bolt_fill"),
@@ -46,7 +46,6 @@ f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subt
                     closeTimeout = 5000, closeButton = FALSE,
                     closeOnClick = TRUE, swipeToClose = TRUE,
                     ..., session = shiny::getDefaultReactiveDomain()) {
-
   if (!is.null(icon)) icon <- as.character(icon)
 
   message <- dropNulls(
@@ -72,6 +71,4 @@ f7Notif <- function(text, icon = NULL, title = NULL, titleRightText = NULL, subt
       json_verbatim = TRUE
     )
   )
-
 }
-

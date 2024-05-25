@@ -14,7 +14,8 @@ f7Sheet(
   swipeToStep = FALSE,
   backdrop = FALSE,
   closeByOutsideClick = TRUE,
-  swipeHandler = TRUE
+  swipeHandler = TRUE,
+  options = list()
 )
 
 updateF7Sheet(id, session = shiny::getDefaultReactiveDomain())
@@ -22,7 +23,7 @@ updateF7Sheet(id, session = shiny::getDefaultReactiveDomain())
 \arguments{
 \item{...}{Sheet content. If wipeToStep is TRUE, these items will be visible at start.}
 
-\item{id}{Sheet id.}
+\item{id}{Sheet unique id.}
 
 \item{hiddenItems}{Put items you want to hide inside. Only works when
 swipeToStep is TRUE. Default to NULL.}
@@ -35,8 +36,7 @@ swipeToStep is TRUE. Default to NULL.}
 and with swipe it can be further expanded.}
 
 \item{backdrop}{Enables Sheet backdrop (dark semi transparent layer
-behind). By default it is TRUE for MD and Aurora themes and
-FALSE for iOS theme.}
+behind). By default it is true for MD theme and false for iOS theme.}
 
 \item{closeByOutsideClick}{When enabled, sheet will be closed on
 when click outside of it.}
@@ -44,84 +44,87 @@ when click outside of it.}
 \item{swipeHandler}{Whether to display a swipe handler. TRUE by default.
 Need either swipeToClose or swipeToStep set to TRUE to work.}
 
+\item{options}{Other parameters.
+See \url{https://framework7.io/docs/sheet-modal#sheet-parameters}}
+
 \item{session}{Shiny session object}
 }
 \description{
 \code{f7Sheet} creates an f7 sheet modal window.
+The sheet modal has to be used in combination with \link{updateF7Sheet}.
+If you need another trigger, simply add
+\code{`data-sheet` = paste0("#", id)} to the tag of your choice (a button),
+where id refers to the sheet unique id as well as the class "sheet-open".
+Inversely, if you need a custom element to close a sheet, give it
+the "sheet-close" class.
 
 \code{updateF7Sheet} toggles an \link{f7Sheet} on the client.
 }
-\note{
-The sheet modal has to be used in combination with \link{updateF7Sheet}.
-Yet, if you need a specific trigger, simply add \code{`data-sheet` = paste0("#", id)},
-to the tag of your choice (a button), where id refers to the sheet unique id.
-}
 \examples{
-# Toggle sheet modal
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
-    ui = f7Page(
-       title = "Update f7Sheet",
-       f7SingleLayout(
-          navbar = f7Navbar(title = "f7Sheet"),
-          f7Button(inputId = "go", label = "Go"),
-          f7Sheet(
-             id = "sheet1",
-             label = "More",
-             orientation = "bottom",
-             swipeToClose = TRUE,
-             swipeToStep = TRUE,
-             backdrop = TRUE,
-             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-             Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
-             scelerisque est, at porta justo cursus ac",
-             hiddenItems = tagList(
-                f7Segment(
-                   container = "segment",
-                   rounded = TRUE,
-                   f7Button(color = "blue", label = "My button 1", rounded = TRUE),
-                   f7Button(color = "green", label = "My button 2", rounded = TRUE),
-                   f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
-                ),
-                f7Flex(
-                   f7Gauge(
-                      id = "mygauge",
-                      type  = "semicircle",
-                      value = 10,
-                      borderColor = "#2196f3",
-                      borderWidth = 10,
-                      valueFontSize = 41,
-                      valueTextColor = "#2196f3",
-                      labelText = "amount of something"
-                   )
-                ),
-                f7Slider(
-                   inputId = "obs",
-                   label = "Number of observations",
-                   max = 100,
-                   min = 0,
-                   value = 10,
-                   scale = TRUE
-                ),
-                plotOutput("distPlot")
-             )
-          )
-       )
-    ),
-    server = function(input, output, session) {
-       observe({print(input$sheet1)})
-       output$distPlot <- renderPlot({
-          hist(rnorm(input$obs))
-       })
-       observeEvent(input$obs, {
-          updateF7Gauge(id = "mygauge", value = input$obs)
-       })
-       observeEvent(input$go, {
-          updateF7Sheet(id = "sheet1")
-       })
-    }
- )
-}
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "Update f7Sheet",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7Sheet"),
+      f7Block(f7Button(inputId = "toggle", label = "Open sheet")),
+      f7Sheet(
+        id = "sheet",
+        orientation = "bottom",
+        swipeToClose = TRUE,
+        swipeToStep = TRUE,
+        backdrop = TRUE,
+        options = list(push = TRUE, breakpoints = c(0.33, 0.66)),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales
+        scelerisque est, at porta justo cursus ac",
+        hiddenItems = tagList(
+          f7Segment(
+            rounded = TRUE,
+            f7Button(color = "blue", label = "My button 1", rounded = TRUE),
+            f7Button(color = "green", label = "My button 2", rounded = TRUE),
+            f7Button(color = "yellow", label = "My button 3", rounded = TRUE)
+          ),
+          f7Grid(
+            cols = 1,
+            f7Gauge(
+              id = "mygauge",
+              type = "semicircle",
+              value = 10,
+              borderColor = "#2196f3",
+              borderWidth = 10,
+              valueFontSize = 41,
+              valueTextColor = "#2196f3",
+              labelText = "amount of something"
+            )
+          ),
+          f7Slider(
+            inputId = "obs",
+            label = "Number of observations",
+            max = 100,
+            min = 0,
+            value = 10,
+            scale = TRUE
+          ),
+          plotOutput("distPlot")
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$distPlot <- renderPlot({
+      hist(rnorm(input$obs))
+    })
+    observeEvent(input$obs, {
+      updateF7Gauge(id = "mygauge", value = input$obs)
+    })
+    observeEvent(input$toggle, {
+      updateF7Sheet(id = "sheet")
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

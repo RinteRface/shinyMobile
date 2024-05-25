@@ -16,7 +16,9 @@ f7ColorPicker(
   sliderLabel = TRUE,
   hexLabel = TRUE,
   hexValueEditable = TRUE,
-  groupedModules = TRUE
+  groupedModules = TRUE,
+  style = list(outline = FALSE, inset = FALSE, strong = FALSE, dividers = FALSE),
+  ...
 )
 }
 \arguments{
@@ -24,8 +26,7 @@ f7ColorPicker(
 
 \item{label}{Color picker label.}
 
-\item{value}{Color picker value. hex, rgb, hsl, hsb, alpha, hue,
-rgba, hsla are supported.}
+\item{value}{Initial picker value in hex.}
 
 \item{placeholder}{Color picker placeholder.}
 
@@ -36,43 +37,56 @@ of color vectors, each value specified as HEX string.}
 
 \item{sliderValue}{When enabled, it will display sliders values.}
 
-\item{sliderValueEditable}{When enabled, it will display sliders values as <input>
+\item{sliderValueEditable}{When enabled, it will display sliders values as \if{html}{\out{<input>}}
 elements to edit directly.}
 
 \item{sliderLabel}{When enabled, it will display sliders labels with text.}
 
 \item{hexLabel}{When enabled, it will display HEX module label text, e.g. HEX.}
 
-\item{hexValueEditable}{When enabled, it will display HEX module value as <input> element to edit directly.}
+\item{hexValueEditable}{When enabled, it will display HEX module value as \if{html}{\out{<input>}} element to edit directly.}
 
 \item{groupedModules}{When enabled it will add more exposure
 to sliders modules to make them look more separated.}
+
+\item{style}{Input style. Inherit from \link{f7List} options
+such as outline, inset, strong and dividers.}
+
+\item{...}{Other options to pass to the picker. See
+\url{https://framework7.io/docs/color-picker#color-picker-parameters}.}
+}
+\value{
+The return value is a list and includes hex, rgb, hsl, hsb, alpha, hue, rgba, and hsla values.
+See \url{https://framework7.io/docs/color-picker#color-picker-value}.
 }
 \description{
 Create a Framework7 color picker input
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "f7ColorPicker"),
-       f7ColorPicker(
-         inputId = "mycolorpicker",
-         placeholder = "Some text here!",
-         label = "Select a color"
-       ),
-       "The picker value is:",
-       textOutput("colorPickerVal")
-     )
-   ),
-   server = function(input, output) {
-     output$colorPickerVal <- renderText(input$mycolorpicker)
-   }
- )
-}
+app <- shinyApp(
+  ui = f7Page(
+    title = "My app",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "f7ColorPicker"),
+      f7ColorPicker(
+        inputId = "mycolorpicker",
+        placeholder = "Some text here!",
+        label = "Select a color"
+      ),
+      "The picker hex value is:",
+      textOutput("colorPickerVal"),
+      "The picker rgb value is:",
+      textOutput("colorPickerValRgb")
+    )
+  ),
+  server = function(input, output) {
+    output$colorPickerVal <- renderText(input$mycolorpicker$hex)
+    output$colorPickerValRgb <- renderText(unlist(paste(input$mycolorpicker$rgb, collapse = ",")))
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

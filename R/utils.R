@@ -15,22 +15,23 @@ colorToHex <- function(color) {
   if (is.null(color)) {
     "#007aff"
   } else {
-    switch (color,
-            "red" = "#ff3b30",
-            "green" = "#4cd964",
-            "blue" = "#2196f3",
-            "pink" = "#ff2d55",
-            "yellow" = "#ffcc00",
-            "orange" = "#ff9500",
-            "purple" = "#9c27b0",
-            "deeppurple" = "#673ab7",
-            "lightblue" = "#5ac8fa",
-            "teal" = "#009688",
-            "lime" = "#cddc39",
-            "deeporange" = "#ff6b22",
-            "gray" = "#8e8e93",
-            "white" = "#ffffff",
-            "black" = "#000000"
+    switch(color,
+      "primary" = "#007aff",
+      "red" = "#ff3b30",
+      "green" = "#4cd964",
+      "blue" = "#2196f3",
+      "pink" = "#ff2d55",
+      "yellow" = "#ffcc00",
+      "orange" = "#ff9500",
+      "purple" = "#9c27b0",
+      "deeppurple" = "#673ab7",
+      "lightblue" = "#5ac8fa",
+      "teal" = "#009688",
+      "lime" = "#cddc39",
+      "deeporange" = "#ff6b22",
+      "gray" = "#8e8e93",
+      "white" = "#ffffff",
+      "black" = "#000000"
     )
   }
 }
@@ -43,16 +44,17 @@ colorToHex <- function(color) {
 #' @export
 getF7Colors <- function() {
   c(
+    "primary",
     "red",
     "green",
     "blue",
     "pink",
     "yellow",
     "orange",
-    "purple" ,
+    "purple",
     "deeppurple",
     "lightblue",
-    "teal" ,
+    "teal",
     "lime",
     "deeporange",
     "gray",
@@ -136,11 +138,13 @@ sendCustomMessage <- function(type, message, session) {
 
 # Given a Shiny tag object, process singletons and dependencies. Returns a list
 # with rendered HTML and dependency objects.
-processDeps <- function (tags, session) {
+processDeps <- function(tags, session) {
   ui <- htmltools::takeSingletons(tags, session$singletons, desingleton = FALSE)$ui
   ui <- htmltools::surroundSingletons(ui)
-  dependencies <- lapply(htmltools::resolveDependencies(htmltools::findDependencies(ui)),
-                         shiny::createWebDependency)
+  dependencies <- lapply(
+    htmltools::resolveDependencies(htmltools::findDependencies(ui)),
+    shiny::createWebDependency
+  )
   names(dependencies) <- NULL
   list(html = htmltools::doRenderTags(ui), deps = dependencies)
 }
@@ -148,8 +152,7 @@ processDeps <- function (tags, session) {
 
 #' Create an iframe container for app demo
 #'
-#' @param url app URL. httr GET test is run before. If failed,
-#' function returns NULL.
+#' @param url app URL.
 #' @param deps Whether to include marvel device assets. Default to FALSE.
 #' The first occurence must set deps to TRUE so that CSS is loaded in the page.
 #' @param skin Wrapper devices.
@@ -160,45 +163,38 @@ processDeps <- function (tags, session) {
 #' @param landscape Whether to put the device wrapper in landscape mode. Default to FALSE.
 #' @keywords internal
 app_container <- function(url, deps = FALSE, skin, color = NULL, landscape = FALSE) {
-
-  # test app availability
-  req <- httr::GET(url)
-  show_app <- req$status_code == 200
-
-  if (show_app) {
-    device_tag <- create_app_container(
-      shiny::tags$iframe(
-        width = "100%",
-        src = url,
-        allowfullscreen = "",
-        frameborder = "0",
-        scrolling = "yes",
-        height = set_app_height(skin, landscape)
+  device_tag <- create_app_container(
+    shiny::tags$iframe(
+      width = "100%",
+      src = url,
+      allowfullscreen = "",
+      frameborder = "0",
+      scrolling = "yes",
+      height = set_app_height(skin, landscape)
+    ),
+    skin = skin,
+    color = color,
+    landscape = landscape
+  )
+  if (deps) {
+    shiny::tagList(
+      shiny::tags$link(
+        rel = "stylesheet",
+        href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "shinyMobile"),
+        type = "text/css"
       ),
-      skin = skin,
-      color = color,
-      landscape = landscape
-    )
-    if (deps){
-      shiny::tagList(
-        shiny::tags$link(
-          rel = "stylesheet",
-          href = system.file("marvel-devices-css-1.0.0/devices.min.css", package = "shinyMobile"),
-          type = "text/css"
-        ),
-        device_tag
-      )
-    } else {
       device_tag
-    }
+    )
+  } else {
+    device_tag
   }
 }
 
 # Get arguments of function call at a given level. Level can be negative.
 get_args <- function(level) {
   cl <- sys.call(level)
-  f <- get(as.character(cl[[1]]), mode="function", sys.frame(-2))
-  cl <- match.call(definition=f, call=cl)
+  f <- get(as.character(cl[[1]]), mode = "function", sys.frame(-2))
+  cl <- match.call(definition = f, call = cl)
   as.list(cl)[-1]
 }
 
@@ -209,9 +205,13 @@ get_args <- function(level) {
 #' the end of the url.
 #' @param mode How to display the shinylive app. Default to app mode.
 #' @param header Whether to display the shinylive header. Default to TRUE.
+#' @param height iframe height. Useful to setup custom viewport dimensions.
+#' Default to iphone15 height.
 #'
 #' @keywords internal
-create_app_link <- function(app_code, mode = c("app", "editor"), header = TRUE) {
+create_app_link <- function(
+    app_code, mode = c("app", "editor"), header = TRUE,
+    height = "852") {
   mode <- match.arg(mode)
 
   app_url <- sprintf(
@@ -226,11 +226,27 @@ create_app_link <- function(app_code, mode = c("app", "editor"), header = TRUE) 
     # To allow the content to fill the full screen card
     class = "html-fill-item",
     src = app_url,
-    height = "700",
+    height = height,
     width = "100%",
     style = "border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;",
     allowfullscreen = "",
     allow = "autoplay",
     `data-external` = "1"
   )
+}
+
+#' Change tags ids
+#' 
+#' Changes the id of the shiny tags
+#' and any nested element.
+#' 
+#' @keywords internal
+#' @noRd
+change_id <- function(items, ns) {
+  lapply(items, \(item) {
+    full_ns <- ns(character(0))
+    tmp <- strsplit(as.character(item), "\n")[[1]]
+    outer_ns <- strsplit(full_ns, "-")[[1]][1]
+    shiny::HTML(paste(gsub(sprintf("%s", outer_ns), full_ns, tmp), collapse = "\n"))
+  })
 }

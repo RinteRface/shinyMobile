@@ -4,60 +4,56 @@
 \alias{f7Page}
 \title{Framework7 page container}
 \usage{
-f7Page(
-  ...,
-  title = NULL,
-  options = list(theme = c("auto", "ios", "md", "aurora"), dark = TRUE, skeletonsOnLoad =
-    FALSE, preloader = FALSE, filled = FALSE, color = "#007aff", touch = list(tapHold =
-    TRUE, tapHoldDelay = 750, iosTouchRipple = FALSE), iosTranslucentBars = FALSE, navbar
-    = list(iosCenterTitle = TRUE, hideOnPageScroll = TRUE), toolbar =
-    list(hideOnPageScroll = FALSE), pullToRefresh = FALSE),
-  allowPWA = FALSE
-)
+f7Page(..., title = NULL, options = f7DefaultOptions(), allowPWA = FALSE)
 }
 \arguments{
-\item{...}{Slot for shinyMobile skeleton elements: \link{f7Appbar}, \link{f7SingleLayout},
+\item{...}{Slot for shinyMobile skeleton elements: \link{f7SingleLayout},
 \link{f7TabLayout}, \link{f7SplitLayout}.}
 
 \item{title}{Page title.}
 
-\item{options}{shinyMobile configuration. See \url{https://framework7.io/docs/app.html}. Below are the most
+\item{options}{shinyMobile configuration. See \link{f7DefaultOptions} and
+\url{https://framework7.io/docs/app.html}. Below are the most
 notable options. General options:
 \itemize{
- \item \code{theme}: App skin: "ios", "md", "auto" or "aurora".
- \item \code{dark}: Dark layout. TRUE or FALSE.
- \item \code{skeletonsOnLoad}: Whether to display skeletons on load.
- This is a preloading effect. Not compatible with preloader.
- \item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
- \item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
- the current selected color. FALSE by default.
- \item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
- Expect a name like blue, red or hex code like `#FF0000`. If NULL, use the default color.
- If a name is specified it must be accepted either by \link[gplots]{col2hex} or
- \link{getF7Colors} (valid Framework 7 color names).
- \item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
- See \url{https://v5.framework7.io/docs/pull-to-refresh.html#examples}.
- \item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
- FALSE by default.
+\item \code{theme}: App skin: "ios", "md", or "auto".
+\item \code{dark}: Dark layout. TRUE, FALSE, or "auto". The default is "auto".
+If set to "auto" automatically enables dark theme based on user system color scheme preference.
+\item \code{skeletonsOnLoad}: Whether to display skeletons on load.
+This is a preloading effect. Not compatible with preloader.
+\item \code{preloader}: Loading spinner. Not compatible with skeletonsOnLoad.
+\item \code{filled}: Whether to fill the \link{f7Navbar} and \link{f7Toolbar} with
+the current selected color. FALSE by default.
+\item \code{color}: Color theme: See \url{https://framework7.io/docs/color-themes.html}.
+Expect a name like blue, red or hex code like \verb{#FF0000}. If NULL, use the default color.
+If a name is specified it must be accepted either by \link[gplots]{col2hex} or
+\link{getF7Colors} (valid Framework 7 color names).
+\item \code{pullToRefresh}: Whether to active the pull to refresh feature. Default to FALSE.
+See \url{https://framework7.io/docs/pull-to-refresh#examples}.
+\item \code{iosTranslucentBars}: Enable translucent effect (blur background) on navigation bars for iOS theme (on iOS devices).
+FALSE by default.
 }
-Touch module options \url{https://v5.framework7.io/docs/app.html#app-parameters}:
+Touch module options \url{https://framework7.io/docs/app#param-touch}:
 \itemize{
- \item \code{tapHold}:  It triggers (if enabled) after a sustained, complete touch event.
- By default it is disabled. Note, that Tap Hold is a part of built-in Fast Clicks library,
- so Fast Clicks should be also enabled.
- \item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
- Default to 750 ms.
- \item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+\item \code{touchClicksDistanceThreshold}: Distance threshold (in px) to prevent short swipes.
+So if tap/move distance is larger than this value then "click" will not be triggered.
+\item \code{tapHold}: It triggers (if enabled) after a sustained, complete touch event.
+By default it is enabled. See \link{f7TapHold} for usage.
+\item \code{tapHoldDelay}: Determines how long (in ms) the user must hold their tap before the taphold event is fired on the target element.
+Default to 750 ms.
+\item \code{tapHoldPreventClicks}: When enabled (by default), then click event will not be fired after tap hold event.
+\item \code{iosTouchRipple}: Default to FALSE. Enables touch ripple effect for iOS theme.
+\item \code{mdTouchRipple}: Default to TRUE. Enables touch ripple effect for MD theme.
 }
-Navbar options \url{https://v5.framework7.io/docs/navbar.html#navbar-app-parameters}:
+Navbar options \url{https://framework7.io/docs/navbar#navbar-app-parameters}:
 \itemize{
- \item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
- title at the center in iOS theme. Sometime (with some custom design) it may not needed.
- \item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
+\item \code{iosCenterTitle}: Default to TRUE. When enabled then it will try to position
+title at the center in iOS theme. Sometime (with some custom design) it may not needed.
+\item \code{hideOnPageScroll}: Default to FALSE. Will hide Navbars on page scroll.
 }
-Toolbar options \url{https://v5.framework7.io/docs/toolbar-tabbar.html#toolbar-app-parameters}:
+Toolbar options \url{https://framework7.io/docs/toolbar-tabbar#toolbar-app-parameters}:
 \itemize{
- \item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
+\item \code{hideOnPageScroll}: Default to FALSE. Will hide tabs on page scroll.
 }
 
 In any case, you must follow the same structure as provided in the function arguments.}

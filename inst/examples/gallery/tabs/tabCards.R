@@ -3,7 +3,6 @@ tabCards <- f7Tab(
   tabName = "Cards",
   icon = f7Icon("rectangle_stack", f7Badge(8, color = "green")),
   active = FALSE,
-
   f7BlockTitle(title = "f7Block") %>% f7Align(side = "center"),
   f7Block(
     f7BlockHeader(text = "Header"),
@@ -16,7 +15,6 @@ tabCards <- f7Tab(
     f7BlockFooter(text = "Footer")
   ),
   br(),
-
   f7BlockTitle(title = "f7Block with wrapper") %>% f7Align(side = "center"),
   f7Block(
     strong = TRUE,
@@ -30,11 +28,11 @@ tabCards <- f7Tab(
     f7BlockFooter(text = "Footer")
   ),
   br(),
-
   f7BlockTitle(title = "f7Block with wrapper and inset") %>% f7Align(side = "center"),
   f7Block(
     inset = TRUE,
     strong = TRUE,
+    outline = TRUE,
     f7BlockHeader(text = "Header"),
     "Here comes paragraph within content block.
      Donec et nulla auctor massa pharetra
@@ -44,7 +42,6 @@ tabCards <- f7Tab(
      turpis vel, sagittis felis.",
     f7BlockFooter(text = "Footer")
   ),
-
   br(),
 
   # classic card without header nor footer
@@ -64,6 +61,9 @@ tabCards <- f7Tab(
       "Card with header and footer",
       f7Icon("card", f7Badge("Hi!", color = "red"))
     ),
+    divider = TRUE,
+    outline = TRUE,
+    raised = TRUE,
     "This is a simple card with plain text,
      but cards can also contain their own header,
      footer, list view, image, or any other element.",
@@ -89,29 +89,10 @@ tabCards <- f7Tab(
   ),
   br(),
 
-
-  # social card
-  f7BlockTitle(title = "f7SocialCard") %>% f7Align(side = "center"),
-  f7SocialCard(
-    image = "https://cdn.framework7.io/placeholder/people-68x68-1.jpg",
-    author = "A social Card",
-    date = "Monday at 3:47 PM",
-    "What a nice photo i took yesterday!",
-    img(src = "https://cdn.framework7.io/placeholder/nature-1000x700-8.jpg", width = "100%"),
-    footer = tagList(
-      f7Badge("1", color = "yellow"),
-      f7Badge("2", color = "green"),
-      f7Badge("3", color = "blue")
-    )
-  ),
-  br(),
-
-
   # media card
   f7BlockTitle(title = "f7MediaCard") %>% f7Align(side = "center"),
   f7Card(
     title = "A card with media:",
-
     f7List(
       mode = "media",
       lapply(1:2, function(j) {
@@ -140,7 +121,7 @@ tabCards <- f7Tab(
   f7ExpandableCard(
     id = "card1",
     title = "Expandable Card 1",
-    color = "yellow",
+    color = "deeporange",
     subtitle = "Click on me pleaaaaase",
     "Framework7 - is a free and open source HTML mobile framework
     to develop hybrid mobile apps or web apps with iOS or Android

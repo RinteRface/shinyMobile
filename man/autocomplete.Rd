@@ -7,36 +7,39 @@
 \usage{
 f7AutoComplete(
   inputId,
-  label,
+  label = NULL,
   placeholder = NULL,
-  value = choices[1],
+  value = NULL,
   choices,
   openIn = c("popup", "page", "dropdown"),
   typeahead = TRUE,
-  expandInput = TRUE,
+  expandInput = deprecated(),
   closeOnSelect = FALSE,
   dropdownPlaceholderText = NULL,
   multiple = FALSE,
-  limit = NULL
+  limit = NULL,
+  style = list(media = NULL, description = NULL, floating = FALSE, outline = FALSE),
+  ...
 )
 
 updateF7AutoComplete(
   inputId,
   value = NULL,
   choices = NULL,
+  ...,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Autocomplete input id.}
 
 \item{label}{Autocomplete label.}
 
 \item{placeholder}{Text to write in the container.}
 
-\item{value}{New value.}
+\item{value}{Autocomplete initial value, if any.}
 
-\item{choices}{New set of choices.}
+\item{choices}{Autocomplete choices.}
 
 \item{openIn}{Defines how to open Autocomplete,
 can be page or popup (for Standalone) or dropdown.}
@@ -44,9 +47,8 @@ can be page or popup (for Standalone) or dropdown.}
 \item{typeahead}{Enables type ahead, will prefill input
 value with first item in match. Only if openIn is "dropdown".}
 
-\item{expandInput}{If TRUE then input which is used as
-item-input in List View will be expanded to full
-screen wide during dropdown visible. Only if openIn is "dropdown".}
+\item{expandInput}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}:
+removed from Framework7.}
 
 \item{closeOnSelect}{Set to true and autocomplete will be closed when user picks value.
 Not available if multiple is enabled. Only works
@@ -58,7 +60,13 @@ Only if openIn is "dropdown".}
 \item{multiple}{Whether to allow multiple value selection. Only works
 when openIn is 'popup' or 'page'.}
 
-\item{limit}{Limit number of maximum displayed items in autocomplete per query}
+\item{limit}{Limit number of maximum displayed items in autocomplete per query.}
+
+\item{style}{Autocomplete styling parameters.
+Only available when \code{openIn} is "dropdown".}
+
+\item{...}{Extra options.
+See \url{https://framework7.io/docs/autocomplete#autocomplete-parameters}}
 
 \item{session}{The Shiny session object.}
 }
@@ -68,81 +76,43 @@ when openIn is 'popup' or 'page'.}
 \code{updateF7AutoComplete} changes the value of an autocomplete input on the client.
 }
 \note{
-You cannot update choices yet.
+Contrary to \link{f7Text}, this input can't be cleared.
 }
 \examples{
-# Autocomplete input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
-   ui = f7Page(
-    title = "My app",
-    f7SingleLayout(
-     navbar = f7Navbar(title = "f7AutoComplete"),
-     f7AutoComplete(
-      inputId = "myautocomplete1",
-      placeholder = "Some text here!",
-      dropdownPlaceholderText = "Try to type Apple",
-      label = "Type a fruit name",
-      openIn = "dropdown",
-      choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-       'Orange', 'Peach', 'Pear', 'Pineapple')
-     ),
-     textOutput("autocompleteval1"),
-     f7AutoComplete(
-      inputId = "myautocomplete2",
-      placeholder = "Some text here!",
-      openIn = "popup",
-      multiple = TRUE,
-      label = "Type a fruit name",
-      choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-                  'Orange', 'Peach', 'Pear', 'Pineapple')
-     ),
-     verbatimTextOutput("autocompleteval2")
-    )
-   ),
-   server = function(input, output) {
-    observe({
-     print(input$myautocomplete1)
-     print(input$myautocomplete2)
-    })
-    output$autocompleteval1 <- renderText(input$myautocomplete1)
-    output$autocompleteval2 <- renderPrint(input$myautocomplete2)
-   }
- )
-}
-
-# Update autocomplete
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "My app",
     f7SingleLayout(
       navbar = f7Navbar(title = "Update autocomplete"),
-      f7Card(
-        f7Button(inputId = "update", label = "Update autocomplete"),
+      f7Block(f7Button(inputId = "update", label = "Update autocomplete")),
+      f7Block(
+        inset = TRUE,
+        strong = TRUE,
+        f7BlockTitle("Autocomplete input"),
         f7AutoComplete(
-         inputId = "myautocomplete",
-         placeholder = "Some text here!",
-         openIn = "dropdown",
-         label = "Type a fruit name",
-         choices = c('Apple', 'Apricot', 'Avocado', 'Banana', 'Melon',
-                     'Orange', 'Peach', 'Pear', 'Pineapple')
-        ),
-        verbatimTextOutput("autocompleteval")
-      )
+          inputId = "myautocomplete",
+          placeholder = "Some text here!",
+          openIn = "dropdown",
+          label = "Type a fruit name",
+          choices = c(
+            "Apple", "Apricot", "Avocado", "Banana", "Melon",
+            "Orange", "Peach", "Pear", "Pineapple"
+          ),
+          style = list(
+            outline = TRUE,
+            media = f7Icon("house"),
+            description = "typeahead input",
+            floating = TRUE
+          )
+        )
+      ),
+      f7Block(verbatimTextOutput("autocompleteval"))
     )
   ),
   server = function(input, output, session) {
-
-    observe({
-     print(input$myautocomplete)
-    })
-
     output$autocompleteval <- renderText(input$myautocomplete)
 
     observeEvent(input$update, {
@@ -153,8 +123,9 @@ if (interactive()) {
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

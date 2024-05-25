@@ -4,91 +4,191 @@
 \alias{f7SplitLayout}
 \title{Framework7 split layout}
 \usage{
-f7SplitLayout(
-  ...,
-  navbar,
-  sidebar,
-  toolbar = NULL,
-  panel = NULL,
-  appbar = NULL
-)
+f7SplitLayout(..., navbar, sidebar, toolbar = NULL, panel = NULL)
 }
 \arguments{
 \item{...}{Content.}
 
-\item{navbar}{Slot for \link{f7Navbar}.}
+\item{navbar}{Slot for \link{f7Navbar}. We expect the following:
+\code{f7Navbar(title = "Navbar", leftPanel = TRUE)}}
 
-\item{sidebar}{Slot for \link{f7Panel}. Particularly we expect the following code:
-\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", style = "reveal")}}
+\item{sidebar}{Slot for \link{f7Panel}. Particularly we expect the following:
+\code{f7Panel(title = "Sidebar", side = "left", theme = "light", "Blabla", effect = "reveal")}.
+At a minimal app width (1024 px) the sidebar becomes always visible. You can override this
+behavior by setting \code{options = list(visibleBreakpoint = 1024)} to the desired width in \link{f7Panel}.}
 
 \item{toolbar}{Slot for \link{f7Toolbar}.}
 
 \item{panel}{Slot for \link{f7Panel}. Expect only a right panel, for instance:
-\code{f7Panel(title = "Left Panel", side = "right", theme = "light", "Blabla", style = "cover")}}
-
-\item{appbar}{Slot for \link{f7Appbar}.}
+\code{f7Panel(title = "Right Panel", side = "right", theme = "light", "Blabla", effect = "cover")}}
 }
 \description{
 This is a modified version of the \link{f7SingleLayout}.
 It is intended to be used with tablets.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Split layout",
-     f7SplitLayout(
-       sidebar = f7Panel(
-         id = "sidebar",
-         title = "Sidebar",
-         side = "left",
-         theme = "dark",
-         f7PanelMenu(
-           id = "menu",
-           f7PanelItem(tabName = "tab1", title = "Tab 1", icon = f7Icon("envelope"), active = TRUE),
-           f7PanelItem(tabName = "tab2", title = "Tab 2", icon = f7Icon("house"))
-         ),
-         uiOutput("selected_tab")
-       ),
-       navbar = f7Navbar(
-         title = "Split Layout",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       toolbar = f7Toolbar(
-         position = "bottom",
-         f7Link(label = "Link 1", href = "https://www.google.com"),
-         f7Link(label = "Link 2", href = "https://www.google.com")
-       ),
-       # main content
-       f7Items(
-         f7Item(
-           tabName = "tab1",
-           f7Slider("obs", "Number of observations:",
-                       min = 0, max = 1000, value = 500
-           ),
-           plotOutput("distPlot")
-         ),
-         f7Item(tabName = "tab2", "Tab 2 content")
-       )
-     )
-   ),
-   server = function(input, output) {
+library(shiny)
+library(ggplot2)
+library(shinyMobile)
+library(apexcharter)
+library(thematic)
 
-     output$selected_tab <- renderUI({
-      HTML(paste0("Selected tab: ", strong(input$menu)))
-     })
+fruits <- data.frame(
+  name = c("Apples", "Oranges", "Bananas", "Berries"),
+  value = c(44, 55, 67, 83)
+)
 
-     output$distPlot <- renderPlot({
-       dist <- rnorm(input$obs)
-       hist(dist)
-     })
-   }
- )
-}
+thematic_shiny(font = "auto")
 
+new_mtcars <- reshape(
+  data = head(mtcars),
+  idvar = "model",
+  varying = list(c("drat", "wt")),
+  times = c("drat", "wt"),
+  direction = "long",
+  v.names = "value",
+  drop = c("mpg", "cyl", "hp", "dist", "qsec", "vs", "am", "gear", "carb")
+)
+
+app <- shinyApp(
+  ui = f7Page(
+    title = "Split layout",
+    options = list(
+      dark = FALSE
+    ),
+    f7SplitLayout(
+      sidebar = f7Panel(
+        title = "Sidebar",
+        side = "left",
+        effect = "push",
+        options = list(
+          visibleBreakpoint = 1024
+        ),
+        f7PanelMenu(
+          id = "menu",
+          strong = TRUE,
+          f7PanelItem(
+            tabName = "tab1",
+            title = "Tab 1",
+            icon = f7Icon("equal_circle"),
+            active = TRUE
+          ),
+          f7PanelItem(
+            tabName = "tab2",
+            title = "Tab 2",
+            icon = f7Icon("equal_circle")
+          ),
+          f7PanelItem(
+            tabName = "tab3",
+            title = "Tab 3",
+            icon = f7Icon("equal_circle")
+          )
+        ),
+        uiOutput("selected_tab")
+      ),
+      panel = f7Panel(
+        side = "right",
+        effect = "floating",
+        "Blablabla"
+      ),
+      navbar = f7Navbar(
+        title = "Split Layout",
+        hairline = FALSE,
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
+      ),
+      # main content
+      f7Items(
+        f7Item(
+          tabName = "tab1",
+          f7Button("toggleSheet", "Plot parameters"),
+          f7Sheet(
+            id = "sheet1",
+            label = "Plot Parameters",
+            orientation = "bottom",
+            swipeToClose = TRUE,
+            backdrop = TRUE,
+            f7Slider(
+              "obs",
+              "Number of observations:",
+              min = 0, max = 1000,
+              value = 500
+            )
+          ),
+          br(),
+          plotOutput("distPlot")
+        ),
+        f7Item(
+          tabName = "tab2",
+          apexchartOutput("radar")
+        ),
+        f7Item(
+          tabName = "tab3",
+          f7Toggle(
+            inputId = "plot_show",
+            label = "Show Plot?",
+            checked = TRUE
+          ),
+          apexchartOutput("multi_radial")
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    observeEvent(input$toggleSheet, {
+      updateF7Sheet(id = "sheet1")
+    })
+
+    observeEvent(input$obs, {
+      if (input$obs < 500) {
+        f7Notif(
+          text = paste0(
+            "The slider value is only ", input$obs, ". Please
+            increase it"
+          ),
+          icon = f7Icon("bolt_fill"),
+          title = "Alert",
+          titleRightText = Sys.Date()
+        )
+      }
+    })
+
+
+    output$radar <- renderApexchart({
+      apex(
+        data = new_mtcars,
+        type = "radar",
+        mapping = aes(
+          x = model,
+          y = value,
+          group = time
+        )
+      )
+    })
+
+    output$selected_tab <- renderUI({
+      HTML(paste0("Currently selected tab: ", strong(input$menu)))
+    })
+
+    output$distPlot <- renderPlot({
+      dist <- rnorm(input$obs)
+      hist(dist)
+    })
+
+    output$multi_radial <- renderApexchart({
+      if (input$plot_show) {
+        apex(data = fruits, type = "radialBar", mapping = aes(x = name, y = value))
+      }
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

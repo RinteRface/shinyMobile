@@ -5,7 +5,14 @@
 \alias{updateF7Select}
 \title{Framework7 select input}
 \usage{
-f7Select(inputId, label, choices, selected = NULL, width = NULL)
+f7Select(
+  inputId,
+  label,
+  choices,
+  selected = NULL,
+  width = NULL,
+  style = list(media = NULL, description = NULL, outline = FALSE)
+)
 
 updateF7Select(
   inputId,
@@ -14,15 +21,18 @@ updateF7Select(
 )
 }
 \arguments{
-\item{inputId}{The id of the input object.}
+\item{inputId}{Text input id.}
 
-\item{label}{Select input label.}
+\item{label}{Text input label.}
 
 \item{choices}{Select input choices.}
 
-\item{selected}{New value.}
+\item{selected}{Select input default selected value.}
 
 \item{width}{The width of the input, e.g. \code{400px}, or \code{100\%}.}
+
+\item{style}{Input style. A list with media (image or icon),
+description (text), floating, outline and clearable (booleans).}
 
 \item{session}{The Shiny session object, usually the default value will suffice.}
 }
@@ -31,67 +41,50 @@ updateF7Select(
 
 \code{updateF7Select} changes the value of a select input on the client
 }
+\note{
+Contrary to \link{f7Text}, \link{f7Select} can't be cleared and
+label can't float.
+}
 \examples{
-# Select input
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shiny::shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-      navbar = f7Navbar(title = "f7Select"),
-      f7Select(
-       inputId = "variable",
-       label = "Choose a variable:",
-       choices = colnames(mtcars)[-1],
-       selected = "hp"
-      ),
-      tableOutput("data")
-     )
-   ),
-   server = function(input, output) {
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-   }
- )
-}
-# Update select input
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+app <- shinyApp(
+  ui = f7Page(
+    title = "f7Select",
+    f7SingleLayout(
+      navbar = f7Navbar(title = "updateF7Select"),
+      f7Card(
+        f7Button(inputId = "update", label = "Update select"),
+        br(),
+        f7List(
+          f7Select(
+            inputId = "select",
+            label = "Choose a variable:",
+            choices = colnames(mtcars)[-1],
+            selected = "hp",
+            style = list(
+              description = "A basic select input",
+              media = f7Icon("car_fill"),
+              outline = TRUE
+            )
+          )
+        ),
+        verbatimTextOutput("test")
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    output$test <- renderPrint(input$select)
 
- shinyApp(
-   ui = f7Page(
-     title = "My app",
-     f7SingleLayout(
-       navbar = f7Navbar(title = "updateF7Select"),
-       f7Card(
-         f7Button(inputId = "update", label = "Update select"),
-         br(),
-         f7Select(
-          inputId = "variable",
-          label = "Choose a variable:",
-          choices = colnames(mtcars)[-1],
-          selected = "hp"
-         ),
-         verbatimTextOutput("test")
-       )
-     )
-   ),
-   server = function(input, output, session) {
+    observeEvent(input$update, {
+      updateF7Select(
+        inputId = "select",
+        selected = "gear"
+      )
+    })
+  }
+)
 
-     output$test <- renderPrint(input$variable)
-
-     observeEvent(input$update, {
-       updateF7Select(
-         inputId = "variable",
-         selected = "gear"
-       )
-     })
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

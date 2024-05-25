@@ -4,7 +4,7 @@
 \alias{f7TabLayout}
 \title{Framework7 tab layout}
 \usage{
-f7TabLayout(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL)
+f7TabLayout(..., navbar, messagebar = NULL, panels = NULL)
 }
 \arguments{
 \item{...}{Slot for \link{f7Tabs}.}
@@ -15,154 +15,151 @@ f7TabLayout(..., navbar, messagebar = NULL, panels = NULL, appbar = NULL)
 
 \item{panels}{Slot for \link{f7Panel}.
 Wrap in \code{tagList} if multiple panels.}
-
-\item{appbar}{Slot for \link{f7Appbar}.}
 }
 \description{
 \code{f7TabLayout} create a single page app with multiple tabs,
 giving the illusion of a multi pages experience.
 }
 \examples{
-if(interactive()){
- library(shiny)
- library(shinyMobile)
- library(shinyWidgets)
+library(shiny)
+library(shinyMobile)
+library(apexcharter)
+library(shinyWidgets)
 
- shinyApp(
-   ui = f7Page(
-     title = "Tab layout",
-     f7TabLayout(
-       tags$head(
-         tags$script(
-           "$(function(){
-               $('#tapHold').on('taphold', function () {
-                 app.dialog.alert('Tap hold fired!');
-               });
-             });
-             "
-         )
-       ),
-       panels = tagList(
-         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", effect = "cover"),
-         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", effect = "cover")
-       ),
-       navbar = f7Navbar(
-         title = "Tabs",
-         hairline = FALSE,
-         shadow = TRUE,
-         leftPanel = TRUE,
-         rightPanel = TRUE
-       ),
-       f7Tabs(
-         animated = FALSE,
-         swipeable = TRUE,
-         f7Tab(
-           tabName = "Tab1",
-           icon = f7Icon("envelope"),
-           active = TRUE,
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7Stepper(
-                 "obs1",
-                 "Number of observations",
-                 min = 0,
-                 max = 1000,
-                 value = 500,
-                 step = 100
-               ),
-               plotOutput("distPlot1"),
-               footer = tagList(
-                 f7Button(inputId = "tapHold", label = "My button"),
-                 f7Badge("Badge", color = "green")
-               )
-             )
-           )
-         ),
-         f7Tab(
-           tabName = "Tab2",
-           icon = f7Icon("today"),
-           active = FALSE,
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7Select(
-                 inputId = "obs2",
-                 label = "Distribution type:",
-                 choices = c(
-                   "Normal" = "norm",
-                   "Uniform" = "unif",
-                   "Log-normal" = "lnorm",
-                   "Exponential" = "exp"
-                 )
-               ),
-               plotOutput("distPlot2"),
-               footer = tagList(
-                 f7Button(label = "My button", href = "https://www.google.com"),
-                 f7Badge("Badge", color = "orange")
-               )
-             )
-           )
-         ),
-         f7Tab(
-           tabName = "Tab3",
-           icon = f7Icon("cloud_upload"),
-           active = FALSE,
-           f7Shadow(
-             intensity = 10,
-             hover = TRUE,
-             f7Card(
-               title = "Card header",
-               f7SmartSelect(
-                 inputId = "variable",
-                 label = "Variables to show:",
-                 c("Cylinders" = "cyl",
-                   "Transmission" = "am",
-                   "Gears" = "gear"),
-                 multiple = TRUE,
-                 selected = "cyl"
-               ),
-               tableOutput("data"),
-               footer = tagList(
-                 f7Button(label = "My button", href = "https://www.google.com"),
-                 f7Badge("Badge", color = "green")
-               )
-             )
-           )
-         )
-       )
-     )
-   ),
-   server = function(input, output) {
-     output$distPlot1 <- renderPlot({
-       dist <- rnorm(input$obs1)
-       hist(dist)
-     })
+poll <- data.frame(
+  answer = c("Yes", "No"),
+  n = c(254, 238)
+)
 
-     output$distPlot2 <- renderPlot({
-       dist <- switch(
-         input$obs2,
-         norm = rnorm,
-         unif = runif,
-         lnorm = rlnorm,
-         exp = rexp,
-         rnorm
-       )
+app <- shinyApp(
+  ui = f7Page(
+    title = "Tabs layout",
+    f7TabLayout(
+      panels = tagList(
+        f7Panel(title = "Left Panel", side = "left", "Blabla", effect = "cover"),
+        f7Panel(title = "Right Panel", side = "right", "Blabla", effect = "cover")
+      ),
+      navbar = f7Navbar(
+        title = "Tabs",
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      f7Tabs(
+        animated = TRUE,
+        # swipeable = TRUE,
+        f7Tab(
+          title = "Tab 1",
+          tabName = "Tab1",
+          icon = f7Icon("folder"),
+          active = TRUE,
+          f7List(
+            strong = TRUE,
+            prettyRadioButtons(
+              inputId = "theme",
+              label = "Select a theme:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "md",
+              choices = c("ios", "md"),
+              animation = "pulse",
+              status = "info"
+            ),
+            prettyRadioButtons(
+              inputId = "dark",
+              label = "Select a color:",
+              thick = TRUE,
+              inline = TRUE,
+              selected = "dark",
+              choices = c("light", "dark"),
+              animation = "pulse",
+              status = "info"
+            )
+          ),
+          f7Card(
+            title = "Card header",
+            apexchartOutput("pie")
+          )
+        ),
+        f7Tab(
+          title = "Tab 2",
+          tabName = "Tab2",
+          icon = f7Icon("keyboard"),
+          f7Card(
+            title = "Card header",
+            apexchartOutput("scatter")
+          )
+        ),
+        f7Tab(
+          title = "Tab 3",
+          tabName = "Tab3",
+          icon = f7Icon("layers_alt"),
+          f7Card(
+            title = "Card header",
+            f7SmartSelect(
+              "variable",
+              "Variables to show:",
+              c(
+                "Cylinders" = "cyl",
+                "Transmission" = "am",
+                "Gears" = "gear"
+              ),
+              openIn = "sheet",
+              multiple = TRUE
+            ),
+            tableOutput("data")
+          )
+        )
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    # river plot
+    dates <- reactive(seq.Date(Sys.Date() - 30, Sys.Date(), by = input$by))
 
-       hist(dist(500))
-     })
+    output$pie <- renderApexchart({
+      apex(
+        data = poll,
+        type = "pie",
+        mapping = aes(x = answer, y = n)
+      )
+    })
 
-     output$data <- renderTable({
-       mtcars[, c("mpg", input$variable), drop = FALSE]
-     }, rownames = TRUE)
-   }
- )
-}
+    output$scatter <- renderApexchart({
+      apex(
+        data = mtcars,
+        type = "scatter",
+        mapping = aes(
+          x = wt,
+          y = mpg,
+          fill = cyl
+        )
+      )
+    })
 
+
+    # datatable
+    output$data <- renderTable(
+      {
+        mtcars[, c("mpg", input$variable), drop = FALSE]
+      },
+      rownames = TRUE
+    )
+
+
+    # theme changes
+    observe({
+      updateF7App(
+        options =list(
+          theme = input$theme,
+          dark = ifelse(input$dark == "dark", TRUE, FALSE)
+        )
+      )
+    })
+
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon, \email{dgranjon@ymail.com}

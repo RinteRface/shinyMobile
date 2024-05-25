@@ -6,21 +6,25 @@
 \usage{
 f7ListItem(
   ...,
+  id = NULL,
   title = NULL,
   subtitle = NULL,
   header = NULL,
   footer = NULL,
   href = NULL,
   media = NULL,
-  right = NULL
+  right = NULL,
+  routable = FALSE
 )
 }
 \arguments{
 \item{...}{Item text.}
 
+\item{id}{Optional id for item.}
+
 \item{title}{Item title.}
 
-\item{subtitle}{Item subtitle.}
+\item{subtitle}{Item subtitle. Only work if the \link{f7List} mode is media.}
 
 \item{header}{Item header. Do not use when \link{f7List} mode is not NULL.}
 
@@ -31,6 +35,12 @@ f7ListItem(
 \item{media}{Expect \link{f7Icon} or \code{img}.}
 
 \item{right}{Right content if any.}
+
+\item{routable}{Works when href is not NULL. Default to FALSE. If TRUE,
+the list item may point to another page. See \link{f7MultiLayout}.
+Can also be used in combination with href = "#" to make items appear
+as links, but not actually navigate anywhere, which is useful for
+custom click events.}
 }
 \description{
 Create a Framework 7 contact item

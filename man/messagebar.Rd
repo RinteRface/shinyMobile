@@ -30,17 +30,16 @@ Insert before \link{f7Messages}. See examples.
 \code{updateF7MessageBar} updates message bar content on the server side.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
- shinyApp(
+library(shiny)
+library(shinyMobile)
+
+app <- shinyApp(
   ui = f7Page(
     title = "Update message bar",
     f7SingleLayout(
       navbar = f7Navbar(
         title = "Message bar",
-        hairline = FALSE,
-        shadow = TRUE
+        hairline = FALSE
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -49,16 +48,17 @@ if (interactive()) {
       ),
       # main content
       f7Segment(
-        container = "segment",
         f7Button("updateMessageBar", "Update value"),
         f7Button("updateMessageBarPlaceholder", "Update placeholder")
       ),
-      f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      f7Block(
+        title = "Message bar",
+        f7MessageBar(inputId = "mymessagebar", placeholder = "Message")
+      ),
       uiOutput("messageContent")
     )
   ),
   server = function(input, output, session) {
-
     output$messageContent <- renderUI({
       req(input$mymessagebar)
       tagList(
@@ -66,14 +66,12 @@ if (interactive()) {
         f7Block(strong = TRUE, inset = TRUE, input$mymessagebar)
       )
     })
-
     observeEvent(input$updateMessageBar, {
       updateF7MessageBar(
         inputId = "mymessagebar",
         value = "sjsjsj"
       )
     })
-
     observeEvent(input$updateMessageBarPlaceholder, {
       updateF7MessageBar(
         inputId = "mymessagebar",
@@ -81,6 +79,7 @@ if (interactive()) {
       )
     })
   }
- )
-}
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

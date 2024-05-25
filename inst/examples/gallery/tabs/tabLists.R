@@ -1,4 +1,4 @@
-#contacts_list <- f7List(
+# contacts_list <- f7List(
 #  mode = "contacts",
 #  lapply(seq_along(LETTERS), function(i) {
 #    f7ListGroup(
@@ -8,17 +8,22 @@
 #      })
 #    )
 #  })
-#)
+# )
 #
-#contacts_list$attribs$id <- "list-index-target"
+# contacts_list$attribs$id <- "list-index-target"
 
 
 tabLists <- f7Tab(
   title = "Lists",
-  tabName = "Lists",
+  tabName = "lists",
   icon = f7Icon("list_dash", f7Badge("New", color = "red")),
   active = FALSE,
-
+  f7Block(
+    f7Searchbar(id = "search1",
+                inline = TRUE,
+                placeholder = "Search for something!"
+    )
+  ),
   # swipeable list
   f7BlockTitle(title = "f7Swipeout, swipeable list") %>%
     f7Align(side = "center"),
@@ -33,10 +38,11 @@ tabLists <- f7Tab(
               "You can't swipe me!"
             }
           ),
-          side = "left",
-          f7SwipeoutItem(id = "swipeAlert", color = "pink", "Alert"),
-          f7SwipeoutItem(id = "swipeNotif", color = "green", "Notif"),
-          f7SwipeoutItem(id = "swipeActionSheet", color = "purple", "Action")
+          left = tagList(
+            f7SwipeoutItem(id = "swipeAlert", color = "red", "Alert"),
+            f7SwipeoutItem(id = "swipeNotif", color = "blue", "Notif"),
+            f7SwipeoutItem(id = "swipeActionSheet", color = "green", "Action")
+          )
         )
       } else {
         f7ListItem(letters[j])
@@ -48,20 +54,26 @@ tabLists <- f7Tab(
   # simple list
   f7BlockTitle(title = "Simple f7List") %>% f7Align(side = "center"),
   f7List(
-    lapply(1:3, function(j) f7ListItem(letters[j]))
+    lapply(1:3, function(j) {
+      f7ListItem(sprintf("Item %s content", j))
+    })
   ),
   br(),
 
   # list with complex items
-  f7BlockTitle(title = "f7List with components") %>% f7Align(side = "center"),
+  f7BlockTitle(title = "f7List with custom style") %>% f7Align(side = "center"),
   f7List(
+    inset = TRUE,
+    outline = TRUE,
+    dividers = TRUE,
+    strong = TRUE,
+    mode = "media",
     lapply(1:3, function(j) {
       f7ListItem(
-        letters[j],
+        title = letters[j],
+        "Content",
         media = f7Icon("alarm_fill"),
-        right = "Right Text",
-        header = "Header",
-        footer = "Footer"
+        right = "Right Text"
       )
     })
   ),
@@ -89,25 +101,14 @@ tabLists <- f7Tab(
   ),
   br(),
 
-  # simple media list
-  f7BlockTitle(title = "f7List with simple media") %>% f7Align(side = "center"),
-  f7List(
-    mode = "media",
-    lapply(1:3, function(j) {
-      f7ListItem(
-        title = "Title",
-        subtitle = "Subtitle",
-        media = tags$img(src = paste0("https://cdn.framework7.io/placeholder/people-160x160-", j, ".jpg"))
-      )
-    })
-  ),
-  br(),
-
   # list with links
   f7BlockTitle(title = "f7List with links") %>% f7Align(side = "center"),
   f7List(
+    mode = "links",
     lapply(1:3, function(j) {
-      f7ListItem(url = "https://google.com", letters[j])
+      tags$li(
+        f7Link(label = letters[j], href = "https://google.com")
+      )
     })
   ),
   br(),
@@ -122,10 +123,23 @@ tabLists <- f7Tab(
         lapply(1:3, function(j) f7ListItem(letters[j]))
       )
     })
-  )#,
-  #br(),
+  ),
+  br(),
 
-  ## list index
-  #f7BlockTitle(title = "f7ListIndex") %>% f7Align(side = "center"),
-  #contacts_list
+  # treeview
+  f7BlockTitle(title = "f7Treeview") %>% f7Align(side = "center"),
+  f7Treeview(
+    id = "treeview",
+    withCheckbox = TRUE,
+    startExpanded = TRUE,
+    f7TreeviewGroup(
+      title = "Images",
+      icon = f7Icon("folder_fill"),
+      toggleButton = TRUE,
+      lapply(letters[1:3], function(i) f7TreeviewItem(label = paste0(i, ".png"),
+                                                      icon = f7Icon("photo_fill")))
+    )
+  ),
+  br(),
+  verbatimTextOutput("treeview")
 )

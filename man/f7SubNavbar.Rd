@@ -14,55 +14,56 @@ f7SubNavbar(...)
 \link{f7Navbar}.
 }
 \examples{
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
-     title = "Sub Navbar",
-     f7TabLayout(
-        panels = tagList(
-         f7Panel(title = "Left Panel", side = "left", theme = "light", "Blabla", style = "cover"),
-         f7Panel(title = "Right Panel", side = "right", theme = "dark", "Blabla", style = "cover")
+    title = "Sub Navbar",
+    options = list(
+      dark = FALSE,
+      navbar = list(
+        hideOnPageScroll = TRUE,
+        mdCenterTitle = TRUE
+      )
+    ),
+    f7SingleLayout(
+      panels = tagList(
+        f7Panel(
+          title = "Left Panel",
+          side = "left",
+          f7Block("Blabla"),
+          effect = "cover"
         ),
-        navbar = f7Navbar(
-           title = "SubNavbar",
-           hairline = FALSE,
-           shadow = TRUE,
-           leftPanel = TRUE,
-           rightPanel = TRUE,
-           subNavbar = f7SubNavbar(
-              f7Button(label = "My button"),
-              f7Button(label = "My button"),
-              f7Button(label = "My button")
-           )
-        ),
-        f7Tabs(
-           animated = TRUE,
-           #swipeable = TRUE,
-           f7Tab(
-              tabName = "Tab 1",
-              icon = f7Icon("envelope"),
-              active = TRUE,
-              "Tab 1"
-           ),
-           f7Tab(
-              tabName = "Tab 2",
-              icon = f7Icon("today"),
-              active = FALSE,
-              "Tab 2"
-           ),
-           f7Tab(
-              tabName = "Tab 3",
-              icon = f7Icon("cloud_upload"),
-              active = FALSE,
-              "Tab 3"
-           )
+        f7Panel(
+          title = "Right Panel",
+          side = "right",
+          f7Block("Blabla"),
+          effect = "cover"
         )
-     )
+      ),
+      navbar = f7Navbar(
+        subNavbar = f7SubNavbar(
+          f7Button(label = "My button"),
+          f7Button(label = "My button"),
+          f7Button(label = "My button")
+        ),
+        title = "Title",
+        leftPanel = TRUE,
+        rightPanel = TRUE
+      ),
+      f7Block(f7Button(inputId = "toggle", "Toggle navbar")),
+      f7Block(
+        lapply(1:20, f7Card)
+      )
+    )
   ),
-  server = function(input, output) {}
- )
-}
+  server = function(input, output, session) {
+    observeEvent(input$toggle, {
+      updateF7Navbar()
+    })
+  }
+)
+
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

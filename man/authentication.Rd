@@ -6,21 +6,30 @@
 \alias{updateF7Login}
 \title{Framework7 login screen}
 \usage{
-f7Login(..., id, title, label = "Sign In", footer = NULL, startOpen = TRUE)
+f7Login(
+  ...,
+  id,
+  title,
+  label = "Sign In",
+  footer = NULL,
+  startOpen = TRUE,
+  cancellable = FALSE
+)
 
-f7LoginServer(input, output, session, ignoreInit = FALSE, trigger = NULL)
+f7LoginServer(id, ignoreInit = FALSE, trigger = NULL)
 
 updateF7Login(
-  id,
+  id = deprecated(),
   user = NULL,
   password = NULL,
+  cancel = FALSE,
   session = shiny::getDefaultReactiveDomain()
 )
 }
 \arguments{
 \item{...}{Slot for inputs like password, text, ...}
 
-\item{id}{\link{f7Login} unique id.}
+\item{id}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}.}
 
 \item{title}{Login page title.}
 
@@ -32,11 +41,8 @@ updateF7Login(
 are some cases where it is interesting to set up to FALSE, for instance when you want
 to have authentication only in a specific tab of your app (See example 2).}
 
-\item{input}{Shiny input object.}
-
-\item{output}{Shiny output object.}
-
-\item{session}{Shiny session object.}
+\item{cancellable}{Whether to show a cancel button to close the login modal. Default
+to FALSE.}
 
 \item{ignoreInit}{If TRUE, then, when this observeEvent is first
 created/initialized, ignore the handlerExpr (the second argument),
@@ -48,183 +54,72 @@ one wants to set up local authentication (for a specific section). See example 2
 \item{user}{Value of the user input.}
 
 \item{password}{Value of the password input.}
+
+\item{cancel}{Whether to close the login. Default to FALSE.}
+
+\item{session}{Shiny session object.}
 }
 \description{
-Provide a template for authentication
+Provide a UI template for authentication
 
-\code{f7LoginServer} is a useful server elements to fine tune the
-\link{f7Login} page.
+\code{f7LoginServer} is demonstration module to test the
+\link{f7Login} page. We do not recommend using it in production,
+since there is absolutely no security over the passed credentials.
+On the JS side, the login is closed as soon as a user and password
+are provided but no validity checks are made.
 
 \code{updateF7Login} toggles a login page.
 }
-\details{
-This function does not provide the backend features. You would
-need to store credentials in a database for instance.
-}
 \note{
-There is an input associated with the login status, namely input$login.
-It is linked to an action button, which is 0 when the application starts. As soon
-as the button is pressed, its value is incremented which might fire a
-\code{observeEvent} listening to it (See example below). Importantly,
-the login page is closed only if the text and password inputs are filled. The
-\code{f7LoginServer} contains a piece of server logic that does this work for you.
+There is an input associated with the login status, namely \code{input$login}.
+It is linked to an action button, \code{input$submit}, which is 0 when the application starts. As soon
+as the button is pressed, its value is incremented which may be used to call
+\link{updateF7Login}. \code{input$user} and \code{input$password} contains values passed
+by the user in these respective fields and can be forwarded to \link{updateF7Login}.
+\code{input$cancel} is increment whenever the login is closed when cancellable. You can access
+the value and trigger other actions on the server, as shown in \link{f7LoginServer}.
 }
 \examples{
-if (interactive()) {
- # global authentication
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Login module",
-     f7SingleLayout(
-       navbar = f7Navbar(
-         title = "Login Example",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       toolbar = f7Toolbar(
-         position = "bottom",
-         f7Link(label = "Link 1", href = "https://www.google.com"),
-         f7Link(label = "Link 2", href = "https://www.google.com")
-       ),
-       f7Login(id = "loginPage", title = "Welcome"),
-       # main content
-       f7BlockTitle(
-         title = HTML(paste("Welcome", textOutput("user"))),
-         size = "large"
-       ) \%>\% f7Align("center")
-     )
-   ),
-   server = function(input, output, session) {
+library(shiny)
+library(shinyMobile)
 
-     loginData <- callModule(f7LoginServer, id = "loginPage")
+app <- shinyApp(
+  ui = f7Page(
+    title = "Login module",
+    f7SingleLayout(
+      navbar = f7Navbar(
+        title = "Login Example"
+      ),
+      toolbar = f7Toolbar(
+        position = "bottom",
+        f7Link(label = "Link 1", href = "https://www.google.com"),
+        f7Link(label = "Link 2", href = "https://www.google.com")
+      ),
+      f7Login(id = "login", title = "Welcome", cancellable = TRUE),
+      # main content
+      f7BlockTitle(
+        title = HTML(paste("Welcome", textOutput("user"))),
+        size = "large"
+      )
+    )
+  ),
+  server = function(input, output, session) {
+    loginData <- f7LoginServer(id = "login")
 
-     output$user <- renderText({
+    exportTestValues(
+      status = loginData$status(),
+      user = loginData$user(),
+      password = loginData$password(),
+      authenticated = loginData$authenticated(),
+      cancelled = loginData$cancelled()
+    )
+
+    output$user <- renderText({
       req(loginData$user)
       loginData$user()
-     })
-   }
- )
+    })
+  }
+)
 
- # section specific authentication
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Local access restriction",
-     f7TabLayout(
-       navbar = f7Navbar(
-         title = "Login Example for Specific Section",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7Tabs(
-         id = "tabs",
-         f7Tab(
-           tabName = "Tab 1",
-           "Without authentication"
-         ),
-         f7Tab(
-           tabName = "Restricted",
-           # main content
-           f7BlockTitle(
-             title = HTML(paste("Welcome", textOutput("user"))),
-             size = "large"
-           ) \%>\% f7Align("center")
-         )
-       ),
-       f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE)
-     )
-   ),
-   server = function(input, output, session) {
-
-     # trigger
-     trigger <- reactive({
-      req(input$tabs)
-     })
-
-     # do not run first since the login page is not yet visible
-     loginData <- callModule(
-      f7LoginServer,
-      id = "loginPage",
-      ignoreInit = TRUE,
-      trigger = trigger
-     )
-
-     output$user <- renderText({
-      req(loginData$user)
-      loginData$user()
-     })
-
-   }
- )
-
- # with 2 different protected sections
- library(shiny)
- library(shinyMobile)
- shinyApp(
-   ui = f7Page(
-     title = "Multiple restricted areas",
-     f7TabLayout(
-       navbar = f7Navbar(
-         title = "Login Example for 2 Specific Section",
-         hairline = FALSE,
-         shadow = TRUE
-       ),
-       f7Tabs(
-         id = "tabs",
-         f7Tab(
-           tabName = "Tab 1",
-           "Without authentication"
-         ),
-         f7Tab(
-           tabName = "Restricted",
-           # main content
-           f7BlockTitle(
-             title = "1st restricted area",
-             size = "large"
-           ) \%>\% f7Align("center")
-         ),
-         f7Tab(
-           tabName = "Restricted 2",
-           # main content
-           f7BlockTitle(
-             title = "2nd restricted area",
-             size = "large"
-           ) \%>\% f7Align("center")
-         )
-       ),
-       f7Login(id = "loginPage", title = "Welcome", startOpen = FALSE),
-       f7Login(id = "loginPage2", title = "Welcome", startOpen = FALSE)
-     )
-   ),
-   server = function(input, output, session) {
-
-     trigger1 <- reactive({
-       req(input$tabs == "Restricted")
-     })
-
-     trigger2 <- reactive({
-       req(input$tabs == "Restricted 2")
-     })
-
-     # do not run first since the login page is not yet visible
-     callModule(
-       f7LoginServer,
-       id = "loginPage",
-       ignoreInit = TRUE,
-       trigger = trigger1
-     )
-
-     callModule(
-       f7LoginServer,
-       id = "loginPage2",
-       ignoreInit = TRUE,
-       trigger = trigger2
-     )
-
-   }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }

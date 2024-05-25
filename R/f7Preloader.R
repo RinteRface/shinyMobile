@@ -1,158 +1,115 @@
 #' Framework7 preloader
 #'
 #' \code{showF7Preloader} shows a preloader.
+#' When \code{target} is NULL, the overlay applies
+#' to the entire view, preventing to perform any actions.
+#' When type is not NULL, \code{target} is ignored.
 #'
 #' @param target Element where preloader overlay will be added.
 #' @param color Preloader color.
+#' @param type Leave NULL to use the default preloader
+#' or use either "dialog" or "progress".
+#' @param id When type isn't NULL, an id is required
+#' to be able to use \link{updateF7Preloader}.
 #' @param session Shiny session object.
 #' @export
 #' @rdname preloader
 #' @examples
 #' if (interactive()) {
-#'  library(shiny)
-#'  library(shinyMobile)
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  # basic preloader with red color
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Preloader",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(
-#'         title = "Preloader",
-#'         hairline = FALSE,
-#'         shadow = TRUE
-#'       ),
-#'       # main content
-#'       f7Button("showLoader", "Show loader"),
-#'       f7Shadow(
-#'         intensity = 10,
-#'         hover = TRUE,
-#'         f7Card(
-#'           title = "Card header",
-#'           f7Slider("obs", "Number of observations", 0, 1000, 500),
-#'           plotOutput("distPlot")
-#'         )
+#'   # preloader in container
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Preloader in container",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(
+#'           title = "Preloader in container"
+#'         ),
+#'         # main content
+#'         f7Block(
+#'           f7Button("compute", "Compute")
+#'         ),
+#'         f7Block(textOutput("calc"))
 #'       )
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     output$distPlot <- renderPlot({
-#'       dist <- rnorm(input$obs)
-#'       hist(dist)
-#'     })
+#'     ),
+#'     server = function(input, output, session) {
+#'       res <- reactiveVal(NULL)
+#'       progress <- reactiveVal(NULL)
+#'       output$calc <- renderText(res())
 #'
-#'     observeEvent(input$showLoader, {
-#'       showF7Preloader(color = "red")
-#'       Sys.sleep(2)
-#'       f7HidePreloader()
-#'     })
-#'   }
-#'  )
+#'       observeEvent(input$compute, {
+#'         res(NULL)
+#'         progress(0)
+#'         showF7Preloader(color = "red", type = "progress", id = "loader")
+#'         for (i in seq_along(1:100)) {
+#'           Sys.sleep(0.025)
+#'           progress(i)
+#'           updateF7Preloader(
+#'             id = "loader",
+#'             title = "Computing ...",
+#'             text = sprintf("Done: %s/100", progress()),
+#'             progress = progress()
+#'           )
+#'         }
+#'         res("Result!")
+#'       })
 #'
-#'  # preloader in container
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Preloader in container",
-#'     f7SingleLayout(
-#'       navbar = f7Navbar(
-#'         title = "Preloader in container",
-#'         hairline = FALSE,
-#'         shadow = TRUE
-#'       ),
-#'       # main content
-#'       f7Shadow(
-#'         intensity = 10,
-#'         hover = TRUE,
-#'         f7Card(
-#'           title = "Card header",
-#'           f7Slider("obs", "Number of observations", 0, 1000, 500),
-#'           plotOutput("distPlot")
-#'         )
-#'       ),
-#'       f7Card("This is a simple card with plain text,
-#'        but cards can also contain their own header,
-#'        footer, list view, image, or any other element.")
-#'     )
-#'   ),
-#'   server = function(input, output, session) {
-#'     output$distPlot <- renderPlot({
-#'       dist <- rnorm(input$obs)
-#'       hist(dist)
-#'     })
-#'
-#'     observeEvent(input$obs, {
-#'       showF7Preloader(target = "#distPlot", color = "red")
-#'       Sys.sleep(2)
-#'       f7HidePreloader()
-#'     })
-#'   }
-#'  )
+#'       observeEvent(res(), {
+#'         hideF7Preloader(id = "loader")
+#'       })
+#'     }
+#'   )
 #' }
 showF7Preloader <- function(target = NULL, color = NULL,
+                            type = NULL, id = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-
-  message <- dropNulls(list(el = target, color = color))
-  session$sendCustomMessage('show-preloader', message)
-}
-
-
-#' Framework7 preloader
-#'
-#' \code{f7ShowPreloader} shows a preloader.
-#' Use \link{showF7Preloader} instead
-#'
-#' @inheritParams showF7Preloader
-#' @rdname f7-deprecated
-#' @keywords internal
-#'
-#' @export
-f7ShowPreloader <- function(target = NULL, color = NULL,
-                            session = shiny::getDefaultReactiveDomain()){
-  .Deprecated(
-    "showF7Preloader",
-    package = "shinyMobile",
-    "f7ShowPreloader will be removed in future release. Please use
-      showF7Preloader instead.",
-    old = as.character(sys.call(sys.parent()))[1L]
+  if (is.null(id) && !is.null(type)) {
+    stop("When type is not NULL, id must have a value.")
+  }
+  message <- dropNulls(
+    list(
+      el = target,
+      color = color,
+      type = type,
+      id = session$ns(id)
+    )
   )
-  showF7Preloader(target = target, color = color, session = session)
+  session$sendCustomMessage("show-preloader", message)
 }
-
-
 
 #' Framework7 preloader
 #'
-#' \code{f7HidePreloader} hides a preloader.
+#' \code{updateF7Preloader} updates a preloader.
 #'
-#' @param target Element where preloader overlay will be added.
-#' @param session Shiny session object.
+#' @param title Dialog title.
+#' @param text Dialog text.
+#' @param progress Progress bar content.
 #' @export
 #' @rdname preloader
-f7HidePreloader <- function(target = NULL,
-                            session = shiny::getDefaultReactiveDomain()) {
-  .Deprecated(
-    "hideF7Preloader",
-    package = "shinyMobile",
-    "f7HidePreloader will be removed in future release. Please use
-      hideF7Preloader instead.",
-    old = as.character(sys.call(sys.parent()))[1L])
-  hideF7Preloader(target = target, session = session)
+updateF7Preloader <- function(
+    id, title = NULL,
+    text = NULL, progress = NULL, session = shiny::getDefaultReactiveDomain()) {
+  message <- dropNulls(
+    list(
+      id = session$ns(id),
+      title = title,
+      text = text,
+      progress = progress
+    )
+  )
+  session$sendCustomMessage("update-preloader", message)
 }
-
-
 
 #' Framework7 preloader
 #'
 #' \code{hideF7Preloader} hides a preloader.
-#' Use \link{f7HidePreloader} instead
 #'
-#' @inheritParams hideF7Preloader
-#' @rdname f7-deprecated
-#' @keywords internal
+#' @rdname preloader
 #' @export
-hideF7Preloader <- function(target = NULL,
+hideF7Preloader <- function(target = NULL, id = NULL,
                             session = shiny::getDefaultReactiveDomain()) {
-  message <- dropNulls(list(el = target))
-  session$sendCustomMessage('hide-preloader', message)
+  message <- dropNulls(list(el = target, id = id))
+  session$sendCustomMessage("hide-preloader", message)
 }
-

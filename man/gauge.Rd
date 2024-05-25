@@ -44,15 +44,16 @@ updateF7Gauge(
 )
 }
 \arguments{
-\item{id}{Gauge id.}
+\item{id}{Gauge ID.}
 
 \item{type}{Gauge type. Can be "circle" or "semicircle". Default is "circle."}
 
-\item{value}{New value. Numeric between 0 and 100.}
+\item{value}{Gauge value/percentage. Must be a number between 0 and 100.}
 
 \item{size}{Generated SVG image size (in px). Default is 200.}
 
-\item{bgColor}{Gauge background color. Can be any valid color string, e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".}
+\item{bgColor}{Gauge background color. Can be any valid color string,
+e.g. #ff00ff, rgb(0,0,255), etc. Default is "transparent".}
 
 \item{borderBgColor}{Main border/stroke background color.}
 
@@ -84,64 +85,37 @@ updateF7Gauge(
 \code{updateF7Gauge} updates a framework7 gauge from the server side.
 }
 \examples{
-# Gauge
-if(interactive()){
- library(shiny)
- library(shinyMobile)
+library(shiny)
+library(shinyMobile)
 
- shinyApp(
+app <- shinyApp(
   ui = f7Page(
     title = "Gauges",
     f7SingleLayout(
-     navbar = f7Navbar(title = "f7Gauge"),
-     f7Block(
-      f7Gauge(
-       id = "mygauge",
-       type  = "semicircle",
-       value = 50,
-       borderColor = "#2196f3",
-       borderWidth = 10,
-       valueFontSize = 41,
-       valueTextColor = "#2196f3",
-       labelText = "amount of something"
-      )
-     )
+      navbar = f7Navbar(title = "f7Gauge"),
+      f7Block(
+        f7Gauge(
+          id = "mygauge",
+          type = "semicircle",
+          value = 50,
+          borderColor = "#2196f3",
+          borderWidth = 10,
+          valueFontSize = 41,
+          valueTextColor = "#2196f3",
+          labelText = "amount of something"
+        )
+      ),
+      f7Block(f7Button("update", "Update Gauge"))
     )
   ),
-  server = function(input, output) {}
- )
-}
+  server = function(input, output, session) {
+    observeEvent(input$update, {
+      updateF7Gauge(id = "mygauge", value = 75, labelText = "New label!")
+    })
+  }
+)
 
-if (interactive()) {
- library(shiny)
- library(shinyMobile)
-
-
- shinyApp(
-    ui = f7Page(
-       title = "Gauges",
-       f7SingleLayout(
-          navbar = f7Navbar(title = "update f7Gauge"),
-          f7Gauge(
-             id = "mygauge",
-             type  = "semicircle",
-             value = 50,
-             borderColor = "#2196f3",
-             borderWidth = 10,
-             valueFontSize = 41,
-             valueTextColor = "#2196f3",
-             labelText = "amount of something"
-          ),
-          f7Button("go", "Update Gauge")
-       )
-    ),
-    server = function(input, output, session) {
-       observeEvent(input$go, {
-          updateF7Gauge(id = "mygauge", value = 75, labelText = "New label!")
-       })
-    }
- )
-}
+if (interactive() || identical(Sys.getenv("TESTTHAT"), "true")) app
 }
 \author{
 David Granjon \email{dgranjon@ymail.com}

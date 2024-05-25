@@ -3,115 +3,132 @@
 #' \code{f7Block} creates a block container.
 #'
 #' @param ... Block content. Also for \link{f7BlockHeader} and \link{f7BlockFooter}.
-#' @param hairlines Whether to allow hairlines. TRUE by default.
-#' @param strong Whether to put the text in bold. FALSE by default.
+#' @param hairlines `r lifecycle::badge("deprecated")`:
+#' removed from Framework7.
+#' @param strong Add white background so that text is highlighted. FALSE by default.
 #' @param inset Whether to set block inset. FALSE by default. Works only if strong is TRUE.
 #' @param tablet Whether to make block inset only on large screens. FALSE by default.
+#' @param outline Block border. Default to FALSE.
 #'
 #' @rdname block
 #' @examples
-#' if(interactive()){
-#'  library(shiny)
-#'  library(shinyMobile)
+#' if (interactive()) {
+#'   library(shiny)
+#'   library(shinyMobile)
 #'
-#'  shinyApp(
-#'   ui = f7Page(
-#'     title = "Blocks",
-#'     f7SingleLayout(
-#'      navbar = f7Navbar(title = "f7Block"),
-#'      f7BlockTitle(title = "A large title", size = "large"),
-#'     f7Block(
-#'      f7BlockHeader(text = "Header"),
-#'      "Here comes paragraph within content block.
+#'   shinyApp(
+#'     ui = f7Page(
+#'       title = "Blocks",
+#'       f7SingleLayout(
+#'         navbar = f7Navbar(title = "f7Block"),
+#'         f7BlockTitle(title = "A large title", size = "large"),
+#'         f7Block(
+#'           f7BlockHeader(text = "Header"),
+#'           "Here comes paragraph within content block.
 #'      Donec et nulla auctor massa pharetra
 #'      adipiscing ut sit amet sem. Suspendisse
 #'      molestie velit vitae mattis tincidunt.
 #'      Ut sit amet quam mollis, vulputate
 #'      turpis vel, sagittis felis.",
-#'      f7BlockFooter(text = "Footer")
+#'           f7BlockFooter(text = "Footer")
+#'         ),
+#'         f7BlockTitle(title = "A medium title", size = "medium"),
+#'         f7Block(
+#'           strong = TRUE,
+#'           outline = TRUE,
+#'           f7BlockHeader(text = "Header"),
+#'           "Here comes paragraph within content block.
+#'      Donec et nulla auctor massa pharetra
+#'      adipiscing ut sit amet sem. Suspendisse
+#'      molestie velit vitae mattis tincidunt.
+#'      Ut sit amet quam mollis, vulputate
+#'      turpis vel, sagittis felis.",
+#'           f7BlockFooter(text = "Footer")
+#'         ),
+#'         f7BlockTitle(title = "A normal title", size = NULL),
+#'         f7Block(
+#'           inset = TRUE,
+#'           strong = TRUE,
+#'           f7BlockHeader(text = "Header"),
+#'           "Here comes paragraph within content block.
+#'      Donec et nulla auctor massa pharetra
+#'      adipiscing ut sit amet sem. Suspendisse
+#'      molestie velit vitae mattis tincidunt.
+#'      Ut sit amet quam mollis, vulputate
+#'      turpis vel, sagittis felis.",
+#'           f7BlockFooter(text = "Footer")
+#'         ),
+#'         f7Block(
+#'           inset = TRUE,
+#'           tablet = TRUE,
+#'           strong = TRUE,
+#'           f7BlockHeader(text = "Header"),
+#'           "Here comes paragraph within content block.
+#'      Donec et nulla auctor massa pharetra
+#'      adipiscing ut sit amet sem. Suspendisse
+#'      molestie velit vitae mattis tincidunt.
+#'      Ut sit amet quam mollis, vulputate
+#'      turpis vel, sagittis felis.",
+#'           f7BlockFooter(text = "Footer")
+#'         ),
+#'         f7Block(
+#'           inset = TRUE,
+#'           strong = TRUE,
+#'           outline = TRUE,
+#'           f7BlockHeader(text = "Header"),
+#'           "Here comes paragraph within content block.
+#'      Donec et nulla auctor massa pharetra
+#'      adipiscing ut sit amet sem. Suspendisse
+#'      molestie velit vitae mattis tincidunt.
+#'      Ut sit amet quam mollis, vulputate
+#'      turpis vel, sagittis felis.",
+#'           f7BlockFooter(text = "Footer")
+#'         )
+#'       )
 #'     ),
-#'
-#'     f7BlockTitle(title = "A medium title", size = "medium"),
-#'     f7Block(
-#'      strong = TRUE,
-#'      f7BlockHeader(text = "Header"),
-#'      "Here comes paragraph within content block.
-#'      Donec et nulla auctor massa pharetra
-#'      adipiscing ut sit amet sem. Suspendisse
-#'      molestie velit vitae mattis tincidunt.
-#'      Ut sit amet quam mollis, vulputate
-#'      turpis vel, sagittis felis.",
-#'      f7BlockFooter(text = "Footer")
-#'     ),
-#'
-#'     f7BlockTitle(title = "A normal title", size = NULL),
-#'     f7Block(
-#'      inset = TRUE,
-#'      strong = TRUE,
-#'      f7BlockHeader(text = "Header"),
-#'      "Here comes paragraph within content block.
-#'      Donec et nulla auctor massa pharetra
-#'      adipiscing ut sit amet sem. Suspendisse
-#'      molestie velit vitae mattis tincidunt.
-#'      Ut sit amet quam mollis, vulputate
-#'      turpis vel, sagittis felis.",
-#'      f7BlockFooter(text = "Footer")
-#'     ),
-#'     f7Block(
-#'      tablet = TRUE,
-#'      strong = TRUE,
-#'      f7BlockHeader(text = "Header"),
-#'      "Here comes paragraph within content block.
-#'      Donec et nulla auctor massa pharetra
-#'      adipiscing ut sit amet sem. Suspendisse
-#'      molestie velit vitae mattis tincidunt.
-#'      Ut sit amet quam mollis, vulputate
-#'      turpis vel, sagittis felis.",
-#'      f7BlockFooter(text = "Footer")
-#'     ),
-#'     f7Block(
-#'      inset = TRUE,
-#'      strong = TRUE,
-#'      hairlines = FALSE,
-#'      f7BlockHeader(text = "Header"),
-#'      "Here comes paragraph within content block.
-#'      Donec et nulla auctor massa pharetra
-#'      adipiscing ut sit amet sem. Suspendisse
-#'      molestie velit vitae mattis tincidunt.
-#'      Ut sit amet quam mollis, vulputate
-#'      turpis vel, sagittis felis.",
-#'      f7BlockFooter(text = "Footer")
-#'     )
-#'     )
-#'   ),
-#'   server = function(input, output) {}
-#'  )
+#'     server = function(input, output) {}
+#'   )
 #' }
 #'
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
-                    tablet = FALSE) {
-
+f7Block <- function(..., hairlines = deprecated(), strong = FALSE, inset = FALSE,
+                    tablet = FALSE, outline = FALSE) {
   blockCl <- "block"
-  if (!hairlines) blockCl <- paste0(blockCl, " no-hairlines")
+
+  if (lifecycle::is_present(hairlines)) {
+    lifecycle::deprecate_warn(
+      when = "2.0.0",
+      what = "f7Block(hairlines)",
+      details = "hairlines has been
+      removed from Framework7 and will be removed from shinyMobile
+      in the next release."
+    )
+  }
+
+  if (!inset && tablet) {
+    stop("inset must be TRUE when tablet is TRUE")
+  }
+
+  if (!strong && inset) {
+    stop("inset requires strong to be TRUE")
+  }
+
   if (strong) {
-    if (inset) {
-      blockCl <- paste0(blockCl, " block-strong inset")
-    } else {
-      blockCl <- paste0(blockCl, " block-strong")
+    blockCl <- paste(blockCl, "block-strong")
+    if (inset && !tablet) {
+      blockCl <- paste(blockCl, "inset")
     }
   }
-  if (tablet) blockCl <- paste0(blockCl, " tablet-inset")
+  if (tablet) blockCl <- paste(blockCl, "medium-inset")
+  if (outline) blockCl <- paste(blockCl, "block-outline")
 
- shiny::tags$div(
-   class = blockCl,
-   ...
- )
+  shiny::tags$div(
+    class = blockCl,
+    ...
+  )
 }
-
-
 
 #' Framework7 block title
 #'
@@ -123,7 +140,8 @@ f7Block <- function(..., hairlines = TRUE, strong = FALSE, inset = FALSE,
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7BlockTitle <- function(title = NULL, size = NULL) {
+#' @rdname block
+f7BlockTitle <- function(title, size = NULL) {
   titleCl <- "block-title"
   if (!is.null(size)) {
     if (size == "large") {
@@ -137,20 +155,16 @@ f7BlockTitle <- function(title = NULL, size = NULL) {
   shiny::tags$div(class = titleCl, title)
 }
 
-
-
 #' Framework7 block header
 #'
 #' \code{f7BlockHeader} creates a header content for \link{f7Block}.
 #'
 #' @param text Any text.
-#' @rdname block
-#'
 #' @export
-f7BlockHeader <- function(text = NULL) {
+#' @rdname block
+f7BlockHeader <- function(text) {
   shiny::tags$div(class = "block-header", text)
 }
-
 
 #' Framework7 block footer
 #'
@@ -161,6 +175,7 @@ f7BlockHeader <- function(text = NULL) {
 #' @author David Granjon, \email{dgranjon@@ymail.com}
 #'
 #' @export
-f7BlockFooter <- function(text = NULL) {
+#' @rdname block
+f7BlockFooter <- function(text) {
   shiny::tags$div(class = "block-footer", text)
 }

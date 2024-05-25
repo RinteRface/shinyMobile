@@ -7,9 +7,7 @@ shinyApp(
     options = list(pullToRefresh = TRUE),
     f7SingleLayout(
       navbar = f7Navbar(
-        title = "Single Layout",
-        hairline = FALSE,
-        shadow = TRUE
+        title = "Single Layout"
       ),
       toolbar = f7Toolbar(
         position = "bottom",
@@ -29,11 +27,10 @@ shinyApp(
     counter <- reactiveVal(value = 1)
 
     observeEvent(input$ptr, {
-
       ptrStatus <- if (input$ptr) "on"
 
       f7Dialog(
-        text = paste('ptr is', ptrStatus),
+        text = paste("ptr is", ptrStatus),
         type = "alert"
       )
 
@@ -54,6 +51,5 @@ shinyApp(
         })
       )
     })
-
   }
 )

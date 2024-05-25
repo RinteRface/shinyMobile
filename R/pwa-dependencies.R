@@ -8,17 +8,16 @@
 #' @importFrom htmltools tagList htmlDependency
 #' @keywords internal
 add_pwa_deps <- function(tag) {
- pwa_deps <- htmlDependency(
-  name = "pwa-utils",
-  version = packageVersion("shinyMobile"),
-  src = c(file = "shinyMobile-1.0.1"),
-  head = "<link rel=\"manifest\" href=\"manifest.webmanifest\" />
+  pwa_deps <- htmlDependency(
+    name = "pwa-utils",
+    version = packageVersion("shinyMobile"),
+    src = c(file = sprintf("shinyMobile-%s", packageVersion("shinyMobile"))),
+    head = "<link rel=\"manifest\" href=\"manifest.webmanifest\" />
 <link rel=\"icon\" type=\"image/png\" href=\"icons/icon-144.png\" sizes=\"144x144\" />
 <link rel=\"apple-touch-icon\" href=\"icons/apple-touch-icon.png\" />
 <link rel=\"icon\" href=\"icons/favicon.png\"/>
   ",
-  package = "shinyMobile",
- )
- tagList(tag, pwa_deps)
+    package = "shinyMobile",
+  )
+  tagList(tag, pwa_deps)
 }
-

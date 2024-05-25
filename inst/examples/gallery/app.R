@@ -11,45 +11,87 @@ sapply(
     pattern = ".R",
     ignore.case = TRUE
   ),
-  function(f) { source(file.path(path, f), local = e) }
+  function(f) {
+    source(file.path(path, f), local = e)
+  }
+)
+
+app_options <- list(
+  theme = "md",
+  dark = TRUE,
+  filled = FALSE,
+  preloader = TRUE,
+  color = "#007aff",
+  navbar = list(
+    hideOnPageScroll = TRUE,
+    mdCenterTitle = TRUE
+  )
 )
 
 # shiny app
 shinyApp(
   ui = f7Page(
-    allowPWA = TRUE, options = list(dark = TRUE, filled = FALSE, preloader = TRUE),
+    allowPWA = TRUE,
+    options = app_options,
     f7TabLayout(
-      appbar = f7Appbar(
-        f7Flex(f7Back(targetId = "tabset"), f7Next(targetId = "tabset")),
-        f7Searchbar(id = "search1", inline = TRUE, placeholder = "Try me on the 4th tab!")
-      ),
-      messagebar = f7MessageBar(inputId = "mymessagebar", placeholder = "Message"),
+      title = "shinyMobile Gallery",
+      messagebar = f7MessageBar(inputId = "mymessagebar",
+                                placeholder = "Message"),
       panels = tagList(
         f7Panel(
           id = "panelLeft",
           title = "Left Panel",
           side = "left",
-          theme = "light",
-          "Blabla",
-          effect = "reveal"
+          f7Block("A panel with push effect"),
+          f7PanelMenu(
+            inset = TRUE,
+            outline = TRUE,
+            # Use items as tab navigation only
+            f7PanelItem(
+              tabName = "tabset-Inputs",
+              title = "Input tabs",
+              icon = f7Icon("largecircle_fill_circle"),
+              active = TRUE
+            ),
+            f7PanelItem(
+              tabName = "tabset-FABs",
+              title = "Buttons tabs",
+              icon = f7Icon("largecircle_fill_circle")
+            )
+          ),
+          effect = "push",
+          options = list(swipe = TRUE)
         ),
         f7Panel(
           title = "Right Panel",
           side = "right",
-          theme = "dark",
-          "Blabla",
-          effect = "cover"
+          f7Radio(
+            inputId = "theme",
+            label = "Theme",
+            choices = c("md", "ios"),
+            selected = app_options$theme
+          ),
+          f7Radio(
+            inputId = "dark",
+            label = "Mode",
+            choices = c("dark", "light"),
+            selected = ifelse(app_options$dark, "dark", "light")
+          ),
+          f7Radio(
+            inputId = "color",
+            label = "Color",
+            choices = getF7Colors(),
+            selected = "primary"
+          ),
+          effect = "floating",
+          options = list(swipe = TRUE)
         )
       ),
       navbar = f7Navbar(
-        title = "shinyMobile",
-        subtitle = "for Shiny",
+        title = "shinyMobile Gallery",
         hairline = TRUE,
-        shadow = TRUE,
         leftPanel = TRUE,
-        rightPanel = TRUE,
-        bigger = TRUE,
-        transparent = FALSE
+        rightPanel = TRUE
       ),
       f7Login(
         id = "loginPage",
@@ -57,7 +99,7 @@ shinyApp(
         footer = "This section simulates an authentication process. There
         is actually no user and password database. Put whatever you want but
         don't leave blank!",
-        startOpen = FALSE,
+        startOpen = FALSE
       ),
       # recover the color picker input and update the text background
       # color accordingly.
@@ -92,10 +134,36 @@ shinyApp(
         tabInfo,
         tabOthers
       )
-    ),
-    title = "shinyMobile"
+    )
   ),
   server = function(input, output, session) {
+
+    # update theme
+    observeEvent(input$theme, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          theme = input$theme
+        )
+      )
+    })
+
+    # update mode
+    observeEvent(input$dark, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          dark = ifelse(input$dark == "dark", TRUE, FALSE)
+        )
+      )
+    })
+
+    # update color
+    observeEvent(input$color, ignoreInit = TRUE, {
+      updateF7App(
+        options = list(
+          color = input$color
+        )
+      )
+    })
 
     # input validation
     observe({
@@ -110,6 +178,7 @@ shinyApp(
     # toggle message bar: should only be dislayed when on the messages tab
     observeEvent(input$tabset, {
       session$sendCustomMessage(type = "toggleMessagebar", input$tabset)
+      session$sendCustomMessage(type = "toggleSearchbar", input$tabset)
     })
 
     # user send new message
@@ -155,43 +224,46 @@ shinyApp(
       req(input$tabset == "chat")
     })
     # login server module
-    callModule(
-      f7LoginServer,
+    f7LoginServer(
       id = "loginPage",
       ignoreInit = TRUE,
       trigger = trigger
     )
 
-    output$sin <- renderPlot(plot(sin, -pi, 2*pi))
-    output$cos <- renderPlot(plot(cos, -pi, 2*pi))
+    output$sin <- renderPlot(plot(sin, -pi, 2 * pi))
+    output$cos <- renderPlot(plot(cos, -pi, 2 * pi))
 
     output$text <- renderPrint(input$text)
     output$password <- renderPrint(input$password)
     output$textarea <- renderPrint(input$textarea)
-    output$slider <- renderPrint(input$slider)
-    output$sliderRange <- renderPrint(input$sliderRange)
+    output$slider <- renderPrint(input$sliderInput)
+    output$sliderRange <- renderPrint(input$sliderRangeInput)
     output$stepper <- renderPrint(input$stepper)
     output$check <- renderPrint(input$check)
     output$checkgroup <- renderPrint(input$checkgroup)
+    output$checkgroup2 <- renderPrint(input$checkgroup2)
     output$radio <- renderPrint(input$radio)
+    output$radio2 <- renderPrint(input$radio2)
     output$toggle <- renderPrint(input$toggle)
     output$select <- renderPrint(input$select)
-    output$val <- renderPrint(input$button2)
-    output$smartdata <- renderTable({
-      head(mtcars[, c("mpg", input$smartsel), drop = FALSE])
-    }, rownames = TRUE)
-    output$selectDate <- renderPrint(input$date)
+    output$smartdata <- renderTable(
+      {
+        head(mtcars[, c("mpg", input$smartsel), drop = FALSE])
+      },
+      rownames = TRUE
+    )
+    output$dateval <- renderPrint(input$mydatepicker)
     output$autocompleteval <- renderPrint(input$myautocomplete)
 
     lapply(1:12, function(i) {
-      output[[paste0("res", i)]] <- renderText(paste0("Button", i ," is ", input[[paste0("btn", i)]]))
+      output[[paste0("res", i)]] <- renderText(paste0("Button", i, " is ", input[[paste0("btn", i)]]))
     })
     output$pickerval <- renderText(input$mypicker)
-    output$colorPickerVal <- renderText(input$mycolorpicker)
+    output$colorPickerVal <- renderPrint(input$mycolorpicker$hex)
 
     # send the color picker input to JS
     observeEvent(input$mycolorpicker, {
-      session$sendCustomMessage(type = "text-color", message = input$mycolorpicker)
+      session$sendCustomMessage(type = "text-color", message = input$mycolorpicker$hex)
     })
 
 
@@ -202,8 +274,14 @@ shinyApp(
       f7Popup(
         id = "popup1",
         title = "My first popup",
-        f7Text("popupText", "Popup content", "This is my first popup ever, I swear!"),
-        verbatimTextOutput("popupContent")
+        f7Block(
+          p("Popup can push the view behind. By default it has effect only when
+            'safe-area-inset-top' is more than zero (iOS fullscreen webapp or iOS cordova app)"),
+          f7Text(inputId = "popupText",
+                 label = "Popup content",
+                 value = "This is my first popup, I swear!"),
+          verbatimTextOutput("popupContent")
+        )
       )
     })
 
@@ -228,8 +306,7 @@ shinyApp(
 
     # notifications
     lapply(1:3, function(i) {
-      observeEvent(input[[paste0("goNotif", i)]],{
-
+      observeEvent(input[[paste0("goNotif", i)]], {
         icon <- if (i %% 2 == 0) f7Icon("bolt_fill") else NULL
 
         f7Notif(
@@ -246,7 +323,6 @@ shinyApp(
     # notifications
     lapply(1:3, function(i) {
       observeEvent(input[[paste0("goDialog", i)]], {
-
         if (i == 1) {
           f7Dialog(
             title = "Dialog title",
@@ -460,14 +536,15 @@ shinyApp(
       f7Skeleton(".skeleton-list", "fade", 2)
     })
 
-    # List index
-    #observeEvent(TRUE, {
-    #  f7ListIndex(
-    #    id = "list-index-1",
-    #    target = "#list-index-target",
-    #    label = TRUE
-    #  )
-    #}, once = TRUE)
+    # Treeview
+    output$treeview <- renderText({
+      input$treeview
+    })
+
+    # Table
+    output$table <- renderUI({
+      f7Table(mtcars[1:15,])
+    })
 
     # pull to refresh
     # observeEvent(input$ptr, {
@@ -479,6 +556,5 @@ shinyApp(
     #     type = "alert"
     #   )
     # })
-
   }
 )
