@@ -22,3 +22,4 @@
 ^codecov\.yml$
 ^inst/.*./.*\.map$
 ^vignettes/articles$
+^tests/testthat/_snaps/.*\.png$
