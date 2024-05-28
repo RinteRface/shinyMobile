@@ -2,9 +2,9 @@
     // Create custom install UI
     let installToast = app.toast.create({
       position: 'center',
-      text: '<button id="install-button" class="toast-button button color-green">Install</button>',
+      text: '<button id="install-button" style="margin:0;" class="toast-button button color-green">Install</button>'
     });
-  
+
     let deferredPrompt;
     // Handle install event
     $(window).on('beforeinstallprompt', (e) => {
@@ -15,7 +15,7 @@
       // Show install trigger
       installToast.open();
     });
-  
+
     // Installation must be done by a user gesture!
     // close toast whenever a choice is made ... Give time
     // to the toast to be created before event registration.
