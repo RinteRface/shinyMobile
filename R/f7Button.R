@@ -193,7 +193,7 @@ f7Segment <- function(
   # the segment, if not already done.
   btns <- list(...)
   if (rounded) {
-    btns <- lapply(btns, \(btn) {
+    btns <- lapply(btns, function(btn) {
       is_rounded <- grepl("button-round", btn$attribs$class)
       if (!is_rounded) {
         btn <- tagAppendAttributes(btn, class = "button-round")

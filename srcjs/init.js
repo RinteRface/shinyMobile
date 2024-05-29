@@ -18,7 +18,7 @@ $( document ).ready(function() {
   // Only for f7MultiLayout.
   let hasRouter = $(".view-main").attr("data-browser-history") !== undefined;
   if (hasRouter) {
-    // Remove content of the first page 
+    // Remove content of the first page
     // to prevent shiny from binding any input
     // Because we reload the page content via the router, it will
     // be reincluded automatically. This avoids duplicated
@@ -42,12 +42,12 @@ $( document ).ready(function() {
     // to another page and moving back.
     mainView.router.navigate(
       window.location.pathname,
-      // Doc -> reloadCurrent: true: 
-      // replace the current page with the new one from route, 
+      // Doc -> reloadCurrent: true:
+      // replace the current page with the new one from route,
       // no animation in this case
       {reloadCurrent: true}
     );
-    
+
     // For some reasons, the navbars get duplicated entries.
     // We remove the first one.
     $(document).on('shiny:sessioninitialized', function() {
@@ -75,3 +75,8 @@ $( document ).ready(function() {
 export function getAppInstance() {
   return app;
 }
+
+// attach Framework7 to the window object
+// allows usage in browser at later stage (e.g. for offline PWA page)
+window.Framework7 = Framework7;
+

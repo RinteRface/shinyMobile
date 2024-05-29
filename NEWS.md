@@ -1,3 +1,8 @@
+# shinyMobile 2.0.1
+## Bug fixes and improvements
+- Change appearance of PWA install button: center text and add close button.
+- Fix #262: add infinite class to `f7Progress` when value is `NULL`.
+
 # shinyMobile 2.0.0
 ## Major change
 - Update Framework7 from 5.7.14 to 8.3.3

@@ -17,6 +17,7 @@ f7Progress <- function(id, value = NULL, color) {
     stopifnot(value >= 0, value <= 100)
   }
   progressCl <- "progressbar"
+  if (is.null(value)) progressCl <- paste0(progressCl, "-infinite")
   if (!is.null(color)) progressCl <- paste0(progressCl, " color-", color)
 
   shiny::tags$div(

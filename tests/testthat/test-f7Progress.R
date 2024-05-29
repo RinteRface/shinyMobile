@@ -23,6 +23,14 @@ test_that("f7Progress works", {
   expect_identical(progress$attribs$`data-progress`, 100)
 })
 
+test_that("infinite f7Progress works", {
+  progress <- f7Progress(id = "progress", value = NULL, "red")
+  expect_s3_class(progress, "shiny.tag")
+  expect_identical(progress$attribs$class, "progressbar-infinite color-red")
+  expect_identical(progress$attribs$id, "progress")
+  expect_identical(progress$attribs$`data-progress`, NULL)
+})
+
 test_that("updateF7Progress function work", {
   session <- as.environment(list(
     ns = identity,

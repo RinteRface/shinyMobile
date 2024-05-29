@@ -34,6 +34,7 @@ app <- shinyApp(
     title = "Update Progress",
     f7SingleLayout(
       navbar = f7Navbar(title = "f7Progress"),
+      f7BlockTitle("Progress with value"),
       f7Block(
         f7Progress(id = "pg1", value = 10, color = "blue")
       ),
@@ -44,6 +45,10 @@ app <- shinyApp(
         min = 0,
         value = 50,
         scale = TRUE
+      ),
+      f7BlockTitle("Infinite progress"),
+      f7Block(
+        f7Progress(id = "pg2", value = NULL, color = "red")
       )
     )
   ),
