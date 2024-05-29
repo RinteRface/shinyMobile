@@ -2,7 +2,10 @@
     // Create custom install UI
     let installToast = app.toast.create({
       position: 'center',
-      text: '<button id="install-button" style="margin:0;" class="toast-button button color-green">Install</button>'
+      text: '<button id="install-button" style="margin:0;" class="toast-button button color-green">Install</button>',
+      closeButton: true,
+      closeButtonText: 'Dismiss',
+      closeButtonColor: 'red',
     });
 
     let deferredPrompt;
