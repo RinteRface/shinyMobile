@@ -243,7 +243,7 @@ create_app_link <- function(
 #' @keywords internal
 #' @noRd
 change_id <- function(items, ns) {
-  lapply(items, \(item) {
+  lapply(items, function(item) {
     full_ns <- ns(character(0))
     tmp <- strsplit(as.character(item), "\n")[[1]]
     outer_ns <- strsplit(full_ns, "-")[[1]][1]

@@ -40,7 +40,7 @@ test_that("list group works", {
   expect_s3_class(f7ListGroup(title = "plop"), "shiny.tag")
   list_group <- f7ListGroup(
     title = "test",
-    lapply(1:3, \(x) f7ListItem(x))
+    lapply(1:3, function(x) f7ListItem(x))
   )
   expect_identical(list_group$attribs$class, "list-group")
 })
