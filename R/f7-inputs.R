@@ -1756,7 +1756,7 @@ createOptions <- function(
 f7Form <- function(id, ...) {
   inputs <- list(...)
   # All inputs must have a name + no binding
-  inputs <- lapply(inputs, \(input) {
+  inputs <- lapply(inputs, function(input) {
     # Test for different input types
     valid_inputs <- c("input", "textarea", "select")
     target <- NULL

@@ -70,7 +70,7 @@ app <- shinyApp(
       f7BlockTitle("Swiper", size = "large"),
       f7Swiper(
         id = "swiper",
-        lapply(1:20, \(c) {
+        lapply(1:20, function(c) {
           f7Slide(
             f7Card(
               title = sprintf("Slide \%s", c)

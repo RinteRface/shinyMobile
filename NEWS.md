@@ -1,3 +1,10 @@
+# shinyMobile 2.0.1
+## Bug fixes and improvements
+- Change appearance of PWA install button: center text and add close button.
+- Fix #262: add infinite class to `f7Progress` when value is `NULL`.
+- Attach Framework7 to the window object: `window.Framework7 = Framework7`.
+- Fix installation issue on older R versions [#260](https://github.com/RinteRface/shinyMobile/issues/260).
+
 # shinyMobile 2.0.0
 ## Major change
 - Update Framework7 from 5.7.14 to 8.3.3
