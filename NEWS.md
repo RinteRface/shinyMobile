@@ -2,6 +2,7 @@
 ## Bug fixes and improvements
 - Change appearance of PWA install button: center text and add close button.
 - Fix #262: add infinite class to `f7Progress` when value is `NULL`.
+- Attach Framework7 to the window object: `window.Framework7 = Framework7`.
 
 # shinyMobile 2.0.0
 ## Major change
