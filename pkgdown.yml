@@ -1,14 +1,13 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   inputs-layout: inputs-layout.html
   lists: lists.html
-  multipages: multipages.html
+  articles/multipages: multipages.html
   pwa: pwa.html
   reconnect: reconnect.html
   shinyMobile-tools: shinyMobile-tools.html
   shinyMobile: shinyMobile.html
   update-app: update-app.html
-last_built: 2024-05-29T15:01Z
-
+last_built: 2024-07-17T20:32Z

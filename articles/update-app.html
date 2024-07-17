@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="shinyMobile">
 <title>Dynamic App Configuration • shinyMobile</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -15,84 +14,70 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <script src="../extra.js"></script><meta property="og:title" content="Dynamic App Configuration">
-<meta property="og:description" content="shinyMobile">
-<meta property="og:image" content="/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-info" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-info" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">shinyMobile</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/shinyMobile.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/shinyMobile.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/inputs-layout.html">Inputs Layout and Forms</a>
-    <a class="dropdown-item" href="../articles/lists.html">List View</a>
-    <a class="dropdown-item" href="../articles/multipages.html">Multipages</a>
-    <a class="dropdown-item" href="../articles/pwa.html">Progressive Web App (PWA) support</a>
-    <a class="dropdown-item" href="../articles/reconnect.html">Disconnected, Reconnect and Reload</a>
-    <a class="dropdown-item" href="../articles/shinyMobile-tools.html">shinyMobile Tools</a>
-    <a class="dropdown-item" href="../articles/update-app.html">Dynamic App Configuration</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/inputs-layout.html">Inputs Layout and Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/lists.html">List View</a></li>
+    <li><a class="dropdown-item" href="../articles/multipages.html">Multipages</a></li>
+    <li><a class="dropdown-item" href="../articles/pwa.html">Progressive Web App (PWA) support</a></li>
+    <li><a class="dropdown-item" href="../articles/reconnect.html">Disconnected, Reconnect and Reload</a></li>
+    <li><a class="dropdown-item" href="../articles/shinyMobile-tools.html">shinyMobile Tools</a></li>
+    <li><a class="dropdown-item" href="../articles/update-app.html">Dynamic App Configuration</a></li>
+  </ul>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-news">
-    <h6 class="dropdown-header" data-toc-skip>Releases</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.8.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.7.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.1.0</h6>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../news/index.html">Changelog</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-news">
+<li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.8.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.7.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.1.0</h6></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/RinteRface/shinyMobile/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/RinteRface/shinyMobile/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -104,9 +89,9 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Dynamic App Configuration</h1>
             
-            <h4 data-toc-skip class="date">2024-05-29</h4>
+            <h4 data-toc-skip class="date">2024-07-17</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/HEAD/vignettes/update-app.Rmd" class="external-link"><code>vignettes/update-app.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/update-app.Rmd" class="external-link"><code>vignettes/update-app.Rmd</code></a></small>
       <div class="d-none name"><code>update-app.Rmd</code></div>
     </div>
 
@@ -149,7 +134,7 @@ instance.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p>The following example shows how to update the theme, dark mode, and
 color theme of the app:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-2429" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3741" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95sTiRAyhADx1kU6uUnmxdOIscOFuYADEAKzZABxZ-Lj+zqhaANYn-GcZGQBMACYXF3uj3I9ne5wADOCAJwANmu1yBLmcyjgDiI1DBnwyBAIkP43XM5hGygAguhts4WJIThkAOwABSgeTgFNcpEKRjBAFVUL8oORnGTUIjXK4iKh2SRQhFWaKpLZZaLIkRlgxMVcCLcoPikUqenqHrrnHSAMpaPJGAAyUGUnB4jyV0AAbnQlDTaQA5KAupTcdmkTkRfg8vkCoWmQ1K1x0gBCywILwAKhyWcHefzjkU4PAIw7Raa4Hl4GRFfnaTGWHESKWlVpUJWAJK-MFZ+AAfXKwhFUaV-EkAHkTc5W748wax2WK1WIDXRXXG82g2AR22YL9uz3XPwdAARYfqbOjo16icmSNR2PxpMp6ImuCkZx8hhvDi-XxnicFosUe3HyeV0hqwnWsIHrUgmzBCgoAOOA2yfF5X18c9N1OABRaAYMfJQEKIN8dRQj8-2jcsAKAoi51AhcwV+SRhGgow4OwxCN03fgd1o+jjng5iwGA5x9SjQie0vIgE2TANUzAABhdQoAgZllVVfdD1zP8v2LX8ULsPJLVozSUOccQ0FQcQhmgeBhG4JYVmEISDM3DI2AISUZ2shgTGcEA+Ps40SOnWcfNcedwMXJ4mnIcFojctt7kUlY7MCzcjLoVETjc5DEqjNy0pVFYMsy-jvJQgBfIqBJ7crRUqgS7OEaonWqGknJc7hgtwZw7TA9q6uEYRyggDyvN6I19DqhgGtQhqS2CgASFdO3aoaexYdNyAAMVpIVZ3FFzpUMvSAuU+AwU7fDN0q1xKuKhYRroMaJqmnhZpXNdFonFbQzgDatr4nb+r2+V9K0g9jqXNczoq0882uwlbvuuBJp-VrKNIGaoJgxjn0Qt6-w+jNvvJX6JX+k5AcO+CTkTLAuVQviLsKo0YeGpVRvqhHHuRsCZpouiMe43C4Bx5bVq+zbCfIv6pVJg6iopiI1pJS0TVp8j6aum6lSM9BTO4cy4EstzbPaxyIGc-qrNy9zPInVnxvZpHguAYBUHCuBIv4aLYrckwAF0faFzc8fWsXUEOyWIABmXyKVbKIkN4A3J9sq6YnJmlSZx5SoGsBip9oA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -291,7 +276,7 @@ in an app:</p>
 <p>Above code will update the text shown in the dialog buttons. In the
 below app, there are three <code><a href="../reference/f7Dialog.html">f7Dialog()</a></code>s that will be updated
 when the “Update config” button is clicked:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5446" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1002" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-ACqqAAmUOTOq6j8uP5newDKWnlGABkoMpODxPmdnNAAG50JTbPYAOSgMKU3AupCuEVuDyecBe6FMHxcEJ2uwAQuIiAQANYAFUuJ2xj2eewAIpJ7EQ8pESBlJHkWIoLiRCeCvrtvnA8vAyKcSaSySw4iQ5fLnFpUEqAJL3a5gPJERXK3p+Ylqtxgb7qIjUUnszncgCM-DFEJMRPNeyNpBVrpJGu1uqx+sNSp9EAATO8-RD+FabXaOZTuVGwDHnO7016w76zWqA6QdXqWDjyNG8-KmbieRA+XkXRWzj15Zm882Mx7nMJqlDqvC2ARhRBuAXcM5QZrSGPu8JhOUICZnCAxfpuwxewBRXuygsAEgN3pIY+XjbZSa5qohkiDFvu57yztN5vRmIt9uT5wZ5efcAAHqQ9VpTRQkkUIoBrPkGBgZw7wdb81VIZRUDxYNiFrSQoIbFsxQAX3bVwVzoNdN23Hg9wPHNI2PP0zwdS8zhfFCLWWCAiCKPtYI-Rj4Plch-0A4D1TAlx7GqUgsJJfDnDw8xCOIuAtwoMiIEnXcS2ZOBqMbdTcQAMV2V56NcIhUCHUIIikWwjLOTiuW2SywUbeU6EogB5ak9QATTgKBfKgdQAEIePNZwXONABhKAIBycQ9VclgEoSIK0ycpt0yk1wMrcU9dnfC902vPVbLyVNO14hk9QAdSUCA-mCiFEOQvU0MgmB6oYv8AODAEiCIDynmceAxy1Zx1GRPFwIgOBbTC8NhGSv0ssrPMZLzT4cO6MAcIAXSAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -440,7 +425,7 @@ them without calling their specific update function.</p>
 </h3>
 <p>You could update (or reset) the content of an
 <code><a href="../reference/actionsheet.html">f7ActionSheet()</a></code> like so:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1933" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3899" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-ACqqAAmUOTOAKJkhcr8uP5newDKWjyRgAMlBlJweD8zs5oAA3OhKbZ7AByUHhSm4F1IVwitweTzgzmyFxIzg0cDgpGcNjsEBypm+LmhO12fzgeXgZFOzJZACEWHESNyedSIKgBQBJe7XMB5Ij8wW9PxMkXOcRQOhwcQygDiRAAhPwocyTIzVXsFaQhcaeVpxaQpTKWPjyF8bcz1ZrtbiwHdHs9iBAMpI8kaVSazSKLQKrRBhbaxZLpT7AsJKW7wzzPVqZVg4GnSGHVT0eSWzmXTT80wxYdUkWwCCS43aBbhnBD7W208JhOUICZnCBjfpq7WXrWuS3SAASOWWkhtoeZlnLRt9v7qCmQ5euPKpZPOAAqWBuL0jtoP-GJfYAjBnVXQYyRQhEpLZ4x7JO-3TzyAAPKkfWRIgLmDAgnj7e9VTOSRAyRXYJUDaItAyIgGR-ZliHEIgGG2ZEbmBYEMNcSsdzON9t2gs5-0AtwwAAEUkewiFDZUqNcWDSQiPZEOtMApDyWJH3EOgAH1gwcdCyOhLCcLwgiiOk5wy1Ld0VOcABfBZwxHaoxwnHgp2nZ1-TgRd3RMgkADFdjeLEhgwyRLxQNcSDvNiRSIVAmxfNUv0o6DH0VXyKI-LN-LCkUaJlYDQNgiCSCg9jqTg7iEKQ-gULQsBSOS1xZNwiJ8MI4jy1K9ToQq5TjS08xhzoUc4HHChDMTGdU0pczl0s8gbLsj5IqcmVrzcpLmS8nztlC0qgtjEKItK1xpqU6FoqAkDJDAhKlXPdjOJcNLeLjTKg2y3K8oK+SSpW5TdtVZa8vOOAAJlRjmNYu7oP2+CjuiAShJYETxMMcQpMey6ioUxbqqUqqSLUmqyw07owA0gBdIA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -546,7 +531,7 @@ This way, you can update the component at runtime.</p>
 </h3>
 <p>Changing the value of a gauge is a common task and perfectly possible
 with <code><a href="../reference/updateF7Entity.html">updateF7Entity()</a></code>:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-9159" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-4541" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-ADiUCzHwvy4-md7AMpaeUYAMlDKnB4rzOzmgADc6EptnsAHJQCFKbgXUhXCL8PZ3B6+EwvFwgna7d5wPLwMinfEEgBCLDiJHJFOcWlQNIAkgATa5gFioNlQcjPYEM8RQOhwcScgCqPL5cGcmOO-EFFJxSreu2ptIg9IpTNZHLRYECwjgpAFeIZzmFovFBqwcGNprAqpBPWVuIpe0p4iIBAA1tq1fKTs6zpJ9W4wDBlHl7gq-OaGaRlKhZQbjTBJARJAwCEYzRbXGD7CxU84AKwABndBboRAYbOqAGEiN6GJyAMQAJgAjABOABsGQAzPma3WGwwAOphorbbtVkOF4twABiJFInwAXqWACzd6sWoviEsAFTgAA9SM3Wx2ewPh6OLVaxWfL5zYJwyM4iBlnMIiPARRfIqCYuqqrpnBBKp4saDBgtU0JsAQFx0rqpC4N+NLMuhf72sI5QQCYzggIK+iwfBACi8FkmhAAk3K8uQGEkaBoJwNQAD6R7OAAPHUzi7GWqoMTKK67BRZCFEMIZhpyUYxlij74kQqAoRAoQRFItgBiC7bODoIikM4orGSatAUM4FbOFAEAct2i7OEeJbbBA7FcfYzgCM485Vm4rEgk5cCvkZESoE05AVtwrmcUeGH8AApKYB5CiKL4XiFEYwuxlqpeIACEIEWhBYEJgAvsVfkgmR1SUdRPB0UaJrMcJ0rkGJEnItJ-mMuG-DybGvjJVVqkERplqSNpDmBdslaed5FYLt1S7HkF6WcpWiXxgWOXWsF74cFw36-v+gHTHkhUMhVrgVeVryld0YClQAukAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -629,7 +614,7 @@ options</a>. Most of the default options make the most sense for this
 particular component. But, you could update the label (bubble with
 selected index when you swipe over list index) of a
 <code><a href="../reference/f7ListIndex.html">f7ListIndex()</a></code> component like so:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-7206" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-9679" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-DrKzmio-Lj+Z3sAylp5RgAyUMqcPBeZ2c0AAbnQlNs9gA5KDgpTcC6kK4Rfh7b6SWymZ4uYE7XZvOB5eBkU54-EAIRYcRIZPJzi0qGpAEkACbXMAsVCsqDkJ5A+niKB0ODiDkAVW5vN8AuBJhx9Mp1NItNleMZLPZqLAgWEcFI-NxiqFIrF2qwcD1BrAatcPXJ8rV6MxgKNioZWrcYBgymIZGypGEhvdZw4rLgHL9dgIgeDIecQvQ4iGAEZEABmXA7Ngx8oQbiSEzOEC2+nO2wAcQYnFQdPj50uEYi3wAogAVNstrBvYCSAC6CvrZ0TqGT3DTKYADFmMjmLrSAFZF8ukZnkGDcIxxarCYALvsme1Do8hgC+J-pF6PjtxeoYoOqULneYLECZpCzAPfWb1wmEeaLEs3RXZkIHDAAPAtPX4KMAyDPA3Ddes7AYY5SA5ABiH1YJjeCs1LY1hVFbY2ywcUWwvAV9DvB8WwfUkNVIAASLkeXILMgPJVjpQAMV2FsyEKIZSxgkho1jPwkLOIhUHnCBQgiKRbDrPETWIiIeOWb43hbUsLztAVzwFKi6BouA6IoHhGKY3V9Q4tVuPIPiBKRYSpNcUT-VwuNyRkuSFITF0VOBNSzWcUjyL0tULyMt0XlPbowFPPsgA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -704,7 +689,7 @@ Code </a></p>
 </h3>
 <p>Using <code><a href="../reference/updateF7Entity.html">updateF7Entity()</a></code>, you can update the photos that
 are displayed in the photo browser and any other configuration:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5959" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5824" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-Hv76kSkRABCDETUwtX8uP5newDKWjyRgAMlBlJweD8zs5oAA3OhKbZ7AByUHhSm4F1IVwiNwO90eLzeHwYpm+LmhO12fzgeXgZFOlKpTxYcRIjKZzi0qFZAEkACbXMCPPJAuB3B5EL5QzniKB0ODiIUAeVQFGcqAJUrAMuhJnJnOZrMeEA5TO5fMFuLALFQ-Kg5GlFMNcoVSutAFU7Q7fLqzj0mQH-T99T8SbDqki2AQLuyLaRcM4ITyE84PsJhOUICZnCAZfpw3AAKIRhnxgAkIrFEseibzzt++MlRPe1TNZ0kVrcYE1ksYxOqAEYnYainB4EL7QwANYjzmkZRqoWoI6+A2c3uPUIRKS2dvQ3c8FgMd3d2LxRLJAj8iAYDKKeDUIgz3ZlCqoOU5e7ifnVNTBBhSGEOpBwABgAJgAFgADzAqCQIwAArVA8jJP0D0kPdj1PfhzwSJIBGvW971gOAnxfN8BA-Wpv1-MRhAAoCQIgmC4MgupwKQlC0IbJlD24bChTwy9CJvO8HzI59p1fcoqM-OBaL-BjnyYtjYJYuoAGYuNQvxeMNVwCDQWMXGtHQ4EiZQCCkCBdKDQN1yZIoWBgOht0ifczlwuJ8KvMSSMfKSZPfeTFPoxjgLUtiEOQ3THM5byLwIojxNI8jpMo6ivyIH8lIi5ioPU+DONiudDUS3zROIiT0uCuSaJyuj-xUyKWKK9jtNKnV9NcezgwbABfBYGwLaoIxLCgeArW17XIOs-Rmn0ADFdiLMhCiGdDu03fRXlbBhhz0w0iFQEz3P4rbXAXJdrWCHlUDKjcTttfYRHUbYABUsA9It4qcogcoRBhtiW5ZgT+X7Lo1LVzswyEerOfjBOtYTkv8mqgsy0LGrylqCtYjTBx0roEd6v7KWc1zYb3CqRJSgLJIo2SsoUnHwrxqLCeJsA+r1P0+qGn4Bu6MABoAXSAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -781,7 +766,7 @@ Code </a></p>
 <p>For the <code><a href="../reference/f7Popup.html">f7Popup()</a></code> component, you will need a bit more
 code to make updates. Within <code><a href="../reference/updateF7Entity.html">updateF7Entity()</a></code>, you need to
 provide the necessary HTML of the popup content:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-7021" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-6964" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-PtEqCyo-Lj+Z3sAylp5RgAyUMqcPBeZ2c0AAbnQlNs9gA5KDgpSnYGuC6kK4Rfh7W73R5gIFnEzPFxI95wPLwMiI4m7ABCLDiJEpSOcWnupAAkgATa5gUhEPJfXy4NxEpmucRQOhwcTcgAqfIFzixD34eOBBNVrxpdN5EEZSJZdM53IeHKg5CewtFZ3Fkul6LAAFVUKbyIq7sqwD0mV78S91UThNVQdUoWwCBcGQbSEKAayhYHhMJyhATM4QHjY3SACSBUIAHjqzkCEA51X2qQpUaz5AAHqQfa4M3RAwxgwBRYOViCs6vyoxC9MizVK1B61ySLn24LYp4a5GXODcnTKHaSBi2ZzTj2Eq17GVwOtjs78WukC03d2oSIkchkWdDpn8GWaUKSUIwFcZNcbrdXuDBhghTZZxhFoJQAEIVQffEd1FACIQuGB9zrAB5OlWWiXMumghtnAAX1wpsW3bTseCrE0zTgAcNQo8gADFdjbMhCiGOdmUnNwwF-e8rTuCMIFCCIpFsI9XFAyRUDgOUAGFxBCRcIhlLAHTbWCrSgCBJBgSjtjo5ZvjeVS2NcAg5MDFCIDbYQCDQBTnCUlS1NFABiZxpJvChSGcGARC84gyCgLRznURduOg4FXPFf46XA2LjOvMhPO2AByPMOUkUFInFRMwn4biwAAPni1w0oyrKmmEXKwFBSQ4GofgivC0VSsy0yKqq1Ajl8RqrStFrypy-gwQhBgGuK5r0ta7LKqGuERrqOg8gavMBEmnrer6yaBpmyA5qUOotAgaoxqajaSq2trBp5BcGpHFa1vGzaysunbUjyWITrOs683AupC2+LQAGtziILL5M3S9nD+9avr6qBtqqqQIGB39WjM7rZPklaoBh2HgXujLcbxgnQSJ77VsJx6zn6l6Oq61oPLvQqqfxi7pqqug5IIQGGuhOqEtvLyMGFkmyY20WqYl07qYp0n4tF5K2Nw1xcIIl48O6MA8IAXSAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -873,7 +858,7 @@ button that will deactivate the Searchbar, reset search results and
 clear search field. In below example this button is excluded with
 <code>options(list(disableButton = FALSE))</code> when update is being
 clicked:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-9724" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3530" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95gSFknChADx1ztDwwtyogUuoCxAjygCC6E6uLJLhzhkA7AAKUHlwV67OpIVGd-wAogAPVBQCAAEygdF+wjgSgI6joSn4uH8n0eAGUtHkjAAZKDKTg8VGfLZQABuiIYd0eADlyZSPiTXN9SL8IvwMbCGPDKc5qIV1F9Unk3gxkcSmcISnSKUpqQ90dL6UpGUzXJy4QiVRK1a5JGC-mAYZqAIzItwuXUkuDA0EQqFwO4AFSwAFV-jqmT0rd6vSjLSTOXl4GRVYGHgAhFhxEhhplaVDRgCSBvZYBYqAh5HFAd14khcHEhtdmag2bAntcJn9VseUZjEDjJITydTbjAgRhpBzVtc+bohcNWFWcG7FdzJN9k5rTLr4iIBAA1k37gquTylE7haLuHYGG9SCnDcbueozWAp58TM4AKQAPhvq4AEvq4AB5CDo9fqbjVz2PHFJFsFd83QcQhhhABHAB9ewSDybglm+VZq3uNgCG+WNJGvEBKzRB5ANsJNyBgRDllWYBJAAXUvEkAF9aOca970fR4ADFOHBX8Z3DCN5yXFdUGiGkiCKLF7k4sEugnJjbwfVcRNIDi2DBX8JV9P9LRhBgyWqal0MwxsW1IXBnEJRNSBwiV9G03T-l00NjIAEgzLM4FM3CZNcss4DYh5-jIQohjw-Vj2-c8eKZIhUEM0IIikYC8NcMEgMhIx61IEg7jYs4cXRD0ZKrT1LwYiVrLoWy4HsigeGcztRw8z1vPIPyApZYLCucUK0xPeEIrw6LYruBKiU65LUodDKsoiF13TwxiSt9OjujAOiqKAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -954,9 +939,9 @@ Code </a></p>
 </h3>
 <p>There are many options to customize the <code><a href="../reference/swiper.html">f7Swiper()</a></code>
 component. Note that on desktop you need to click and hold to swipe:</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-6811" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-9279" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
-<iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-ADK1JKo1fy4-md7N1p5RgAyUMqcPFeZ2c0AAbnQlNs9gA5KDgpTcC6kK4Rfjve6PBimF4uYE7XY3OB5eBkU54-EAIRYcRIZPJzi0qGpAEkACbXMAsVCsqDkZ5A+niKB0ODiDkAVW5vN8AuBJhx9Mp1NItNleMZLPZqLAgWEcFI-NxiqFIrF2qwcD1BrAatcPXJ8rV6Ie1TpwMkWrcYGEGKefiNeKIqAuJFCESktjdeLBkjyvPKLnDkkjtrxFGFRk9ADFlt8bgBRVN2hWK5yoI5aeMkbYRwEBxXpuiZ7YAFSw4vzJdLzlFHIwPpdDDq5YK0BDvTwbnr9IIUgIAGsM3BW+3C9O5anHevnEL0OIhgBGRAAJgADLg3LxuAQTM4QEX8TcpKyTg-XHsAMJKVlRxVIlHOMIqCpGQGTRE+HrLgApMIzyRPa3bOAhirIXiAC+qF2gKCFbq4eoMKC1RQmwBDjtwGqkBeAJMqQt73gG+j4YR+aEaSFEACRcjy5AXvR5JcdKWa7PmZCFEMqbuL6WL+oqQbjmGO7JnW3ZAXAcCegep7ng+wjPpa+zVAAapIcDUNsx5dvSQG1BS+q0BQ2yaZZ5JQNSQZCsoK4ds5eLCG0RAOBCDA1kpv5ptATbqdsOZ5mu3a4aWI6VuOIUptuwKkMojwcsBRB5LqwhBYaiE9hFzYRG2HYPglir5R6qXKYhGSGGaXrEOILAwBAsEyYhDBENQCkACzVZuaqoRhAoCox1TMaxPAcbq+q8WqAnkEJIlIuJ26SYOxX0nJCYKbWYV4Y8UURENWk+cCumQcIBkMMZpkcq5Kr7Yq1k5LZpD2YmzgAKzaelzhve5fzRbmBY3Wcfn9YFkJJmlJWNuVziVXFpY1fSSVjgmDWnWcmXZdqdAsA4+o9TDwKoxd6OrtV1POHVnonW+OwtRy7WdROTMBANCkHqN26YUhAqTbiaHdGAaEALpAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkY95iPKAILoTq4skuHOGQDsAApQeXDrrs6khUbb-ADK1JKo1fy4-md7N1p5RgAyUMqcPFeZ2c0AAbnQlNs9gA5KDgpTcC6kK4Rfjve6PBimF4uYE7XY3OB5eBkU54-EAIRYcRIZPJzi0qGpAEkACbXMAsVCsqDkZ5A+niKB0ODiDkAVW5vN8AuBJhx9Mp1NItNleMZLPZqLAgWEcFI-NxiqFIrF2qwcD1BrAatcPXJ8rV6Ie1TpwMkWrcYGEGKefiNeKIqAuJFCESktjdeLBkjyvPKLnDkkjtrxFGFRk9ADFlt8bgBRVN2hWK5yoI5aeMkbYRwEBxXpuiZ7YAFSw4vzJdLzlFHIwPpdDDq5YK0BDvTwbnr9IIUgIAGsM3BW+3C9O5anHevnEL0OIhgBGRAAJgADLgdmwCOPuAQTM4QEX8TcpKyTk-XHsAMJKVlRxVIiizjCKgqRkBk0Qvh6y4AKTCM8kT2t2zhIYqqF4gAvuhdoCkhW6uHqDCgtUUJXjeGqkBeAJMqQ96PgG+iEcR+bEaSFEACRcjy5AXvR5JcdKWa7PmZCFEMqbuL6WL+oqQbjmGO7JnW3YgXAcCegep7nk+wivpa+zVAAapIcDUNsx5dvSIG1BS+q0BQ2yaZZ5JQNSQZCsoK4ds5eLCG0RAOBCDA1kp-5ptATbqdsOZ5mu3b4aWI6VuOIUptuwKkMojwcqBRB5LqwhBYayE9hFzYRG2HZPglir5R6qXKchGSGGaXrEOILAwBA8EychDBENQCkACzVZuaroVhAoCox1TMaxPAcbq+q8WqAnkEJIlIuJ26SYOxX0nJCYKbWYUEY8UURENWk+cCunQcIBkMMZpkcq5Kr7Yq1k5LZpD2YmzgAKzaelzhve5fzRbmBY3Wcfn9YFkJJmlJWNuVziVXFpY1fSSVjgmDWnWcmXZdqdAsA4+o9TDwKoxd6OrtV1POHVnonR+OwtRy7WdROTMBANCkHqN27YShAqTbiGHdGAGEALpAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()"><template>Expand</template><button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg></button>
 </bslib-tooltip><script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
@@ -997,7 +982,7 @@ Code </a></p>
 <span>            clickable <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span>          <span class="op">)</span></span>
 <span>        <span class="op">)</span>,</span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, \<span class="op">(</span><span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="kw">function</span><span class="op">(</span><span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
 <span>          <span class="fu"><a href="../reference/swiper.html">f7Slide</a></span><span class="op">(</span></span>
 <span>            <span class="fu"><a href="../reference/card.html">f7Card</a></span><span class="op">(</span></span>
 <span>              title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Slide %s"</span>, <span class="va">c</span><span class="op">)</span></span>
@@ -1058,7 +1043,7 @@ Code </a></p>
 </div>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -1069,15 +1054,15 @@ Code </a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

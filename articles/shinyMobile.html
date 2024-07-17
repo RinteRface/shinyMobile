@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="shinyMobile">
 <title>Getting Started • shinyMobile</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -15,84 +14,70 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <script src="../extra.js"></script><meta property="og:title" content="Getting Started">
-<meta property="og:description" content="shinyMobile">
-<meta property="og:image" content="/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/atropos@2.0.2/atropos.min.css">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-info" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-info" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">shinyMobile</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/shinyMobile.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
+<li class="active nav-item"><a class="nav-link" href="../articles/shinyMobile.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/inputs-layout.html">Inputs Layout and Forms</a></li>
+    <li><a class="dropdown-item" href="../articles/lists.html">List View</a></li>
+    <li><a class="dropdown-item" href="../articles/multipages.html">Multipages</a></li>
+    <li><a class="dropdown-item" href="../articles/pwa.html">Progressive Web App (PWA) support</a></li>
+    <li><a class="dropdown-item" href="../articles/reconnect.html">Disconnected, Reconnect and Reload</a></li>
+    <li><a class="dropdown-item" href="../articles/shinyMobile-tools.html">shinyMobile Tools</a></li>
+    <li><a class="dropdown-item" href="../articles/update-app.html">Dynamic App Configuration</a></li>
+  </ul>
 </li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/inputs-layout.html">Inputs Layout and Forms</a>
-    <a class="dropdown-item" href="../articles/lists.html">List View</a>
-    <a class="dropdown-item" href="../articles/multipages.html">Multipages</a>
-    <a class="dropdown-item" href="../articles/pwa.html">Progressive Web App (PWA) support</a>
-    <a class="dropdown-item" href="../articles/reconnect.html">Disconnected, Reconnect and Reload</a>
-    <a class="dropdown-item" href="../articles/shinyMobile-tools.html">shinyMobile Tools</a>
-    <a class="dropdown-item" href="../articles/update-app.html">Dynamic App Configuration</a>
-  </div>
-</li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-news">News</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-news">
-    <h6 class="dropdown-header" data-toc-skip>Releases</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.8.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.7.0</h6>
-    <h6 class="dropdown-header" data-toc-skip>shinyMobile 0.1.0</h6>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../news/index.html">Changelog</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-news" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">News</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-news">
+<li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 2.0.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 1.0.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.1</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.9.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.8.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.7.0</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>shinyMobile 0.1.0</h6></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/RinteRface/shinyMobile/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/RinteRface/shinyMobile/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -106,9 +91,9 @@
                         <h4 data-toc-skip class="author">David Granjon
 &amp; Veerle van Leemput</h4>
             
-            <h4 data-toc-skip class="date">2024-05-29</h4>
+            <h4 data-toc-skip class="date">2024-07-17</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/HEAD/vignettes/shinyMobile.Rmd" class="external-link"><code>vignettes/shinyMobile.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/RinteRface/shinyMobile/blob/master/vignettes/shinyMobile.Rmd" class="external-link"><code>vignettes/shinyMobile.Rmd</code></a></small>
       <div class="d-none name"><code>shinyMobile.Rmd</code></div>
     </div>
 
@@ -612,7 +597,7 @@ are optional for the <code><a href="../reference/f7SingleLayout.html">f7SingleLa
 <span>  <span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5943" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-9397" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkZjCoPcaHAAHgTqSukLA5MAJqjiygw7E0N5eYdEpABMPeZ7UHbRcMQQRDCSBMIA+uIkeS6EFeJA+X1+-wgeWcAB46s4Qe9Pt8-gDnABSAB86P8zjyDE4qB+dCGADclJIoHR5hjsbjhFIctxuBBuCY6gBGAAMXJMiFZJnuvQgI2UAEF0E5XCxJOFnBkAOwABSgeTgUtcziIqFI5RFcqktm4jwYAGs5QAxMUAGQAygBRXDywxGPaWm0Op1FODwOX8GB7Uy4XGuXWkIx+sA6ZTONCofjBlyaxW2rR5IzWqDKTg8EOa6CkuhKOWKgByUELSm4YYjEX4qahEcz2ZYpCDedDRCI4iLDBLCoAKl2e1WO5rgsJCnrI3RrqQPgmx65FdatKbuOIqXBxJHVxBzRyE851IEMpHYvFEslqDf8l307liDB20nNcmFXv15u6Nvd2vnDcR4nnAZ51jEcQJEkAg3tQd5EA+GBPkCb6uCYiYoc4ADEzgwFAWiRCQ5BkGOioAMJKHsGoYTmUjAnKA5YAAqo6S7OIokjCHAboRAxzHoRhzh7JIpKSHs1T0UxLGvihNZwJG5EMG66hwFAYkMIu0lvis6ybAwpAAPKtqgrbREoKmkbpbZgD0GE2ZqdlofS1SkuJEQZGwBC6iQ3BaMZpBOjmfkmM4IB5oFrYACRmVAFlbLC8KBBAakSmsGxbNwoWabGqBrFRKGPHYcqImCKKQnk-EYaQyg5ZG0UaQJOFxmmcpQHAwh5RhqxygVcAVQJMYROS4gsHAXIcn1GEZC6crkqkVJGKxdlvsFWI4llrhQKsPzKJtHHGq8ki4eIwgAJIQBa-xPHKdy0uiWHOBALAwD+fZEGeYkEId9ihPOzimnAQSsZtPxpXpwx2AQ-3cc4vH2itdLrbGW07ase24V1EQACxel8ppihwXBypjS3OAAvnZpPdGApMALpAA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -704,7 +689,7 @@ passed inside.</p>
 <span>  <span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-6566" style="width: 393px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3545" style="width: 393px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirDmtp6BkZjCoPcaHAAHgTqSuk95sEOzgA8dc4AJlB2GBmK8E6uUBDCtAzhkdEAmnDC-LhuYAByRFMuH8zhcESiACYAKwAFh+EIAzAAOHo7B7TZQAQXQt2cLEkLwyAHYAApQPJwXGuIioUjlB4vKS2bhnBgAaxeADFMQAZADKAFEfhlDEYTlzeYKfkU4PAXvwYCcgSDXHTSEZ5WAdMpnGhUN8Vc5iQAVKB0HlQZScHiG1yoe5wcShCJ2PI8yTM22uI2kh2OL3e5xqjURfg8uAZUjOMkQR3fNwuQNJ4SSE5wTVGSMGxNJ73EmOOnQUFhU3PemxwKMRY1YACqQoDSetUljLxr9eBObLrgAxM5a8J04VZaEmkGzaCoAA3SR5c705wkcTKRuB-N+gCS5Bgpe7qrNf1g6dDYDsdEHpDqproAEZs3uk8Hj79jURnNfnHe-F2H5JiGCfQ3f9ogyIhxDTBhlR-PdsjpKdn3bAVV29ExOwfVx11jcQt1lXc9zPQ85RPM8LyvM0IXvdDVUKEMXzfD8KO-KjXD-EhCSJICSGiNk4GUOgiCUJUwB6KjUOQjDfSwnCd3E70CKPTUSMrMi6ARSiqKfTVX3fCc1KY5jWIA4lOIgaJxEtaphAAfXsUgumg3MRL3VCEwfCMMjgAgq1+DJxAEukIDyfhGzEhyfQLRxNJPLBZ1iaM-XjFM001VI8lieNiQAIT8gg2WibKzXMoFnHczzvP4Xz-K0ILhK9ULc2gKc6CUdjDyapQ8Oo9Vn34a9QgtK0WDs-Tc02SQGBbBC6wbMLM1ICK22mtCy1S2IFuraa6uWtciT6zrdQgSQYHOOBxQ2jtG1TRSzQvdSkxNM19q62jeonL9trLeSiJfM13uQwz2JMkCwIgqCH1gyR4MWi6wokgBhQSnu9ZstCmmHu0UD1TuhmbuxOSHU2qHGPofKLfgRhhxXUOAoFBkb0JWdZNgYUgAHkhtQIbolQSRfCch9+aTeqyweugkbJ166GcRiScfA8FJPa8Zf+-9AeA-geL4gTKbBvdiQpk4kepIbJuJxtMcHM73yWxt8ZnCCzdhx8aJ6sADecanaeqO7wdQNYNi2dn4i59wCHOdJ7NEkLZYk69xZdrTdJ9uW6EI13rz0mPy1ViJjPVsBzOUSybPEYbhe7fXEdklHW3O3GVqgLGrcQrO7cJ5466z3MJbdwSPZpumu-uok+WOlm+UdMqjaTfgpyUSRCt8Ifc34AA1efF9CUg3w0IhqEQZOHyifg4eUFsIK+MBNQIM-D-Q3r2maD0UxIfhNVgO+H34ABxGmGEvzUFIlC62YouP2EANwAXcNTSsn8ywwBYKXSQqBaKIVkq4cu6EzxGCDpzG0YAzh2EjuhQWgZSHOEFk5YWg4GDwQ7kaNgXl6TcC0Hgn41o2HOEHMIF+EATDOBAOYQ0fZUh0OcCgogdkuyEM+IcY4gQIbwWGHAAAjhgAAIidbgfJlDCA0Vo-hxwEQAAYfg6L0Zo8g3AXJ0B1BEVhQ0AAktiTBokDBwpxPN0xHGcIECAEFsT+2ZjwQR0FGb7UIVAF4exxBZ1IMoP2movF32OugaqLwoCfG4KsDJDwng-DsaCchgsAC+bjkYcyccIMOcQiY+L8QEv2TMtjcFCbmcJttzhRIiDAUgYd-5xISa7ap4dvb00DKknmgUMlZOQjkiI1BSBD0KTAVAeQh4in2OCW+YVimGjKUI3oXY+yROwcYLsHjSCOMiXI3xFAILXiMK0r0vT+nCGAD8Y+YBVk1R+A4q5c9UiLxcicBgNIJT8gFAAXX2T8MF1BoDwGdNbesTkSndDACUqFQA&amp;h=0" height="852" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -926,7 +911,7 @@ value since the first tab was set to an active state. To adequately link
 the body and the sidebar, you must wrap the body content in
 <code><a href="../reference/f7Items.html">f7Items()</a></code> containing as many <code><a href="../reference/f7Item.html">f7Item()</a></code> as
 sidebar items. The <strong>tabName</strong> must correspond.</p>
-<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-5449" style="width: 768px; margin: 0 auto; float: none;">
+<div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-3937" style="width: 768px; margin: 0 auto; float: none;">
 <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;">
 <iframe class="html-fill-item" src="https://shinylive.io/r/app/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAdzgCMAnRRAVwhiLdIAoAdMAPQsAzgwEAbAJZ0BWCdIZQGATwHCAFpIjKAskTqTxcfgEpeEWo2ZbhpKOPF8IAAmf8NW3fsPG851wxwqETCzgC8zgR8YOqkpKjCiAICDFrkDABmUARwGADmkqTqLHQYkkQpaXCZ2XAAtNRQwjB1BIoQAqbmZhDmUoxKytwe2j39iirceXmo4kSkAExjCoPDmtp6BkbLA5NocAAeBOpK6TsTQ0VwMFCkkgQ95hkMLIWhADx1zgAmt1AYz1gcCcrmg8HCkWiAEF0EZhPxcG4wAB5dp5ODwvBIgBCUGg0ExiP42OqqQxplw-mcADd7Cw4BCogAWJmIgCsbMRADYAOyIgAcAGYeo8yOprrd7gB9EZDDIkUgQ-hQFikIhdXoQCBwahSmCkAhKD5fQIafYgn5-CHiqDfbj6w0MYQmSkuZySb60hhKsAcb5wcQIqle5RaPIQqS2bhRfjfRSkBFI6gJsAmF1Uu7wUIRGNgOO3RP8ZMUqnfSSBAh3Eg+uYQPJBt3UjBgjE+2niekN1xxoioRnRGCoetY-gEZSBkcxVCFvOSWwzgCOwjgBBn1MJSNgM-RShnjroGtFsphqAtrwhGR5AAUoOiLa47qQjD6AMqzQrOcRQZScFOu1yuJeb5SKQAAy36-veAHCB69BKBe154gGUEAc4j7PhE-AvrBdC7n4bqoa4MH+jWcAZH+VKEc4ZEZCuiqYWAqAiOoXZUc4vZVhA2afnOPCUWx1JztIRjYoEUAANbBGkEI8gADLJ-GoemBGEZeN7auIOgUCwKGER6PrwBALCsWxzi2AwJDhhEAAqWAAKoAKL-qZzhqUh4gAJLkDAulUXYdAAHJAj6-kAIwmS56EMgx1lQHQzjhfhLkAfc1YRJeHnEBA0RwAuLD2FKBDlgQRglippnZHc1LRc4tmOYphHKclbkaV51y+YR-lBeCDH+QsEWmVFPqxfF-VJcl7pZQhmUkDleUFUVDAlb4PTJU1LktQGbU+Q1flxd1NX8P5goDWxQ0xXFzgneNyWpS46U8jN2X8Ll+XiIVxWlamu0AatbHrVRrzIqqTF8WAy5GJWcDfFK-kalRAMAdA1K4d6D1BSjSgdedSLAR+4E-qqp2uCc5ZSNqEIAGJQqBL5OT9RjkepAYQnVDkNYjD5EEQ4iowh1nc7zWM-cEMGcT6dDzGqMDE65PKgVo4ncF+dAswxCsQOJCWJuogQZD6sTxIkyTUKb+Tc3kRgYMQMups5VGXhrSsq2rSJO84Y2IrrZEG3ECRJAIpvUObRCW7kNvw419sAQAxM4NxaJECoUAm5Vy9twgdRl3kdQ++3Bb1cWJdHDs8tiqpqs9YBqtMRgvuKcB-kiV5zIqqBKEC6SYpzqk8vXcCN7nKXfD6GgD6Qxc-ahLviD6LfzM4N6KPAXey6hRBkmQkppUiktxEQtsl2xwjUJIqBwALADCczLqz9n02nVG4QQ4k9n2Nn30fpcvlI-oMEPqF+D6EJFPQi-AAosBgKrb0RB9bAOqLSTiiQ16ERgInCIslEQ3AOBCUK8lMGgNQu2ekEI2TyUIc4P6pke6oUYNwGhAFZjzGBvEVU0Qyy2HnimKhUcfrZ3aqArqBckR9RQfsI4JwGCkBYaDaIihfgMEjgjL+6cc6CPzj1ERcVroqMAjyAWtdgQUK0KDDyI8GJMNIDKdQRBqAoNcDPV8NjqCL1bgAfnsZEcUL9oZ33qo-X6ujnDiOOKcGRbD+AwBYOIO4Up5GSHsEoxqHN+J-XWsuBg1U0auTYJWco2UTGqkRL+UGiJlzCBgiQEwzgQD8XgZkuADlqpkG4IU0gAASGuYd+6N0RLUtOLBUC-HIJTPuDceD6QYmPRuiUeEAF9RTrzoBk6qTSU6tIgKDdpwC+kNUkPrDZWzgHOHeM4Mhslqn9NMpeAK8x9lD3IAceizh262DgLJABSJrLijMr-aoNI6QMjnOxCA4hlBIkRG07ZyyiRgAwK4uATRjABNQloNoiLb6FH4KAhhrg7rTSytESWMSpQZEMBOXFaFCgYSRFCIwUiUFRSwJIPIsRrKHGeS+ZQwgMAABFbjAh4UpBqcz+ILPMBKlSJTVTtPkfBT4zhAgQD-jCQ4oSpHcCuYRcRHVhlQAhNqXUDojQqNIMoc+Po5WKJuqgtAqAwwQigBiIeOCIh+gDEE8FERiFwCCXkCygyISZmRdQlJKlxWanXiDGVEM6LQ1hpdBVSq-52Q8pqhqAAJayOhQLcFeeQD5-BL4sAYEqp84LY1QxHv5RAEKzKkAsnWQ5MrDIsDTPMxZAFpUdI4aQLhJyTQUD-lw9Nade0DsVRADePkoXAKFc4TQUZe0dslVG1hHSokxMkHE20CTZ5JqHdUVVEjTijqovs5wzaOmWOsbYy5P0dV6ovC8N4iIzUWoYvE+wuJrVYLtQ6iITrM6uucC2REXqAUdjgGmEVYq-qiogCYMAcyAC6QA&amp;h=0" height="1024" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 </div>
@@ -1113,7 +1098,7 @@ be used as part of your data analysis workflow in R.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/RinteRface/shinyMobile" class="external-link">shinyMobile</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runGadget.html" class="external-link">runGadget</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyAppDir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"examples/tab_layout"</span>, package <span class="op">=</span> <span class="st">"shinyMobile"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -1124,15 +1109,15 @@ be used as part of your data analysis workflow in R.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
