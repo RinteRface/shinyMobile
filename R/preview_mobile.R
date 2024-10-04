@@ -20,7 +20,6 @@
 #'  library(shiny)
 #'  library(shinyMobile)
 #'  preview_mobile(appPath = "~/whatever", device = "galaxyNote8")
-#'  preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ipadMini")
 #' }
 preview_mobile <- function(appPath = NULL, url = NULL, port = 3838,
                            device = c(

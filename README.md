@@ -59,7 +59,6 @@ Where `APP_PATH` is the app location. Currently, it only works if the app is **i
 
 - A valid `service-worker.js`.
 - A valid web manifest (`manifest-webmanifest`). Don't forget to change the `start_url` property to the path of your app.
-For instance, the following app hosted at https://dgranjon.shinyapps.io/rstudio-global-2021-calendar/, has the `/rstudio-global-2021-calendar/` path.
 - As a bonus a valid `offline.html` fallback, which is displayed when the app is offline.
 - A valid set of icons. There are tools such as [appsco](https://appsco.pe/developer/splash-screens) and [app-manifest](https://app-manifest.firebaseapp.com), to create 
 those custom icons and splash screens, if you need to.
@@ -79,7 +78,7 @@ The first step is to deploy your app somewhere. It doesn't matter where (shinyap
 Then, you can follow these steps to install your app on your mobile device.
 
 <br> 
-Copy the URL of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). In this example this is: https://dgranjon.shinyapps.io/miniUI2Demo/. It opens like a classic web app, with top and bottom ugly navigation bars that are part of the browser UI.
+Copy the URL of your app in your mobile web browser (iOS: Safari and Andoid: Chrome). It opens like a classic web app, with top and bottom ugly navigation bars that are part of the browser UI.
 
 - Select the share button located in the bottom bar of your iPhone/iPad For Android, you may do something similar. Importantly, Chrome for iOS does not support this feature, that's why we recommend using Safari.
 - Click on "Add to Home Screen"

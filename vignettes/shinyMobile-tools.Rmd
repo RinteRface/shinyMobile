@@ -38,8 +38,7 @@ library(shiny)
 library(shinyMobile)
 
 preview_mobile(appPath = system.file("examples/gallery/app.R", package = "shinyMobile"), device = "iphoneX")
-
-preview_mobile(url = "https://dgranjon.shinyapps.io/miniUI2DemoMd", device = "ipadMini")
+# This also works with a remote app url hosted on shinyapps.io ...
 ```
 
 The local preview is a 4 steps process:
