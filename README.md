@@ -33,7 +33,7 @@ AthlyticZ offers top notch Shiny courses developed by [Veerle van Leemput](https
 
 - Productionizing Shiny Applications [course](https://athlyticz.com/shiny-ii).
 - Outstanding InterfaceZ with Shiny [course](https://athlyticz.com/shiny-iii).
-- More to come ...
+- Build outstanding mobile applications with shiny [course](https://athlyticz.com/shiny-mobile).
 
 ## Progressive Web App (PWA)
 
