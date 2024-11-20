@@ -4,7 +4,7 @@
 \alias{f7Grid}
 \title{Framework7 grid container}
 \usage{
-f7Grid(..., cols, gap = TRUE)
+f7Grid(..., cols, gap = TRUE, medium_cols = NULL)
 }
 \arguments{
 \item{...}{Row content.}
@@ -12,6 +12,8 @@ f7Grid(..., cols, gap = TRUE)
 \item{cols}{Columns number. Numeric between 1 and 20.}
 
 \item{gap}{Whether to display gap between columns. TRUE by default.}
+
+\item{medium_cols}{Columns number for large screens. Numeric between 1 and 20.}
 }
 \description{
 Grid container for elements
