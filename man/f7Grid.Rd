@@ -4,7 +4,7 @@
 \alias{f7Grid}
 \title{Framework7 grid container}
 \usage{
-f7Grid(..., cols, gap = TRUE)
+f7Grid(..., cols, gap = TRUE, responsiveCl = NULL)
 }
 \arguments{
 \item{...}{Row content.}
@@ -12,6 +12,11 @@ f7Grid(..., cols, gap = TRUE)
 \item{cols}{Columns number. Numeric between 1 and 20.}
 
 \item{gap}{Whether to display gap between columns. TRUE by default.}
+
+\item{responsiveCl}{Class for responsive behavior.
+The format must be \verb{<SIZE-NCOLS>} such as \verb{<medium-4>}, \verb{<large-3>}.
+SIZE must be one of \code{c("xsmall", "small", "medium", "large", "xlarge")}.
+NCOLS has to be between 1 and 20.}
 }
 \description{
 Grid container for elements
