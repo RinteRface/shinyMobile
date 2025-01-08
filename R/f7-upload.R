@@ -66,7 +66,7 @@ f7File <- function(inputId, label, multiple = FALSE, accept = NULL, width = NULL
       shiny::tags$label(
         class = "input-group-btn",
         shiny::span(
-          class = "bustton button-fill btn-file",
+          class = "button button-fill btn-file",
           buttonLabel,
           inputTag
         )
