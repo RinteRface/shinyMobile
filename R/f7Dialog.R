@@ -12,9 +12,13 @@
 #' @export
 #'
 #' @example inst/examples/dialog/app.R
-f7Dialog <- function(id = NULL, title = NULL, text,
-                     type = c("alert", "confirm", "prompt", "login"),
-                     session = shiny::getDefaultReactiveDomain()) {
+f7Dialog <- function(
+  id = NULL,
+  title = NULL,
+  text,
+  type = c("alert", "confirm", "prompt", "login"),
+  session = shiny::getDefaultReactiveDomain()
+) {
   type <- match.arg(type)
 
   if (is.null(id) && type %in% c("confirm", "prompt", "login")) {
@@ -23,7 +27,7 @@ f7Dialog <- function(id = NULL, title = NULL, text,
 
   # force to render shiny.tag and convert it to character
   # since text does not accept anything else
-  text <- if (class(text) %in% c("shiny.tag", "shiny.tag.list")) {
+  text <- if (any(class(text) %in% c("shiny.tag", "shiny.tag.list"))) {
     as.character(force(text))
   } else {
     text

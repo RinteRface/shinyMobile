@@ -1,3 +1,9 @@
+# shinyMobile 2.0.2.9000
+## Bug fixes and improvements
+- Fix issue/regression with `f7Dialog()` __text__ parameter that could not handle a list of tags.
+- Fix typo in `f7File()` button class. Thanks @SCasanova.
+- Responsive `f7Grid()`. Thanks @ThomasChln.
+
 # shinyMobile 2.0.1
 ## Bug fixes and improvements
 - Change appearance of PWA install button: center text and add close button.
